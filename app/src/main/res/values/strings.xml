@@ -1,0 +1,146 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Plate Handler</string>
+
+    <!-- Drawer -->
+    <string name="item_main_draw_main">Main</string>
+    <string name="item_recipes_draw_main">Recipes</string>
+    <string name="item_shopping_draw_main">Shopping List</string>
+    <string name="item_products_draw_main">Products</string>
+
+    <string name="toggle_open_draw_main">Drawer opened</string>
+    <string name="toggle_close_draw_main">Drawer closed</string>
+
+    <!-- Dialog -->
+    <string name="butt_positive_dial_primary">OK</string>
+    <string name="butt_negative_dial_primary">Cancel</string>
+
+    <!-- Pager -->
+    <string name="item_info_pager_recipes">Info</string>
+    <string name="item_ingredients_pager_recipes">Ingredients</string>
+    <string name="item_instructions_pager_recipes">Instructions</string>
+
+    <!-- Main -->
+    <string name="text_dish_frag_main">Dish of the Day</string>
+    <string name="text_recent_frag_main">Recently shown</string>
+
+    <!-- Recipe -->
+    <string name="edit_name_frag_recipe">Name</string>
+    <string name="edit_author_frag_recipe">Author</string>
+    <string name="edit_serving_frag_recipe">Serving</string>
+    <string name="text_time_frag_recipe">Time</string>
+    <string name="text_difficulty_frag_recipe">Difficulty</string>
+    <string name="text_spiciness_frag_recipe">Spiciness</string>
+    <string name="text_country_frag_recipe">Country</string>
+    <string name="text_type_frag_recipe">Type</string>
+    <string name="text_preferences_frag_recipe">Preferences</string>
+    <string name="radio_meat_frag_recipe">Meat</string>
+    <string name="radio_vegetarian_frag_recipe">Vegetarian</string>
+    <string name="text_alphabetical_frag_recipe">Alphabetically</string>
+    <string name="text_favorite_frag_recipe">Favorite</string>
+    <string name="text_step_frag_recipe">Step</string>
+
+    <!-- Product -->
+    <string name="edit_name_frag_product">Name</string>
+    <string name="text_type_frag_product">Type</string>
+    <string name="text_alphabetical_frag_product">Alphabetically</string>
+
+    <!-- Recipe Menu Items -->
+    <string name="item_settings_menu_chsrecp">Settings</string>
+    <string name="item_edit_menu_shwrecp">Edit recipe</string>
+    <string name="item_delete_menu_shwrecp">Delete recipe</string>
+
+    <!-- Product Menu Items -->
+    <string name="item_settings_menu_chsprod">Settings</string>
+    <string name="item_edit_menu_shwprod">Edit product</string>
+    <string name="item_delete_menu_shwprod">Delete product</string>
+
+    <!-- Main Toolbar Titles -->
+    <string name="tool_main_frag_main">Main</string>
+
+    <!-- Recipe Toolbar Titles -->
+    <string name="tool_choose_frag_chsrecp">Choose recipe</string>
+    <string name="tool_settings_frag_sttrecp">Recipe settings</string>
+    <string name="tool_add_frag_mngrecp">Add recipe</string>
+    <string name="tool_edit_frag_mngrecp">Edit recipe</string>
+    <string name="tool_add_frag_mngcatg">Add category</string>
+    <string name="tool_edit_frag_mngcatg">Edit category</string>
+    <string name="tool_add_frag_mngstep">Add step</string>
+    <string name="tool_edit_frag_mngstep">Edit step</string>
+    <string name="tool_calculate_frag_clcrecp">Calculate recipe</string>
+
+    <!-- Product Toolbar Titles -->
+    <string name="tool_choose_frag_chsprod">Choose product</string>
+    <string name="tool_settings_frag_sttprod">Product settings</string>
+    <string name="tool_add_frag_mngprod">Add product</string>
+    <string name="tool_edit_frag_mngprod">Edit product</string>
+
+    <!-- Shopping Toolbar Titles -->
+    <string name="tool_shopping_frag_shwshop">Shopping list</string>
+    <string name="tool_create_frag_crtshop">Create shopping list</string>
+
+    <!-- Shopping List -->
+    <string name="text_date_frag_shopping">List from:</string>
+    <string name="butt_create_frag_shopping">Create new list</string>
+
+    <!-- Product Calculate -->
+    <string name="text_protein_frag_product">Protein:</string>
+    <string name="text_carbohydrates_frag_product">Carbohydrates:</string>
+    <string name="text_fat_frag_product">Fat:</string>
+    <string name="text_total_frag_product">Total energy:</string>
+    <string name="text_kcal_frag_product">Kcal:</string>
+    <string name="text_kj_frag_product">Kj:</string>
+
+    <!-- Snack Message -->
+    <string name="snack_added_frag_product">Product added!</string>
+    <string name="snack_updated_frag_product">Product updated!</string>
+    <string name="snack_deleted_frag_product">Product deleted!</string>
+
+    <string name="snack_category_frag_recipe">New category added!</string>
+    <string name="snack_step_frag_recipe">New step added!</string>
+    <string name="snack_favorite_frag_recipe">Favorite recipe updated!</string>
+
+    <string name="snack_added_frag_recipe">Recipe added!</string>
+    <string name="snack_updated_frag_recipe">Recipe updated!</string>
+    <string name="snack_deleted_frag_recipe">Recipe deleted!</string>
+
+    <string name="snack_created_frag_shopping">Shopping list created!</string>
+
+    <!-- Toast Message -->
+    <string name="toast_name_frag_product">Product name is empty!</string>
+
+    <string name="toast_incomplete_frag_recipe">Recipe is incomplete!</string>
+    <string name="toast_category_frag_recipe">Category name is empty!</string>
+    <string name="toast_step_frag_recipe">Step instruction is empty!</string>
+
+    <string name="toast_items_frag_shopping">Item names are empty!</string>
+
+    <!-- Async Fail Message -->
+    <string name="toast_fail_async_readrecn">Read recent error!</string>
+    <string name="toast_fail_async_readdish">Read dish error!</string>
+    <string name="toast_fail_async_readids">Read ids error!</string>
+
+    <string name="toast_fail_async_insprod">Insert product error!</string>
+    <string name="toast_fail_async_updprod">Update product error!</string>
+    <string name="toast_fail_async_readprodid">Read product id error!</string>
+    <string name="toast_fail_async_readprod">Read products error!</string>
+    <string name="toast_fail_async_delprod">Delete products error!</string>
+
+    <string name="toast_fail_async_readrec">Read recipes error!</string>
+    <string name="toast_fail_async_readauth">Read authors error!</string>
+    <string name="toast_fail_async_insrec">Insert recipe error!</string>
+    <string name="toast_fail_async_updrec">Update recipe error!</string>
+    <string name="toast_fail_async_delrec">Delete recipe error!</string>
+    <string name="toast_fail_async_updrecfav">Update recipe favorite error!</string>
+
+    <!-- Dialog Message -->
+    <string name="dial_add_frag_product">Do you want to add a new product?</string>
+    <string name="dial_edit_frag_product">Do you want to edit the product?</string>
+    <string name="dial_delete_frag_product">Do you want to delete the product?</string>
+
+    <string name="dial_add_frag_recipe">Do you want to add a new recipe?</string>
+    <string name="dial_edit_frag_recipe">Do you want to edit the recipe?</string>
+    <string name="dial_delete_frag_recipe">Do you want to delete the recipe?</string>
+
+    <string name="dial_create_frag_shopping">Do you want to create a new shopping list?</string>
+</resources>

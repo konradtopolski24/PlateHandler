@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="array_difficulty_frag_recipe">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+
+    <string-array name="array_country_frag_recipe">
+        <item>China</item>
+        <item>Croatia</item>
+        <item>France</item>
+        <item>Greece</item>
+        <item>India</item>
+        <item>Italy</item>
+        <item>Japan</item>
+        <item>Mexico</item>
+        <item>Poland</item>
+        <item>Spain</item>
+        <item>Thailand</item>
+        <item>Turkey</item>
+        <item>USA</item>
+    </string-array>
+
+    <string-array name="array_type_frag_recipe">
+        <item>Seasoning</item>
+        <item>Appetiser</item>
+        <item>Soup</item>
+        <item>Main Course</item>
+        <item>Salad</item>
+        <item>Sauce</item>
+        <item>Dessert</item>
+    </string-array>
+
+    <string-array name="array_type_frag_product">
+        <item>Vegetable</item>
+        <item>Fruit</item>
+        <item>Meat</item>
+        <item>Dairy</item>
+        <item>Noodles</item>
+        <item>Seasoning</item>
+        <item>Sauce</item>
+        <item>Liquid</item>
+    </string-array>
+
+    <string-array name="array_measure_frag_ingredient">
+        <item>Gram</item>
+        <item>Decagram</item>
+        <item>Kilogram</item>
+        <item>Millilitre</item>
+        <item>Litre</item>
+        <item>Teaspoon</item>
+        <item>Tablespoon</item>
+        <item>Cup</item>
+        <item>Can</item>
+        <item>Pinch</item>
+        <item>Piece</item>
+    </string-array>
+
+    <integer-array name="array_factor_frag_ingredient">
+        <item>1</item>
+        <item>10</item>
+        <item>1000</item>
+        <item>1</item>
+        <item>1000</item>
+        <item>5</item>
+        <item>10</item>
+        <item>100</item>
+        <item>100</item>
+        <item>1</item>
+        <item>100</item>
+    </integer-array>
+
+    <integer-array name="array_drawable_image_type">
+        <item>@drawable/icon_condiment</item>
+        <item>@drawable/icon_appetiser</item>
+        <item>@drawable/icon_soup</item>
+        <item>@drawable/icon_dish</item>
+        <item>@drawable/icon_salad</item>
+        <item>@drawable/icon_sauce</item>
+        <item>@drawable/icon_dessert</item>
+    </integer-array>
+
+    <integer-array name="array_drawable_image_preference">
+        <item>@drawable/icon_vegetarian</item>
+        <item>@drawable/icon_meat</item>
+    </integer-array>
+</resources>

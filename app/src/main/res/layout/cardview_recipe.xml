@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    card_view:cardCornerRadius="16dp"
+    card_view:cardBackgroundColor="@color/colorPrimary">
+
+    <LinearLayout
+        android:id="@+id/lin_recipe_card_recipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_name_card_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/text_author_card_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/text_difficulty_card_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_spiciness0_card_recipe"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_spicy"/>
+
+            <ImageView
+                android:id="@+id/image_spiciness1_card_recipe"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_spicy"/>
+
+            <ImageView
+                android:id="@+id/image_spiciness2_card_recipe"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_spicy"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_country_card_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/image_type_card_recipe"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+        <ImageView
+            android:id="@+id/image_preference_card_recipe"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

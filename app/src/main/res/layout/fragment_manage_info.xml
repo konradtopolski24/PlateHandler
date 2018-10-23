@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.recipe.manage.ManageInfoFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/image_photo_frag_mnginfo"
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"/>
+
+                <ImageButton
+                    android:id="@+id/imgbutt_photo_frag_mnginfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageButton
+                    android:id="@+id/imgbutt_remove_frag_mnginfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edit_name_frag_mnginfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_name_frag_recipe"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edit_author_frag_mnginfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_author_frag_recipe"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_serving_frag_recipe"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageButton
+                        android:id="@+id/imgbutt_plus_frag_mnginfo"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"/>
+
+                    <TextView
+                        android:id="@+id/text_serving_frag_mnginfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageButton
+                        android:id="@+id/imgbutt_minus_frag_mnginfo"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_time_frag_recipe"/>
+
+                <ImageButton
+                    android:id="@+id/imgbutt_time_frag_mnginfo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+
+                <TextView
+                    android:id="@+id/text_time_frag_mnginfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_difficulty_frag_recipe"/>
+
+                <TextView
+                    android:id="@+id/text_difficulty_frag_mnginfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/seek_difficulty_frag_mnginfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_spiciness_frag_recipe"/>
+
+                <ImageView
+                    android:id="@+id/image_spiciness0_frag_mnginfo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_spicy"/>
+
+                <ImageView
+                    android:id="@+id/image_spiciness1_frag_mnginfo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_spicy"/>
+
+                <ImageView
+                    android:id="@+id/image_spiciness2_frag_mnginfo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_spicy"/>
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/seek_spiciness_frag_mnginfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_country_frag_recipe"/>
+
+            <Spinner
+                android:id="@+id/spin_country_frag_mnginfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/array_country_frag_recipe"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_type_frag_recipe"/>
+
+            <Spinner
+                android:id="@+id/spin_type_frag_mnginfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/array_type_frag_recipe"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_preferences_frag_recipe"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radio_meat_frag_mnginfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/radio_meat_frag_recipe"/>
+
+                <RadioButton
+                    android:id="@+id/radio_vegetarian_frag_mnginfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/radio_vegetarian_frag_recipe"
+                    android:checked="true"/>
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

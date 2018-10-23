@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.MainActivity">
+
+    <include
+        android:id="@+id/tool_main_act_main"
+        layout="@layout/toolbar_main"/>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/draw_main_act_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/frame_main_act_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navig_main_act_main"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/drawer_main">
+        </android.support.design.widget.NavigationView>
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>
