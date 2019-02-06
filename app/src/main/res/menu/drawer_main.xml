@@ -4,15 +4,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/item_main_draw_main"
-            android:title="@string/item_main_draw_main"/>
+            android:title="@string/item_main_draw_main"
+            android:icon="@drawable/ic_home"/>
         <item
             android:id="@+id/item_recipes_draw_main"
-            android:title="@string/item_recipes_draw_main"/>
+            android:title="@string/item_recipes_draw_main"
+            android:icon="@drawable/ic_recipe"/>
         <item
             android:id="@+id/item_shopping_draw_main"
-            android:title="@string/item_shopping_draw_main"/>
+            android:title="@string/item_shopping_draw_main"
+            android:icon="@drawable/ic_shopping"/>
         <item
             android:id="@+id/item_ingredients_draw_main"
-            android:title="@string/item_products_draw_main"/>
+            android:title="@string/item_products_draw_main"
+            android:icon="@drawable/ic_product"/>
     </group>
 </menu>

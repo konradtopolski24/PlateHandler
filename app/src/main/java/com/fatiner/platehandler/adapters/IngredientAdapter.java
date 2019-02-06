@@ -54,7 +54,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     }
 
     private void setTextAmount(IngredientHolder holder, float amount){
-        holder.textAmount.setText(String.valueOf(amount));
+        holder.tvAmount.setText(String.valueOf(amount));
     }
 
     private String[] getArrayMeasure(){
@@ -62,21 +62,21 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     }
 
     private void setTextMeasure(IngredientHolder holder, String measure){
-        holder.textMeasure.setText(measure);
+        holder.tvMeasure.setText(measure);
     }
 
     private void setTextProduct(IngredientHolder holder, String name){
-        holder.textProduct.setText(name);
+        holder.tvProduct.setText(name);
     }
 
     public class IngredientHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.text_amount_lay_ingredient)
-        TextView textAmount;
-        @BindView(R.id.text_measure_lay_ingredient)
-        TextView textMeasure;
-        @BindView(R.id.text_product_lay_ingredient)
-        TextView textProduct;
+        @BindView(R.id.tv_amount)
+        TextView tvAmount;
+        @BindView(R.id.tv_measure)
+        TextView tvMeasure;
+        @BindView(R.id.tv_product)
+        TextView tvProduct;
 
         public IngredientHolder(View itemView) {
             super(itemView);

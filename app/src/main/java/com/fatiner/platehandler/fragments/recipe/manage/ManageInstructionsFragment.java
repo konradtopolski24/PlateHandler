@@ -18,10 +18,10 @@ import butterknife.OnClick;
 
 public class ManageInstructionsFragment extends PrimaryFragment {
 
-    @BindView(R.id.recyc_steps_frag_mnginst)
+    @BindView(R.id.rv_steps)
     RecyclerView recycSteps;
 
-    @OnClick(R.id.butt_add_frag_mnginst)
+    @OnClick(R.id.bt_add)
     public void onClickButtAdd(){
         setFragment(new ManageStepFragment());
     }

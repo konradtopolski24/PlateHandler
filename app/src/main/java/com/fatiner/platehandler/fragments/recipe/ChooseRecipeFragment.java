@@ -30,12 +30,12 @@ import butterknife.OnClick;
 
 public class ChooseRecipeFragment extends PrimaryFragment {
 
-    @BindView(R.id.recyc_recipes_frag_chsrecp)
-    RecyclerView recycRecipes;
-    @BindView(R.id.float_recipes_frag_chsrecp)
-    FloatingActionButton floatRecipes;
+    @BindView(R.id.rv_recipes)
+    RecyclerView rvRecipes;
+    @BindView(R.id.fab_add)
+    FloatingActionButton fabAdd;
 
-    @OnClick(R.id.float_recipes_frag_chsrecp)
+    @OnClick(R.id.fab_add)
     public void onClickFloatRecipes(){
         resetRecipeDetails();
         setFragment(new ManageRecipeFragment());
@@ -60,7 +60,6 @@ public class ChooseRecipeFragment extends PrimaryFragment {
         } else {
             setMenuItem(MainGlobals.ID_RECIPES_DRAW_MAIN);
         }
-
     }
 
     private void setRecipes(){
@@ -89,7 +88,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
 
     private void hideFloatRecipes(){
         if(isBundleNotEmpty()){
-            floatRecipes.setVisibility(View.GONE);
+            fabAdd.setVisibility(View.GONE);
         }
     }
 
@@ -126,7 +125,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
         protected void onPostExecute(Boolean success){
             if(success){
                 setRecyclerView(
-                        recycRecipes,
+                        rvRecipes,
                         getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_RECIPES),
                         new RecipesAdapter(getContext(), recipes, isBundleNotEmpty())
                 );

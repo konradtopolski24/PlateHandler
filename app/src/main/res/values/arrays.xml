@@ -73,17 +73,17 @@
     </integer-array>
 
     <integer-array name="array_drawable_image_type">
-        <item>@drawable/icon_condiment</item>
-        <item>@drawable/icon_appetiser</item>
-        <item>@drawable/icon_soup</item>
-        <item>@drawable/icon_dish</item>
-        <item>@drawable/icon_salad</item>
-        <item>@drawable/icon_sauce</item>
-        <item>@drawable/icon_dessert</item>
+        <item>@drawable/ic_condiment</item>
+        <item>@drawable/ic_appetiser</item>
+        <item>@drawable/ic_soup</item>
+        <item>@drawable/ic_dish</item>
+        <item>@drawable/ic_salad</item>
+        <item>@drawable/ic_sauce</item>
+        <item>@drawable/ic_dessert</item>
     </integer-array>
 
     <integer-array name="array_drawable_image_preference">
-        <item>@drawable/icon_vegetarian</item>
-        <item>@drawable/icon_meat</item>
+        <item>@drawable/ic_vegetarian</item>
+        <item>@drawable/ic_meat</item>
     </integer-array>
 </resources>

@@ -60,8 +60,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             hideImgbuttEdit(holder);
         }
         setTextName(holder, categories.get(position).getName());
-        setLayoutManager(getLayoutManager(), holder.recycIngredients);
-        setAdapter(getAdapter(position), holder.recycIngredients);
+        setLayoutManager(getLayoutManager(), holder.rvIngredients);
+        setAdapter(getAdapter(position), holder.rvIngredients);
     }
 
     @Override
@@ -70,15 +70,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
     private void hideImageRemove(CategoryHolder holder){
-        holder.imageRemove.setVisibility(View.GONE);
+        holder.ivRemove.setVisibility(View.GONE);
     }
 
     private void hideImgbuttEdit(CategoryHolder holder){
-        holder.imgbuttEdit.setVisibility(View.GONE);
+        holder.ibEdit.setVisibility(View.GONE);
     }
 
     private void setTextName(CategoryHolder holder, String name){
-        holder.textName.setText(name);
+        holder.tvName.setText(name);
     }
 
     private void setLayoutManager(RecyclerView.LayoutManager manager, RecyclerView recyclerView){
@@ -99,18 +99,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     public class CategoryHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.text_name_lay_category)
-        TextView textName;
-        @BindView(R.id.linear_ingredients_lay_category)
-        LinearLayout linearIngredients;
-        @BindView(R.id.recyc_ingredients_lay_category)
-        RecyclerView recycIngredients;
-        @BindView(R.id.image_remove_lay_category)
-        ImageView imageRemove;
-        @BindView(R.id.imgbutt_edit_lay_category)
-        ImageButton imgbuttEdit;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.ll_ingredients)
+        LinearLayout llIngredients;
+        @BindView(R.id.rv_ingredients)
+        RecyclerView rvIngredients;
+        @BindView(R.id.iv_remove)
+        ImageView ivRemove;
+        @BindView(R.id.ib_edit)
+        ImageButton ibEdit;
 
-        @OnClick(R.id.imgbutt_edit_lay_category)
+        @OnClick(R.id.ib_edit)
         public void onClickImgbuttEdit(){
             RecipeDetails.resetTempIngredients();
             ManageCategoryFragment fragment = new ManageCategoryFragment();
@@ -118,16 +118,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             setFragment(fragment);
         }
 
-        @OnClick(R.id.image_remove_lay_category)
+        @OnClick(R.id.iv_remove)
         public void onClickImageRemove(){
             int position = getAdapterPosition();
             categories.remove(position);
             notifyItemRemoved(position);
         }
 
-        @OnClick(R.id.linear_header_lay_category)
+        @OnClick(R.id.ll_header)
         public void onClickLinearHeader(){
-            if(recycIngredients.getVisibility() == View.VISIBLE){
+            if(rvIngredients.getVisibility() == View.VISIBLE){
                 hideRecycIngredients();
             } else {
                 showRecycIngredients();
@@ -150,11 +150,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         }
 
         private void showRecycIngredients(){
-            recycIngredients.setVisibility(View.VISIBLE);
+            rvIngredients.setVisibility(View.VISIBLE);
         }
 
         private void hideRecycIngredients(){
-            recycIngredients.setVisibility(View.GONE);
+            rvIngredients.setVisibility(View.GONE);
         }
     }
 }

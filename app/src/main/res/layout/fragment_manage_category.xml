@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/edit_name_frag_mngcatg"
+                    android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="1"
@@ -28,7 +28,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyc_ingredients_frag_mngcatg"
+                android:id="@+id/rv_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </android.support.v7.widget.RecyclerView>
@@ -36,14 +36,14 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/butt_add_frag_mngcatg"
+        android:id="@+id/bt_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/float_add_frag_mngcatg"
+        android:id="@+id/fab_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

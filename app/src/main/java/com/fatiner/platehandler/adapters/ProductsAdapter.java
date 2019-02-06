@@ -57,7 +57,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     }
 
     private void setTextName(ProductsHolder holder, String name){
-        holder.textName.setText(name);
+        holder.tvName.setText(name);
     }
 
     private void setBundle(Fragment fragment, int position){
@@ -69,10 +69,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 
     public class ProductsHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.text_name_card_product)
-        TextView textName;
+        @BindView(R.id.tv_name)
+        TextView tvName;
 
-        @OnClick(R.id.lin_product_card_product)
+        @OnClick(R.id.ll_product)
         public void onClickLinearProduct(){
             ProductDetails.resetProductDetails();
             Fragment fragment = new ShowProductFragment();

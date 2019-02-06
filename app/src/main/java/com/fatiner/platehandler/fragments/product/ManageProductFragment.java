@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.Ingredient;
@@ -33,69 +32,54 @@ import butterknife.OnTextChanged;
 
 public class ManageProductFragment extends PrimaryFragment {
 
-    @BindView(R.id.edit_name_frag_mngprod)
-    EditText editName;
-    @BindView(R.id.edit_carbohydrates_frag_mngprod)
-    EditText editCarbohydrates;
-    @BindView(R.id.edit_protein_frag_mngprod)
-    EditText editProtein;
-    @BindView(R.id.edit_fat_frag_mngprod)
-    EditText editFat;
-    @BindView(R.id.spin_type_frag_mngprod)
-    Spinner spinType;
-    @BindView(R.id.image_photo_frag_mngprod)
-    ImageView imagePhoto;
+    @BindView(R.id.et_name)
+    EditText etName;
+    @BindView(R.id.et_carbohydrates)
+    EditText etCarbohydrates;
+    @BindView(R.id.et_protein)
+    EditText etProtein;
+    @BindView(R.id.et_fat)
+    EditText etFat;
+    @BindView(R.id.sp_type)
+    Spinner spType;
+    @BindView(R.id.iv_photo)
+    ImageView ivPhoto;
 
-    @OnTextChanged(R.id.edit_name_frag_mngprod)
+    @OnTextChanged(R.id.et_name)
     public void onTextChangedEditName(CharSequence text){
         ProductDetails.getProduct().setName(String.valueOf(text));
     }
 
-    @OnTextChanged(R.id.edit_carbohydrates_frag_mngprod)
+    @OnTextChanged(R.id.et_carbohydrates)
     public void onTextChangeEditCarbohydrates(CharSequence text){
-        float carbohydrates;
-        if(String.valueOf(text).isEmpty()){
-            carbohydrates =  MainGlobals.INT_STARTING_VAR_INIT;
-        } else {
-            carbohydrates = Float.valueOf(String.valueOf(text));
-        }
+        float carbohydrates = checkEditTextValue(String.valueOf(text));
         setProductCarbohydrates(carbohydrates);
     }
 
-    @OnTextChanged(R.id.edit_protein_frag_mngprod)
+    @OnTextChanged(R.id.et_protein)
     public void onTextChangeEditProtein(CharSequence text){
-        float protein;
-        if(String.valueOf(text).isEmpty()){
-            protein =  MainGlobals.INT_STARTING_VAR_INIT;
-        } else {
-            protein = Float.valueOf(String.valueOf(text));
-        }
+        float protein = checkEditTextValue(String.valueOf(text));
         setProductProtein(protein);
     }
 
-    @OnTextChanged(R.id.edit_fat_frag_mngprod)
+    @OnTextChanged(R.id.et_fat)
     public void onTextChangeEditFat(CharSequence text){
-        float fat;
-        if(String.valueOf(text).isEmpty()){
-            fat =  MainGlobals.INT_STARTING_VAR_INIT;
-        } else {
-            fat = Float.valueOf(String.valueOf(text));
-        }
+        float fat = checkEditTextValue(String.valueOf(text));
         setProductFat(fat);
     }
 
-    @OnClick(R.id.imgbutt_photo_frag_mngprod)
+    @OnClick(R.id.ib_add)
     public void onClickImgbuttPhoto(){
         selectPhoto();
     }
 
-    @OnClick(R.id.imgbutt_remove_frag_mngprod)
+    @OnClick(R.id.ib_remove)
     public void onClickImgbuttRemove(){
         ProductDetails.getProduct().setEncodedImage(null);
-        imagePhoto.setImageResource(android.R.color.transparent);
+        ivPhoto.setImageResource(android.R.color.transparent);
     }
 
-    @OnClick(R.id.float_add_frag_mngprod)
+    @OnClick(R.id.fab_done)
     public void onClickFloatAdd(){
         hideKeyboard();
         if(ProductDetails.isProductCorrect()){
@@ -105,7 +89,7 @@ public class ManageProductFragment extends PrimaryFragment {
         }
     }
 
-    @OnItemSelected(R.id.spin_type_frag_mngprod)
+    @OnItemSelected(R.id.sp_type)
     public void onItemSelectedSpinType(int id){
         ProductDetails.getProduct().setType(id);
     }
@@ -142,23 +126,23 @@ public class ManageProductFragment extends PrimaryFragment {
     }
 
     private void setEditName(String text){
-        editName.setText(text);
+        etName.setText(text);
     }
 
     private void setSpinType(int type){
-        spinType.setSelection(type);
+        spType.setSelection(type);
     }
 
     private void setEditCarbohydrates(float carbohydrates){
-        editCarbohydrates.setText(String.valueOf(carbohydrates));
+        etCarbohydrates.setText(String.valueOf(carbohydrates));
     }
 
     private void setEditProtein(float protein){
-        editProtein.setText(String.valueOf(protein));
+        etProtein.setText(String.valueOf(protein));
     }
 
     private void setEditFat(float fat){
-        editFat.setText(String.valueOf(fat));
+        etFat.setText(String.valueOf(fat));
     }
 
     private void chooseDialog(){
@@ -210,7 +194,7 @@ public class ManageProductFragment extends PrimaryFragment {
 
     private void setImagePhoto(String encodedImage){
         if(encodedImage == null) return;
-        imagePhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
+        ivPhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
     }
 
     private void setEncodedImageInfo(int resultCode, Intent data){

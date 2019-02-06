@@ -231,4 +231,14 @@ public class PrimaryFragment extends Fragment {
         InputMethodManager manager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
+    protected float checkEditTextValue(String text){
+        float value;
+        if(text.isEmpty()){
+            value =  MainGlobals.INT_STARTING_VAR_INIT;
+        } else {
+            value = Float.valueOf(String.valueOf(text));
+        }
+        return value;
+    }
 }

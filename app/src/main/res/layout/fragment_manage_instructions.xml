@@ -7,12 +7,12 @@
     tools:context=".fragments.recipe.manage.ManageInstructionsFragment">
 
     <Button
-        android:id="@+id/butt_add_frag_mnginst"
+        android:id="@+id/bt_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyc_steps_frag_mnginst"
+        android:id="@+id/rv_steps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>

@@ -11,17 +11,17 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/butt_add_frag_crtshop"
+            android:id="@+id/bt_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/butt_select_frag_crtshop"
+            android:id="@+id/bt_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyc_positions_frag_crtshop"
+            android:id="@+id/rv_positions"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical">
@@ -29,7 +29,7 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/float_add_frag_crtshop"
+        android:id="@+id/fab_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

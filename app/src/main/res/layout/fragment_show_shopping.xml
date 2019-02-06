@@ -17,19 +17,19 @@
             android:text="@string/text_date_frag_shopping"/>
 
         <TextView
-            android:id="@+id/text_date_frag_shwshop"
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         
         <Button
-            android:id="@+id/butt_create_frag_shwshop"
+            android:id="@+id/bt_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/butt_create_frag_shopping"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyc_shopping_frag_shwshop"
+        android:id="@+id/rv_shopping"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical">

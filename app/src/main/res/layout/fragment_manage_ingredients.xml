@@ -15,7 +15,7 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyc_categories_frag_mngingr"
+                android:id="@+id/rv_categories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </android.support.v7.widget.RecyclerView>
@@ -23,7 +23,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/butt_add_frag_mngingr"
+        android:id="@+id/bt_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"

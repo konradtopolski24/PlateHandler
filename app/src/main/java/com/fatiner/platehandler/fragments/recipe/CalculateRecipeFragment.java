@@ -23,10 +23,10 @@ import butterknife.ButterKnife;
 
 public class CalculateRecipeFragment extends PrimaryFragment {
 
-    @BindView(R.id.recyc_ingredients_frag_calcrecp)
-    public RecyclerView recycIngredients;
-    @BindView(R.id.text_totalkcal_frag_calcrecp)
-    public TextView textTotalkcal;
+    @BindView(R.id.rv_ingredients)
+    public RecyclerView rvIngredients;
+    @BindView(R.id.tv_totalkcal)
+    public TextView tvTotalkcal;
 
     public CalculateRecipeFragment() {}
 
@@ -38,7 +38,7 @@ public class CalculateRecipeFragment extends PrimaryFragment {
         setToolbarTitle(R.string.tool_calculate_frag_clcrecp);
         ArrayList<Ingredient> ingredients = getIngredients();
         setRecyclerView(
-                recycIngredients,
+                rvIngredients,
                 getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDCATEG),
                 new IngredientAdapter(getContext(), ingredients)
         );
@@ -70,7 +70,7 @@ public class CalculateRecipeFragment extends PrimaryFragment {
                             + getKcal(newFat, MainGlobals.KCAL_FAT_OBJ_PROD);
             total += totalOne;
         }
-        textTotalkcal.setText(String.valueOf(total));
+        tvTotalkcal.setText(String.valueOf(total));
     }
 
     private int[] getArrayFactor(){

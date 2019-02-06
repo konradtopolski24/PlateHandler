@@ -9,23 +9,23 @@
     card_view:cardBackgroundColor="@color/colorPrimary">
 
     <LinearLayout
-        android:id="@+id/lin_recipe_card_recipe"
+        android:id="@+id/ll_recipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/text_name_card_recipe"
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/text_author_card_recipe"
+            android:id="@+id/tv_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/text_difficulty_card_recipe"
+            android:id="@+id/tv_difficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         
@@ -34,36 +34,36 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/image_spiciness0_card_recipe"
+                android:id="@+id/iv_spiciness0"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/icon_spicy"/>
+                android:src="@drawable/ic_spiciness"/>
 
             <ImageView
-                android:id="@+id/image_spiciness1_card_recipe"
+                android:id="@+id/iv_spiciness1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/icon_spicy"/>
+                android:src="@drawable/ic_spiciness"/>
 
             <ImageView
-                android:id="@+id/image_spiciness2_card_recipe"
+                android:id="@+id/iv_spiciness2"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/icon_spicy"/>
+                android:src="@drawable/ic_spiciness"/>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/text_country_card_recipe"
+            android:id="@+id/tv_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <ImageView
-            android:id="@+id/image_type_card_recipe"
+            android:id="@+id/iv_type"
             android:layout_width="30dp"
             android:layout_height="30dp" />
 
         <ImageView
-            android:id="@+id/image_preference_card_recipe"
+            android:id="@+id/iv_preference"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
     </LinearLayout>

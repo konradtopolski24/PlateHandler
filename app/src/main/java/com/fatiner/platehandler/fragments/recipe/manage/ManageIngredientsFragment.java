@@ -19,10 +19,10 @@ import butterknife.OnClick;
 
 public class ManageIngredientsFragment extends PrimaryFragment {
 
-    @BindView(R.id.recyc_categories_frag_mngingr)
-    RecyclerView recycCategories;
+    @BindView(R.id.rv_categories)
+    RecyclerView rvCategories;
 
-    @OnClick(R.id.butt_add_frag_mngingr)
+    @OnClick(R.id.bt_add)
     public void onClickButtAdd(){
         RecipeDetails.resetTempIngredients();
         setFragment(new ManageCategoryFragment());
@@ -45,6 +45,6 @@ public class ManageIngredientsFragment extends PrimaryFragment {
         GridLayoutManager manager = getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDINGRED);
         CategoryAdapter adapter = new CategoryAdapter(getContext(),
                 RecipeDetails.getRecipe().getCategories(), false);
-        setRecyclerView(recycCategories, manager, adapter);
+        setRecyclerView(rvCategories, manager, adapter);
     }
 }

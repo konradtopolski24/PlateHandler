@@ -81,30 +81,30 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
     }
 
     private void setTextName(RecipesHolder holder, String name){
-        holder.textName.setText(name);
+        holder.tvName.setText(name);
     }
 
     private void setTextAuthor(RecipesHolder holder, String author){
-        holder.textAuthor.setText(author);
+        holder.tvAuthor.setText(author);
     }
 
     private void setTextDifficulty(RecipesHolder holder, int difficulty){
-        holder.textDifficulty.setText(String.valueOf(difficulty));
+        holder.tvDifficulty.setText(String.valueOf(difficulty));
     }
 
     private void setTextCountry(RecipesHolder holder, String country){
-        holder.textCountry.setText(country);
+        holder.tvCountry.setText(country);
     }
 
     private void setImageType(RecipesHolder holder, int type){
         TypedArray arrayTypes = getArrayTypes();
-        holder.imageType.setImageResource(arrayTypes.getResourceId(type,
+        holder.ivType.setImageResource(arrayTypes.getResourceId(type,
                 MainGlobals.INT_DECREMENT_VAR_INIT));
     }
 
     private void setImagePreference(RecipesHolder holder, boolean preference){
         TypedArray arrayPreferences = getArrayPreferences();
-        holder.imagePreference.setImageResource(arrayPreferences.getResourceId(
+        holder.ivPreference.setImageResource(arrayPreferences.getResourceId(
                 TypeManager.booleanToInteger(preference), MainGlobals.INT_DECREMENT_VAR_INIT));
     }
 
@@ -115,25 +115,25 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
 
     public class RecipesHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.text_name_card_recipe)
-        TextView textName;
-        @BindView(R.id.text_author_card_recipe)
-        TextView textAuthor;
-        @BindView(R.id.text_difficulty_card_recipe)
-        TextView textDifficulty;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.tv_author)
+        TextView tvAuthor;
+        @BindView(R.id.tv_difficulty)
+        TextView tvDifficulty;
         @BindViews({
-                R.id.image_spiciness0_card_recipe,
-                R.id.image_spiciness1_card_recipe,
-                R.id.image_spiciness2_card_recipe})
-        List<ImageView> arrayImageSpiciness;
-        @BindView(R.id.text_country_card_recipe)
-        TextView textCountry;
-        @BindView(R.id.image_type_card_recipe)
-        ImageView imageType;
-        @BindView(R.id.image_preference_card_recipe)
-        ImageView imagePreference;
+                R.id.iv_spiciness0,
+                R.id.iv_spiciness1,
+                R.id.iv_spiciness2})
+        List<ImageView> arrayIvSpiciness;
+        @BindView(R.id.tv_country)
+        TextView tvCountry;
+        @BindView(R.id.iv_type)
+        ImageView ivType;
+        @BindView(R.id.iv_preference)
+        ImageView ivPreference;
 
-        @OnClick(R.id.lin_recipe_card_recipe)
+        @OnClick(R.id.ll_recipe)
         public void onClickLinearLayoutRecipe(){
             if(isSelecting){
                 addIngredientsToShoppingList(getAdapterPosition());

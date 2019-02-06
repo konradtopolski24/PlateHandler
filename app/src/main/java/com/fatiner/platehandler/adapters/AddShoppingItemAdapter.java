@@ -57,27 +57,27 @@ public class AddShoppingItemAdapter extends RecyclerView.Adapter<AddShoppingItem
     }
 
     private void setEditAmount(AddShoppingItemHolder holder, float amount){
-        holder.editAmount.setText(String.valueOf(amount));
+        holder.etAmount.setText(String.valueOf(amount));
     }
 
     private void setSpinMeasure(AddShoppingItemHolder holder, int measure){
-        holder.spinMeasure.setSelection(measure);
+        holder.spMeasure.setSelection(measure);
     }
 
     private void setEditName(AddShoppingItemHolder holder, String name){
-        holder.editName.setText(name);
+        holder.etName.setText(name);
     }
 
     public class AddShoppingItemHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.edit_amount_lay_addshopitem)
-        EditText editAmount;
-        @BindView(R.id.spin_measure_lay_addshopitem)
-        Spinner spinMeasure;
-        @BindView(R.id.edit_name_lay_addshopitem)
-        EditText editName;
+        @BindView(R.id.et_amount)
+        EditText etAmount;
+        @BindView(R.id.sp_measure)
+        Spinner spMeasure;
+        @BindView(R.id.et_name)
+        EditText etName;
 
-        @OnClick(R.id.image_remove_lay_addshopitem)
+        @OnClick(R.id.iv_remove)
         public void onClickImageRemove(){
             if(shoppingItems.size() == MainGlobals.INT_INCREMENT_VAR_INIT){
 
@@ -88,7 +88,7 @@ public class AddShoppingItemAdapter extends RecyclerView.Adapter<AddShoppingItem
             }
         }
 
-        @OnTextChanged(R.id.edit_amount_lay_addshopitem)
+        @OnTextChanged(R.id.et_amount)
         public void onTextChangeEditAmount(CharSequence text){
             float amount;
             if(String.valueOf(text).isEmpty()){
@@ -99,12 +99,12 @@ public class AddShoppingItemAdapter extends RecyclerView.Adapter<AddShoppingItem
             setShoppingItemsAmount(amount);
         }
 
-        @OnTextChanged(R.id.edit_name_lay_addshopitem)
+        @OnTextChanged(R.id.et_name)
         public void onTextChangeEditName(CharSequence text){
             setShoppingItemsName(String.valueOf(text));
         }
 
-        @OnItemSelected(R.id.spin_measure_lay_addshopitem)
+        @OnItemSelected(R.id.sp_measure)
         public void onItemSelectedSpinMeasure(int id){
             setShoppingItemsMeasure(id);
         }

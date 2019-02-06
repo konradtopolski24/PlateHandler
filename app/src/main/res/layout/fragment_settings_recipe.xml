@@ -18,7 +18,7 @@
             android:text="@string/text_alphabetical_frag_recipe"/>
 
         <Switch
-            android:id="@+id/switch_alphabetical_frag_sttrecp"
+            android:id="@+id/sw_alphabetical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -35,7 +35,7 @@
             android:text="@string/text_favorite_frag_recipe"/>
 
         <Switch
-            android:id="@+id/switch_favorite_frag_sttrecp"
+            android:id="@+id/sw_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -52,12 +52,12 @@
             android:text="@string/edit_author_frag_recipe"/>
 
         <Switch
-            android:id="@+id/switch_author_frag_sttrecp"
+            android:id="@+id/sw_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Spinner
-            android:id="@+id/spin_author_frag_sttrecp"
+            android:id="@+id/sp_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"/>
@@ -74,12 +74,12 @@
             android:text="@string/text_difficulty_frag_recipe"/>
 
         <Switch
-            android:id="@+id/switch_difficulty_frag_sttrecp"
+            android:id="@+id/sw_difficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <SeekBar
-            android:id="@+id/seek_difficulty_frag_sttrecp"
+            android:id="@+id/sb_difficulty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"/>
@@ -96,12 +96,12 @@
             android:text="@string/text_spiciness_frag_recipe"/>
 
         <Switch
-            android:id="@+id/switch_spiciness_frag_sttrecp"
+            android:id="@+id/sw_spiciness"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <SeekBar
-            android:id="@+id/seek_spiciness_frag_sttrecp"
+            android:id="@+id/sb_spiciness"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"/>
@@ -119,12 +119,12 @@
             android:text="@string/text_country_frag_recipe"/>
 
         <Switch
-            android:id="@+id/switch_country_frag_sttrecp"
+            android:id="@+id/sw_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Spinner
-            android:id="@+id/spin_country_frag_sttrecp"
+            android:id="@+id/sp_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/array_country_frag_recipe"
@@ -143,12 +143,12 @@
             android:text="@string/text_type_frag_recipe"/>
 
         <Switch
-            android:id="@+id/switch_type_frag_sttrecp"
+            android:id="@+id/sw_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Spinner
-            android:id="@+id/spin_type_frag_sttrecp"
+            android:id="@+id/sp_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/array_type_frag_recipe"
@@ -167,30 +167,28 @@
             android:text="@string/text_preferences_frag_recipe"/>
 
         <Switch
-            android:id="@+id/switch_preference_frag_sttrecp"
+            android:id="@+id/sw_preference"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <RadioGroup
-            android:id="@+id/radio_preference_frag_sttrecp"
+            android:id="@+id/rg_preference"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone">
 
             <RadioButton
-                android:id="@+id/radio_meat_frag_sttrecp"
+                android:id="@+id/rb_meat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/radio_meat_frag_recipe"/>
 
             <RadioButton
-                android:id="@+id/radio_vegetarian_frag_sttrecp"
+                android:id="@+id/rb_vegetarian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/radio_vegetarian_frag_recipe"
                 android:checked="true"/>
         </RadioGroup>
     </LinearLayout>
-
-
 </LinearLayout>

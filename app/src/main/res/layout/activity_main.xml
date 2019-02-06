@@ -8,22 +8,22 @@
     tools:context=".activities.MainActivity">
 
     <include
-        android:id="@+id/tool_main_act_main"
+        android:id="@+id/tb_main"
         layout="@layout/toolbar_main"/>
 
     <android.support.v4.widget.DrawerLayout
-        android:id="@+id/draw_main_act_main"
+        android:id="@+id/dl_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/frame_main_act_main"
+            android:id="@+id/fl_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </FrameLayout>
 
         <android.support.design.widget.NavigationView
-            android:id="@+id/navig_main_act_main"
+            android:id="@+id/nv_main"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"

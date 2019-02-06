@@ -29,34 +29,34 @@ import butterknife.ButterKnife;
 
 public class ShowProductFragment extends PrimaryFragment {
 
-    @BindView(R.id.text_name_frag_shwprod)
-    TextView textName;
-    @BindView(R.id.text_type_frag_shwprod)
-    TextView textType;
-    @BindView(R.id.text_carbohydrates_frag_shwprod)
-    TextView textCarbohydrates;
-    @BindView(R.id.text_carbokcal_frag_shwprod)
-    TextView textCarbokcal;
-    @BindView(R.id.text_carbokj_frag_shwprod)
-    TextView textCarbokj;
-    @BindView(R.id.text_protein_frag_shwprod)
-    TextView textProtein;
-    @BindView(R.id.text_protkcal_frag_shwprod)
-    TextView textProtkcal;
-    @BindView(R.id.text_protkj_frag_shwprod)
-    TextView textProtkj;
-    @BindView(R.id.text_fat_frag_shwprod)
-    TextView textFat;
-    @BindView(R.id.text_fatkcal_frag_shwprod)
-    TextView textFatkcal;
-    @BindView(R.id.text_fatkj_frag_shwprod)
-    TextView textFatkj;
-    @BindView(R.id.text_kcal_frag_shwprod)
-    TextView textKcal;
-    @BindView(R.id.text_kj_frag_shwprod)
-    TextView textKj;
-    @BindView(R.id.image_photo_frag_shwprod)
-    ImageView imagePhoto;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_type)
+    TextView tvType;
+    @BindView(R.id.tv_carbohydrates)
+    TextView tvCarbohydrates;
+    @BindView(R.id.tv_carbokcal)
+    TextView tvCarbokcal;
+    @BindView(R.id.tv_carbokj)
+    TextView tvCarbokj;
+    @BindView(R.id.tv_protein)
+    TextView tvProtein;
+    @BindView(R.id.tv_protkcal)
+    TextView tvProtkcal;
+    @BindView(R.id.tv_protkj)
+    TextView tvProtkj;
+    @BindView(R.id.tv_fat)
+    TextView tvFat;
+    @BindView(R.id.tv_fatkcal)
+    TextView tvFatkcal;
+    @BindView(R.id.tv_fatkj)
+    TextView tvFatkj;
+    @BindView(R.id.tv_kcal)
+    TextView tvKcal;
+    @BindView(R.id.tv_kj)
+    TextView tvKj;
+    @BindView(R.id.iv_photo)
+    ImageView ivPhoto;
 
     public ShowProductFragment() {}
 
@@ -99,65 +99,65 @@ public class ShowProductFragment extends PrimaryFragment {
     }
 
     private void setTextName(String text){
-        textName.setText(text);
+        tvName.setText(text);
     }
 
     private void setTextType(int type){
         String[] arrayType = getStringArray(R.array.array_type_frag_product);
-        textType.setText(arrayType[type]);
+        tvType.setText(arrayType[type]);
     }
 
     private void setTextCarbohydrates(float carbohydrates){
-        textCarbohydrates.setText(String.valueOf(carbohydrates));
+        tvCarbohydrates.setText(String.valueOf(carbohydrates));
     }
 
     private void setTextProtein(float protein){
-        textProtein.setText(String.valueOf(protein));
+        tvProtein.setText(String.valueOf(protein));
     }
 
     private void setTextFat(float fat){
-        textFat.setText(String.valueOf(fat));
+        tvFat.setText(String.valueOf(fat));
     }
 
     private void setImagePhoto(String encodedImage){
         if(encodedImage == null) return;
-        imagePhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
+        ivPhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
     }
 
     private void calculateAllKcal(){
         Product product = ProductDetails.getProduct();
         setText(getKcal(product.getCarbohydrates(),
-                MainGlobals.KCAL_CARBOHYDRATES_OBJ_PROD), textCarbokcal);
+                MainGlobals.KCAL_CARBOHYDRATES_OBJ_PROD), tvCarbokcal);
         setText(getKcal(product.getProtein(),
-                MainGlobals.KCAL_PROTEIN_OBJ_PROD), textProtkcal);
+                MainGlobals.KCAL_PROTEIN_OBJ_PROD), tvProtkcal);
         setText(getKcal(product.getFat(),
-                MainGlobals.KCAL_FAT_OBJ_PROD), textFatkcal);
+                MainGlobals.KCAL_FAT_OBJ_PROD), tvFatkcal);
     }
 
     private void calculateAllKj(){
         Product product = ProductDetails.getProduct();
         setText(getKj(product.getCarbohydrates(),
-                MainGlobals.KCAL_CARBOHYDRATES_OBJ_PROD), textCarbokj);
+                MainGlobals.KCAL_CARBOHYDRATES_OBJ_PROD), tvCarbokj);
         setText(getKj(product.getProtein(),
-                MainGlobals.KCAL_PROTEIN_OBJ_PROD), textProtkj);
+                MainGlobals.KCAL_PROTEIN_OBJ_PROD), tvProtkj);
         setText(getKj(product.getFat(),
-                MainGlobals.KCAL_FAT_OBJ_PROD), textFatkj);
+                MainGlobals.KCAL_FAT_OBJ_PROD), tvFatkj);
     }
 
     private void calculateTotalKcal(){
-        float carbohydrates = Float.valueOf(textCarbokcal.getText().toString());
-        float protein = Float.valueOf(textProtkcal.getText().toString());
-        float fat = Float.valueOf(textFatkcal.getText().toString());
+        float carbohydrates = Float.valueOf(tvCarbokcal.getText().toString());
+        float protein = Float.valueOf(tvProtkcal.getText().toString());
+        float fat = Float.valueOf(tvFatkcal.getText().toString());
         float total = carbohydrates + protein + fat;
-        textKcal.setText(String.valueOf(total));
+        tvKcal.setText(String.valueOf(total));
     }
 
     private void calculateTotalKj(){
-        float carbohydrates = Float.valueOf(textCarbokj.getText().toString());
-        float protein = Float.valueOf(textProtkj.getText().toString());
-        float fat = Float.valueOf(textFatkj.getText().toString());
+        float carbohydrates = Float.valueOf(tvCarbokj.getText().toString());
+        float protein = Float.valueOf(tvProtkj.getText().toString());
+        float fat = Float.valueOf(tvFatkj.getText().toString());
         float total = carbohydrates + protein + fat;
-        textKj.setText(String.valueOf(total));
+        tvKj.setText(String.valueOf(total));
     }
 
     private DialogInterface.OnClickListener getDialogListener(){

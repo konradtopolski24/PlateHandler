@@ -56,7 +56,7 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
     @Override
     public void onBindViewHolder(@NonNull AddIngredientHolder holder, int position) {
         Ingredient ingredient = ingredients.get(position);
-        setSpinProductAdapter(holder.spinProduct);
+        setSpinProductAdapter(holder.spProduct);
         setSpinProduct(holder, ingredient.getProduct().getId());
         setEditAmount(holder, ingredient.getAmount());
         setSpinMeasure(holder, ingredient.getMeasure());
@@ -75,15 +75,15 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
     }
 
     private void setSpinProduct(AddIngredientHolder holder, int idDatabase){
-        holder.spinProduct.setSelection(getChosenProduct(idDatabase));
+        holder.spProduct.setSelection(getChosenProduct(idDatabase));
     }
 
     private void setEditAmount(AddIngredientHolder holder, float amount){
-        holder.editAmount.setText(String.valueOf(amount));
+        holder.etAmount.setText(String.valueOf(amount));
     }
 
     private void setSpinMeasure(AddIngredientHolder holder, int measure){
-        holder.spinMeasure.setSelection(measure);
+        holder.spMeasure.setSelection(measure);
     }
 
     private int getChosenProduct(int idDatabase){
@@ -99,14 +99,14 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
 
     public class AddIngredientHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.edit_amount_lay_addrec)
-        EditText editAmount;
-        @BindView(R.id.spin_measure_lay_addrec)
-        Spinner spinMeasure;
-        @BindView(R.id.spin_product_lay_addrec)
-        Spinner spinProduct;
+        @BindView(R.id.et_amount)
+        EditText etAmount;
+        @BindView(R.id.sp_measure)
+        Spinner spMeasure;
+        @BindView(R.id.sp_product)
+        Spinner spProduct;
 
-        @OnClick(R.id.imgbutt_add_lay_addrec)
+        @OnClick(R.id.ib_add)
         public void onClickImgbuttAdd(){
             ProductDetails.resetProductDetails();
             ManageProductFragment fragment = new ManageProductFragment();
@@ -114,7 +114,7 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
             ((MainActivity)context).setFragment(fragment, true);
         }
 
-        @OnClick(R.id.image_remove_lay_addrec)
+        @OnClick(R.id.iv_remove)
         public void onClickImageRemove(){
             if(ingredients.size() == MainGlobals.INT_INCREMENT_VAR_INIT){
 
@@ -125,7 +125,7 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
             }
         }
 
-        @OnTextChanged(R.id.edit_amount_lay_addrec)
+        @OnTextChanged(R.id.et_amount)
         public void onTextChangeEditAmount(CharSequence text){
             float amount;
             if(String.valueOf(text).isEmpty()){
@@ -136,7 +136,7 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
             setIngredientsAmount(amount);
         }
 
-        @OnItemSelected(R.id.spin_product_lay_addrec)
+        @OnItemSelected(R.id.sp_product)
         public void onItemSelectedSpinProduct(int id){
             Product product = new Product();
             product.setId(products.get(id).getId());
@@ -149,7 +149,7 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
             setIngredientsProduct(product);
         }
 
-        @OnItemSelected(R.id.spin_measure_lay_addrec)
+        @OnItemSelected(R.id.sp_measure)
         public void onItemSelectedSpinMeasure(int id){
             setIngredientsMeasure(id);
         }

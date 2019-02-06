@@ -25,12 +25,12 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.tool_main_act_main)
-    Toolbar toolMain;
-    @BindView(R.id.draw_main_act_main)
-    DrawerLayout drawMain;
-    @BindView(R.id.navig_main_act_main)
-    NavigationView navigMain;
+    @BindView(R.id.tb_main)
+    Toolbar tbMain;
+    @BindView(R.id.dl_main)
+    DrawerLayout dlMain;
+    @BindView(R.id.nv_main)
+    NavigationView nvMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,29 +43,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void manageDrawer(){
-        setSupportActionBar(toolMain);
+        setSupportActionBar(tbMain);
         setDrawerToggle();
         setOnItemClickListener();
     }
 
     private void setDrawerToggle(){
         ActionBarDrawerToggle drawerToggle = getDrawerToggle();
-        drawMain.addDrawerListener(drawerToggle);
+        dlMain.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
     }
 
     private ActionBarDrawerToggle getDrawerToggle(){
         return new ActionBarDrawerToggle(
                 this,
-                drawMain,
-                toolMain,
+                dlMain,
+                tbMain,
                 R.string.toggle_open_draw_main,
                 R.string.toggle_close_draw_main
         );
     }
 
     private void setOnItemClickListener(){
-        navigMain.setNavigationItemSelectedListener(getOnItemClickListener());
+        nvMain.setNavigationItemSelectedListener(getOnItemClickListener());
     }
 
     private NavigationView.OnNavigationItemSelectedListener getOnItemClickListener(){
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Fragment getCurrentFragment(){
-        return getSupportFragmentManager().findFragmentById(R.id.frame_main_act_main);
+        return getSupportFragmentManager().findFragmentById(R.id.fl_main);
     }
 
     private void clearBackStack(){
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setFragment(Fragment fragment, boolean addToBackStack){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_main_act_main, fragment);
+        transaction.replace(R.id.fl_main, fragment);
         if(addToBackStack){
             transaction.addToBackStack(null);
         }
@@ -143,11 +143,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void closeDrawer(){
-        drawMain.closeDrawer(navigMain);
+        dlMain.closeDrawer(nvMain);
     }
 
     public void setMenuItem(int id){
-        navigMain.getMenu().getItem(id).setChecked(true);
+        nvMain.getMenu().getItem(id).setChecked(true);
     }
 
     private void setBackStackListener(){
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        if(drawMain.isDrawerOpen(GravityCompat.START)){
+        if(dlMain.isDrawerOpen(GravityCompat.START)){
             closeDrawer();
         } else {
             super.onBackPressed();
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setToolbarTitle(String title){
-        toolMain.setTitle(title);
+        tbMain.setTitle(title);
     }
 
     public void popFragment(){

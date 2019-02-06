@@ -22,12 +22,12 @@ import butterknife.OnClick;
 
 public class ShowShoppingFragment extends PrimaryFragment {
 
-    @BindView(R.id.text_date_frag_shwshop)
+    @BindView(R.id.tv_date)
     TextView textDate;
-    @BindView(R.id.recyc_shopping_frag_shwshop)
+    @BindView(R.id.rv_shopping)
     RecyclerView recycShopping;
 
-    @OnClick(R.id.butt_create_frag_shwshop)
+    @OnClick(R.id.bt_create)
     public void onClickButtCreate(){
         resetShoppingListDetails();
         setFragment(new CreateShoppingFragment());

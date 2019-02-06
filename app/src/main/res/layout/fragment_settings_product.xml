@@ -18,7 +18,7 @@
             android:text="@string/text_alphabetical_frag_product"/>
 
         <Switch
-            android:id="@+id/switch_alphabetical_frag_sttprod"
+            android:id="@+id/sw_alphabetical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -35,12 +35,12 @@
             android:text="@string/text_type_frag_product"/>
 
         <Switch
-            android:id="@+id/switch_type_frag_sttprod"
+            android:id="@+id/sw_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Spinner
-            android:id="@+id/spin_type_frag_sttprod"
+            android:id="@+id/sp_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/array_type_frag_product"

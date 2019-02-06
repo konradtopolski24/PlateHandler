@@ -11,21 +11,21 @@
         android:orientation="vertical">
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/tab_recipe_frag_mngrecp"
+            android:id="@+id/tl_recipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary">
         </android.support.design.widget.TabLayout>
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/pager_recipe_frag_mngrecp"
+            android:id="@+id/vp_recipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </android.support.v4.view.ViewPager>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/float_add_frag_mngrecp"
+        android:id="@+id/fab_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

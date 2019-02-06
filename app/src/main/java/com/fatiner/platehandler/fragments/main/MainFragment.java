@@ -26,10 +26,10 @@ import butterknife.ButterKnife;
 
 public class MainFragment extends PrimaryFragment {
 
-    @BindView(R.id.recyc_dish_frag_main)
-    RecyclerView recycDish;
-    @BindView(R.id.recyc_recent_frag_main)
-    RecyclerView recycRecent;
+    @BindView(R.id.rv_day)
+    RecyclerView rvDay;
+    @BindView(R.id.rv_recent)
+    RecyclerView rvRecent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -145,7 +145,7 @@ public class MainFragment extends PrimaryFragment {
         protected void onPostExecute(Boolean success){
             if(success){
                 setRecyclerView(
-                        recycDish,
+                        rvDay,
                         getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
                         new RecipesAdapter(getContext(), dish, false)
                 );
@@ -172,7 +172,7 @@ public class MainFragment extends PrimaryFragment {
         protected void onPostExecute(Boolean success){
             if(success){
                 setRecyclerView(
-                        recycRecent,
+                        rvRecent,
                         getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
                         new RecipesAdapter(getContext(), recent, false));
             } else {

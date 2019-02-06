@@ -66,43 +66,43 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
     }
 
     private void hideImageRemove(StepHolder holder){
-        holder.imageRemove.setVisibility(View.GONE);
+        holder.ivRemove.setVisibility(View.GONE);
     }
 
     private void hideImgbuttEdit(StepHolder holder){
-        holder.imgbuttEdit.setVisibility(View.GONE);
+        holder.ibEdit.setVisibility(View.GONE);
     }
 
     private void setTextId(StepHolder holder, int id){
         int actualId = id + MainGlobals.INT_INCREMENT_VAR_INIT;
         String text = context.getResources().getString(
                 R.string.text_step_frag_recipe) + MainGlobals.STR_SPACE_OBJ_INIT + actualId;
-        holder.textId.setText(text);
+        holder.tvId.setText(text);
     }
 
     private void setTextInstruction(StepHolder holder, String instruction){
-        holder.textInstruction.setText(instruction);
+        holder.tvInstruction.setText(instruction);
     }
 
     public class StepHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.text_id_lay_step)
-        TextView textId;
-        @BindView(R.id.text_instruction_lay_step)
-        TextView textInstruction;
-        @BindView(R.id.image_remove_lay_step)
-        ImageView imageRemove;
-        @BindView(R.id.imgbutt_edit_lay_step)
-        ImageButton imgbuttEdit;
+        @BindView(R.id.tv_id)
+        TextView tvId;
+        @BindView(R.id.tv_instruction)
+        TextView tvInstruction;
+        @BindView(R.id.iv_remove)
+        ImageView ivRemove;
+        @BindView(R.id.ib_edit)
+        ImageButton ibEdit;
 
-        @OnClick(R.id.imgbutt_edit_lay_step)
+        @OnClick(R.id.ib_edit)
         public void onClickImgbuttEdit(){
             ManageStepFragment fragment = new ManageStepFragment();
             setBundle(fragment);
             ((MainActivity) context).setFragment(fragment, true);
         }
 
-        @OnClick(R.id.image_remove_lay_step)
+        @OnClick(R.id.iv_remove)
         public void onClickImageRemove(){
             steps.remove(getAdapterPosition());
             notifyItemRemoved(getAdapterPosition());

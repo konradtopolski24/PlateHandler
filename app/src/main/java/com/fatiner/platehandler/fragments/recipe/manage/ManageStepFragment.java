@@ -20,17 +20,17 @@ import butterknife.OnClick;
 
 public class ManageStepFragment extends PrimaryFragment {
 
-    @BindView(R.id.edit_instruction_frag_mngstep)
-    EditText editInstruction;
-    @BindView(R.id.text_step_frag_mngstep)
-    TextView textStep;
+    @BindView(R.id.et_instruction)
+    EditText etInstruction;
+    @BindView(R.id.tv_step)
+    TextView tvStep;
 
-    @OnClick(R.id.float_add_frag_mngstep)
+    @OnClick(R.id.fab_done)
     public void onClickFloatAdd(){
         hideKeyboard();
         if(isStepCorrect()){
             Step step = new Step();
-            step.setInstruction(editInstruction.getText().toString());
+            step.setInstruction(etInstruction.getText().toString());
             setStepsInRecipeDetails(step);
             showShortSnack(R.string.snack_step_frag_recipe);
             popFragment();
@@ -92,14 +92,14 @@ public class ManageStepFragment extends PrimaryFragment {
     }
 
     private boolean isStepTextNotEmpty(){
-        return !editInstruction.getText().toString().isEmpty();
+        return !etInstruction.getText().toString().isEmpty();
     }
 
     private void setTextStep(String text){
-        textStep.setText(text);
+        tvStep.setText(text);
     }
 
     private void setEditInstruction(String text){
-        editInstruction.setText(text);
+        etInstruction.setText(text);
     }
 }

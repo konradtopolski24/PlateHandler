@@ -10,7 +10,6 @@ import android.widget.Switch;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.managers.shared.SharedProductManager;
-import com.fatiner.platehandler.managers.shared.SharedRecipeManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,29 +18,29 @@ import butterknife.OnItemSelected;
 
 public class SettingsProductFragment extends PrimaryFragment {
 
-    @BindView(R.id.switch_alphabetical_frag_sttprod)
-    Switch switchAlphabetical;
-    @BindView(R.id.switch_type_frag_sttprod)
-    Switch switchType;
-    @BindView(R.id.spin_type_frag_sttprod)
-    Spinner spinType;
+    @BindView(R.id.sw_alphabetical)
+    Switch swAlphabetical;
+    @BindView(R.id.sw_type)
+    Switch swType;
+    @BindView(R.id.sp_type)
+    Spinner spType;
 
-    @OnCheckedChanged(R.id.switch_alphabetical_frag_sttprod)
+    @OnCheckedChanged(R.id.sw_alphabetical)
     public void onCheckedChangedSwitchAlphabetical(boolean checked){
         SharedProductManager.setSharedProductAlphabetical(getContext(), checked);
     }
 
-    @OnCheckedChanged(R.id.switch_type_frag_sttprod)
+    @OnCheckedChanged(R.id.sw_type)
     public void onCheckedChangedSwitchType(boolean checked){
         if(checked){
-            spinType.setVisibility(View.VISIBLE);
+            spType.setVisibility(View.VISIBLE);
         } else {
-            spinType.setVisibility(View.GONE);
+            spType.setVisibility(View.GONE);
             SharedProductManager.removeSharedProductType(getContext());
         }
     }
 
-    @OnItemSelected(R.id.spin_type_frag_sttprod)
+    @OnItemSelected(R.id.sp_type)
     public void onItemSelectedSpinType(int id){
         SharedProductManager.setSharedProductType(getContext(), id);
     }
@@ -65,14 +64,14 @@ public class SettingsProductFragment extends PrimaryFragment {
 
     private void setSwitchAlphabetical(){
         boolean isChecked = SharedProductManager.getSharedProductAlphabetical(getContext());
-        switchAlphabetical.setChecked(isChecked);
+        swAlphabetical.setChecked(isChecked);
     }
 
     private void setSpinType(){
         if(SharedProductManager.isSharedProductTypeAvailable(getContext())){
             int type = SharedProductManager.getSharedProductType(getContext());
-            spinType.setSelection(type);
-            switchType.setChecked(true);
+            spType.setSelection(type);
+            swType.setChecked(true);
         }
     }
 }

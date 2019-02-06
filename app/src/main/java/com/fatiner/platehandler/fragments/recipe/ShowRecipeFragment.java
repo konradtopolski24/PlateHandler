@@ -44,43 +44,43 @@ public class ShowRecipeFragment extends PrimaryFragment {
 
     public ShowRecipeFragment(){}
 
-    @BindView(R.id.text_name_frag_shwrecp)
-    TextView textName;
-    @BindView(R.id.text_author_frag_shwrecp)
-    TextView textAuthor;
-    @BindView(R.id.text_serving_frag_shwrecp)
-    TextView textServing;
-    @BindView(R.id.text_time_frag_shwrecp)
-    TextView textTime;
-    @BindView(R.id.text_difficulty_frag_shwrecp)
-    TextView textDifficulty;
-    @BindView(R.id.text_country_frag_shwrecp)
-    TextView textCountry;
-    @BindView(R.id.text_type_frag_shwrecp)
-    TextView textType;
-    @BindView(R.id.text_preferences_frag_shwrecp)
-    TextView textPreferences;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_author)
+    TextView tvAuthor;
+    @BindView(R.id.tv_serving)
+    TextView tvServing;
+    @BindView(R.id.tv_time)
+    TextView tvTime;
+    @BindView(R.id.tv_difficulty)
+    TextView tvDifficulty;
+    @BindView(R.id.tv_country)
+    TextView tvCountry;
+    @BindView(R.id.tv_type)
+    TextView tvType;
+    @BindView(R.id.tv_preferences)
+    TextView tvPreferences;
     @BindViews({
-            R.id.image_spiciness0_frag_shwrecp,
-            R.id.image_spiciness1_frag_shwrecp,
-            R.id.image_spiciness2_frag_shwrecp})
-    List<ImageView> arrayImageSpiciness;
-    @BindView(R.id.switch_favorite_frag_shwrecp)
-    Switch switchFavorite;
-    @BindView(R.id.recyc_categories_frag_shwrecp)
-    RecyclerView recycCategories;
-    @BindView(R.id.recyc_steps_frag_shwrecp)
-    RecyclerView recycSteps;
-    @BindView(R.id.image_photo_frag_shwrecp)
-    ImageView imagePhoto;
+            R.id.iv_spiciness0,
+            R.id.iv_spiciness1,
+            R.id.iv_spiciness2})
+    List<ImageView> arrayIvSpiciness;
+    @BindView(R.id.sw_favorite)
+    Switch swFavorite;
+    @BindView(R.id.rv_categories)
+    RecyclerView rvCategories;
+    @BindView(R.id.rv_steps)
+    RecyclerView rvSteps;
+    @BindView(R.id.iv_photo)
+    ImageView ivPhoto;
 
-    @OnCheckedChanged(R.id.switch_favorite_frag_shwrecp)
+    @OnCheckedChanged(R.id.sw_favorite)
     public void onCheckedChangedSwitchFavorite(boolean checked){
         RecipeDetails.getRecipe().setFavorite(checked);
         new AsyncUpdateRecipeFavorite().execute();
     }
 
-    @OnClick(R.id.butt_calculate_frag_shwrecp)
+    @OnClick(R.id.bt_calculate)
     public void onClickButtCalculate(){
         setFragment(new CalculateRecipeFragment());
     }
@@ -131,58 +131,58 @@ public class ShowRecipeFragment extends PrimaryFragment {
     }
 
     private void setTextName(String text){
-        textName.setText(text);
+        tvName.setText(text);
     }
 
     private void setTextAuthor(String text){
-        textAuthor.setText(text);
+        tvAuthor.setText(text);
     }
 
     private void setTextServing(int serving){
         String text = String.valueOf(serving);
-        textServing.setText(text);
+        tvServing.setText(text);
     }
 
     private void setTextTime(String time){
-        textTime.setText(time);
+        tvTime.setText(time);
     }
 
     private void setTextDifficulty(int difficulty){
         String[] arrayDifficulty = getStringArray(R.array.array_difficulty_frag_recipe);
-        textDifficulty.setText(arrayDifficulty[difficulty]);
+        tvDifficulty.setText(arrayDifficulty[difficulty]);
     }
 
     private void setImageSpiciness(int spiciness){
         for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < spiciness; i++){
-            arrayImageSpiciness.get(i).setVisibility(View.VISIBLE);
+            arrayIvSpiciness.get(i).setVisibility(View.VISIBLE);
         }
     }
 
     private void setTextCountry(int country){
         String[] arrayCountry = getStringArray(R.array.array_country_frag_recipe);
-        textCountry.setText(arrayCountry[country]);
+        tvCountry.setText(arrayCountry[country]);
     }
 
     private void setTextType(int type){
         String[] arrayType = getStringArray(R.array.array_type_frag_recipe);
-        textType.setText(arrayType[type]);
+        tvType.setText(arrayType[type]);
     }
 
     private void setTextPreferences(boolean isMeat){
         if(isMeat){
-            textPreferences.setText(getString(R.string.radio_meat_frag_recipe));
+            tvPreferences.setText(getString(R.string.radio_meat_frag_recipe));
         } else {
-            textPreferences.setText(getString(R.string.radio_vegetarian_frag_recipe));
+            tvPreferences.setText(getString(R.string.radio_vegetarian_frag_recipe));
         }
     }
 
     private void setSwitchFavorite(boolean isFavorite){
-        switchFavorite.setChecked(isFavorite);
+        swFavorite.setChecked(isFavorite);
     }
 
     private void setImagePhoto(String encodedImage){
         if(encodedImage == null) return;
-        imagePhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
+        ivPhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
     }
 
     private DialogInterface.OnClickListener getDialogListener(){
@@ -267,13 +267,13 @@ public class ShowRecipeFragment extends PrimaryFragment {
                 loadPhoto();
                 setRecipeInfo();
                 setRecyclerView(
-                        recycCategories,
+                        rvCategories,
                         getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDINGRED),
                         new CategoryAdapter(getContext(),
                                 RecipeDetails.getRecipe().getCategories(), true)
                 );
                 setRecyclerView(
-                        recycSteps,
+                        rvSteps,
                         getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
                         new StepAdapter(getContext(),
                                 RecipeDetails.getRecipe().getSteps(), true)

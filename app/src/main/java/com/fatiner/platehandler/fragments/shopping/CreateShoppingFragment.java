@@ -30,22 +30,22 @@ import butterknife.OnClick;
 
 public class CreateShoppingFragment extends PrimaryFragment {
 
-    @BindView(R.id.recyc_positions_frag_crtshop)
-    RecyclerView recycPositions;
+    @BindView(R.id.rv_positions)
+    RecyclerView rvPositions;
 
-    @OnClick(R.id.butt_add_frag_crtshop)
+    @OnClick(R.id.bt_add)
     public void onClickButtAdd(){
         addNewItem();
     }
 
-    @OnClick(R.id.butt_select_frag_crtshop)
+    @OnClick(R.id.bt_select)
     public void onClickButtSelect(){
         Fragment fragment = new ChooseRecipeFragment();
         setBoolInBundle(fragment,true, BundleGlobals.BUND_BOOL_FRAG_RECIPES);
         setFragment(fragment);
     }
 
-    @OnClick(R.id.float_add_frag_crtshop)
+    @OnClick(R.id.fab_done)
     public void onClickFloatAdd(){
         hideKeyboard();
         if(ShoppingListDetails.isShoppingListCorrect()){
@@ -65,7 +65,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
         setToolbarTitle(R.string.tool_create_frag_crtshop);
         setMenuItem(MainGlobals.ID_SHOPPING_DRAW_MAIN);
         setRecyclerView(
-                recycPositions,
+                rvPositions,
                 getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDSHOP),
                 new AddShoppingItemAdapter(getContext(),
                         ShoppingListDetails.getShoppingList().getShoppingItems()));
@@ -84,7 +84,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
                 ShoppingListDetails.getShoppingList().getShoppingItems();
         ShoppingItem shoppingItem = new ShoppingItem();
         shoppingItems.add(shoppingItem);
-        recycPositions.getAdapter().notifyItemInserted(
+        rvPositions.getAdapter().notifyItemInserted(
                 shoppingItems.size() + MainGlobals.INT_DECREMENT_VAR_INIT);
     }
 

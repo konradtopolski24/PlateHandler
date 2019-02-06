@@ -28,8 +28,8 @@ import butterknife.OnClick;
 
 public class ChooseProductFragment extends PrimaryFragment {
 
-    @BindView(R.id.recyc_products_frag_chsprod)
-    RecyclerView recycProducts;
+    @BindView(R.id.rv_products)
+    RecyclerView rvProducts;
 
     @OnClick(R.id.float_products_frag_chsprod)
     public void onClickFloatProducts(){
@@ -107,7 +107,7 @@ public class ChooseProductFragment extends PrimaryFragment {
         protected void onPostExecute(Boolean success){
             if(success){
                 setRecyclerView(
-                        recycProducts,
+                        rvProducts,
                         getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_PRODUCTS),
                         new ProductsAdapter(getContext(), products)
                 );

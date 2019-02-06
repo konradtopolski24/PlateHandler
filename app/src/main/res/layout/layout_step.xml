@@ -11,24 +11,24 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/imgbutt_edit_lay_step"
+            android:id="@+id/ib_edit"
             android:layout_width="30dp"
             android:layout_height="30dp" />
 
         <ImageView
-            android:id="@+id/image_remove_lay_step"
+            android:id="@+id/iv_remove"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/icon_x"/>
+            android:src="@drawable/ic_close"/>
 
         <TextView
-            android:id="@+id/text_id_lay_step"
+            android:id="@+id/tv_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/text_instruction_lay_step"
+        android:id="@+id/tv_instruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

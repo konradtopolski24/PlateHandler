@@ -26,12 +26,12 @@ import butterknife.OnClick;
 
 public class ManageRecipeFragment extends PrimaryFragment {
 
-    @BindView(R.id.pager_recipe_frag_mngrecp)
-    ViewPager pagerRecipe;
-    @BindView(R.id.tab_recipe_frag_mngrecp)
-    TabLayout tabRecipe;
+    @BindView(R.id.vp_recipe)
+    ViewPager vpRecipe;
+    @BindView(R.id.tl_recipe)
+    TabLayout tlRecipe;
 
-    @OnClick(R.id.float_add_frag_mngrecp)
+    @OnClick(R.id.fab_done)
     public void onClickFloatAdd(){
         hideKeyboard();
         if(RecipeDetails.isRecipeCorrect()){
@@ -80,11 +80,11 @@ public class ManageRecipeFragment extends PrimaryFragment {
     }
 
     private void setPagerAdapter(){
-        pagerRecipe.setAdapter(new RecipesPagerAdapter(getChildFragmentManager(), getContext()));
+        vpRecipe.setAdapter(new RecipesPagerAdapter(getChildFragmentManager(), getContext()));
     }
 
     private void setupTabLayoutWithViewPager(){
-        tabRecipe.setupWithViewPager(pagerRecipe);
+        tlRecipe.setupWithViewPager(vpRecipe);
     }
 
     private DialogInterface.OnClickListener getDialogListener(){

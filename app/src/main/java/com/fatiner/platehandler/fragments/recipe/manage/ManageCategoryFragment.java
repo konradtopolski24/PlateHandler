@@ -27,22 +27,22 @@ import butterknife.OnClick;
 
 public class ManageCategoryFragment extends PrimaryFragment {
 
-    @BindView(R.id.edit_name_frag_mngcatg)
-    EditText editName;
-    @BindView(R.id.recyc_ingredients_frag_mngcatg)
-    RecyclerView recycIngredients;
+    @BindView(R.id.et_name)
+    EditText etName;
+    @BindView(R.id.rv_ingredients)
+    RecyclerView rvIngredients;
 
-    @OnClick(R.id.butt_add_frag_mngcatg)
+    @OnClick(R.id.bt_add)
     public void onClickButtAdd(){
         addNewItem();
     }
 
-    @OnClick(R.id.float_add_frag_mngcatg)
+    @OnClick(R.id.fab_done)
     public void onClickFloatAdd(){
         hideKeyboard();
         if(isCategoryCorrect()){
             Category category = new Category();
-            category.setName(editName.getText().toString());
+            category.setName(etName.getText().toString());
             category.setIngredients(getTempIngredients());
             setCategoryInRecipeDetails(category);
             resetTempIngredients();
@@ -101,7 +101,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
                 tempIngredient.setProduct(ingredient.getProduct());
                 tempIngredients.add(tempIngredient);
             }
-            recycIngredients.getAdapter().notifyDataSetChanged();
+            rvIngredients.getAdapter().notifyDataSetChanged();
         }
     }
 
@@ -118,7 +118,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
         Ingredient ingredient = new Ingredient();
         ingredient.setProduct(new Product());
         ingredients.add(ingredient);
-        recycIngredients.getAdapter().notifyItemInserted(
+        rvIngredients.getAdapter().notifyItemInserted(
                 ingredients.size() + MainGlobals.INT_DECREMENT_VAR_INIT);
     }
 
@@ -138,7 +138,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
     }
 
     private boolean isCategoryNameNotEmpty(){
-        return !editName.getText().toString().isEmpty();
+        return !etName.getText().toString().isEmpty();
     }
 
     private boolean doIngredientsExist(){
@@ -146,7 +146,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
     }
 
     private void setEditName(String text){
-        editName.setText(text);
+        etName.setText(text);
     }
 
     private ArrayList<Ingredient> getTempIngredients(){
@@ -178,7 +178,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
         protected void onPostExecute(Boolean success){
             if(success){
                 setRecyclerView(
-                        recycIngredients,
+                        rvIngredients,
                         getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDCATEG),
                         new AddIngredientAdapter(getContext(), getTempIngredients(), products)
                 );

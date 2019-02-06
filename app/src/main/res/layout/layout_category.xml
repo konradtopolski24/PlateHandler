@@ -13,38 +13,38 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/linear_header_lay_category"
+            android:id="@+id/ll_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
 
             <ImageButton
-                android:id="@+id/imgbutt_edit_lay_category"
+                android:id="@+id/ib_edit"
                 android:layout_width="30dp"
                 android:layout_height="30dp" />
 
             <ImageView
-                android:id="@+id/image_remove_lay_category"
+                android:id="@+id/iv_remove"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/icon_x"/>
+                android:src="@drawable/ic_close"/>
 
             <TextView
-                android:id="@+id/text_name_lay_category"
+                android:id="@+id/tv_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyc_ingredients_lay_category"
+            android:id="@+id/rv_ingredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </android.support.v7.widget.RecyclerView>
 
         <LinearLayout
-            android:id="@+id/linear_ingredients_lay_category"
+            android:id="@+id/ll_ingredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

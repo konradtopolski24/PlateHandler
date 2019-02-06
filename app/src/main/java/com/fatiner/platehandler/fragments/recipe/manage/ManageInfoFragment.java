@@ -34,90 +34,90 @@ import butterknife.OnTextChanged;
 
 public class ManageInfoFragment extends PrimaryFragment {
 
-    @BindView(R.id.edit_name_frag_mnginfo)
-    EditText editName;
-    @BindView(R.id.edit_author_frag_mnginfo)
-    EditText editAuthor;
-    @BindView(R.id.text_serving_frag_mnginfo)
-    TextView textServing;
-    @BindView(R.id.text_time_frag_mnginfo)
-    TextView textTime;
-    @BindView(R.id.text_difficulty_frag_mnginfo)
-    TextView textDifficulty;
-    @BindView(R.id.seek_difficulty_frag_mnginfo)
-    SeekBar seekDifficulty;
-    @BindView(R.id.seek_spiciness_frag_mnginfo)
-    SeekBar seekSpiciness;
+    @BindView(R.id.et_name)
+    EditText etName;
+    @BindView(R.id.et_author)
+    EditText etAuthor;
+    @BindView(R.id.tv_serving)
+    TextView tvServing;
+    @BindView(R.id.tv_time)
+    TextView tvTime;
+    @BindView(R.id.tv_difficulty)
+    TextView tvDifficulty;
+    @BindView(R.id.sb_difficulty)
+    SeekBar sbDifficulty;
+    @BindView(R.id.sb_spiciness)
+    SeekBar sbSpiciness;
     @BindViews({
-            R.id.image_spiciness0_frag_mnginfo,
-            R.id.image_spiciness1_frag_mnginfo,
-            R.id.image_spiciness2_frag_mnginfo})
-    List<ImageView> arrayImageSpiciness;
-    @BindView(R.id.spin_country_frag_mnginfo)
-    Spinner spinCountry;
-    @BindView(R.id.spin_type_frag_mnginfo)
-    Spinner spinType;
-    @BindView(R.id.radio_meat_frag_mnginfo)
-    RadioButton radioMeat;
-    @BindView(R.id.radio_vegetarian_frag_mnginfo)
-    RadioButton radioVegetarian;
-    @BindView(R.id.image_photo_frag_mnginfo)
-    ImageView imagePhoto;
+            R.id.iv_spiciness0,
+            R.id.iv_spiciness1,
+            R.id.iv_spiciness2})
+    List<ImageView> arrayIvSpiciness;
+    @BindView(R.id.sp_country)
+    Spinner spCountry;
+    @BindView(R.id.sp_type)
+    Spinner spType;
+    @BindView(R.id.rb_meat)
+    RadioButton rbMeat;
+    @BindView(R.id.rb_vegetarian)
+    RadioButton rbVegetarian;
+    @BindView(R.id.iv_photo)
+    ImageView ivPhoto;
 
-    @OnTextChanged(R.id.edit_name_frag_mnginfo)
+    @OnTextChanged(R.id.et_name)
     public void onTextChangedEditName(CharSequence text){
         RecipeDetails.getRecipe().setName(String.valueOf(text));
     }
 
-    @OnTextChanged(R.id.edit_author_frag_mnginfo)
+    @OnTextChanged(R.id.et_author)
     public void onTextChangedEditAuthor(CharSequence text){
         RecipeDetails.getRecipe().setAuthor(String.valueOf(text));
     }
 
-    @OnTextChanged(R.id.text_serving_frag_mnginfo)
+    @OnTextChanged(R.id.tv_serving)
     public void onTextChangedTextServing(CharSequence text){
         RecipeDetails.getRecipe().setServing(Integer.valueOf(String.valueOf(text)));
     }
 
-    @OnTextChanged(R.id.text_time_frag_mnginfo)
+    @OnTextChanged(R.id.tv_time)
     public void onTextChangedTextTime(CharSequence text){
         RecipeDetails.getRecipe().setTime(String.valueOf(text));
     }
 
-    @OnItemSelected(R.id.spin_country_frag_mnginfo)
+    @OnItemSelected(R.id.sp_country)
     public void onItemSelectedSpinCountry(int id){
         RecipeDetails.getRecipe().setCountry(id);
     }
 
-    @OnItemSelected(R.id.spin_type_frag_mnginfo)
+    @OnItemSelected(R.id.sp_type)
     public void onItemSelectedSpinType(int id){
         RecipeDetails.getRecipe().setType(id);
     }
 
-    @OnCheckedChanged(R.id.radio_meat_frag_mnginfo)
+    @OnCheckedChanged(R.id.rb_meat)
     public void onCheckedChangedRadioMeat(boolean checked){
         RecipeDetails.getRecipe().setPreference(checked);
     }
 
-    @OnClick(R.id.imgbutt_plus_frag_mnginfo)
+    @OnClick(R.id.ib_plus)
     public void onClickImgbuttPlus(){
-        String text = String.valueOf(textServing.getText());
+        String text = String.valueOf(tvServing.getText());
         int value = Integer.valueOf(text);
         if(isServingNotTooBig(value)){
-            textServing.setText(String.valueOf(++value));
+            tvServing.setText(String.valueOf(++value));
         }
     }
 
-    @OnClick(R.id.imgbutt_minus_frag_mnginfo)
+    @OnClick(R.id.ib_minus)
     public void onClickImgbuttMinus(){
-        String text = String.valueOf(textServing.getText());
+        String text = String.valueOf(tvServing.getText());
         int value = Integer.valueOf(text);
         if(isServingNotTooSmall(value)){
-            textServing.setText(String.valueOf(--value));
+            tvServing.setText(String.valueOf(--value));
         }
     }
 
-    @OnClick(R.id.imgbutt_time_frag_mnginfo)
+    @OnClick(R.id.ib_time)
     public void onClickImgbuttTime(){
         int[] times = TypeManager.stringToTime(RecipeDetails.getRecipe().getTime());
         TimePickerDialog dialog = new TimePickerDialog(getContext(),
@@ -128,15 +128,15 @@ public class ManageInfoFragment extends PrimaryFragment {
         dialog.show();
     }
 
-    @OnClick(R.id.imgbutt_photo_frag_mnginfo)
+    @OnClick(R.id.ib_add)
     public void onClickImgbuttPhoto(){
         selectPhoto();
     }
 
-    @OnClick(R.id.imgbutt_remove_frag_mnginfo)
+    @OnClick(R.id.ib_remove)
     public void onClickImgbuttRemove(){
         RecipeDetails.getRecipe().setEncodedImage(null);
-        imagePhoto.setImageResource(android.R.color.transparent);
+        ivPhoto.setImageResource(android.R.color.transparent);
     }
 
     public ManageInfoFragment(){}
@@ -158,13 +158,13 @@ public class ManageInfoFragment extends PrimaryFragment {
 
     private void manageSeekBars(){
         manageSeekBar(
-                seekDifficulty,
+                sbDifficulty,
                 MainGlobals.PROG_STARTING_SEEK_DIFFICULTY,
                 MainGlobals.PROG_MAX_SEEK_DIFFICULTY,
                 getSeekBarListener(true)
         );
         manageSeekBar(
-                seekSpiciness,
+                sbSpiciness,
                 MainGlobals.PROG_STARTING_SEEK_SPICINESS,
                 MainGlobals.PROG_MAX_SEEK_SPICINESS,
                 getSeekBarListener(false)
@@ -203,56 +203,56 @@ public class ManageInfoFragment extends PrimaryFragment {
     }
 
     private void setEditName(String text){
-        editName.setText(text);
+        etName.setText(text);
     }
 
     private void setEditAuthor(String text){
-        editAuthor.setText(text);
+        etAuthor.setText(text);
     }
 
     private void setEditServing(int serving) {
-        textServing.setText(String.valueOf(serving));
+        tvServing.setText(String.valueOf(serving));
     }
 
     private void setTextTime(String time){
-        textTime.setText(time);
+        tvTime.setText(time);
     }
 
     private void setTextDifficulty(int progress){
         String [] arrayDifficulty = getStringArray(R.array.array_difficulty_frag_recipe);
-        textDifficulty.setText(arrayDifficulty[progress]);
+        tvDifficulty.setText(arrayDifficulty[progress]);
     }
 
     private void setImageSpiciness(int progress){
         for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < progress; i++){
-            arrayImageSpiciness.get(i).setVisibility(View.VISIBLE);
+            arrayIvSpiciness.get(i).setVisibility(View.VISIBLE);
         }
     }
 
     private void hideAllImageSpiciness(){
-        for(ImageView image : arrayImageSpiciness){
+        for(ImageView image : arrayIvSpiciness){
             image.setVisibility(View.GONE);
         }
     }
 
     private void setSeekDifficulty(int difficulty){
-        seekDifficulty.setProgress(difficulty);
+        sbDifficulty.setProgress(difficulty);
     }
 
     private void setSeekSpiciness(int spiciness){
-        seekSpiciness.setProgress(spiciness);
+        sbSpiciness.setProgress(spiciness);
     }
 
     private void setSpinCountry(int country){
-        spinCountry.setSelection(country);
+        spCountry.setSelection(country);
     }
 
     private void setSpinType(int type){
-        spinType.setSelection(type);
+        spType.setSelection(type);
     }
 
     private void setRadioMeat(boolean isMeat){
-        radioMeat.setChecked(isMeat);
+        rbMeat.setChecked(isMeat);
     }
 
     private void setRecipeInfo(){
@@ -289,7 +289,7 @@ public class ManageInfoFragment extends PrimaryFragment {
 
     private void setImagePhoto(String encodedImage){
         if(encodedImage == null) return;
-        imagePhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
+        ivPhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
     }
 
     private void setEncodedImageInfo(int resultCode, Intent data){

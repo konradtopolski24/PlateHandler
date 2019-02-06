@@ -25,8 +25,8 @@ import butterknife.OnClick;
 
 public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.ShoppingHolder> {
 
-    Context context;
-    ArrayList<ShoppingItem> shoppingItems;
+    private Context context;
+    private ArrayList<ShoppingItem> shoppingItems;
 
     public ShoppingAdapter(Context context, ArrayList<ShoppingItem> shoppingItems){
         this.context = context;
@@ -65,12 +65,12 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
     }
 
     private void setTextItem(ShoppingHolder holder, String item){
-        holder.textItem.setText(item);
+        holder.tvItem.setText(item);
     }
 
     private void setCrossedOut(ShoppingHolder holder, boolean isCrossedOut){
         if(isCrossedOut){
-            crossOutTextView(holder.textItem);
+            crossOutTextView(holder.tvItem);
         }
     }
 
@@ -84,10 +84,10 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
 
     public class ShoppingHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.text_item_lay_shopitem)
-        TextView textItem;
+        @BindView(R.id.tv_item)
+        TextView tvItem;
 
-        @OnClick(R.id.text_item_lay_shopitem)
+        @OnClick(R.id.tv_item)
         public void onClickTextItem(){
             crossOutPosition();
         }
@@ -98,12 +98,12 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
         }
 
         private void crossOutPosition(){
-            if(textItem.getPaint().isStrikeThruText()){
-                removeLineTextView(textItem);
+            if(tvItem.getPaint().isStrikeThruText()){
+                removeLineTextView(tvItem);
                 shoppingItems.get(getAdapterPosition()).setCrossedOut(false);
                 saveCrossedOutPosition();
             } else {
-                crossOutTextView(textItem);
+                crossOutTextView(tvItem);
                 shoppingItems.get(getAdapterPosition()).setCrossedOut(true);
                 saveCrossedOutPosition();
             }
