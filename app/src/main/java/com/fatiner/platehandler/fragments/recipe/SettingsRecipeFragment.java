@@ -59,12 +59,12 @@ public class SettingsRecipeFragment extends PrimaryFragment {
     RadioButton rbMeat;
 
     @OnCheckedChanged(R.id.sw_alphabetical)
-    public void onCheckedChangedSwitchAlphabetical(boolean checked){
+    public void onCheckedChangedSwAlphabetical(boolean checked){
         SharedRecipeManager.setSharedAlphabetical(getContext(), checked);
     }
 
     @OnCheckedChanged(R.id.sw_favorite)
-    public void onCheckedChangedSwitchFavorite(boolean checked){
+    public void onCheckedChangedSwFavorite(boolean checked){
         if(checked){
             SharedRecipeManager.setSharedFavorite(getContext(), checked);
         } else {
@@ -73,7 +73,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
     }
 
     @OnCheckedChanged(R.id.sw_author)
-    public void onCheckedChangedSwitchAuthor(boolean checked){
+    public void onCheckedChangedSwAuthor(boolean checked){
         if(checked){
             spAuthor.setVisibility(View.VISIBLE);
         } else {
@@ -83,7 +83,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
     }
 
     @OnCheckedChanged(R.id.sw_difficulty)
-    public void onCheckedChangedSwitchDifficulty(boolean checked){
+    public void onCheckedChangedSwDifficulty(boolean checked){
         if(checked){
             sbDifficulty.setVisibility(View.VISIBLE);
             SharedRecipeManager.setSharedDifficulty(getContext(), sbDifficulty.getProgress());
@@ -94,7 +94,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
     }
 
     @OnCheckedChanged(R.id.sw_spiciness)
-    public void onCheckedChangedSwitchSpiciness(boolean checked){
+    public void onCheckedChangedSwSpiciness(boolean checked){
         if(checked){
             sbSpiciness.setVisibility(View.VISIBLE);
             SharedRecipeManager.setSharedSpiciness(getContext(), sbSpiciness.getProgress());
@@ -105,7 +105,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
     }
 
     @OnCheckedChanged(R.id.sw_country)
-    public void onCheckedChangedSwitchCountry(boolean checked){
+    public void onCheckedChangedSwCountry(boolean checked){
         if(checked){
             spCountry.setVisibility(View.VISIBLE);
         } else {
@@ -115,7 +115,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
     }
 
     @OnCheckedChanged(R.id.sw_type)
-    public void onCheckedChangedSwitchType(boolean checked){
+    public void onCheckedChangedSwType(boolean checked){
         if(checked){
             spType.setVisibility(View.VISIBLE);
         } else {
@@ -125,7 +125,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
     }
 
     @OnCheckedChanged(R.id.sw_preference)
-    public void onCheckedChangedSwitchPreference(boolean checked){
+    public void onCheckedChangedSwPreference(boolean checked){
         if(checked){
             rgPreference.setVisibility(View.VISIBLE);
             SharedRecipeManager.setSharedPreference(getContext(), rbMeat.isChecked());
@@ -136,22 +136,22 @@ public class SettingsRecipeFragment extends PrimaryFragment {
     }
 
     @OnItemSelected(R.id.sp_author)
-    public void onItemSelectedSpinAuthor(int id){
+    public void onItemSelectedSpAuthor(int id){
         SharedRecipeManager.setSharedAuthor(getContext(), spAuthor.getItemAtPosition(id).toString());
     }
 
     @OnItemSelected(R.id.sp_country)
-    public void onItemSelectedSpinCountry(int id){
+    public void onItemSelectedSpCountry(int id){
         SharedRecipeManager.setSharedCountry(getContext(), id);
     }
 
     @OnItemSelected(R.id.sp_type)
-    public void onItemSelectedSpinType(int id){
+    public void onItemSelectedSpType(int id){
         SharedRecipeManager.setSharedType(getContext(), id);
     }
 
     @OnCheckedChanged(R.id.rb_meat)
-    public void onCheckedChangedRadioMeat(boolean checked){
+    public void onCheckedChangedRbMeat(boolean checked){
         SharedRecipeManager.setSharedPreference(getContext(), checked);
     }
 
@@ -162,7 +162,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings_recipe, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tool_settings_frag_sttrecp);
+        setToolbarTitle(R.string.tb_recipe_settings);
         new AsyncReadAuthors().execute();
         manageSeekBars();
         return view;
@@ -191,23 +191,18 @@ public class SettingsRecipeFragment extends PrimaryFragment {
     }
 
     private SeekBar.OnSeekBarChangeListener getSeekBarListener(final boolean isDifficulty){
-        SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
+        return new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 chooseAction(isDifficulty, progress);
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         };
-        return listener;
     }
 
     private void chooseAction(boolean isDifficulty, int progress){
@@ -308,7 +303,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
                 setSpinAuthorAdapter(authors);
                 setViewsWithSharedPreferences(authors);
             } else {
-                showShortToast(R.string.toast_fail_async_readauth);
+                showShortToast(R.string.ts_author_read);
             }
         }
     }

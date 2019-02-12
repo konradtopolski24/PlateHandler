@@ -24,9 +24,9 @@ import butterknife.ButterKnife;
 public class CalculateRecipeFragment extends PrimaryFragment {
 
     @BindView(R.id.rv_ingredients)
-    public RecyclerView rvIngredients;
+    RecyclerView rvIngredients;
     @BindView(R.id.tv_totalkcal)
-    public TextView tvTotalkcal;
+    TextView tvTotalkcal;
 
     public CalculateRecipeFragment() {}
 
@@ -35,7 +35,7 @@ public class CalculateRecipeFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calculate_recipe, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tool_calculate_frag_clcrecp);
+        setToolbarTitle(R.string.tb_recipe_calculate);
         ArrayList<Ingredient> ingredients = getIngredients();
         setRecyclerView(
                 rvIngredients,
@@ -74,6 +74,6 @@ public class CalculateRecipeFragment extends PrimaryFragment {
     }
 
     private int[] getArrayFactor(){
-        return getIntegerArray(R.array.array_factor_frag_ingredient);
+        return getIntegerArray(R.array.ar_factor);
     }
 }

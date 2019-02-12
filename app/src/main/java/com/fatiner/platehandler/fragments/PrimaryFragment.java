@@ -138,7 +138,7 @@ public class PrimaryFragment extends Fragment {
 
     protected String getStepHeader(int id){
         int actualId = id + MainGlobals.INT_INCREMENT_VAR_INIT;
-        return getString(R.string.text_step_frag_recipe) + MainGlobals.STR_SPACE_OBJ_INIT + actualId + MainGlobals.STR_COLON_OBJ_INIT;
+        return getString(R.string.tv_step) + MainGlobals.STR_SPACE_OBJ_INIT + actualId + MainGlobals.STR_COLON_OBJ_INIT;
     }
 
     protected void selectPhoto(){
@@ -175,8 +175,8 @@ public class PrimaryFragment extends Fragment {
     protected void showAlertDialog(int id, DialogInterface.OnClickListener listener){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage(id)
-                .setPositiveButton(R.string.butt_positive_dial_primary, listener)
-                .setNegativeButton(R.string.butt_negative_dial_primary, listener)
+                .setPositiveButton(R.string.dg_ok, listener)
+                .setNegativeButton(R.string.dg_cancel, listener)
                 .show();
     }
 

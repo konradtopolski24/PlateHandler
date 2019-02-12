@@ -42,7 +42,7 @@
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/edit_name_frag_product"
+                android:hint="@string/et_name"
                 android:lines="1"
                 android:maxLines="1"
                 android:singleLine="true"/>
@@ -52,7 +52,7 @@
             android:id="@+id/sp_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/array_type_frag_product"/>
+            android:entries="@array/ar_product_type"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

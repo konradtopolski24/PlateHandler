@@ -13,7 +13,6 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.classes.ShoppingItem;
-import com.fatiner.platehandler.managers.shared.SharedRecipeManager;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.shared.SharedShoppingManager;
 
@@ -61,7 +60,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
     }
 
     private String[] getArrayMeasure(){
-        return context.getResources().getStringArray(R.array.array_measure_frag_ingredient);
+        return context.getResources().getStringArray(R.array.ar_measure);
     }
 
     private void setTextItem(ShoppingHolder holder, String item){

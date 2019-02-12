@@ -69,15 +69,15 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
     }
 
     private String[] getArrayCountries(){
-        return context.getResources().getStringArray(R.array.array_country_frag_recipe);
+        return context.getResources().getStringArray(R.array.ar_country);
     }
 
     private TypedArray getArrayTypes(){
-        return context.getResources().obtainTypedArray(R.array.array_drawable_image_type);
+        return context.getResources().obtainTypedArray(R.array.ar_drawable_type);
     }
 
     private TypedArray getArrayPreferences(){
-        return context.getResources().obtainTypedArray(R.array.array_drawable_image_preference);
+        return context.getResources().obtainTypedArray(R.array.ar_drawable_preference);
     }
 
     private void setTextName(RecipesHolder holder, String name){
@@ -125,7 +125,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
                 R.id.iv_spiciness0,
                 R.id.iv_spiciness1,
                 R.id.iv_spiciness2})
-        List<ImageView> arrayIvSpiciness;
+        List<ImageView> arIvSpiciness;
         @BindView(R.id.tv_country)
         TextView tvCountry;
         @BindView(R.id.iv_type)

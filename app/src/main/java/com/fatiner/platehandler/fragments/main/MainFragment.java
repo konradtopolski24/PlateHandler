@@ -31,11 +31,13 @@ public class MainFragment extends PrimaryFragment {
     @BindView(R.id.rv_recent)
     RecyclerView rvRecent;
 
+    public MainFragment() {}
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tool_main_frag_main);
+        setToolbarTitle(R.string.tb_main);
         setMenuItem(MainGlobals.ID_MAIN_DRAW_MAIN);
         setDate();
         setRecent();
@@ -123,7 +125,7 @@ public class MainFragment extends PrimaryFragment {
             if(success){
                 chooseNewDishId(ids);
             } else {
-                showShortToast(R.string.toast_fail_async_readids);
+                showShortToast(R.string.ts_id_read);
             }
         }
     }
@@ -150,7 +152,7 @@ public class MainFragment extends PrimaryFragment {
                         new RecipesAdapter(getContext(), dish, false)
                 );
             } else {
-                showShortToast(R.string.toast_fail_async_readdish);
+                showShortToast(R.string.ts_day_read);
             }
         }
     }
@@ -176,7 +178,7 @@ public class MainFragment extends PrimaryFragment {
                         getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
                         new RecipesAdapter(getContext(), recent, false));
             } else {
-                showShortToast(R.string.toast_fail_async_readrecn);
+                showShortToast(R.string.ts_recent_read);
             }
         }
     }

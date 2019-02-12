@@ -36,17 +36,19 @@ public class ChooseRecipeFragment extends PrimaryFragment {
     FloatingActionButton fabAdd;
 
     @OnClick(R.id.fab_add)
-    public void onClickFloatRecipes(){
+    public void onClickFabAdd(){
         resetRecipeDetails();
         setFragment(new ManageRecipeFragment());
     }
+
+    public ChooseRecipeFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_choose_recipe, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tool_choose_frag_chsrecp);
+        setToolbarTitle(R.string.tb_recipe_choose);
         chooseItem();
         setRecipes();
         hideFloatRecipes();
@@ -130,7 +132,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
                         new RecipesAdapter(getContext(), recipes, isBundleNotEmpty())
                 );
             } else {
-                showShortToast(R.string.toast_fail_async_readrec);
+                showShortToast(R.string.ts_recipe_read);
             }
         }
     }

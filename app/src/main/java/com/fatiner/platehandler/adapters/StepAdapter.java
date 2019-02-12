@@ -76,7 +76,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
     private void setTextId(StepHolder holder, int id){
         int actualId = id + MainGlobals.INT_INCREMENT_VAR_INIT;
         String text = context.getResources().getString(
-                R.string.text_step_frag_recipe) + MainGlobals.STR_SPACE_OBJ_INIT + actualId;
+                R.string.tv_step) + MainGlobals.STR_SPACE_OBJ_INIT + actualId;
         holder.tvId.setText(text);
     }
 

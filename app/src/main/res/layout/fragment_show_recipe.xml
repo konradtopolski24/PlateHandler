@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -40,7 +41,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/edit_name_frag_recipe"/>
+                android:text="@string/et_name"/>
 
             <TextView
                 android:id="@+id/tv_name"
@@ -50,7 +51,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/edit_author_frag_recipe"/>
+                android:text="@string/et_author"/>
 
             <TextView
                 android:id="@+id/tv_author"
@@ -65,7 +66,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/edit_serving_frag_recipe"/>
+                    android:text="@string/et_serving"/>
 
                 <TextView
                     android:id="@+id/tv_serving"
@@ -81,7 +82,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_time_frag_recipe"/>
+                    android:text="@string/tv_time"/>
 
                 <TextView
                     android:id="@+id/tv_time"
@@ -97,7 +98,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_difficulty_frag_recipe"/>
+                    android:text="@string/tv_difficulty"/>
 
                 <TextView
                     android:id="@+id/tv_difficulty"
@@ -113,7 +114,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_spiciness_frag_recipe"/>
+                    android:text="@string/tv_spiciness"/>
 
                 <ImageView
                     android:id="@+id/iv_spiciness0"
@@ -145,7 +146,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_country_frag_recipe"/>
+                    android:text="@string/tv_country"/>
 
                 <TextView
                     android:id="@+id/tv_country"
@@ -161,7 +162,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_type_frag_recipe"/>
+                    android:text="@string/tv_type"/>
 
                 <TextView
                     android:id="@+id/tv_type"
@@ -177,7 +178,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_preferences_frag_recipe"/>
+                    android:text="@string/tv_preferences"/>
 
                 <TextView
                     android:id="@+id/tv_preferences"

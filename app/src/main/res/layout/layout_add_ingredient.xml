@@ -32,7 +32,7 @@
         android:id="@+id/sp_measure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/array_measure_frag_ingredient"/>
+        android:entries="@array/ar_measure"/>
 
     <Spinner
         android:id="@+id/sp_product"

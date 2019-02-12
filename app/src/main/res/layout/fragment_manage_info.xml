@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -46,7 +47,7 @@
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/edit_name_frag_recipe"
+                    android:hint="@string/et_name"
                     android:lines="1"
                     android:maxLines="1"
                     android:singleLine="true"/>
@@ -60,7 +61,7 @@
                     android:id="@+id/et_author"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/edit_author_frag_recipe"
+                    android:hint="@string/et_author"
                     android:lines="1"
                     android:maxLines="1"
                     android:singleLine="true"/>
@@ -75,7 +76,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/edit_serving_frag_recipe"/>
+                    android:text="@string/et_serving"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -109,7 +110,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_time_frag_recipe"/>
+                    android:text="@string/tv_time"/>
 
                 <ImageButton
                     android:id="@+id/ib_time"
@@ -130,7 +131,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_difficulty_frag_recipe"/>
+                    android:text="@string/tv_difficulty"/>
 
                 <TextView
                     android:id="@+id/tv_difficulty"
@@ -151,7 +152,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_spiciness_frag_recipe"/>
+                    android:text="@string/tv_spiciness"/>
 
                 <ImageView
                     android:id="@+id/iv_spiciness0"
@@ -180,29 +181,29 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text_country_frag_recipe"/>
+                android:text="@string/tv_country"/>
 
             <Spinner
                 android:id="@+id/sp_country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/array_country_frag_recipe"/>
+                android:entries="@array/ar_country"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text_type_frag_recipe"/>
+                android:text="@string/tv_type"/>
 
             <Spinner
                 android:id="@+id/sp_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/array_type_frag_recipe"/>
+                android:entries="@array/ar_recipe_type"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text_preferences_frag_recipe"/>
+                android:text="@string/tv_preferences"/>
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -212,13 +213,13 @@
                     android:id="@+id/rb_meat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/radio_meat_frag_recipe"/>
+                    android:hint="@string/rb_meat"/>
 
                 <RadioButton
                     android:id="@+id/rb_vegetarian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/radio_vegetarian_frag_recipe"
+                    android:hint="@string/rb_vegetarian"
                     android:checked="true"/>
             </RadioGroup>
         </LinearLayout>

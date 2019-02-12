@@ -32,12 +32,12 @@ public class ManageRecipeFragment extends PrimaryFragment {
     TabLayout tlRecipe;
 
     @OnClick(R.id.fab_done)
-    public void onClickFloatAdd(){
+    public void onClickFabDone(){
         hideKeyboard();
         if(RecipeDetails.isRecipeCorrect()){
             chooseDialog();
         } else {
-            showShortToast(R.string.toast_incomplete_frag_recipe);
+            showShortToast(R.string.ts_recipe_incomplete);
         }
     }
 
@@ -49,7 +49,7 @@ public class ManageRecipeFragment extends PrimaryFragment {
         }
     }
 
-    public ManageRecipeFragment(){}
+    public ManageRecipeFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,17 +65,17 @@ public class ManageRecipeFragment extends PrimaryFragment {
 
     private void chooseToolbar(){
         if(isBundleNotEmpty()){
-            setToolbarTitle(R.string.tool_edit_frag_mngrecp);
+            setToolbarTitle(R.string.tb_recipe_edit);
         } else {
-            setToolbarTitle(R.string.tool_add_frag_mngrecp);
+            setToolbarTitle(R.string.tb_recipe_add);
         }
     }
 
     private void chooseDialog(){
         if(isBundleNotEmpty()){
-            showAlertDialog(R.string.dial_edit_frag_recipe, getDialogListener());
+            showAlertDialog(R.string.dg_recipe_edit, getDialogListener());
         } else {
-            showAlertDialog(R.string.dial_add_frag_recipe, getDialogListener());
+            showAlertDialog(R.string.dg_recipe_add, getDialogListener());
         }
     }
 
@@ -124,7 +124,7 @@ public class ManageRecipeFragment extends PrimaryFragment {
             if(success){
                 new AsyncReadRecipeId().execute();
             } else {
-                showShortToast(R.string.toast_fail_async_insrec);
+                showShortToast(R.string.ts_recipe_insert);
             }
         }
     }
@@ -147,9 +147,9 @@ public class ManageRecipeFragment extends PrimaryFragment {
                 ImageManager.saveImage(
                         TypeManager.base64StringToBitmap(RecipeDetails.getRecipe().getEncodedImage()),
                         ImageManager.getImageRecipeName(idRecipe[MainGlobals.INT_STARTING_VAR_INIT]));
-                recipeSuccess(R.string.snack_added_frag_recipe);
+                recipeSuccess(R.string.sb_recipe_added);
             } else {
-                showShortToast(R.string.toast_fail_async_readprodid);
+                showShortToast(R.string.ts_id_read);
             }
         }
     }
@@ -165,7 +165,7 @@ public class ManageRecipeFragment extends PrimaryFragment {
             if(success){
                 new AsyncReadAuthors().execute();
             } else {
-                showShortToast(R.string.toast_fail_async_updrec);
+                showShortToast(R.string.ts_recipe_update);
             }
         }
     }
@@ -187,9 +187,9 @@ public class ManageRecipeFragment extends PrimaryFragment {
             if(success){
                 removeUnavailableAuthor(authors);
                 manageImageRecipeSaving();
-                productSuccess(R.string.snack_updated_frag_recipe);
+                productSuccess(R.string.sb_recipe_updated);
             } else {
-                showShortToast(R.string.toast_fail_async_insrec);
+                showShortToast(R.string.ts_recipe_insert);
             }
         }
     }

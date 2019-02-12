@@ -34,24 +34,24 @@ public class CreateShoppingFragment extends PrimaryFragment {
     RecyclerView rvPositions;
 
     @OnClick(R.id.bt_add)
-    public void onClickButtAdd(){
+    public void onClickBtAdd(){
         addNewItem();
     }
 
     @OnClick(R.id.bt_select)
-    public void onClickButtSelect(){
+    public void onClickBtSelect(){
         Fragment fragment = new ChooseRecipeFragment();
         setBoolInBundle(fragment,true, BundleGlobals.BUND_BOOL_FRAG_RECIPES);
         setFragment(fragment);
     }
 
     @OnClick(R.id.fab_done)
-    public void onClickFloatAdd(){
+    public void onClickFabDone(){
         hideKeyboard();
         if(ShoppingListDetails.isShoppingListCorrect()){
-            showAlertDialog(R.string.dial_create_frag_shopping, getDialogListener());
+            showAlertDialog(R.string.dg_shopping_create, getDialogListener());
         } else {
-            showShortToast(R.string.toast_items_frag_shopping);
+            showShortToast(R.string.ts_item_empty);
         }
     }
 
@@ -62,7 +62,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_shopping, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tool_create_frag_crtshop);
+        setToolbarTitle(R.string.tb_shopping_create);
         setMenuItem(MainGlobals.ID_SHOPPING_DRAW_MAIN);
         setRecyclerView(
                 rvPositions,
@@ -107,7 +107,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
                 switch(which){
                     case DialogInterface.BUTTON_POSITIVE:
                         setShoppingListInShared();
-                        showShortSnack(R.string.snack_created_frag_shopping);
+                        showShortSnack(R.string.sb_shopping_created);
                         popFragment();
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:

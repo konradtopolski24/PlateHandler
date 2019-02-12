@@ -33,12 +33,12 @@ public class ManageCategoryFragment extends PrimaryFragment {
     RecyclerView rvIngredients;
 
     @OnClick(R.id.bt_add)
-    public void onClickButtAdd(){
+    public void onClickBtAdd(){
         addNewItem();
     }
 
     @OnClick(R.id.fab_done)
-    public void onClickFloatAdd(){
+    public void onClickFabAdd(){
         hideKeyboard();
         if(isCategoryCorrect()){
             Category category = new Category();
@@ -46,10 +46,10 @@ public class ManageCategoryFragment extends PrimaryFragment {
             category.setIngredients(getTempIngredients());
             setCategoryInRecipeDetails(category);
             resetTempIngredients();
-            showShortSnack(R.string.snack_category_frag_recipe);
+            showShortSnack(R.string.sb_category_added);
             popFragment();
         } else {
-            showShortToast(R.string.toast_category_frag_recipe);
+            showShortToast(R.string.ts_category_empty);
         }
     }
 
@@ -107,9 +107,9 @@ public class ManageCategoryFragment extends PrimaryFragment {
 
     private void chooseToolbar(){
         if(isBundleNotEmpty()){
-            setToolbarTitle(R.string.tool_edit_frag_mngcatg);
+            setToolbarTitle(R.string.tb_category_edit);
         } else {
-            setToolbarTitle(R.string.tool_add_frag_mngcatg);
+            setToolbarTitle(R.string.tb_category_add);
         }
     }
 
@@ -184,7 +184,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
                 );
                 chooseStartingAction();
             } else {
-                showShortToast(R.string.toast_fail_async_readprod);
+                showShortToast(R.string.ts_product_read);
             }
         }
     }

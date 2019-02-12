@@ -52,7 +52,7 @@ public class ManageInfoFragment extends PrimaryFragment {
             R.id.iv_spiciness0,
             R.id.iv_spiciness1,
             R.id.iv_spiciness2})
-    List<ImageView> arrayIvSpiciness;
+    List<ImageView> arIvSpiciness;
     @BindView(R.id.sp_country)
     Spinner spCountry;
     @BindView(R.id.sp_type)
@@ -65,42 +65,42 @@ public class ManageInfoFragment extends PrimaryFragment {
     ImageView ivPhoto;
 
     @OnTextChanged(R.id.et_name)
-    public void onTextChangedEditName(CharSequence text){
+    public void onTextChangedEtName(CharSequence text){
         RecipeDetails.getRecipe().setName(String.valueOf(text));
     }
 
     @OnTextChanged(R.id.et_author)
-    public void onTextChangedEditAuthor(CharSequence text){
+    public void onTextChangedEtAuthor(CharSequence text){
         RecipeDetails.getRecipe().setAuthor(String.valueOf(text));
     }
 
     @OnTextChanged(R.id.tv_serving)
-    public void onTextChangedTextServing(CharSequence text){
+    public void onTextChangedTvServing(CharSequence text){
         RecipeDetails.getRecipe().setServing(Integer.valueOf(String.valueOf(text)));
     }
 
     @OnTextChanged(R.id.tv_time)
-    public void onTextChangedTextTime(CharSequence text){
+    public void onTextChangedTvTime(CharSequence text){
         RecipeDetails.getRecipe().setTime(String.valueOf(text));
     }
 
     @OnItemSelected(R.id.sp_country)
-    public void onItemSelectedSpinCountry(int id){
+    public void onItemSelectedSpCountry(int id){
         RecipeDetails.getRecipe().setCountry(id);
     }
 
     @OnItemSelected(R.id.sp_type)
-    public void onItemSelectedSpinType(int id){
+    public void onItemSelectedSpType(int id){
         RecipeDetails.getRecipe().setType(id);
     }
 
     @OnCheckedChanged(R.id.rb_meat)
-    public void onCheckedChangedRadioMeat(boolean checked){
+    public void onCheckedChangedRbMeat(boolean checked){
         RecipeDetails.getRecipe().setPreference(checked);
     }
 
     @OnClick(R.id.ib_plus)
-    public void onClickImgbuttPlus(){
+    public void onClickIbPlus(){
         String text = String.valueOf(tvServing.getText());
         int value = Integer.valueOf(text);
         if(isServingNotTooBig(value)){
@@ -109,7 +109,7 @@ public class ManageInfoFragment extends PrimaryFragment {
     }
 
     @OnClick(R.id.ib_minus)
-    public void onClickImgbuttMinus(){
+    public void onClickIbMinus(){
         String text = String.valueOf(tvServing.getText());
         int value = Integer.valueOf(text);
         if(isServingNotTooSmall(value)){
@@ -118,7 +118,7 @@ public class ManageInfoFragment extends PrimaryFragment {
     }
 
     @OnClick(R.id.ib_time)
-    public void onClickImgbuttTime(){
+    public void onClickIbTime(){
         int[] times = TypeManager.stringToTime(RecipeDetails.getRecipe().getTime());
         TimePickerDialog dialog = new TimePickerDialog(getContext(),
                 getNewOnTimeSetListener(),
@@ -129,12 +129,12 @@ public class ManageInfoFragment extends PrimaryFragment {
     }
 
     @OnClick(R.id.ib_add)
-    public void onClickImgbuttPhoto(){
+    public void onClickIbAdd(){
         selectPhoto();
     }
 
     @OnClick(R.id.ib_remove)
-    public void onClickImgbuttRemove(){
+    public void onClickIbRemove(){
         RecipeDetails.getRecipe().setEncodedImage(null);
         ivPhoto.setImageResource(android.R.color.transparent);
     }
@@ -219,18 +219,18 @@ public class ManageInfoFragment extends PrimaryFragment {
     }
 
     private void setTextDifficulty(int progress){
-        String [] arrayDifficulty = getStringArray(R.array.array_difficulty_frag_recipe);
+        String [] arrayDifficulty = getStringArray(R.array.ar_difficulty);
         tvDifficulty.setText(arrayDifficulty[progress]);
     }
 
     private void setImageSpiciness(int progress){
         for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < progress; i++){
-            arrayIvSpiciness.get(i).setVisibility(View.VISIBLE);
+            arIvSpiciness.get(i).setVisibility(View.VISIBLE);
         }
     }
 
     private void hideAllImageSpiciness(){
-        for(ImageView image : arrayIvSpiciness){
+        for(ImageView image : arIvSpiciness){
             image.setVisibility(View.GONE);
         }
     }

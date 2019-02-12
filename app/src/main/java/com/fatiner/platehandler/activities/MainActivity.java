@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.nv_main)
     NavigationView nvMain;
 
+    public MainActivity() {}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,33 +44,33 @@ public class MainActivity extends AppCompatActivity {
         setBackStackListener();
     }
 
-    private void manageDrawer(){
+    private void manageDrawer() {
         setSupportActionBar(tbMain);
         setDrawerToggle();
         setOnItemClickListener();
     }
 
-    private void setDrawerToggle(){
+    private void setDrawerToggle() {
         ActionBarDrawerToggle drawerToggle = getDrawerToggle();
         dlMain.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
     }
 
-    private ActionBarDrawerToggle getDrawerToggle(){
-        return new ActionBarDrawerToggle(
+    private ActionBarDrawerToggle getDrawerToggle() {
+        return new ActionBarDrawerToggle (
                 this,
                 dlMain,
                 tbMain,
-                R.string.toggle_open_draw_main,
-                R.string.toggle_close_draw_main
+                R.string.dt_opened,
+                R.string.dt_closed
         );
     }
 
-    private void setOnItemClickListener(){
+    private void setOnItemClickListener() {
         nvMain.setNavigationItemSelectedListener(getOnItemClickListener());
     }
 
-    private NavigationView.OnNavigationItemSelectedListener getOnItemClickListener(){
+    private NavigationView.OnNavigationItemSelectedListener getOnItemClickListener() {
         return new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -78,13 +80,13 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
-    private void onItemClick(MenuItem item){
+    private void onItemClick(MenuItem item) {
         Fragment fragment = selectFragment(item);
         manageFragmentReplacement(fragment);
         closeDrawer();
     }
 
-    private Fragment selectFragment(MenuItem item){
+    private Fragment selectFragment(MenuItem item) {
         Fragment fragment = new Fragment();
         switch(item.getItemId()){
             case R.id.item_main_draw_main:
@@ -103,18 +105,18 @@ public class MainActivity extends AppCompatActivity {
         return fragment;
     }
 
-    private void manageFragmentReplacement(Fragment fragment){
+    private void manageFragmentReplacement(Fragment fragment) {
         if(isPreviousFragment(fragment)) return;
         clearBackStack();
         setFragment(fragment, isNotMainFragment(fragment));
     }
 
-    private boolean isPreviousFragment(Fragment fragment){
+    private boolean isPreviousFragment(Fragment fragment) {
         Fragment currentFragment = getCurrentFragment();
         return currentFragment.getClass().equals(fragment.getClass());
     }
 
-    private Fragment getCurrentFragment(){
+    private Fragment getCurrentFragment() {
         return getSupportFragmentManager().findFragmentById(R.id.fl_main);
     }
 

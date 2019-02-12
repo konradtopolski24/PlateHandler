@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.fatiner.platehandler.classes.Ingredient;
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.classes.Product;
 
 import java.util.ArrayList;
 
@@ -58,7 +57,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     }
 
     private String[] getArrayMeasure(){
-        return context.getResources().getStringArray(R.array.array_measure_frag_ingredient);
+        return context.getResources().getStringArray(R.array.ar_measure);
     }
 
     private void setTextMeasure(IngredientHolder holder, String measure){

@@ -42,8 +42,6 @@ import butterknife.OnClick;
 
 public class ShowRecipeFragment extends PrimaryFragment {
 
-    public ShowRecipeFragment(){}
-
     @BindView(R.id.tv_name)
     TextView tvName;
     @BindView(R.id.tv_author)
@@ -75,15 +73,17 @@ public class ShowRecipeFragment extends PrimaryFragment {
     ImageView ivPhoto;
 
     @OnCheckedChanged(R.id.sw_favorite)
-    public void onCheckedChangedSwitchFavorite(boolean checked){
+    public void onCheckedChangedSwFavorite(boolean checked){
         RecipeDetails.getRecipe().setFavorite(checked);
         new AsyncUpdateRecipeFavorite().execute();
     }
 
     @OnClick(R.id.bt_calculate)
-    public void onClickButtCalculate(){
+    public void onClickBtCalculate(){
         setFragment(new CalculateRecipeFragment());
     }
+
+    public ShowRecipeFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -148,7 +148,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
     }
 
     private void setTextDifficulty(int difficulty){
-        String[] arrayDifficulty = getStringArray(R.array.array_difficulty_frag_recipe);
+        String[] arrayDifficulty = getStringArray(R.array.ar_difficulty);
         tvDifficulty.setText(arrayDifficulty[difficulty]);
     }
 
@@ -159,20 +159,20 @@ public class ShowRecipeFragment extends PrimaryFragment {
     }
 
     private void setTextCountry(int country){
-        String[] arrayCountry = getStringArray(R.array.array_country_frag_recipe);
+        String[] arrayCountry = getStringArray(R.array.ar_country);
         tvCountry.setText(arrayCountry[country]);
     }
 
     private void setTextType(int type){
-        String[] arrayType = getStringArray(R.array.array_type_frag_recipe);
+        String[] arrayType = getStringArray(R.array.ar_recipe_type);
         tvType.setText(arrayType[type]);
     }
 
     private void setTextPreferences(boolean isMeat){
         if(isMeat){
-            tvPreferences.setText(getString(R.string.radio_meat_frag_recipe));
+            tvPreferences.setText(getString(R.string.rb_meat));
         } else {
-            tvPreferences.setText(getString(R.string.radio_vegetarian_frag_recipe));
+            tvPreferences.setText(getString(R.string.rb_vegetarian));
         }
     }
 
@@ -248,7 +248,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
                 setFragment(fragment);
                 return true;
             case R.id.item_delete_menu_shwrecp:
-                showAlertDialog(R.string.dial_delete_frag_recipe, getDialogListener());
+                showAlertDialog(R.string.dg_recipe_delete, getDialogListener());
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
@@ -280,7 +280,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
                 );
                 setRecipeInRecent();
             } else {
-                showShortToast(R.string.toast_fail_async_readrec);
+                showShortToast(R.string.ts_recipe_read);
             }
         }
     }
@@ -304,7 +304,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
             if(success){
                 new AsyncReadAuthors().execute();
             } else {
-                showShortToast(R.string.toast_fail_async_delrec);
+                showShortToast(R.string.ts_recipe_delete);
             }
         }
     }
@@ -326,9 +326,9 @@ public class ShowRecipeFragment extends PrimaryFragment {
             if(success){
                 removeUnavailableAuthor(authors);
                 deleteRecentId();
-                recipeSuccess(R.string.snack_deleted_frag_recipe);
+                recipeSuccess(R.string.sb_recipe_deleted);
             } else {
-                showShortToast(R.string.toast_fail_async_insrec);
+                showShortToast(R.string.ts_recipe_insert);
             }
         }
     }

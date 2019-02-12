@@ -5,7 +5,7 @@
     <group>
         <item
             android:id="@+id/item_settings_menu_chsprod"
-            android:title="@string/item_settings_menu_chsprod"
+            android:title="@string/mn_settings"
             app:showAsAction="always"/>
     </group>
 </menu>

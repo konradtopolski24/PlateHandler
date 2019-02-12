@@ -26,16 +26,16 @@ public class ManageStepFragment extends PrimaryFragment {
     TextView tvStep;
 
     @OnClick(R.id.fab_done)
-    public void onClickFloatAdd(){
+    public void onClickFabDone(){
         hideKeyboard();
         if(isStepCorrect()){
             Step step = new Step();
             step.setInstruction(etInstruction.getText().toString());
             setStepsInRecipeDetails(step);
-            showShortSnack(R.string.snack_step_frag_recipe);
+            showShortSnack(R.string.sb_step_added);
             popFragment();
         } else {
-            showShortToast(R.string.toast_step_frag_recipe);
+            showShortToast(R.string.ts_step_empty);
         }
     }
 
@@ -54,9 +54,9 @@ public class ManageStepFragment extends PrimaryFragment {
 
     private void chooseToolbar(){
         if(isBundleNotEmpty()){
-            setToolbarTitle(R.string.tool_edit_frag_mngstep);
+            setToolbarTitle(R.string.tb_step_edit);
         } else {
-            setToolbarTitle(R.string.tool_add_frag_mngstep);
+            setToolbarTitle(R.string.tb_step_add);
         }
     }
 

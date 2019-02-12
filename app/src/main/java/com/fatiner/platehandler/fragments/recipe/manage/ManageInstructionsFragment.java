@@ -22,7 +22,7 @@ public class ManageInstructionsFragment extends PrimaryFragment {
     RecyclerView recycSteps;
 
     @OnClick(R.id.bt_add)
-    public void onClickButtAdd(){
+    public void onClickBtAdd(){
         setFragment(new ManageStepFragment());
     }
 

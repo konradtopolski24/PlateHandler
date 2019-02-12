@@ -23,12 +23,12 @@ public class ManageIngredientsFragment extends PrimaryFragment {
     RecyclerView rvCategories;
 
     @OnClick(R.id.bt_add)
-    public void onClickButtAdd(){
+    public void onClickBtAdd(){
         RecipeDetails.resetTempIngredients();
         setFragment(new ManageCategoryFragment());
     }
 
-    public ManageIngredientsFragment(){}
+    public ManageIngredientsFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

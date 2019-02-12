@@ -48,15 +48,15 @@ public class RecipesPagerAdapter extends FragmentPagerAdapter {
         switch(position){
             case MainGlobals.ID_ADDREC_PAGER_RECIPES:
                 pageTitle = context.getResources().getString(
-                        R.string.item_info_pager_recipes);
+                        R.string.pg_info);
                 break;
             case MainGlobals.ID_ADDINGRED_PAGER_RECIPES:
                 pageTitle = context.getResources().getString(
-                        R.string.item_ingredients_pager_recipes);
+                        R.string.pg_ingredients);
                 break;
             case MainGlobals.ID_ADDSTEPS_PAGER_RECIPES:
                 pageTitle = context.getResources().getString(
-                        R.string.item_instructions_pager_recipes);
+                        R.string.pg_instructions);
                 break;
         }
         return pageTitle;

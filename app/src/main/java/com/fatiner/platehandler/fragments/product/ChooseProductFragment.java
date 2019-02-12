@@ -31,18 +31,20 @@ public class ChooseProductFragment extends PrimaryFragment {
     @BindView(R.id.rv_products)
     RecyclerView rvProducts;
 
-    @OnClick(R.id.float_products_frag_chsprod)
-    public void onClickFloatProducts(){
+    @OnClick(R.id.fab_add)
+    public void onClickFabAdd(){
         resetProductDetails();
         setFragment(new ManageProductFragment());
     }
+
+    public ChooseProductFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_choose_product, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tool_choose_frag_chsprod);
+        setToolbarTitle(R.string.tb_product_choose);
         setMenuItem(MainGlobals.ID_INGREDIENTS_DRAW_MAIN);
         readProducts();
         setHasOptionsMenu(true);
@@ -112,7 +114,7 @@ public class ChooseProductFragment extends PrimaryFragment {
                         new ProductsAdapter(getContext(), products)
                 );
             } else {
-                showShortToast(R.string.toast_fail_async_readprod);
+                showShortToast(R.string.ts_product_read);
             }
         }
     }

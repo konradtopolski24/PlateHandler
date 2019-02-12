@@ -46,55 +46,55 @@ public class ManageProductFragment extends PrimaryFragment {
     ImageView ivPhoto;
 
     @OnTextChanged(R.id.et_name)
-    public void onTextChangedEditName(CharSequence text){
+    public void onTextChangedEtName(CharSequence text){
         ProductDetails.getProduct().setName(String.valueOf(text));
     }
 
     @OnTextChanged(R.id.et_carbohydrates)
-    public void onTextChangeEditCarbohydrates(CharSequence text){
+    public void onTextChangedEtCarbohydrates(CharSequence text){
         float carbohydrates = checkEditTextValue(String.valueOf(text));
         setProductCarbohydrates(carbohydrates);
     }
 
     @OnTextChanged(R.id.et_protein)
-    public void onTextChangeEditProtein(CharSequence text){
+    public void onTextChangedEtProtein(CharSequence text){
         float protein = checkEditTextValue(String.valueOf(text));
         setProductProtein(protein);
     }
 
     @OnTextChanged(R.id.et_fat)
-    public void onTextChangeEditFat(CharSequence text){
+    public void onTextChangedEtFat(CharSequence text){
         float fat = checkEditTextValue(String.valueOf(text));
         setProductFat(fat);
     }
 
     @OnClick(R.id.ib_add)
-    public void onClickImgbuttPhoto(){
+    public void onClickIbAdd(){
         selectPhoto();
     }
 
     @OnClick(R.id.ib_remove)
-    public void onClickImgbuttRemove(){
+    public void onClickIbRemove(){
         ProductDetails.getProduct().setEncodedImage(null);
         ivPhoto.setImageResource(android.R.color.transparent);
     }
 
     @OnClick(R.id.fab_done)
-    public void onClickFloatAdd(){
+    public void onClickFabDone(){
         hideKeyboard();
         if(ProductDetails.isProductCorrect()){
             chooseDialog();
         } else {
-            showShortToast(R.string.toast_name_frag_product);
+            showShortToast(R.string.ts_product_empty);
         }
     }
 
     @OnItemSelected(R.id.sp_type)
-    public void onItemSelectedSpinType(int id){
+    public void onItemSelectedSpType(int id){
         ProductDetails.getProduct().setType(id);
     }
 
-    public ManageProductFragment(){}
+    public ManageProductFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,9 +109,9 @@ public class ManageProductFragment extends PrimaryFragment {
 
     private void chooseToolbar(){
         if(isEditing()){
-            setToolbarTitle(R.string.tool_edit_frag_mngprod);
+            setToolbarTitle(R.string.tb_product_edit);
         } else {
-            setToolbarTitle(R.string.tool_add_frag_mngprod);
+            setToolbarTitle(R.string.tb_product_add);
         }
     }
 
@@ -147,9 +147,9 @@ public class ManageProductFragment extends PrimaryFragment {
 
     private void chooseDialog(){
         if(isEditing()){
-            showAlertDialog(R.string.dial_edit_frag_product, getDialogListener());
+            showAlertDialog(R.string.dg_product_edit, getDialogListener());
         } else {
-            showAlertDialog(R.string.dial_add_frag_product, getDialogListener());
+            showAlertDialog(R.string.dg_product_add, getDialogListener());
         }
     }
 
@@ -249,7 +249,7 @@ public class ManageProductFragment extends PrimaryFragment {
             if(success){
                 new AsyncReadProductId().execute();
             } else {
-                showShortToast(R.string.toast_fail_async_insprod);
+                showShortToast(R.string.ts_product_insert);
             }
         }
     }
@@ -273,9 +273,9 @@ public class ManageProductFragment extends PrimaryFragment {
                 ImageManager.saveImage(
                         TypeManager.base64StringToBitmap(ProductDetails.getProduct().getEncodedImage()),
                         ImageManager.getImageProductName(idProduct[MainGlobals.INT_STARTING_VAR_INIT]));
-                productSuccess(R.string.snack_added_frag_product);
+                productSuccess(R.string.sb_product_added);
             } else {
-                showShortToast(R.string.toast_fail_async_readprodid);
+                showShortToast(R.string.ts_id_read);
             }
         }
     }
@@ -290,9 +290,9 @@ public class ManageProductFragment extends PrimaryFragment {
         protected void onPostExecute(Boolean success){
             if(success){
                 manageImageSaving();
-                productSuccess(R.string.snack_updated_frag_product);
+                productSuccess(R.string.sb_product_updated);
             } else {
-                showShortToast(R.string.toast_fail_async_updprod);
+                showShortToast(R.string.ts_product_update);
             }
         }
     }

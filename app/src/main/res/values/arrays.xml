@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string-array name="array_difficulty_frag_recipe">
+    <string-array name="ar_difficulty">
         <item>Easy</item>
         <item>Medium</item>
         <item>Hard</item>
     </string-array>
 
-    <string-array name="array_country_frag_recipe">
+    <string-array name="ar_country">
         <item>China</item>
         <item>Croatia</item>
         <item>France</item>
@@ -23,7 +22,7 @@
         <item>USA</item>
     </string-array>
 
-    <string-array name="array_type_frag_recipe">
+    <string-array name="ar_recipe_type">
         <item>Seasoning</item>
         <item>Appetiser</item>
         <item>Soup</item>
@@ -33,7 +32,7 @@
         <item>Dessert</item>
     </string-array>
 
-    <string-array name="array_type_frag_product">
+    <string-array name="ar_product_type">
         <item>Vegetable</item>
         <item>Fruit</item>
         <item>Meat</item>
@@ -44,7 +43,7 @@
         <item>Liquid</item>
     </string-array>
 
-    <string-array name="array_measure_frag_ingredient">
+    <string-array name="ar_measure">
         <item>Gram</item>
         <item>Decagram</item>
         <item>Kilogram</item>
@@ -58,7 +57,7 @@
         <item>Piece</item>
     </string-array>
 
-    <integer-array name="array_factor_frag_ingredient">
+    <integer-array name="ar_factor">
         <item>1</item>
         <item>10</item>
         <item>1000</item>
@@ -72,7 +71,7 @@
         <item>100</item>
     </integer-array>
 
-    <integer-array name="array_drawable_image_type">
+    <integer-array name="ar_drawable_type">
         <item>@drawable/ic_condiment</item>
         <item>@drawable/ic_appetiser</item>
         <item>@drawable/ic_soup</item>
@@ -82,7 +81,7 @@
         <item>@drawable/ic_dessert</item>
     </integer-array>
 
-    <integer-array name="array_drawable_image_preference">
+    <integer-array name="ar_drawable_preference">
         <item>@drawable/ic_vegetarian</item>
         <item>@drawable/ic_meat</item>
     </integer-array>

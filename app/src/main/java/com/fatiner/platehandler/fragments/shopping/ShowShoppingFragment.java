@@ -33,12 +33,14 @@ public class ShowShoppingFragment extends PrimaryFragment {
         setFragment(new CreateShoppingFragment());
     }
 
+    public ShowShoppingFragment() {}
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_show_shopping, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tool_shopping_frag_shwshop);
+        setToolbarTitle(R.string.tb_shopping_list);
         setMenuItem(MainGlobals.ID_SHOPPING_DRAW_MAIN);
         setShoppingListWithJson();
         setRecyclerView(

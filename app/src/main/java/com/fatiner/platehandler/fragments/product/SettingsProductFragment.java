@@ -26,12 +26,12 @@ public class SettingsProductFragment extends PrimaryFragment {
     Spinner spType;
 
     @OnCheckedChanged(R.id.sw_alphabetical)
-    public void onCheckedChangedSwitchAlphabetical(boolean checked){
+    public void onCheckedChangedSwAlphabetical(boolean checked){
         SharedProductManager.setSharedProductAlphabetical(getContext(), checked);
     }
 
     @OnCheckedChanged(R.id.sw_type)
-    public void onCheckedChangedSwitchType(boolean checked){
+    public void onCheckedChangedSwType(boolean checked){
         if(checked){
             spType.setVisibility(View.VISIBLE);
         } else {
@@ -41,7 +41,7 @@ public class SettingsProductFragment extends PrimaryFragment {
     }
 
     @OnItemSelected(R.id.sp_type)
-    public void onItemSelectedSpinType(int id){
+    public void onItemSelectedSpType(int id){
         SharedProductManager.setSharedProductType(getContext(), id);
     }
 
@@ -52,7 +52,7 @@ public class SettingsProductFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings_product, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tool_settings_frag_sttprod);
+        setToolbarTitle(R.string.tb_product_settings);
         setViewsWithSharedPreferences();
         return view;
     }

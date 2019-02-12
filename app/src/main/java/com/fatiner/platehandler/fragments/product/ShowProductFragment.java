@@ -103,7 +103,7 @@ public class ShowProductFragment extends PrimaryFragment {
     }
 
     private void setTextType(int type){
-        String[] arrayType = getStringArray(R.array.array_type_frag_product);
+        String[] arrayType = getStringArray(R.array.ar_product_type);
         tvType.setText(arrayType[type]);
     }
 
@@ -194,7 +194,7 @@ public class ShowProductFragment extends PrimaryFragment {
                 setFragment(fragment);
                 return true;
             case R.id.item_delete_menu_shwprod:
-                showAlertDialog(R.string.dial_delete_frag_product, getDialogListener());
+                showAlertDialog(R.string.dg_product_delete, getDialogListener());
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
@@ -218,7 +218,7 @@ public class ShowProductFragment extends PrimaryFragment {
                 calculateTotalKcal();
                 calculateTotalKj();
             } else {
-                showShortToast(R.string.toast_fail_async_readprod);
+                showShortToast(R.string.ts_product_read);
             }
         }
     }
@@ -233,9 +233,9 @@ public class ShowProductFragment extends PrimaryFragment {
 
         protected void onPostExecute(Boolean success){
             if(success){
-                productSuccess(R.string.snack_deleted_frag_product);
+                productSuccess(R.string.sb_product_deleted);
             } else {
-                showShortToast(R.string.toast_fail_async_delprod);
+                showShortToast(R.string.ts_product_delete);
             }
         }
     }

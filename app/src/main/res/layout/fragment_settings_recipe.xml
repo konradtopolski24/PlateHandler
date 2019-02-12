@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_alphabetical_frag_recipe"/>
+            android:text="@string/tv_alphabetical"/>
 
         <Switch
             android:id="@+id/sw_alphabetical"
@@ -32,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_favorite_frag_recipe"/>
+            android:text="@string/tv_favorite"/>
 
         <Switch
             android:id="@+id/sw_favorite"
@@ -49,7 +50,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit_author_frag_recipe"/>
+            android:text="@string/et_author"/>
 
         <Switch
             android:id="@+id/sw_author"
@@ -71,7 +72,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_difficulty_frag_recipe"/>
+            android:text="@string/tv_difficulty"/>
 
         <Switch
             android:id="@+id/sw_difficulty"
@@ -93,7 +94,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_spiciness_frag_recipe"/>
+            android:text="@string/tv_spiciness"/>
 
         <Switch
             android:id="@+id/sw_spiciness"
@@ -116,7 +117,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_country_frag_recipe"/>
+            android:text="@string/tv_country"/>
 
         <Switch
             android:id="@+id/sw_country"
@@ -127,7 +128,7 @@
             android:id="@+id/sp_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/array_country_frag_recipe"
+            android:entries="@array/ar_country"
             android:visibility="gone"/>
     </LinearLayout>
 
@@ -140,7 +141,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_type_frag_recipe"/>
+            android:text="@string/tv_type"/>
 
         <Switch
             android:id="@+id/sw_type"
@@ -151,7 +152,7 @@
             android:id="@+id/sp_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/array_type_frag_recipe"
+            android:entries="@array/ar_recipe_type"
             android:visibility="gone"/>
     </LinearLayout>
 
@@ -164,7 +165,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_preferences_frag_recipe"/>
+            android:text="@string/tv_preferences"/>
 
         <Switch
             android:id="@+id/sw_preference"
@@ -181,13 +182,13 @@
                 android:id="@+id/rb_meat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/radio_meat_frag_recipe"/>
+                android:hint="@string/rb_meat"/>
 
             <RadioButton
                 android:id="@+id/rb_vegetarian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/radio_vegetarian_frag_recipe"
+                android:hint="@string/rb_vegetarian"
                 android:checked="true"/>
         </RadioGroup>
     </LinearLayout>
