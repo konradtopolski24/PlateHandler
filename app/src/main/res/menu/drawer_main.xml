@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/gr_1"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/item_main_draw_main"
             android:title="@string/nv_main"
@@ -17,6 +19,20 @@
         <item
             android:id="@+id/item_ingredients_draw_main"
             android:title="@string/nv_products"
+            android:icon="@drawable/ic_product"/>
+    </group>
+
+    <group
+        android:id="@+id/gr_2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_export_draw_main"
+            android:title="@string/nv_export"
+            android:icon="@drawable/ic_product"/>
+
+        <item
+            android:id="@+id/item_import_draw_main"
+            android:title="@string/nv_import"
             android:icon="@drawable/ic_product"/>
     </group>
 </menu>

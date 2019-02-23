@@ -1,5 +1,7 @@
 package com.fatiner.platehandler.globals;
 
+import java.util.ArrayList;
+
 public class DatabaseGlobals {
     public static final String NAME_RECIPES_DB_MAIN = "Recipes DatabaseGlobals";
     public static final int VER_CURRENT_DB_MAIN = 1;
@@ -19,6 +21,22 @@ public class DatabaseGlobals {
     public static final String COL_TYPE_TAB_RECIPES = "TYPE";
     public static final String COL_PREFERENCES_TAB_RECIPES = "PREFERENCES";
     public static final String COL_FAVORITE_TAB_RECIPES = "FAVORITE";
+
+    public static ArrayList<String> getRecipesColumns(){
+        ArrayList<String> columns = new ArrayList<>();
+        columns.add(COL_ID_TAB_RECIPES);
+        columns.add(COL_NAME_TAB_RECIPES);
+        columns.add(COL_AUTHOR_TAB_RECIPES);
+        columns.add(COL_SERVING_TAB_RECIPES);
+        columns.add(COL_TIME_TAB_RECIPES);
+        columns.add(COL_DIFFICULTY_TAB_RECIPES);
+        columns.add(COL_SPICINESS_TAB_RECIPES);
+        columns.add(COL_COUNTRY_TAB_RECIPES);
+        columns.add(COL_TYPE_TAB_RECIPES);
+        columns.add(COL_PREFERENCES_TAB_RECIPES);
+        columns.add(COL_FAVORITE_TAB_RECIPES);
+        return columns;
+    }
 
     //Table INGREDIENTS
     public static final String TAB_INGREDIENTS_DB_MAIN = "INGREDIENTS";

@@ -7,6 +7,8 @@
     <string name="nv_recipes">Recipes</string>
     <string name="nv_shopping">Shopping List</string>
     <string name="nv_products">Products</string>
+    <string name="nv_export">Export Database</string>
+    <string name="nv_import">Import Database</string>
 
     <string name="dt_opened">Drawer opened</string>
     <string name="dt_closed">Drawer closed</string>
@@ -45,6 +47,8 @@
     <string name="mn_edit">Edit</string>
     <string name="mn_delete">Delete</string>
 
+    <string name="et_export">Export file name</string>
+
     <!-- Main Toolbar Titles -->
     <string name="tb_main">Main</string>
 
@@ -67,6 +71,9 @@
 
     <string name="tb_shopping_list">Shopping list</string>
     <string name="tb_shopping_create">Create shopping list</string>
+
+    <string name="tb_export">Export Database</string>
+    <string name="tb_import">Import Database</string>
 
     <!-- Shopping List -->
     <string name="tv_shopping_date">List from:</string>
@@ -94,6 +101,8 @@
 
     <string name="sb_shopping_created">Shopping list created!</string>
 
+    <string name="sb_export">Database exported!</string>
+
     <!-- Toast Message -->
     <string name="ts_product_empty">Product name is empty!</string>
 
@@ -103,22 +112,7 @@
 
     <string name="ts_item_empty">Item names are empty!</string>
 
-    <!-- Async Fail Message -->
-    <string name="ts_recent_read">Read recent error!</string>
-    <string name="ts_day_read">Read dish error!</string>
-    <string name="ts_id_read">Read id error!</string>
-
-    <string name="ts_product_insert">Insert product error!</string>
-    <string name="ts_product_update">Update product error!</string>
-    <string name="ts_product_read">Read products error!</string>
-    <string name="ts_product_delete">Delete products error!</string>
-
-    <string name="ts_recipe_read">Read recipes error!</string>
-    <string name="ts_author_read">Read authors error!</string>
-    <string name="ts_recipe_insert">Insert recipe error!</string>
-    <string name="ts_recipe_update">Update recipe error!</string>
-    <string name="ts_recipe_delete">Delete recipe error!</string>
-    <string name="ts_recipe_favorite">Update recipe favorite error!</string>
+    <string name="ts_db_error">Database error!</string>
 
     <!-- Dialog Message -->
     <string name="dg_product_add">Do you want to add a new product?</string>
@@ -130,4 +124,7 @@
     <string name="dg_recipe_delete">Do you want to delete the recipe?</string>
 
     <string name="dg_shopping_create">Do you want to create a new shopping list?</string>
+
+    <string name="nt_title">New dish of the day!</string>
+    <string name="nt_text">What kind of dish would you like to eat today?</string>
 </resources>

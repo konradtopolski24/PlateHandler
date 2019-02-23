@@ -1,6 +1,7 @@
 package com.fatiner.platehandler.fragments.recipe.manage;
 
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -43,9 +44,9 @@ public class ManageRecipeFragment extends PrimaryFragment {
 
     private void chooseDatabaseAction(){
         if(isBundleNotEmpty()){
-            new AsyncUpdateRecipe().execute();
+            new AsyncManageRecipe().execute(Type.UPDATE);
         } else {
-            new AsyncInsertRecipe().execute();
+            new AsyncManageRecipe().execute(Type.INSERT);
         }
     }
 
@@ -113,84 +114,67 @@ public class ManageRecipeFragment extends PrimaryFragment {
         }
     }
 
-    private class AsyncInsertRecipe extends AsyncTask<Void, Void, Boolean>{
+    private class AsyncManageRecipe extends AsyncTask<Type, Void, Boolean>{
 
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.insertedRecipe(getContext());
-        }
-
-        protected void onPostExecute(Boolean success){
-            if(success){
-                new AsyncReadRecipeId().execute();
-            } else {
-                showShortToast(R.string.ts_recipe_insert);
-            }
-        }
-    }
-
-    private class AsyncReadRecipeId extends AsyncTask<Void, Void, Boolean> {
-
+        private Type type;
+        private ArrayList<String> authors;
         private int[] idRecipe;
 
         protected void onPreExecute(){
             idRecipe = new int[MainGlobals.INT_INCREMENT_VAR_INIT];
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.readRecipeId(getContext(), idRecipe);
-        }
-
-        protected void onPostExecute(Boolean success){
-            if(success){
-                ImageManager.saveImage(
-                        TypeManager.base64StringToBitmap(RecipeDetails.getRecipe().getEncodedImage()),
-                        ImageManager.getImageRecipeName(idRecipe[MainGlobals.INT_STARTING_VAR_INIT]));
-                recipeSuccess(R.string.sb_recipe_added);
-            } else {
-                showShortToast(R.string.ts_id_read);
-            }
-        }
-    }
-
-    private class AsyncUpdateRecipe extends AsyncTask<Void, Void, Boolean>{
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.updatedRecipe(getContext());
-        }
-
-        protected void onPostExecute(Boolean success){
-            if(success){
-                new AsyncReadAuthors().execute();
-            } else {
-                showShortToast(R.string.ts_recipe_update);
-            }
-        }
-    }
-
-    private class AsyncReadAuthors extends AsyncTask<Void, Void, Boolean>{
-
-        ArrayList<String> authors;
-
-        protected void onPreExecute(){
             authors = new ArrayList<>();
         }
 
         @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.readAuthors(getContext(), authors);
+        protected Boolean doInBackground(Type... types) {
+            type = types[MainGlobals.INT_STARTING_VAR_INIT];
+
+            try{
+                switch(type) {
+                    case INSERT:
+                        DbSuccessManager.insertedRecipe(getContext());
+                        DbSuccessManager.readRecipeId(getContext(), idRecipe);
+                        break;
+                    case UPDATE:
+                        DbSuccessManager.updatedRecipe(getContext());
+                        DbSuccessManager.readAuthors(getContext(), authors);
+                        break;
+                }
+                return true;
+            }catch (SQLiteException e){
+                showShortToast(R.string.ts_db_error);
+                return false;
+            }
         }
 
         protected void onPostExecute(Boolean success){
             if(success){
-                removeUnavailableAuthor(authors);
-                manageImageRecipeSaving();
-                productSuccess(R.string.sb_recipe_updated);
-            } else {
-                showShortToast(R.string.ts_recipe_insert);
+                switch(type) {
+                    case INSERT:
+                        insertRecipeFinished(idRecipe);
+                        break;
+                    case UPDATE:
+                        updateRecipeFinished(authors);
+                        break;
+                }
             }
         }
+    }
+
+    private void insertRecipeFinished(int[] idRecipe) {
+        ImageManager.saveImage(
+                TypeManager.base64StringToBitmap(RecipeDetails.getRecipe().getEncodedImage()),
+                ImageManager.getImageRecipeName(idRecipe[MainGlobals.INT_STARTING_VAR_INIT]));
+        recipeSuccess(R.string.sb_recipe_added);
+    }
+
+    private void updateRecipeFinished(ArrayList<String> authors) {
+        removeUnavailableAuthor(authors);
+        manageImageRecipeSaving();
+        productSuccess(R.string.sb_recipe_updated);
+    }
+
+    private enum Type {
+        INSERT, UPDATE
     }
 }

@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.fatiner.platehandler.R;
+import com.fatiner.platehandler.fragments.export.ExportFragment;
+import com.fatiner.platehandler.fragments.export.ImportFragment;
 import com.fatiner.platehandler.fragments.product.ChooseProductFragment;
 import com.fatiner.platehandler.fragments.main.MainFragment;
 import com.fatiner.platehandler.fragments.recipe.ChooseRecipeFragment;
@@ -100,6 +102,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.item_ingredients_draw_main:
                 fragment = new ChooseProductFragment();
+                break;
+            case R.id.item_export_draw_main:
+                fragment = new ExportFragment();
+                break;
+            case R.id.item_import_draw_main:
+                fragment = new ImportFragment();
                 break;
         }
         return fragment;

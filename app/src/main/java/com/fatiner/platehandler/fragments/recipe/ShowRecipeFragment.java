@@ -1,6 +1,7 @@
 package com.fatiner.platehandler.fragments.recipe;
 
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -75,7 +76,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
     @OnCheckedChanged(R.id.sw_favorite)
     public void onCheckedChangedSwFavorite(boolean checked){
         RecipeDetails.getRecipe().setFavorite(checked);
-        new AsyncUpdateRecipeFavorite().execute();
+        new AsyncShowRecipe().execute(Type.FAVORITE);
     }
 
     @OnClick(R.id.bt_calculate)
@@ -100,7 +101,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
 
     private void setRecipe(){
         if(isBundleNotEmpty()){
-            new AsyncReadRecipe().execute(getRecipeId());
+            new AsyncShowRecipe().execute(Type.READ);
         }
     }
 
@@ -191,7 +192,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
             public void onClick(DialogInterface dialog, int which) {
                 switch(which){
                     case DialogInterface.BUTTON_POSITIVE:
-                        new AsyncDeleteRecipe().execute();
+                        new AsyncShowRecipe().execute(Type.DELETE);
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
                         break;
@@ -254,82 +255,78 @@ public class ShowRecipeFragment extends PrimaryFragment {
         }
     }
 
-    private class AsyncReadRecipe extends AsyncTask<Integer, Void, Boolean>{
+    private class AsyncShowRecipe extends AsyncTask<Type, Void, Boolean>{
 
-        @Override
-        protected Boolean doInBackground(Integer... id) {
-            return DbSuccessManager.readRecipe(getContext(), RecipeDetails.getRecipe(),
-                    id[MainGlobals.INT_STARTING_VAR_INIT]);
-        }
-
-        protected void onPostExecute(Boolean success){
-            if(success){
-                loadPhoto();
-                setRecipeInfo();
-                setRecyclerView(
-                        rvCategories,
-                        getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDINGRED),
-                        new CategoryAdapter(getContext(),
-                                RecipeDetails.getRecipe().getCategories(), true)
-                );
-                setRecyclerView(
-                        rvSteps,
-                        getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
-                        new StepAdapter(getContext(),
-                                RecipeDetails.getRecipe().getSteps(), true)
-                );
-                setRecipeInRecent();
-            } else {
-                showShortToast(R.string.ts_recipe_read);
-            }
-        }
-    }
-
-    private class AsyncUpdateRecipeFavorite extends AsyncTask<Void, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.updatedRecipeFavorite(getContext());
-        }
-    }
-
-    private class AsyncDeleteRecipe extends AsyncTask<Void, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.deletedRecipe(getContext());
-        }
-
-        protected void onPostExecute(Boolean success){
-            if(success){
-                new AsyncReadAuthors().execute();
-            } else {
-                showShortToast(R.string.ts_recipe_delete);
-            }
-        }
-    }
-
-    private class AsyncReadAuthors extends AsyncTask<Void, Void, Boolean>{
-
-        ArrayList<String> authors;
+        private Type type;
+        private ArrayList<String> authors;
 
         protected void onPreExecute(){
             authors = new ArrayList<>();
         }
 
         @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.readAuthors(getContext(), authors);
+        protected Boolean doInBackground(Type... types) {
+            try{
+                type = types[MainGlobals.INT_STARTING_VAR_INIT];
+                switch(type) {
+                    case READ:
+                        DbSuccessManager.readRecipe(getContext(),
+                                RecipeDetails.getRecipe(), getRecipeId());
+                        break;
+                    case DELETE:
+                        DbSuccessManager.deletedRecipe(getContext());
+                        DbSuccessManager.readAuthors(getContext(), authors);
+                        break;
+                    case FAVORITE:
+                        DbSuccessManager.updatedRecipeFavorite(getContext());
+                        break;
+                }
+                return true;
+            }catch (SQLiteException e){
+                showShortToast(R.string.ts_db_error);
+                return false;
+            }
         }
 
         protected void onPostExecute(Boolean success){
             if(success){
-                removeUnavailableAuthor(authors);
-                deleteRecentId();
-                recipeSuccess(R.string.sb_recipe_deleted);
-            } else {
-                showShortToast(R.string.ts_recipe_insert);
+                switch(type) {
+                    case READ:
+                        finishedReadRecipe();
+                        break;
+                    case DELETE:
+                        finishedDeleteRecipe(authors);
+                        break;
+                }
             }
         }
+    }
+
+    private void finishedReadRecipe() {
+        loadPhoto();
+        setRecipeInfo();
+        setRecyclerView(
+                rvCategories,
+                getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDINGRED),
+                new CategoryAdapter(getContext(),
+                        RecipeDetails.getRecipe().getCategories(), true)
+        );
+        setRecyclerView(
+                rvSteps,
+                getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
+                new StepAdapter(getContext(),
+                        RecipeDetails.getRecipe().getSteps(), true)
+        );
+        setRecipeInRecent();
+    }
+
+    private void finishedDeleteRecipe(ArrayList<String> authors) {
+        removeUnavailableAuthor(authors);
+        deleteRecentId();
+        recipeSuccess(R.string.sb_recipe_deleted);
+    }
+
+    private enum Type {
+        READ, DELETE, FAVORITE
     }
 }

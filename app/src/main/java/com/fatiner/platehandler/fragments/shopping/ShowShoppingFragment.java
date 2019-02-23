@@ -23,12 +23,12 @@ import butterknife.OnClick;
 public class ShowShoppingFragment extends PrimaryFragment {
 
     @BindView(R.id.tv_date)
-    TextView textDate;
+    TextView tvDate;
     @BindView(R.id.rv_shopping)
-    RecyclerView recycShopping;
+    RecyclerView rvShopping;
 
     @OnClick(R.id.bt_create)
-    public void onClickButtCreate(){
+    public void onClickBtCreate(){
         resetShoppingListDetails();
         setFragment(new CreateShoppingFragment());
     }
@@ -44,7 +44,7 @@ public class ShowShoppingFragment extends PrimaryFragment {
         setMenuItem(MainGlobals.ID_SHOPPING_DRAW_MAIN);
         setShoppingListWithJson();
         setRecyclerView(
-                recycShopping,
+                rvShopping,
                 getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_SHOPPING),
                 new ShoppingAdapter(getContext(),
                 ShoppingListDetails.getShoppingList().getShoppingItems()));
@@ -59,11 +59,11 @@ public class ShowShoppingFragment extends PrimaryFragment {
             ShoppingListDetails.getShoppingList().setShoppingItems(
                     shoppingList.getShoppingItems());
             ShoppingListDetails.getShoppingList().setDate(shoppingList.getDate());
-            setTextDate(ShoppingListDetails.getShoppingList().getDate());
+            setTvDate(ShoppingListDetails.getShoppingList().getDate());
         }
     }
 
-    private void setTextDate(String date){
-        textDate.setText(date);
+    private void setTvDate(String date){
+        tvDate.setText(date);
     }
 }

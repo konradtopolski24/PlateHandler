@@ -2,21 +2,18 @@ package com.fatiner.platehandler.managers.database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.fatiner.platehandler.RecipeSQLiteOpenHelper;
 import com.fatiner.platehandler.classes.Category;
-import com.fatiner.platehandler.details.ProductDetails;
-import com.fatiner.platehandler.details.RecipeDetails;
-import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.classes.Ingredient;
 import com.fatiner.platehandler.classes.Product;
 import com.fatiner.platehandler.classes.Recipe;
 import com.fatiner.platehandler.classes.ShoppingItem;
-import com.fatiner.platehandler.managers.shared.SharedRecipeManager;
+import com.fatiner.platehandler.details.ProductDetails;
+import com.fatiner.platehandler.details.RecipeDetails;
+import com.fatiner.platehandler.globals.MainGlobals;
 
 import java.util.ArrayList;
 
@@ -24,47 +21,32 @@ public class DbSuccessManager {
 
     private DbSuccessManager(){}
 
-    public static boolean readProducts(Context context, ArrayList<Product> products,
+    public static void readProducts(Context context, ArrayList<Product> products,
                                                    String selection, String orderBy){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getReadableDatabase();
-            Cursor cursor = DbCursorManager.getProductCursor(db, selection, orderBy);
-            DbCursorManager.setProducts(cursor, products);
-            cursor.close();
-            db.close();
-            return true;
-        }catch (SQLiteException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = DbCursorManager.getProductCursor(db, selection, orderBy);
+        DbCursorManager.setProducts(cursor, products);
+        cursor.close();
+        db.close();
     }
 
-    public static boolean readProduct(Context context, Product product, int id){
+    public static void readProduct(Context context, Product product, int id){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getReadableDatabase();
-            Cursor cursor = DbCursorManager.getProductCursor(db, id);
-            DbCursorManager.setProduct(cursor, product);
-            cursor.close();
-            db.close();
-            return true;
-        }catch (SQLiteException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = DbCursorManager.getProductCursor(db, id);
+        DbCursorManager.setProduct(cursor, product);
+        cursor.close();
+        db.close();
     }
 
-    public static boolean readShoppingItems(Context context, ArrayList<ShoppingItem> shoppingItems, int id){
+    public static void readShoppingItems(Context context, ArrayList<ShoppingItem> shoppingItems, int id){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getReadableDatabase();
-            ArrayList<Ingredient> ingredients = new ArrayList<>();
-            readIngredientsPart(db, ingredients, id);
-            readShoppingItemsPart(db, shoppingItems, ingredients);
-            db.close();
-            return true;
-        }catch (SQLiteException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getReadableDatabase();
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        readIngredientsPart(db, ingredients, id);
+        readShoppingItemsPart(db, shoppingItems, ingredients);
+        db.close();
     }
 
     private static void readIngredientsPart(SQLiteDatabase db, ArrayList<Ingredient> ingredients, int id){
@@ -84,165 +66,105 @@ public class DbSuccessManager {
         }
     }
 
-    public static boolean deletedProduct(Context context, int id){
+    public static void deletedProduct(Context context, int id){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getWritableDatabase();
-            if(DbCursorManager.isProductUsable(db, id)) return false;
-            DbCommandManager.deleteProductValues(db, id);
-            db.close();
-            return true;
-        }catch(SQLException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getWritableDatabase();
+        if(DbCursorManager.isProductUsable(db, id)) return;
+        DbCommandManager.deleteProductValues(db, id);
+        db.close();
     }
 
-    public static boolean deletedRecipe(Context context){
+    public static void deletedRecipe(Context context){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getWritableDatabase();
-            DbCommandManager.deleteRecipeValues(db, RecipeDetails.getRecipe().getId());
-            DbCommandManager.deleteIngredientValues(db, RecipeDetails.getRecipe().getId());
-            DbCommandManager.deleteStepValues(db, RecipeDetails.getRecipe().getId());
-            db.close();
-            return true;
-        }catch(SQLException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getWritableDatabase();
+        DbCommandManager.deleteRecipeValues(db, RecipeDetails.getRecipe().getId());
+        DbCommandManager.deleteIngredientValues(db, RecipeDetails.getRecipe().getId());
+        DbCommandManager.deleteStepValues(db, RecipeDetails.getRecipe().getId());
+        db.close();
     }
 
-    public static boolean insertedProduct(Context context){
+    public static void insertedProduct(Context context){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getWritableDatabase();
-            DbCommandManager.insertProductValues(db);
-            db.close();
-            return true;
-        }catch(SQLException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getWritableDatabase();
+        DbCommandManager.insertProductValues(db);
+        db.close();
     }
 
-    public static boolean insertedRecipe(Context context){
+    public static void insertedRecipe(Context context){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getWritableDatabase();
-            DbCommandManager.insertRecipeValues(db);
-            int id = DbCursorManager.getRecipeId(db);
-            DbCommandManager.insertIngredientValues(db, id);
-            DbCommandManager.insertStepValues(db, id);
-            db.close();
-            return true;
-        }catch(SQLException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getWritableDatabase();
+        DbCommandManager.insertRecipeValues(db);
+        int id = DbCursorManager.getRecipeId(db);
+        DbCommandManager.insertIngredientValues(db, id);
+        DbCommandManager.insertStepValues(db, id);
+        db.close();
     }
 
-    public static boolean updatedRecipe(Context context){
+    public static void updatedRecipe(Context context){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getWritableDatabase();
-            DbCommandManager.updateRecipeValues(db, RecipeDetails.getRecipe().getId());
-            DbCommandManager.deleteIngredientValues(db, RecipeDetails.getRecipe().getId());
-            DbCommandManager.deleteStepValues(db, RecipeDetails.getRecipe().getId());
-            DbCommandManager.insertIngredientValues(db, RecipeDetails.getRecipe().getId());
-            DbCommandManager.insertStepValues(db, RecipeDetails.getRecipe().getId());
-            db.close();
-            return true;
-        }catch(SQLException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getWritableDatabase();
+        DbCommandManager.updateRecipeValues(db, RecipeDetails.getRecipe().getId());
+        DbCommandManager.deleteIngredientValues(db, RecipeDetails.getRecipe().getId());
+        DbCommandManager.deleteStepValues(db, RecipeDetails.getRecipe().getId());
+        DbCommandManager.insertIngredientValues(db, RecipeDetails.getRecipe().getId());
+        DbCommandManager.insertStepValues(db, RecipeDetails.getRecipe().getId());
+        db.close();
     }
 
-    public static boolean updatedProduct(Context context){
+    public static void updatedProduct(Context context){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getWritableDatabase();
-            DbCommandManager.updateProductValues(db, ProductDetails.getProduct().getId());
-            db.close();
-            return true;
-        }catch(SQLException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getWritableDatabase();
+        DbCommandManager.updateProductValues(db, ProductDetails.getProduct().getId());
+        db.close();
     }
 
-    public static boolean updatedRecipeFavorite(Context context){
+    public static void updatedRecipeFavorite(Context context){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getWritableDatabase();
-            DbCommandManager.updateFavoriteValues(db, RecipeDetails.getRecipe().getId());
-            db.close();
-            return true;
-        }catch(SQLException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getWritableDatabase();
+        DbCommandManager.updateFavoriteValues(db, RecipeDetails.getRecipe().getId());
+        db.close();
     }
 
-    public static boolean readRecipeId(Context context, int[] id){
+    public static void readRecipeId(Context context, int[] id){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getReadableDatabase();
-            id[MainGlobals.INT_STARTING_VAR_INIT] = DbCursorManager.getRecipeId(db);
-            db.close();
-            return true;
-        }catch (SQLiteException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getReadableDatabase();
+        id[MainGlobals.INT_STARTING_VAR_INIT] = DbCursorManager.getRecipeId(db);
+        db.close();
     }
 
-    public static boolean readProductId(Context context, int[] id){
+    public static void readProductId(Context context, int[] id){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getReadableDatabase();
-            id[MainGlobals.INT_STARTING_VAR_INIT] = DbCursorManager.getProductId(db);
-            db.close();
-            return true;
-        }catch (SQLiteException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getReadableDatabase();
+        id[MainGlobals.INT_STARTING_VAR_INIT] = DbCursorManager.getProductId(db);
+        db.close();
     }
 
-    public static boolean readAuthors(Context context, ArrayList<String> authors){
+    public static void readAuthors(Context context, ArrayList<String> authors){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getReadableDatabase();
-            Cursor cursor = DbCursorManager.getAuthorsCursor(db);
-            DbCursorManager.setAuthors(cursor, authors);
-            cursor.close();
-            db.close();
-            return true;
-        }catch (SQLiteException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = DbCursorManager.getAuthorsCursor(db);
+        DbCursorManager.setAuthors(cursor, authors);
+        cursor.close();
+        db.close();
     }
 
-    public static boolean readRecipes(Context context, ArrayList<Recipe> recipes, String selection, String orderBy){
+    public static void readRecipes(Context context, ArrayList<Recipe> recipes, String selection, String orderBy){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getReadableDatabase();
-            Cursor cursor = DbCursorManager.getRecipeCursor(db, selection, orderBy);
-            DbCursorManager.setRecipeInfo(cursor, recipes);
-            cursor.close();
-            db.close();
-            return true;
-        }catch (SQLiteException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = DbCursorManager.getRecipeCursor(db, selection, orderBy);
+        DbCursorManager.setRecipeInfo(cursor, recipes);
+        cursor.close();
+        db.close();
     }
 
-    public static boolean readRecipe(Context context, Recipe recipe, int id){
+    public static void readRecipe(Context context, Recipe recipe, int id){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getReadableDatabase();
-            readRecipeInfoPart(db, recipe, id);
-            readRecipeCategoriesPart(db, recipe, id);
-            readRecipeProductsPart(db, recipe);
-            readRecipeStepsPart(db, recipe, id);
-            db.close();
-            return true;
-        }catch (SQLiteException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getReadableDatabase();
+        readRecipeInfoPart(db, recipe, id);
+        readRecipeCategoriesPart(db, recipe, id);
+        readRecipeProductsPart(db, recipe);
+        readRecipeStepsPart(db, recipe, id);
+        db.close();
     }
 
     private static void readRecipeInfoPart(SQLiteDatabase db, Recipe recipe, int id){
@@ -275,18 +197,13 @@ public class DbSuccessManager {
         cursor.close();
     }
 
-    public static boolean readRecent(Context context, ArrayList<Recipe> recentRecipes, ArrayList<Integer> recentIds){
+    public static void readRecent(Context context, ArrayList<Recipe> recentRecipes, ArrayList<Integer> recentIds){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getReadableDatabase();
-            for(int id : recentIds){
-                readRecentPart(db, recentRecipes, id);
-            }
-            db.close();
-            return true;
-        }catch (SQLiteException e){
-            return false;
+        SQLiteDatabase db = helper.getReadableDatabase();
+        for(int id : recentIds){
+            readRecentPart(db, recentRecipes, id);
         }
+        db.close();
     }
 
     private static void readRecentPart(SQLiteDatabase db,  ArrayList<Recipe> recipes, int id){
@@ -297,31 +214,21 @@ public class DbSuccessManager {
         cursor.close();
     }
 
-    public static boolean readDish(Context context, ArrayList<Recipe> dish, int id){
+    public static void readDay(Context context, ArrayList<Recipe> day, int id){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getReadableDatabase();
-            Recipe recipe = new Recipe();
-            readRecipeInfoPart(db, recipe, id);
-            dish.add(recipe);
-            db.close();
-            return true;
-        }catch (SQLiteException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Recipe recipe = new Recipe();
+        readRecipeInfoPart(db, recipe, id);
+        day.add(recipe);
+        db.close();
     }
 
-    public static boolean readIds(Context context, ArrayList<Integer> ids){
+    public static void readIds(Context context, ArrayList<Integer> ids){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
-        try{
-            SQLiteDatabase db = helper.getReadableDatabase();
-            Cursor cursor = DbCursorManager.getIdCursor(db);
-            DbCursorManager.setIds(cursor, ids);
-            cursor.close();
-            db.close();
-            return true;
-        }catch (SQLiteException e){
-            return false;
-        }
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = DbCursorManager.getIdCursor(db);
+        DbCursorManager.setIds(cursor, ids);
+        cursor.close();
+        db.close();
     }
 }

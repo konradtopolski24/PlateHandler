@@ -1,5 +1,6 @@
 package com.fatiner.platehandler.fragments.product;
 
+import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -52,7 +53,7 @@ public class ChooseProductFragment extends PrimaryFragment {
     }
 
     private void readProducts(){
-        new AsyncReadProducts().execute();
+        new AsyncChooseProduct().execute();
     }
 
     private String getSelection(){
@@ -92,9 +93,9 @@ public class ChooseProductFragment extends PrimaryFragment {
         }
     }
 
-    private class AsyncReadProducts extends AsyncTask<Void, Void, Boolean> {
+    private class AsyncChooseProduct extends AsyncTask<Void, Void, Boolean> {
 
-        ArrayList<Product> products;
+        private ArrayList<Product> products;
 
         protected void onPreExecute(){
             products = new ArrayList<>();
@@ -102,8 +103,14 @@ public class ChooseProductFragment extends PrimaryFragment {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.readProducts(
-                    getContext(), products, getSelection(), getOrderBy());
+            try{
+                DbSuccessManager.readProducts (
+                        getContext(), products, getSelection(), getOrderBy());
+                return true;
+            } catch (SQLiteException e) {
+                showShortToast(R.string.ts_db_error);
+                return false;
+            }
         }
 
         protected void onPostExecute(Boolean success){
@@ -113,8 +120,6 @@ public class ChooseProductFragment extends PrimaryFragment {
                         getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_PRODUCTS),
                         new ProductsAdapter(getContext(), products)
                 );
-            } else {
-                showShortToast(R.string.ts_product_read);
             }
         }
     }

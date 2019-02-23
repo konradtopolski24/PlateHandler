@@ -1,6 +1,7 @@
 package com.fatiner.platehandler.fragments.product;
 
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -73,7 +74,7 @@ public class ShowProductFragment extends PrimaryFragment {
 
     private void setProduct(){
         if(isBundleNotEmpty()){
-            new AsyncReadProduct().execute(getProductId());
+            new AsyncShowProduct().execute(Type.READ);
         }
     }
 
@@ -166,7 +167,7 @@ public class ShowProductFragment extends PrimaryFragment {
             public void onClick(DialogInterface dialog, int which) {
                 switch(which){
                     case DialogInterface.BUTTON_POSITIVE:
-                        new AsyncDeleteProduct().execute();
+                        new AsyncShowProduct().execute(Type.DELETE);
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
                         break;
@@ -200,43 +201,60 @@ public class ShowProductFragment extends PrimaryFragment {
         }
     }
 
-    private class AsyncReadProduct extends AsyncTask<Integer, Void, Boolean>{
+    private class AsyncShowProduct extends AsyncTask<Type, Void, Boolean>{
+
+        private Type type;
 
         @Override
-        protected Boolean doInBackground(Integer... id) {
-            return DbSuccessManager.readProduct(getContext(),
-                    ProductDetails.getProduct(), id[MainGlobals.INT_STARTING_VAR_INIT]);
+        protected Boolean doInBackground(Type... types) {
+            type = types[MainGlobals.INT_STARTING_VAR_INIT];
+            try{
+                switch(type) {
+                    case READ:
+                        DbSuccessManager.readProduct(getContext(),
+                                ProductDetails.getProduct(), getProductId());
+                        break;
+                    case DELETE:
+                        DbSuccessManager.deletedProduct(
+                                getContext(), ProductDetails.getProduct().getId());
+                        break;
+                }
+                return true;
+            }catch (SQLiteException e){
+                showShortToast(R.string.ts_db_error);
+                return false;
+            }
         }
 
         protected void onPostExecute(Boolean success){
             if(success){
-                setToolbarTitle(ProductDetails.getProduct().getName());
-                loadPhoto();
-                setProductInfo();
-                calculateAllKcal();
-                calculateAllKj();
-                calculateTotalKcal();
-                calculateTotalKj();
-            } else {
-                showShortToast(R.string.ts_product_read);
+                switch(type) {
+                    case READ:
+                        finishedReadProduct();
+                        break;
+                    case DELETE:
+                        finishedDeleteProduct();
+                        break;
+                }
             }
         }
     }
 
-    private class AsyncDeleteProduct extends AsyncTask<Void, Void, Boolean> {
+    private void finishedReadProduct() {
+        setToolbarTitle(ProductDetails.getProduct().getName());
+        loadPhoto();
+        setProductInfo();
+        calculateAllKcal();
+        calculateAllKj();
+        calculateTotalKcal();
+        calculateTotalKj();
+    }
 
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.deletedProduct(
-                    getContext(), ProductDetails.getProduct().getId());
-        }
+    private void finishedDeleteProduct() {
+        productSuccess(R.string.sb_product_deleted);
+    }
 
-        protected void onPostExecute(Boolean success){
-            if(success){
-                productSuccess(R.string.sb_product_deleted);
-            } else {
-                showShortToast(R.string.ts_product_delete);
-            }
-        }
+    private enum Type {
+        READ, DELETE
     }
 }

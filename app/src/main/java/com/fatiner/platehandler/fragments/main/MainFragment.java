@@ -1,7 +1,10 @@
 package com.fatiner.platehandler.fragments.main;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,10 +19,9 @@ import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.database.DbSuccessManager;
 import com.fatiner.platehandler.managers.shared.SharedMainManager;
+import com.fatiner.platehandler.services.DayService;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,147 +41,106 @@ public class MainFragment extends PrimaryFragment {
         ButterKnife.bind(this, view);
         setToolbarTitle(R.string.tb_main);
         setMenuItem(MainGlobals.ID_MAIN_DRAW_MAIN);
-        setDate();
-        setRecent();
+        startService();
+        checkDay();
         return view;
     }
 
-    private void setDate(){
-        if(SharedMainManager.isSharedDateAvailable(getContext())){
-            checkCurrentDate();
-        } else {
-            SharedMainManager.setSharedDate(getContext(),
-                    TypeManager.dateToString(Calendar.getInstance().getTime()));
-        }
-    }
-
-    private void checkCurrentDate(){
-        String currentTime = TypeManager.dateToString(Calendar.getInstance().getTime());
-        if(SharedMainManager.getSharedDate(getContext()).equals(currentTime)){
-            setDish();
-        } else {
-            SharedMainManager.setSharedDate(getContext(),
-                    TypeManager.dateToString(Calendar.getInstance().getTime()));
-            readIds();
-        }
-    }
-
-    private void setDish(){
+    private void checkDay() {
         if(SharedMainManager.isSharedDishAvailable(getContext())){
-            readDish();
-        } else {
-            readIds();
+            asyncReadDay();
         }
     }
 
-    private void readDish(){
-        new AsyncReadDish().execute(SharedMainManager.getSharedDish(getContext()));
-    }
-
-    private void readIds(){
-        new AsyncReadIds().execute();
-    }
-
-    private void chooseNewDishId(ArrayList<Integer> ids){
-        if(ids.isEmpty()) return;
-        int currentId = getCurrentDishId();
-        int newId = ids.get(new Random().nextInt(ids.size()));
-        while(currentId == newId){
-            newId = ids.get(new Random().nextInt(ids.size()));
-        }
-        SharedMainManager.setSharedDish(getContext(), newId);
-        readDish();
-    }
-
-    private int getCurrentDishId(){
-        if(SharedMainManager.isSharedDishAvailable(getContext())){
-            return SharedMainManager.getSharedDish(getContext());
-        } else {
-            return MainGlobals.INT_STARTING_VAR_INIT;
-        }
+    private void asyncReadDay(){
+        new AsyncMain().execute(Type.DAY);
     }
 
     private void setRecent(){
         if(SharedMainManager.isSharedRecentAvailable(getContext())){
-            new AsyncReadRecent().execute();
+            asyncReadRecent();
         } else {
             SharedMainManager.setSharedRecent(getContext(),
                     TypeManager.recentToJson(new ArrayList<Integer>()));
         }
     }
 
-    private class AsyncReadIds extends AsyncTask<Void, Void, Boolean>{
-
-        private ArrayList<Integer> ids;
-
-        protected void onPreExecute(){
-            ids = new ArrayList<>();
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.readIds(getContext(), ids);
-        }
-
-        protected void onPostExecute(Boolean success){
-            if(success){
-                chooseNewDishId(ids);
-            } else {
-                showShortToast(R.string.ts_id_read);
-            }
-        }
+    private void asyncReadRecent() {
+        new AsyncMain().execute(Type.RECENT);
     }
 
-    private class AsyncReadDish extends AsyncTask<Integer, Void, Boolean>{
+    private class AsyncMain extends AsyncTask<Type, Void, Boolean>{
 
         private ArrayList<Recipe> dish;
+        private ArrayList<Recipe> recent;
+        private Type type;
 
         protected void onPreExecute(){
             dish = new ArrayList<>();
-        }
-
-        @Override
-        protected Boolean doInBackground(Integer... id) {
-            return DbSuccessManager.readDish(getContext(), dish,
-                    id[MainGlobals.INT_STARTING_VAR_INIT]);
-        }
-
-        protected void onPostExecute(Boolean success){
-            if(success){
-                setRecyclerView(
-                        rvDay,
-                        getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
-                        new RecipesAdapter(getContext(), dish, false)
-                );
-            } else {
-                showShortToast(R.string.ts_day_read);
-            }
-        }
-    }
-
-    private class AsyncReadRecent extends AsyncTask<Void, Void, Boolean> {
-
-        private ArrayList<Recipe> recent;
-
-        protected void onPreExecute(){
             recent = new ArrayList<>();
         }
 
         @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.readRecent(getContext(), recent,
-                    TypeManager.jsonToRecent(SharedMainManager.getSharedRecent(getContext())));
+        protected Boolean doInBackground(Type... types) {
+            type = types[MainGlobals.INT_STARTING_VAR_INIT];
+            try{
+                switch(type) {
+                    case DAY:
+                        DbSuccessManager.readDay(getContext(), dish,
+                                SharedMainManager.getSharedDish(getContext()));
+                        break;
+                    case RECENT:
+                        DbSuccessManager.readRecent(getContext(), recent,
+                                TypeManager.jsonToRecent(SharedMainManager.getSharedRecent(getContext())));
+                        break;
+                }
+                return true;
+            }catch (SQLiteException e){
+                return false;
+            }
         }
 
         protected void onPostExecute(Boolean success){
             if(success){
-                setRecyclerView(
-                        rvRecent,
-                        getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
-                        new RecipesAdapter(getContext(), recent, false));
-            } else {
-                showShortToast(R.string.ts_recent_read);
+                switch(type) {
+                    case DAY:
+                        readDayFinished(dish);
+                        break;
+                    case RECENT:
+                        readRecentFinished(recent);
+                        break;
+                }
             }
         }
+    }
+
+    private void readDayFinished(ArrayList<Recipe> dish) {
+        setRecyclerView(
+                rvDay,
+                getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
+                new RecipesAdapter(getContext(), dish, false)
+        );
+        setRecent();
+    }
+
+    private void readRecentFinished(ArrayList<Recipe> recent) {
+        setRecyclerView(
+                rvRecent,
+                getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
+                new RecipesAdapter(getContext(), recent, false));
+    }
+
+    private void startService() {
+        Intent intent = new Intent(getContext(), DayService.class);
+        ContextCompat.startForegroundService(getContext(), intent);
+    }
+
+    private void stopService() {
+        Intent intent = new Intent(getContext(), DayService.class);
+        getContext().stopService(intent);
+    }
+
+    private enum Type {
+        DAY, RECENT
     }
 }

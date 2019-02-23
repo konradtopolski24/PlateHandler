@@ -2,6 +2,7 @@ package com.fatiner.platehandler.fragments.product;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -155,9 +156,9 @@ public class ManageProductFragment extends PrimaryFragment {
 
     private void chooseDatabaseAction(){
         if(isEditing()){
-            new AsyncUpdateProduct().execute();
+            new AsyncManageProduct().execute(Type.UPDATE);
         } else {
-            new AsyncInsertProduct().execute();
+            new AsyncManageProduct().execute(Type.INSERT);
         }
     }
 
@@ -238,62 +239,63 @@ public class ManageProductFragment extends PrimaryFragment {
         };
     }
 
-    private class AsyncInsertProduct extends AsyncTask<Void, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.insertedProduct(getContext());
-        }
-
-        protected void onPostExecute(Boolean success){
-            if(success){
-                new AsyncReadProductId().execute();
-            } else {
-                showShortToast(R.string.ts_product_insert);
-            }
-        }
-    }
-
-    private class AsyncReadProductId extends AsyncTask<Void, Void, Boolean> {
+    private class AsyncManageProduct extends AsyncTask<Type, Void, Boolean> {
 
         private int[] idProduct;
+        private Type type;
 
         protected void onPreExecute(){
             idProduct = new int[MainGlobals.INT_INCREMENT_VAR_INIT];
         }
 
         @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.readProductId(getContext(), idProduct);
+        protected Boolean doInBackground(Type... types) {
+            type = types[MainGlobals.INT_STARTING_VAR_INIT];
+            try {
+                switch(type) {
+                    case INSERT:
+                        DbSuccessManager.insertedProduct(getContext());
+                        DbSuccessManager.readProductId(getContext(), idProduct);
+                        break;
+                    case UPDATE:
+                        DbSuccessManager.updatedProduct(getContext());
+                        break;
+                }
+                return true;
+            } catch (SQLiteException e) {
+                showShortToast(R.string.ts_db_error);
+                return false;
+            }
         }
 
         protected void onPostExecute(Boolean success){
             if(success){
-                setIdProductInIngredient(idProduct[MainGlobals.INT_STARTING_VAR_INIT]);
-                ImageManager.saveImage(
-                        TypeManager.base64StringToBitmap(ProductDetails.getProduct().getEncodedImage()),
-                        ImageManager.getImageProductName(idProduct[MainGlobals.INT_STARTING_VAR_INIT]));
-                productSuccess(R.string.sb_product_added);
-            } else {
-                showShortToast(R.string.ts_id_read);
+                switch(type) {
+                    case INSERT:
+                        insertProductFinished(idProduct);
+                        break;
+                    case UPDATE:
+                        updateProductFinished();
+                        break;
+                }
             }
         }
     }
 
-    private class AsyncUpdateProduct extends AsyncTask<Void, Void, Boolean> {
+    private void insertProductFinished(int[] idProduct) {
+        setIdProductInIngredient(idProduct[MainGlobals.INT_STARTING_VAR_INIT]);
+        ImageManager.saveImage(
+                TypeManager.base64StringToBitmap(ProductDetails.getProduct().getEncodedImage()),
+                ImageManager.getImageProductName(idProduct[MainGlobals.INT_STARTING_VAR_INIT]));
+        productSuccess(R.string.sb_product_added);
+    }
 
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.updatedProduct(getContext());
-        }
+    private void updateProductFinished() {
+        manageImageSaving();
+        productSuccess(R.string.sb_product_updated);
+    }
 
-        protected void onPostExecute(Boolean success){
-            if(success){
-                manageImageSaving();
-                productSuccess(R.string.sb_product_updated);
-            } else {
-                showShortToast(R.string.ts_product_update);
-            }
-        }
+    private enum Type {
+        INSERT, UPDATE
     }
 }

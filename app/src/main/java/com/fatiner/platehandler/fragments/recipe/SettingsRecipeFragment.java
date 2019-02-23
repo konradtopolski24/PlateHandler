@@ -1,5 +1,6 @@
 package com.fatiner.platehandler.fragments.recipe;
 
+import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -163,7 +164,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_settings_recipe, container, false);
         ButterKnife.bind(this, view);
         setToolbarTitle(R.string.tb_recipe_settings);
-        new AsyncReadAuthors().execute();
+        new AsyncSettingRecipe().execute();
         manageSeekBars();
         return view;
     }
@@ -285,9 +286,9 @@ public class SettingsRecipeFragment extends PrimaryFragment {
         }
     }
 
-    private class AsyncReadAuthors extends AsyncTask<Void, Void, Boolean> {
+    private class AsyncSettingRecipe extends AsyncTask<Void, Void, Boolean> {
 
-        ArrayList<String> authors;
+        private ArrayList<String> authors;
 
         protected void onPreExecute(){
             authors = new ArrayList<>();
@@ -295,16 +296,24 @@ public class SettingsRecipeFragment extends PrimaryFragment {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.readAuthors(getContext(), authors);
+            try{
+                DbSuccessManager.readAuthors(getContext(), authors);
+                return true;
+            }catch (SQLiteException e){
+                showShortToast(R.string.ts_db_error);
+                return false;
+            }
         }
 
         protected void onPostExecute(Boolean success){
             if(success){
-                setSpinAuthorAdapter(authors);
-                setViewsWithSharedPreferences(authors);
-            } else {
-                showShortToast(R.string.ts_author_read);
+                finishedReadAuthors(authors);
             }
         }
+    }
+
+    private void finishedReadAuthors(ArrayList<String> authors) {
+        setSpinAuthorAdapter(authors);
+        setViewsWithSharedPreferences(authors);
     }
 }

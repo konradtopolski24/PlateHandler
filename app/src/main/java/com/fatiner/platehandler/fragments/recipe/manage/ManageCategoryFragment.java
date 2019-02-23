@@ -1,5 +1,6 @@
 package com.fatiner.platehandler.fragments.recipe.manage;
 
+import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -67,7 +68,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
     }
 
     private void setProducts(){
-        new AsyncReadProducts().execute();
+        new AsyncManageCategory().execute();
     }
 
     private void chooseStartingAction(){
@@ -161,9 +162,9 @@ public class ManageCategoryFragment extends PrimaryFragment {
         return getTempIngredients().isEmpty();
     }
 
-    private class AsyncReadProducts extends AsyncTask<Void, Void, Boolean> {
+    private class AsyncManageCategory extends AsyncTask<Void, Void, Boolean> {
 
-        ArrayList<Product> products;
+        private ArrayList<Product> products;
 
         protected void onPreExecute(){
             products = new ArrayList<>();
@@ -171,21 +172,29 @@ public class ManageCategoryFragment extends PrimaryFragment {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.readProducts(
-                    getContext(), products, null, getOrderByProducts());
+            try{
+                DbSuccessManager.readProducts(
+                        getContext(), products, null, getOrderByProducts());
+                return true;
+            }catch (SQLiteException e){
+                showShortToast(R.string.ts_db_error);
+                return false;
+            }
         }
 
         protected void onPostExecute(Boolean success){
             if(success){
-                setRecyclerView(
-                        rvIngredients,
-                        getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDCATEG),
-                        new AddIngredientAdapter(getContext(), getTempIngredients(), products)
-                );
-                chooseStartingAction();
-            } else {
-                showShortToast(R.string.ts_product_read);
+                readProductsFinished(products);
             }
         }
+    }
+
+    private void readProductsFinished(ArrayList<Product> products) {
+        setRecyclerView(
+                rvIngredients,
+                getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDCATEG),
+                new AddIngredientAdapter(getContext(), getTempIngredients(), products)
+        );
+        chooseStartingAction();
     }
 }

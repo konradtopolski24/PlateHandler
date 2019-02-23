@@ -1,5 +1,6 @@
 package com.fatiner.platehandler.fragments.recipe;
 
+import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -65,7 +66,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
     }
 
     private void setRecipes(){
-        new AsyncReadRecipes().execute();
+        new AsyncChooseRecipe().execute();
     }
 
     private String getSelection(){
@@ -111,9 +112,9 @@ public class ChooseRecipeFragment extends PrimaryFragment {
         }
     }
 
-    private class AsyncReadRecipes extends AsyncTask<Void, Void, Boolean> {
+    private class AsyncChooseRecipe extends AsyncTask<Void, Void, Boolean> {
 
-        ArrayList<Recipe> recipes;
+        private ArrayList<Recipe> recipes;
 
         protected void onPreExecute(){
             recipes = new ArrayList<>();
@@ -121,19 +122,27 @@ public class ChooseRecipeFragment extends PrimaryFragment {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            return DbSuccessManager.readRecipes(getContext(), recipes, getSelection(), getOrderBy());
+            try{
+                DbSuccessManager.readRecipes(getContext(), recipes, getSelection(), getOrderBy());
+                return true;
+            }catch (SQLiteException e){
+                showShortToast(R.string.ts_db_error);
+                return false;
+            }
         }
 
         protected void onPostExecute(Boolean success){
             if(success){
-                setRecyclerView(
-                        rvRecipes,
-                        getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_RECIPES),
-                        new RecipesAdapter(getContext(), recipes, isBundleNotEmpty())
-                );
-            } else {
-                showShortToast(R.string.ts_recipe_read);
+                finishedReadRecipes(recipes);
             }
         }
+    }
+
+    private void finishedReadRecipes(ArrayList<Recipe> recipes) {
+        setRecyclerView(
+                rvRecipes,
+                getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_RECIPES),
+                new RecipesAdapter(getContext(), recipes, isBundleNotEmpty())
+        );
     }
 }

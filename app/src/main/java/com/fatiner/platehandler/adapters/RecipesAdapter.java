@@ -2,6 +2,7 @@ package com.fatiner.platehandler.adapters;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -179,9 +180,14 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
 
         @Override
         protected Boolean doInBackground(Integer... id) {
-            return DbSuccessManager.readShoppingItems(context,
-                    ShoppingListDetails.getShoppingList().getShoppingItems(),
-                    id[MainGlobals.INT_STARTING_VAR_INIT]);
+            try{
+                DbSuccessManager.readShoppingItems(context,
+                        ShoppingListDetails.getShoppingList().getShoppingItems(),
+                        id[MainGlobals.INT_STARTING_VAR_INIT]);
+                return true;
+            }catch (SQLiteException e){
+                return false;
+            }
         }
 
         protected void onPostExecute(Boolean success){
