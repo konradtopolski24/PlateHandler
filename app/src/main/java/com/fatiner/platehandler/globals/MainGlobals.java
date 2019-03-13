@@ -32,6 +32,7 @@ public class MainGlobals {
     public static final String STR_EMPTY_OBJ_INIT = "";
     public static final String STR_COLON_OBJ_INIT = ":";
     public static final String STR_SPACE_OBJ_INIT = " ";
+    public static final String STR_SLASH_OBJ_INIT = "/";
 
     public static final String FORM_DATE_OBJ_INIT = "dd.MM.yyyy";
     public static final String FORM_HOUR_OBJ_INIT = "t%02d%02d";
@@ -67,4 +68,6 @@ public class MainGlobals {
     public static final String STR_CHANNEL_ID = "channelId";
     public static final int ONE_MINUTE = 60000;
     public static final long[] NOTIFICATION_VIBRATION = new long[] { 100, 100, 100, 100, 100 };
+
+    public static final String FILE_XLS_SAVE_WORKBOOK = ".xls";
 }

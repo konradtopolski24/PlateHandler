@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.ProductsAdapter;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
-import com.fatiner.platehandler.globals.DatabaseGlobals;
+import com.fatiner.platehandler.globals.DbGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.classes.Product;
-import com.fatiner.platehandler.managers.database.DbSuccessManager;
-import com.fatiner.platehandler.managers.database.DbSelectionManager;
+import com.fatiner.platehandler.managers.database.DbOperations;
+import com.fatiner.platehandler.managers.database.DbSelection;
 import com.fatiner.platehandler.managers.shared.SharedProductManager;
 
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class ChooseProductFragment extends PrimaryFragment {
 
     private String getSelection(){
         String selection = MainGlobals.STR_EMPTY_OBJ_INIT;
-        ArrayList<String> strings = DbSelectionManager.getArraySelectionProduct(getContext());
+        ArrayList<String> strings = DbSelection.getArraySelectionProduct(getContext());
         for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < strings.size(); i++){
             selection += strings.get(i);
             if(i < strings.size() + MainGlobals.INT_DECREMENT_VAR_INIT){
@@ -71,7 +71,7 @@ public class ChooseProductFragment extends PrimaryFragment {
     private String getOrderBy(){
         String orderBy = null;
         if(SharedProductManager.getSharedProductAlphabetical(getContext())){
-            orderBy = DatabaseGlobals.COL_NAME_TAB_PRODUCTS + " ASC";
+            orderBy = DbGlobals.COL_NAME_TAB_PRODUCTS + " ASC";
         }
         return orderBy;
     }
@@ -104,7 +104,7 @@ public class ChooseProductFragment extends PrimaryFragment {
         @Override
         protected Boolean doInBackground(Void... voids) {
             try{
-                DbSuccessManager.readProducts (
+                DbOperations.readProducts (
                         getContext(), products, getSelection(), getOrderBy());
                 return true;
             } catch (SQLiteException e) {

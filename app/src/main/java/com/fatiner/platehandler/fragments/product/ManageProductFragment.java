@@ -1,5 +1,6 @@
 package com.fatiner.platehandler.fragments.product;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
@@ -23,7 +24,8 @@ import com.fatiner.platehandler.globals.ImageGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.ImageManager;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.database.DbSuccessManager;
+import com.fatiner.platehandler.managers.database.DbValues;
+import com.fatiner.platehandler.managers.database.DbOperations;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -250,15 +252,16 @@ public class ManageProductFragment extends PrimaryFragment {
 
         @Override
         protected Boolean doInBackground(Type... types) {
+            Product product = ProductDetails.getProduct();
             type = types[MainGlobals.INT_STARTING_VAR_INIT];
             try {
                 switch(type) {
                     case INSERT:
-                        DbSuccessManager.insertedProduct(getContext());
-                        DbSuccessManager.readProductId(getContext(), idProduct);
+                        DbOperations.insertedProduct(getContext(), product, false);
+                        DbOperations.readProductId(getContext(), idProduct);
                         break;
                     case UPDATE:
-                        DbSuccessManager.updatedProduct(getContext());
+                        DbOperations.updatedProduct(getContext(), product);
                         break;
                 }
                 return true;

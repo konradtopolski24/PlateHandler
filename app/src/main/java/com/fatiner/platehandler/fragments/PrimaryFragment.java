@@ -22,7 +22,7 @@ import com.fatiner.platehandler.activities.MainActivity;
 import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.details.ShoppingListDetails;
-import com.fatiner.platehandler.globals.DatabaseGlobals;
+import com.fatiner.platehandler.globals.DbGlobals;
 import com.fatiner.platehandler.globals.ImageGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.TypeManager;
@@ -222,7 +222,7 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected String getOrderByProducts(){
-        return DatabaseGlobals.COL_NAME_TAB_PRODUCTS + " ASC";
+        return DbGlobals.COL_NAME_TAB_PRODUCTS + " ASC";
     }
 
     protected void hideKeyboard(){

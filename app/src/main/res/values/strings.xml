@@ -102,6 +102,7 @@
     <string name="sb_shopping_created">Shopping list created!</string>
 
     <string name="sb_export">Database exported!</string>
+    <string name="sb_import">Database imported!</string>
 
     <!-- Toast Message -->
     <string name="ts_product_empty">Product name is empty!</string>

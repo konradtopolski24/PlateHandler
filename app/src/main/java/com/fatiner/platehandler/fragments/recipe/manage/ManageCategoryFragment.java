@@ -18,7 +18,7 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.classes.Product;
-import com.fatiner.platehandler.managers.database.DbSuccessManager;
+import com.fatiner.platehandler.managers.database.DbOperations;
 
 import java.util.ArrayList;
 
@@ -173,7 +173,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
         @Override
         protected Boolean doInBackground(Void... voids) {
             try{
-                DbSuccessManager.readProducts(
+                DbOperations.readProducts(
                         getContext(), products, null, getOrderByProducts());
                 return true;
             }catch (SQLiteException e){

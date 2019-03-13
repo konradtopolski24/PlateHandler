@@ -17,7 +17,7 @@ import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.ImageManager;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.database.DbSuccessManager;
+import com.fatiner.platehandler.managers.database.DbOperations;
 
 import java.util.ArrayList;
 
@@ -132,12 +132,12 @@ public class ManageRecipeFragment extends PrimaryFragment {
             try{
                 switch(type) {
                     case INSERT:
-                        DbSuccessManager.insertedRecipe(getContext());
-                        DbSuccessManager.readRecipeId(getContext(), idRecipe);
+                        DbOperations.insertedRecipe(getContext(), RecipeDetails.getRecipe(), false);
+                        DbOperations.readRecipeId(getContext(), idRecipe);
                         break;
                     case UPDATE:
-                        DbSuccessManager.updatedRecipe(getContext());
-                        DbSuccessManager.readAuthors(getContext(), authors);
+                        DbOperations.updatedRecipe(getContext(), RecipeDetails.getRecipe());
+                        DbOperations.readAuthors(getContext(), authors);
                         break;
                 }
                 return true;

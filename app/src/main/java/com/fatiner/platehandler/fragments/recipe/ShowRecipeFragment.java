@@ -29,7 +29,7 @@ import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.ImageManager;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.database.DbSuccessManager;
+import com.fatiner.platehandler.managers.database.DbOperations;
 import com.fatiner.platehandler.managers.shared.SharedMainManager;
 
 import java.util.ArrayList;
@@ -267,18 +267,19 @@ public class ShowRecipeFragment extends PrimaryFragment {
         @Override
         protected Boolean doInBackground(Type... types) {
             try{
+                Recipe recipe = RecipeDetails.getRecipe();
                 type = types[MainGlobals.INT_STARTING_VAR_INIT];
                 switch(type) {
                     case READ:
-                        DbSuccessManager.readRecipe(getContext(),
-                                RecipeDetails.getRecipe(), getRecipeId());
+                        DbOperations.readRecipe(getContext(),
+                                recipe, getRecipeId());
                         break;
                     case DELETE:
-                        DbSuccessManager.deletedRecipe(getContext());
-                        DbSuccessManager.readAuthors(getContext(), authors);
+                        DbOperations.deletedRecipe(getContext(), recipe.getId());
+                        DbOperations.readAuthors(getContext(), authors);
                         break;
                     case FAVORITE:
-                        DbSuccessManager.updatedRecipeFavorite(getContext());
+                        DbOperations.updatedRecipeFavorite(getContext(), recipe.getFavorite(), recipe.getId());
                         break;
                 }
                 return true;

@@ -17,7 +17,7 @@ import com.fatiner.platehandler.activities.MainActivity;
 import com.fatiner.platehandler.classes.Recipe;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.database.DbSuccessManager;
+import com.fatiner.platehandler.managers.database.DbOperations;
 import com.fatiner.platehandler.managers.shared.SharedMainManager;
 
 import java.util.ArrayList;
@@ -94,10 +94,10 @@ public class DayService extends Service {
 
                 switch(type) {
                     case IDS:
-                        DbSuccessManager.readIds(getApplicationContext(), ids);
+                        DbOperations.readIds(getApplicationContext(), ids);
                         break;
                     case DAY:
-                        DbSuccessManager.readDay(getApplicationContext(), dish,
+                        DbOperations.readDay(getApplicationContext(), dish,
                                 SharedMainManager.getSharedDish(getApplicationContext()));
                         break;
                 }
@@ -133,13 +133,15 @@ public class DayService extends Service {
     }
 
     private void setNewDishId(ArrayList<Integer> ids){
-        int currentId = MainGlobals.INT_STARTING_VAR_INIT;
-        if(SharedMainManager.isSharedDishAvailable(getApplicationContext())) {
-            currentId = SharedMainManager.getSharedDish(getApplicationContext());
-        }
-        int newId = ids.get(new Random().nextInt(ids.size()));
-        while(currentId == newId){
-            newId = ids.get(new Random().nextInt(ids.size()));
+        int newId;
+        if(ids.size() == MainGlobals.INT_INCREMENT_VAR_INIT) {
+            newId = ids.get(MainGlobals.INT_STARTING_VAR_INIT);
+        } else {
+            int currentId = SharedMainManager.getSharedDish(getApplicationContext());
+            newId = currentId;
+            while(currentId == newId){
+                newId = ids.get(new Random().nextInt(ids.size()));
+            }
         }
         SharedMainManager.setSharedDish(getApplicationContext(), newId);
     }

@@ -2,8 +2,8 @@ package com.fatiner.platehandler.globals;
 
 import java.util.ArrayList;
 
-public class DatabaseGlobals {
-    public static final String NAME_RECIPES_DB_MAIN = "Recipes DatabaseGlobals";
+public class DbGlobals {
+    public static final String NAME_RECIPES_DB_MAIN = "Recipes DbGlobals";
     public static final int VER_CURRENT_DB_MAIN = 1;
     public static final int VER_0_DB_MAIN = 0;
 
@@ -48,12 +48,31 @@ public class DatabaseGlobals {
     public static final String COL_MEASURE_TAB_INGREDIENTS = "MEASURE";
     public static final String COL_CATEGORY_TAB_INGREDIENTS = "CATEGORY";
 
+    public static ArrayList<String> getIngredientsColumns(){
+        ArrayList<String> columns = new ArrayList<>();
+        columns.add(COL_ID_TAB_INGREDIENTS);
+        columns.add(COL_IDREC_TAB_INGREDIENTS);
+        columns.add(COL_IDPROD_TAB_INGREDIENTS);
+        columns.add(COL_AMOUNT_TAB_INGREDIENTS);
+        columns.add(COL_MEASURE_TAB_INGREDIENTS);
+        columns.add(COL_CATEGORY_TAB_INGREDIENTS);
+        return columns;
+    }
+
     //Table STEPS
     public static final String TAB_STEPS_DB_MAIN = "STEPS";
 
     public static final String COL_ID_TAB_STEPS = "ID";
     public static final String COL_IDREC_TAB_STEPS = "IDREC";
     public static final String COL_INSTRUCTION_TAB_STEPS = "INSTRUCTION";
+
+    public static ArrayList<String> getStepsColumns(){
+        ArrayList<String> columns = new ArrayList<>();
+        columns.add(COL_ID_TAB_STEPS);
+        columns.add(COL_IDREC_TAB_STEPS);
+        columns.add(COL_INSTRUCTION_TAB_STEPS);
+        return columns;
+    }
 
     //Table PRODUCTS
     public static final String TAB_PRODUCTS_DB_MAIN = "PRODUCTS";
@@ -64,4 +83,15 @@ public class DatabaseGlobals {
     public static final String COL_CARBOHYDRATES_TAB_PRODUCTS = "CARBOHYDRATES";
     public static final String COL_PROTEIN_TAB_PRODUCTS = "PROTEIN";
     public static final String COL_FAT_TAB_PRODUCTS = "FAT";
+
+    public static ArrayList<String> getProductsColumns(){
+        ArrayList<String> columns = new ArrayList<>();
+        columns.add(COL_ID_TAB_PRODUCTS);
+        columns.add(COL_NAME_TAB_PRODUCTS);
+        columns.add(COL_TYPE_TAB_PRODUCTS);
+        columns.add(COL_CARBOHYDRATES_TAB_PRODUCTS);
+        columns.add(COL_PROTEIN_TAB_PRODUCTS);
+        columns.add(COL_FAT_TAB_PRODUCTS);
+        return columns;
+    }
 }

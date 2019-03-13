@@ -23,7 +23,7 @@ import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.ImageManager;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.database.DbSuccessManager;
+import com.fatiner.platehandler.managers.database.DbOperations;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -211,11 +211,11 @@ public class ShowProductFragment extends PrimaryFragment {
             try{
                 switch(type) {
                     case READ:
-                        DbSuccessManager.readProduct(getContext(),
+                        DbOperations.readProduct(getContext(),
                                 ProductDetails.getProduct(), getProductId());
                         break;
                     case DELETE:
-                        DbSuccessManager.deletedProduct(
+                        DbOperations.deletedProduct(
                                 getContext(), ProductDetails.getProduct().getId());
                         break;
                 }

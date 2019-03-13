@@ -17,7 +17,7 @@ import com.fatiner.platehandler.classes.Recipe;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.database.DbSuccessManager;
+import com.fatiner.platehandler.managers.database.DbOperations;
 import com.fatiner.platehandler.managers.shared.SharedMainManager;
 import com.fatiner.platehandler.services.DayService;
 
@@ -86,11 +86,11 @@ public class MainFragment extends PrimaryFragment {
             try{
                 switch(type) {
                     case DAY:
-                        DbSuccessManager.readDay(getContext(), dish,
+                        DbOperations.readDay(getContext(), dish,
                                 SharedMainManager.getSharedDish(getContext()));
                         break;
                     case RECENT:
-                        DbSuccessManager.readRecent(getContext(), recent,
+                        DbOperations.readRecent(getContext(), recent,
                                 TypeManager.jsonToRecent(SharedMainManager.getSharedRecent(getContext())));
                         break;
                 }

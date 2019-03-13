@@ -21,7 +21,7 @@ import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.Recipe;
 import com.fatiner.platehandler.details.RecipeDetails;
-import com.fatiner.platehandler.managers.database.DbSuccessManager;
+import com.fatiner.platehandler.managers.database.DbOperations;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.activities.MainActivity;
 import com.fatiner.platehandler.fragments.recipe.ShowRecipeFragment;
@@ -181,7 +181,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
         @Override
         protected Boolean doInBackground(Integer... id) {
             try{
-                DbSuccessManager.readShoppingItems(context,
+                DbOperations.readShoppingItems(context,
                         ShoppingListDetails.getShoppingList().getShoppingItems(),
                         id[MainGlobals.INT_STARTING_VAR_INIT]);
                 return true;

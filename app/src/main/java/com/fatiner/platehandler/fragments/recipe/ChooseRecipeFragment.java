@@ -13,12 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fatiner.platehandler.adapters.RecipesAdapter;
-import com.fatiner.platehandler.globals.DatabaseGlobals;
-import com.fatiner.platehandler.managers.database.DbSuccessManager;
+import com.fatiner.platehandler.globals.DbGlobals;
+import com.fatiner.platehandler.managers.database.DbOperations;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.shared.SharedRecipeManager;
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.managers.database.DbSelectionManager;
+import com.fatiner.platehandler.managers.database.DbSelection;
 import com.fatiner.platehandler.classes.Recipe;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.manage.ManageRecipeFragment;
@@ -71,7 +71,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
 
     private String getSelection(){
         String selection = MainGlobals.STR_EMPTY_OBJ_INIT;
-        ArrayList<String> strings = DbSelectionManager.getArraySelection(getContext());
+        ArrayList<String> strings = DbSelection.getArraySelection(getContext());
         for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < strings.size(); i++){
             selection += strings.get(i);
             if(i < strings.size() + MainGlobals.INT_DECREMENT_VAR_INIT){
@@ -84,7 +84,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
     private String getOrderBy(){
         String orderBy = null;
         if(SharedRecipeManager.getSharedAlphabetical(getContext())){
-            orderBy = DatabaseGlobals.COL_NAME_TAB_RECIPES + " ASC";
+            orderBy = DbGlobals.COL_NAME_TAB_RECIPES + " ASC";
         }
         return orderBy;
     }
@@ -123,7 +123,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
         @Override
         protected Boolean doInBackground(Void... voids) {
             try{
-                DbSuccessManager.readRecipes(getContext(), recipes, getSelection(), getOrderBy());
+                DbOperations.readRecipes(getContext(), recipes, getSelection(), getOrderBy());
                 return true;
             }catch (SQLiteException e){
                 showShortToast(R.string.ts_db_error);

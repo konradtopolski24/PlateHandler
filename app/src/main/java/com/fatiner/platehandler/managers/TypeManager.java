@@ -127,4 +127,9 @@ public class TypeManager {
         bitmap.compress(Bitmap.CompressFormat.JPEG, ImageGlobals.FORM_JPEG_COMP_BITMAP, stream);
         return stream.toByteArray();
     }
+
+    public static String[] arrayListToArray(ArrayList<String> arrayList) {
+        String[] array = new String[arrayList.size()];
+        return arrayList.toArray(array);
+    }
 }

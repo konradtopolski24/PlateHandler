@@ -14,7 +14,7 @@ import android.widget.Spinner;
 import android.widget.Switch;
 
 import com.fatiner.platehandler.globals.MainGlobals;
-import com.fatiner.platehandler.managers.database.DbSuccessManager;
+import com.fatiner.platehandler.managers.database.DbOperations;
 import com.fatiner.platehandler.managers.shared.SharedRecipeManager;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
@@ -297,7 +297,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
         @Override
         protected Boolean doInBackground(Void... voids) {
             try{
-                DbSuccessManager.readAuthors(getContext(), authors);
+                DbOperations.readAuthors(getContext(), authors);
                 return true;
             }catch (SQLiteException e){
                 showShortToast(R.string.ts_db_error);
