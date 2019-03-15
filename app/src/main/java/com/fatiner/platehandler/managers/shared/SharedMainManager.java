@@ -33,6 +33,11 @@ public class SharedMainManager {
         return getSharedFromMain(context).contains(SharedGlobals.KEY_RECENT_SHARED_MAIN);
     }
 
+    public static void removeSharedRecent(Context context){
+        getSharedFromMain(context).edit().remove(
+                SharedGlobals.KEY_RECENT_SHARED_MAIN).apply();
+    }
+
     //Dish
     public static int getSharedDish(Context context){
         return getSharedFromMain(context).getInt(

@@ -22,6 +22,7 @@ import com.fatiner.platehandler.globals.DbGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.database.DbOperations;
+import com.fatiner.platehandler.managers.shared.SharedMainManager;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -211,6 +212,8 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
 
         protected void onPostExecute(Boolean success){
             if(success) {
+                SharedMainManager.removeSharedDish(context);
+                SharedMainManager.removeSharedRecent(context);
                 Toast.makeText(context, R.string.sb_import, Toast.LENGTH_SHORT).show();
                 ((MainActivity)context).popFragment();
             }

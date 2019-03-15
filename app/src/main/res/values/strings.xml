@@ -80,12 +80,12 @@
     <string name="bt_shopping">Create new list</string>
 
     <!-- Product Calculate -->
-    <string name="tv_protein">Protein:</string>
-    <string name="tv_carbohydrates">Carbohydrates:</string>
-    <string name="tv_fat">Fat:</string>
-    <string name="tv_total">Total energy:</string>
-    <string name="tv_kcal">Kcal:</string>
-    <string name="tv_kj">Kj:</string>
+    <string name="tv_protein">Protein</string>
+    <string name="tv_carbohydrates">Carbohydrates</string>
+    <string name="tv_fat">Fat</string>
+    <string name="tv_total">Total energy</string>
+    <string name="tv_kcal">kcal</string>
+    <string name="tv_kj">kj</string>
 
     <!-- Snack Message -->
     <string name="sb_product_added">Product added!</string>
@@ -128,4 +128,6 @@
 
     <string name="nt_title">New dish of the day!</string>
     <string name="nt_text">What kind of dish would you like to eat today?</string>
+
+    <string name="tv_measure">Measures</string>
 </resources>

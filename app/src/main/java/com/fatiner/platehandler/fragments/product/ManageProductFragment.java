@@ -1,6 +1,5 @@
 package com.fatiner.platehandler.fragments.product;
 
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
@@ -24,7 +23,6 @@ import com.fatiner.platehandler.globals.ImageGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.ImageManager;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.database.DbValues;
 import com.fatiner.platehandler.managers.database.DbOperations;
 
 import butterknife.BindView;

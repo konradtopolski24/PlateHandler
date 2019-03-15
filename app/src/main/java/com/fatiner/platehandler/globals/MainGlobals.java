@@ -33,6 +33,8 @@ public class MainGlobals {
     public static final String STR_COLON_OBJ_INIT = ":";
     public static final String STR_SPACE_OBJ_INIT = " ";
     public static final String STR_SLASH_OBJ_INIT = "/";
+    public static final String STR_EQUALS_OBJ_INIT = "=";
+    public static final String STR_ENTER_OBJ_INIT = "\n";
 
     public static final String FORM_DATE_OBJ_INIT = "dd.MM.yyyy";
     public static final String FORM_HOUR_OBJ_INIT = "t%02d%02d";
@@ -58,10 +60,11 @@ public class MainGlobals {
     public static final int MAX_RECENT_FRAG_MAIN = 4;
     public static final int LAST_RECENT_FRAG_MAIN = 3;
 
-    public static final int KCAL_FAT_OBJ_PROD = 9;
     public static final int KCAL_CARBOHYDRATES_OBJ_PROD = 4;
     public static final int KCAL_PROTEIN_OBJ_PROD = 4;
+    public static final int KCAL_FAT_OBJ_PROD = 9;
     public static final float KJ_FACTOR_OBJ_PROD = 4.184f;
+
     public static final int GRAM_PRIMARY_OBJ_PROD = 100;
 
     public static final String STR_CHANNEL_NAME = "channelName";

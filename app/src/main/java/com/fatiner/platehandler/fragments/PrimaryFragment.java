@@ -213,14 +213,6 @@ public class PrimaryFragment extends Fragment {
         seekBar.setOnSeekBarChangeListener(listener);
     }
 
-    protected float getKcal(float value, int factor){
-        return value * factor;
-    }
-
-    protected float getKj(float value, int factor){
-        return value * factor * MainGlobals.KJ_FACTOR_OBJ_PROD;
-    }
-
     protected String getOrderByProducts(){
         return DbGlobals.COL_NAME_TAB_PRODUCTS + " ASC";
     }

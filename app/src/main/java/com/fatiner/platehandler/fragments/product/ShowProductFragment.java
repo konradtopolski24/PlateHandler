@@ -3,6 +3,7 @@ package com.fatiner.platehandler.fragments.product;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,9 +22,17 @@ import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.managers.CalculateManager;
 import com.fatiner.platehandler.managers.ImageManager;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.database.DbOperations;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,28 +45,16 @@ public class ShowProductFragment extends PrimaryFragment {
     TextView tvType;
     @BindView(R.id.tv_carbohydrates)
     TextView tvCarbohydrates;
-    @BindView(R.id.tv_carbokcal)
-    TextView tvCarbokcal;
-    @BindView(R.id.tv_carbokj)
-    TextView tvCarbokj;
     @BindView(R.id.tv_protein)
     TextView tvProtein;
-    @BindView(R.id.tv_protkcal)
-    TextView tvProtkcal;
-    @BindView(R.id.tv_protkj)
-    TextView tvProtkj;
     @BindView(R.id.tv_fat)
     TextView tvFat;
-    @BindView(R.id.tv_fatkcal)
-    TextView tvFatkcal;
-    @BindView(R.id.tv_fatkj)
-    TextView tvFatkj;
-    @BindView(R.id.tv_kcal)
-    TextView tvKcal;
-    @BindView(R.id.tv_kj)
-    TextView tvKj;
     @BindView(R.id.iv_photo)
     ImageView ivPhoto;
+    @BindView(R.id.pc_kcal)
+    PieChart pcKcal;
+    @BindView(R.id.pc_kj)
+    PieChart pcKj;
 
     public ShowProductFragment() {}
 
@@ -125,42 +122,6 @@ public class ShowProductFragment extends PrimaryFragment {
         ivPhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
     }
 
-    private void calculateAllKcal(){
-        Product product = ProductDetails.getProduct();
-        setText(getKcal(product.getCarbohydrates(),
-                MainGlobals.KCAL_CARBOHYDRATES_OBJ_PROD), tvCarbokcal);
-        setText(getKcal(product.getProtein(),
-                MainGlobals.KCAL_PROTEIN_OBJ_PROD), tvProtkcal);
-        setText(getKcal(product.getFat(),
-                MainGlobals.KCAL_FAT_OBJ_PROD), tvFatkcal);
-    }
-
-    private void calculateAllKj(){
-        Product product = ProductDetails.getProduct();
-        setText(getKj(product.getCarbohydrates(),
-                MainGlobals.KCAL_CARBOHYDRATES_OBJ_PROD), tvCarbokj);
-        setText(getKj(product.getProtein(),
-                MainGlobals.KCAL_PROTEIN_OBJ_PROD), tvProtkj);
-        setText(getKj(product.getFat(),
-                MainGlobals.KCAL_FAT_OBJ_PROD), tvFatkj);
-    }
-
-    private void calculateTotalKcal(){
-        float carbohydrates = Float.valueOf(tvCarbokcal.getText().toString());
-        float protein = Float.valueOf(tvProtkcal.getText().toString());
-        float fat = Float.valueOf(tvFatkcal.getText().toString());
-        float total = carbohydrates + protein + fat;
-        tvKcal.setText(String.valueOf(total));
-    }
-
-    private void calculateTotalKj(){
-        float carbohydrates = Float.valueOf(tvCarbokj.getText().toString());
-        float protein = Float.valueOf(tvProtkj.getText().toString());
-        float fat = Float.valueOf(tvFatkj.getText().toString());
-        float total = carbohydrates + protein + fat;
-        tvKj.setText(String.valueOf(total));
-    }
-
     private DialogInterface.OnClickListener getDialogListener(){
         return new DialogInterface.OnClickListener() {
             @Override
@@ -174,10 +135,6 @@ public class ShowProductFragment extends PrimaryFragment {
                 }
             }
         };
-    }
-
-    private void setText(float value, TextView textView){
-        textView.setText(String.valueOf(value));
     }
 
     @Override
@@ -244,14 +201,91 @@ public class ShowProductFragment extends PrimaryFragment {
         setToolbarTitle(ProductDetails.getProduct().getName());
         loadPhoto();
         setProductInfo();
-        calculateAllKcal();
-        calculateAllKj();
-        calculateTotalKcal();
-        calculateTotalKj();
+        managePieCharts();
     }
 
     private void finishedDeleteProduct() {
         productSuccess(R.string.sb_product_deleted);
+    }
+
+    private void setPieChart(PieChart chart, float v1, float v2, float v3, boolean isKcal) {
+        float total = v1 + v2 + v3;
+        String measure = getCorrectMeasure(isKcal);
+        chart.setTouchEnabled(false);
+        chart.setHoleRadius(50f);
+        chart.setCenterText(getString(R.string.tv_total) + MainGlobals.STR_SPACE_OBJ_INIT +
+                MainGlobals.STR_ENTER_OBJ_INIT + total + MainGlobals.STR_SPACE_OBJ_INIT + measure);
+        chart.getDescription().setEnabled(false);
+        chart.setEntryLabelTextSize(10);
+        chart.animateY(500);
+        ArrayList<PieEntry> entries = getEntries(v1, v2, v3);
+        PieDataSet dataSet = getDataSet(entries);
+        setLegend(chart.getLegend());
+        chart.setData(new PieData(dataSet));
+        chart.invalidate();
+    }
+
+    private void managePieCharts() {
+        Product product = ProductDetails.getProduct();
+        setPcKcal(product);
+        setPcKj(product);
+    }
+
+    private void setPcKcal(Product product) {
+        float carbohydrates = CalculateManager.getKcal(product.getCarbohydrates(),
+                CalculateManager.Organic.CARBOHYDRATES);
+        float protein = CalculateManager.getKcal(product.getProtein(),
+                CalculateManager.Organic.PROTEIN);
+        float fat = CalculateManager.getKcal(product.getFat(),
+                CalculateManager.Organic.FAT);
+        setPieChart(pcKcal, carbohydrates, protein, fat, true);
+    }
+
+    private void setPcKj(Product product) {
+        float carbohydrates = CalculateManager.getKj(product.getCarbohydrates(),
+                CalculateManager.Organic.CARBOHYDRATES);
+        float protein = CalculateManager.getKj(product.getProtein(),
+                CalculateManager.Organic.PROTEIN);
+        float fat = CalculateManager.getKj(product.getFat(),
+                CalculateManager.Organic.FAT);
+        setPieChart(pcKj, carbohydrates, protein, fat, false);
+    }
+
+    private String getCorrectMeasure(boolean isKcal) {
+        if(isKcal) {
+            return getString(R.string.tv_kcal);
+        } else {
+            return getString(R.string.tv_kj);
+        }
+    }
+
+    private ArrayList<Integer> getColors() {
+        ArrayList<Integer> colors = new ArrayList<>();
+        colors.add(Color.RED);
+        colors.add(Color.GREEN);
+        colors.add(Color.BLUE);
+        return colors;
+    }
+
+    private ArrayList<PieEntry> getEntries(float v1, float v2, float v3) {
+        ArrayList<PieEntry> values = new ArrayList<>();
+        values.add(new PieEntry(v1, getString(R.string.tv_carbohydrates)));
+        values.add(new PieEntry(v2, getString(R.string.tv_protein)));
+        values.add(new PieEntry(v3, getString(R.string.tv_fat)));
+        return values;
+    }
+
+    private PieDataSet getDataSet(ArrayList<PieEntry> entries) {
+        PieDataSet dataSet = new PieDataSet(entries, MainGlobals.STR_EMPTY_OBJ_INIT);
+        dataSet.setColors(getColors());
+        dataSet.setSliceSpace(4);
+        dataSet.setValueTextSize(10);
+        return dataSet;
+    }
+
+    private void setLegend(Legend legend) {
+        legend.setForm(Legend.LegendForm.CIRCLE);
+        legend.setOrientation(Legend.LegendOrientation.VERTICAL);
     }
 
     private enum Type {

@@ -7,7 +7,6 @@ import android.os.Environment;
 import android.widget.ImageView;
 
 import com.fatiner.platehandler.globals.ImageGlobals;
-import com.fatiner.platehandler.globals.MainGlobals;
 
 import java.io.File;
 import java.io.FileOutputStream;

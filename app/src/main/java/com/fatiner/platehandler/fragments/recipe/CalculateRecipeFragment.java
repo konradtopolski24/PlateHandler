@@ -13,13 +13,16 @@ import com.fatiner.platehandler.classes.Category;
 import com.fatiner.platehandler.classes.Ingredient;
 import com.fatiner.platehandler.classes.Product;
 import com.fatiner.platehandler.details.RecipeDetails;
+import com.fatiner.platehandler.dialogs.MeasureDialog;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.managers.CalculateManager;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CalculateRecipeFragment extends PrimaryFragment {
 
@@ -27,6 +30,12 @@ public class CalculateRecipeFragment extends PrimaryFragment {
     RecyclerView rvIngredients;
     @BindView(R.id.tv_totalkcal)
     TextView tvTotalkcal;
+
+    @OnClick(R.id.bt_dialog)
+    public void onClickBtDialog() {
+        MeasureDialog dialog = new MeasureDialog();
+        dialog.show(getChildFragmentManager(), null);
+    }
 
     public CalculateRecipeFragment() {}
 
@@ -57,18 +66,19 @@ public class CalculateRecipeFragment extends PrimaryFragment {
 
     private void calculateTotalKcal(ArrayList<Ingredient> ingredients){
         float total = MainGlobals.INT_STARTING_VAR_INIT;
-        int[] arrayFactor = getArrayFactor();
-        for(Ingredient ingredient : ingredients){
+        for(Ingredient ingredient : ingredients) {
             Product product = ingredient.getProduct();
-            float amount = ingredient.getAmount() * arrayFactor[ingredient.getMeasure()];
-            float newCarbo = (amount * product.getCarbohydrates()) / MainGlobals.GRAM_PRIMARY_OBJ_PROD;
-            float newProt = (amount * product.getProtein()) / MainGlobals.GRAM_PRIMARY_OBJ_PROD;
-            float newFat = (amount * product.getFat()) / MainGlobals.GRAM_PRIMARY_OBJ_PROD;
-            float totalOne =
-                    getKcal(newCarbo, MainGlobals.KCAL_CARBOHYDRATES_OBJ_PROD)
-                            + getKcal(newProt, MainGlobals.KCAL_PROTEIN_OBJ_PROD)
-                            + getKcal(newFat, MainGlobals.KCAL_FAT_OBJ_PROD);
-            total += totalOne;
+            float carbohydrates = CalculateManager.getKcal(product.getCarbohydrates(),
+                    CalculateManager.Organic.CARBOHYDRATES);
+            float protein = CalculateManager.getKcal(product.getCarbohydrates(),
+                    CalculateManager.Organic.CARBOHYDRATES);
+            float fat = CalculateManager.getKcal(product.getCarbohydrates(),
+                    CalculateManager.Organic.CARBOHYDRATES);
+            float sum = carbohydrates + protein + fat;
+            float amount = CalculateManager.getAmountWithMeasure(
+                    getContext(), ingredient.getAmount(), ingredient.getMeasure());
+            float calorific = CalculateManager.getCalorific(amount, sum);
+            total += calorific;
         }
         tvTotalkcal.setText(String.valueOf(total));
     }
