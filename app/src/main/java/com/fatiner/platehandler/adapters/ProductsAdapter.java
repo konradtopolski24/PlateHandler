@@ -72,7 +72,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         @BindView(R.id.tv_name)
         TextView tvName;
 
-        @OnClick(R.id.ll_product)
+        @OnClick(R.id.cl_product)
         public void onClickLinearProduct(){
             ProductDetails.resetProductDetails();
             Fragment fragment = new ShowProductFragment();

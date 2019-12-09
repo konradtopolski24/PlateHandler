@@ -1,50 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".fragments.product.SettingsProductFragment">
 
-    <LinearLayout
+    <!-- Alphabetical -->
+
+    <TextView
+        android:id="@+id/tv_alphabetical_hd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:text="@string/tv_alphabetical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_alphabetical"/>
-
-        <Switch
-            android:id="@+id/sw_alphabetical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
+    <Switch
+        android:id="@+id/sw_alphabetical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        app:layout_constraintStart_toEndOf="@+id/tv_alphabetical_hd"
+        app:layout_constraintTop_toTopOf="@+id/tv_alphabetical_hd"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_alphabetical_hd" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_type"/>
+    <!-- Type -->
 
-        <Switch
-            android:id="@+id/sw_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_type_hd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_alphabetical_hd" />
 
-        <Spinner
-            android:id="@+id/sp_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/ar_product_type"
-            android:visibility="gone"/>
-    </LinearLayout>
-</LinearLayout>
+    <Switch
+        android:id="@+id/sw_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_type_hd"
+        app:layout_constraintTop_toTopOf="@+id/tv_type_hd"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_type_hd" />
+
+    <Spinner
+        android:id="@+id/sp_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/ar_product_type"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/sw_type"
+        app:layout_constraintTop_toTopOf="@+id/sw_type"
+        app:layout_constraintBottom_toBottomOf="@+id/sw_type" />
+
+</android.support.constraint.ConstraintLayout>

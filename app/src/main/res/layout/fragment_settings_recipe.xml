@@ -1,195 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".fragments.recipe.SettingsRecipeFragment">
 
-    <LinearLayout
+    <!-- Alphabetical -->
+
+    <TextView
+        android:id="@+id/tv_alphabetical_hd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:text="@string/tv_alphabetical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_alphabetical"/>
-
-        <Switch
-            android:id="@+id/sw_alphabetical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
+    <Switch
+        android:id="@+id/sw_alphabetical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        app:layout_constraintStart_toEndOf="@+id/tv_alphabetical_hd"
+        app:layout_constraintTop_toTopOf="@+id/tv_alphabetical_hd"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_alphabetical_hd" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_favorite"/>
+    <!-- Favorite -->
 
-        <Switch
-            android:id="@+id/sw_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_favorite_hd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:text="@string/tv_favorite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_alphabetical_hd" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/et_author"/>
-
-        <Switch
-            android:id="@+id/sw_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Spinner
-            android:id="@+id/sp_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_difficulty"/>
-
-        <Switch
-            android:id="@+id/sw_difficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <SeekBar
-            android:id="@+id/sb_difficulty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_spiciness"/>
-
-        <Switch
-            android:id="@+id/sw_spiciness"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <SeekBar
-            android:id="@+id/sb_spiciness"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
-    </LinearLayout>
-
-    <LinearLayout
+    <Switch
+        android:id="@+id/sw_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        app:layout_constraintStart_toEndOf="@+id/tv_favorite_hd"
+        app:layout_constraintTop_toTopOf="@+id/tv_favorite_hd"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_favorite_hd" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_country"/>
+    <!-- Author -->
 
-        <Switch
-            android:id="@+id/sw_country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Spinner
-            android:id="@+id/sp_country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/ar_country"
-            android:visibility="gone"/>
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_author_hd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:text="@string/et_author"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_favorite_hd"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_type"/>
-
-        <Switch
-            android:id="@+id/sw_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Spinner
-            android:id="@+id/sp_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/ar_recipe_type"
-            android:visibility="gone"/>
-    </LinearLayout>
-
-    <LinearLayout
+    <Switch
+        android:id="@+id/sw_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        app:layout_constraintStart_toEndOf="@+id/tv_author_hd"
+        app:layout_constraintTop_toTopOf="@+id/tv_author_hd"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_author_hd"/>
 
-        <TextView
+    <Spinner
+        android:id="@+id/sp_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/sw_author"
+        app:layout_constraintTop_toTopOf="@+id/sw_author"
+        app:layout_constraintBottom_toBottomOf="@+id/sw_author" />
+
+    <!-- Difficulty -->
+
+    <TextView
+        android:id="@+id/tv_difficulty_hd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_difficulty"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_author_hd"/>
+
+    <Switch
+        android:id="@+id/sw_difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_difficulty_hd"
+        app:layout_constraintTop_toTopOf="@+id/tv_difficulty_hd"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_difficulty_hd"/>
+
+    <SeekBar
+        android:id="@+id/sb_difficulty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/sw_difficulty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sw_difficulty"
+        app:layout_constraintBottom_toBottomOf="@+id/sw_difficulty"/>
+
+    <!-- Spiciness -->
+
+    <TextView
+        android:id="@+id/tv_spiciness_hd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_spiciness"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_hd"/>
+
+    <Switch
+        android:id="@+id/sw_spiciness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_spiciness_hd"
+        app:layout_constraintTop_toTopOf="@+id/tv_spiciness_hd"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spiciness_hd"/>
+
+    <SeekBar
+        android:id="@+id/sb_spiciness"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/sw_spiciness"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sw_spiciness"
+        app:layout_constraintBottom_toBottomOf="@+id/sw_spiciness"/>
+
+    <!-- Country -->
+
+    <TextView
+        android:id="@+id/tv_country_hd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_country"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_spiciness_hd"/>
+
+    <Switch
+        android:id="@+id/sw_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_country_hd"
+        app:layout_constraintTop_toTopOf="@+id/tv_country_hd"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_country_hd"/>
+
+    <Spinner
+        android:id="@+id/sp_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/ar_country"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/sw_country"
+        app:layout_constraintTop_toTopOf="@+id/sw_country"
+        app:layout_constraintBottom_toBottomOf="@+id/sw_country" />
+
+    <!-- Type -->
+
+    <TextView
+        android:id="@+id/tv_type_hd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_country_hd"/>
+
+    <Switch
+        android:id="@+id/sw_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_type_hd"
+        app:layout_constraintTop_toTopOf="@+id/tv_type_hd"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_type_hd"/>
+
+    <Spinner
+        android:id="@+id/sp_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/ar_recipe_type"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/sw_type"
+        app:layout_constraintTop_toTopOf="@+id/sw_type"
+        app:layout_constraintBottom_toBottomOf="@+id/sw_type"/>
+
+    <!-- Preference -->
+
+    <TextView
+        android:id="@+id/tv_preference_hd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_preferences"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_type_hd"/>
+
+    <Switch
+        android:id="@+id/sw_preference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_preference_hd"
+        app:layout_constraintTop_toTopOf="@+id/tv_preference_hd"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_preference_hd"/>
+
+    <RadioGroup
+        android:id="@+id/rg_preference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_preference_hd">
+
+        <RadioButton
+            android:id="@+id/rb_meat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_preferences"/>
+            android:hint="@string/rb_meat" />
 
-        <Switch
-            android:id="@+id/sw_preference"
+        <RadioButton
+            android:id="@+id/rb_vegetarian"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <RadioGroup
-            android:id="@+id/rg_preference"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone">
-
-            <RadioButton
-                android:id="@+id/rb_meat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/rb_meat"/>
-
-            <RadioButton
-                android:id="@+id/rb_vegetarian"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/rb_vegetarian"
-                android:checked="true"/>
-        </RadioGroup>
-    </LinearLayout>
-</LinearLayout>
+            android:checked="true"
+            android:hint="@string/rb_vegetarian" />
+    </RadioGroup>
+</android.support.constraint.ConstraintLayout>

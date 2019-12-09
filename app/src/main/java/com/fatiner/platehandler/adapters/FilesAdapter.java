@@ -179,7 +179,7 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
         @BindView(R.id.tv_name)
         TextView tvName;
 
-        @OnClick(R.id.ll_file)
+        @OnClick(R.id.cl_file)
         public void onClickLlFile(){
             Workbook workbook = getWorkbookFromFile(tvName.getText().toString());
             if(workbook == null) return;

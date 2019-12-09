@@ -3,6 +3,7 @@ package com.fatiner.platehandler.adapters;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.fatiner.platehandler.R;
@@ -46,7 +46,7 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
     @Override
     public AddIngredientHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        LinearLayout layout = (LinearLayout) inflater.inflate(
+        ConstraintLayout layout = (ConstraintLayout) inflater.inflate(
                 R.layout.layout_add_ingredient,
                 parent,
                 false);

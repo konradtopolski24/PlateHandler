@@ -3,6 +3,7 @@ package com.fatiner.platehandler.adapters;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,7 +43,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
     @Override
     public StepHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        LinearLayout layout = (LinearLayout) inflater.inflate(
+        ConstraintLayout layout = (ConstraintLayout) inflater.inflate(
                 R.layout.layout_step,
                 parent,
                 false);

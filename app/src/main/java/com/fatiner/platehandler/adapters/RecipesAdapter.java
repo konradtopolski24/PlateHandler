@@ -134,7 +134,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
         @BindView(R.id.iv_preference)
         ImageView ivPreference;
 
-        @OnClick(R.id.ll_recipe)
+        @OnClick(R.id.cl_recipe)
         public void onClickLinearLayoutRecipe(){
             if(isSelecting){
                 addIngredientsToShoppingList(getAdapterPosition());

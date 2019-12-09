@@ -2,6 +2,7 @@ package com.fatiner.platehandler.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,7 @@ public class AddShoppingItemAdapter extends RecyclerView.Adapter<AddShoppingItem
     @Override
     public AddShoppingItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        LinearLayout layout = (LinearLayout) inflater.inflate(
+        ConstraintLayout layout = (ConstraintLayout) inflater.inflate(
                 R.layout.layout_add_shopping_item,
                 parent,
                 false);

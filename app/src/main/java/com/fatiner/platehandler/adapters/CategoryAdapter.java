@@ -101,8 +101,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         @BindView(R.id.tv_name)
         TextView tvName;
-        @BindView(R.id.ll_ingredients)
-        LinearLayout llIngredients;
         @BindView(R.id.rv_ingredients)
         RecyclerView rvIngredients;
         @BindView(R.id.iv_remove)
@@ -125,7 +123,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             notifyItemRemoved(position);
         }
 
-        @OnClick(R.id.ll_header)
+        @OnClick(R.id.tv_name)
         public void onClickLinearHeader(){
             if(rvIngredients.getVisibility() == View.VISIBLE){
                 hideRecycIngredients();

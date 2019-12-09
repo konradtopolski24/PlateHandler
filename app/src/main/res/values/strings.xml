@@ -26,6 +26,11 @@
     <string name="tv_day">Dish of the Day</string>
     <string name="tv_recent">Recently shown</string>
 
+    <!-- Product -->
+    <string name="et_carbohydrates">Carbohydrates</string>
+    <string name="et_protein">Protein</string>
+    <string name="et_fat">Fat</string>
+
     <!-- Recipe -->
     <string name="et_name">Name</string>
     <string name="et_author">Author</string>
@@ -130,4 +135,17 @@
     <string name="nt_text">What kind of dish would you like to eat today?</string>
 
     <string name="tv_measure">Measures</string>
+
+    <!-- Descriptions -->
+    <string name="iv_photo_desc"></string>
+    <string name="ib_add_desc"></string>
+    <string name="ib_remove_desc"></string>
+    <string name="ib_plus_desc"></string>
+    <string name="ib_minus_desc"></string>
+    <string name="ib_time_desc"></string>
+    <string name="iv_spiciness_desc"></string>
+    <string name="iv_remove_desc"></string>
+    <string name="ib_edit_desc"></string>
+    <string name="iv_type_desc"></string>
+    <string name="iv_preference_desc"></string>
 </resources>

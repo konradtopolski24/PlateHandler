@@ -1,227 +1,283 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".fragments.recipe.manage.ManageInfoFragment">
 
-    <ScrollView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Photo -->
+
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/iv_photo_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/ib_add"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/ib_add_desc"
+            app:layout_constraintStart_toEndOf="@+id/iv_photo"
+            app:layout_constraintTop_toTopOf="@+id/iv_photo"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_photo" />
+
+        <ImageButton
+            android:id="@+id/ib_remove"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/ib_remove_desc"
+            app:layout_constraintStart_toEndOf="@+id/ib_add"
+            app:layout_constraintTop_toTopOf="@+id/iv_photo"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_photo"/>
+
+        <!-- Name -->
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tl_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_photo">
 
-            <LinearLayout
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:hint="@string/et_name"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/iv_photo"
-                    android:layout_width="200dp"
-                    android:layout_height="150dp"
-                    android:scaleType="centerCrop"/>
+        <!-- Author -->
 
-                <ImageButton
-                    android:id="@+id/ib_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tl_author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tl_name">
 
-                <ImageButton
-                    android:id="@+id/ib_remove"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/et_name"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_author"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/et_author"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <LinearLayout
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_vertical">
+                android:hint="@string/et_author"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/et_serving"/>
+        <!-- Serving -->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/tv_serving_hd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/et_serving"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tl_author" />
 
-                    <ImageButton
-                        android:id="@+id/ib_plus"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"/>
+        <ImageButton
+            android:id="@+id/ib_plus"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/ib_plus_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_serving_hd" />
 
-                    <TextView
-                        android:id="@+id/tv_serving"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tv_serving"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/ib_plus"
+            app:layout_constraintTop_toTopOf="@+id/ib_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_plus"/>
 
-                    <ImageButton
-                        android:id="@+id/ib_minus"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"/>
-                </LinearLayout>
-            </LinearLayout>
+        <ImageButton
+            android:id="@+id/ib_minus"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/ib_minus_desc"
+            app:layout_constraintStart_toEndOf="@+id/tv_serving"
+            app:layout_constraintTop_toBottomOf="@+id/tv_serving_hd" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+        <!-- Time -->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tv_time"/>
+        <TextView
+            android:id="@+id/tv_time_hd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ib_plus" />
 
-                <ImageButton
-                    android:id="@+id/ib_time"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+        <ImageButton
+            android:id="@+id/ib_time"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/ib_time_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time_hd" />
 
-                <TextView
-                    android:id="@+id/tv_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/ib_time"
+            app:layout_constraintTop_toTopOf="@+id/ib_time"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_time" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <!-- Difficulty -->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tv_difficulty"/>
+        <TextView
+            android:id="@+id/tv_difficulty_hd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_difficulty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ib_time" />
 
-                <TextView
-                    android:id="@+id/tv_difficulty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+        <TextView
+            android:id="@+id/tv_difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_hd" />
 
-            <SeekBar
-                android:id="@+id/sb_difficulty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+        <SeekBar
+            android:id="@+id/sb_difficulty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_difficulty" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <!-- Spiciness -->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tv_spiciness"/>
+        <TextView
+            android:id="@+id/tv_spiciness_hd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_spiciness"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sb_difficulty" />
 
-                <ImageView
-                    android:id="@+id/iv_spiciness0"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_spiciness"/>
+        <ImageView
+            android:id="@+id/iv_spiciness0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_spiciness"
+            android:contentDescription="@string/iv_spiciness_desc"
+            app:layout_constraintStart_toEndOf="@+id/tv_spiciness_hd"
+            app:layout_constraintTop_toTopOf="@+id/tv_spiciness_hd"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_spiciness_hd" />
 
-                <ImageView
-                    android:id="@+id/iv_spiciness1"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_spiciness"/>
+        <ImageView
+            android:id="@+id/iv_spiciness1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_spiciness"
+            android:contentDescription="@string/iv_spiciness_desc"
+            app:layout_constraintStart_toEndOf="@+id/iv_spiciness0"
+            app:layout_constraintTop_toTopOf="@+id/tv_spiciness_hd"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_spiciness_hd" />
 
-                <ImageView
-                    android:id="@+id/iv_spiciness2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_spiciness"/>
-            </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_spiciness2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_spiciness"
+            android:contentDescription="@string/iv_spiciness_desc"
+            app:layout_constraintStart_toEndOf="@+id/iv_spiciness1"
+            app:layout_constraintTop_toTopOf="@+id/tv_spiciness_hd"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_spiciness_hd" />
 
-            <SeekBar
-                android:id="@+id/sb_spiciness"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+        <SeekBar
+            android:id="@+id/sb_spiciness"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_spiciness_hd" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_country"/>
+        <!-- Country -->
 
-            <Spinner
-                android:id="@+id/sp_country"
+        <TextView
+            android:id="@+id/tv_country_hd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_country"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sb_spiciness" />
+
+        <Spinner
+            android:id="@+id/sp_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/ar_country"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_country_hd" />
+
+        <!-- Type -->
+
+        <TextView
+            android:id="@+id/tv_type_hd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sp_country" />
+
+        <Spinner
+            android:id="@+id/sp_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/ar_recipe_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_type_hd" />
+
+        <!-- Preferences -->
+
+        <TextView
+            android:id="@+id/tv_preferences_hd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_preferences"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sp_type" />
+        
+        <RadioGroup
+            android:id="@+id/rg_preference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_preferences_hd">
+
+            <RadioButton
+                android:id="@+id/rb_meat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/ar_country"/>
+                android:hint="@string/rb_meat"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_type"/>
-
-            <Spinner
-                android:id="@+id/sp_type"
+            <RadioButton
+                android:id="@+id/rb_vegetarian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/ar_recipe_type"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_preferences"/>
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/rb_meat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/rb_meat"/>
-
-                <RadioButton
-                    android:id="@+id/rb_vegetarian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/rb_vegetarian"
-                    android:checked="true"/>
-            </RadioGroup>
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+                android:checked="true"
+                android:hint="@string/rb_vegetarian" />
+        </RadioGroup>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
