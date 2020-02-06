@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
@@ -32,18 +35,20 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
     private Context context;
     private ArrayList<Step> steps;
     private boolean isShowing;
+    private OnStepListener listener;
 
-    public StepAdapter(Context context, ArrayList<Step> steps, boolean isShowing){
+    public StepAdapter(Context context, ArrayList<Step> steps, boolean isShowing, OnStepListener listener){
         this.context = context;
         this.steps = steps;
         this.isShowing = isShowing;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public StepHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        ConstraintLayout layout = (ConstraintLayout) inflater.inflate(
+        CardView layout = (CardView) inflater.inflate(
                 R.layout.layout_step,
                 parent,
                 false);
@@ -55,6 +60,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
         if(isShowing){
             hideImageRemove(holder);
             hideImgbuttEdit(holder);
+            showCbDone(holder);
         }
         Step step = steps.get(position);
         setTextId(holder, position);
@@ -67,11 +73,15 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
     }
 
     private void hideImageRemove(StepHolder holder){
-        holder.ivRemove.setVisibility(View.GONE);
+        holder.ivRemove.setVisibility(View.INVISIBLE);
     }
 
     private void hideImgbuttEdit(StepHolder holder){
-        holder.ibEdit.setVisibility(View.GONE);
+        holder.ibEdit.setVisibility(View.INVISIBLE);
+    }
+
+    private void showCbDone(StepHolder holder){
+        holder.cbDone.setVisibility(View.VISIBLE);
     }
 
     private void setTextId(StepHolder holder, int id){
@@ -95,6 +105,10 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
         ImageView ivRemove;
         @BindView(R.id.ib_edit)
         ImageButton ibEdit;
+        @BindView(R.id.cb_done)
+        CheckBox cbDone;
+        @BindView(R.id.tv_done)
+        TextView tvDone;
 
         @OnClick(R.id.ib_edit)
         public void onClickImgbuttEdit(){
@@ -107,6 +121,21 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
         public void onClickImageRemove(){
             steps.remove(getAdapterPosition());
             notifyItemRemoved(getAdapterPosition());
+            if (listener == null) return;
+            listener.onClickRemove();
+        }
+
+        @OnCheckedChanged(R.id.cb_done)
+        public void onCheckedChangedSwFavorite(boolean checked){
+            if(checked) {
+                tvId.setAlpha(0.1f);
+                tvInstruction.setAlpha(0.1f);
+                tvDone.setVisibility(View.VISIBLE);
+            } else {
+                tvId.setAlpha(1.0f);
+                tvInstruction.setAlpha(1.0f);
+                tvDone.setVisibility(View.GONE);
+            }
         }
 
         public StepHolder(View itemView) {
@@ -119,5 +148,9 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
             bundle.putInt(BundleGlobals.BUND_ID_FRAG_ADDSTEP, getAdapterPosition());
             fragment.setArguments(bundle);
         }
+    }
+
+    public interface OnStepListener {
+        void onClickRemove();
     }
 }

@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.ProductsAdapter;
@@ -31,6 +32,8 @@ public class ChooseProductFragment extends PrimaryFragment {
 
     @BindView(R.id.rv_products)
     RecyclerView rvProducts;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
 
     @OnClick(R.id.fab_add)
     public void onClickFabAdd(){
@@ -120,6 +123,7 @@ public class ChooseProductFragment extends PrimaryFragment {
                         getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_PRODUCTS),
                         new ProductsAdapter(getContext(), products)
                 );
+                checkIfRvEmpty(rvProducts, tvEmpty);
             }
         }
     }

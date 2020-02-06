@@ -32,7 +32,7 @@ public class ManageRecipeFragment extends PrimaryFragment {
     @BindView(R.id.tl_recipe)
     TabLayout tlRecipe;
 
-    @OnClick(R.id.fab_done)
+    @OnClick(R.id.fab_finished)
     public void onClickFabDone(){
         hideKeyboard();
         if(RecipeDetails.isRecipeCorrect()){

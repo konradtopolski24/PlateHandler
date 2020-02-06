@@ -2,86 +2,31 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    card_view:cardCornerRadius="16dp"
-    card_view:cardBackgroundColor="@color/colorPrimary">
+    style="@style/CvChoose">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cl_recipe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
-            android:id="@+id/tv_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_name" />
-
-        <TextView
-            android:id="@+id/tv_difficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_author" />
+        style="@style/ClHeader">
 
         <ImageView
-            android:id="@+id/iv_spiciness0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_spiciness"
-            android:contentDescription="@string/iv_spiciness_desc"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_difficulty" />
-
-        <ImageView
-            android:id="@+id/iv_spiciness1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_spiciness"
-            android:contentDescription="@string/iv_spiciness_desc"
-            card_view:layout_constraintStart_toEndOf="@+id/iv_spiciness0"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_difficulty" />
-
-        <ImageView
-            android:id="@+id/iv_spiciness2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_spiciness"
-            android:contentDescription="@string/iv_spiciness_desc"
-            card_view:layout_constraintStart_toEndOf="@+id/iv_spiciness1"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_difficulty"  />
-
-        <TextView
-            android:id="@+id/tv_country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/iv_spiciness0"/>
-
-        <ImageView
+            style="@style/IvChoose"
             android:id="@+id/iv_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/iv_type_desc"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_country" />
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintBottom_toTopOf="@+id/tv_name"/>
+
+        <TextView
+            style="@style/TvChoose"
+            android:id="@+id/tv_name"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/iv_type"
+            card_view:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
-            android:id="@+id/iv_preference"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/iv_preference_desc"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/iv_type"  />
+            style="@style/BothWrap"
+            android:id="@+id/iv_country"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"/>
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

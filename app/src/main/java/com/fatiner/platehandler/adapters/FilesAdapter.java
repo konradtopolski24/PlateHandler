@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.activities.MainActivity;
+import com.fatiner.platehandler.classes.ImportFile;
 import com.fatiner.platehandler.classes.Ingredient;
 import com.fatiner.platehandler.classes.Product;
 import com.fatiner.platehandler.classes.Recipe;
@@ -42,9 +43,9 @@ import butterknife.OnClick;
 public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder> {
 
     private Context context;
-    private ArrayList<String> files;
+    private ArrayList<ImportFile> files;
 
-    public FilesAdapter(Context context, ArrayList<String> files){
+    public FilesAdapter(Context context, ArrayList<ImportFile> files){
         this.context = context;
         this.files = files;
     }
@@ -62,8 +63,12 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
 
     @Override
     public void onBindViewHolder(@NonNull FilesHolder holder, int position) {
-        String name = files.get(position);
-        holder.tvName.setText(name);
+        ImportFile importFile = files.get(position);
+        holder.tvName.setText(importFile.getName());
+        String recipeAmount = context.getString(R.string.nv_recipes) + MainGlobals.STR_COLON_OBJ_INIT + MainGlobals.STR_SPACE_OBJ_INIT + importFile.getRecipeAmount();
+        holder.tvRecipeAmount.setText(recipeAmount);
+        String productAmount = context.getString(R.string.nv_products) + MainGlobals.STR_COLON_OBJ_INIT + MainGlobals.STR_SPACE_OBJ_INIT + importFile.getProductAmount();
+        holder.tvProductAmount.setText(productAmount);
     }
 
     @Override
@@ -178,6 +183,10 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
 
         @BindView(R.id.tv_name)
         TextView tvName;
+        @BindView(R.id.tv_recipe_amount)
+        TextView tvRecipeAmount;
+        @BindView(R.id.tv_product_amount)
+        TextView tvProductAmount;
 
         @OnClick(R.id.cl_file)
         public void onClickLlFile(){

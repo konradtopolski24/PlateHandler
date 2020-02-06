@@ -2,10 +2,12 @@ package com.fatiner.platehandler.fragments.recipe.manage;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.CategoryAdapter;
@@ -17,10 +19,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ManageIngredientsFragment extends PrimaryFragment {
+public class ManageIngredientsFragment extends PrimaryFragment implements CategoryAdapter.OnCategoryListener {
 
     @BindView(R.id.rv_categories)
     RecyclerView rvCategories;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
 
     @OnClick(R.id.bt_add)
     public void onClickBtAdd(){
@@ -38,13 +42,18 @@ public class ManageIngredientsFragment extends PrimaryFragment {
         hideKeyboard();
         setMenuItem(MainGlobals.ID_RECIPES_DRAW_MAIN);
         manageRecyclerView();
+        checkIfRvEmpty(rvCategories, tvEmpty);
         return view;
     }
 
     private void manageRecyclerView(){
-        GridLayoutManager manager = getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDINGRED);
         CategoryAdapter adapter = new CategoryAdapter(getContext(),
-                RecipeDetails.getRecipe().getCategories(), false);
-        setRecyclerView(rvCategories, manager, adapter);
+                RecipeDetails.getRecipe().getCategories(), false, this);
+        setRecyclerView(rvCategories, getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL), adapter);
+    }
+
+    @Override
+    public void onClickRemove() {
+        checkIfRvEmpty(rvCategories, tvEmpty);
     }
 }

@@ -1,34 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    style="@style/CvIngredient">
 
-    <TextView
-        android:id="@+id/tv_amount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tv_measure"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_weight="1"/>
+    <android.support.constraint.ConstraintLayout
+        style="@style/ClIngredient">
 
-    <TextView
-        android:id="@+id/tv_measure"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_amount"
-        app:layout_constraintEnd_toStartOf="@+id/tv_product"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_weight="1"/>
+        <LinearLayout
+            style="@style/LlSide"
+            android:id="@+id/ll_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-    <TextView
-        android:id="@+id/tv_product"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_measure"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_weight="1"/>
-</android.support.constraint.ConstraintLayout>
+            <ImageView
+                style="@style/IvSide"
+                android:id="@+id/iv_icon"/>
+        </LinearLayout>
+
+        <TextView
+            style="@style/TvIngredient"
+            android:id="@+id/tv_product"
+            app:layout_constraintStart_toEndOf="@+id/ll_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            style="@style/IvIngredient"
+            android:id="@+id/iv_measure"
+            android:src="@drawable/ic_amount"
+            app:layout_constraintStart_toEndOf="@+id/ll_icon"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            style="@style/TvAmount"
+            android:id="@+id/tv_amount"
+            app:layout_constraintStart_toEndOf="@+id/iv_measure"
+            app:layout_constraintTop_toTopOf="@+id/iv_measure"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_measure"/>
+
+        <TextView
+            style="@style/TvTimes"
+            android:id="@+id/tv_times"
+            app:layout_constraintStart_toEndOf="@+id/tv_amount"
+            app:layout_constraintTop_toTopOf="@+id/iv_measure"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_measure"/>
+
+        <TextView
+            style="@style/TvMeasure"
+            android:id="@+id/tv_measure"
+            app:layout_constraintStart_toEndOf="@+id/tv_times"
+            app:layout_constraintEnd_toEndOf="@+id/tv_product"
+            app:layout_constraintTop_toTopOf="@+id/iv_measure"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_measure"/>
+
+        <CheckBox
+            style="@style/CbDone"
+            android:id="@+id/cb_done"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            style="@style/TvUsed"
+            android:id="@+id/tv_used"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

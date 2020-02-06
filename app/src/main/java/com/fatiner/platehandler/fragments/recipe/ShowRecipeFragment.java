@@ -1,11 +1,13 @@
 package com.fatiner.platehandler.fragments.recipe;
 
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,8 +16,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.Switch;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
@@ -43,6 +46,28 @@ import butterknife.OnClick;
 
 public class ShowRecipeFragment extends PrimaryFragment {
 
+    @BindView(R.id.pb_loading)
+    ProgressBar pbLoading;
+    @BindView(R.id.cv_header)
+    CardView cvHeader;
+    @BindView(R.id.cv_info)
+    CardView cvInfo;
+    @BindView(R.id.cv_categories)
+    CardView cvCategories;
+    @BindView(R.id.cv_steps)
+    CardView cvSteps;
+    @BindView(R.id.cv_info_hd)
+    CardView cvInfoHd;
+    @BindView(R.id.cv_categories_hd)
+    CardView cvCategoriesHd;
+    @BindView(R.id.cv_steps_hd)
+    CardView cvStepsHd;
+    @BindView(R.id.iv_info)
+    ImageView ivInfo;
+    @BindView(R.id.iv_categories)
+    ImageView ivCategories;
+    @BindView(R.id.iv_steps)
+    ImageView ivSteps;
     @BindView(R.id.tv_name)
     TextView tvName;
     @BindView(R.id.tv_author)
@@ -57,31 +82,48 @@ public class ShowRecipeFragment extends PrimaryFragment {
     TextView tvCountry;
     @BindView(R.id.tv_type)
     TextView tvType;
-    @BindView(R.id.tv_preferences)
-    TextView tvPreferences;
+    @BindView(R.id.tv_preference)
+    TextView tvPreference;
     @BindViews({
             R.id.iv_spiciness0,
             R.id.iv_spiciness1,
-            R.id.iv_spiciness2})
+            R.id.iv_spiciness2,
+            R.id.iv_spiciness3})
     List<ImageView> arrayIvSpiciness;
-    @BindView(R.id.sw_favorite)
-    Switch swFavorite;
+    @BindView(R.id.cb_favorite)
+    CheckBox cbFavorite;
     @BindView(R.id.rv_categories)
     RecyclerView rvCategories;
     @BindView(R.id.rv_steps)
     RecyclerView rvSteps;
     @BindView(R.id.iv_photo)
     ImageView ivPhoto;
+    @BindView(R.id.iv_country_dw)
+    ImageView ivCountryDw;
+    @BindView(R.id.iv_type_dw)
+    ImageView ivTypeDw;
+    @BindView(R.id.iv_preference_dw)
+    ImageView ivPreferencesDw;
 
-    @OnCheckedChanged(R.id.sw_favorite)
+    @OnClick(R.id.cv_info_hd)
+    public void onClickFabAdd(){
+        manageExpandCardView(cvInfo, ivInfo);
+    }
+
+    @OnClick(R.id.cv_categories_hd)
+    public void onClickFaAdd(){
+        manageExpandCardView(cvCategories, ivCategories);
+    }
+
+    @OnClick(R.id.cv_steps_hd)
+    public void onClickFbAdd(){
+        manageExpandCardView(cvSteps, ivSteps);
+    }
+
+    @OnCheckedChanged(R.id.cb_favorite)
     public void onCheckedChangedSwFavorite(boolean checked){
         RecipeDetails.getRecipe().setFavorite(checked);
         new AsyncShowRecipe().execute(Type.FAVORITE);
-    }
-
-    @OnClick(R.id.bt_calculate)
-    public void onClickBtCalculate(){
-        setFragment(new CalculateRecipeFragment());
     }
 
     public ShowRecipeFragment() {}
@@ -91,6 +133,8 @@ public class ShowRecipeFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_show_recipe, container, false);
         ButterKnife.bind(this, view);
+        showView(pbLoading);
+        hideCardViews();
         resetRecipeDetails();
         setRecipe();
         setToolbarTitle(RecipeDetails.getRecipe().getName());
@@ -125,8 +169,11 @@ public class ShowRecipeFragment extends PrimaryFragment {
         setTextDifficulty(recipe.getDifficulty());
         setImageSpiciness(recipe.getSpiciness());
         setTextCountry(recipe.getCountry());
+        setImageCountry(recipe.getCountry());
         setTextType(recipe.getType());
+        setImageType(recipe.getType());
         setTextPreferences(recipe.getPreference());
+        setImagePreferences(recipe.getPreference());
         setSwitchFavorite(recipe.getFavorite());
         setImagePhoto(recipe.getEncodedImage());
     }
@@ -154,7 +201,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
     }
 
     private void setImageSpiciness(int spiciness){
-        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < spiciness; i++){
+        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < spiciness + 1; i++){
             arrayIvSpiciness.get(i).setVisibility(View.VISIBLE);
         }
     }
@@ -164,25 +211,44 @@ public class ShowRecipeFragment extends PrimaryFragment {
         tvCountry.setText(arrayCountry[country]);
     }
 
+    private void setImageCountry(int country){
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_country);
+        int resource = arrayType.getResourceId(country, -1);
+        ivCountryDw.setImageResource(resource);
+    }
+
     private void setTextType(int type){
         String[] arrayType = getStringArray(R.array.ar_recipe_type);
         tvType.setText(arrayType[type]);
     }
 
+    private void setImageType(int type){
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_recipe_type);
+        int resource = arrayType.getResourceId(type, -1);
+        ivTypeDw.setImageResource(resource);
+    }
+
     private void setTextPreferences(boolean isMeat){
         if(isMeat){
-            tvPreferences.setText(getString(R.string.rb_meat));
+            tvPreference.setText(getString(R.string.rb_meat));
         } else {
-            tvPreferences.setText(getString(R.string.rb_vegetarian));
+            tvPreference.setText(getString(R.string.rb_vegetarian));
         }
     }
 
+    private void setImagePreferences(boolean isMeat){
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_preference);
+        int resource = arrayType.getResourceId(TypeManager.booleanToInteger(isMeat), -1);
+        ivPreferencesDw.setImageResource(resource);
+    }
+
     private void setSwitchFavorite(boolean isFavorite){
-        swFavorite.setChecked(isFavorite);
+        cbFavorite.setChecked(isFavorite);
     }
 
     private void setImagePhoto(String encodedImage){
         if(encodedImage == null) return;
+        ivPhoto.setVisibility(View.VISIBLE);
         ivPhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
     }
 
@@ -243,6 +309,9 @@ public class ShowRecipeFragment extends PrimaryFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem){
         switch(menuItem.getItemId()){
+            case R.id.item_calculate_menu_shwrecp:
+                setFragment(new CalculateRecipeFragment());
+                return true;
             case R.id.item_edit_menu_shwrecp:
                 Fragment fragment = new ManageRecipeFragment();
                 setBoolInBundle(fragment, true, BundleGlobals.BUND_BOOL_FRAG_ADDREC);
@@ -250,6 +319,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
                 return true;
             case R.id.item_delete_menu_shwrecp:
                 showAlertDialog(R.string.dg_recipe_delete, getDialogListener());
+                return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
@@ -308,23 +378,45 @@ public class ShowRecipeFragment extends PrimaryFragment {
         setRecipeInfo();
         setRecyclerView(
                 rvCategories,
-                getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDINGRED),
+                getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),
                 new CategoryAdapter(getContext(),
-                        RecipeDetails.getRecipe().getCategories(), true)
+                        RecipeDetails.getRecipe().getCategories(), true, null)
         );
         setRecyclerView(
                 rvSteps,
-                getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
+                getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),
                 new StepAdapter(getContext(),
-                        RecipeDetails.getRecipe().getSteps(), true)
+                        RecipeDetails.getRecipe().getSteps(), true, null)
         );
         setRecipeInRecent();
+        hideView(pbLoading);
+        showCardViews();
     }
 
     private void finishedDeleteRecipe(ArrayList<String> authors) {
         removeUnavailableAuthor(authors);
         deleteRecentId();
         recipeSuccess(R.string.sb_recipe_deleted);
+    }
+
+    private void hideCardViews() {
+        removeView(cvHeader);
+        removeView(cvInfoHd);
+        removeView(cvInfo);
+        removeView(cvCategoriesHd);
+        removeView(cvCategories);
+        removeView(cvStepsHd);
+        removeView(cvSteps);
+    }
+
+    private void showCardViews() {
+        showView(cvHeader);
+        showView(cvInfoHd);
+        showView(cvInfo);
+        showView(cvCategoriesHd);
+        showView(cvCategories);
+        showView(cvStepsHd);
+        showView(cvSteps);
     }
 
     private enum Type {

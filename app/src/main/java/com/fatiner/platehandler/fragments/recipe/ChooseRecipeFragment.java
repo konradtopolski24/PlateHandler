@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fatiner.platehandler.adapters.RecipesAdapter;
 import com.fatiner.platehandler.globals.DbGlobals;
@@ -33,6 +34,8 @@ public class ChooseRecipeFragment extends PrimaryFragment {
 
     @BindView(R.id.rv_recipes)
     RecyclerView rvRecipes;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
     @BindView(R.id.fab_add)
     FloatingActionButton fabAdd;
 
@@ -144,5 +147,6 @@ public class ChooseRecipeFragment extends PrimaryFragment {
                 getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_RECIPES),
                 new RecipesAdapter(getContext(), recipes, isBundleNotEmpty())
         );
+        checkIfRvEmpty(rvRecipes, tvEmpty);
     }
 }

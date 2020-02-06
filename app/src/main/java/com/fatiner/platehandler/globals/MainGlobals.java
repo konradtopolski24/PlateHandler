@@ -3,10 +3,11 @@ package com.fatiner.platehandler.globals;
 public class MainGlobals {
     public static final int ID_MAIN_DRAW_MAIN = 0;
     public static final int ID_RECIPES_DRAW_MAIN = 1;
-    public static final int ID_SHOPPING_DRAW_MAIN = 2;
-    public static final int ID_INGREDIENTS_DRAW_MAIN = 3;
+    public static final int ID_INGREDIENTS_DRAW_MAIN = 2;
+    public static final int ID_SHOPPING_DRAW_MAIN = 3;
     public static final int ID_EXPORT_DRAW_MAIN = 4;
     public static final int ID_IMPORT_DRAW_MAIN = 5;
+    public static final int ID_CREDITS_DRAW_MAIN = 6;
 
     public static final int PROG_STARTING_SEEK_DIFFICULTY = 0;
     public static final int PROG_MAX_SEEK_DIFFICULTY = 2;
@@ -35,6 +36,8 @@ public class MainGlobals {
     public static final String STR_SLASH_OBJ_INIT = "/";
     public static final String STR_EQUALS_OBJ_INIT = "=";
     public static final String STR_ENTER_OBJ_INIT = "\n";
+    public static final String STR_BRACKER_LEFT = "(";
+    public static final String STR_BRACKER_RIGHT = ")";
 
     public static final String FORM_DATE_OBJ_INIT = "dd.MM.yyyy";
     public static final String FORM_HOUR_OBJ_INIT = "t%02d%02d";

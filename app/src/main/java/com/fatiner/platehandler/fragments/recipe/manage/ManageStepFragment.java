@@ -1,11 +1,11 @@
 package com.fatiner.platehandler.fragments.recipe.manage;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.Step;
@@ -22,10 +22,10 @@ public class ManageStepFragment extends PrimaryFragment {
 
     @BindView(R.id.et_instruction)
     EditText etInstruction;
-    @BindView(R.id.tv_step)
-    TextView tvStep;
+    @BindView(R.id.til_step)
+    TextInputLayout tilStep;
 
-    @OnClick(R.id.fab_done)
+    @OnClick(R.id.fab_finished)
     public void onClickFabDone(){
         hideKeyboard();
         if(isStepCorrect()){
@@ -65,7 +65,7 @@ public class ManageStepFragment extends PrimaryFragment {
             setStepInfo();
         } else {
             String stepNo = getStepHeader(RecipeDetails.getRecipe().getSteps().size());
-            setTextStep(stepNo);
+            setHint(tilStep, stepNo);
         }
     }
 
@@ -73,7 +73,7 @@ public class ManageStepFragment extends PrimaryFragment {
         int id = getIntFromBundle(BundleGlobals.BUND_ID_FRAG_ADDSTEP);
         Step step = RecipeDetails.getRecipe().getSteps().get(id);
         String stepNo = getStepHeader(id);
-        setTextStep(stepNo);
+        setHint(tilStep, stepNo);
         setEditInstruction(step.getInstruction());
     }
 
@@ -95,8 +95,8 @@ public class ManageStepFragment extends PrimaryFragment {
         return !etInstruction.getText().toString().isEmpty();
     }
 
-    private void setTextStep(String text){
-        tvStep.setText(text);
+    private void setHint(TextInputLayout til, String hint){
+        til.setHint(hint);
     }
 
     private void setEditInstruction(String text){

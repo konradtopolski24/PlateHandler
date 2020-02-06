@@ -2,6 +2,7 @@ package com.fatiner.platehandler.fragments.recipe.manage;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +52,8 @@ public class ManageInfoFragment extends PrimaryFragment {
     @BindViews({
             R.id.iv_spiciness0,
             R.id.iv_spiciness1,
-            R.id.iv_spiciness2})
+            R.id.iv_spiciness2,
+            R.id.iv_spiciness3})
     List<ImageView> arIvSpiciness;
     @BindView(R.id.sp_country)
     Spinner spCountry;
@@ -63,6 +65,10 @@ public class ManageInfoFragment extends PrimaryFragment {
     RadioButton rbVegetarian;
     @BindView(R.id.iv_photo)
     ImageView ivPhoto;
+    @BindView(R.id.iv_type_dw)
+    ImageView ivTypeDw;
+    @BindView(R.id.iv_country_dw)
+    ImageView ivCountryDw;
 
     @OnTextChanged(R.id.et_name)
     public void onTextChangedEtName(CharSequence text){
@@ -87,11 +93,17 @@ public class ManageInfoFragment extends PrimaryFragment {
     @OnItemSelected(R.id.sp_country)
     public void onItemSelectedSpCountry(int id){
         RecipeDetails.getRecipe().setCountry(id);
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_country);
+        int resource = arrayType.getResourceId(id, -1);
+        ivCountryDw.setImageResource(resource);
     }
 
     @OnItemSelected(R.id.sp_type)
     public void onItemSelectedSpType(int id){
         RecipeDetails.getRecipe().setType(id);
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_recipe_type);
+        int resource = arrayType.getResourceId(id, -1);
+        ivTypeDw.setImageResource(resource);
     }
 
     @OnCheckedChanged(R.id.rb_meat)
@@ -224,7 +236,7 @@ public class ManageInfoFragment extends PrimaryFragment {
     }
 
     private void setImageSpiciness(int progress){
-        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < progress; i++){
+        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < progress + 1; i++){
             arIvSpiciness.get(i).setVisibility(View.VISIBLE);
         }
     }
@@ -263,6 +275,7 @@ public class ManageInfoFragment extends PrimaryFragment {
         setTextTime(recipe.getTime());
         setSeekDifficulty(recipe.getDifficulty());
         setSeekSpiciness(recipe.getSpiciness());
+        setImageSpiciness(recipe.getSpiciness());
         setSpinCountry(recipe.getCountry());
         setSpinType(recipe.getType());
         setRadioMeat(recipe.getPreference());

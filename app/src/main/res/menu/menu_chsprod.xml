@@ -6,6 +6,7 @@
         <item
             android:id="@+id/item_settings_menu_chsprod"
             android:title="@string/mn_settings"
+            android:icon="@drawable/ic_st_settings"
             app:showAsAction="always"/>
     </group>
 </menu>

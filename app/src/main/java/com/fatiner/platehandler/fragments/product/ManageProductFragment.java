@@ -2,6 +2,7 @@ package com.fatiner.platehandler.fragments.product;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -45,6 +46,8 @@ public class ManageProductFragment extends PrimaryFragment {
     Spinner spType;
     @BindView(R.id.iv_photo)
     ImageView ivPhoto;
+    @BindView(R.id.iv_type_dw)
+    ImageView ivTypeDw;
 
     @OnTextChanged(R.id.et_name)
     public void onTextChangedEtName(CharSequence text){
@@ -80,7 +83,7 @@ public class ManageProductFragment extends PrimaryFragment {
         ivPhoto.setImageResource(android.R.color.transparent);
     }
 
-    @OnClick(R.id.fab_done)
+    @OnClick(R.id.fab_finished)
     public void onClickFabDone(){
         hideKeyboard();
         if(ProductDetails.isProductCorrect()){
@@ -93,6 +96,9 @@ public class ManageProductFragment extends PrimaryFragment {
     @OnItemSelected(R.id.sp_type)
     public void onItemSelectedSpType(int id){
         ProductDetails.getProduct().setType(id);
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_product_type);
+        int resource = arrayType.getResourceId(id, -1);
+        ivTypeDw.setImageResource(resource);
     }
 
     public ManageProductFragment() {}

@@ -3,6 +3,7 @@ package com.fatiner.platehandler.fragments.shopping;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +46,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
         setFragment(fragment);
     }
 
-    @OnClick(R.id.fab_done)
+    @OnClick(R.id.fab_finished)
     public void onClickFabDone(){
         hideKeyboard();
         if(ShoppingListDetails.isShoppingListCorrect()){
@@ -66,7 +67,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
         setMenuItem(MainGlobals.ID_SHOPPING_DRAW_MAIN);
         setRecyclerView(
                 rvPositions,
-                getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDSHOP),
+                getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),
                 new AddShoppingItemAdapter(getContext(),
                         ShoppingListDetails.getShoppingList().getShoppingItems()));
         addNewItemFirstTime();

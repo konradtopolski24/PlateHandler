@@ -49,7 +49,7 @@ public class CalculateRecipeFragment extends PrimaryFragment {
         setRecyclerView(
                 rvIngredients,
                 getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDCATEG),
-                new IngredientAdapter(getContext(), ingredients)
+                new IngredientAdapter(getContext(), ingredients, false)
         );
         calculateTotalKcal(ingredients);
         return view;

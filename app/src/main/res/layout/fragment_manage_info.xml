@@ -3,281 +3,437 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/BothMatch"
     tools:context=".fragments.recipe.manage.ManageInfoFragment">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/WidthMatch">
 
-        <!-- Photo -->
+        <android.support.v7.widget.CardView
+            style="@style/CvHeader"
+            android:id="@+id/cv_photo_hd"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/iv_photo"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="@string/iv_photo_desc"
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClHeader">
+
+                <TextView
+                    style="@style/TvHeader"
+                    android:id="@+id/tv_photo"
+                    android:text="@string/tv_add_photo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/CvData"
+            android:id="@+id/cv_photo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_photo_hd">
 
-        <ImageButton
-            android:id="@+id/ib_add"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/ib_add_desc"
-            app:layout_constraintStart_toEndOf="@+id/iv_photo"
-            app:layout_constraintTop_toTopOf="@+id/iv_photo"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_photo" />
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClData">
 
-        <ImageButton
-            android:id="@+id/ib_remove"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/ib_remove_desc"
-            app:layout_constraintStart_toEndOf="@+id/ib_add"
-            app:layout_constraintTop_toTopOf="@+id/iv_photo"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_photo"/>
+                <ImageView
+                    style="@style/IvPhoto"
+                    android:id="@+id/iv_photo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Name -->
+                <ImageButton
+                    style="@style/IbDefault"
+                    android:id="@+id/ib_add"
+                    android:src="@drawable/ic_photo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_photo" />
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/tl_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+                <ImageButton
+                    style="@style/IbDefault"
+                    android:id="@+id/ib_remove"
+                    android:src="@drawable/ic_st_delete"
+                    app:layout_constraintStart_toEndOf="@+id/ib_add"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_photo"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/CvHeader"
+            android:id="@+id/cv_name_hd"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_photo">
+            app:layout_constraintTop_toBottomOf="@+id/cv_photo">
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/et_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/et_name"
-                android:lines="1"
-                android:maxLines="1"
-                android:singleLine="true" />
-        </android.support.design.widget.TextInputLayout>
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClHeader">
 
-        <!-- Author -->
+                <TextView
+                    style="@style/TvHeader"
+                    android:id="@+id/tv_name"
+                    android:text="@string/tv_add_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/tl_author"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <android.support.v7.widget.CardView
+            style="@style/CvData"
+            android:id="@+id/cv_name"
+            app:layout_constraintTop_toBottomOf="@+id/cv_name_hd"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClData">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/TilDefault"
+                    android:id="@+id/til_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/EtDefault"
+                        android:id="@+id/et_name"
+                        android:hint="@string/et_name"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/TilDefault"
+                    android:id="@+id/til_author"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_name">
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/EtDefault"
+                        android:id="@+id/et_author"
+                        android:hint="@string/et_author"/>
+                </android.support.design.widget.TextInputLayout>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/CvHeader"
+            android:id="@+id/cv_info_hd"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tl_name">
+            app:layout_constraintTop_toBottomOf="@+id/cv_name">
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/et_author"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/et_author"
-                android:lines="1"
-                android:maxLines="1"
-                android:singleLine="true" />
-        </android.support.design.widget.TextInputLayout>
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClHeader">
 
-        <!-- Serving -->
+                <TextView
+                    style="@style/TvHeader"
+                    android:id="@+id/tv_info"
+                    android:text="@string/tv_add_info"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
 
-        <TextView
-            android:id="@+id/tv_serving_hd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/et_serving"
+        <android.support.v7.widget.CardView
+            style="@style/CvData"
+            android:id="@+id/cv_info"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tl_author" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_info_hd"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageButton
-            android:id="@+id/ib_plus"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/ib_plus_desc"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_serving_hd" />
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClData">
 
-        <TextView
-            android:id="@+id/tv_serving"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/ib_plus"
-            app:layout_constraintTop_toTopOf="@+id/ib_plus"
-            app:layout_constraintBottom_toBottomOf="@+id/ib_plus"/>
+                <!-- 1st level -->
 
-        <ImageButton
-            android:id="@+id/ib_minus"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/ib_minus_desc"
-            app:layout_constraintStart_toEndOf="@+id/tv_serving"
-            app:layout_constraintTop_toBottomOf="@+id/tv_serving_hd" />
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_serving"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_serving_hd"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-        <!-- Time -->
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_serving_hd"
+                    android:text="@string/et_serving"
+                    app:layout_constraintStart_toEndOf="@+id/iv_serving"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_time"
+                    app:layout_constraintTop_toTopOf="@+id/iv_serving"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_serving"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-        <TextView
-            android:id="@+id/tv_time_hd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_time"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ib_plus" />
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_time"
+                    app:layout_constraintStart_toEndOf="@+id/tv_serving_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_time_hd"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageButton
-            android:id="@+id/ib_time"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/ib_time_desc"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_time_hd" />
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_time_hd"
+                    android:text="@string/tv_time"
+                    app:layout_constraintStart_toEndOf="@+id/iv_time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_time"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_time"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/ib_time"
-            app:layout_constraintTop_toTopOf="@+id/ib_time"
-            app:layout_constraintBottom_toBottomOf="@+id/ib_time" />
+                <ImageButton
+                    style="@style/BothWrap"
+                    android:id="@+id/ib_plus"
+                    android:src="@drawable/ic_plus"
+                    app:layout_constraintStart_toStartOf="@+id/tv_serving_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_serving_hd" />
 
-        <!-- Difficulty -->
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_serving"
+                    android:gravity="center"
+                    app:layout_constraintStart_toEndOf="@+id/ib_plus"
+                    app:layout_constraintEnd_toStartOf="@+id/ib_minus"
+                    app:layout_constraintTop_toTopOf="@+id/ib_plus"
+                    app:layout_constraintBottom_toBottomOf="@+id/ib_plus"/>
 
-        <TextView
-            android:id="@+id/tv_difficulty_hd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_difficulty"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ib_time" />
+                <ImageButton
+                    style="@style/BothWrap"
+                    android:id="@+id/ib_minus"
+                    android:src="@drawable/ic_minus"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_serving_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_serving_hd" />
 
-        <TextView
-            android:id="@+id/tv_difficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_hd" />
+                <ImageButton
+                    style="@style/BothWrap"
+                    android:id="@+id/ib_time"
+                    android:src="@drawable/ic_time"
+                    app:layout_constraintStart_toStartOf="@+id/tv_time_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_time_hd" />
 
-        <SeekBar
-            android:id="@+id/sb_difficulty"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_difficulty" />
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_time"
+                    app:layout_constraintStart_toEndOf="@+id/ib_time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ib_time"
+                    app:layout_constraintBottom_toBottomOf="@+id/ib_time" />
 
-        <!-- Spiciness -->
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ib_time"/>
 
-        <TextView
-            android:id="@+id/tv_spiciness_hd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_spiciness"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sb_difficulty" />
+                <!-- 2nd level -->
 
-        <ImageView
-            android:id="@+id/iv_spiciness0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_spiciness"
-            android:contentDescription="@string/iv_spiciness_desc"
-            app:layout_constraintStart_toEndOf="@+id/tv_spiciness_hd"
-            app:layout_constraintTop_toTopOf="@+id/tv_spiciness_hd"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_spiciness_hd" />
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_difficulty"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_difficulty_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line1"/>
 
-        <ImageView
-            android:id="@+id/iv_spiciness1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_spiciness"
-            android:contentDescription="@string/iv_spiciness_desc"
-            app:layout_constraintStart_toEndOf="@+id/iv_spiciness0"
-            app:layout_constraintTop_toTopOf="@+id/tv_spiciness_hd"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_spiciness_hd" />
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_difficulty_hd"
+                    android:text="@string/tv_difficulty"
+                    app:layout_constraintStart_toEndOf="@+id/iv_difficulty"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_difficulty"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_difficulty"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-        <ImageView
-            android:id="@+id/iv_spiciness2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_spiciness"
-            android:contentDescription="@string/iv_spiciness_desc"
-            app:layout_constraintStart_toEndOf="@+id/iv_spiciness1"
-            app:layout_constraintTop_toTopOf="@+id/tv_spiciness_hd"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_spiciness_hd" />
+                <SeekBar
+                    style="@style/SbDefault"
+                    android:id="@+id/sb_difficulty"
+                    app:layout_constraintStart_toStartOf="@+id/tv_difficulty_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_difficulty_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_hd" />
 
-        <SeekBar
-            android:id="@+id/sb_spiciness"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_spiciness_hd" />
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_difficulty"
+                    app:layout_constraintStart_toStartOf="@+id/sb_difficulty"
+                    app:layout_constraintEnd_toEndOf="@+id/sb_difficulty"
+                    app:layout_constraintTop_toBottomOf="@+id/sb_difficulty" />
 
-        <!-- Country -->
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_difficulty"/>
 
-        <TextView
-            android:id="@+id/tv_country_hd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_country"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sb_spiciness" />
+                <!-- 3rd level -->
 
-        <Spinner
-            android:id="@+id/sp_country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/ar_country"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_country_hd" />
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_spiciness"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_spiciness_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line2"/>
 
-        <!-- Type -->
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_spiciness_hd"
+                    android:text="@string/tv_spiciness"
+                    app:layout_constraintStart_toEndOf="@+id/iv_spiciness"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_spiciness"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_spiciness"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-        <TextView
-            android:id="@+id/tv_type_hd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_type"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sp_country" />
+                <SeekBar
+                    style="@style/SbDefault"
+                    android:id="@+id/sb_spiciness"
+                    app:layout_constraintStart_toStartOf="@+id/tv_spiciness_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_spiciness_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_spiciness_hd"/>
 
-        <Spinner
-            android:id="@+id/sp_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/ar_recipe_type"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_type_hd" />
+                <ImageView
+                    style="@style/IvSpiciness"
+                    android:id="@+id/iv_spiciness0"
+                    app:layout_constraintStart_toStartOf="@+id/sb_spiciness"
+                    app:layout_constraintTop_toBottomOf="@+id/sb_spiciness"/>
 
-        <!-- Preferences -->
+                <ImageView
+                    style="@style/IvSpiciness"
+                    android:id="@+id/iv_spiciness1"
+                    app:layout_constraintStart_toEndOf="@+id/iv_spiciness0"
+                    app:layout_constraintTop_toBottomOf="@+id/sb_spiciness" />
 
-        <TextView
-            android:id="@+id/tv_preferences_hd"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_preferences"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sp_type" />
-        
-        <RadioGroup
-            android:id="@+id/rg_preference"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_preferences_hd">
+                <ImageView
+                    style="@style/IvSpiciness"
+                    android:id="@+id/iv_spiciness2"
+                    app:layout_constraintStart_toEndOf="@+id/iv_spiciness1"
+                    app:layout_constraintTop_toBottomOf="@+id/sb_spiciness"/>
 
-            <RadioButton
-                android:id="@+id/rb_meat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/rb_meat"/>
+                <ImageView
+                    style="@style/IvSpiciness"
+                    android:id="@+id/iv_spiciness3"
+                    app:layout_constraintStart_toEndOf="@+id/iv_spiciness2"
+                    app:layout_constraintTop_toBottomOf="@+id/sb_spiciness"/>
 
-            <RadioButton
-                android:id="@+id/rb_vegetarian"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:hint="@string/rb_vegetarian" />
-        </RadioGroup>
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_spiciness0"/>
+
+                <!-- 4th level -->
+
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_country"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_country_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line3"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_country_hd"
+                    android:text="@string/tv_country"
+                    app:layout_constraintStart_toEndOf="@+id/iv_country"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_type"
+                    app:layout_constraintTop_toTopOf="@+id/iv_country"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_country"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_type"
+                    app:layout_constraintStart_toEndOf="@+id/tv_country_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_type_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line3"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_type_hd"
+                    android:text="@string/tv_type"
+                    app:layout_constraintStart_toEndOf="@+id/iv_type"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_type"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_type"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <Spinner
+                    style="@style/WidthZero"
+                    android:id="@+id/sp_country"
+                    android:entries="@array/ar_country"
+                    app:layout_constraintStart_toStartOf="@+id/tv_country_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_country_dw"
+                    app:layout_constraintTop_toTopOf="@+id/iv_country_dw"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_country_dw" />
+
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_country_dw"
+                    app:layout_constraintStart_toEndOf="@+id/sp_country"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_country_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_country_hd"/>
+
+                <Spinner
+                    style="@style/WidthZero"
+                    android:id="@+id/sp_type"
+                    android:entries="@array/ar_recipe_type"
+                    app:layout_constraintStart_toStartOf="@+id/tv_type_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_type_dw"
+                    app:layout_constraintTop_toTopOf="@+id/iv_type_dw"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_type_dw" />
+
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_type_dw"
+                    app:layout_constraintStart_toEndOf="@+id/sp_type"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_type_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_type_hd"/>
+
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_type_dw"/>
+
+                <!-- 5th level -->
+
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_preference"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_preference_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line4"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_preference_hd"
+                    android:text="@string/tv_preferences"
+                    app:layout_constraintStart_toEndOf="@+id/iv_preference"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_preference"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_preference"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <RadioGroup
+                    style="@style/RgDefault"
+                    android:id="@+id/rg_preference"
+                    app:layout_constraintStart_toStartOf="@+id/tv_preference_hd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_preference_hd">
+
+                    <RadioButton
+                        style="@style/RbDefault"
+                        android:id="@+id/rb_meat"
+                        android:hint="@string/rb_meat"
+                        android:drawableEnd="@drawable/ic_pf_meat"/>
+
+                    <RadioButton
+                        style="@style/RbDefault"
+                        android:id="@+id/rb_vegetarian"
+                        android:hint="@string/rb_vegetarian"
+                        android:checked="true"
+                        android:drawableEnd="@drawable/ic_pf_vegetarian"/>
+                </RadioGroup>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

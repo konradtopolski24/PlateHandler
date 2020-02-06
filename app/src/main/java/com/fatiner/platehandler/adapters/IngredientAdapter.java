@@ -1,38 +1,46 @@
 package com.fatiner.platehandler.adapters;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.fatiner.platehandler.classes.Ingredient;
 import com.fatiner.platehandler.R;
+import com.fatiner.platehandler.classes.Ingredient;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.IngredientHolder>{
 
     private Context context;
     private ArrayList<Ingredient> ingredients;
+    private boolean isShowing;
 
-    public IngredientAdapter(Context context, ArrayList<Ingredient> ingredients){
+    public IngredientAdapter(Context context, ArrayList<Ingredient> ingredients, boolean isShowing){
         this.context = context;
         this.ingredients = ingredients;
+        this.isShowing = isShowing;
     }
 
     @NonNull
     @Override
     public IngredientHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        ConstraintLayout layout = (ConstraintLayout) inflater.inflate(
+        CardView layout = (CardView) inflater.inflate(
                 R.layout.layout_ingredient,
                 parent,
                 false);
@@ -41,11 +49,16 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     @Override
     public void onBindViewHolder(@NonNull IngredientHolder holder, int position) {
+        if(isShowing)
+            showCbDone(holder);
         Ingredient ingredient = ingredients.get(position);
         setTextAmount(holder, ingredient.getAmount());
         String[] arrayMeasure = getArrayMeasure();
         setTextMeasure(holder, arrayMeasure[ingredient.getMeasure()]);
         setTextProduct(holder, ingredient.getProduct().getName());
+        TypedArray arrayType = context.getResources().obtainTypedArray(R.array.ar_drawable_product_type);
+        int resource = arrayType.getResourceId(ingredient.getProduct().getType(), -1);
+        holder.ivIcon.setImageResource(resource);
     }
 
     @Override
@@ -69,6 +82,10 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         holder.tvProduct.setText(name);
     }
 
+    private void showCbDone(IngredientHolder holder){
+        holder.cbDone.setVisibility(View.VISIBLE);
+    }
+
     public class IngredientHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.tv_amount)
@@ -77,10 +94,39 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         TextView tvMeasure;
         @BindView(R.id.tv_product)
         TextView tvProduct;
+        @BindView(R.id.tv_times)
+        TextView tvTimes;
+        @BindView(R.id.tv_used)
+        TextView tvUsed;
+        @BindView(R.id.iv_measure)
+        ImageView ivMeasure;
+        @BindView(R.id.cb_done)
+        CheckBox cbDone;
+        @BindView(R.id.iv_icon)
+        ImageView ivIcon;
 
         public IngredientHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        @OnCheckedChanged(R.id.cb_done)
+        public void onCheckedChangedSwFavorite(boolean checked){
+            if(checked) {
+                ivMeasure.setAlpha(0.1f);
+                tvAmount.setAlpha(0.1f);
+                tvMeasure.setAlpha(0.1f);
+                tvProduct.setAlpha(0.1f);
+                tvTimes.setAlpha(0.1f);
+                tvUsed.setVisibility(View.VISIBLE);
+            } else {
+                ivMeasure.setAlpha(1.0f);
+                tvAmount.setAlpha(1.0f);
+                tvMeasure.setAlpha(1.0f);
+                tvProduct.setAlpha(1.0f);
+                tvTimes.setAlpha(1.0f);
+                tvUsed.setVisibility(View.GONE);
+            }
         }
     }
 }

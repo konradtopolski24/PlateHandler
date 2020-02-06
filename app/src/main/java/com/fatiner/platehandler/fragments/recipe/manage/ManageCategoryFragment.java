@@ -3,6 +3,7 @@ package com.fatiner.platehandler.fragments.recipe.manage;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
         addNewItem();
     }
 
-    @OnClick(R.id.fab_done)
+    @OnClick(R.id.fab_finished)
     public void onClickFabAdd(){
         hideKeyboard();
         if(isCategoryCorrect()){
@@ -192,7 +193,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
     private void readProductsFinished(ArrayList<Product> products) {
         setRecyclerView(
                 rvIngredients,
-                getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDCATEG),
+                getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),
                 new AddIngredientAdapter(getContext(), getTempIngredients(), products)
         );
         chooseStartingAction();

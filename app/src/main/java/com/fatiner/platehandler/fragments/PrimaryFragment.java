@@ -1,5 +1,7 @@
 package com.fatiner.platehandler.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,14 +9,20 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.constraint.ConstraintSet;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fatiner.platehandler.R;
@@ -80,6 +88,15 @@ public class PrimaryFragment extends Fragment {
         return new LinearLayoutManager(getContext(), orientation, false);
     }
 
+    protected LinearLayoutManager getLayoutManagerNoScroll(int orientation){
+        return new LinearLayoutManager(getContext(), orientation, false) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+    }
+
     protected void recipeSuccess(int id){
         showShortSnack(id);
         resetRecipeDetails();
@@ -138,7 +155,7 @@ public class PrimaryFragment extends Fragment {
 
     protected String getStepHeader(int id){
         int actualId = id + MainGlobals.INT_INCREMENT_VAR_INIT;
-        return getString(R.string.tv_step) + MainGlobals.STR_SPACE_OBJ_INIT + actualId + MainGlobals.STR_COLON_OBJ_INIT;
+        return getString(R.string.tv_step) + MainGlobals.STR_SPACE_OBJ_INIT + actualId;
     }
 
     protected void selectPhoto(){
@@ -232,5 +249,88 @@ public class PrimaryFragment extends Fragment {
             value = Float.valueOf(String.valueOf(text));
         }
         return value;
+    }
+
+    protected void showView(View view) {
+        view.setAlpha(0f);
+        view.setVisibility(View.VISIBLE);
+        view.animate()
+                .alpha(1f)
+                .setDuration(getAnimationDuration())
+                .setListener(null);
+    }
+
+    protected void hideView(View view) {
+        view.animate()
+                .alpha(0f)
+                .setDuration(getAnimationDuration())
+                .setListener(getAnimatorAdapter(view));
+    }
+
+    private int getAnimationDuration() {
+        return getResources().getInteger(android.R.integer.config_mediumAnimTime);
+    }
+
+    private AnimatorListenerAdapter getAnimatorAdapter(final View view) {
+        return new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                view.setAlpha(1f);
+                removeView(view);
+            }
+        };
+    }
+
+    protected void removeView(View view) {
+        view.setVisibility(View.GONE);
+    }
+
+    protected void rotateView(View view, boolean isOpening) {
+        int rotate = getRotate(isOpening);
+        Animation animation = AnimationUtils.loadAnimation(getContext(), rotate);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+    }
+
+    private int getRotate(boolean isOpening) {
+        if(isOpening) {
+            return R.anim.rotate_open;
+        } else {
+            return R.anim.rotate_close;
+        }
+    }
+
+    protected void manageExpandCardView(CardView cv, ImageView iv) {
+        if(cv.getVisibility() == View.VISIBLE){
+            hideView(cv);
+            rotateView(iv, false);
+        } else {
+            showView(cv);
+            rotateView(iv, true);
+        }
+    }
+
+    protected void setTv(TextView tv, String text){
+        tv.setText(text);
+    }
+
+    protected void setTv(TextView tv, int id){
+        tv.setText(getString(id));
+    }
+
+    protected void setTv(TextView tv, float text, int idUnit) {
+        String full = text + MainGlobals.STR_SPACE_OBJ_INIT + getString(idUnit);
+        tv.setText(full);
+    }
+
+    protected void setTv(TextView tv, int id, int idArray){
+        String[] array = getStringArray(idArray);
+        tv.setText(array[id]);
+    }
+
+    protected void checkIfRvEmpty(RecyclerView rv, TextView tvEmpty) {
+        if (rv.getAdapter() != null && rv.getAdapter().getItemCount() == 0) {
+            showView(tvEmpty);
+        }
     }
 }

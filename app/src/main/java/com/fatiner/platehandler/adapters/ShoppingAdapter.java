@@ -26,10 +26,12 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
 
     private Context context;
     private ArrayList<ShoppingItem> shoppingItems;
+    private OnShoppingListener listener;
 
-    public ShoppingAdapter(Context context, ArrayList<ShoppingItem> shoppingItems){
+    public ShoppingAdapter(Context context, ArrayList<ShoppingItem> shoppingItems, OnShoppingListener listener){
         this.context = context;
         this.shoppingItems = shoppingItems;
+        this.listener = listener;
     }
 
     @NonNull
@@ -47,9 +49,9 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
     public void onBindViewHolder(@NonNull ShoppingHolder holder, int position) {
         ShoppingItem item = shoppingItems.get(position);
         String[] arrayMeasure = getArrayMeasure();
-        String wholeText = item.getAmount()
-                + MainGlobals.STR_SPACE_OBJ_INIT + arrayMeasure[item.getMeasure()]
-                + MainGlobals.STR_SPACE_OBJ_INIT + item.getName();
+        String wholeText = item.getName() + MainGlobals.STR_SPACE_OBJ_INIT
+                + MainGlobals.STR_BRACKER_LEFT + item.getAmount() + MainGlobals.STR_SPACE_OBJ_INIT
+                + arrayMeasure[item.getMeasure()] + MainGlobals.STR_BRACKER_RIGHT;
         setTextItem(holder, wholeText);
         setCrossedOut(holder, item.isCrossedOut());
     }
@@ -89,6 +91,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
         @OnClick(R.id.tv_item)
         public void onClickTextItem(){
             crossOutPosition();
+            listener.onClickShoppingItem();
         }
 
         public ShoppingHolder(View itemView) {
@@ -113,5 +116,9 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
             String json = TypeManager.shoppingListToJson(ShoppingListDetails.getShoppingList());
             SharedShoppingManager.setSharedList(context, json);
         }
+    }
+
+    public interface OnShoppingListener {
+        void onClickShoppingItem();
     }
 }

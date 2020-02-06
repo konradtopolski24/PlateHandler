@@ -1,14 +1,18 @@
 package com.fatiner.platehandler.fragments.shopping;
 
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.ShoppingAdapter;
+import com.fatiner.platehandler.classes.ShoppingItem;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.globals.MainGlobals;
@@ -16,21 +20,50 @@ import com.fatiner.platehandler.classes.ShoppingList;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.shared.SharedShoppingManager;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ShowShoppingFragment extends PrimaryFragment {
+public class ShowShoppingFragment extends PrimaryFragment implements ShoppingAdapter.OnShoppingListener {
 
     @BindView(R.id.tv_date)
     TextView tvDate;
+    @BindView(R.id.tv_state)
+    TextView tvState;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
     @BindView(R.id.rv_shopping)
     RecyclerView rvShopping;
+    @BindView(R.id.cv_info)
+    CardView cvInfo;
+    @BindView(R.id.cv_list)
+    CardView cvList;
+    @BindView(R.id.iv_info)
+    ImageView ivInfo;
+    @BindView(R.id.iv_list)
+    ImageView ivList;
 
     @OnClick(R.id.bt_create)
     public void onClickBtCreate(){
         resetShoppingListDetails();
         setFragment(new CreateShoppingFragment());
+    }
+
+    @OnClick(R.id.rv_shopping)
+    public void onClickRvShopping(){
+        checkState();
+    }
+
+    @OnClick(R.id.cv_info_hd)
+    public void onClickFbAdd(){
+        manageExpandCardView(cvInfo, ivInfo);
+    }
+
+    @OnClick(R.id.cv_list_hd)
+    public void onClickFaAdd(){
+        manageExpandCardView(cvList, ivList);
     }
 
     public ShowShoppingFragment() {}
@@ -45,9 +78,10 @@ public class ShowShoppingFragment extends PrimaryFragment {
         setShoppingListWithJson();
         setRecyclerView(
                 rvShopping,
-                getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_SHOPPING),
+                getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),
                 new ShoppingAdapter(getContext(),
-                ShoppingListDetails.getShoppingList().getShoppingItems()));
+                ShoppingListDetails.getShoppingList().getShoppingItems(), this));
+        checkIfRvEmpty(rvShopping, tvEmpty);
         return view;
     }
 
@@ -59,11 +93,33 @@ public class ShowShoppingFragment extends PrimaryFragment {
             ShoppingListDetails.getShoppingList().setShoppingItems(
                     shoppingList.getShoppingItems());
             ShoppingListDetails.getShoppingList().setDate(shoppingList.getDate());
-            setTvDate(ShoppingListDetails.getShoppingList().getDate());
+            setTv(tvDate, ShoppingListDetails.getShoppingList().getDate());
+            checkState();
+        } else {
+            setTv(tvDate, R.string.tv_none);
+            setTv(tvState, R.string.tv_none);
         }
     }
 
-    private void setTvDate(String date){
-        tvDate.setText(date);
+    private void checkState() {
+        int size = ShoppingListDetails.getShoppingList().getShoppingItems().size();
+        int checked = getCheckedShopping();
+        String state =  checked + MainGlobals.STR_SLASH_OBJ_INIT + size;
+        setTv(tvState, state);
+    }
+
+    private int getCheckedShopping() {
+        int checked = 0;
+        ArrayList<ShoppingItem> items = ShoppingListDetails.getShoppingList().getShoppingItems();
+        for (ShoppingItem item : items) {
+            if (item.isCrossedOut())
+                checked++;
+        }
+        return checked;
+    }
+
+    @Override
+    public void onClickShoppingItem() {
+        checkState();
     }
 }

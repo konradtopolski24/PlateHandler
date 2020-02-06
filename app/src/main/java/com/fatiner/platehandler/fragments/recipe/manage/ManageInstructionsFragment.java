@@ -1,10 +1,12 @@
 package com.fatiner.platehandler.fragments.recipe.manage;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.StepAdapter;
@@ -16,10 +18,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ManageInstructionsFragment extends PrimaryFragment {
+public class ManageInstructionsFragment extends PrimaryFragment implements StepAdapter.OnStepListener {
 
     @BindView(R.id.rv_steps)
-    RecyclerView recycSteps;
+    RecyclerView rvSteps;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
 
     @OnClick(R.id.bt_add)
     public void onClickBtAdd(){
@@ -36,10 +40,16 @@ public class ManageInstructionsFragment extends PrimaryFragment {
         hideKeyboard();
         setMenuItem(MainGlobals.ID_RECIPES_DRAW_MAIN);
         setRecyclerView(
-                recycSteps,
-                getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDSTEP),
+                rvSteps,
+                getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),
                 new StepAdapter(getContext(),
-                        RecipeDetails.getRecipe().getSteps(), false));
+                        RecipeDetails.getRecipe().getSteps(), false, this));
+        checkIfRvEmpty(rvSteps, tvEmpty);
         return view;
+    }
+
+    @Override
+    public void onClickRemove() {
+        checkIfRvEmpty(rvSteps, tvEmpty);
     }
 }

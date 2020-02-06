@@ -7,32 +7,48 @@
         <item
             android:id="@+id/item_main_draw_main"
             android:title="@string/nv_main"
-            android:icon="@drawable/ic_home"/>
-        <item
-            android:id="@+id/item_recipes_draw_main"
-            android:title="@string/nv_recipes"
-            android:icon="@drawable/ic_recipe"/>
-        <item
-            android:id="@+id/item_shopping_draw_main"
-            android:title="@string/nv_shopping"
-            android:icon="@drawable/ic_shopping"/>
-        <item
-            android:id="@+id/item_ingredients_draw_main"
-            android:title="@string/nv_products"
-            android:icon="@drawable/ic_product"/>
+            android:icon="@drawable/ic_dl_home"/>
     </group>
 
     <group
         android:id="@+id/gr_2"
         android:checkableBehavior="single">
         <item
+            android:id="@+id/item_recipes_draw_main"
+            android:title="@string/nv_recipes"
+            android:icon="@drawable/ic_dl_recipe"/>
+
+        <item
+            android:id="@+id/item_ingredients_draw_main"
+            android:title="@string/nv_products"
+            android:icon="@drawable/ic_dl_product"/>
+
+        <item
+            android:id="@+id/item_shopping_draw_main"
+            android:title="@string/nv_shopping"
+            android:icon="@drawable/ic_dl_shopping"/>
+    </group>
+
+    <group
+        android:id="@+id/gr_3"
+        android:checkableBehavior="single">
+        <item
             android:id="@+id/item_export_draw_main"
             android:title="@string/nv_export"
-            android:icon="@drawable/ic_product"/>
+            android:icon="@drawable/ic_dl_export"/>
 
         <item
             android:id="@+id/item_import_draw_main"
             android:title="@string/nv_import"
-            android:icon="@drawable/ic_product"/>
+            android:icon="@drawable/ic_dl_import"/>
+    </group>
+
+    <group
+        android:id="@+id/gr_4"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_credits_draw_main"
+            android:title="@string/nv_credits"
+            android:icon="@drawable/ic_dl_credits"/>
     </group>
 </menu>

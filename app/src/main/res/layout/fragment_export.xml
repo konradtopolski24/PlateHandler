@@ -3,33 +3,151 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/BothMatch"
     tools:context=".fragments.export.ExportFragment">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/tl_export"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <ScrollView
+        style="@style/BothMatch"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/et_export"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/et_export"
-            android:lines="1"
-            android:maxLines="1"
-            android:singleLine="true" />
-    </android.support.design.widget.TextInputLayout>
+        <android.support.constraint.ConstraintLayout
+            style="@style/WidthMatch">
 
-    <Button
-        android:id="@+id/bt_export"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tl_export" />
+            <android.support.v7.widget.CardView
+                style="@style/CvHeader"
+                android:id="@+id/cv_name_hd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                    style="@style/ClHeader">
+
+                    <TextView
+                        style="@style/TvHeader"
+                        android:id="@+id/tv_name"
+                        android:text="@string/tv_add_export"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                style="@style/CvData"
+                android:id="@+id/cv_name"
+                app:layout_constraintTop_toBottomOf="@+id/cv_name_hd"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                    style="@style/ClData">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/TilDefault"
+                        android:id="@+id/til_export"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            style="@style/EtDefault"
+                            android:id="@+id/et_export"
+                            android:hint="@string/et_name"/>
+                    </android.support.design.widget.TextInputLayout>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                style="@style/CvHeader"
+                android:id="@+id/cv_info_hd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_name">
+
+                <android.support.constraint.ConstraintLayout
+                    style="@style/ClHeader">
+
+                    <TextView
+                        style="@style/TvHeader"
+                        android:id="@+id/tv_info"
+                        android:text="@string/tv_export_info"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_info"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <ImageView
+                        style="@style/IvHeader"
+                        android:id="@+id/iv_info"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_info"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_info"/>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                style="@style/CvData"
+                android:id="@+id/cv_info"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_info_hd">
+
+                <android.support.constraint.ConstraintLayout
+                    style="@style/ClData">
+
+                    <ImageView
+                        style="@style/IvInfoExport"
+                        android:id="@+id/iv_saved"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_saved_hd"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        style="@style/TvInfo"
+                        android:id="@+id/tv_saved_hd"
+                        android:text="@string/tv_saved"
+                        app:layout_constraintStart_toEndOf="@+id/iv_saved"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_unsaved"
+                        app:layout_constraintTop_toTopOf="@+id/iv_saved"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_saved"
+                        app:layout_constraintHorizontal_weight="1"/>
+
+                    <ImageView
+                        style="@style/IvInfoExport"
+                        android:id="@+id/iv_unsaved"
+                        app:layout_constraintStart_toEndOf="@+id/tv_saved_hd"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_unsaved_hd"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        style="@style/TvInfo"
+                        android:id="@+id/tv_unsaved_hd"
+                        android:text="@string/tv_unsaved"
+                        app:layout_constraintStart_toEndOf="@+id/iv_unsaved"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/iv_unsaved"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_unsaved"
+                        app:layout_constraintHorizontal_weight="1"/>
+
+                    <TextView
+                        style="@style/WidthZero"
+                        android:id="@+id/tv_saved"
+                        app:layout_constraintStart_toStartOf="@+id/tv_saved_hd"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_saved_hd"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_saved_hd"/>
+
+                    <TextView
+                        style="@style/WidthZero"
+                        android:id="@+id/tv_unsaved"
+                        app:layout_constraintStart_toStartOf="@+id/tv_unsaved_hd"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_unsaved_hd"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_unsaved_hd"/>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        style="@style/FabDefault"
+        android:id="@+id/fab_export"
+        android:src="@drawable/ic_finished"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </android.support.constraint.ConstraintLayout>

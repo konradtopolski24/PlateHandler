@@ -1,224 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/BothMatch"
     tools:context=".fragments.recipe.SettingsRecipeFragment">
 
-    <!-- Alphabetical -->
+    <android.support.constraint.ConstraintLayout
+        style="@style/WidthMatch">
 
-    <TextView
-        android:id="@+id/tv_alphabetical_hd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_alphabetical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        <android.support.v7.widget.CardView
+            style="@style/CvHeader"
+            android:id="@+id/cv_settings_hd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <Switch
-        android:id="@+id/sw_alphabetical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_alphabetical_hd"
-        app:layout_constraintTop_toTopOf="@+id/tv_alphabetical_hd"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_alphabetical_hd" />
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClHeader">
 
-    <!-- Favorite -->
+                <TextView
+                    style="@style/TvHeader"
+                    android:id="@+id/tv_settings"
+                    android:text="@string/tv_add_settings"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
 
-    <TextView
-        android:id="@+id/tv_favorite_hd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_favorite"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_alphabetical_hd" />
+        <android.support.v7.widget.CardView
+            style="@style/CvData"
+            android:id="@+id/cv_settings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_settings_hd"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-    <Switch
-        android:id="@+id/sw_favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_favorite_hd"
-        app:layout_constraintTop_toTopOf="@+id/tv_favorite_hd"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_favorite_hd" />
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClData">
 
-    <!-- Author -->
+                <!-- 1st level -->
 
-    <TextView
-        android:id="@+id/tv_author_hd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/et_author"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_favorite_hd"/>
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_alphabetical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_alphabetical_hd"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-    <Switch
-        android:id="@+id/sw_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_author_hd"
-        app:layout_constraintTop_toTopOf="@+id/tv_author_hd"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_author_hd"/>
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_alphabetical_hd"
+                    android:text="@string/tv_alphabetical"
+                    app:layout_constraintStart_toEndOf="@+id/iv_alphabetical"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_favorite"
+                    app:layout_constraintTop_toTopOf="@+id/iv_alphabetical"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_alphabetical"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-    <Spinner
-        android:id="@+id/sp_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/sw_author"
-        app:layout_constraintTop_toTopOf="@+id/sw_author"
-        app:layout_constraintBottom_toBottomOf="@+id/sw_author" />
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_favorite"
+                    app:layout_constraintStart_toEndOf="@+id/tv_alphabetical_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_favorite_hd"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-    <!-- Difficulty -->
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_favorite_hd"
+                    android:text="@string/tv_favorite"
+                    app:layout_constraintStart_toEndOf="@+id/iv_favorite"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_favorite"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_favorite"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-    <TextView
-        android:id="@+id/tv_difficulty_hd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_difficulty"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_author_hd"/>
+                <Switch
+                    style="@style/BothWrap"
+                    android:id="@+id/sw_alphabetical"
+                    app:layout_constraintStart_toStartOf="@+id/tv_alphabetical_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_alphabetical_hd"/>
 
-    <Switch
-        android:id="@+id/sw_difficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_difficulty_hd"
-        app:layout_constraintTop_toTopOf="@+id/tv_difficulty_hd"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_difficulty_hd"/>
+                <Switch
+                    style="@style/BothWrap"
+                    android:id="@+id/sw_favorite"
+                    app:layout_constraintStart_toStartOf="@+id/tv_favorite_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_favorite_hd"/>
 
-    <SeekBar
-        android:id="@+id/sb_difficulty"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/sw_difficulty"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sw_difficulty"
-        app:layout_constraintBottom_toBottomOf="@+id/sw_difficulty"/>
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sw_favorite"/>
 
-    <!-- Spiciness -->
+                <!-- 2nd level -->
 
-    <TextView
-        android:id="@+id/tv_spiciness_hd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_spiciness"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_hd"/>
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_author"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_author_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line1"/>
 
-    <Switch
-        android:id="@+id/sw_spiciness"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_spiciness_hd"
-        app:layout_constraintTop_toTopOf="@+id/tv_spiciness_hd"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_spiciness_hd"/>
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_author_hd"
+                    android:text="@string/et_author"
+                    app:layout_constraintStart_toEndOf="@+id/iv_author"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_difficulty"
+                    app:layout_constraintTop_toTopOf="@+id/iv_author"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_author"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-    <SeekBar
-        android:id="@+id/sb_spiciness"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/sw_spiciness"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sw_spiciness"
-        app:layout_constraintBottom_toBottomOf="@+id/sw_spiciness"/>
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_difficulty"
+                    app:layout_constraintStart_toEndOf="@+id/tv_author_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_difficulty_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line1"/>
 
-    <!-- Country -->
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_difficulty_hd"
+                    android:text="@string/tv_difficulty"
+                    app:layout_constraintStart_toEndOf="@+id/iv_difficulty"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_difficulty"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_difficulty"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-    <TextView
-        android:id="@+id/tv_country_hd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_country"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_spiciness_hd"/>
+                <Switch
+                    style="@style/BothWrap"
+                    android:id="@+id/sw_author"
+                    app:layout_constraintStart_toStartOf="@+id/tv_author_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_author_hd"/>
 
-    <Switch
-        android:id="@+id/sw_country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_country_hd"
-        app:layout_constraintTop_toTopOf="@+id/tv_country_hd"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_country_hd"/>
+                <Spinner
+                    style="@style/SpInvisible"
+                    android:id="@+id/sp_author"
+                    app:layout_constraintStart_toEndOf="@+id/sw_author"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_author_hd"
+                    app:layout_constraintTop_toTopOf="@+id/sw_author"
+                    app:layout_constraintBottom_toBottomOf="@+id/sw_author"/>
 
-    <Spinner
-        android:id="@+id/sp_country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/ar_country"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/sw_country"
-        app:layout_constraintTop_toTopOf="@+id/sw_country"
-        app:layout_constraintBottom_toBottomOf="@+id/sw_country" />
+                <Switch
+                    style="@style/BothWrap"
+                    android:id="@+id/sw_difficulty"
+                    app:layout_constraintStart_toStartOf="@+id/tv_difficulty_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_hd"/>
 
-    <!-- Type -->
+                <Spinner
+                    style="@style/SpInvisible"
+                    android:id="@+id/sp_difficulty"
+                    android:entries="@array/ar_difficulty"
+                    app:layout_constraintStart_toEndOf="@+id/sw_difficulty"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_difficulty_hd"
+                    app:layout_constraintTop_toTopOf="@+id/sw_difficulty"
+                    app:layout_constraintBottom_toBottomOf="@+id/sw_difficulty"/>
 
-    <TextView
-        android:id="@+id/tv_type_hd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_type"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_country_hd"/>
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sw_difficulty"/>
 
-    <Switch
-        android:id="@+id/sw_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_type_hd"
-        app:layout_constraintTop_toTopOf="@+id/tv_type_hd"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_type_hd"/>
+                <!-- 3rd level -->
 
-    <Spinner
-        android:id="@+id/sp_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/ar_recipe_type"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/sw_type"
-        app:layout_constraintTop_toTopOf="@+id/sw_type"
-        app:layout_constraintBottom_toBottomOf="@+id/sw_type"/>
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_spiciness"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_spiciness_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line2"/>
 
-    <!-- Preference -->
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_spiciness_hd"
+                    android:text="@string/tv_spiciness"
+                    app:layout_constraintStart_toEndOf="@+id/iv_spiciness"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_country"
+                    app:layout_constraintTop_toTopOf="@+id/iv_spiciness"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_spiciness"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-    <TextView
-        android:id="@+id/tv_preference_hd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_preferences"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_type_hd"/>
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_country"
+                    app:layout_constraintStart_toEndOf="@+id/tv_spiciness_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_country_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line2"/>
 
-    <Switch
-        android:id="@+id/sw_preference"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_preference_hd"
-        app:layout_constraintTop_toTopOf="@+id/tv_preference_hd"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_preference_hd"/>
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_country_hd"
+                    android:text="@string/tv_country"
+                    app:layout_constraintStart_toEndOf="@+id/iv_country"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_country"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_country"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-    <RadioGroup
-        android:id="@+id/rg_preference"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_preference_hd">
+                <Switch
+                    style="@style/BothWrap"
+                    android:id="@+id/sw_spiciness"
+                    app:layout_constraintStart_toStartOf="@+id/tv_spiciness_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_spiciness_hd"/>
 
-        <RadioButton
-            android:id="@+id/rb_meat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/rb_meat" />
+                <Spinner
+                    style="@style/SpInvisible"
+                    android:id="@+id/sp_spiciness"
+                    android:entries="@array/ar_spiciness"
+                    app:layout_constraintStart_toEndOf="@+id/sw_spiciness"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_spiciness_hd"
+                    app:layout_constraintTop_toTopOf="@+id/sw_spiciness"
+                    app:layout_constraintBottom_toBottomOf="@+id/sw_spiciness"/>
 
-        <RadioButton
-            android:id="@+id/rb_vegetarian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:hint="@string/rb_vegetarian" />
-    </RadioGroup>
-</android.support.constraint.ConstraintLayout>
+                <Switch
+                    style="@style/BothWrap"
+                    android:id="@+id/sw_country"
+                    app:layout_constraintStart_toStartOf="@+id/tv_country_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_country_hd"/>
+
+                <Spinner
+                    style="@style/SpInvisible"
+                    android:id="@+id/sp_country"
+                    android:entries="@array/ar_country"
+                    app:layout_constraintStart_toEndOf="@+id/sw_country"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_country_hd"
+                    app:layout_constraintTop_toTopOf="@+id/sw_country"
+                    app:layout_constraintBottom_toBottomOf="@+id/sw_country"/>
+
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sw_country"/>
+
+                <!-- 4th level -->
+
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_type"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_type_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line3"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_type_hd"
+                    android:text="@string/tv_type"
+                    app:layout_constraintStart_toEndOf="@+id/iv_type"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_preference"
+                    app:layout_constraintTop_toTopOf="@+id/iv_type"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_type"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <ImageView
+                    style="@style/IvInfoRecipe"
+                    android:id="@+id/iv_preference"
+                    app:layout_constraintStart_toEndOf="@+id/tv_type_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_preference_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line3"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_preference_hd"
+                    android:text="@string/tv_preferences"
+                    app:layout_constraintStart_toEndOf="@+id/iv_preference"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_preference"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_preference"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <Switch
+                    style="@style/BothWrap"
+                    android:id="@+id/sw_type"
+                    app:layout_constraintStart_toStartOf="@+id/tv_type_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_type_hd"/>
+
+                <Spinner
+                    style="@style/SpInvisible"
+                    android:id="@+id/sp_type"
+                    android:entries="@array/ar_recipe_type"
+                    app:layout_constraintStart_toEndOf="@+id/sw_type"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_type_hd"
+                    app:layout_constraintTop_toTopOf="@+id/sw_type"
+                    app:layout_constraintBottom_toBottomOf="@+id/sw_type"/>
+
+                <Switch
+                    style="@style/BothWrap"
+                    android:id="@+id/sw_preference"
+                    app:layout_constraintStart_toStartOf="@+id/tv_preference_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_preference_hd"/>
+
+                <Spinner
+                    style="@style/SpInvisible"
+                    android:id="@+id/sp_preference"
+                    android:entries="@array/ar_preference"
+                    app:layout_constraintStart_toEndOf="@+id/sw_preference"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_preference_hd"
+                    app:layout_constraintTop_toTopOf="@+id/sw_preference"
+                    app:layout_constraintBottom_toBottomOf="@+id/sw_preference"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

@@ -6,11 +6,13 @@
         <item
             android:id="@+id/item_edit_menu_shwprod"
             android:title="@string/mn_edit"
+            android:icon="@drawable/ic_st_edit"
             app:showAsAction="ifRoom"/>
 
         <item
             android:id="@+id/item_delete_menu_shwprod"
             android:title="@string/mn_delete"
+            android:icon="@drawable/ic_st_delete"
             app:showAsAction="ifRoom"/>
     </group>
 </menu>

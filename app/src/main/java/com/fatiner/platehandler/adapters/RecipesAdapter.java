@@ -61,52 +61,32 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
     public void onBindViewHolder(@NonNull RecipesHolder holder, int position) {
         Recipe recipe = recipes.get(position);
         setTextName(holder, recipe.getName());
-        setTextAuthor(holder, recipe.getAuthor());
-        setTextDifficulty(holder, recipe.getDifficulty());
-        String [] arrayCountries = getArrayCountries();
-        setTextCountry(holder, arrayCountries[recipe.getCountry()]);
+        setImageCountry(holder, recipe.getCountry());
         setImageType(holder, recipe.getType());
-        setImagePreference(holder, recipe.getPreference());
     }
 
-    private String[] getArrayCountries(){
-        return context.getResources().getStringArray(R.array.ar_country);
+    private TypedArray getArrayCountries(){
+        return context.getResources().obtainTypedArray(R.array.ar_drawable_country);
     }
 
     private TypedArray getArrayTypes(){
-        return context.getResources().obtainTypedArray(R.array.ar_drawable_type);
-    }
-
-    private TypedArray getArrayPreferences(){
-        return context.getResources().obtainTypedArray(R.array.ar_drawable_preference);
+        return context.getResources().obtainTypedArray(R.array.ar_drawable_recipe_type);
     }
 
     private void setTextName(RecipesHolder holder, String name){
         holder.tvName.setText(name);
     }
 
-    private void setTextAuthor(RecipesHolder holder, String author){
-        holder.tvAuthor.setText(author);
-    }
-
-    private void setTextDifficulty(RecipesHolder holder, int difficulty){
-        holder.tvDifficulty.setText(String.valueOf(difficulty));
-    }
-
-    private void setTextCountry(RecipesHolder holder, String country){
-        holder.tvCountry.setText(country);
+    private void setImageCountry(RecipesHolder holder, int type){
+        TypedArray arrayTypes = getArrayCountries();
+        holder.ivCountry.setImageResource(arrayTypes.getResourceId(type,
+                MainGlobals.INT_DECREMENT_VAR_INIT));
     }
 
     private void setImageType(RecipesHolder holder, int type){
         TypedArray arrayTypes = getArrayTypes();
         holder.ivType.setImageResource(arrayTypes.getResourceId(type,
                 MainGlobals.INT_DECREMENT_VAR_INIT));
-    }
-
-    private void setImagePreference(RecipesHolder holder, boolean preference){
-        TypedArray arrayPreferences = getArrayPreferences();
-        holder.ivPreference.setImageResource(arrayPreferences.getResourceId(
-                TypeManager.booleanToInteger(preference), MainGlobals.INT_DECREMENT_VAR_INIT));
     }
 
     @Override
@@ -118,21 +98,10 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
 
         @BindView(R.id.tv_name)
         TextView tvName;
-        @BindView(R.id.tv_author)
-        TextView tvAuthor;
-        @BindView(R.id.tv_difficulty)
-        TextView tvDifficulty;
-        @BindViews({
-                R.id.iv_spiciness0,
-                R.id.iv_spiciness1,
-                R.id.iv_spiciness2})
-        List<ImageView> arIvSpiciness;
-        @BindView(R.id.tv_country)
-        TextView tvCountry;
+        @BindView(R.id.iv_country)
+        ImageView ivCountry;
         @BindView(R.id.iv_type)
         ImageView ivType;
-        @BindView(R.id.iv_preference)
-        ImageView ivPreference;
 
         @OnClick(R.id.cl_recipe)
         public void onClickLinearLayoutRecipe(){

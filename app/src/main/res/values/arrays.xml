@@ -6,41 +6,46 @@
         <item>Hard</item>
     </string-array>
 
-    <string-array name="ar_country">
-        <item>China</item>
-        <item>Croatia</item>
-        <item>France</item>
-        <item>Greece</item>
-        <item>India</item>
-        <item>Italy</item>
-        <item>Japan</item>
-        <item>Mexico</item>
-        <item>Poland</item>
-        <item>Spain</item>
-        <item>Thailand</item>
-        <item>Turkey</item>
-        <item>USA</item>
+    <string-array name="ar_spiciness">
+        <item>Mild</item>
+        <item>Medium</item>
+        <item>Hot</item>
+        <item>Extra Hot</item>
     </string-array>
 
-    <string-array name="ar_recipe_type">
-        <item>Seasoning</item>
-        <item>Appetiser</item>
-        <item>Soup</item>
-        <item>Main Course</item>
-        <item>Salad</item>
-        <item>Sauce</item>
-        <item>Dessert</item>
-    </string-array>
-
-    <string-array name="ar_product_type">
-        <item>Vegetable</item>
-        <item>Fruit</item>
+    <string-array name="ar_preference">
+        <item>Vegetarian</item>
         <item>Meat</item>
-        <item>Dairy</item>
-        <item>Noodles</item>
-        <item>Seasoning</item>
-        <item>Sauce</item>
-        <item>Liquid</item>
+    </string-array>
+
+    <string-array name="ar_country">
+        <item>American</item>
+        <item>Austrian</item>
+        <item>Brazilian</item>
+        <item>British</item>
+        <item>Bulgarian</item>
+        <item>Chinese</item>
+        <item>Croatian</item>
+        <item>Czech</item>
+        <item>French</item>
+        <item>Georgian</item>
+        <item>German</item>
+        <item>Greek</item>
+        <item>Indian</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Mexican</item>
+        <item>Moroccan</item>
+        <item>Polish</item>
+        <item>Portuguese</item>
+        <item>Russian</item>
+        <item>South Korean</item>
+        <item>Spanish</item>
+        <item>Thai</item>
+        <item>Turkish</item>
+        <item>Ukrainian</item>
+        <item>Vietnamese</item>
+        <item>Other</item>
     </string-array>
 
     <string-array name="ar_measure">
@@ -71,18 +76,100 @@
         <item>100</item>
     </integer-array>
 
-    <integer-array name="ar_drawable_type">
-        <item>@drawable/ic_condiment</item>
-        <item>@drawable/ic_appetiser</item>
-        <item>@drawable/ic_soup</item>
-        <item>@drawable/ic_dish</item>
-        <item>@drawable/ic_salad</item>
-        <item>@drawable/ic_sauce</item>
-        <item>@drawable/ic_dessert</item>
+    <string-array name="ar_recipe_type">
+        <item>Breakfast</item>
+        <item>Appetiser</item>
+        <item>Drink</item>
+        <item>Soup</item>
+        <item>Dinner</item>
+        <item>Salad</item>
+        <item>Sauce</item>
+        <item>Spice</item>
+        <item>Dessert</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="ar_product_type">
+        <item>Grain</item>
+        <item>Bread</item>
+        <item>Dairy</item>
+        <item>Fat</item>
+        <item>Egg</item>
+        <item>Vegetable</item>
+        <item>Fruit</item>
+        <item>Meat</item>
+        <item>Fish</item>
+        <item>Seafood</item>
+        <item>Pasta</item>
+        <item>Spice</item>
+        <item>Liquid</item>
+        <item>Sauce</item>
+        <item>Other</item>
+    </string-array>
+
+    <integer-array name="ar_drawable_recipe_type">
+        <item>@drawable/ic_rp_breakfast</item>
+        <item>@drawable/ic_rp_appetiser</item>
+        <item>@drawable/ic_rp_drink</item>
+        <item>@drawable/ic_rp_soup</item>
+        <item>@drawable/ic_rp_dinner</item>
+        <item>@drawable/ic_rp_salad</item>
+        <item>@drawable/ic_rp_sauce</item>
+        <item>@drawable/ic_rp_spice</item>
+        <item>@drawable/ic_rp_dessert</item>
+        <item>@drawable/ic_rp_dessert</item>
+    </integer-array>
+
+    <integer-array name="ar_drawable_product_type">
+        <item>@drawable/ic_pd_grain</item>
+        <item>@drawable/ic_pd_bread</item>
+        <item>@drawable/ic_pd_dairy</item>
+        <item>@drawable/ic_pd_fat</item>
+        <item>@drawable/ic_pd_egg</item>
+        <item>@drawable/ic_pd_vegetable</item>
+        <item>@drawable/ic_pd_fruit</item>
+        <item>@drawable/ic_pd_meat</item>
+        <item>@drawable/ic_pd_fish</item>
+        <item>@drawable/ic_pd_seafood</item>
+        <item>@drawable/ic_pd_pasta</item>
+        <item>@drawable/ic_pd_spice</item>
+        <item>@drawable/ic_pd_liquid</item>
+        <item>@drawable/ic_pd_sauce</item>
+        <item>@drawable/ic_pd_liquid</item>
     </integer-array>
 
     <integer-array name="ar_drawable_preference">
-        <item>@drawable/ic_vegetarian</item>
-        <item>@drawable/ic_meat</item>
+        <item>@drawable/ic_pf_vegetarian</item>
+        <item>@drawable/ic_pf_meat</item>
     </integer-array>
+
+    <string-array name="ar_drawable_country">
+        <item>@drawable/ic_ct_american</item>
+        <item>@drawable/ic_ct_austrian</item>
+        <item>@drawable/ic_ct_brazilian</item>
+        <item>@drawable/ic_ct_british</item>
+        <item>@drawable/ic_ct_bulgarian</item>
+        <item>@drawable/ic_ct_chinese</item>
+        <item>@drawable/ic_ct_croatian</item>
+        <item>@drawable/ic_ct_czech</item>
+        <item>@drawable/ic_ct_french</item>
+        <item>@drawable/ic_ct_georgian</item>
+        <item>@drawable/ic_ct_german</item>
+        <item>@drawable/ic_ct_greek</item>
+        <item>@drawable/ic_ct_indian</item>
+        <item>@drawable/ic_ct_italian</item>
+        <item>@drawable/ic_ct_japanese</item>
+        <item>@drawable/ic_ct_mexican</item>
+        <item>@drawable/ic_ct_moroccan</item>
+        <item>@drawable/ic_ct_polish</item>
+        <item>@drawable/ic_ct_portuguese</item>
+        <item>@drawable/ic_ct_russian</item>
+        <item>@drawable/ic_ct_south_korean</item>
+        <item>@drawable/ic_ct_spanish</item>
+        <item>@drawable/ic_ct_thai</item>
+        <item>@drawable/ic_ct_turkish</item>
+        <item>@drawable/ic_ct_ukrainian</item>
+        <item>@drawable/ic_ct_vietnamese</item>
+        <item>@drawable/ic_ct_polish</item>
+    </string-array>
 </resources>

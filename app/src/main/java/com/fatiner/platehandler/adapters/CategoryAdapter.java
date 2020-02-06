@@ -3,26 +3,26 @@ package com.fatiner.platehandler.adapters;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.fatiner.platehandler.classes.Product;
-import com.fatiner.platehandler.details.RecipeDetails;
-import com.fatiner.platehandler.globals.BundleGlobals;
-import com.fatiner.platehandler.classes.Category;
-import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.activities.MainActivity;
+import com.fatiner.platehandler.classes.Category;
+import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.recipe.manage.ManageCategoryFragment;
+import com.fatiner.platehandler.globals.BundleGlobals;
+import com.fatiner.platehandler.globals.MainGlobals;
 
 import java.util.ArrayList;
 
@@ -35,11 +35,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     private Context context;
     private ArrayList<Category> categories;
     private boolean isShowing;
+    private OnCategoryListener listener;
 
-    public CategoryAdapter(Context context, ArrayList<Category> categories, boolean isShowing){
+    public CategoryAdapter(Context context, ArrayList<Category> categories, boolean isShowing, OnCategoryListener listener){
         this.context = context;
         this.categories = categories;
         this.isShowing = isShowing;
+        this.listener = listener;
     }
 
     @NonNull
@@ -60,7 +62,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             hideImgbuttEdit(holder);
         }
         setTextName(holder, categories.get(position).getName());
-        setLayoutManager(getLayoutManager(), holder.rvIngredients);
+        setLayoutManager(getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL), holder.rvIngredients);
         setAdapter(getAdapter(position), holder.rvIngredients);
     }
 
@@ -70,11 +72,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
     private void hideImageRemove(CategoryHolder holder){
-        holder.ivRemove.setVisibility(View.GONE);
+        holder.ivRemove.setVisibility(View.INVISIBLE);
     }
 
     private void hideImgbuttEdit(CategoryHolder holder){
-        holder.ibEdit.setVisibility(View.GONE);
+        holder.ibEdit.setVisibility(View.INVISIBLE);
     }
 
     private void setTextName(CategoryHolder holder, String name){
@@ -89,12 +91,21 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return new GridLayoutManager(context, MainGlobals.RECYC_SPAN_ADAP_CATEGORY);
     }
 
+    private LinearLayoutManager getLayoutManagerNoScroll(int orientation){
+        return new LinearLayoutManager(context, orientation, false) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+    }
+
     private void setAdapter(RecyclerView.Adapter adapter, RecyclerView recyclerView){
         recyclerView.setAdapter(adapter);
     }
 
     private IngredientAdapter getAdapter(int position){
-        return new IngredientAdapter(context, categories.get(position).getIngredients());
+        return new IngredientAdapter(context, categories.get(position).getIngredients(), isShowing);
     }
 
     public class CategoryHolder extends RecyclerView.ViewHolder{
@@ -121,15 +132,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             int position = getAdapterPosition();
             categories.remove(position);
             notifyItemRemoved(position);
-        }
-
-        @OnClick(R.id.tv_name)
-        public void onClickLinearHeader(){
-            if(rvIngredients.getVisibility() == View.VISIBLE){
-                hideRecycIngredients();
-            } else {
-                showRecycIngredients();
-            }
+            if (listener == null) return;
+            listener.onClickRemove();
         }
 
         public CategoryHolder(View itemView) {
@@ -146,13 +150,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             bundle.putInt(BundleGlobals.BUND_ID_FRAG_SHOWREC, getAdapterPosition());
             fragment.setArguments(bundle);
         }
+    }
 
-        private void showRecycIngredients(){
-            rvIngredients.setVisibility(View.VISIBLE);
-        }
-
-        private void hideRecycIngredients(){
-            rvIngredients.setVisibility(View.GONE);
-        }
+    public interface OnCategoryListener {
+        void onClickRemove();
     }
 }

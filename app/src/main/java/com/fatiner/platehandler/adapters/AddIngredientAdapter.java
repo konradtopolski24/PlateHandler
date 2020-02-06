@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.activities.MainActivity;
@@ -60,6 +61,7 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
         setSpinProduct(holder, ingredient.getProduct().getId());
         setEditAmount(holder, ingredient.getAmount());
         setSpinMeasure(holder, ingredient.getMeasure());
+        hideSpProduct(holder);
     }
 
     @Override
@@ -97,6 +99,13 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
         return idSpin;
     }
 
+    private void hideSpProduct(AddIngredientHolder holder) {
+        if (holder.spProduct.getCount() == 0) {
+            holder.spProduct.setVisibility(View.INVISIBLE);
+            holder.tvEmpty.setVisibility(View.VISIBLE);
+        }
+    }
+
     public class AddIngredientHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.et_amount)
@@ -105,6 +114,8 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
         Spinner spMeasure;
         @BindView(R.id.sp_product)
         Spinner spProduct;
+        @BindView(R.id.tv_empty)
+        TextView tvEmpty;
 
         @OnClick(R.id.ib_add)
         public void onClickImgbuttAdd(){

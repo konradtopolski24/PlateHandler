@@ -9,6 +9,7 @@
     <string name="nv_products">Products</string>
     <string name="nv_export">Export Database</string>
     <string name="nv_import">Import Database</string>
+    <string name="nv_credits">Credits</string>
 
     <string name="dt_opened">Drawer opened</string>
     <string name="dt_closed">Drawer closed</string>
@@ -31,6 +32,10 @@
     <string name="et_protein">Protein</string>
     <string name="et_fat">Fat</string>
 
+    <string name="tv_nutrients">Nutrients in Product</string>
+    <string name="tv_kcal_hd">Energy in Kcal</string>
+    <string name="tv_kj_hd">Energy in Kj</string>
+
     <!-- Recipe -->
     <string name="et_name">Name</string>
     <string name="et_author">Author</string>
@@ -47,8 +52,13 @@
     <string name="tv_favorite">Favorite</string>
     <string name="tv_step">Step</string>
 
+    <string name="tv_info">Recipe Info</string>
+    <string name="tv_ingredients">Ingredients List</string>
+    <string name="tv_steps">Recipe Steps</string>
+
     <!-- Recipe Menu Items -->
     <string name="mn_settings">Settings</string>
+    <string name="mn_calculate">Calculate</string>
     <string name="mn_edit">Edit</string>
     <string name="mn_delete">Delete</string>
 
@@ -80,16 +90,25 @@
     <string name="tb_export">Export Database</string>
     <string name="tb_import">Import Database</string>
 
+    <string name="tb_credits">Credits</string>
+
     <!-- Shopping List -->
-    <string name="tv_shopping_date">List from:</string>
-    <string name="bt_shopping">Create new list</string>
+    <string name="tv_shopping_date">List From</string>
+    <string name="tv_shopping_state">Shopping State</string>
+    <string name="bt_shopping">Create New List</string>
+    <string name="bt_category">Add New Ingredient Category</string>
+    <string name="bt_step">Add New Recipe Step</string>
 
     <!-- Product Calculate -->
     <string name="tv_protein">Protein</string>
     <string name="tv_carbohydrates">Carbohydrates</string>
     <string name="tv_fat">Fat</string>
+    <string name="tv_other">Other</string>
+    <string name="tv_chart_nutrients">Percentage chart of nutrients</string>
     <string name="tv_total">Total energy</string>
+    <string name="tv_chart_kcal">Percentage chart of energy in kcal</string>
     <string name="tv_kcal">kcal</string>
+    <string name="tv_chart_kj">Percentage chart of energy in kj</string>
     <string name="tv_kj">kj</string>
 
     <!-- Snack Message -->
@@ -120,6 +139,8 @@
 
     <string name="ts_db_error">Database error!</string>
 
+    <string name="ts_export_empty">Export File Name is empty!</string>
+
     <!-- Dialog Message -->
     <string name="dg_product_add">Do you want to add a new product?</string>
     <string name="dg_product_edit">Do you want to edit the product?</string>
@@ -131,21 +152,69 @@
 
     <string name="dg_shopping_create">Do you want to create a new shopping list?</string>
 
+    <string name="dg_export_add">Do you want to create a new export file?</string>
+
     <string name="nt_title">New dish of the day!</string>
     <string name="nt_text">What kind of dish would you like to eat today?</string>
 
     <string name="tv_measure">Measures</string>
 
-    <!-- Descriptions -->
-    <string name="iv_photo_desc"></string>
-    <string name="ib_add_desc"></string>
-    <string name="ib_remove_desc"></string>
-    <string name="ib_plus_desc"></string>
-    <string name="ib_minus_desc"></string>
-    <string name="ib_time_desc"></string>
-    <string name="iv_spiciness_desc"></string>
-    <string name="iv_remove_desc"></string>
-    <string name="ib_edit_desc"></string>
-    <string name="iv_type_desc"></string>
-    <string name="iv_preference_desc"></string>
+    <string name="tv_times">x</string>
+    <string name="tv_gram">g</string>
+
+    <string name="tv_done">Step done!</string>
+    <string name="tv_used">Used!</string>
+
+    <string name="tv_add_photo">Add photo</string>
+    <string name="tv_add_name">Set recipe name and author</string>
+    <string name="tv_add_info">Set recipe info</string>
+
+    <string name="tv_add_product">Set product name and type</string>
+    <string name="tv_add_nutrients">Set nutrients for 100 g</string>
+
+    <string name="tv_add_settings">Recipe settings</string>
+    <string name="tv_product_settings">Product settings</string>
+
+    <string name="tv_shopping_info">Shopping List Info</string>
+    <string name="tv_shopping_list">Shopping List</string>
+
+    <string name="tv_categories">Ingredient Categoties</string>
+
+    <string name="tv_empty_recipe">Recipe list is empty!</string>
+    <string name="tv_empty_product">Product list is empty!</string>
+    <string name="tv_empty_category">Category list is empty!</string>
+    <string name="tv_empty_step">Step list is empty!</string>
+    <string name="tv_empty_shopping">Shopping list is empty!</string>
+
+    <string name="tv_add_shopping">Add Items to the Shopping List</string>
+    <string name="bt_add">Add New Item</string>
+    <string name="bt_select">Select Recipe</string>
+
+    <string name="et_amount">Amount</string>
+
+    <string name="tv_category_name">Set Category Name</string>
+
+    <string name="tv_set_step">Set New Step</string>
+
+    <string name="tv_empty_spinner">No Products!</string>
+
+    <string name="tv_none">None</string>
+
+    <string name="tv_add_export">Set Export File Name</string>
+
+    <string name="tv_export_info">Export Info</string>
+
+    <string name="tv_saved">Saved Stuff</string>
+    <string name="tv_unsaved">Unsaved Stuff</string>
+
+    <string name="tv_files">Import Files</string>
+    <string name="tv_empty_import">Import file list is empty!</string>
+
+    <string name="tv_libraries">Libraries Used in the App</string>
+    <string name="tv_icons">Icons Used in the App</string>
+
+    <string name="tv_version">Version</string>
+    <string name="tv_license">License</string>
+
+    <string name="tv_attribution">Attribution</string>
 </resources>

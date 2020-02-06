@@ -1,112 +1,592 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/BothMatch"
     tools:context=".fragments.product.ShowProductFragment">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/WidthMatch">
 
-        <!-- Photo -->
-
-        <ImageView
-            android:id="@+id/iv_photo"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="@string/iv_photo_desc"
+        <ProgressBar
+            style="@style/PbDefault"
+            android:id="@+id/pb_loading"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Name -->
+        <android.support.v7.widget.CardView
+            style="@style/CvHeader"
+            android:id="@+id/cv_header"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClHeader">
+
+                <ImageView
+                    style="@style/IvPhoto"
+                    android:id="@+id/iv_photo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/TvName"
+                    android:id="@+id/tv_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_photo" />
+
+                <TextView
+                    style="@style/TvAuthor"
+                    android:id="@+id/tv_type"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_type"
+                    app:layout_constraintTop_toTopOf="@+id/iv_type"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_type"/>
+
+                <ImageView
+                    style="@style/BothWrap"
+                    android:id="@+id/iv_type"
+                    android:tint="@color/tv_white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/CvHeader"
+            android:id="@+id/cv_nutrients_hd"
+            app:layout_constraintTop_toBottomOf="@+id/cv_header"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClHeader">
+
+                <TextView
+                    style="@style/TvHeader"
+                    android:id="@+id/tv_nutrients"
+                    android:text="@string/tv_nutrients"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_nutrients"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    style="@style/IvHeader"
+                    android:id="@+id/iv_nutrients"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_nutrients"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_nutrients"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/CvData"
+            android:id="@+id/cv_nutrients"
+            app:layout_constraintTop_toBottomOf="@+id/cv_nutrients_hd"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClData">
+
+                <!-- 1st level -->
+
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_carbohydrates"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_carbohydrates_hd"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_carbohydrates_hd"
+                    android:text="@string/et_carbohydrates"
+                    app:layout_constraintStart_toEndOf="@+id/iv_carbohydrates"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_protein"
+                    app:layout_constraintTop_toTopOf="@+id/iv_carbohydrates"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_carbohydrates"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_protein"
+                    app:layout_constraintStart_toEndOf="@+id/tv_carbohydrates_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_protein_hd"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_protein_hd"
+                    android:text="@string/tv_protein"
+                    app:layout_constraintStart_toEndOf="@+id/iv_protein"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_protein"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_protein"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_carbohydrates"
+                    app:layout_constraintStart_toStartOf="@+id/tv_carbohydrates_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_carbohydrates_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_carbohydrates_hd"/>
+
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_protein"
+                    app:layout_constraintStart_toStartOf="@+id/tv_protein_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_protein_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_protein_hd"/>
+
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_protein"/>
+
+                <!-- 2nd level -->
+
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_fat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fat_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line1"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_fat_hd"
+                    android:text="@string/tv_fat"
+                    app:layout_constraintStart_toEndOf="@+id/iv_fat"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_other"
+                    app:layout_constraintTop_toTopOf="@+id/iv_fat"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_fat"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_other"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fat_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_other_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line1"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_other_hd"
+                    android:text="@string/tv_other"
+                    app:layout_constraintStart_toEndOf="@+id/iv_other"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_other"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_other"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_fat"
+                    app:layout_constraintStart_toStartOf="@+id/tv_fat_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_fat_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fat_hd"/>
+
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_other"
+                    app:layout_constraintStart_toStartOf="@+id/tv_other_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_other_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_other_hd"/>
+
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_other"/>
+
+                <!-- 3rd level -->
+
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_chart_nutrients"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_chart_nutrients_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line2"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_chart_nutrients_hd"
+                    android:text="@string/tv_chart_nutrients"
+                    app:layout_constraintStart_toEndOf="@+id/iv_chart_nutrients"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_chart_nutrients"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_chart_nutrients"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    style="@style/PcDefault"
+                    android:id="@+id/pc_nutrients"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_chart_nutrients"/>
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/bc_test"
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pc_nutrients"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/CvHeader"
+            android:id="@+id/cv_kcal_hd"
+            app:layout_constraintTop_toBottomOf="@+id/cv_nutrients"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClHeader">
+
+                <TextView
+                    style="@style/TvHeader"
+                    android:id="@+id/tv_kcal"
+                    android:text="@string/tv_kcal_hd"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_kcal"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    style="@style/IvHeader"
+                    android:id="@+id/iv_kcal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_kcal"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_kcal"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/CvData"
+            android:id="@+id/cv_kcal"
+            app:layout_constraintTop_toBottomOf="@+id/cv_kcal_hd"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClData">
+
+                <!-- 1st level -->
+
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_carbohydrates_kcal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_carbohydrates_kcal_hd"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_carbohydrates_kcal_hd"
+                    android:text="@string/et_carbohydrates"
+                    app:layout_constraintStart_toEndOf="@+id/iv_carbohydrates_kcal"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_protein_kcal"
+                    app:layout_constraintTop_toTopOf="@+id/iv_carbohydrates_kcal"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_carbohydrates_kcal"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_protein_kcal"
+                    app:layout_constraintStart_toEndOf="@+id/tv_carbohydrates_kcal_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_protein_kcal_hd"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_protein_kcal_hd"
+                    android:text="@string/tv_protein"
+                    app:layout_constraintStart_toEndOf="@+id/iv_protein_kcal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_protein_kcal"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_protein_kcal"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_carbohydrates_kcal"
+                    app:layout_constraintStart_toStartOf="@+id/tv_carbohydrates_kcal_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_carbohydrates_kcal_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_carbohydrates_kcal_hd"/>
+
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_protein_kcal"
+                    app:layout_constraintStart_toStartOf="@+id/tv_protein_kcal_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_protein_kcal_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_protein_kcal_hd"/>
+
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_protein_kcal"/>
+
+                <!-- 2nd level -->
+
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_fat_kcal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fat_kcal_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line3"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_fat_kcal_hd"
+                    android:text="@string/tv_fat"
+                    app:layout_constraintStart_toEndOf="@+id/iv_fat_kcal"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_total_kcal"
+                    app:layout_constraintTop_toTopOf="@+id/iv_fat_kcal"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_fat_kcal"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_total_kcal"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fat_kcal_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_total_kcal_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line3"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_total_kcal_hd"
+                    android:text="@string/tv_total"
+                    app:layout_constraintStart_toEndOf="@+id/iv_total_kcal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_total_kcal"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_total_kcal"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_fat_kcal"
+                    app:layout_constraintStart_toStartOf="@+id/tv_fat_kcal_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_fat_kcal_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fat_kcal_hd"/>
+
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_total_kcal"
+                    app:layout_constraintStart_toStartOf="@+id/tv_total_kcal_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_total_kcal_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_total_kcal_hd"/>
+
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_total_kcal"/>
+
+                <!-- 3rd level -->
+
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_chart_kcal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_chart_kcal_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line4"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_chart_kcal_hd"
+                    android:text="@string/tv_chart_kcal"
+                    app:layout_constraintStart_toEndOf="@+id/iv_chart_kcal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_chart_kcal"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_chart_kcal"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    style="@style/PcDefault"
+                    android:id="@+id/pc_kcal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_chart_kcal"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/CvHeader"
+            android:id="@+id/cv_kj_hd"
+            app:layout_constraintTop_toBottomOf="@+id/cv_kcal"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClHeader">
+
+                <TextView
+                    style="@style/TvHeader"
+                    android:id="@+id/tv_kj"
+                    android:text="@string/tv_kj_hd"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_kj"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    style="@style/IvHeader"
+                    android:id="@+id/iv_kj"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_kj"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_kj"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/CvData"
+            android:id="@+id/cv_kj"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_photo" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_kj_hd"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- Type -->
+            <android.support.constraint.ConstraintLayout
+                style="@style/ClData">
 
-        <TextView
-            android:id="@+id/tv_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+                <!-- 1st level -->
 
-        <!-- Carbohydrates -->
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_carbohydrates_kj"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_carbohydrates_kj_hd"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/tv_carbohydrates_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_carbohydrates"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_type"/>
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_carbohydrates_kj_hd"
+                    android:text="@string/et_carbohydrates"
+                    app:layout_constraintStart_toEndOf="@+id/iv_carbohydrates_kj"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_protein_kj"
+                    app:layout_constraintTop_toTopOf="@+id/iv_carbohydrates_kj"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_carbohydrates_kj"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-        <TextView
-            android:id="@+id/tv_carbohydrates"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_carbohydrates_desc"/>
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_protein_kj"
+                    app:layout_constraintStart_toEndOf="@+id/tv_carbohydrates_kj_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_protein_kj_hd"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-        <!-- Protein -->
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_protein_kj_hd"
+                    android:text="@string/tv_protein"
+                    app:layout_constraintStart_toEndOf="@+id/iv_protein_kj"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_protein_kj"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_protein_kj"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-        <TextView
-            android:id="@+id/tv_protein_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_protein"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_carbohydrates"/>
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_carbohydrates_kj"
+                    app:layout_constraintStart_toStartOf="@+id/tv_carbohydrates_kj_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_carbohydrates_kj_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_carbohydrates_kj_hd"/>
 
-        <TextView
-            android:id="@+id/tv_protein"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_protein_desc"/>
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_protein_kj"
+                    app:layout_constraintStart_toStartOf="@+id/tv_protein_kj_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_protein_kj_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_protein_kj_hd"/>
 
-        <!-- Fat -->
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_protein_kj"/>
 
-        <TextView
-            android:id="@+id/tv_fat_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_fat"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_protein"/>
+                <!-- 2nd level -->
 
-        <TextView
-            android:id="@+id/tv_fat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_fat_desc"/>
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_fat_kj"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fat_kj_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line5"/>
 
-        <!-- Piechart -->
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_fat_kj_hd"
+                    android:text="@string/tv_fat"
+                    app:layout_constraintStart_toEndOf="@+id/iv_fat_kj"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_total_kj"
+                    app:layout_constraintTop_toTopOf="@+id/iv_fat_kj"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_fat_kj"
+                    app:layout_constraintHorizontal_weight="1"/>
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pc_kcal"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_fat"/>
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_total_kj"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fat_kj_hd"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_total_kj_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line5"/>
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pc_kj"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pc_kcal" />
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_total_kj_hd"
+                    android:text="@string/tv_total"
+                    app:layout_constraintStart_toEndOf="@+id/iv_total_kj"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_total_kj"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_total_kj"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_fat_kj"
+                    app:layout_constraintStart_toStartOf="@+id/tv_fat_kj_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_fat_kj_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fat_kj_hd"/>
+
+                <TextView
+                    style="@style/WidthZero"
+                    android:id="@+id/tv_total_kj"
+                    app:layout_constraintStart_toStartOf="@+id/tv_total_kj_hd"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_total_kj_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_total_kj_hd"/>
+
+                <View
+                    style="@style/VwLine"
+                    android:id="@+id/vw_line6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_total_kj"/>
+
+                <!-- 3rd level -->
+
+                <ImageView
+                    style="@style/IvInfoProduct"
+                    android:id="@+id/iv_chart_kj"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_chart_kj_hd"
+                    app:layout_constraintTop_toBottomOf="@+id/vw_line6"/>
+
+                <TextView
+                    style="@style/TvInfo"
+                    android:id="@+id/tv_chart_kj_hd"
+                    android:text="@string/tv_chart_kj"
+                    app:layout_constraintStart_toEndOf="@+id/iv_chart_kj"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_chart_kj"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_chart_kj"
+                    app:layout_constraintHorizontal_weight="1"/>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    style="@style/PcDefault"
+                    android:id="@+id/pc_kj"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_chart_kj"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -1,12 +1,16 @@
 package com.fatiner.platehandler.fragments.export;
 
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.Ingredient;
@@ -37,10 +41,28 @@ public class ExportFragment extends PrimaryFragment {
 
     @BindView(R.id.et_export)
     EditText etExport;
+    @BindView(R.id.tv_saved)
+    TextView tvSaved;
+    @BindView(R.id.tv_unsaved)
+    TextView tvUnsaved;
+    @BindView(R.id.cv_info)
+    CardView cvInfo;
+    @BindView(R.id.iv_info)
+    ImageView ivInfo;
 
-    @OnClick(R.id.bt_export)
+    @OnClick(R.id.cv_info_hd)
+    public void onClickFbAdd(){
+        manageExpandCardView(cvInfo, ivInfo);
+    }
+
+    @OnClick(R.id.fab_export)
     public void onClickBtExport(){
-        new AsyncExport().execute();
+        hideKeyboard();
+        if(isEtEmpty(etExport)){
+            showShortToast(R.string.ts_export_empty);
+        } else {
+            showAlertDialog(R.string.dg_export_add, getDialogListener());
+        }
     }
 
     public ExportFragment() {}
@@ -51,6 +73,10 @@ public class ExportFragment extends PrimaryFragment {
         ButterKnife.bind(this, view);
         setToolbarTitle(R.string.tb_export);
         setMenuItem(MainGlobals.ID_EXPORT_DRAW_MAIN);
+        String saved = getString(R.string.nv_recipes) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.nv_products);
+        setTv(tvSaved, saved);
+        String unsaved = getString(R.string.nv_shopping) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.tv_day) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.tv_recent);
+        setTv(tvUnsaved, unsaved);
         return view;
     }
 
@@ -194,5 +220,24 @@ public class ExportFragment extends PrimaryFragment {
         } catch (IOException e) {
             //
         }
+    }
+
+    private DialogInterface.OnClickListener getDialogListener(){
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch(which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        new AsyncExport().execute();
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+    }
+
+    private boolean isEtEmpty(EditText et) {
+        return et.getText().toString().isEmpty();
     }
 }

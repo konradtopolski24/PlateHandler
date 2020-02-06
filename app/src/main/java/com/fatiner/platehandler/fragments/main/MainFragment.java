@@ -1,15 +1,15 @@
 package com.fatiner.platehandler.fragments.main;
 
-import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.RecipesAdapter;
@@ -19,12 +19,12 @@ import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.database.DbOperations;
 import com.fatiner.platehandler.managers.shared.SharedMainManager;
-import com.fatiner.platehandler.services.DayService;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainFragment extends PrimaryFragment {
 
@@ -32,6 +32,24 @@ public class MainFragment extends PrimaryFragment {
     RecyclerView rvDay;
     @BindView(R.id.rv_recent)
     RecyclerView rvRecent;
+    @BindView(R.id.cv_day)
+    CardView cvDay;
+    @BindView(R.id.cv_recent)
+    CardView cvRecent;
+    @BindView(R.id.iv_day)
+    ImageView ivDay;
+    @BindView(R.id.iv_recent)
+    ImageView ivRecent;
+
+    @OnClick(R.id.cv_day_hd)
+    public void onClickFaAdd(){
+        manageExpandCardView(cvDay, ivDay);
+    }
+
+    @OnClick(R.id.cv_recent_hd)
+    public void onClickFbAdd(){
+        manageExpandCardView(cvRecent, ivRecent);
+    }
 
     public MainFragment() {}
 
@@ -41,7 +59,6 @@ public class MainFragment extends PrimaryFragment {
         ButterKnife.bind(this, view);
         setToolbarTitle(R.string.tb_main);
         setMenuItem(MainGlobals.ID_MAIN_DRAW_MAIN);
-        startService();
         checkDay();
         return view;
     }
@@ -128,16 +145,6 @@ public class MainFragment extends PrimaryFragment {
                 rvRecent,
                 getLinearLayoutManager(LinearLayoutManager.HORIZONTAL),
                 new RecipesAdapter(getContext(), recent, false));
-    }
-
-    private void startService() {
-        Intent intent = new Intent(getContext(), DayService.class);
-        ContextCompat.startForegroundService(getContext(), intent);
-    }
-
-    private void stopService() {
-        Intent intent = new Intent(getContext(), DayService.class);
-        getContext().stopService(intent);
     }
 
     private enum Type {

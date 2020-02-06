@@ -91,12 +91,8 @@ public class AddShoppingItemAdapter extends RecyclerView.Adapter<AddShoppingItem
 
         @OnTextChanged(R.id.et_amount)
         public void onTextChangeEditAmount(CharSequence text){
-            float amount;
-            if(String.valueOf(text).isEmpty()){
-                amount =  MainGlobals.INT_STARTING_VAR_INIT;
-            } else {
-                amount  = Float.valueOf(String.valueOf(text));
-            }
+            if(String.valueOf(text).isEmpty()) return;
+            float amount = Float.valueOf(String.valueOf(text));
             setShoppingItemsAmount(amount);
         }
 
