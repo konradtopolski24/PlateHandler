@@ -22,15 +22,12 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.Recipe;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.managers.database.DbOperations;
-import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.activities.MainActivity;
 import com.fatiner.platehandler.fragments.recipe.ShowRecipeFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -66,11 +63,11 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
     }
 
     private TypedArray getArrayCountries(){
-        return context.getResources().obtainTypedArray(R.array.ar_drawable_country);
+        return context.getResources().obtainTypedArray(R.array.dw_country);
     }
 
     private TypedArray getArrayTypes(){
-        return context.getResources().obtainTypedArray(R.array.ar_drawable_recipe_type);
+        return context.getResources().obtainTypedArray(R.array.dw_recipe);
     }
 
     private void setTextName(RecipesHolder holder, String name){

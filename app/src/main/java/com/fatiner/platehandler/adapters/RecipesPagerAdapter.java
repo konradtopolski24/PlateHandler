@@ -52,11 +52,11 @@ public class RecipesPagerAdapter extends FragmentPagerAdapter {
                 break;
             case MainGlobals.ID_ADDINGRED_PAGER_RECIPES:
                 pageTitle = context.getResources().getString(
-                        R.string.pg_ingredients);
+                        R.string.pg_ingredient);
                 break;
             case MainGlobals.ID_ADDSTEPS_PAGER_RECIPES:
                 pageTitle = context.getResources().getString(
-                        R.string.pg_instructions);
+                        R.string.pg_step);
                 break;
         }
         return pageTitle;

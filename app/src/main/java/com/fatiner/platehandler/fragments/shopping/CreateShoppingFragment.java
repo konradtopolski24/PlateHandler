@@ -50,9 +50,9 @@ public class CreateShoppingFragment extends PrimaryFragment {
     public void onClickFabDone(){
         hideKeyboard();
         if(ShoppingListDetails.isShoppingListCorrect()){
-            showAlertDialog(R.string.dg_shopping_create, getDialogListener());
+            showAlertDialog(R.string.dg_sh_add, getDialogListener());
         } else {
-            showShortToast(R.string.ts_item_empty);
+            showShortToast(R.string.ts_item);
         }
     }
 
@@ -63,7 +63,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_shopping, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_shopping_create);
+        setToolbarTitle(R.string.tb_sh_add);
         setMenuItem(MainGlobals.ID_SHOPPING_DRAW_MAIN);
         setRecyclerView(
                 rvPositions,
@@ -108,7 +108,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
                 switch(which){
                     case DialogInterface.BUTTON_POSITIVE:
                         setShoppingListInShared();
-                        showShortSnack(R.string.sb_shopping_created);
+                        showShortSnack(R.string.sb_sh_add);
                         popFragment();
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:

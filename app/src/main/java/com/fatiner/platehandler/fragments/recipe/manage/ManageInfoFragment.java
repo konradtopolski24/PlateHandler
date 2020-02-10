@@ -93,7 +93,7 @@ public class ManageInfoFragment extends PrimaryFragment {
     @OnItemSelected(R.id.sp_country)
     public void onItemSelectedSpCountry(int id){
         RecipeDetails.getRecipe().setCountry(id);
-        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_country);
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.dw_country);
         int resource = arrayType.getResourceId(id, -1);
         ivCountryDw.setImageResource(resource);
     }
@@ -101,7 +101,7 @@ public class ManageInfoFragment extends PrimaryFragment {
     @OnItemSelected(R.id.sp_type)
     public void onItemSelectedSpType(int id){
         RecipeDetails.getRecipe().setType(id);
-        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_recipe_type);
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.dw_recipe);
         int resource = arrayType.getResourceId(id, -1);
         ivTypeDw.setImageResource(resource);
     }
@@ -231,7 +231,7 @@ public class ManageInfoFragment extends PrimaryFragment {
     }
 
     private void setTextDifficulty(int progress){
-        String [] arrayDifficulty = getStringArray(R.array.ar_difficulty);
+        String [] arrayDifficulty = getStringArray(R.array.tx_difficulty);
         tvDifficulty.setText(arrayDifficulty[progress]);
     }
 

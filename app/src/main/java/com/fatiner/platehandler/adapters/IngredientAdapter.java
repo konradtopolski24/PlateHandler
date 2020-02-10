@@ -2,8 +2,6 @@ package com.fatiner.platehandler.adapters;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.VectorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -12,11 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.Ingredient;
+import com.fatiner.platehandler.globals.MainGlobals;
 
 import java.util.ArrayList;
 
@@ -52,11 +50,11 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         if(isShowing)
             showCbDone(holder);
         Ingredient ingredient = ingredients.get(position);
-        setTextAmount(holder, ingredient.getAmount());
         String[] arrayMeasure = getArrayMeasure();
-        setTextMeasure(holder, arrayMeasure[ingredient.getMeasure()]);
+        setTextMeasure(holder, ingredient.getAmount() + MainGlobals.STR_SPACE_OBJ_INIT
+                + MainGlobals.STR_TIMES + MainGlobals.STR_SPACE_OBJ_INIT + arrayMeasure[ingredient.getMeasure()]);
         setTextProduct(holder, ingredient.getProduct().getName());
-        TypedArray arrayType = context.getResources().obtainTypedArray(R.array.ar_drawable_product_type);
+        TypedArray arrayType = context.getResources().obtainTypedArray(R.array.dw_product);
         int resource = arrayType.getResourceId(ingredient.getProduct().getType(), -1);
         holder.ivIcon.setImageResource(resource);
     }
@@ -66,12 +64,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         return ingredients.size();
     }
 
-    private void setTextAmount(IngredientHolder holder, float amount){
-        holder.tvAmount.setText(String.valueOf(amount));
-    }
-
     private String[] getArrayMeasure(){
-        return context.getResources().getStringArray(R.array.ar_measure);
+        return context.getResources().getStringArray(R.array.tx_measure);
     }
 
     private void setTextMeasure(IngredientHolder holder, String measure){
@@ -88,14 +82,10 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     public class IngredientHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.tv_amount)
-        TextView tvAmount;
         @BindView(R.id.tv_measure)
         TextView tvMeasure;
         @BindView(R.id.tv_product)
         TextView tvProduct;
-        @BindView(R.id.tv_times)
-        TextView tvTimes;
         @BindView(R.id.tv_used)
         TextView tvUsed;
         @BindView(R.id.iv_measure)
@@ -114,17 +104,13 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         public void onCheckedChangedSwFavorite(boolean checked){
             if(checked) {
                 ivMeasure.setAlpha(0.1f);
-                tvAmount.setAlpha(0.1f);
                 tvMeasure.setAlpha(0.1f);
                 tvProduct.setAlpha(0.1f);
-                tvTimes.setAlpha(0.1f);
                 tvUsed.setVisibility(View.VISIBLE);
             } else {
                 ivMeasure.setAlpha(1.0f);
-                tvAmount.setAlpha(1.0f);
                 tvMeasure.setAlpha(1.0f);
                 tvProduct.setAlpha(1.0f);
-                tvTimes.setAlpha(1.0f);
                 tvUsed.setVisibility(View.GONE);
             }
         }

@@ -21,12 +21,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <android.support.constraint.ConstraintLayout
-                    style="@style/ClHeader">
+                    style="@style/ClData">
 
                     <TextView
                         style="@style/TvHeader"
                         android:id="@+id/tv_name"
-                        android:text="@string/tv_set_step"
+                        android:text="@string/hd_st_content"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -61,7 +61,7 @@
     <android.support.design.widget.FloatingActionButton
         style="@style/FabDefault"
         android:id="@+id/fab_finished"
-        android:src="@drawable/ic_finished"
+        android:src="@drawable/ic_ot_finished"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 </android.support.constraint.ConstraintLayout>

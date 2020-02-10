@@ -13,7 +13,6 @@ import android.widget.Switch;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
-import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.database.DbOperations;
 import com.fatiner.platehandler.managers.shared.SharedRecipeManager;
@@ -167,7 +166,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings_recipe, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_recipe_settings);
+        setToolbarTitle(R.string.tb_rp_settings);
         new AsyncSettingRecipe().execute();
         return view;
     }
@@ -288,7 +287,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
                 DbOperations.readAuthors(getContext(), authors);
                 return true;
             }catch (SQLiteException e){
-                showShortToast(R.string.ts_db_error);
+                showShortToast(R.string.ts_database);
                 return false;
             }
         }

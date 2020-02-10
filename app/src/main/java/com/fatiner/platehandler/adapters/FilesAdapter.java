@@ -65,9 +65,9 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
     public void onBindViewHolder(@NonNull FilesHolder holder, int position) {
         ImportFile importFile = files.get(position);
         holder.tvName.setText(importFile.getName());
-        String recipeAmount = context.getString(R.string.nv_recipes) + MainGlobals.STR_COLON_OBJ_INIT + MainGlobals.STR_SPACE_OBJ_INIT + importFile.getRecipeAmount();
+        String recipeAmount = context.getString(R.string.nv_recipe) + MainGlobals.STR_COLON_OBJ_INIT + MainGlobals.STR_SPACE_OBJ_INIT + importFile.getRecipeAmount();
         holder.tvRecipeAmount.setText(recipeAmount);
-        String productAmount = context.getString(R.string.nv_products) + MainGlobals.STR_COLON_OBJ_INIT + MainGlobals.STR_SPACE_OBJ_INIT + importFile.getProductAmount();
+        String productAmount = context.getString(R.string.nv_product) + MainGlobals.STR_COLON_OBJ_INIT + MainGlobals.STR_SPACE_OBJ_INIT + importFile.getProductAmount();
         holder.tvProductAmount.setText(productAmount);
     }
 
@@ -223,7 +223,7 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
             if(success) {
                 SharedMainManager.removeSharedDish(context);
                 SharedMainManager.removeSharedRecent(context);
-                Toast.makeText(context, R.string.sb_import, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.sb_im_add, Toast.LENGTH_SHORT).show();
                 ((MainActivity)context).popFragment();
             }
         }

@@ -16,12 +16,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_settings"
-                    android:text="@string/tv_product_settings"
+                    android:text="@string/hd_pd_settings"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -48,7 +48,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_alphabetical_hd"
-                    android:text="@string/tv_alphabetical"
+                    android:text="@string/ct_alphabetical"
                     app:layout_constraintStart_toEndOf="@+id/iv_alphabetical"
                     app:layout_constraintEnd_toStartOf="@+id/iv_type"
                     app:layout_constraintTop_toTopOf="@+id/iv_alphabetical"
@@ -65,7 +65,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_type_hd"
-                    android:text="@string/tv_type"
+                    android:text="@string/ct_type"
                     app:layout_constraintStart_toEndOf="@+id/iv_type"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_type"
@@ -87,7 +87,7 @@
                 <Spinner
                     style="@style/SpInvisible"
                     android:id="@+id/sp_type"
-                    android:entries="@array/ar_product_type"
+                    android:entries="@array/tx_product"
                     app:layout_constraintStart_toEndOf="@+id/sw_type"
                     app:layout_constraintEnd_toEndOf="@+id/tv_type_hd"
                     app:layout_constraintTop_toTopOf="@+id/sw_type"

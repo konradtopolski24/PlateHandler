@@ -92,25 +92,25 @@ public class MainActivity extends AppCompatActivity {
     private Fragment selectFragment(MenuItem item) {
         Fragment fragment = new Fragment();
         switch(item.getItemId()){
-            case R.id.item_main_draw_main:
+            case R.id.it_home:
                 fragment = new MainFragment();
                 break;
-            case R.id.item_recipes_draw_main:
+            case R.id.it_recipe:
                 fragment = new ChooseRecipeFragment();
                 break;
-            case R.id.item_ingredients_draw_main:
+            case R.id.it_product:
                 fragment = new ChooseProductFragment();
                 break;
-            case R.id.item_shopping_draw_main:
+            case R.id.it_shopping:
                 fragment = new ShowShoppingFragment();
                 break;
-            case R.id.item_export_draw_main:
+            case R.id.it_export:
                 fragment = new ExportFragment();
                 break;
-            case R.id.item_import_draw_main:
+            case R.id.it_import:
                 fragment = new ImportFragment();
                 break;
-            case R.id.item_credits_draw_main:
+            case R.id.it_credits:
                 fragment = new CreditsFragment();
                 break;
         }

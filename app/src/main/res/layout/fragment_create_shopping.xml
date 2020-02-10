@@ -21,12 +21,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <android.support.constraint.ConstraintLayout
-                    style="@style/ClHeader">
+                    style="@style/ClData">
 
                     <TextView
                         style="@style/TvHeader"
                         android:id="@+id/tv_add"
-                        android:text="@string/tv_add_shopping"
+                        android:text="@string/hd_sh_item"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -46,7 +46,7 @@
                     <Button
                         style="@style/BtAlone"
                         android:id="@+id/bt_add"
-                        android:text="@string/bt_add"
+                        android:text="@string/bt_item"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/bt_select"
                         app:layout_constraintTop_toTopOf="parent"
@@ -55,7 +55,7 @@
                     <Button
                         style="@style/BtAlone"
                         android:id="@+id/bt_select"
-                        android:text="@string/bt_select"
+                        android:text="@string/bt_recipe"
                         app:layout_constraintStart_toEndOf="@+id/bt_add"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -74,7 +74,7 @@
     <android.support.design.widget.FloatingActionButton
         style="@style/FabDefault"
         android:id="@+id/fab_finished"
-        android:src="@drawable/ic_finished"
+        android:src="@drawable/ic_ot_finished"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 </android.support.constraint.ConstraintLayout>

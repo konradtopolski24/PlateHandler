@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <ImageView
                     style="@style/IvPhoto"
@@ -63,12 +63,12 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_info"
-                    android:text="@string/tv_info"
+                    android:text="@string/hd_rp_info"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_info"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -103,7 +103,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_serving_hd"
-                    android:text="@string/et_serving"
+                    android:text="@string/ct_serving"
                     app:layout_constraintStart_toEndOf="@+id/iv_serving"
                     app:layout_constraintEnd_toStartOf="@+id/iv_time"
                     app:layout_constraintTop_toTopOf="@+id/iv_serving"
@@ -120,7 +120,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_time_hd"
-                    android:text="@string/tv_time"
+                    android:text="@string/ct_time"
                     app:layout_constraintStart_toEndOf="@+id/iv_time"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_time"
@@ -159,7 +159,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_difficulty_hd"
-                    android:text="@string/tv_difficulty"
+                    android:text="@string/ct_difficulty"
                     app:layout_constraintStart_toEndOf="@+id/iv_difficulty"
                     app:layout_constraintEnd_toStartOf="@+id/iv_spiciness"
                     app:layout_constraintTop_toTopOf="@+id/iv_difficulty"
@@ -176,7 +176,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_spiciness_hd"
-                    android:text="@string/tv_spiciness"
+                    android:text="@string/ct_spiciness"
                     app:layout_constraintStart_toEndOf="@+id/iv_spiciness"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_spiciness"
@@ -232,7 +232,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_country_hd"
-                    android:text="@string/tv_country"
+                    android:text="@string/ct_country"
                     app:layout_constraintStart_toEndOf="@+id/iv_country"
                     app:layout_constraintEnd_toStartOf="@+id/iv_type"
                     app:layout_constraintTop_toTopOf="@+id/iv_country"
@@ -249,7 +249,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_type_hd"
-                    android:text="@string/tv_type"
+                    android:text="@string/ct_type"
                     app:layout_constraintStart_toEndOf="@+id/iv_type"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_type"
@@ -304,7 +304,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_preference_hd"
-                    android:text="@string/tv_preferences"
+                    android:text="@string/ct_preference"
                     app:layout_constraintStart_toEndOf="@+id/iv_preference"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_preference"
@@ -335,12 +335,12 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_categories"
-                    android:text="@string/tv_ingredients"
+                    android:text="@string/hd_rp_ingredient"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_categories"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -378,12 +378,12 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_steps"
-                    android:text="@string/tv_steps"
+                    android:text="@string/hd_rp_step"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_steps"
                     app:layout_constraintTop_toTopOf="parent"/>

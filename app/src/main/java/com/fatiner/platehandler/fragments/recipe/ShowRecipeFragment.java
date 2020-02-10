@@ -196,7 +196,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
     }
 
     private void setTextDifficulty(int difficulty){
-        String[] arrayDifficulty = getStringArray(R.array.ar_difficulty);
+        String[] arrayDifficulty = getStringArray(R.array.tx_difficulty);
         tvDifficulty.setText(arrayDifficulty[difficulty]);
     }
 
@@ -207,37 +207,37 @@ public class ShowRecipeFragment extends PrimaryFragment {
     }
 
     private void setTextCountry(int country){
-        String[] arrayCountry = getStringArray(R.array.ar_country);
+        String[] arrayCountry = getStringArray(R.array.tx_country);
         tvCountry.setText(arrayCountry[country]);
     }
 
     private void setImageCountry(int country){
-        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_country);
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.dw_country);
         int resource = arrayType.getResourceId(country, -1);
         ivCountryDw.setImageResource(resource);
     }
 
     private void setTextType(int type){
-        String[] arrayType = getStringArray(R.array.ar_recipe_type);
+        String[] arrayType = getStringArray(R.array.tx_recipe);
         tvType.setText(arrayType[type]);
     }
 
     private void setImageType(int type){
-        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_recipe_type);
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.dw_recipe);
         int resource = arrayType.getResourceId(type, -1);
         ivTypeDw.setImageResource(resource);
     }
 
     private void setTextPreferences(boolean isMeat){
         if(isMeat){
-            tvPreference.setText(getString(R.string.rb_meat));
+            tvPreference.setText(getString(R.string.ct_meat));
         } else {
-            tvPreference.setText(getString(R.string.rb_vegetarian));
+            tvPreference.setText(getString(R.string.ct_vegetarian));
         }
     }
 
     private void setImagePreferences(boolean isMeat){
-        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_preference);
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.dw_preference);
         int resource = arrayType.getResourceId(TypeManager.booleanToInteger(isMeat), -1);
         ivPreferencesDw.setImageResource(resource);
     }
@@ -302,23 +302,23 @@ public class ShowRecipeFragment extends PrimaryFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.menu_shwrecp, menu);
+        inflater.inflate(R.menu.rp_show, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem){
         switch(menuItem.getItemId()){
-            case R.id.item_calculate_menu_shwrecp:
+            case R.id.it_calculate:
                 setFragment(new CalculateRecipeFragment());
                 return true;
-            case R.id.item_edit_menu_shwrecp:
+            case R.id.it_edit:
                 Fragment fragment = new ManageRecipeFragment();
                 setBoolInBundle(fragment, true, BundleGlobals.BUND_BOOL_FRAG_ADDREC);
                 setFragment(fragment);
                 return true;
-            case R.id.item_delete_menu_shwrecp:
-                showAlertDialog(R.string.dg_recipe_delete, getDialogListener());
+            case R.id.it_remove:
+                showAlertDialog(R.string.dg_rp_remove, getDialogListener());
                 return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
@@ -354,7 +354,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
                 }
                 return true;
             }catch (SQLiteException e){
-                showShortToast(R.string.ts_db_error);
+                showShortToast(R.string.ts_database);
                 return false;
             }
         }
@@ -396,7 +396,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
     private void finishedDeleteRecipe(ArrayList<String> authors) {
         removeUnavailableAuthor(authors);
         deleteRecentId();
-        recipeSuccess(R.string.sb_recipe_deleted);
+        recipeSuccess(R.string.sb_rp_remove);
     }
 
     private void hideCardViews() {

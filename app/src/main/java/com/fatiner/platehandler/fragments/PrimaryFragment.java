@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.constraint.ConstraintSet;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -155,7 +154,7 @@ public class PrimaryFragment extends Fragment {
 
     protected String getStepHeader(int id){
         int actualId = id + MainGlobals.INT_INCREMENT_VAR_INIT;
-        return getString(R.string.tv_step) + MainGlobals.STR_SPACE_OBJ_INIT + actualId;
+        return getString(R.string.ct_step) + MainGlobals.STR_SPACE_OBJ_INIT + actualId;
     }
 
     protected void selectPhoto(){
@@ -318,8 +317,8 @@ public class PrimaryFragment extends Fragment {
         tv.setText(getString(id));
     }
 
-    protected void setTv(TextView tv, float text, int idUnit) {
-        String full = text + MainGlobals.STR_SPACE_OBJ_INIT + getString(idUnit);
+    protected void setTv(TextView tv, float text, String unit) {
+        String full = text + MainGlobals.STR_SPACE_OBJ_INIT + unit;
         tv.setText(full);
     }
 

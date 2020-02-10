@@ -40,7 +40,7 @@ public class ImportFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_import, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_import);
+        setToolbarTitle(R.string.tb_im_database);
         setMenuItem(MainGlobals.ID_IMPORT_DRAW_MAIN);
         setRecyclerView();
         checkIfRvEmpty(rvFiles, tvEmpty);

@@ -78,7 +78,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     }
 
     private TypedArray getArrayTypes(){
-        return context.getResources().obtainTypedArray(R.array.ar_drawable_product_type);
+        return context.getResources().obtainTypedArray(R.array.dw_product);
     }
 
     public class ProductsHolder extends RecyclerView.ViewHolder{

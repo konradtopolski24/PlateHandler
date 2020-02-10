@@ -52,7 +52,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_choose_recipe, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_recipe_choose);
+        setToolbarTitle(R.string.tb_rp_choose);
         chooseItem();
         setRecipes();
         hideFloatRecipes();
@@ -100,14 +100,14 @@ public class ChooseRecipeFragment extends PrimaryFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.menu_chsrecp, menu);
+        inflater.inflate(R.menu.rp_choose, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem){
         switch(menuItem.getItemId()){
-            case R.id.item_settings_menu_chsrecp:
+            case R.id.it_settings:
                 setFragment(new SettingsRecipeFragment());
                 return true;
             default:
@@ -129,7 +129,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
                 DbOperations.readRecipes(getContext(), recipes, getSelection(), getOrderBy());
                 return true;
             }catch (SQLiteException e){
-                showShortToast(R.string.ts_db_error);
+                showShortToast(R.string.ts_database);
                 return false;
             }
         }

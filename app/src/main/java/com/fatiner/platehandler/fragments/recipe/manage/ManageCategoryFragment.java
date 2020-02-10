@@ -48,10 +48,10 @@ public class ManageCategoryFragment extends PrimaryFragment {
             category.setIngredients(getTempIngredients());
             setCategoryInRecipeDetails(category);
             resetTempIngredients();
-            showShortSnack(R.string.sb_category_added);
+            showShortSnack(R.string.sb_cg_add);
             popFragment();
         } else {
-            showShortToast(R.string.ts_category_empty);
+            showShortToast(R.string.ts_category);
         }
     }
 
@@ -109,9 +109,9 @@ public class ManageCategoryFragment extends PrimaryFragment {
 
     private void chooseToolbar(){
         if(isBundleNotEmpty()){
-            setToolbarTitle(R.string.tb_category_edit);
+            setToolbarTitle(R.string.tb_cg_edit);
         } else {
-            setToolbarTitle(R.string.tb_category_add);
+            setToolbarTitle(R.string.tb_cg_add);
         }
     }
 
@@ -178,7 +178,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
                         getContext(), products, null, getOrderByProducts());
                 return true;
             }catch (SQLiteException e){
-                showShortToast(R.string.ts_db_error);
+                showShortToast(R.string.ts_database);
                 return false;
             }
         }

@@ -34,7 +34,7 @@ public class CalculateManager {
     }
 
     public static float getAmountWithMeasure(Context context, float amount, int measure) {
-        int[] factors = context.getResources().getIntArray(R.array.ar_factor);
+        int[] factors = context.getResources().getIntArray(R.array.tx_factor);
         return amount * factors[measure];
     }
 

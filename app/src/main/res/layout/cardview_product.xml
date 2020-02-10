@@ -6,7 +6,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cl_product"
-        style="@style/ClHeader">
+        style="@style/ClData">
 
         <ImageView
             style="@style/IvChoose"

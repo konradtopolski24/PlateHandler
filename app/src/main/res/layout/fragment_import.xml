@@ -16,12 +16,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_files"
-                    android:text="@string/tv_files"
+                    android:text="@string/hd_im_file"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -47,7 +47,7 @@
                 <TextView
                     style="@style/TvEmpty"
                     android:id="@+id/tv_empty"
-                    android:text="@string/tv_empty_import"
+                    android:text="@string/ep_import"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>

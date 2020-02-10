@@ -52,7 +52,7 @@ public class SettingsProductFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings_product, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_product_settings);
+        setToolbarTitle(R.string.tb_pd_settings);
         setViewsWithSharedPreferences();
         return view;
     }

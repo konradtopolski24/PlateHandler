@@ -4,15 +4,21 @@
 
     <group>
         <item
-            android:id="@+id/item_edit_menu_shwprod"
+            android:id="@+id/it_calculate"
+            android:title="@string/mn_calculate"
+            android:icon="@drawable/ic_st_calculate"
+            app:showAsAction="ifRoom"/>
+
+        <item
+            android:id="@+id/it_edit"
             android:title="@string/mn_edit"
             android:icon="@drawable/ic_st_edit"
             app:showAsAction="ifRoom"/>
 
         <item
-            android:id="@+id/item_delete_menu_shwprod"
-            android:title="@string/mn_delete"
-            android:icon="@drawable/ic_st_delete"
+            android:id="@+id/it_remove"
+            android:title="@string/mn_remove"
+            android:icon="@drawable/ic_st_remove"
             app:showAsAction="ifRoom"/>
     </group>
 </menu>

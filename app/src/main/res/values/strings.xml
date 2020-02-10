@@ -2,15 +2,16 @@
     <!-- App Name -->
     <string name="app_name">Plate Handler</string>
 
-    <!-- Drawer -->
-    <string name="nv_main">Main</string>
-    <string name="nv_recipes">Recipes</string>
+    <!-- NavigationView Menu -->
+    <string name="nv_home">Home</string>
+    <string name="nv_recipe">Recipes</string>
     <string name="nv_shopping">Shopping List</string>
-    <string name="nv_products">Products</string>
+    <string name="nv_product">Products</string>
     <string name="nv_export">Export Database</string>
     <string name="nv_import">Import Database</string>
     <string name="nv_credits">Credits</string>
 
+    <!-- Drawer -->
     <string name="dt_opened">Drawer opened</string>
     <string name="dt_closed">Drawer closed</string>
 
@@ -20,201 +21,147 @@
 
     <!-- Pager -->
     <string name="pg_info">Info</string>
-    <string name="pg_ingredients">Ingredients</string>
-    <string name="pg_instructions">Instructions</string>
+    <string name="pg_ingredient">Ingredients</string>
+    <string name="pg_step">Steps</string>
 
-    <!-- Main -->
-    <string name="tv_day">Dish of the Day</string>
-    <string name="tv_recent">Recently shown</string>
-
-    <!-- Product -->
-    <string name="et_carbohydrates">Carbohydrates</string>
-    <string name="et_protein">Protein</string>
-    <string name="et_fat">Fat</string>
-
-    <string name="tv_nutrients">Nutrients in Product</string>
-    <string name="tv_kcal_hd">Energy in Kcal</string>
-    <string name="tv_kj_hd">Energy in Kj</string>
-
-    <!-- Recipe -->
-    <string name="et_name">Name</string>
-    <string name="et_author">Author</string>
-    <string name="et_serving">Serving</string>
-    <string name="tv_time">Time</string>
-    <string name="tv_difficulty">Difficulty</string>
-    <string name="tv_spiciness">Spiciness</string>
-    <string name="tv_country">Country</string>
-    <string name="tv_type">Type</string>
-    <string name="tv_preferences">Preferences</string>
-    <string name="rb_meat">Meat</string>
-    <string name="rb_vegetarian">Vegetarian</string>
-    <string name="tv_alphabetical">Alphabetically</string>
-    <string name="tv_favorite">Favorite</string>
-    <string name="tv_step">Step</string>
-
-    <string name="tv_info">Recipe Info</string>
-    <string name="tv_ingredients">Ingredients List</string>
-    <string name="tv_steps">Recipe Steps</string>
-
-    <!-- Recipe Menu Items -->
+    <!-- Menu Items -->
     <string name="mn_settings">Settings</string>
     <string name="mn_calculate">Calculate</string>
     <string name="mn_edit">Edit</string>
-    <string name="mn_delete">Delete</string>
+    <string name="mn_remove">Remove</string>
 
-    <string name="et_export">Export file name</string>
-
-    <!-- Main Toolbar Titles -->
-    <string name="tb_main">Main</string>
-
-    <string name="tb_recipe_choose">Choose Recipe</string>
-    <string name="tb_recipe_settings">Recipe Settings</string>
-    <string name="tb_recipe_add">Add recipe</string>
-    <string name="tb_recipe_edit">Edit recipe</string>
-    <string name="tb_recipe_calculate">Calculate recipe</string>
-
-    <string name="tb_category_add">Add category</string>
-    <string name="tb_category_edit">Edit category</string>
-
-    <string name="tb_step_add">Add step</string>
-    <string name="tb_step_edit">Edit step</string>
-
-    <string name="tb_product_choose">Choose product</string>
-    <string name="tb_product_settings">Product settings</string>
-    <string name="tb_product_add">Add product</string>
-    <string name="tb_product_edit">Edit product</string>
-
-    <string name="tb_shopping_list">Shopping list</string>
-    <string name="tb_shopping_create">Create shopping list</string>
-
-    <string name="tb_export">Export Database</string>
-    <string name="tb_import">Import Database</string>
-
-    <string name="tb_credits">Credits</string>
-
-    <!-- Shopping List -->
-    <string name="tv_shopping_date">List From</string>
-    <string name="tv_shopping_state">Shopping State</string>
+    <!-- Button -->
     <string name="bt_shopping">Create New List</string>
     <string name="bt_category">Add New Ingredient Category</string>
     <string name="bt_step">Add New Recipe Step</string>
-
-    <!-- Product Calculate -->
-    <string name="tv_protein">Protein</string>
-    <string name="tv_carbohydrates">Carbohydrates</string>
-    <string name="tv_fat">Fat</string>
-    <string name="tv_other">Other</string>
-    <string name="tv_chart_nutrients">Percentage chart of nutrients</string>
-    <string name="tv_total">Total energy</string>
-    <string name="tv_chart_kcal">Percentage chart of energy in kcal</string>
-    <string name="tv_kcal">kcal</string>
-    <string name="tv_chart_kj">Percentage chart of energy in kj</string>
-    <string name="tv_kj">kj</string>
-
-    <!-- Snack Message -->
-    <string name="sb_product_added">Product added!</string>
-    <string name="sb_product_updated">Product updated!</string>
-    <string name="sb_product_deleted">Product deleted!</string>
-
-    <string name="sb_category_added">New category added!</string>
-    <string name="sb_step_added">New step added!</string>
-
-    <string name="sb_recipe_added">Recipe added!</string>
-    <string name="sb_recipe_updated">Recipe updated!</string>
-    <string name="sb_recipe_deleted">Recipe deleted!</string>
-
-    <string name="sb_shopping_created">Shopping list created!</string>
-
-    <string name="sb_export">Database exported!</string>
-    <string name="sb_import">Database imported!</string>
-
-    <!-- Toast Message -->
-    <string name="ts_product_empty">Product name is empty!</string>
-
-    <string name="ts_recipe_incomplete">Recipe is incomplete!</string>
-    <string name="ts_category_empty">Category name is empty!</string>
-    <string name="ts_step_empty">Step instruction is empty!</string>
-
-    <string name="ts_item_empty">Item names are empty!</string>
-
-    <string name="ts_db_error">Database error!</string>
-
-    <string name="ts_export_empty">Export File Name is empty!</string>
+    <string name="bt_item">Add New Item</string>
+    <string name="bt_recipe">Select Recipe</string>
 
     <!-- Dialog Message -->
-    <string name="dg_product_add">Do you want to add a new product?</string>
-    <string name="dg_product_edit">Do you want to edit the product?</string>
-    <string name="dg_product_delete">Do you want to delete the product?</string>
+    <string name="dg_pd_add">Do you want to add a new product?</string>
+    <string name="dg_pd_edit">Do you want to edit the product?</string>
+    <string name="dg_pd_remove">Do you want to remove the product?</string>
+    <string name="dg_rp_add">Do you want to add a new recipe?</string>
+    <string name="dg_rp_edit">Do you want to edit the recipe?</string>
+    <string name="dg_rp_remove">Do you want to remove the recipe?</string>
+    <string name="dg_sh_add">Do you want to create a new shopping list?</string>
+    <string name="dg_ex_add">Do you want to create a new export file?</string>
 
-    <string name="dg_recipe_add">Do you want to add a new recipe?</string>
-    <string name="dg_recipe_edit">Do you want to edit the recipe?</string>
-    <string name="dg_recipe_delete">Do you want to delete the recipe?</string>
+    <!-- Snackbar Message -->
+    <string name="sb_pd_add">Product added!</string>
+    <string name="sb_pd_edit">Product updated!</string>
+    <string name="sb_pd_remove">Product removed!</string>
+    <string name="sb_cg_add">New category added!</string>
+    <string name="sb_st_add">New step added!</string>
+    <string name="sb_rp_add">Recipe added!</string>
+    <string name="sb_rp_edit">Recipe updated!</string>
+    <string name="sb_rp_remove">Recipe removed!</string>
+    <string name="sb_sh_add">Shopping list created!</string>
+    <string name="sb_ex_add">Database exported!</string>
+    <string name="sb_im_add">Database imported!</string>
 
-    <string name="dg_shopping_create">Do you want to create a new shopping list?</string>
+    <!-- Toast Message -->
+    <string name="ts_product">Product name is empty!</string>
+    <string name="ts_recipe">Recipe is incomplete!</string>
+    <string name="ts_category">Category name is empty!</string>
+    <string name="ts_step">Step instruction is empty!</string>
+    <string name="ts_item">Item names are empty!</string>
+    <string name="ts_database">Database error!</string>
+    <string name="ts_export">Export File Name is empty!</string>
 
-    <string name="dg_export_add">Do you want to create a new export file?</string>
+    <!-- Empty List -->
+    <string name="ep_recipe">Recipe list is empty!</string>
+    <string name="ep_product">Product list is empty!</string>
+    <string name="ep_category">Category list is empty!</string>
+    <string name="ep_step">Step list is empty!</string>
+    <string name="ep_shopping">Shopping list is empty!</string>
+    <string name="ep_import">Import file list is empty!</string>
+    <string name="ep_spinner">No Products!</string>
 
-    <string name="nt_title">New dish of the day!</string>
-    <string name="nt_text">What kind of dish would you like to eat today?</string>
+    <!-- Finished -->
+    <string name="fn_ingredient">Used!</string>
+    <string name="fn_step">Step done!</string>
 
-    <string name="tv_measure">Measures</string>
+    <!-- Captions -->
+    <string name="ct_name">Name</string>
+    <string name="ct_author">Author</string>
+    <string name="ct_serving">Serving</string>
+    <string name="ct_time">Time</string>
+    <string name="ct_difficulty">Difficulty</string>
+    <string name="ct_spiciness">Spiciness</string>
+    <string name="ct_country">Country</string>
+    <string name="ct_type">Type</string>
+    <string name="ct_preference">Preferences</string>
+    <string name="ct_meat">Meat</string>
+    <string name="ct_vegetarian">Vegetarian</string>
+    <string name="ct_alphabetical">Alphabetically</string>
+    <string name="ct_favorite">Favorite</string>
+    <string name="ct_step">Step</string>
+    <string name="ct_carbohydrates">Carbohydrates</string>
+    <string name="ct_protein">Protein</string>
+    <string name="ct_fat">Fat</string>
+    <string name="ct_date">List From</string>
+    <string name="ct_state">Shopping State</string>
+    <string name="ct_other">Other</string>
+    <string name="ct_chart">Percentage chart of nutrients</string>
+    <string name="ct_total">Total energy</string>
+    <string name="ct_kcal">Percentage chart of energy in kcal</string>
+    <string name="ct_kj">Percentage chart of energy in kj</string>
+    <string name="ct_version">Version</string>
+    <string name="ct_license">License</string>
+    <string name="ct_attribution">Attribution</string>
+    <string name="ct_saved">Saved Stuff</string>
+    <string name="ct_unsaved">Unsaved Stuff</string>
+    <string name="ct_measure">Measures</string>
+    <string name="ct_amount">Amount</string>
 
-    <string name="tv_times">x</string>
-    <string name="tv_gram">g</string>
+    <!-- Header -->
+    <string name="hd_hm_day">Dish of the Day</string>
+    <string name="hd_hm_recent">Recently shown</string>
+    <string name="hd_pd_photo">Add product photo</string>
+    <string name="hd_pd_name">Set product name and type</string>
+    <string name="hd_pd_nutrient">Set nutrients for 100 g</string>
+    <string name="hd_pd_info">Nutrients in Product</string>
+    <string name="hd_pd_kcal">Energy in Kcal</string>
+    <string name="hd_pd_kj">Energy in Kj</string>
+    <string name="hd_pd_settings">Product settings</string>
+    <string name="hd_rp_photo">Add recipe photo</string>
+    <string name="hd_rp_name">Set recipe name and author</string>
+    <string name="hd_rp_add">Set recipe info</string>
+    <string name="hd_rp_info">Recipe Info</string>
+    <string name="hd_rp_ingredient">Ingredients List</string>
+    <string name="hd_rp_category">Ingredient Categories</string>
+    <string name="hd_rp_step">Recipe Steps</string>
+    <string name="hd_rp_settings">Recipe settings</string>
+    <string name="hd_cg_name">Set Category Name</string>
+    <string name="hd_st_content">Set New Step</string>
+    <string name="hd_sh_info">Shopping List Info</string>
+    <string name="hd_sh_item">Add Items to the Shopping List</string>
+    <string name="hd_sh_list">Shopping List</string>
+    <string name="hd_ex_name">Set Export File Name</string>
+    <string name="hd_ex_info">Export Info</string>
+    <string name="hd_im_file">Import Files</string>
+    <string name="hd_cd_library">Libraries Used in the App</string>
+    <string name="hd_cd_icon">Icons Used in the App</string>
 
-    <string name="tv_done">Step done!</string>
-    <string name="tv_used">Used!</string>
-
-    <string name="tv_add_photo">Add photo</string>
-    <string name="tv_add_name">Set recipe name and author</string>
-    <string name="tv_add_info">Set recipe info</string>
-
-    <string name="tv_add_product">Set product name and type</string>
-    <string name="tv_add_nutrients">Set nutrients for 100 g</string>
-
-    <string name="tv_add_settings">Recipe settings</string>
-    <string name="tv_product_settings">Product settings</string>
-
-    <string name="tv_shopping_info">Shopping List Info</string>
-    <string name="tv_shopping_list">Shopping List</string>
-
-    <string name="tv_categories">Ingredient Categoties</string>
-
-    <string name="tv_empty_recipe">Recipe list is empty!</string>
-    <string name="tv_empty_product">Product list is empty!</string>
-    <string name="tv_empty_category">Category list is empty!</string>
-    <string name="tv_empty_step">Step list is empty!</string>
-    <string name="tv_empty_shopping">Shopping list is empty!</string>
-
-    <string name="tv_add_shopping">Add Items to the Shopping List</string>
-    <string name="bt_add">Add New Item</string>
-    <string name="bt_select">Select Recipe</string>
-
-    <string name="et_amount">Amount</string>
-
-    <string name="tv_category_name">Set Category Name</string>
-
-    <string name="tv_set_step">Set New Step</string>
-
-    <string name="tv_empty_spinner">No Products!</string>
-
-    <string name="tv_none">None</string>
-
-    <string name="tv_add_export">Set Export File Name</string>
-
-    <string name="tv_export_info">Export Info</string>
-
-    <string name="tv_saved">Saved Stuff</string>
-    <string name="tv_unsaved">Unsaved Stuff</string>
-
-    <string name="tv_files">Import Files</string>
-    <string name="tv_empty_import">Import file list is empty!</string>
-
-    <string name="tv_libraries">Libraries Used in the App</string>
-    <string name="tv_icons">Icons Used in the App</string>
-
-    <string name="tv_version">Version</string>
-    <string name="tv_license">License</string>
-
-    <string name="tv_attribution">Attribution</string>
+    <!-- Main Toolbar Titles -->
+    <string name="tb_hm_welcome">Welcome</string>
+    <string name="tb_rp_choose">Choose Recipe</string>
+    <string name="tb_rp_settings">Recipe Settings</string>
+    <string name="tb_rp_add">Add recipe</string>
+    <string name="tb_rp_edit">Edit recipe</string>
+    <string name="tb_rp_calculate">Calculate recipe</string>
+    <string name="tb_cg_add">Add category</string>
+    <string name="tb_cg_edit">Edit category</string>
+    <string name="tb_st_add">Add step</string>
+    <string name="tb_st_edit">Edit step</string>
+    <string name="tb_pd_choose">Choose product</string>
+    <string name="tb_pd_settings">Product settings</string>
+    <string name="tb_pd_add">Add product</string>
+    <string name="tb_pd_edit">Edit product</string>
+    <string name="tb_sh_list">Shopping list</string>
+    <string name="tb_sh_add">Create shopping list</string>
+    <string name="tb_ex_database">Export Database</string>
+    <string name="tb_im_database">Import Database</string>
+    <string name="tb_cd_show">Credits</string>
 </resources>

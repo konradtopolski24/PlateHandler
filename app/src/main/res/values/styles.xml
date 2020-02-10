@@ -1,10 +1,10 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="android:colorBackground">@color/background</item>
+        <item name="colorPrimary">@color/pr_normal</item>
+        <item name="colorPrimaryDark">@color/pr_dark</item>
+        <item name="colorAccent">@color/ac_normal</item>
+        <item name="android:colorBackground">@color/bg_gray</item>
     </style>
 
     <!-- Base -->
@@ -30,110 +30,105 @@
     </style>
 
     <style name="WidthZero">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">@dimen/df_zero</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="HeightZero">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_height">@dimen/df_zero</item>
     </style>
 
     <style name="BothZero">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">@dimen/df_zero</item>
+        <item name="android:layout_height">@dimen/df_zero</item>
     </style>
 
     <!-- View -->
 
     <style name="VwLine">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">2dp</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:background">@color/background</item>
+        <item name="android:layout_width">@dimen/df_zero</item>
+        <item name="android:layout_height">@dimen/ht_line</item>
+        <item name="android:layout_marginTop">@dimen/mg_big</item>
+        <item name="android:background">@color/bg_gray</item>
     </style>
 
     <!-- CardView -->
 
     <style name="CvData" parent="WidthMatch">
-        <item name="android:layout_marginStart">12dp</item>
-        <item name="android:layout_marginEnd">12dp</item>
-        <item name="android:layout_marginBottom">30dp</item>
-        <item name="cardCornerRadius">16dp</item>
-        <item name="cardElevation">0dp</item>
-        <item name="cardBackgroundColor">@android:color/white</item>
+        <item name="android:layout_marginStart">@dimen/mg_huge</item>
+        <item name="android:layout_marginEnd">@dimen/mg_huge</item>
+        <item name="android:layout_marginBottom">@dimen/mg_enormous</item>
+        <item name="cardCornerRadius">@dimen/rd_big</item>
+        <item name="cardElevation">@dimen/df_zero</item>
+        <item name="cardBackgroundColor">@color/tv_white</item>
     </style>
 
     <style name="CvHeader" parent="WidthMatch">
-        <item name="android:layout_marginTop">12dp</item>
-        <item name="android:layout_marginStart">12dp</item>
-        <item name="android:layout_marginEnd">12dp</item>
-        <item name="cardCornerRadius">16dp</item>
-        <item name="cardElevation">0dp</item>
-        <item name="cardBackgroundColor">@color/primary</item>
+        <item name="android:layout_marginTop">@dimen/mg_huge</item>
+        <item name="android:layout_marginStart">@dimen/mg_huge</item>
+        <item name="android:layout_marginEnd">@dimen/mg_huge</item>
+        <item name="cardCornerRadius">@dimen/rd_big</item>
+        <item name="cardElevation">@dimen/df_zero</item>
+        <item name="cardBackgroundColor">@color/pr_normal</item>
     </style>
 
     <style name="CvIngredient" parent="WidthMatch">
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
-        <item name="cardCornerRadius">8dp</item>
-        <item name="cardElevation">0dp</item>
+        <item name="android:layout_marginTop">@dimen/mg_big</item>
+        <item name="android:layout_marginStart">@dimen/mg_big</item>
+        <item name="android:layout_marginEnd">@dimen/mg_big</item>
+        <item name="cardCornerRadius">@dimen/rd_small</item>
+        <item name="cardElevation">@dimen/df_zero</item>
     </style>
 
     <style name="CvCategory" parent="WidthMatch">
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
-        <item name="cardCornerRadius">12dp</item>
-        <item name="cardElevation">0dp</item>
-        <item name="cardBackgroundColor">@android:color/white</item>
+        <item name="android:layout_marginTop">@dimen/mg_big</item>
+        <item name="android:layout_marginStart">@dimen/mg_big</item>
+        <item name="android:layout_marginEnd">@dimen/mg_big</item>
+        <item name="cardElevation">@dimen/df_zero</item>
+        <item name="cardBackgroundColor">@color/tv_white</item>
     </style>
 
     <style name="CvChoose" parent="WidthMatch">
-        <item name="android:layout_margin">6dp</item>
-        <item name="cardCornerRadius">16dp</item>
-        <item name="cardElevation">0dp</item>
-        <item name="cardBackgroundColor">@color/primary</item>
+        <item name="android:layout_margin">@dimen/mg_big</item>
+        <item name="cardCornerRadius">@dimen/rd_big</item>
+        <item name="cardElevation">@dimen/df_zero</item>
+        <item name="cardBackgroundColor">@color/pr_normal</item>
     </style>
 
     <!-- ConstraintLayout -->
 
-    <style name="ClHeader" parent="WidthMatch">
-        <item name="android:layout_margin">14dp</item>
-    </style>
-
     <style name="ClData" parent="WidthMatch">
-        <item name="android:layout_margin">12dp</item>
+        <item name="android:layout_margin">@dimen/mg_huge</item>
     </style>
 
     <style name="ClIngredient" parent="WidthMatch">
-        <item name="android:background">@drawable/bg_ingredient</item>
+        <item name="android:background">@drawable/bg_item</item>
     </style>
 
     <style name="LlSide" parent="HeightZero">
-        <item name="android:padding">8dp</item>
-        <item name="android:background">@color/primary</item>
+        <item name="android:padding">@dimen/mg_big</item>
+        <item name="android:background">@color/pr_normal</item>
     </style>
 
     <!-- TextView -->
 
     <style name="TvHeader" parent="WidthZero">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/tx_big</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/tv_white</item>
     </style>
 
     <style name="TvName" parent="WidthZero">
-        <item name="android:layout_marginTop">6dp</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:layout_marginTop">@dimen/mg_medium</item>
+        <item name="android:textSize">@dimen/tx_huge</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/tv_white</item>
     </style>
 
     <style name="TvChoose" parent="WidthZero">
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginTop">@dimen/mg_big</item>
+        <item name="android:textSize">@dimen/tx_medium</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/tv_white</item>
         <item name="android:singleLine">true</item>
@@ -146,106 +141,96 @@
 
     <style name="TvAuthor" parent="WidthZero">
         <item name="android:textColor">@color/tv_white</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/tx_small</item>
     </style>
 
     <style name="TvInfo" parent="WidthZero">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/tx_small</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TvIngredient" parent="WidthZero">
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginTop">@dimen/mg_big</item>
+        <item name="android:layout_marginStart">@dimen/mg_big</item>
+        <item name="android:layout_marginEnd">@dimen/mg_big</item>
+        <item name="android:textSize">@dimen/tx_medium</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TvAmount" parent="BothWrap">
-        <item name="android:layout_marginStart">4dp</item>
-    </style>
-
-    <style name="TvTimes" parent="BothWrap">
-        <item name="android:layout_marginStart">4dp</item>
-        <item name="android:text">@string/tv_times</item>
-    </style>
-
     <style name="TvMeasure" parent="WidthZero">
-        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginStart">@dimen/mg_small</item>
     </style>
 
     <style name="TvCategory" parent="WidthZero">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/tx_big</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TvSide" parent="WidthZero">
-        <item name="android:padding">6dp</item>
+        <item name="android:padding">@dimen/mg_big</item>
         <item name="android:background">@drawable/bg_step</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/tv_white</item>
+        <item name="android:textSize">@dimen/tx_huge</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TvStep" parent="WidthZero">
-        <item name="android:layout_margin">10dp</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:layout_margin">@dimen/mg_huge</item>
+        <item name="android:textSize">@dimen/tx_small</item>
     </style>
 
     <style name="TvDone" parent="BothWrap">
-        <item name="android:layout_margin">8dp</item>
-        <item name="android:textSize">35sp</item>
+        <item name="android:layout_margin">@dimen/mg_big</item>
+        <item name="android:textSize">@dimen/tx_enormous</item>
         <item name="android:textStyle">bold</item>
         <item name="android:visibility">gone</item>
-        <item name="android:text">@string/tv_done</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="android:text">@string/fn_step</item>
+        <item name="android:textColor">@color/pr_normal</item>
     </style>
 
     <style name="TvUsed" parent="BothWrap">
-        <item name="android:layout_margin">8dp</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:layout_margin">@dimen/mg_big</item>
+        <item name="android:textSize">@dimen/tx_huge</item>
         <item name="android:textStyle">bold</item>
         <item name="android:visibility">gone</item>
-        <item name="android:text">@string/tv_used</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="android:text">@string/fn_ingredient</item>
+        <item name="android:textColor">@color/pr_normal</item>
     </style>
 
     <style name="TvShopping" parent="WidthZero">
-        <item name="android:layout_marginTop">5dp</item>
-        <item name="android:layout_marginStart">5dp</item>
-        <item name="android:layout_marginEnd">5dp</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginTop">@dimen/mg_medium</item>
+        <item name="android:layout_marginStart">@dimen/mg_medium</item>
+        <item name="android:layout_marginEnd">@dimen/mg_medium</item>
+        <item name="android:textSize">@dimen/tx_big</item>
     </style>
 
-    <style name="TvNoProduct" parent="BothWrap">
-        <item name="android:layout_margin">2dp</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:text">@string/tv_empty_spinner</item>
+    <style name="TvTiny" parent="BothWrap">
+        <item name="android:layout_margin">@dimen/mg_tiny</item>
+        <item name="android:textSize">@dimen/tx_tiny</item>
         <item name="android:visibility">gone</item>
     </style>
 
     <style name="TvEmpty" parent="BothWrap">
-        <item name="android:layout_margin">8dp</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:layout_margin">@dimen/mg_big</item>
+        <item name="android:textSize">@dimen/tx_huge</item>
         <item name="android:visibility">gone</item>
     </style>
 
     <style name="TvCredits" parent="WidthZero">
-        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginBottom">@dimen/mg_big</item>
     </style>
 
     <!-- ImageView -->
 
     <style name="IvHeader" parent="BothWrap">
-        <item name="android:src">@drawable/ic_expand</item>
+        <item name="android:src">@drawable/ic_ot_expand</item>
     </style>
 
     <style name="IvInfo" parent="BothWrap">
-        <item name="android:layout_marginTop">6dp</item>
-        <item name="android:layout_marginStart">6dp</item>
-        <item name="android:layout_marginEnd">6dp</item>
+        <item name="android:layout_marginTop">@dimen/mg_medium</item>
+        <item name="android:layout_marginStart">@dimen/mg_medium</item>
+        <item name="android:layout_marginEnd">@dimen/mg_medium</item>
     </style>
 
     <style name="IvInfoRecipe" parent="IvInfo">
@@ -269,50 +254,50 @@
     </style>
 
     <style name="IvIngredient" parent="BothWrap">
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginTop">@dimen/mg_small</item>
+        <item name="android:layout_marginStart">@dimen/mg_big</item>
+        <item name="android:layout_marginBottom">@dimen/mg_big</item>
     </style>
 
     <style name="IvPhoto">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_height">@dimen/ht_photo</item>
         <item name="android:scaleType">centerCrop</item>
         <item name="android:visibility">gone</item>
     </style>
 
     <style name="IvSpiciness" parent="BothWrap">
-        <item name="android:layout_marginTop">3dp</item>
-        <item name="android:layout_marginStart">3dp</item>
-        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:layout_marginTop">@dimen/mg_small</item>
+        <item name="android:layout_marginStart">@dimen/mg_small</item>
+        <item name="android:layout_marginEnd">@dimen/mg_small</item>
         <item name="android:src">@drawable/ic_sp_hot</item>
         <item name="android:visibility">gone</item>
     </style>
 
     <style name="IvStretch" parent="WidthZero">
-        <item name="android:layout_marginStart">6dp</item>
-        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:layout_marginStart">@dimen/mg_medium</item>
+        <item name="android:layout_marginTop">@dimen/mg_small</item>
         <item name="android:scaleType">fitStart</item>
     </style>
 
     <style name="IvSide">
-        <item name="android:layout_width">32dp</item>
-        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_width">@dimen/ic_medium</item>
+        <item name="android:layout_height">@dimen/ic_medium</item>
         <item name="android:tint">@color/tv_white</item>
         <item name="android:scaleType">fitXY</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="IvChoose">
-        <item name="android:layout_width">64dp</item>
-        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_width">@dimen/ic_big</item>
+        <item name="android:layout_height">@dimen/ic_big</item>
         <item name="android:tint">@color/tv_white</item>
         <item name="android:scaleType">fitXY</item>
     </style>
 
     <style name="IvClose" parent="BothWrap">
-        <item name="android:src">@drawable/ic_close</item>
-        <item name="android:layout_marginEnd">6dp</item>
+        <item name="android:src">@drawable/ic_ot_close</item>
+        <item name="android:layout_marginEnd">@dimen/mg_medium</item>
     </style>
 
     <!-- RecyclerView -->
@@ -330,43 +315,43 @@
     <!-- ImageButton -->
 
     <style name="IbDefault" parent="BothWrap">
-        <item name="android:layout_marginStart">6dp</item>
-        <item name="android:layout_marginEnd">6dp</item>
+        <item name="android:layout_marginStart">@dimen/mg_medium</item>
+        <item name="android:layout_marginEnd">@dimen/mg_medium</item>
     </style>
 
     <!-- CheckBox -->
 
     <style name="CbDone" parent="BothWrap">
-        <item name="android:layout_marginTop">6dp</item>
-        <item name="android:layout_marginEnd">6dp</item>
+        <item name="android:layout_marginTop">@dimen/mg_medium</item>
+        <item name="android:layout_marginEnd">@dimen/mg_medium</item>
         <item name="android:visibility">gone</item>
     </style>
 
     <!-- PieChart -->
 
     <style name="PcDefault">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">300dp</item>
-        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_width">@dimen/df_zero</item>
+        <item name="android:layout_height">@dimen/ht_chart</item>
+        <item name="android:layout_marginTop">@dimen/mg_huge</item>
     </style>
 
     <!-- TabLayout -->
 
     <style name="TlDefault" parent="WidthMatch">
-        <item name="android:background">@color/primary</item>
-        <item name="tabSelectedTextColor">@android:color/white</item>
+        <item name="android:background">@color/pr_normal</item>
+        <item name="tabSelectedTextColor">@color/tv_white</item>
     </style>
 
     <!-- FabDefault -->
 
     <style name="FabDefault" parent="BothWrap">
-        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_margin">@dimen/mg_big</item>
     </style>
 
     <!-- TextInputLayout -->
 
     <style name="TilDefault" parent="WidthZero">
-        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginTop">@dimen/mg_big</item>
     </style>
 
     <!-- EditText -->
@@ -387,8 +372,8 @@
     </style>
 
     <style name="EtItemAmount" parent="WidthMatch">
-        <item name="android:layout_marginStart">5dp</item>
-        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:layout_marginStart">@dimen/mg_medium</item>
+        <item name="android:layout_marginEnd">@dimen/mg_medium</item>
         <item name="android:digits">0123456789.</item>
         <item name="android:inputType">numberDecimal</item>
         <item name="android:lines">1</item>
@@ -397,8 +382,8 @@
     </style>
 
     <style name="EtItemName" parent="WidthMatch">
-        <item name="android:layout_marginStart">5dp</item>
-        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:layout_marginStart">@dimen/mg_medium</item>
+        <item name="android:layout_marginEnd">@dimen/mg_medium</item>
         <item name="android:inputType">textCapSentences</item>
         <item name="android:lines">1</item>
         <item name="android:maxLines">1</item>
@@ -406,28 +391,28 @@
     </style>
 
     <style name="EtStep" parent="WidthMatch">
-        <item name="android:layout_marginStart">5dp</item>
-        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:layout_marginStart">@dimen/mg_medium</item>
+        <item name="android:layout_marginEnd">@dimen/mg_medium</item>
         <item name="android:inputType">textMultiLine|textCapSentences</item>
     </style>
 
     <!-- RadioGroup -->
 
     <style name="RgDefault" parent="WidthZero">
-        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginTop">@dimen/mg_big</item>
         <item name="android:orientation">vertical</item>
     </style>
 
     <!-- RadioButton -->
 
     <style name="RbDefault" parent="BothWrap">
-        <item name="android:drawablePadding">6dp</item>
+        <item name="android:drawablePadding">@dimen/mg_medium</item>
     </style>
 
     <!-- SeekBar -->
 
     <style name="SbDefault" parent="WidthZero">
-        <item name="android:layout_marginEnd">18dp</item>
+        <item name="android:layout_marginEnd">@dimen/mg_huge</item>
     </style>
 
     <!-- Spinner -->
@@ -439,24 +424,24 @@
     <!-- Button -->
 
     <style name="BtDefault" parent="@style/Widget.AppCompat.Button.Colored">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">@dimen/df_zero</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginTop">@dimen/mg_big</item>
+        <item name="android:layout_marginStart">@dimen/mg_big</item>
+        <item name="android:layout_marginEnd">@dimen/mg_big</item>
     </style>
 
     <style name="BtAlone" parent="@style/Widget.AppCompat.Button.Colored">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">@dimen/df_zero</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginStart">@dimen/mg_big</item>
+        <item name="android:layout_marginEnd">@dimen/mg_big</item>
     </style>
 
     <!-- NavigationView -->
 
     <style name="NvDefault" parent="HeighthMatch">
         <item name="android:layout_gravity">start</item>
-        <item name="menu">@menu/drawer_main</item>
+        <item name="menu">@menu/nv_main</item>
     </style>
 </resources>

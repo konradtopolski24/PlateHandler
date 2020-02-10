@@ -16,12 +16,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_categories"
-                    android:text="@string/tv_categories"
+                    android:text="@string/hd_rp_category"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -55,7 +55,7 @@
                 <TextView
                     style="@style/TvEmpty"
                     android:id="@+id/tv_empty"
-                    android:text="@string/tv_empty_category"
+                    android:text="@string/ep_category"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/bt_add"/>

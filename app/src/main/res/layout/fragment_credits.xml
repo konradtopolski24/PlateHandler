@@ -16,12 +16,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_libraries"
-                    android:text="@string/tv_libraries"
+                    android:text="@string/hd_cd_library"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_libraries"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -59,12 +59,12 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_icons"
-                    android:text="@string/tv_icons"
+                    android:text="@string/hd_cd_icon"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_icons"
                     app:layout_constraintTop_toTopOf="parent"/>

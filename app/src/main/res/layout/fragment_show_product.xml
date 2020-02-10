@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <ImageView
                     style="@style/IvPhoto"
@@ -62,12 +62,12 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_nutrients"
-                    android:text="@string/tv_nutrients"
+                    android:text="@string/hd_pd_info"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_nutrients"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -102,7 +102,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_carbohydrates_hd"
-                    android:text="@string/et_carbohydrates"
+                    android:text="@string/ct_carbohydrates"
                     app:layout_constraintStart_toEndOf="@+id/iv_carbohydrates"
                     app:layout_constraintEnd_toStartOf="@+id/iv_protein"
                     app:layout_constraintTop_toTopOf="@+id/iv_carbohydrates"
@@ -119,7 +119,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_protein_hd"
-                    android:text="@string/tv_protein"
+                    android:text="@string/ct_protein"
                     app:layout_constraintStart_toEndOf="@+id/iv_protein"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_protein"
@@ -158,7 +158,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_fat_hd"
-                    android:text="@string/tv_fat"
+                    android:text="@string/ct_fat"
                     app:layout_constraintStart_toEndOf="@+id/iv_fat"
                     app:layout_constraintEnd_toStartOf="@+id/iv_other"
                     app:layout_constraintTop_toTopOf="@+id/iv_fat"
@@ -175,7 +175,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_other_hd"
-                    android:text="@string/tv_other"
+                    android:text="@string/ct_other"
                     app:layout_constraintStart_toEndOf="@+id/iv_other"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_other"
@@ -214,7 +214,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_chart_nutrients_hd"
-                    android:text="@string/tv_chart_nutrients"
+                    android:text="@string/ct_chart"
                     app:layout_constraintStart_toEndOf="@+id/iv_chart_nutrients"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_chart_nutrients"
@@ -245,12 +245,12 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_kcal"
-                    android:text="@string/tv_kcal_hd"
+                    android:text="@string/hd_pd_kcal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_kcal"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -285,7 +285,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_carbohydrates_kcal_hd"
-                    android:text="@string/et_carbohydrates"
+                    android:text="@string/ct_carbohydrates"
                     app:layout_constraintStart_toEndOf="@+id/iv_carbohydrates_kcal"
                     app:layout_constraintEnd_toStartOf="@+id/iv_protein_kcal"
                     app:layout_constraintTop_toTopOf="@+id/iv_carbohydrates_kcal"
@@ -302,7 +302,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_protein_kcal_hd"
-                    android:text="@string/tv_protein"
+                    android:text="@string/ct_protein"
                     app:layout_constraintStart_toEndOf="@+id/iv_protein_kcal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_protein_kcal"
@@ -341,7 +341,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_fat_kcal_hd"
-                    android:text="@string/tv_fat"
+                    android:text="@string/ct_fat"
                     app:layout_constraintStart_toEndOf="@+id/iv_fat_kcal"
                     app:layout_constraintEnd_toStartOf="@+id/iv_total_kcal"
                     app:layout_constraintTop_toTopOf="@+id/iv_fat_kcal"
@@ -358,7 +358,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_total_kcal_hd"
-                    android:text="@string/tv_total"
+                    android:text="@string/ct_total"
                     app:layout_constraintStart_toEndOf="@+id/iv_total_kcal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_total_kcal"
@@ -397,7 +397,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_chart_kcal_hd"
-                    android:text="@string/tv_chart_kcal"
+                    android:text="@string/ct_kcal"
                     app:layout_constraintStart_toEndOf="@+id/iv_chart_kcal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_chart_kcal"
@@ -420,12 +420,12 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_kj"
-                    android:text="@string/tv_kj_hd"
+                    android:text="@string/hd_pd_kj"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_kj"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -461,7 +461,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_carbohydrates_kj_hd"
-                    android:text="@string/et_carbohydrates"
+                    android:text="@string/ct_carbohydrates"
                     app:layout_constraintStart_toEndOf="@+id/iv_carbohydrates_kj"
                     app:layout_constraintEnd_toStartOf="@+id/iv_protein_kj"
                     app:layout_constraintTop_toTopOf="@+id/iv_carbohydrates_kj"
@@ -478,7 +478,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_protein_kj_hd"
-                    android:text="@string/tv_protein"
+                    android:text="@string/ct_protein"
                     app:layout_constraintStart_toEndOf="@+id/iv_protein_kj"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_protein_kj"
@@ -517,7 +517,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_fat_kj_hd"
-                    android:text="@string/tv_fat"
+                    android:text="@string/ct_fat"
                     app:layout_constraintStart_toEndOf="@+id/iv_fat_kj"
                     app:layout_constraintEnd_toStartOf="@+id/iv_total_kj"
                     app:layout_constraintTop_toTopOf="@+id/iv_fat_kj"
@@ -534,7 +534,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_total_kj_hd"
-                    android:text="@string/tv_total"
+                    android:text="@string/ct_total"
                     app:layout_constraintStart_toEndOf="@+id/iv_total_kj"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_total_kj"
@@ -573,7 +573,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_chart_kj_hd"
-                    android:text="@string/tv_chart_kj"
+                    android:text="@string/ct_kj"
                     app:layout_constraintStart_toEndOf="@+id/iv_chart_kj"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_chart_kj"

@@ -73,7 +73,7 @@ public class ShowShoppingFragment extends PrimaryFragment implements ShoppingAda
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_show_shopping, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_shopping_list);
+        setToolbarTitle(R.string.tb_sh_list);
         setMenuItem(MainGlobals.ID_SHOPPING_DRAW_MAIN);
         setShoppingListWithJson();
         setRecyclerView(
@@ -96,8 +96,8 @@ public class ShowShoppingFragment extends PrimaryFragment implements ShoppingAda
             setTv(tvDate, ShoppingListDetails.getShoppingList().getDate());
             checkState();
         } else {
-            setTv(tvDate, R.string.tv_none);
-            setTv(tvState, R.string.tv_none);
+            setTv(tvDate, MainGlobals.STR_DASH_TWO);
+            setTv(tvState, MainGlobals.STR_DASH_TWO);
         }
     }
 

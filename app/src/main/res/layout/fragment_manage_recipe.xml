@@ -23,7 +23,7 @@
     <android.support.design.widget.FloatingActionButton
         style="@style/FabDefault"
         android:id="@+id/fab_finished"
-        android:src="@drawable/ic_finished"
+        android:src="@drawable/ic_ot_finished"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 </android.support.constraint.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.fatiner.platehandler.adapters;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
@@ -87,7 +85,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
     private void setTextId(StepHolder holder, int id){
         int actualId = id + MainGlobals.INT_INCREMENT_VAR_INIT;
         String text = context.getResources().getString(
-                R.string.tv_step) + MainGlobals.STR_SPACE_OBJ_INIT + actualId;
+                R.string.ct_step) + MainGlobals.STR_SPACE_OBJ_INIT + actualId;
         holder.tvId.setText(text);
     }
 

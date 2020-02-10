@@ -39,7 +39,7 @@
         <TextView
             style="@style/TvInfo"
             android:id="@+id/tv_author_hd"
-            android:text="@string/et_author"
+            android:text="@string/ct_author"
             app:layout_constraintStart_toEndOf="@+id/iv_author"
             app:layout_constraintEnd_toEndOf="@+id/tv_name"
             app:layout_constraintTop_toTopOf="@+id/iv_author"
@@ -71,7 +71,7 @@
         <TextView
             style="@style/TvInfo"
             android:id="@+id/tv_version_hd"
-            android:text="@string/tv_version"
+            android:text="@string/ct_version"
             app:layout_constraintStart_toEndOf="@+id/iv_version"
             app:layout_constraintEnd_toEndOf="@+id/tv_name"
             app:layout_constraintTop_toTopOf="@+id/iv_version"
@@ -103,7 +103,7 @@
         <TextView
             style="@style/TvInfo"
             android:id="@+id/tv_license_hd"
-            android:text="@string/tv_license"
+            android:text="@string/ct_license"
             app:layout_constraintStart_toEndOf="@+id/iv_license"
             app:layout_constraintEnd_toEndOf="@+id/tv_name"
             app:layout_constraintTop_toTopOf="@+id/iv_license"

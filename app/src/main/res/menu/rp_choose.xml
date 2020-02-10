@@ -4,9 +4,9 @@
 
     <group>
         <item
-            android:id="@+id/item_settings_menu_chsrecp"
+            android:id="@+id/it_settings"
             android:title="@string/mn_settings"
             android:icon="@drawable/ic_st_settings"
-            app:showAsAction="always"/>
+            app:showAsAction="ifRoom"/>
     </group>
 </menu>

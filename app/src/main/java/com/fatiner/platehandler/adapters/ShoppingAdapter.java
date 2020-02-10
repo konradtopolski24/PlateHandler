@@ -62,7 +62,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
     }
 
     private String[] getArrayMeasure(){
-        return context.getResources().getStringArray(R.array.ar_measure);
+        return context.getResources().getStringArray(R.array.tx_measure);
     }
 
     private void setTextItem(ShoppingHolder holder, String item){

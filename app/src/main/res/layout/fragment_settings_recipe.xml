@@ -16,12 +16,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_settings"
-                    android:text="@string/tv_add_settings"
+                    android:text="@string/hd_rp_settings"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -50,7 +50,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_alphabetical_hd"
-                    android:text="@string/tv_alphabetical"
+                    android:text="@string/ct_alphabetical"
                     app:layout_constraintStart_toEndOf="@+id/iv_alphabetical"
                     app:layout_constraintEnd_toStartOf="@+id/iv_favorite"
                     app:layout_constraintTop_toTopOf="@+id/iv_alphabetical"
@@ -67,7 +67,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_favorite_hd"
-                    android:text="@string/tv_favorite"
+                    android:text="@string/ct_favorite"
                     app:layout_constraintStart_toEndOf="@+id/iv_favorite"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_favorite"
@@ -104,7 +104,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_author_hd"
-                    android:text="@string/et_author"
+                    android:text="@string/ct_author"
                     app:layout_constraintStart_toEndOf="@+id/iv_author"
                     app:layout_constraintEnd_toStartOf="@+id/iv_difficulty"
                     app:layout_constraintTop_toTopOf="@+id/iv_author"
@@ -121,7 +121,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_difficulty_hd"
-                    android:text="@string/tv_difficulty"
+                    android:text="@string/ct_difficulty"
                     app:layout_constraintStart_toEndOf="@+id/iv_difficulty"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_difficulty"
@@ -151,7 +151,7 @@
                 <Spinner
                     style="@style/SpInvisible"
                     android:id="@+id/sp_difficulty"
-                    android:entries="@array/ar_difficulty"
+                    android:entries="@array/tx_difficulty"
                     app:layout_constraintStart_toEndOf="@+id/sw_difficulty"
                     app:layout_constraintEnd_toEndOf="@+id/tv_difficulty_hd"
                     app:layout_constraintTop_toTopOf="@+id/sw_difficulty"
@@ -175,7 +175,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_spiciness_hd"
-                    android:text="@string/tv_spiciness"
+                    android:text="@string/ct_spiciness"
                     app:layout_constraintStart_toEndOf="@+id/iv_spiciness"
                     app:layout_constraintEnd_toStartOf="@+id/iv_country"
                     app:layout_constraintTop_toTopOf="@+id/iv_spiciness"
@@ -192,7 +192,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_country_hd"
-                    android:text="@string/tv_country"
+                    android:text="@string/ct_country"
                     app:layout_constraintStart_toEndOf="@+id/iv_country"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_country"
@@ -208,7 +208,7 @@
                 <Spinner
                     style="@style/SpInvisible"
                     android:id="@+id/sp_spiciness"
-                    android:entries="@array/ar_spiciness"
+                    android:entries="@array/tx_spiciness"
                     app:layout_constraintStart_toEndOf="@+id/sw_spiciness"
                     app:layout_constraintEnd_toEndOf="@+id/tv_spiciness_hd"
                     app:layout_constraintTop_toTopOf="@+id/sw_spiciness"
@@ -223,7 +223,7 @@
                 <Spinner
                     style="@style/SpInvisible"
                     android:id="@+id/sp_country"
-                    android:entries="@array/ar_country"
+                    android:entries="@array/tx_country"
                     app:layout_constraintStart_toEndOf="@+id/sw_country"
                     app:layout_constraintEnd_toEndOf="@+id/tv_country_hd"
                     app:layout_constraintTop_toTopOf="@+id/sw_country"
@@ -247,7 +247,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_type_hd"
-                    android:text="@string/tv_type"
+                    android:text="@string/ct_type"
                     app:layout_constraintStart_toEndOf="@+id/iv_type"
                     app:layout_constraintEnd_toStartOf="@+id/iv_preference"
                     app:layout_constraintTop_toTopOf="@+id/iv_type"
@@ -264,7 +264,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_preference_hd"
-                    android:text="@string/tv_preferences"
+                    android:text="@string/ct_preference"
                     app:layout_constraintStart_toEndOf="@+id/iv_preference"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_preference"
@@ -280,7 +280,7 @@
                 <Spinner
                     style="@style/SpInvisible"
                     android:id="@+id/sp_type"
-                    android:entries="@array/ar_recipe_type"
+                    android:entries="@array/tx_recipe"
                     app:layout_constraintStart_toEndOf="@+id/sw_type"
                     app:layout_constraintEnd_toEndOf="@+id/tv_type_hd"
                     app:layout_constraintTop_toTopOf="@+id/sw_type"
@@ -295,7 +295,7 @@
                 <Spinner
                     style="@style/SpInvisible"
                     android:id="@+id/sp_preference"
-                    android:entries="@array/ar_preference"
+                    android:entries="@array/tx_preference"
                     app:layout_constraintStart_toEndOf="@+id/sw_preference"
                     app:layout_constraintEnd_toEndOf="@+id/tv_preference_hd"
                     app:layout_constraintTop_toTopOf="@+id/sw_preference"

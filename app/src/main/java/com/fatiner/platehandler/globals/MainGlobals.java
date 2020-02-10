@@ -38,6 +38,7 @@ public class MainGlobals {
     public static final String STR_ENTER_OBJ_INIT = "\n";
     public static final String STR_BRACKER_LEFT = "(";
     public static final String STR_BRACKER_RIGHT = ")";
+    public static final String STR_DASH_TWO = "--";
 
     public static final String FORM_DATE_OBJ_INIT = "dd.MM.yyyy";
     public static final String FORM_HOUR_OBJ_INIT = "t%02d%02d";
@@ -76,4 +77,9 @@ public class MainGlobals {
     public static final long[] NOTIFICATION_VIBRATION = new long[] { 100, 100, 100, 100, 100 };
 
     public static final String FILE_XLS_SAVE_WORKBOOK = ".xls";
+
+    public static final String STR_KCAL = "kcal";
+    public static final String STR_KJ = "kj";
+    public static final String STR_GRAM = "g";
+    public static final String STR_TIMES = "x";
 }

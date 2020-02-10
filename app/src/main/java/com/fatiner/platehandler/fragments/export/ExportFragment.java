@@ -59,9 +59,9 @@ public class ExportFragment extends PrimaryFragment {
     public void onClickBtExport(){
         hideKeyboard();
         if(isEtEmpty(etExport)){
-            showShortToast(R.string.ts_export_empty);
+            showShortToast(R.string.ts_export);
         } else {
-            showAlertDialog(R.string.dg_export_add, getDialogListener());
+            showAlertDialog(R.string.dg_ex_add, getDialogListener());
         }
     }
 
@@ -71,11 +71,11 @@ public class ExportFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_export, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_export);
+        setToolbarTitle(R.string.tb_ex_database);
         setMenuItem(MainGlobals.ID_EXPORT_DRAW_MAIN);
-        String saved = getString(R.string.nv_recipes) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.nv_products);
+        String saved = getString(R.string.nv_recipe) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.nv_product);
         setTv(tvSaved, saved);
-        String unsaved = getString(R.string.nv_shopping) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.tv_day) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.tv_recent);
+        String unsaved = getString(R.string.nv_shopping) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.hd_hm_day) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.hd_hm_recent);
         setTv(tvUnsaved, unsaved);
         return view;
     }
@@ -103,7 +103,7 @@ public class ExportFragment extends PrimaryFragment {
                 DbOperations.readProducts(getContext(), products, null, null);
                 return true;
             }catch (SQLiteException e){
-                showShortToast(R.string.ts_db_error);
+                showShortToast(R.string.ts_database);
                 return false;
             }
         }
@@ -122,7 +122,7 @@ public class ExportFragment extends PrimaryFragment {
         createStepSheet(workbook, steps);
         createProductSheet(workbook, products);
         saveWorkbookFile(workbook);
-        showShortSnack(R.string.sb_export);
+        showShortSnack(R.string.sb_ex_add);
         popFragment();
     }
 

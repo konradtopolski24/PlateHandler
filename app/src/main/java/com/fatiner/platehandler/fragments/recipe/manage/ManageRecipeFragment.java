@@ -38,7 +38,7 @@ public class ManageRecipeFragment extends PrimaryFragment {
         if(RecipeDetails.isRecipeCorrect()){
             chooseDialog();
         } else {
-            showShortToast(R.string.ts_recipe_incomplete);
+            showShortToast(R.string.ts_recipe);
         }
     }
 
@@ -66,17 +66,17 @@ public class ManageRecipeFragment extends PrimaryFragment {
 
     private void chooseToolbar(){
         if(isBundleNotEmpty()){
-            setToolbarTitle(R.string.tb_recipe_edit);
+            setToolbarTitle(R.string.tb_rp_edit);
         } else {
-            setToolbarTitle(R.string.tb_recipe_add);
+            setToolbarTitle(R.string.tb_rp_add);
         }
     }
 
     private void chooseDialog(){
         if(isBundleNotEmpty()){
-            showAlertDialog(R.string.dg_recipe_edit, getDialogListener());
+            showAlertDialog(R.string.dg_rp_edit, getDialogListener());
         } else {
-            showAlertDialog(R.string.dg_recipe_add, getDialogListener());
+            showAlertDialog(R.string.dg_rp_add, getDialogListener());
         }
     }
 
@@ -142,7 +142,7 @@ public class ManageRecipeFragment extends PrimaryFragment {
                 }
                 return true;
             }catch (SQLiteException e){
-                showShortToast(R.string.ts_db_error);
+                showShortToast(R.string.ts_database);
                 return false;
             }
         }
@@ -165,13 +165,13 @@ public class ManageRecipeFragment extends PrimaryFragment {
         ImageManager.saveImage(
                 TypeManager.base64StringToBitmap(RecipeDetails.getRecipe().getEncodedImage()),
                 ImageManager.getImageRecipeName(idRecipe[MainGlobals.INT_STARTING_VAR_INIT]));
-        recipeSuccess(R.string.sb_recipe_added);
+        recipeSuccess(R.string.sb_rp_add);
     }
 
     private void updateRecipeFinished(ArrayList<String> authors) {
         removeUnavailableAuthor(authors);
         manageImageRecipeSaving();
-        productSuccess(R.string.sb_recipe_updated);
+        productSuccess(R.string.sb_rp_edit);
     }
 
     private enum Type {

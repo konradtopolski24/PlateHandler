@@ -48,7 +48,7 @@ public class ChooseProductFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_choose_product, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_product_choose);
+        setToolbarTitle(R.string.tb_pd_choose);
         setMenuItem(MainGlobals.ID_INGREDIENTS_DRAW_MAIN);
         readProducts();
         setHasOptionsMenu(true);
@@ -81,14 +81,14 @@ public class ChooseProductFragment extends PrimaryFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.menu_chsprod, menu);
+        inflater.inflate(R.menu.pd_choose, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem){
         switch(menuItem.getItemId()){
-            case R.id.item_settings_menu_chsprod:
+            case R.id.it_settings:
                 setFragment(new SettingsProductFragment());
                 return true;
             default:
@@ -111,7 +111,7 @@ public class ChooseProductFragment extends PrimaryFragment {
                         getContext(), products, getSelection(), getOrderBy());
                 return true;
             } catch (SQLiteException e) {
-                showShortToast(R.string.ts_db_error);
+                showShortToast(R.string.ts_database);
                 return false;
             }
         }

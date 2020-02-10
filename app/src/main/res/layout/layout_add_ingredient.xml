@@ -7,7 +7,7 @@
     <ImageView
         style="@style/IvClose"
         android:id="@+id/iv_remove"
-        android:src="@drawable/ic_close"
+        android:src="@drawable/ic_ot_close"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tl_amount"
         app:layout_constraintBottom_toBottomOf="@+id/tl_amount"/>
@@ -23,13 +23,13 @@
         <android.support.design.widget.TextInputEditText
             style="@style/EtItemAmount"
             android:id="@+id/et_amount"
-            android:hint="@string/et_amount"/>
+            android:hint="@string/ct_amount"/>
     </android.support.design.widget.TextInputLayout>
 
     <Spinner
         style="@style/WidthZero"
         android:id="@+id/sp_measure"
-        android:entries="@array/ar_measure"
+        android:entries="@array/tx_measure"
         app:layout_constraintStart_toEndOf="@+id/tl_amount"
         app:layout_constraintEnd_toStartOf="@+id/sp_product"
         app:layout_constraintTop_toTopOf="@+id/tl_amount"
@@ -46,8 +46,9 @@
         app:layout_constraintHorizontal_weight="1"/>
 
     <TextView
-        style="@style/TvNoProduct"
+        style="@style/TvTiny"
         android:id="@+id/tv_empty"
+        android:text="@string/ep_spinner"
         app:layout_constraintStart_toEndOf="@+id/sp_measure"
         app:layout_constraintEnd_toStartOf="@+id/ib_add"
         app:layout_constraintTop_toTopOf="@+id/tl_amount"
@@ -57,7 +58,7 @@
     <ImageButton
         style="@style/BothWrap"
         android:id="@+id/ib_add"
-        android:src="@drawable/ic_plus"
+        android:src="@drawable/ic_ot_plus"
         app:layout_constraintStart_toEndOf="@+id/sp_product"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tl_amount"

@@ -57,7 +57,7 @@ public class MainFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_main);
+        setToolbarTitle(R.string.tb_hm_welcome);
         setMenuItem(MainGlobals.ID_MAIN_DRAW_MAIN);
         checkDay();
         return view;

@@ -29,29 +29,15 @@
         <ImageView
             style="@style/IvIngredient"
             android:id="@+id/iv_measure"
-            android:src="@drawable/ic_amount"
+            android:src="@drawable/ic_ot_amount"
             app:layout_constraintStart_toEndOf="@+id/ll_icon"
             app:layout_constraintTop_toBottomOf="@+id/tv_product"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
-            style="@style/TvAmount"
-            android:id="@+id/tv_amount"
-            app:layout_constraintStart_toEndOf="@+id/iv_measure"
-            app:layout_constraintTop_toTopOf="@+id/iv_measure"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_measure"/>
-
-        <TextView
-            style="@style/TvTimes"
-            android:id="@+id/tv_times"
-            app:layout_constraintStart_toEndOf="@+id/tv_amount"
-            app:layout_constraintTop_toTopOf="@+id/iv_measure"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_measure"/>
-
-        <TextView
             style="@style/TvMeasure"
             android:id="@+id/tv_measure"
-            app:layout_constraintStart_toEndOf="@+id/tv_times"
+            app:layout_constraintStart_toEndOf="@+id/iv_measure"
             app:layout_constraintEnd_toEndOf="@+id/tv_product"
             app:layout_constraintTop_toTopOf="@+id/iv_measure"
             app:layout_constraintBottom_toBottomOf="@+id/iv_measure"/>

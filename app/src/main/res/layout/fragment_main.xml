@@ -16,12 +16,12 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_day"
-                    android:text="@string/tv_day"
+                    android:text="@string/hd_hm_day"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_day"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -59,12 +59,12 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <android.support.constraint.ConstraintLayout
-                style="@style/ClHeader">
+                style="@style/ClData">
 
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_recent"
-                    android:text="@string/tv_recent"
+                    android:text="@string/hd_hm_recent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_recent"
                     app:layout_constraintTop_toTopOf="parent"/>

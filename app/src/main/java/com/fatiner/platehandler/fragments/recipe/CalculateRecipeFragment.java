@@ -44,7 +44,7 @@ public class CalculateRecipeFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calculate_recipe, container, false);
         ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_recipe_calculate);
+        setToolbarTitle(R.string.tb_rp_calculate);
         ArrayList<Ingredient> ingredients = getIngredients();
         setRecyclerView(
                 rvIngredients,
@@ -84,6 +84,6 @@ public class CalculateRecipeFragment extends PrimaryFragment {
     }
 
     private int[] getArrayFactor(){
-        return getIntegerArray(R.array.ar_factor);
+        return getIntegerArray(R.array.tx_factor);
     }
 }

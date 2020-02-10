@@ -89,14 +89,14 @@ public class ManageProductFragment extends PrimaryFragment {
         if(ProductDetails.isProductCorrect()){
             chooseDialog();
         } else {
-            showShortToast(R.string.ts_product_empty);
+            showShortToast(R.string.ts_product);
         }
     }
 
     @OnItemSelected(R.id.sp_type)
     public void onItemSelectedSpType(int id){
         ProductDetails.getProduct().setType(id);
-        TypedArray arrayType = getResources().obtainTypedArray(R.array.ar_drawable_product_type);
+        TypedArray arrayType = getResources().obtainTypedArray(R.array.dw_product);
         int resource = arrayType.getResourceId(id, -1);
         ivTypeDw.setImageResource(resource);
     }
@@ -116,9 +116,9 @@ public class ManageProductFragment extends PrimaryFragment {
 
     private void chooseToolbar(){
         if(isEditing()){
-            setToolbarTitle(R.string.tb_product_edit);
+            setToolbarTitle(R.string.tb_pd_edit);
         } else {
-            setToolbarTitle(R.string.tb_product_add);
+            setToolbarTitle(R.string.tb_pd_add);
         }
     }
 
@@ -154,9 +154,9 @@ public class ManageProductFragment extends PrimaryFragment {
 
     private void chooseDialog(){
         if(isEditing()){
-            showAlertDialog(R.string.dg_product_edit, getDialogListener());
+            showAlertDialog(R.string.dg_pd_edit, getDialogListener());
         } else {
-            showAlertDialog(R.string.dg_product_add, getDialogListener());
+            showAlertDialog(R.string.dg_pd_add, getDialogListener());
         }
     }
 
@@ -270,7 +270,7 @@ public class ManageProductFragment extends PrimaryFragment {
                 }
                 return true;
             } catch (SQLiteException e) {
-                showShortToast(R.string.ts_db_error);
+                showShortToast(R.string.ts_database);
                 return false;
             }
         }
@@ -294,12 +294,12 @@ public class ManageProductFragment extends PrimaryFragment {
         ImageManager.saveImage(
                 TypeManager.base64StringToBitmap(ProductDetails.getProduct().getEncodedImage()),
                 ImageManager.getImageProductName(idProduct[MainGlobals.INT_STARTING_VAR_INIT]));
-        productSuccess(R.string.sb_product_added);
+        productSuccess(R.string.sb_pd_add);
     }
 
     private void updateProductFinished() {
         manageImageSaving();
-        productSuccess(R.string.sb_product_updated);
+        productSuccess(R.string.sb_pd_edit);
     }
 
     private enum Type {

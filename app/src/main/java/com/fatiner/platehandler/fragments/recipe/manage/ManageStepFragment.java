@@ -32,10 +32,10 @@ public class ManageStepFragment extends PrimaryFragment {
             Step step = new Step();
             step.setInstruction(etInstruction.getText().toString());
             setStepsInRecipeDetails(step);
-            showShortSnack(R.string.sb_step_added);
+            showShortSnack(R.string.sb_st_add);
             popFragment();
         } else {
-            showShortToast(R.string.ts_step_empty);
+            showShortToast(R.string.ts_step);
         }
     }
 
@@ -54,9 +54,9 @@ public class ManageStepFragment extends PrimaryFragment {
 
     private void chooseToolbar(){
         if(isBundleNotEmpty()){
-            setToolbarTitle(R.string.tb_step_edit);
+            setToolbarTitle(R.string.tb_st_edit);
         } else {
-            setToolbarTitle(R.string.tb_step_add);
+            setToolbarTitle(R.string.tb_st_add);
         }
     }
 
