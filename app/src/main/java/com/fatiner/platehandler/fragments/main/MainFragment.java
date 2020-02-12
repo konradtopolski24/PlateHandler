@@ -58,7 +58,7 @@ public class MainFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
         setToolbarTitle(R.string.tb_hm_welcome);
-        setMenuItem(MainGlobals.ID_MAIN_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_HOME);
         checkDay();
         return view;
     }
@@ -99,7 +99,7 @@ public class MainFragment extends PrimaryFragment {
 
         @Override
         protected Boolean doInBackground(Type... types) {
-            type = types[MainGlobals.INT_STARTING_VAR_INIT];
+            type = types[MainGlobals.DF_ZERO];
             try{
                 switch(type) {
                     case DAY:

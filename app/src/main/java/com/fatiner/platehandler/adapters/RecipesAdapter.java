@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fatiner.platehandler.details.ShoppingListDetails;
-import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.Recipe;
@@ -77,13 +76,13 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
     private void setImageCountry(RecipesHolder holder, int type){
         TypedArray arrayTypes = getArrayCountries();
         holder.ivCountry.setImageResource(arrayTypes.getResourceId(type,
-                MainGlobals.INT_DECREMENT_VAR_INIT));
+                MainGlobals.DF_DECREMENT));
     }
 
     private void setImageType(RecipesHolder holder, int type){
         TypedArray arrayTypes = getArrayTypes();
         holder.ivType.setImageResource(arrayTypes.getResourceId(type,
-                MainGlobals.INT_DECREMENT_VAR_INIT));
+                MainGlobals.DF_DECREMENT));
     }
 
     @Override
@@ -129,7 +128,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
         private void setBundle(Fragment fragment, int position){
             int id = recipes.get(position).getId();
             Bundle bundle = new Bundle();
-            bundle.putInt(BundleGlobals.BUND_ID_FRAG_SHOWREC, id);
+            bundle.putInt(MainGlobals.BN_ID, id);
             fragment.setArguments(bundle);
         }
 
@@ -149,7 +148,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesH
             try{
                 DbOperations.readShoppingItems(context,
                         ShoppingListDetails.getShoppingList().getShoppingItems(),
-                        id[MainGlobals.INT_STARTING_VAR_INIT]);
+                        id[MainGlobals.DF_ZERO]);
                 return true;
             }catch (SQLiteException e){
                 return false;

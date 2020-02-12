@@ -16,7 +16,6 @@ import com.fatiner.platehandler.classes.ShoppingList;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.ChooseRecipeFragment;
-import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.shared.SharedShoppingManager;
@@ -42,7 +41,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
     @OnClick(R.id.bt_select)
     public void onClickBtSelect(){
         Fragment fragment = new ChooseRecipeFragment();
-        setBoolInBundle(fragment,true, BundleGlobals.BUND_BOOL_FRAG_RECIPES);
+        setBoolInBundle(fragment,true, MainGlobals.BN_BOOL);
         setFragment(fragment);
     }
 
@@ -64,7 +63,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_create_shopping, container, false);
         ButterKnife.bind(this, view);
         setToolbarTitle(R.string.tb_sh_add);
-        setMenuItem(MainGlobals.ID_SHOPPING_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_SHOPPING);
         setRecyclerView(
                 rvPositions,
                 getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),
@@ -86,7 +85,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
         ShoppingItem shoppingItem = new ShoppingItem();
         shoppingItems.add(shoppingItem);
         rvPositions.getAdapter().notifyItemInserted(
-                shoppingItems.size() + MainGlobals.INT_DECREMENT_VAR_INIT);
+                shoppingItems.size() + MainGlobals.DF_DECREMENT);
     }
 
     private boolean isShoppingListEmpty(){

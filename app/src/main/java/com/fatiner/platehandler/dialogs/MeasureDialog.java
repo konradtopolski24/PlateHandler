@@ -49,12 +49,12 @@ public class MeasureDialog extends DialogFragment {
     }
 
     private void setTvMeasures() {
-        String text = MainGlobals.STR_EMPTY_OBJ_INIT;
+        String text = MainGlobals.SN_EMPTY;
         String[] measures = getContext().getResources().getStringArray(R.array.tx_measure);
         int[] factors = getContext().getResources().getIntArray(R.array.tx_factor);
-        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < measures.length; i++) {
-            text += measures[i] + MainGlobals.STR_SPACE_OBJ_INIT + MainGlobals.STR_EQUALS_OBJ_INIT
-                    + MainGlobals.STR_SPACE_OBJ_INIT + factors[i] + MainGlobals.STR_ENTER_OBJ_INIT;
+        for(int i = MainGlobals.DF_ZERO; i < measures.length; i++) {
+            text += measures[i] + MainGlobals.SN_SPACE + MainGlobals.SN_EQUALS
+                    + MainGlobals.SN_SPACE + factors[i] + MainGlobals.SN_ENTER;
         }
         tvMeasures.setText(text);
     }

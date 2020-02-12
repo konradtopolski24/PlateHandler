@@ -58,7 +58,7 @@ public class CreditsFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_credits, container, false);
         ButterKnife.bind(this, view);
         setToolbarTitle(R.string.tb_cd_show);
-        setMenuItem(MainGlobals.ID_CREDITS_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_CREDITS);
         setRecyclerView(
                 rvLibraries,
                 getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),

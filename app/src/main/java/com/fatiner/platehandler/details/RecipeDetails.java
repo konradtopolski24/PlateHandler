@@ -29,19 +29,19 @@ public final class RecipeDetails {
     }
 
     private static void resetName(){
-        recipe.setName(MainGlobals.STR_EMPTY_OBJ_INIT);
+        recipe.setName(MainGlobals.SN_EMPTY);
     }
 
     private static void resetAuthor(){
-        recipe.setAuthor(MainGlobals.STR_EMPTY_OBJ_INIT);
+        recipe.setAuthor(MainGlobals.SN_EMPTY);
     }
 
     private static void resetServing(){
-        recipe.setServing(MainGlobals.DEF_SERVING_DET_RECIPE);
+        recipe.setServing(MainGlobals.SV_MIN);
     }
 
     private static void resetTime(){
-        recipe.setTime(MainGlobals.DEF_TIME_DET_RECIPE);
+        recipe.setTime(MainGlobals.TM_DEFAULT);
     }
 
     private static void resetFavorite(){
@@ -69,17 +69,17 @@ public final class RecipeDetails {
 
     private static boolean isRecipeNameCorrect(){
         String name = recipe.getName();
-        return !name.equals(MainGlobals.STR_EMPTY_OBJ_INIT);
+        return !name.equals(MainGlobals.SN_EMPTY);
     }
 
     private static boolean isRecipeAuthorCorrect(){
         String author = recipe.getAuthor();
-        return !author.equals(MainGlobals.STR_EMPTY_OBJ_INIT);
+        return !author.equals(MainGlobals.SN_EMPTY);
     }
 
     private static boolean isRecipeTimeCorrect(){
         String time = recipe.getTime();
-        return !time.equals(MainGlobals.DEF_TIME_DET_RECIPE);
+        return !time.equals(MainGlobals.TM_DEFAULT);
     }
 
     private static boolean areRecipeCategoriesCorrect(){

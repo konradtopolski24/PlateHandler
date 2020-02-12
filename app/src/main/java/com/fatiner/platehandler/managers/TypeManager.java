@@ -8,7 +8,6 @@ import android.provider.MediaStore;
 import android.util.Base64;
 
 import com.fatiner.platehandler.classes.ShoppingList;
-import com.fatiner.platehandler.globals.ImageGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.google.gson.Gson;
 
@@ -16,7 +15,6 @@ import org.json.JSONArray;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,28 +27,28 @@ public class TypeManager {
     //Boolean <--> Integer
     //
     public static int booleanToInteger(boolean bool){
-        return bool ? MainGlobals.INT_INCREMENT_VAR_INIT : MainGlobals.INT_STARTING_VAR_INIT;
+        return bool ? MainGlobals.DF_INCREMENT : MainGlobals.DF_ZERO;
     }
 
     public static boolean integerToBoolean(int integer){
-        return integer == MainGlobals.INT_INCREMENT_VAR_INIT;
+        return integer == MainGlobals.DF_INCREMENT;
     }
 
     //
     //Time <--> String
     //
     public static String timeToString(int hours, int minutes){
-        return String.format(MainGlobals.FORM_HOUR_OBJ_INIT, hours, minutes);
+        return String.format(MainGlobals.FM_HOUR, hours, minutes);
     }
 
     public static int[] stringToTime(String time){
-        int hours = Integer.valueOf(time.substring(MainGlobals.BEGIN_HOURS_MANAG_TYPE,
-                MainGlobals.END_HOURS_MANAG_TYPE));
-        int minutes = Integer.valueOf(time.substring(MainGlobals.BEGIN_MINUTES_MANAG_TYPE,
-                MainGlobals.END_MINUTES_MANAG_TYPE));
-        int[] times = new int[MainGlobals.SIZE_HOURS_MANAG_TYPE];
-        times[MainGlobals.ID_HOURS_MANAG_TYPE] = hours;
-        times[MainGlobals.ID_MINUTES_MANAG_TYPE] = minutes;
+        int hours = Integer.valueOf(time.substring(MainGlobals.HR_BEGIN,
+                MainGlobals.HR_END));
+        int minutes = Integer.valueOf(time.substring(MainGlobals.MN_BEGIN,
+                MainGlobals.MN_END));
+        int[] times = new int[MainGlobals.TM_SIZE];
+        times[MainGlobals.TM_HOURS] = hours;
+        times[MainGlobals.TM_MINUTES] = minutes;
         return times;
     }
 
@@ -58,7 +56,7 @@ public class TypeManager {
     //Date <--> String
     //
     public static String dateToString(Date date){
-        SimpleDateFormat format = new SimpleDateFormat(MainGlobals.FORM_DATE_OBJ_INIT);
+        SimpleDateFormat format = new SimpleDateFormat(MainGlobals.FM_DATE);
         return format.format(date);
     }
 
@@ -89,7 +87,7 @@ public class TypeManager {
         ArrayList<Integer> recent = new ArrayList<>();
         try{
             JSONArray jsonArray = new JSONArray(json);
-            for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < jsonArray.length(); i++){
+            for(int i = MainGlobals.DF_ZERO; i < jsonArray.length(); i++){
                 recent.add(jsonArray.getInt(i));
             }
         } catch (Exception e){
@@ -109,7 +107,7 @@ public class TypeManager {
         if(base64String == null) return null;
         byte[] byteArray = Base64.decode(base64String, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(byteArray,
-                ImageGlobals.OFF_DECODE_COMP_BITMAP, byteArray.length);
+                MainGlobals.PH_DECODE, byteArray.length);
     }
 
     public static String uriImageToBase64String(Context context, Uri uri){
@@ -124,7 +122,7 @@ public class TypeManager {
 
     private static byte[] bitmapToByteArray(Bitmap bitmap){
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, ImageGlobals.FORM_JPEG_COMP_BITMAP, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, MainGlobals.PH_COMPRESSION, stream);
         return stream.toByteArray();
     }
 

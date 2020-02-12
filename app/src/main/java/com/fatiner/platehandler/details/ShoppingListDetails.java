@@ -45,7 +45,7 @@ public final class ShoppingListDetails {
         boolean areNotEmpty = true;
         ArrayList<ShoppingItem> shoppingItems = shoppingList.getShoppingItems();
         for(ShoppingItem shoppingItem : shoppingItems){
-            if(shoppingItem.getName().equals(MainGlobals.STR_EMPTY_OBJ_INIT)){
+            if(shoppingItem.getName().equals(MainGlobals.SN_EMPTY)){
                 areNotEmpty = false;
                 break;
             }

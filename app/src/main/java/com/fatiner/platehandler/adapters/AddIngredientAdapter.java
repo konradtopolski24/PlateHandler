@@ -20,7 +20,6 @@ import com.fatiner.platehandler.classes.Ingredient;
 import com.fatiner.platehandler.classes.Product;
 import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.fragments.product.ManageProductFragment;
-import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 
 import java.util.ArrayList;
@@ -89,8 +88,8 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
     }
 
     private int getChosenProduct(int idDatabase){
-        int idSpin = MainGlobals.INT_STARTING_VAR_INIT;
-        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < products.size(); i++){
+        int idSpin = MainGlobals.DF_ZERO;
+        for(int i = MainGlobals.DF_ZERO; i < products.size(); i++){
             Product product = products.get(i);
             if(product.getId() == idDatabase){
                 return i;
@@ -127,7 +126,7 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
 
         @OnClick(R.id.iv_remove)
         public void onClickImageRemove(){
-            if(ingredients.size() == MainGlobals.INT_INCREMENT_VAR_INIT){
+            if(ingredients.size() == MainGlobals.DF_INCREMENT){
 
             } else {
                 int position = getAdapterPosition();
@@ -140,7 +139,7 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
         public void onTextChangeEditAmount(CharSequence text){
             float amount;
             if(String.valueOf(text).isEmpty()){
-                amount =  MainGlobals.INT_STARTING_VAR_INIT;
+                amount =  MainGlobals.DF_ZERO;
             } else {
                 amount  = Float.valueOf(String.valueOf(text));
             }
@@ -184,7 +183,7 @@ public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdap
 
         private void setBundle(Fragment fragment, int position){
             Bundle bundle = new Bundle();
-            bundle.putInt(BundleGlobals.BUND_ID_FRAG_ADDPROD, position);
+            bundle.putInt(MainGlobals.BN_ID, position);
             fragment.setArguments(bundle);
         }
     }

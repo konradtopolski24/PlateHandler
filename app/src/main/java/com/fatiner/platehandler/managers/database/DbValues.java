@@ -16,43 +16,43 @@ public class DbValues {
     public static ContentValues getValues(Recipe recipe, boolean isId) {
         ContentValues contentValues = new ContentValues();
         if(isId) {
-            contentValues.put(DbGlobals.COL_ID_TAB_PRODUCTS, recipe.getId());
+            contentValues.put(DbGlobals.CL_PD_ID, recipe.getId());
         }
-        contentValues.put(DbGlobals.COL_NAME_TAB_RECIPES, recipe.getName());
-        contentValues.put(DbGlobals.COL_AUTHOR_TAB_RECIPES, recipe.getAuthor());
-        contentValues.put(DbGlobals.COL_SERVING_TAB_RECIPES, recipe.getServing());
-        contentValues.put(DbGlobals.COL_TIME_TAB_RECIPES, recipe.getTime());
-        contentValues.put(DbGlobals.COL_DIFFICULTY_TAB_RECIPES, recipe.getDifficulty());
-        contentValues.put(DbGlobals.COL_SPICINESS_TAB_RECIPES, recipe.getSpiciness());
-        contentValues.put(DbGlobals.COL_COUNTRY_TAB_RECIPES, recipe.getCountry());
-        contentValues.put(DbGlobals.COL_TYPE_TAB_RECIPES, recipe.getType());
-        contentValues.put(DbGlobals.COL_PREFERENCES_TAB_RECIPES,
+        contentValues.put(DbGlobals.CL_RP_NAME, recipe.getName());
+        contentValues.put(DbGlobals.CL_RP_AUTHOR, recipe.getAuthor());
+        contentValues.put(DbGlobals.CL_RP_SERVING, recipe.getServing());
+        contentValues.put(DbGlobals.CL_RP_TIME, recipe.getTime());
+        contentValues.put(DbGlobals.CL_RP_DIFFICULTY, recipe.getDifficulty());
+        contentValues.put(DbGlobals.CL_RP_SPICINESS, recipe.getSpiciness());
+        contentValues.put(DbGlobals.CL_RP_COUNTRY, recipe.getCountry());
+        contentValues.put(DbGlobals.CL_RP_TYPE, recipe.getType());
+        contentValues.put(DbGlobals.CL_RP_PREFERENCE,
                 TypeManager.booleanToInteger(recipe.getPreference()));
-        contentValues.put(DbGlobals.COL_FAVORITE_TAB_RECIPES,
+        contentValues.put(DbGlobals.CL_RP_FAVORITE,
                 TypeManager.booleanToInteger(recipe.getFavorite()));
         return contentValues;
     }
 
     public static ContentValues getValues(Ingredient ingredient, int id) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DbGlobals.COL_IDREC_TAB_INGREDIENTS, id);
-        contentValues.put(DbGlobals.COL_IDPROD_TAB_INGREDIENTS, ingredient.getProduct().getId());
-        contentValues.put(DbGlobals.COL_AMOUNT_TAB_INGREDIENTS, ingredient.getAmount());
-        contentValues.put(DbGlobals.COL_MEASURE_TAB_INGREDIENTS, ingredient.getMeasure());
-        contentValues.put(DbGlobals.COL_CATEGORY_TAB_INGREDIENTS, ingredient.getCategory());
+        contentValues.put(DbGlobals.CL_IG_RECIPE, id);
+        contentValues.put(DbGlobals.CL_IG_PRODUCT, ingredient.getProduct().getId());
+        contentValues.put(DbGlobals.CL_IG_AMOUNT, ingredient.getAmount());
+        contentValues.put(DbGlobals.CL_IG_MEASURE, ingredient.getMeasure());
+        contentValues.put(DbGlobals.CL_IG_CATEGORY, ingredient.getCategory());
         return contentValues;
     }
 
     public static ContentValues getValues(Step step, int id) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DbGlobals.COL_IDREC_TAB_STEPS, id);
-        contentValues.put(DbGlobals.COL_INSTRUCTION_TAB_STEPS, step.getInstruction());
+        contentValues.put(DbGlobals.CL_ST_RECIPE, id);
+        contentValues.put(DbGlobals.CL_ST_INSTRUCTION, step.getInstruction());
         return contentValues;
     }
 
     public static ContentValues getValues(boolean isFavorite) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DbGlobals.COL_FAVORITE_TAB_RECIPES,
+        contentValues.put(DbGlobals.CL_RP_FAVORITE,
                 TypeManager.booleanToInteger(isFavorite));
         return contentValues;
     }
@@ -60,14 +60,14 @@ public class DbValues {
     public static ContentValues getValues(Product product, boolean isId) {
         ContentValues contentValues = new ContentValues();
         if(isId) {
-            contentValues.put(DbGlobals.COL_ID_TAB_PRODUCTS, product.getId());
+            contentValues.put(DbGlobals.CL_PD_ID, product.getId());
         }
-        contentValues.put(DbGlobals.COL_NAME_TAB_PRODUCTS, product.getName());
-        contentValues.put(DbGlobals.COL_TYPE_TAB_PRODUCTS, product.getType());
-        contentValues.put(DbGlobals.COL_CARBOHYDRATES_TAB_PRODUCTS,
+        contentValues.put(DbGlobals.CL_PD_NAME, product.getName());
+        contentValues.put(DbGlobals.CL_PD_TYPE, product.getType());
+        contentValues.put(DbGlobals.CL_PD_CARBOHYDRATES,
                 product.getCarbohydrates());
-        contentValues.put(DbGlobals.COL_PROTEIN_TAB_PRODUCTS, product.getProtein());
-        contentValues.put(DbGlobals.COL_FAT_TAB_PRODUCTS, product.getFat());
+        contentValues.put(DbGlobals.CL_PD_PROTEIN, product.getProtein());
+        contentValues.put(DbGlobals.CL_PD_FAT, product.getFat());
         return contentValues;
     }
 }

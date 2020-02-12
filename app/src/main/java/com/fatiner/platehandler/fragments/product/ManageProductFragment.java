@@ -19,8 +19,6 @@ import com.fatiner.platehandler.classes.Product;
 import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
-import com.fatiner.platehandler.globals.BundleGlobals;
-import com.fatiner.platehandler.globals.ImageGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.ImageManager;
 import com.fatiner.platehandler.managers.TypeManager;
@@ -109,7 +107,7 @@ public class ManageProductFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_manage_product, container, false);
         ButterKnife.bind(this, view);
         chooseToolbar();
-        setMenuItem(MainGlobals.ID_INGREDIENTS_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_PRODUCT);
         setProductInfo();
         return view;
     }
@@ -170,7 +168,7 @@ public class ManageProductFragment extends PrimaryFragment {
 
     private boolean isEditing(){
         if(isBundleNotEmpty()){
-            return getBoolFromBundle(BundleGlobals.BUND_BOOL_FRAG_ADDPROD);
+            return getBoolFromBundle(MainGlobals.BN_BOOL);
         } else {
             return false;
         }
@@ -184,7 +182,7 @@ public class ManageProductFragment extends PrimaryFragment {
     }
 
     private int getIngredientPosition(){
-        return getIntFromBundle(BundleGlobals.BUND_ID_FRAG_ADDPROD);
+        return getIntFromBundle(MainGlobals.BN_ID);
     }
 
     private void setProductCarbohydrates(float carbohydrates){
@@ -224,7 +222,7 @@ public class ManageProductFragment extends PrimaryFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode){
-            case ImageGlobals.REQ_PHOTO_FRAG_PRIMARY:
+            case MainGlobals.PH_REQUEST:
                 setEncodedImageInfo(resultCode, data);
                 break;
         }
@@ -251,13 +249,13 @@ public class ManageProductFragment extends PrimaryFragment {
         private Type type;
 
         protected void onPreExecute(){
-            idProduct = new int[MainGlobals.INT_INCREMENT_VAR_INIT];
+            idProduct = new int[MainGlobals.DF_INCREMENT];
         }
 
         @Override
         protected Boolean doInBackground(Type... types) {
             Product product = ProductDetails.getProduct();
-            type = types[MainGlobals.INT_STARTING_VAR_INIT];
+            type = types[MainGlobals.DF_ZERO];
             try {
                 switch(type) {
                     case INSERT:
@@ -290,10 +288,10 @@ public class ManageProductFragment extends PrimaryFragment {
     }
 
     private void insertProductFinished(int[] idProduct) {
-        setIdProductInIngredient(idProduct[MainGlobals.INT_STARTING_VAR_INIT]);
+        setIdProductInIngredient(idProduct[MainGlobals.DF_ZERO]);
         ImageManager.saveImage(
                 TypeManager.base64StringToBitmap(ProductDetails.getProduct().getEncodedImage()),
-                ImageManager.getImageProductName(idProduct[MainGlobals.INT_STARTING_VAR_INIT]));
+                ImageManager.getImageProductName(idProduct[MainGlobals.DF_ZERO]));
         productSuccess(R.string.sb_pd_add);
     }
 

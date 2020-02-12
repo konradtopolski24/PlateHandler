@@ -25,6 +25,6 @@ public final class ProductDetails {
 
     private static boolean isProductNameCorrect(){
         String name = product.getName();
-        return !name.equals(MainGlobals.STR_EMPTY_OBJ_INIT);
+        return !name.equals(MainGlobals.SN_EMPTY);
     }
 }

@@ -41,7 +41,7 @@ public class ImportFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_import, container, false);
         ButterKnife.bind(this, view);
         setToolbarTitle(R.string.tb_im_database);
-        setMenuItem(MainGlobals.ID_IMPORT_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_IMPORT);
         setRecyclerView();
         checkIfRvEmpty(rvFiles, tvEmpty);
         return view;
@@ -59,13 +59,13 @@ public class ImportFragment extends PrimaryFragment {
         ArrayList<ImportFile> importFiles = new ArrayList<>();
         File[] files = getContext().getExternalFilesDir(null).listFiles();
         for(File file : files) {
-            if(file.isFile() && file.getPath().endsWith(MainGlobals.FILE_XLS_SAVE_WORKBOOK)) {
+            if(file.isFile() && file.getPath().endsWith(MainGlobals.FL_XLS)) {
                 String full = file.toString();
                 String name = full.substring(full.lastIndexOf(
-                        MainGlobals.STR_SLASH_OBJ_INIT) + MainGlobals.INT_INCREMENT_VAR_INIT);
+                        MainGlobals.SN_SLASH) + MainGlobals.DF_INCREMENT);
                 Workbook workbook = getWorkbookFromFile(name);
-                int recipeAmount = getAmount(workbook, DbGlobals.TAB_RECIPES_DB_MAIN);
-                int producteAmount = getAmount(workbook, DbGlobals.TAB_PRODUCTS_DB_MAIN);
+                int recipeAmount = getAmount(workbook, DbGlobals.TB_RECIPE);
+                int producteAmount = getAmount(workbook, DbGlobals.TB_PRODUCT);
                 ImportFile importFile = new ImportFile();
                 importFile.setName(name);
                 importFile.setRecipeAmount(recipeAmount);

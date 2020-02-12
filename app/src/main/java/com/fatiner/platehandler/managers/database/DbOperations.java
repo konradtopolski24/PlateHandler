@@ -147,14 +147,14 @@ public class DbOperations {
     public static void readRecipeId(Context context, int[] id){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
         SQLiteDatabase db = helper.getReadableDatabase();
-        id[MainGlobals.INT_STARTING_VAR_INIT] = DbCursors.getRecipeId(db);
+        id[MainGlobals.DF_ZERO] = DbCursors.getRecipeId(db);
         db.close();
     }
 
     public static void readProductId(Context context, int[] id){
         SQLiteOpenHelper helper = new RecipeSQLiteOpenHelper(context);
         SQLiteDatabase db = helper.getReadableDatabase();
-        id[MainGlobals.INT_STARTING_VAR_INIT] = DbCursors.getProductId(db);
+        id[MainGlobals.DF_ZERO] = DbCursors.getProductId(db);
         db.close();
     }
 

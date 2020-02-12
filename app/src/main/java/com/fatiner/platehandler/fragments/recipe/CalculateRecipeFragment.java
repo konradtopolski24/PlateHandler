@@ -1,6 +1,7 @@
 package com.fatiner.platehandler.fragments.recipe;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,7 @@ public class CalculateRecipeFragment extends PrimaryFragment {
         ArrayList<Ingredient> ingredients = getIngredients();
         setRecyclerView(
                 rvIngredients,
-                getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_ADDCATEG),
+                getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),
                 new IngredientAdapter(getContext(), ingredients, false)
         );
         calculateTotalKcal(ingredients);
@@ -65,7 +66,7 @@ public class CalculateRecipeFragment extends PrimaryFragment {
     }
 
     private void calculateTotalKcal(ArrayList<Ingredient> ingredients){
-        float total = MainGlobals.INT_STARTING_VAR_INIT;
+        float total = MainGlobals.DF_ZERO;
         for(Ingredient ingredient : ingredients) {
             Product product = ingredient.getProduct();
             float carbohydrates = CalculateManager.getKcal(product.getCarbohydrates(),

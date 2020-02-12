@@ -49,9 +49,9 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
     public void onBindViewHolder(@NonNull ShoppingHolder holder, int position) {
         ShoppingItem item = shoppingItems.get(position);
         String[] arrayMeasure = getArrayMeasure();
-        String wholeText = item.getName() + MainGlobals.STR_SPACE_OBJ_INIT
-                + MainGlobals.STR_BRACKER_LEFT + item.getAmount() + MainGlobals.STR_SPACE_OBJ_INIT
-                + arrayMeasure[item.getMeasure()] + MainGlobals.STR_BRACKER_RIGHT;
+        String wholeText = item.getName() + MainGlobals.SN_SPACE
+                + MainGlobals.SN_BRACKET1 + item.getAmount() + MainGlobals.SN_SPACE
+                + arrayMeasure[item.getMeasure()] + MainGlobals.SN_BRACKET2;
         setTextItem(holder, wholeText);
         setCrossedOut(holder, item.isCrossedOut());
     }

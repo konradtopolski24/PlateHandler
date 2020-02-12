@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.fatiner.platehandler.adapters.AddIngredientAdapter;
-import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.classes.Category;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.classes.Ingredient;
@@ -63,7 +62,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_manage_category, container, false);
         ButterKnife.bind(this, view);
         chooseToolbar();
-        setMenuItem(MainGlobals.ID_RECIPES_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_RECIPE);
         setProducts();
         return view;
     }
@@ -87,7 +86,7 @@ public class ManageCategoryFragment extends PrimaryFragment {
     }
 
     private void setCategoryInfo(){
-        int id = getIntFromBundle(BundleGlobals.BUND_ID_FRAG_ADDCATEG);
+        int id = getIntFromBundle(MainGlobals.BN_ID);
         Category category = RecipeDetails.getRecipe().getCategories().get(id);
         setEditName(category.getName());
         setIngredients(category.getIngredients());
@@ -121,15 +120,15 @@ public class ManageCategoryFragment extends PrimaryFragment {
         ingredient.setProduct(new Product());
         ingredients.add(ingredient);
         rvIngredients.getAdapter().notifyItemInserted(
-                ingredients.size() + MainGlobals.INT_DECREMENT_VAR_INIT);
+                ingredients.size() + MainGlobals.DF_DECREMENT);
     }
 
     private void setCategoryInRecipeDetails(Category category){
         if(isBundleNotEmpty()){
             RecipeDetails.getRecipe().getCategories().remove(
-                    getIntFromBundle(BundleGlobals.BUND_ID_FRAG_ADDCATEG));
+                    getIntFromBundle(MainGlobals.BN_ID));
             RecipeDetails.getRecipe().getCategories().add(
-                    getIntFromBundle(BundleGlobals.BUND_ID_FRAG_ADDCATEG), category);
+                    getIntFromBundle(MainGlobals.BN_ID), category);
         } else {
             RecipeDetails.getRecipe().getCategories().add(category);
         }

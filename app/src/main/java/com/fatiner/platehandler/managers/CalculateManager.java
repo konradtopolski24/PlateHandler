@@ -10,27 +10,27 @@ public class CalculateManager {
     private CalculateManager() {}
 
     public static float getCalorific(float weight, float energy) {
-        return weight * energy / MainGlobals.GRAM_PRIMARY_OBJ_PROD;
+        return weight * energy / MainGlobals.FC_GRAM;
     }
 
     public static float getKcal(float gram, Organic organic){
-        float factor = MainGlobals.INT_STARTING_VAR_INIT;
+        float factor = MainGlobals.DF_ZERO;
         switch(organic) {
             case CARBOHYDRATES:
-                factor = MainGlobals.KCAL_CARBOHYDRATES_OBJ_PROD;
+                factor = MainGlobals.FC_CARBOHYDRATES;
                 break;
             case PROTEIN:
-                factor = MainGlobals.KCAL_PROTEIN_OBJ_PROD;
+                factor = MainGlobals.FC_PROTEIN;
                 break;
             case FAT:
-                factor = MainGlobals.KCAL_FAT_OBJ_PROD;
+                factor = MainGlobals.FC_FAT;
                 break;
         }
         return gram * factor;
     }
 
     public static float getKj(float gram, Organic organic){
-        return getKcal(gram, organic) * MainGlobals.KJ_FACTOR_OBJ_PROD;
+        return getKcal(gram, organic) * MainGlobals.FC_KJ;
     }
 
     public static float getAmountWithMeasure(Context context, float amount, int measure) {

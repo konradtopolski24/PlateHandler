@@ -22,72 +22,72 @@ public class DbCursors {
     //getCursor
     //
     public static Cursor getIdCursor(SQLiteDatabase db) {
-        return db.query(DbGlobals.TAB_RECIPES_DB_MAIN, new String[] {
-                DbGlobals.COL_ID_TAB_RECIPES},
+        return db.query(DbGlobals.TB_RECIPE, new String[] {
+                DbGlobals.CL_RP_ID},
                 null, null, null, null, null);
     }
 
     public static Cursor getRecipeCursor(SQLiteDatabase db, String selection, String orderBy) {
         return db.query(
-                DbGlobals.TAB_RECIPES_DB_MAIN,
+                DbGlobals.TB_RECIPE,
                 TypeManager.arrayListToArray(DbGlobals.getRecipesColumns()),
                 selection, null, null, null, orderBy);
     }
 
     public static Cursor getRecipeCursor(SQLiteDatabase db, int id){
         return db.query(
-                DbGlobals.TAB_RECIPES_DB_MAIN,
+                DbGlobals.TB_RECIPE,
                 TypeManager.arrayListToArray(DbGlobals.getRecipesColumns()),
-                DbGlobals.COL_ID_TAB_RECIPES + " = ?",
+                DbGlobals.CL_RP_ID + " = ?",
                 new String[] {Integer.toString(id)}, null, null, null);
     }
 
     public static Cursor getIngredientCursor(SQLiteDatabase db, int id){
         return db.query(
-                DbGlobals.TAB_INGREDIENTS_DB_MAIN,
+                DbGlobals.TB_INGREDIENT,
                 TypeManager.arrayListToArray(DbGlobals.getIngredientsColumns()),
-                DbGlobals.COL_IDREC_TAB_INGREDIENTS + " = ?",
+                DbGlobals.CL_IG_RECIPE + " = ?",
                 new String[] {Integer.toString(id)}, null, null, null);
     }
 
     public static Cursor getIngredientCursor(SQLiteDatabase db, String selection, String orderBy){
         return db.query(
-                DbGlobals.TAB_INGREDIENTS_DB_MAIN,
+                DbGlobals.TB_INGREDIENT,
                 TypeManager.arrayListToArray(DbGlobals.getIngredientsColumns()),
                 selection, null, null, null, orderBy);
     }
 
     public static Cursor getStepCursor(SQLiteDatabase db, int id){
-        return db.query(DbGlobals.TAB_STEPS_DB_MAIN,
+        return db.query(DbGlobals.TB_STEP,
                 TypeManager.arrayListToArray(DbGlobals.getStepsColumns()),
-                DbGlobals.COL_IDREC_TAB_STEPS + " = ?",
+                DbGlobals.CL_ST_RECIPE + " = ?",
                 new String[] {Integer.toString(id)}, null, null, null);
     }
 
     public static Cursor getStepCursor(SQLiteDatabase db, String selection, String orderBy){
-        return db.query(DbGlobals.TAB_STEPS_DB_MAIN,
+        return db.query(DbGlobals.TB_STEP,
                 TypeManager.arrayListToArray(DbGlobals.getStepsColumns()),
                 selection, null, null, null, orderBy);
     }
 
     public static Cursor getAuthorsCursor(SQLiteDatabase db){
-        return db.query(true, DbGlobals.TAB_RECIPES_DB_MAIN, new String[] {
-                        DbGlobals.COL_AUTHOR_TAB_RECIPES
+        return db.query(true, DbGlobals.TB_RECIPE, new String[] {
+                        DbGlobals.CL_RP_AUTHOR
                 },
-                null, null, DbGlobals.COL_AUTHOR_TAB_RECIPES,
+                null, null, DbGlobals.CL_RP_AUTHOR,
                 null, null, null);
     }
 
     public static Cursor getProductCursor(SQLiteDatabase db, String selection, String orderBy){
-        return db.query(DbGlobals.TAB_PRODUCTS_DB_MAIN,
+        return db.query(DbGlobals.TB_PRODUCT,
                 TypeManager.arrayListToArray(DbGlobals.getProductsColumns()),
                 selection, null,null, null, orderBy);
     }
 
     public static Cursor getProductCursor(SQLiteDatabase db, int id){
-        return db.query(DbGlobals.TAB_PRODUCTS_DB_MAIN,
+        return db.query(DbGlobals.TB_PRODUCT,
                 TypeManager.arrayListToArray(DbGlobals.getProductsColumns()),
-                DbGlobals.COL_ID_TAB_PRODUCTS + " = ?",
+                DbGlobals.CL_PD_ID + " = ?",
                 new String[] {Integer.toString(id)}, null, null, null);
     }
 
@@ -98,19 +98,19 @@ public class DbCursors {
         ArrayList<String> columns = DbGlobals.getRecipesColumns();
         if(cursor.moveToFirst()){
             do{
-                recipe.setId(cursor.getInt(columns.indexOf(DbGlobals.COL_ID_TAB_RECIPES)));
-                recipe.setName(cursor.getString(columns.indexOf(DbGlobals.COL_NAME_TAB_RECIPES)));
-                recipe.setAuthor(cursor.getString(columns.indexOf(DbGlobals.COL_AUTHOR_TAB_RECIPES)));
-                recipe.setServing(cursor.getInt(columns.indexOf(DbGlobals.COL_SERVING_TAB_RECIPES)));
-                recipe.setTime(cursor.getString(columns.indexOf(DbGlobals.COL_TIME_TAB_RECIPES)));
-                recipe.setDifficulty(cursor.getInt(columns.indexOf(DbGlobals.COL_DIFFICULTY_TAB_RECIPES)));
-                recipe.setSpiciness(cursor.getInt(columns.indexOf(DbGlobals.COL_SPICINESS_TAB_RECIPES)));
-                recipe.setCountry(cursor.getInt(columns.indexOf(DbGlobals.COL_COUNTRY_TAB_RECIPES)));
-                recipe.setType(cursor.getInt(columns.indexOf(DbGlobals.COL_TYPE_TAB_RECIPES)));
+                recipe.setId(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_ID)));
+                recipe.setName(cursor.getString(columns.indexOf(DbGlobals.CL_RP_NAME)));
+                recipe.setAuthor(cursor.getString(columns.indexOf(DbGlobals.CL_RP_AUTHOR)));
+                recipe.setServing(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_SERVING)));
+                recipe.setTime(cursor.getString(columns.indexOf(DbGlobals.CL_RP_TIME)));
+                recipe.setDifficulty(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_DIFFICULTY)));
+                recipe.setSpiciness(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_SPICINESS)));
+                recipe.setCountry(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_COUNTRY)));
+                recipe.setType(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_TYPE)));
                 recipe.setPreference(TypeManager.integerToBoolean(
-                        cursor.getInt(columns.indexOf(DbGlobals.COL_PREFERENCES_TAB_RECIPES))));
+                        cursor.getInt(columns.indexOf(DbGlobals.CL_RP_PREFERENCE))));
                 recipe.setFavorite(TypeManager.integerToBoolean(
-                        cursor.getInt(columns.indexOf(DbGlobals.COL_FAVORITE_TAB_RECIPES))));
+                        cursor.getInt(columns.indexOf(DbGlobals.CL_RP_FAVORITE))));
             }while(cursor.moveToNext());
         }
     }
@@ -120,19 +120,19 @@ public class DbCursors {
         if(cursor.moveToFirst()){
             do{
                 Recipe recipe = new Recipe();
-                recipe.setId(cursor.getInt(columns.indexOf(DbGlobals.COL_ID_TAB_RECIPES)));
-                recipe.setName(cursor.getString(columns.indexOf(DbGlobals.COL_NAME_TAB_RECIPES)));
-                recipe.setAuthor(cursor.getString(columns.indexOf(DbGlobals.COL_AUTHOR_TAB_RECIPES)));
-                recipe.setServing(cursor.getInt(columns.indexOf(DbGlobals.COL_SERVING_TAB_RECIPES)));
-                recipe.setTime(cursor.getString(columns.indexOf(DbGlobals.COL_TIME_TAB_RECIPES)));
-                recipe.setDifficulty(cursor.getInt(columns.indexOf(DbGlobals.COL_DIFFICULTY_TAB_RECIPES)));
-                recipe.setSpiciness(cursor.getInt(columns.indexOf(DbGlobals.COL_SPICINESS_TAB_RECIPES)));
-                recipe.setCountry(cursor.getInt(columns.indexOf(DbGlobals.COL_COUNTRY_TAB_RECIPES)));
-                recipe.setType(cursor.getInt(columns.indexOf(DbGlobals.COL_TYPE_TAB_RECIPES)));
+                recipe.setId(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_ID)));
+                recipe.setName(cursor.getString(columns.indexOf(DbGlobals.CL_RP_NAME)));
+                recipe.setAuthor(cursor.getString(columns.indexOf(DbGlobals.CL_RP_AUTHOR)));
+                recipe.setServing(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_SERVING)));
+                recipe.setTime(cursor.getString(columns.indexOf(DbGlobals.CL_RP_TIME)));
+                recipe.setDifficulty(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_DIFFICULTY)));
+                recipe.setSpiciness(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_SPICINESS)));
+                recipe.setCountry(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_COUNTRY)));
+                recipe.setType(cursor.getInt(columns.indexOf(DbGlobals.CL_RP_TYPE)));
                 recipe.setPreference(TypeManager.integerToBoolean(
-                        cursor.getInt(columns.indexOf(DbGlobals.COL_PREFERENCES_TAB_RECIPES))));
+                        cursor.getInt(columns.indexOf(DbGlobals.CL_RP_PREFERENCE))));
                 recipe.setFavorite(TypeManager.integerToBoolean(
-                        cursor.getInt(columns.indexOf(DbGlobals.COL_FAVORITE_TAB_RECIPES))));
+                        cursor.getInt(columns.indexOf(DbGlobals.CL_RP_FAVORITE))));
                 arrayRecipes.add(recipe);
             }while(cursor.moveToNext());
         }
@@ -142,15 +142,15 @@ public class DbCursors {
         ArrayList<String> columns = DbGlobals.getIngredientsColumns();
         Category category = new Category();
         category.setIngredients(new ArrayList<Ingredient>());
-        category.setName(MainGlobals.STR_EMPTY_OBJ_INIT);
+        category.setName(MainGlobals.SN_EMPTY);
         if(cursor.moveToFirst()){
             do{
                 Ingredient ingredient = new Ingredient();
                 ingredient.setProduct(new Product());
-                ingredient.getProduct().setId(cursor.getInt(columns.indexOf(DbGlobals.COL_IDPROD_TAB_INGREDIENTS)));
-                ingredient.setAmount(cursor.getFloat(columns.indexOf(DbGlobals.COL_AMOUNT_TAB_INGREDIENTS)));
-                ingredient.setMeasure(cursor.getInt(columns.indexOf(DbGlobals.COL_MEASURE_TAB_INGREDIENTS)));
-                String currentName = cursor.getString(columns.indexOf(DbGlobals.COL_CATEGORY_TAB_INGREDIENTS));
+                ingredient.getProduct().setId(cursor.getInt(columns.indexOf(DbGlobals.CL_IG_PRODUCT)));
+                ingredient.setAmount(cursor.getFloat(columns.indexOf(DbGlobals.CL_IG_AMOUNT)));
+                ingredient.setMeasure(cursor.getInt(columns.indexOf(DbGlobals.CL_IG_MEASURE)));
+                String currentName = cursor.getString(columns.indexOf(DbGlobals.CL_IG_CATEGORY));
                 String name = category.getName();
                 if(name.equals(currentName)){
                     category.getIngredients().add(ingredient);
@@ -170,9 +170,9 @@ public class DbCursors {
         if(cursor.moveToFirst()){
             do{
                 Step step = new Step();
-                step.setId(cursor.getInt(columns.indexOf(DbGlobals.COL_ID_TAB_STEPS)));
-                step.setIdRec(cursor.getInt(columns.indexOf(DbGlobals.COL_IDREC_TAB_STEPS)));
-                step.setInstruction(cursor.getString(columns.indexOf(DbGlobals.COL_INSTRUCTION_TAB_STEPS)));
+                step.setId(cursor.getInt(columns.indexOf(DbGlobals.CL_ST_ID)));
+                step.setIdRec(cursor.getInt(columns.indexOf(DbGlobals.CL_ST_RECIPE)));
+                step.setInstruction(cursor.getString(columns.indexOf(DbGlobals.CL_ST_INSTRUCTION)));
                 arraySteps.add(step);
             }while(cursor.moveToNext());
         }
@@ -200,13 +200,13 @@ public class DbCursors {
         ArrayList<String> columns = DbGlobals.getProductsColumns();
         if(cursor.moveToFirst()){
             do{
-                product.setId(cursor.getInt(columns.indexOf(DbGlobals.COL_ID_TAB_PRODUCTS)));
-                product.setName(cursor.getString(columns.indexOf(DbGlobals.COL_NAME_TAB_PRODUCTS)));
-                product.setType(cursor.getInt(columns.indexOf(DbGlobals.COL_TYPE_TAB_PRODUCTS)));
+                product.setId(cursor.getInt(columns.indexOf(DbGlobals.CL_PD_ID)));
+                product.setName(cursor.getString(columns.indexOf(DbGlobals.CL_PD_NAME)));
+                product.setType(cursor.getInt(columns.indexOf(DbGlobals.CL_PD_TYPE)));
                 product.setCarbohydrates(cursor.getFloat(
-                        columns.indexOf(DbGlobals.COL_CARBOHYDRATES_TAB_PRODUCTS)));
-                product.setProtein(cursor.getFloat(columns.indexOf(DbGlobals.COL_PROTEIN_TAB_PRODUCTS)));
-                product.setFat(cursor.getFloat(columns.indexOf(DbGlobals.COL_FAT_TAB_PRODUCTS)));
+                        columns.indexOf(DbGlobals.CL_PD_CARBOHYDRATES)));
+                product.setProtein(cursor.getFloat(columns.indexOf(DbGlobals.CL_PD_PROTEIN)));
+                product.setFat(cursor.getFloat(columns.indexOf(DbGlobals.CL_PD_FAT)));
             }while(cursor.moveToNext());
         }
     }
@@ -216,13 +216,13 @@ public class DbCursors {
         if(cursor.moveToFirst()){
             do{
                 Product product = new Product();
-                product.setId(cursor.getInt(columns.indexOf(DbGlobals.COL_ID_TAB_PRODUCTS)));
-                product.setName(cursor.getString(columns.indexOf(DbGlobals.COL_NAME_TAB_PRODUCTS)));
-                product.setType(cursor.getInt(columns.indexOf(DbGlobals.COL_TYPE_TAB_PRODUCTS)));
+                product.setId(cursor.getInt(columns.indexOf(DbGlobals.CL_PD_ID)));
+                product.setName(cursor.getString(columns.indexOf(DbGlobals.CL_PD_NAME)));
+                product.setType(cursor.getInt(columns.indexOf(DbGlobals.CL_PD_TYPE)));
                 product.setCarbohydrates(cursor.getFloat(
-                        columns.indexOf(DbGlobals.COL_CARBOHYDRATES_TAB_PRODUCTS)));
-                product.setProtein(cursor.getFloat(columns.indexOf(DbGlobals.COL_PROTEIN_TAB_PRODUCTS)));
-                product.setFat(cursor.getFloat(columns.indexOf(DbGlobals.COL_FAT_TAB_PRODUCTS)));
+                        columns.indexOf(DbGlobals.CL_PD_CARBOHYDRATES)));
+                product.setProtein(cursor.getFloat(columns.indexOf(DbGlobals.CL_PD_PROTEIN)));
+                product.setFat(cursor.getFloat(columns.indexOf(DbGlobals.CL_PD_FAT)));
                 arrayProducts.add(product);
             }while(cursor.moveToNext());
         }
@@ -233,14 +233,14 @@ public class DbCursors {
         if(cursor.moveToFirst()){
             do{
                 Ingredient ingredient = new Ingredient();
-                ingredient.setId(cursor.getInt(columns.indexOf(DbGlobals.COL_ID_TAB_INGREDIENTS)));
-                ingredient.setIdRec(cursor.getInt(columns.indexOf(DbGlobals.COL_IDREC_TAB_INGREDIENTS)));
-                ingredient.setIdProd(cursor.getInt(columns.indexOf(DbGlobals.COL_IDPROD_TAB_INGREDIENTS)));
-                ingredient.setAmount(cursor.getFloat(columns.indexOf(DbGlobals.COL_AMOUNT_TAB_INGREDIENTS)));
-                ingredient.setMeasure(cursor.getInt(columns.indexOf(DbGlobals.COL_MEASURE_TAB_INGREDIENTS)));
-                ingredient.setCategory(cursor.getString(columns.indexOf(DbGlobals.COL_CATEGORY_TAB_INGREDIENTS)));
+                ingredient.setId(cursor.getInt(columns.indexOf(DbGlobals.CL_IG_ID)));
+                ingredient.setIdRec(cursor.getInt(columns.indexOf(DbGlobals.CL_IG_RECIPE)));
+                ingredient.setIdProd(cursor.getInt(columns.indexOf(DbGlobals.CL_IG_PRODUCT)));
+                ingredient.setAmount(cursor.getFloat(columns.indexOf(DbGlobals.CL_IG_AMOUNT)));
+                ingredient.setMeasure(cursor.getInt(columns.indexOf(DbGlobals.CL_IG_MEASURE)));
+                ingredient.setCategory(cursor.getString(columns.indexOf(DbGlobals.CL_IG_CATEGORY)));
                 ingredient.setProduct(new Product());
-                ingredient.getProduct().setId(cursor.getInt(columns.indexOf(DbGlobals.COL_ID_TAB_INGREDIENTS)));
+                ingredient.getProduct().setId(cursor.getInt(columns.indexOf(DbGlobals.CL_IG_ID)));
                 arrayIngredients.add(ingredient);
             }while(cursor.moveToNext());
         }
@@ -250,9 +250,9 @@ public class DbCursors {
     //getId
     //
     public static int getRecipeId(SQLiteDatabase db){
-        int id = MainGlobals.INT_STARTING_VAR_INIT;
-        Cursor cursor = db.query(DbGlobals.TAB_RECIPES_DB_MAIN, new String[] {
-                        DbGlobals.COL_ID_TAB_RECIPES },
+        int id = MainGlobals.DF_ZERO;
+        Cursor cursor = db.query(DbGlobals.TB_RECIPE, new String[] {
+                        DbGlobals.CL_RP_ID},
                 null, null,null, null, null);
         if(cursor.moveToLast()){
             id = cursor.getInt(0);
@@ -262,9 +262,9 @@ public class DbCursors {
     }
 
     public static int getProductId(SQLiteDatabase db){
-        int id = MainGlobals.INT_STARTING_VAR_INIT;
-        Cursor cursor = db.query(DbGlobals.TAB_PRODUCTS_DB_MAIN, new String[] {
-                        DbGlobals.COL_ID_TAB_PRODUCTS },
+        int id = MainGlobals.DF_ZERO;
+        Cursor cursor = db.query(DbGlobals.TB_PRODUCT, new String[] {
+                        DbGlobals.CL_PD_ID},
                 null, null,null, null, null);
         if(cursor.moveToLast()){
             id = cursor.getInt(0);
@@ -274,20 +274,20 @@ public class DbCursors {
     }
 
     public static boolean isProductUsable(SQLiteDatabase db, int id){
-        Cursor cursor = db.query(DbGlobals.TAB_INGREDIENTS_DB_MAIN, new String[] {
-                        DbGlobals.COL_ID_TAB_INGREDIENTS },
-                DbGlobals.COL_IDPROD_TAB_INGREDIENTS + " = ?",
+        Cursor cursor = db.query(DbGlobals.TB_INGREDIENT, new String[] {
+                        DbGlobals.CL_IG_ID},
+                DbGlobals.CL_IG_PRODUCT + " = ?",
                 new String[] {Integer.toString(id)}, null, null, null);
         int cursorCount = cursor.getCount();
         cursor.close();
-        return cursorCount != MainGlobals.INT_STARTING_VAR_INIT;
+        return cursorCount != MainGlobals.DF_ZERO;
     }
 
     public static String getProductName(SQLiteDatabase db, int id){
-        String name = MainGlobals.STR_EMPTY_OBJ_INIT;
-        Cursor cursor = db.query(DbGlobals.TAB_PRODUCTS_DB_MAIN, new String[] {
-                        DbGlobals.COL_NAME_TAB_PRODUCTS },
-                DbGlobals.COL_ID_TAB_PRODUCTS + " = ?",
+        String name = MainGlobals.SN_EMPTY;
+        Cursor cursor = db.query(DbGlobals.TB_PRODUCT, new String[] {
+                        DbGlobals.CL_PD_NAME},
+                DbGlobals.CL_PD_ID + " = ?",
                 new String[] {Integer.toString(id)}, null, null, null);
         if(cursor.moveToLast()){
             name = cursor.getString(0);

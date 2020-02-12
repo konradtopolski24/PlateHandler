@@ -6,7 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Environment;
 import android.widget.ImageView;
 
-import com.fatiner.platehandler.globals.ImageGlobals;
+import com.fatiner.platehandler.globals.MainGlobals;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,7 +27,7 @@ public class ImageManager {
         OutputStream stream = null;
         try{
             stream = new FileOutputStream(file);
-            image.compress(Bitmap.CompressFormat.PNG, ImageGlobals.QUAL_PNG_COMP_BITMAP, stream);
+            image.compress(Bitmap.CompressFormat.PNG, MainGlobals.PH_QUALITY, stream);
             stream.flush();
             stream.close();
         } catch (IOException e){
@@ -43,20 +43,15 @@ public class ImageManager {
 
     private static String getDirectoryPath(){
         File sdPath = Environment.getExternalStorageDirectory();
-        return sdPath.getAbsolutePath() + ImageGlobals.DIR_PATH_SAVE_IMG;
+        return sdPath.getAbsolutePath() + MainGlobals.PT_FOLDER;
     }
 
     public static String getImageProductName(int id){
-        return ImageGlobals.NAME_PRODUCT_SAVE_IMG + id + ImageGlobals.FILE_PNG_SAVE_IMG;
+        return MainGlobals.PT_PRODUCT + id + MainGlobals.FL_PNG;
     }
 
     public static String getImageRecipeName(int id){
-        return ImageGlobals.NAME_RECIPE_SAVE_IMG + id + ImageGlobals.FILE_PNG_SAVE_IMG;
-    }
-
-    public static String getImageStepName(int idRecipe, int idStep){
-        return ImageGlobals.NAME_STEP_SAVE_IMG + idRecipe
-                + ImageGlobals.NAME_NO_SAVE_IMG + idStep + ImageGlobals.FILE_PNG_SAVE_IMG;
+        return MainGlobals.PT_RECIPE + id + MainGlobals.FL_PNG;
     }
 
     private static String getFullPath(String imageName){

@@ -49,7 +49,7 @@ public class ChooseProductFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_choose_product, container, false);
         ButterKnife.bind(this, view);
         setToolbarTitle(R.string.tb_pd_choose);
-        setMenuItem(MainGlobals.ID_INGREDIENTS_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_PRODUCT);
         readProducts();
         setHasOptionsMenu(true);
         return view;
@@ -60,11 +60,11 @@ public class ChooseProductFragment extends PrimaryFragment {
     }
 
     private String getSelection(){
-        String selection = MainGlobals.STR_EMPTY_OBJ_INIT;
+        String selection = MainGlobals.SN_EMPTY;
         ArrayList<String> strings = DbSelection.getArraySelectionProduct(getContext());
-        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < strings.size(); i++){
+        for(int i = MainGlobals.DF_ZERO; i < strings.size(); i++){
             selection += strings.get(i);
-            if(i < strings.size() + MainGlobals.INT_DECREMENT_VAR_INIT){
+            if(i < strings.size() + MainGlobals.DF_DECREMENT){
                 selection += " AND ";
             }
         }
@@ -74,7 +74,7 @@ public class ChooseProductFragment extends PrimaryFragment {
     private String getOrderBy(){
         String orderBy = null;
         if(SharedProductManager.getSharedProductAlphabetical(getContext())){
-            orderBy = DbGlobals.COL_NAME_TAB_PRODUCTS + " ASC";
+            orderBy = DbGlobals.CL_PD_NAME + " ASC";
         }
         return orderBy;
     }
@@ -120,7 +120,7 @@ public class ChooseProductFragment extends PrimaryFragment {
             if(success){
                 setRecyclerView(
                         rvProducts,
-                        getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_PRODUCTS),
+                        getGridLayoutManager(MainGlobals.GL_TWO),
                         new ProductsAdapter(getContext(), products)
                 );
                 checkIfRvEmpty(rvProducts, tvEmpty);

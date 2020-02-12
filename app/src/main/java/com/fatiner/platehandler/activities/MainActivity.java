@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void clearBackStack(){
         FragmentManager manager = getSupportFragmentManager();
-        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < manager.getBackStackEntryCount(); i++){
+        for(int i = MainGlobals.DF_ZERO; i < manager.getBackStackEntryCount(); i++){
             manager.popBackStack();
         }
     }

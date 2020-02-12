@@ -11,7 +11,6 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.Step;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
-import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 
 import butterknife.BindView;
@@ -48,7 +47,7 @@ public class ManageStepFragment extends PrimaryFragment {
         ButterKnife.bind(this, view);
         chooseStartingAction();
         chooseToolbar();
-        setMenuItem(MainGlobals.ID_RECIPES_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_RECIPE);
         return view;
     }
 
@@ -70,7 +69,7 @@ public class ManageStepFragment extends PrimaryFragment {
     }
 
     private void setStepInfo(){
-        int id = getIntFromBundle(BundleGlobals.BUND_ID_FRAG_ADDSTEP);
+        int id = getIntFromBundle(MainGlobals.BN_ID);
         Step step = RecipeDetails.getRecipe().getSteps().get(id);
         String stepNo = getStepHeader(id);
         setHint(tilStep, stepNo);
@@ -79,7 +78,7 @@ public class ManageStepFragment extends PrimaryFragment {
 
     private void setStepsInRecipeDetails(Step step){
         if(isBundleNotEmpty()){
-            int id = getIntFromBundle(BundleGlobals.BUND_ID_FRAG_ADDSTEP);
+            int id = getIntFromBundle(MainGlobals.BN_ID);
             RecipeDetails.getRecipe().getSteps().remove(id);
             RecipeDetails.getRecipe().getSteps().add(id, step);
         } else {

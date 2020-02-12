@@ -65,9 +65,9 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
     public void onBindViewHolder(@NonNull FilesHolder holder, int position) {
         ImportFile importFile = files.get(position);
         holder.tvName.setText(importFile.getName());
-        String recipeAmount = context.getString(R.string.nv_recipe) + MainGlobals.STR_COLON_OBJ_INIT + MainGlobals.STR_SPACE_OBJ_INIT + importFile.getRecipeAmount();
+        String recipeAmount = context.getString(R.string.nv_recipe) + MainGlobals.SN_COLON + MainGlobals.SN_SPACE + importFile.getRecipeAmount();
         holder.tvRecipeAmount.setText(recipeAmount);
-        String productAmount = context.getString(R.string.nv_product) + MainGlobals.STR_COLON_OBJ_INIT + MainGlobals.STR_SPACE_OBJ_INIT + importFile.getProductAmount();
+        String productAmount = context.getString(R.string.nv_product) + MainGlobals.SN_COLON + MainGlobals.SN_SPACE + importFile.getProductAmount();
         holder.tvProductAmount.setText(productAmount);
     }
 
@@ -92,18 +92,18 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
     private ArrayList<Product> getProducts(Workbook workbook) {
         ArrayList<String> columns = DbGlobals.getProductsColumns();
         ArrayList<Product> products = new ArrayList<>();
-        Sheet sheet = workbook.getSheet(DbGlobals.TAB_PRODUCTS_DB_MAIN);
+        Sheet sheet = workbook.getSheet(DbGlobals.TB_PRODUCT);
         Iterator<Row> iterator = sheet.rowIterator();
         while (iterator.hasNext()) {
             Row row = iterator.next();
-            if(row.getRowNum() != MainGlobals.INT_STARTING_VAR_INIT) {
+            if(row.getRowNum() != MainGlobals.DF_ZERO) {
                 Product product = new Product();
-                product.setId((int) row.getCell(columns.indexOf(DbGlobals.COL_ID_TAB_PRODUCTS)).getNumericCellValue());
-                product.setName(row.getCell(columns.indexOf(DbGlobals.COL_NAME_TAB_PRODUCTS)).toString());
-                product.setType((int) row.getCell(columns.indexOf(DbGlobals.COL_TYPE_TAB_PRODUCTS)).getNumericCellValue());
-                product.setCarbohydrates(Float.parseFloat(row.getCell(columns.indexOf(DbGlobals.COL_CARBOHYDRATES_TAB_PRODUCTS)).toString()));
-                product.setProtein(Float.parseFloat(row.getCell(columns.indexOf(DbGlobals.COL_PROTEIN_TAB_PRODUCTS)).toString()));
-                product.setFat(Float.parseFloat(row.getCell(columns.indexOf(DbGlobals.COL_FAT_TAB_PRODUCTS)).toString()));
+                product.setId((int) row.getCell(columns.indexOf(DbGlobals.CL_PD_ID)).getNumericCellValue());
+                product.setName(row.getCell(columns.indexOf(DbGlobals.CL_PD_NAME)).toString());
+                product.setType((int) row.getCell(columns.indexOf(DbGlobals.CL_PD_TYPE)).getNumericCellValue());
+                product.setCarbohydrates(Float.parseFloat(row.getCell(columns.indexOf(DbGlobals.CL_PD_CARBOHYDRATES)).toString()));
+                product.setProtein(Float.parseFloat(row.getCell(columns.indexOf(DbGlobals.CL_PD_PROTEIN)).toString()));
+                product.setFat(Float.parseFloat(row.getCell(columns.indexOf(DbGlobals.CL_PD_FAT)).toString()));
                 products.add(product);
             }
         }
@@ -113,25 +113,25 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
     private ArrayList<Recipe> getRecipes(Workbook workbook) {
         ArrayList<String> columns = DbGlobals.getRecipesColumns();
         ArrayList<Recipe> recipes = new ArrayList<>();
-        Sheet sheet = workbook.getSheet(DbGlobals.TAB_RECIPES_DB_MAIN);
+        Sheet sheet = workbook.getSheet(DbGlobals.TB_RECIPE);
         Iterator<Row> iterator = sheet.rowIterator();
         while (iterator.hasNext()) {
             Row row = iterator.next();
-            if(row.getRowNum() != MainGlobals.INT_STARTING_VAR_INIT) {
+            if(row.getRowNum() != MainGlobals.DF_ZERO) {
                 Recipe recipe = new Recipe();
-                recipe.setId((int) row.getCell(columns.indexOf(DbGlobals.COL_ID_TAB_RECIPES)).getNumericCellValue());
-                recipe.setName(row.getCell(columns.indexOf(DbGlobals.COL_NAME_TAB_RECIPES)).toString());
-                recipe.setAuthor(row.getCell(columns.indexOf(DbGlobals.COL_AUTHOR_TAB_RECIPES)).toString());
-                recipe.setServing((int) row.getCell(columns.indexOf(DbGlobals.COL_SERVING_TAB_RECIPES)).getNumericCellValue());
-                recipe.setTime(row.getCell(columns.indexOf(DbGlobals.COL_TIME_TAB_RECIPES)).toString());
-                recipe.setDifficulty((int) row.getCell(columns.indexOf(DbGlobals.COL_DIFFICULTY_TAB_RECIPES)).getNumericCellValue());
-                recipe.setSpiciness((int) row.getCell(columns.indexOf(DbGlobals.COL_SPICINESS_TAB_RECIPES)).getNumericCellValue());
-                recipe.setCountry((int) row.getCell(columns.indexOf(DbGlobals.COL_COUNTRY_TAB_RECIPES)).getNumericCellValue());
-                recipe.setType((int) row.getCell(columns.indexOf(DbGlobals.COL_TYPE_TAB_RECIPES)).getNumericCellValue());
+                recipe.setId((int) row.getCell(columns.indexOf(DbGlobals.CL_RP_ID)).getNumericCellValue());
+                recipe.setName(row.getCell(columns.indexOf(DbGlobals.CL_RP_NAME)).toString());
+                recipe.setAuthor(row.getCell(columns.indexOf(DbGlobals.CL_RP_AUTHOR)).toString());
+                recipe.setServing((int) row.getCell(columns.indexOf(DbGlobals.CL_RP_SERVING)).getNumericCellValue());
+                recipe.setTime(row.getCell(columns.indexOf(DbGlobals.CL_RP_TIME)).toString());
+                recipe.setDifficulty((int) row.getCell(columns.indexOf(DbGlobals.CL_RP_DIFFICULTY)).getNumericCellValue());
+                recipe.setSpiciness((int) row.getCell(columns.indexOf(DbGlobals.CL_RP_SPICINESS)).getNumericCellValue());
+                recipe.setCountry((int) row.getCell(columns.indexOf(DbGlobals.CL_RP_COUNTRY)).getNumericCellValue());
+                recipe.setType((int) row.getCell(columns.indexOf(DbGlobals.CL_RP_TYPE)).getNumericCellValue());
                 recipe.setPreference(TypeManager.integerToBoolean(
-                        (int) row.getCell(columns.indexOf(DbGlobals.COL_PREFERENCES_TAB_RECIPES)).getNumericCellValue()));
+                        (int) row.getCell(columns.indexOf(DbGlobals.CL_RP_PREFERENCE)).getNumericCellValue()));
                 recipe.setFavorite(TypeManager.integerToBoolean(
-                        (int) row.getCell(columns.indexOf(DbGlobals.COL_FAVORITE_TAB_RECIPES)).getNumericCellValue()));
+                        (int) row.getCell(columns.indexOf(DbGlobals.CL_RP_FAVORITE)).getNumericCellValue()));
                 recipes.add(recipe);
             }
         }
@@ -141,20 +141,20 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
     private ArrayList<Ingredient> getIngredients(Workbook workbook) {
         ArrayList<String> columns = DbGlobals.getIngredientsColumns();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
-        Sheet sheet = workbook.getSheet(DbGlobals.TAB_INGREDIENTS_DB_MAIN);
+        Sheet sheet = workbook.getSheet(DbGlobals.TB_INGREDIENT);
         Iterator<Row> iterator = sheet.rowIterator();
         while (iterator.hasNext()) {
             Row row = iterator.next();
-            if(row.getRowNum() != MainGlobals.INT_STARTING_VAR_INIT) {
+            if(row.getRowNum() != MainGlobals.DF_ZERO) {
                 Ingredient ingredient = new Ingredient();
-                ingredient.setId((int) row.getCell(columns.indexOf(DbGlobals.COL_ID_TAB_INGREDIENTS)).getNumericCellValue());
-                ingredient.setIdRec((int) row.getCell(columns.indexOf(DbGlobals.COL_IDREC_TAB_INGREDIENTS)).getNumericCellValue());
-                ingredient.setIdProd((int) row.getCell(columns.indexOf(DbGlobals.COL_IDPROD_TAB_INGREDIENTS)).getNumericCellValue());
-                ingredient.setAmount(Float.parseFloat(row.getCell(columns.indexOf(DbGlobals.COL_AMOUNT_TAB_INGREDIENTS)).toString()));
-                ingredient.setMeasure((int) row.getCell(columns.indexOf(DbGlobals.COL_MEASURE_TAB_INGREDIENTS)).getNumericCellValue());
-                ingredient.setCategory(row.getCell(columns.indexOf(DbGlobals.COL_CATEGORY_TAB_INGREDIENTS)).toString());
+                ingredient.setId((int) row.getCell(columns.indexOf(DbGlobals.CL_IG_ID)).getNumericCellValue());
+                ingredient.setIdRec((int) row.getCell(columns.indexOf(DbGlobals.CL_IG_RECIPE)).getNumericCellValue());
+                ingredient.setIdProd((int) row.getCell(columns.indexOf(DbGlobals.CL_IG_PRODUCT)).getNumericCellValue());
+                ingredient.setAmount(Float.parseFloat(row.getCell(columns.indexOf(DbGlobals.CL_IG_AMOUNT)).toString()));
+                ingredient.setMeasure((int) row.getCell(columns.indexOf(DbGlobals.CL_IG_MEASURE)).getNumericCellValue());
+                ingredient.setCategory(row.getCell(columns.indexOf(DbGlobals.CL_IG_CATEGORY)).toString());
                 ingredient.setProduct(new Product());
-                ingredient.getProduct().setId((int) row.getCell(columns.indexOf(DbGlobals.COL_IDPROD_TAB_INGREDIENTS)).getNumericCellValue());
+                ingredient.getProduct().setId((int) row.getCell(columns.indexOf(DbGlobals.CL_IG_PRODUCT)).getNumericCellValue());
                 ingredients.add(ingredient);
             }
         }
@@ -164,15 +164,15 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
     private ArrayList<Step> getSteps(Workbook workbook) {
         ArrayList<String> columns = DbGlobals.getStepsColumns();
         ArrayList<Step> steps = new ArrayList<>();
-        Sheet sheet = workbook.getSheet(DbGlobals.TAB_STEPS_DB_MAIN);
+        Sheet sheet = workbook.getSheet(DbGlobals.TB_STEP);
         Iterator<Row> iterator = sheet.rowIterator();
         while (iterator.hasNext()) {
             Row row = iterator.next();
-            if(row.getRowNum() != MainGlobals.INT_STARTING_VAR_INIT) {
+            if(row.getRowNum() != MainGlobals.DF_ZERO) {
                 Step step = new Step();
-                step.setId((int) row.getCell(columns.indexOf(DbGlobals.COL_ID_TAB_STEPS)).getNumericCellValue());
-                step.setIdRec((int) row.getCell(columns.indexOf(DbGlobals.COL_IDREC_TAB_STEPS)).getNumericCellValue());
-                step.setInstruction(row.getCell(columns.indexOf(DbGlobals.COL_INSTRUCTION_TAB_STEPS)).toString());
+                step.setId((int) row.getCell(columns.indexOf(DbGlobals.CL_ST_ID)).getNumericCellValue());
+                step.setIdRec((int) row.getCell(columns.indexOf(DbGlobals.CL_ST_RECIPE)).getNumericCellValue());
+                step.setInstruction(row.getCell(columns.indexOf(DbGlobals.CL_ST_INSTRUCTION)).toString());
                 steps.add(step);
             }
         }
@@ -206,7 +206,7 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.FilesHolder>
         @Override
         protected Boolean doInBackground(Workbook... workbooks) {
             try {
-                Workbook workbook = workbooks[MainGlobals.INT_STARTING_VAR_INIT];
+                Workbook workbook = workbooks[MainGlobals.DF_ZERO];
                 ArrayList<Product> products = getProducts(workbook);
                 ArrayList<Recipe> recipes = getRecipes(workbook);
                 ArrayList<Ingredient> ingredients = getIngredients(workbook);

@@ -11,7 +11,7 @@ public class SharedMainManager {
 
     private static SharedPreferences getSharedFromMain(Context context){
         return context.getSharedPreferences(
-                SharedGlobals.NAME_MAIN_SHARED_MAIN,
+                SharedGlobals.SR_HOME,
                 Context.MODE_PRIVATE
         );
     }
@@ -19,61 +19,61 @@ public class SharedMainManager {
     //Recent
     public static String getSharedRecent(Context context){
         return getSharedFromMain(context).getString(
-                SharedGlobals.KEY_RECENT_SHARED_MAIN,
-                SharedGlobals.DEFAULT_STRING_SHARED_ALL
+                SharedGlobals.KY_RECENT,
+                SharedGlobals.DF_STRING
         );
     }
 
     public static void setSharedRecent(Context context, String json){
         getSharedFromMain(context).edit().putString(
-                SharedGlobals.KEY_RECENT_SHARED_MAIN, json).apply();
+                SharedGlobals.KY_RECENT, json).apply();
     }
 
     public static boolean isSharedRecentAvailable(Context context){
-        return getSharedFromMain(context).contains(SharedGlobals.KEY_RECENT_SHARED_MAIN);
+        return getSharedFromMain(context).contains(SharedGlobals.KY_RECENT);
     }
 
     public static void removeSharedRecent(Context context){
         getSharedFromMain(context).edit().remove(
-                SharedGlobals.KEY_RECENT_SHARED_MAIN).apply();
+                SharedGlobals.KY_RECENT).apply();
     }
 
     //Dish
     public static int getSharedDish(Context context){
         return getSharedFromMain(context).getInt(
-                SharedGlobals.KEY_DISH_SHARED_MAIN,
-                SharedGlobals.DEFAULT_INT_SHARED_ALL
+                SharedGlobals.KY_DAY,
+                SharedGlobals.DF_INT
         );
     }
 
     public static void setSharedDish(Context context, int id){
         getSharedFromMain(context).edit().putInt(
-                SharedGlobals.KEY_DISH_SHARED_MAIN, id).apply();
+                SharedGlobals.KY_DAY, id).apply();
     }
 
     public static void removeSharedDish(Context context){
         getSharedFromMain(context).edit().remove(
-                SharedGlobals.KEY_DISH_SHARED_MAIN).apply();
+                SharedGlobals.KY_DAY).apply();
     }
 
     public static boolean isSharedDishAvailable(Context context){
-        return getSharedFromMain(context).contains(SharedGlobals.KEY_DISH_SHARED_MAIN);
+        return getSharedFromMain(context).contains(SharedGlobals.KY_DAY);
     }
 
     //Date
     public static String getSharedDate(Context context){
         return getSharedFromMain(context).getString(
-                SharedGlobals.KEY_DATE_SHARED_MAIN,
-                SharedGlobals.DEFAULT_STRING_SHARED_ALL
+                SharedGlobals.KY_DATE,
+                SharedGlobals.DF_STRING
         );
     }
 
     public static void setSharedDate(Context context, String date){
         getSharedFromMain(context).edit().putString(
-                SharedGlobals.KEY_DATE_SHARED_MAIN, date).apply();
+                SharedGlobals.KY_DATE, date).apply();
     }
 
     public static boolean isSharedDateAvailable(Context context){
-        return getSharedFromMain(context).contains(SharedGlobals.KEY_DATE_SHARED_MAIN);
+        return getSharedFromMain(context).contains(SharedGlobals.KY_DATE);
     }
 }

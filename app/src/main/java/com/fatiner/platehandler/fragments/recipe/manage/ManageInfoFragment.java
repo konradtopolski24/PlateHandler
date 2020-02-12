@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.fatiner.platehandler.globals.ImageGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.RecipeDetails;
@@ -134,8 +133,8 @@ public class ManageInfoFragment extends PrimaryFragment {
         int[] times = TypeManager.stringToTime(RecipeDetails.getRecipe().getTime());
         TimePickerDialog dialog = new TimePickerDialog(getContext(),
                 getNewOnTimeSetListener(),
-                times[MainGlobals.ID_HOURS_MANAG_TYPE],
-                times[MainGlobals.ID_MINUTES_MANAG_TYPE],
+                times[MainGlobals.TM_HOURS],
+                times[MainGlobals.TM_MINUTES],
                 true);
         dialog.show();
     }
@@ -159,10 +158,10 @@ public class ManageInfoFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_manage_info, container, false);
         ButterKnife.bind(this, view);
         hideKeyboard();
-        setMenuItem(MainGlobals.ID_RECIPES_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_RECIPE);
         manageSeekBars();
         setEditServing(RecipeDetails.getRecipe().getServing());
-        setTextDifficulty(MainGlobals.PROG_STARTING_SEEK_DIFFICULTY);
+        setTextDifficulty(MainGlobals.SB_START);
         hideAllImageSpiciness();
         setRecipeInfo();
         return view;
@@ -171,14 +170,14 @@ public class ManageInfoFragment extends PrimaryFragment {
     private void manageSeekBars(){
         manageSeekBar(
                 sbDifficulty,
-                MainGlobals.PROG_STARTING_SEEK_DIFFICULTY,
-                MainGlobals.PROG_MAX_SEEK_DIFFICULTY,
+                MainGlobals.SB_START,
+                MainGlobals.SB_DIFFICULTY,
                 getSeekBarListener(true)
         );
         manageSeekBar(
                 sbSpiciness,
-                MainGlobals.PROG_STARTING_SEEK_SPICINESS,
-                MainGlobals.PROG_MAX_SEEK_SPICINESS,
+                MainGlobals.SB_START,
+                MainGlobals.SB_SPICINESS,
                 getSeekBarListener(false)
         );
     }
@@ -236,7 +235,7 @@ public class ManageInfoFragment extends PrimaryFragment {
     }
 
     private void setImageSpiciness(int progress){
-        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < progress + 1; i++){
+        for(int i = MainGlobals.DF_ZERO; i < progress + 1; i++){
             arIvSpiciness.get(i).setVisibility(View.VISIBLE);
         }
     }
@@ -293,11 +292,11 @@ public class ManageInfoFragment extends PrimaryFragment {
     }
 
     private boolean isServingNotTooBig(int value){
-        return value < MainGlobals.MAX_SERVING_TEXT_SERVING;
+        return value < MainGlobals.SV_MAX;
     }
 
     private boolean isServingNotTooSmall(int value){
-        return value > MainGlobals.MIN_SERVING_TEXT_SERVING;
+        return value > MainGlobals.SV_MIN;
     }
 
     private void setImagePhoto(String encodedImage){
@@ -315,7 +314,7 @@ public class ManageInfoFragment extends PrimaryFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode){
-            case ImageGlobals.REQ_PHOTO_FRAG_PRIMARY:
+            case MainGlobals.PH_REQUEST:
                 setEncodedImageInfo(resultCode, data);
                 break;
         }

@@ -17,42 +17,42 @@ public class DbSelection {
         if(SharedRecipeManager.isSharedFavoriteAvailable(context)){
             String favorite = String.valueOf(TypeManager.booleanToInteger(
                     SharedRecipeManager.getSharedFavorite(context)));
-            strings.add(DbGlobals.COL_FAVORITE_TAB_RECIPES + " = " + favorite);
+            strings.add(DbGlobals.CL_RP_FAVORITE + " = " + favorite);
         }
     }
 
     private static void addSelectionAuthor(ArrayList<String> strings, Context context){
         if(SharedRecipeManager.isSharedAuthorAvailable(context)){
             String author = SharedRecipeManager.getSharedAuthor(context);
-            strings.add(DbGlobals.COL_AUTHOR_TAB_RECIPES + " = '" + author + "'");
+            strings.add(DbGlobals.CL_RP_AUTHOR + " = '" + author + "'");
         }
     }
 
     private static void addSelectionDifficulty(ArrayList<String> strings, Context context){
         if(SharedRecipeManager.isSharedDifficultyAvailable(context)){
             String difficulty = String.valueOf(SharedRecipeManager.getSharedDifficulty(context));
-            strings.add(DbGlobals.COL_DIFFICULTY_TAB_RECIPES + " = " + difficulty);
+            strings.add(DbGlobals.CL_RP_DIFFICULTY + " = " + difficulty);
         }
     }
 
     private static void addSelectionSpiciness(ArrayList<String> strings, Context context){
         if(SharedRecipeManager.isSharedSpicinessAvailable(context)){
             String spiciness = String.valueOf(SharedRecipeManager.getSharedSpiciness(context));
-            strings.add(DbGlobals.COL_SPICINESS_TAB_RECIPES + " = " + spiciness);
+            strings.add(DbGlobals.CL_RP_SPICINESS + " = " + spiciness);
         }
     }
 
     private static void addSelectionCountry(ArrayList<String> strings, Context context){
         if(SharedRecipeManager.isSharedCountryAvailable(context)){
             String country = String.valueOf(SharedRecipeManager.getSharedCountry(context));
-            strings.add(DbGlobals.COL_COUNTRY_TAB_RECIPES + " = " + country);
+            strings.add(DbGlobals.CL_RP_COUNTRY + " = " + country);
         }
     }
 
     private static void addSelectionType(ArrayList<String> strings, Context context){
         if(SharedRecipeManager.isSharedTypeAvailable(context)){
             String type = String.valueOf(SharedRecipeManager.getSharedType(context));
-            strings.add(DbGlobals.COL_TYPE_TAB_RECIPES + " = " + type);
+            strings.add(DbGlobals.CL_RP_TYPE + " = " + type);
         }
     }
 
@@ -60,7 +60,7 @@ public class DbSelection {
         if(SharedRecipeManager.isSharedPreferenceAvailable(context)){
             String preference = String.valueOf(TypeManager.booleanToInteger(
                     SharedRecipeManager.getSharedPreference(context)));
-            strings.add(DbGlobals.COL_PREFERENCES_TAB_RECIPES + " = " + preference);
+            strings.add(DbGlobals.CL_RP_PREFERENCE + " = " + preference);
         }
     }
 
@@ -79,7 +79,7 @@ public class DbSelection {
     private static void addSelectionTypeProduct(ArrayList<String> strings, Context context){
         if(SharedProductManager.isSharedProductTypeAvailable(context)){
             String type = String.valueOf(SharedProductManager.getSharedProductType(context));
-            strings.add(DbGlobals.COL_TYPE_TAB_PRODUCTS + " = " + type);
+            strings.add(DbGlobals.CL_PD_TYPE + " = " + type);
         }
     }
 

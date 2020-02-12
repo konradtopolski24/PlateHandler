@@ -11,13 +11,13 @@ public class RecipeSQLiteOpenHelper extends SQLiteOpenHelper {
     private Context context;
 
     public RecipeSQLiteOpenHelper(Context context) {
-        super(context, DbGlobals.NAME_RECIPES_DB_MAIN, null, DbGlobals.VER_CURRENT_DB_MAIN);
+        super(context, DbGlobals.DB_NAME, null, DbGlobals.DB_CURRENT);
         this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        updateDatabase(db, DbGlobals.VER_0_DB_MAIN);
+        updateDatabase(db, DbGlobals.DB_LOWEST);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class RecipeSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     private void updateDatabase(SQLiteDatabase db, int version){
-        if(version < DbGlobals.VER_CURRENT_DB_MAIN){
+        if(version < DbGlobals.DB_CURRENT){
             createRecipesTable(db);
             createIngredientsTable(db);
             createStepsTable(db);
@@ -35,48 +35,48 @@ public class RecipeSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     private void createRecipesTable(SQLiteDatabase db){
-        String command = "CREATE TABLE " + DbGlobals.TAB_RECIPES_DB_MAIN + " (" +
-                DbGlobals.COL_ID_TAB_RECIPES + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                DbGlobals.COL_NAME_TAB_RECIPES + " TEXT, " +
-                DbGlobals.COL_AUTHOR_TAB_RECIPES + " TEXT, " +
-                DbGlobals.COL_SERVING_TAB_RECIPES + " INTEGER, " +
-                DbGlobals.COL_TIME_TAB_RECIPES + " TEXT, " +
-                DbGlobals.COL_DIFFICULTY_TAB_RECIPES + " INTEGER, " +
-                DbGlobals.COL_SPICINESS_TAB_RECIPES + " INTEGER, " +
-                DbGlobals.COL_COUNTRY_TAB_RECIPES + " INTEGER, " +
-                DbGlobals.COL_TYPE_TAB_RECIPES + " INTEGER, " +
-                DbGlobals.COL_PREFERENCES_TAB_RECIPES + " INTEGER, " +
-                DbGlobals.COL_FAVORITE_TAB_RECIPES + " INTEGER);";
+        String command = "CREATE TABLE " + DbGlobals.TB_RECIPE + " (" +
+                DbGlobals.CL_RP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                DbGlobals.CL_RP_NAME + " TEXT, " +
+                DbGlobals.CL_RP_AUTHOR + " TEXT, " +
+                DbGlobals.CL_RP_SERVING + " INTEGER, " +
+                DbGlobals.CL_RP_TIME + " TEXT, " +
+                DbGlobals.CL_RP_DIFFICULTY + " INTEGER, " +
+                DbGlobals.CL_RP_SPICINESS + " INTEGER, " +
+                DbGlobals.CL_RP_COUNTRY + " INTEGER, " +
+                DbGlobals.CL_RP_TYPE + " INTEGER, " +
+                DbGlobals.CL_RP_PREFERENCE + " INTEGER, " +
+                DbGlobals.CL_RP_FAVORITE + " INTEGER);";
         db.execSQL(command);
     }
 
     private void createIngredientsTable(SQLiteDatabase db){
-        String command = "CREATE TABLE " + DbGlobals.TAB_INGREDIENTS_DB_MAIN + " (" +
-                DbGlobals.COL_ID_TAB_INGREDIENTS + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                DbGlobals.COL_IDREC_TAB_INGREDIENTS + " INTEGER, " +
-                DbGlobals.COL_IDPROD_TAB_INGREDIENTS + " INTEGER, " +
-                DbGlobals.COL_AMOUNT_TAB_INGREDIENTS + " REAL, " +
-                DbGlobals.COL_MEASURE_TAB_INGREDIENTS + " INTEGER, " +
-                DbGlobals.COL_CATEGORY_TAB_INGREDIENTS + " TEXT);";
+        String command = "CREATE TABLE " + DbGlobals.TB_INGREDIENT + " (" +
+                DbGlobals.CL_IG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                DbGlobals.CL_IG_RECIPE + " INTEGER, " +
+                DbGlobals.CL_IG_PRODUCT + " INTEGER, " +
+                DbGlobals.CL_IG_AMOUNT + " REAL, " +
+                DbGlobals.CL_IG_MEASURE + " INTEGER, " +
+                DbGlobals.CL_IG_CATEGORY + " TEXT);";
         db.execSQL(command);
     }
 
     private void createStepsTable(SQLiteDatabase db){
-        String command = "CREATE TABLE " + DbGlobals.TAB_STEPS_DB_MAIN + " (" +
-                DbGlobals.COL_ID_TAB_STEPS + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                DbGlobals.COL_IDREC_TAB_STEPS + " INTEGER, " +
-                DbGlobals.COL_INSTRUCTION_TAB_STEPS + " TEXT);";
+        String command = "CREATE TABLE " + DbGlobals.TB_STEP + " (" +
+                DbGlobals.CL_ST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                DbGlobals.CL_ST_RECIPE + " INTEGER, " +
+                DbGlobals.CL_ST_INSTRUCTION + " TEXT);";
         db.execSQL(command);
     }
 
     private void createProductsTable(SQLiteDatabase db){
-        String command = "CREATE TABLE " + DbGlobals.TAB_PRODUCTS_DB_MAIN + " (" +
-                DbGlobals.COL_ID_TAB_PRODUCTS + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                DbGlobals.COL_NAME_TAB_PRODUCTS + " TEXT, " +
-                DbGlobals.COL_TYPE_TAB_PRODUCTS + " INTEGER, " +
-                DbGlobals.COL_CARBOHYDRATES_TAB_PRODUCTS + " REAL, " +
-                DbGlobals.COL_PROTEIN_TAB_PRODUCTS + " REAL, " +
-                DbGlobals.COL_FAT_TAB_PRODUCTS + " REAL);";
+        String command = "CREATE TABLE " + DbGlobals.TB_PRODUCT + " (" +
+                DbGlobals.CL_PD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                DbGlobals.CL_PD_NAME + " TEXT, " +
+                DbGlobals.CL_PD_TYPE + " INTEGER, " +
+                DbGlobals.CL_PD_CARBOHYDRATES + " REAL, " +
+                DbGlobals.CL_PD_PROTEIN + " REAL, " +
+                DbGlobals.CL_PD_FAT + " REAL);";
         db.execSQL(command);
     }
 }

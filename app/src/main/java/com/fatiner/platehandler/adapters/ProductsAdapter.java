@@ -17,7 +17,6 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.activities.MainActivity;
 import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.fragments.product.ShowProductFragment;
-import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.classes.Product;
 import com.fatiner.platehandler.globals.MainGlobals;
 
@@ -67,14 +66,14 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     private void setBundle(Fragment fragment, int position){
         int id = products.get(position).getId();
         Bundle bundle = new Bundle();
-        bundle.putInt(BundleGlobals.BUND_ID_FRAG_SHOWPROD, id);
+        bundle.putInt(MainGlobals.BN_ID, id);
         fragment.setArguments(bundle);
     }
 
     private void setImageType(ProductsHolder holder, int type){
         TypedArray arrayTypes = getArrayTypes();
         holder.ivType.setImageResource(arrayTypes.getResourceId(type,
-                MainGlobals.INT_DECREMENT_VAR_INIT));
+                MainGlobals.DF_DECREMENT));
     }
 
     private TypedArray getArrayTypes(){

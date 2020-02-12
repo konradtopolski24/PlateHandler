@@ -72,10 +72,10 @@ public class ExportFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_export, container, false);
         ButterKnife.bind(this, view);
         setToolbarTitle(R.string.tb_ex_database);
-        setMenuItem(MainGlobals.ID_EXPORT_DRAW_MAIN);
-        String saved = getString(R.string.nv_recipe) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.nv_product);
+        setMenuItem(MainGlobals.ID_EXPORT);
+        String saved = getString(R.string.nv_recipe) + MainGlobals.SN_ENTER + getString(R.string.nv_product);
         setTv(tvSaved, saved);
-        String unsaved = getString(R.string.nv_shopping) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.hd_hm_day) + MainGlobals.STR_ENTER_OBJ_INIT + getString(R.string.hd_hm_recent);
+        String unsaved = getString(R.string.nv_shopping) + MainGlobals.SN_ENTER + getString(R.string.hd_hm_day) + MainGlobals.SN_ENTER + getString(R.string.hd_hm_recent);
         setTv(tvUnsaved, unsaved);
         return view;
     }
@@ -128,8 +128,8 @@ public class ExportFragment extends PrimaryFragment {
 
     private HSSFSheet getEmptySheet(HSSFWorkbook workbook, String name, ArrayList<String> columns) {
         HSSFSheet sheet = workbook.createSheet(name);
-        HSSFRow headerRow = sheet.createRow(MainGlobals.INT_STARTING_VAR_INIT);
-        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < columns.size(); i++){
+        HSSFRow headerRow = sheet.createRow(MainGlobals.DF_ZERO);
+        for(int i = MainGlobals.DF_ZERO; i < columns.size(); i++){
             HSSFCell cell = headerRow.createCell(i);
             cell.setCellValue(columns.get(i));
         }
@@ -139,22 +139,22 @@ public class ExportFragment extends PrimaryFragment {
     private void createRecipeSheet(HSSFWorkbook workbook, ArrayList<Recipe> recipes) {
         ArrayList<String> columns = DbGlobals.getRecipesColumns();
         HSSFSheet sheet = getEmptySheet(workbook,
-                DbGlobals.TAB_RECIPES_DB_MAIN, columns);
+                DbGlobals.TB_RECIPE, columns);
 
-        int id = MainGlobals.INT_INCREMENT_VAR_INIT;
+        int id = MainGlobals.DF_INCREMENT;
         for(Recipe recipe : recipes){
             HSSFRow row = sheet.createRow(id);
-            row.createCell(columns.indexOf(DbGlobals.COL_ID_TAB_RECIPES)).setCellValue(recipe.getId());
-            row.createCell(columns.indexOf(DbGlobals.COL_NAME_TAB_RECIPES)).setCellValue(recipe.getName());
-            row.createCell(columns.indexOf(DbGlobals.COL_AUTHOR_TAB_RECIPES)).setCellValue(recipe.getAuthor());
-            row.createCell(columns.indexOf(DbGlobals.COL_SERVING_TAB_RECIPES)).setCellValue(recipe.getServing());
-            row.createCell(columns.indexOf(DbGlobals.COL_TIME_TAB_RECIPES)).setCellValue(recipe.getTime());
-            row.createCell(columns.indexOf(DbGlobals.COL_DIFFICULTY_TAB_RECIPES)).setCellValue(recipe.getDifficulty());
-            row.createCell(columns.indexOf(DbGlobals.COL_SPICINESS_TAB_RECIPES)).setCellValue(recipe.getSpiciness());
-            row.createCell(columns.indexOf(DbGlobals.COL_COUNTRY_TAB_RECIPES)).setCellValue(recipe.getCountry());
-            row.createCell(columns.indexOf(DbGlobals.COL_TYPE_TAB_RECIPES)).setCellValue(recipe.getType());
-            row.createCell(columns.indexOf(DbGlobals.COL_PREFERENCES_TAB_RECIPES)).setCellValue(TypeManager.booleanToInteger(recipe.getPreference()));
-            row.createCell(columns.indexOf(DbGlobals.COL_FAVORITE_TAB_RECIPES)).setCellValue(TypeManager.booleanToInteger(recipe.getFavorite()));
+            row.createCell(columns.indexOf(DbGlobals.CL_RP_ID)).setCellValue(recipe.getId());
+            row.createCell(columns.indexOf(DbGlobals.CL_RP_NAME)).setCellValue(recipe.getName());
+            row.createCell(columns.indexOf(DbGlobals.CL_RP_AUTHOR)).setCellValue(recipe.getAuthor());
+            row.createCell(columns.indexOf(DbGlobals.CL_RP_SERVING)).setCellValue(recipe.getServing());
+            row.createCell(columns.indexOf(DbGlobals.CL_RP_TIME)).setCellValue(recipe.getTime());
+            row.createCell(columns.indexOf(DbGlobals.CL_RP_DIFFICULTY)).setCellValue(recipe.getDifficulty());
+            row.createCell(columns.indexOf(DbGlobals.CL_RP_SPICINESS)).setCellValue(recipe.getSpiciness());
+            row.createCell(columns.indexOf(DbGlobals.CL_RP_COUNTRY)).setCellValue(recipe.getCountry());
+            row.createCell(columns.indexOf(DbGlobals.CL_RP_TYPE)).setCellValue(recipe.getType());
+            row.createCell(columns.indexOf(DbGlobals.CL_RP_PREFERENCE)).setCellValue(TypeManager.booleanToInteger(recipe.getPreference()));
+            row.createCell(columns.indexOf(DbGlobals.CL_RP_FAVORITE)).setCellValue(TypeManager.booleanToInteger(recipe.getFavorite()));
             id++;
         }
     }
@@ -162,17 +162,17 @@ public class ExportFragment extends PrimaryFragment {
     private void createIngredientSheet(HSSFWorkbook workbook, ArrayList<Ingredient> ingredients) {
         ArrayList<String> columns = DbGlobals.getIngredientsColumns();
         HSSFSheet sheet = getEmptySheet(workbook,
-                DbGlobals.TAB_INGREDIENTS_DB_MAIN, columns);
+                DbGlobals.TB_INGREDIENT, columns);
 
-        int id = MainGlobals.INT_INCREMENT_VAR_INIT;
+        int id = MainGlobals.DF_INCREMENT;
         for(Ingredient ingredient : ingredients){
             HSSFRow row = sheet.createRow(id);
-            row.createCell(columns.indexOf(DbGlobals.COL_ID_TAB_INGREDIENTS)).setCellValue(ingredient.getId());
-            row.createCell(columns.indexOf(DbGlobals.COL_IDREC_TAB_INGREDIENTS)).setCellValue(ingredient.getIdRec());
-            row.createCell(columns.indexOf(DbGlobals.COL_IDPROD_TAB_INGREDIENTS)).setCellValue(ingredient.getIdProd());
-            row.createCell(columns.indexOf(DbGlobals.COL_AMOUNT_TAB_INGREDIENTS)).setCellValue(ingredient.getAmount());
-            row.createCell(columns.indexOf(DbGlobals.COL_MEASURE_TAB_INGREDIENTS)).setCellValue(ingredient.getMeasure());
-            row.createCell(columns.indexOf(DbGlobals.COL_CATEGORY_TAB_INGREDIENTS)).setCellValue(ingredient.getCategory());
+            row.createCell(columns.indexOf(DbGlobals.CL_IG_ID)).setCellValue(ingredient.getId());
+            row.createCell(columns.indexOf(DbGlobals.CL_IG_RECIPE)).setCellValue(ingredient.getIdRec());
+            row.createCell(columns.indexOf(DbGlobals.CL_IG_PRODUCT)).setCellValue(ingredient.getIdProd());
+            row.createCell(columns.indexOf(DbGlobals.CL_IG_AMOUNT)).setCellValue(ingredient.getAmount());
+            row.createCell(columns.indexOf(DbGlobals.CL_IG_MEASURE)).setCellValue(ingredient.getMeasure());
+            row.createCell(columns.indexOf(DbGlobals.CL_IG_CATEGORY)).setCellValue(ingredient.getCategory());
             id++;
         }
     }
@@ -180,14 +180,14 @@ public class ExportFragment extends PrimaryFragment {
     private void createStepSheet(HSSFWorkbook workbook, ArrayList<Step> steps) {
         ArrayList<String> columns = DbGlobals.getStepsColumns();
         HSSFSheet sheet = getEmptySheet(workbook,
-                DbGlobals.TAB_STEPS_DB_MAIN, columns);
+                DbGlobals.TB_STEP, columns);
 
-        int id = MainGlobals.INT_INCREMENT_VAR_INIT;
+        int id = MainGlobals.DF_INCREMENT;
         for(Step step : steps){
             HSSFRow row = sheet.createRow(id);
-            row.createCell(columns.indexOf(DbGlobals.COL_ID_TAB_STEPS)).setCellValue(step.getId());
-            row.createCell(columns.indexOf(DbGlobals.COL_IDREC_TAB_STEPS)).setCellValue(step.getIdRec());
-            row.createCell(columns.indexOf(DbGlobals.COL_INSTRUCTION_TAB_STEPS)).setCellValue(step.getInstruction());
+            row.createCell(columns.indexOf(DbGlobals.CL_ST_ID)).setCellValue(step.getId());
+            row.createCell(columns.indexOf(DbGlobals.CL_ST_RECIPE)).setCellValue(step.getIdRec());
+            row.createCell(columns.indexOf(DbGlobals.CL_ST_INSTRUCTION)).setCellValue(step.getInstruction());
             id++;
         }
     }
@@ -195,24 +195,24 @@ public class ExportFragment extends PrimaryFragment {
     private void createProductSheet(HSSFWorkbook workbook, ArrayList<Product> products) {
         ArrayList<String> columns = DbGlobals.getProductsColumns();
         HSSFSheet sheet = getEmptySheet(workbook,
-                DbGlobals.TAB_PRODUCTS_DB_MAIN, DbGlobals.getProductsColumns());
+                DbGlobals.TB_PRODUCT, DbGlobals.getProductsColumns());
 
-        int id = MainGlobals.INT_INCREMENT_VAR_INIT;
+        int id = MainGlobals.DF_INCREMENT;
         for(Product product : products){
             HSSFRow row = sheet.createRow(id);
-            row.createCell(columns.indexOf(DbGlobals.COL_ID_TAB_PRODUCTS)).setCellValue(product.getId());
-            row.createCell(columns.indexOf(DbGlobals.COL_NAME_TAB_PRODUCTS)).setCellValue(product.getName());
-            row.createCell(columns.indexOf(DbGlobals.COL_TYPE_TAB_PRODUCTS)).setCellValue(product.getType());
-            row.createCell(columns.indexOf(DbGlobals.COL_CARBOHYDRATES_TAB_PRODUCTS)).setCellValue(product.getCarbohydrates());
-            row.createCell(columns.indexOf(DbGlobals.COL_PROTEIN_TAB_PRODUCTS)).setCellValue(product.getProtein());
-            row.createCell(columns.indexOf(DbGlobals.COL_FAT_TAB_PRODUCTS)).setCellValue(product.getFat());
+            row.createCell(columns.indexOf(DbGlobals.CL_PD_ID)).setCellValue(product.getId());
+            row.createCell(columns.indexOf(DbGlobals.CL_PD_NAME)).setCellValue(product.getName());
+            row.createCell(columns.indexOf(DbGlobals.CL_PD_TYPE)).setCellValue(product.getType());
+            row.createCell(columns.indexOf(DbGlobals.CL_PD_CARBOHYDRATES)).setCellValue(product.getCarbohydrates());
+            row.createCell(columns.indexOf(DbGlobals.CL_PD_PROTEIN)).setCellValue(product.getProtein());
+            row.createCell(columns.indexOf(DbGlobals.CL_PD_FAT)).setCellValue(product.getFat());
             id++;
         }
     }
 
     private void saveWorkbookFile(HSSFWorkbook workbook) {
         File file = new File(getContext().getExternalFilesDir(null),
-                etExport.getText().toString() + MainGlobals.FILE_XLS_SAVE_WORKBOOK);
+                etExport.getText().toString() + MainGlobals.FL_XLS);
         try {
             FileOutputStream output = new FileOutputStream(file);
             workbook.write(output);

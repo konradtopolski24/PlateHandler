@@ -51,8 +51,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
             showCbDone(holder);
         Ingredient ingredient = ingredients.get(position);
         String[] arrayMeasure = getArrayMeasure();
-        setTextMeasure(holder, ingredient.getAmount() + MainGlobals.STR_SPACE_OBJ_INIT
-                + MainGlobals.STR_TIMES + MainGlobals.STR_SPACE_OBJ_INIT + arrayMeasure[ingredient.getMeasure()]);
+        setTextMeasure(holder, ingredient.getAmount() + MainGlobals.SN_SPACE
+                + MainGlobals.UT_TIMES + MainGlobals.SN_SPACE + arrayMeasure[ingredient.getMeasure()]);
         setTextProduct(holder, ingredient.getProduct().getName());
         TypedArray arrayType = context.getResources().obtainTypedArray(R.array.dw_product);
         int resource = arrayType.getResourceId(ingredient.getProduct().getType(), -1);

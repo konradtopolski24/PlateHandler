@@ -11,7 +11,7 @@ public class SharedProductManager {
 
     private static SharedPreferences getSharedFromProducts(Context context){
         return context.getSharedPreferences(
-                SharedGlobals.NAME_PRODUCTS_SHARED_PRODUCTS,
+                SharedGlobals.SR_PRODUCT,
                 Context.MODE_PRIVATE
         );
     }
@@ -19,35 +19,35 @@ public class SharedProductManager {
     //Alphabetical Products
     public static boolean getSharedProductAlphabetical(Context context){
         return getSharedFromProducts(context).getBoolean(
-                SharedGlobals.KEY_ALPHABETICAL_SHARED_PRODUCTS,
-                SharedGlobals.DEFAULT_BOOL_SHARED_ALL
+                SharedGlobals.KY_ALPHABETICAL,
+                SharedGlobals.DF_BOOL
         );
     }
 
     public static void setSharedProductAlphabetical(Context context, boolean isAlphabetical){
         getSharedFromProducts(context).edit().putBoolean(
-                SharedGlobals.KEY_ALPHABETICAL_SHARED_PRODUCTS, isAlphabetical).apply();
+                SharedGlobals.KY_ALPHABETICAL, isAlphabetical).apply();
     }
 
     //Type Products
     public static int getSharedProductType(Context context){
         return getSharedFromProducts(context).getInt(
-                SharedGlobals.KEY_TYPE_SHARED_PRODUCTS,
-                SharedGlobals.DEFAULT_INT_SHARED_ALL
+                SharedGlobals.KY_TYPE,
+                SharedGlobals.DF_INT
         );
     }
 
     public static void setSharedProductType(Context context, int type){
         getSharedFromProducts(context).edit().putInt(
-                SharedGlobals.KEY_TYPE_SHARED_PRODUCTS, type).apply();
+                SharedGlobals.KY_TYPE, type).apply();
     }
 
     public static void removeSharedProductType(Context context){
         getSharedFromProducts(context).edit().remove(
-                SharedGlobals.KEY_TYPE_SHARED_PRODUCTS).apply();
+                SharedGlobals.KY_TYPE).apply();
     }
 
     public static boolean isSharedProductTypeAvailable(Context context){
-        return getSharedFromProducts(context).contains(SharedGlobals.KEY_TYPE_SHARED_RECIPES);
+        return getSharedFromProducts(context).contains(SharedGlobals.KY_TYPE);
     }
 }

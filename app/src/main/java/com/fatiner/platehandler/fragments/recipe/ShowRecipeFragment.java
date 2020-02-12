@@ -28,7 +28,6 @@ import com.fatiner.platehandler.classes.Recipe;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.manage.ManageRecipeFragment;
-import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.ImageManager;
 import com.fatiner.platehandler.managers.TypeManager;
@@ -138,7 +137,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
         resetRecipeDetails();
         setRecipe();
         setToolbarTitle(RecipeDetails.getRecipe().getName());
-        setMenuItem(MainGlobals.ID_RECIPES_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_RECIPE);
         setHasOptionsMenu(true);
         return view;
     }
@@ -150,7 +149,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
     }
 
     private int getRecipeId(){
-        return getIntFromBundle(BundleGlobals.BUND_ID_FRAG_SHOWREC);
+        return getIntFromBundle(MainGlobals.BN_ID);
     }
 
     private void loadPhoto(){
@@ -201,7 +200,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
     }
 
     private void setImageSpiciness(int spiciness){
-        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < spiciness + 1; i++){
+        for(int i = MainGlobals.DF_ZERO; i < spiciness + 1; i++){
             arrayIvSpiciness.get(i).setVisibility(View.VISIBLE);
         }
     }
@@ -273,7 +272,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
                     SharedMainManager.getSharedRecent(getContext()));
             checkIfContains(recent);
             checkSize(recent);
-            recent.add(MainGlobals.INT_STARTING_VAR_INIT, getRecipeId());
+            recent.add(MainGlobals.DF_ZERO, getRecipeId());
             SharedMainManager.setSharedRecent(getContext(), TypeManager.recentToJson(recent));
         }
     }
@@ -286,8 +285,8 @@ public class ShowRecipeFragment extends PrimaryFragment {
     }
 
     private void checkSize(ArrayList<Integer> recent){
-        if(recent.size() == MainGlobals.MAX_RECENT_FRAG_MAIN){
-            recent.remove(MainGlobals.LAST_RECENT_FRAG_MAIN);
+        if(recent.size() == MainGlobals.RC_MAX){
+            recent.remove(MainGlobals.RC_LAST);
         }
     }
 
@@ -314,7 +313,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
                 return true;
             case R.id.it_edit:
                 Fragment fragment = new ManageRecipeFragment();
-                setBoolInBundle(fragment, true, BundleGlobals.BUND_BOOL_FRAG_ADDREC);
+                setBoolInBundle(fragment, true, MainGlobals.BN_BOOL);
                 setFragment(fragment);
                 return true;
             case R.id.it_remove:
@@ -338,7 +337,7 @@ public class ShowRecipeFragment extends PrimaryFragment {
         protected Boolean doInBackground(Type... types) {
             try{
                 Recipe recipe = RecipeDetails.getRecipe();
-                type = types[MainGlobals.INT_STARTING_VAR_INIT];
+                type = types[MainGlobals.DF_ZERO];
                 switch(type) {
                     case READ:
                         DbOperations.readRecipe(getContext(),

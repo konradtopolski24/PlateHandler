@@ -62,9 +62,9 @@ public class ChooseRecipeFragment extends PrimaryFragment {
 
     private void chooseItem(){
         if(isBundleNotEmpty()){
-            setMenuItem(MainGlobals.ID_SHOPPING_DRAW_MAIN);
+            setMenuItem(MainGlobals.ID_SHOPPING);
         } else {
-            setMenuItem(MainGlobals.ID_RECIPES_DRAW_MAIN);
+            setMenuItem(MainGlobals.ID_RECIPE);
         }
     }
 
@@ -73,11 +73,11 @@ public class ChooseRecipeFragment extends PrimaryFragment {
     }
 
     private String getSelection(){
-        String selection = MainGlobals.STR_EMPTY_OBJ_INIT;
+        String selection = MainGlobals.SN_EMPTY;
         ArrayList<String> strings = DbSelection.getArraySelection(getContext());
-        for(int i = MainGlobals.INT_STARTING_VAR_INIT; i < strings.size(); i++){
+        for(int i = MainGlobals.DF_ZERO; i < strings.size(); i++){
             selection += strings.get(i);
-            if(i < strings.size() + MainGlobals.INT_DECREMENT_VAR_INIT){
+            if(i < strings.size() + MainGlobals.DF_DECREMENT){
                 selection += " AND ";
             }
         }
@@ -87,7 +87,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
     private String getOrderBy(){
         String orderBy = null;
         if(SharedRecipeManager.getSharedAlphabetical(getContext())){
-            orderBy = DbGlobals.COL_NAME_TAB_RECIPES + " ASC";
+            orderBy = DbGlobals.CL_RP_NAME + " ASC";
         }
         return orderBy;
     }
@@ -144,7 +144,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
     private void finishedReadRecipes(ArrayList<Recipe> recipes) {
         setRecyclerView(
                 rvRecipes,
-                getGridLayoutManager(MainGlobals.RECYC_SPAN_FRAG_RECIPES),
+                getGridLayoutManager(MainGlobals.GL_TWO),
                 new RecipesAdapter(getContext(), recipes, isBundleNotEmpty())
         );
         checkIfRvEmpty(rvRecipes, tvEmpty);

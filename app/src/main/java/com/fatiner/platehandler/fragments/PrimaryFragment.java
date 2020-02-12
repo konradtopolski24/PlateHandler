@@ -30,7 +30,6 @@ import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.globals.DbGlobals;
-import com.fatiner.platehandler.globals.ImageGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.shared.SharedRecipeManager;
@@ -153,15 +152,15 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected String getStepHeader(int id){
-        int actualId = id + MainGlobals.INT_INCREMENT_VAR_INIT;
-        return getString(R.string.ct_step) + MainGlobals.STR_SPACE_OBJ_INIT + actualId;
+        int actualId = id + MainGlobals.DF_INCREMENT;
+        return getString(R.string.ct_step) + MainGlobals.SN_SPACE + actualId;
     }
 
     protected void selectPhoto(){
         Intent intent = new Intent(
                 Intent.ACTION_PICK,
                 MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(intent, ImageGlobals.REQ_PHOTO_FRAG_PRIMARY);
+        startActivityForResult(intent, MainGlobals.PH_REQUEST);
     }
 
     protected String getEncodedImage(int resultCode, Intent data){
@@ -230,7 +229,7 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected String getOrderByProducts(){
-        return DbGlobals.COL_NAME_TAB_PRODUCTS + " ASC";
+        return DbGlobals.CL_PD_NAME + " ASC";
     }
 
     protected void hideKeyboard(){
@@ -243,7 +242,7 @@ public class PrimaryFragment extends Fragment {
     protected float checkEditTextValue(String text){
         float value;
         if(text.isEmpty()){
-            value =  MainGlobals.INT_STARTING_VAR_INIT;
+            value =  MainGlobals.DF_ZERO;
         } else {
             value = Float.valueOf(String.valueOf(text));
         }
@@ -318,7 +317,7 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected void setTv(TextView tv, float text, String unit) {
-        String full = text + MainGlobals.STR_SPACE_OBJ_INIT + unit;
+        String full = text + MainGlobals.SN_SPACE + unit;
         tv.setText(full);
     }
 

@@ -74,7 +74,7 @@ public class ShowShoppingFragment extends PrimaryFragment implements ShoppingAda
         View view = inflater.inflate(R.layout.fragment_show_shopping, container, false);
         ButterKnife.bind(this, view);
         setToolbarTitle(R.string.tb_sh_list);
-        setMenuItem(MainGlobals.ID_SHOPPING_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_SHOPPING);
         setShoppingListWithJson();
         setRecyclerView(
                 rvShopping,
@@ -96,15 +96,15 @@ public class ShowShoppingFragment extends PrimaryFragment implements ShoppingAda
             setTv(tvDate, ShoppingListDetails.getShoppingList().getDate());
             checkState();
         } else {
-            setTv(tvDate, MainGlobals.STR_DASH_TWO);
-            setTv(tvState, MainGlobals.STR_DASH_TWO);
+            setTv(tvDate, MainGlobals.SN_DASH);
+            setTv(tvState, MainGlobals.SN_DASH);
         }
     }
 
     private void checkState() {
         int size = ShoppingListDetails.getShoppingList().getShoppingItems().size();
         int checked = getCheckedShopping();
-        String state =  checked + MainGlobals.STR_SLASH_OBJ_INIT + size;
+        String state =  checked + MainGlobals.SN_SLASH + size;
         setTv(tvState, state);
     }
 

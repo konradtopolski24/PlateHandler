@@ -18,7 +18,6 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.activities.MainActivity;
 import com.fatiner.platehandler.classes.Step;
 import com.fatiner.platehandler.fragments.recipe.manage.ManageStepFragment;
-import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 
 import java.util.ArrayList;
@@ -83,9 +82,9 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
     }
 
     private void setTextId(StepHolder holder, int id){
-        int actualId = id + MainGlobals.INT_INCREMENT_VAR_INIT;
+        int actualId = id + MainGlobals.DF_INCREMENT;
         String text = context.getResources().getString(
-                R.string.ct_step) + MainGlobals.STR_SPACE_OBJ_INIT + actualId;
+                R.string.ct_step) + MainGlobals.SN_SPACE + actualId;
         holder.tvId.setText(text);
     }
 
@@ -143,7 +142,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
 
         private void setBundle(Fragment fragment){
             Bundle bundle = new Bundle();
-            bundle.putInt(BundleGlobals.BUND_ID_FRAG_ADDSTEP, getAdapterPosition());
+            bundle.putInt(MainGlobals.BN_ID, getAdapterPosition());
             fragment.setArguments(bundle);
         }
     }

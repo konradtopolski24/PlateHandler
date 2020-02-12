@@ -58,7 +58,7 @@ public class ManageRecipeFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_manage_recipe, container, false);
         ButterKnife.bind(this, view);
         chooseToolbar();
-        setMenuItem(MainGlobals.ID_RECIPES_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_RECIPE);
         setPagerAdapter();
         setupTabLayoutWithViewPager();
         return view;
@@ -121,13 +121,13 @@ public class ManageRecipeFragment extends PrimaryFragment {
         private int[] idRecipe;
 
         protected void onPreExecute(){
-            idRecipe = new int[MainGlobals.INT_INCREMENT_VAR_INIT];
+            idRecipe = new int[MainGlobals.DF_INCREMENT];
             authors = new ArrayList<>();
         }
 
         @Override
         protected Boolean doInBackground(Type... types) {
-            type = types[MainGlobals.INT_STARTING_VAR_INIT];
+            type = types[MainGlobals.DF_ZERO];
 
             try{
                 switch(type) {
@@ -164,7 +164,7 @@ public class ManageRecipeFragment extends PrimaryFragment {
     private void insertRecipeFinished(int[] idRecipe) {
         ImageManager.saveImage(
                 TypeManager.base64StringToBitmap(RecipeDetails.getRecipe().getEncodedImage()),
-                ImageManager.getImageRecipeName(idRecipe[MainGlobals.INT_STARTING_VAR_INIT]));
+                ImageManager.getImageRecipeName(idRecipe[MainGlobals.DF_ZERO]));
         recipeSuccess(R.string.sb_rp_add);
     }
 

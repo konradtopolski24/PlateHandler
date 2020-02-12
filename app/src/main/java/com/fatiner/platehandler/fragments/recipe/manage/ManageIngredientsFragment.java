@@ -1,7 +1,6 @@
 package com.fatiner.platehandler.fragments.recipe.manage;
 
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -40,7 +39,7 @@ public class ManageIngredientsFragment extends PrimaryFragment implements Catego
         View view = inflater.inflate(R.layout.fragment_manage_ingredients, container, false);
         ButterKnife.bind(this, view);
         hideKeyboard();
-        setMenuItem(MainGlobals.ID_RECIPES_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_RECIPE);
         manageRecyclerView();
         checkIfRvEmpty(rvCategories, tvEmpty);
         return view;

@@ -24,13 +24,13 @@ public class RecipesPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment = new Fragment();
         switch(position){
-            case MainGlobals.ID_ADDREC_PAGER_RECIPES:
+            case MainGlobals.PG_RECIPE:
                 fragment = new ManageInfoFragment();
                 break;
-            case MainGlobals.ID_ADDINGRED_PAGER_RECIPES:
+            case MainGlobals.PG_INGREDIENT:
                 fragment = new ManageIngredientsFragment();
                 break;
-            case MainGlobals.ID_ADDSTEPS_PAGER_RECIPES:
+            case MainGlobals.PG_STEP:
                 fragment = new ManageInstructionsFragment();
                 break;
         }
@@ -39,22 +39,22 @@ public class RecipesPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return MainGlobals.NO_TABS_PAGER_RECIPES;
+        return MainGlobals.PG_TABS;
     }
 
     @Override
     public CharSequence getPageTitle(int position){
-        String pageTitle = MainGlobals.STR_EMPTY_OBJ_INIT;
+        String pageTitle = MainGlobals.SN_EMPTY;
         switch(position){
-            case MainGlobals.ID_ADDREC_PAGER_RECIPES:
+            case MainGlobals.PG_RECIPE:
                 pageTitle = context.getResources().getString(
                         R.string.pg_info);
                 break;
-            case MainGlobals.ID_ADDINGRED_PAGER_RECIPES:
+            case MainGlobals.PG_INGREDIENT:
                 pageTitle = context.getResources().getString(
                         R.string.pg_ingredient);
                 break;
-            case MainGlobals.ID_ADDSTEPS_PAGER_RECIPES:
+            case MainGlobals.PG_STEP:
                 pageTitle = context.getResources().getString(
                         R.string.pg_step);
                 break;

@@ -3,7 +3,6 @@ package com.fatiner.platehandler.adapters;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,7 +20,6 @@ import com.fatiner.platehandler.activities.MainActivity;
 import com.fatiner.platehandler.classes.Category;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.recipe.manage.ManageCategoryFragment;
-import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 
 import java.util.ArrayList;
@@ -87,10 +85,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         recyclerView.setLayoutManager(manager);
     }
 
-    private GridLayoutManager getLayoutManager(){
-        return new GridLayoutManager(context, MainGlobals.RECYC_SPAN_ADAP_CATEGORY);
-    }
-
     private LinearLayoutManager getLayoutManagerNoScroll(int orientation){
         return new LinearLayoutManager(context, orientation, false) {
             @Override
@@ -147,7 +141,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         private void setBundle(Fragment fragment){
             Bundle bundle = new Bundle();
-            bundle.putInt(BundleGlobals.BUND_ID_FRAG_SHOWREC, getAdapterPosition());
+            bundle.putInt(MainGlobals.BN_ID, getAdapterPosition());
             fragment.setArguments(bundle);
         }
     }

@@ -11,7 +11,7 @@ public class SharedRecipeManager {
 
     private static SharedPreferences getSharedFromRecipes(Context context){
         return context.getSharedPreferences(
-                SharedGlobals.NAME_RECIPES_SHARED_RECIPES,
+                SharedGlobals.SR_RECIPE,
                 Context.MODE_PRIVATE
         );
     }
@@ -19,167 +19,167 @@ public class SharedRecipeManager {
     //Alphabetical
     public static boolean getSharedAlphabetical(Context context){
         return getSharedFromRecipes(context).getBoolean(
-                SharedGlobals.KEY_ALPHABETICAL_SHARED_RECIPES,
-                SharedGlobals.DEFAULT_BOOL_SHARED_ALL
+                SharedGlobals.KY_ALPHABETICAL,
+                SharedGlobals.DF_BOOL
         );
     }
 
     public static void setSharedAlphabetical(Context context, boolean isAlphabetical){
         getSharedFromRecipes(context).edit().putBoolean(
-                SharedGlobals.KEY_ALPHABETICAL_SHARED_RECIPES, isAlphabetical).apply();
+                SharedGlobals.KY_ALPHABETICAL, isAlphabetical).apply();
     }
 
     //Favorite
     public static boolean getSharedFavorite(Context context){
         return getSharedFromRecipes(context).getBoolean(
-                SharedGlobals.KEY_FAVORITE_SHARED_RECIPES,
-                SharedGlobals.DEFAULT_BOOL_SHARED_ALL
+                SharedGlobals.KY_FAVORITE,
+                SharedGlobals.DF_BOOL
         );
     }
 
     public static void setSharedFavorite(Context context, boolean isFavorite){
         getSharedFromRecipes(context).edit().putBoolean(
-                SharedGlobals.KEY_FAVORITE_SHARED_RECIPES, isFavorite).apply();
+                SharedGlobals.KY_FAVORITE, isFavorite).apply();
     }
 
     public static void removeSharedFavorite(Context context){
         getSharedFromRecipes(context).edit().remove(
-                SharedGlobals.KEY_FAVORITE_SHARED_RECIPES).apply();
+                SharedGlobals.KY_FAVORITE).apply();
     }
 
     public static boolean isSharedFavoriteAvailable(Context context){
-        return getSharedFromRecipes(context).contains(SharedGlobals.KEY_FAVORITE_SHARED_RECIPES);
+        return getSharedFromRecipes(context).contains(SharedGlobals.KY_FAVORITE);
     }
 
     //Author
     public static String getSharedAuthor(Context context){
         return getSharedFromRecipes(context).getString(
-                SharedGlobals.KEY_AUTHOR_SHARED_RECIPES,
-                SharedGlobals.DEFAULT_STRING_SHARED_ALL
+                SharedGlobals.KY_AUTHOR,
+                SharedGlobals.DF_STRING
         );
     }
 
     public static void setSharedAuthor(Context context, String author){
         getSharedFromRecipes(context).edit().putString(
-                SharedGlobals.KEY_AUTHOR_SHARED_RECIPES, author).apply();
+                SharedGlobals.KY_AUTHOR, author).apply();
     }
 
     public static void removeSharedAuthor(Context context){
         getSharedFromRecipes(context).edit().remove(
-                SharedGlobals.KEY_AUTHOR_SHARED_RECIPES).apply();
+                SharedGlobals.KY_AUTHOR).apply();
     }
 
     public static boolean isSharedAuthorAvailable(Context context){
-        return getSharedFromRecipes(context).contains(SharedGlobals.KEY_AUTHOR_SHARED_RECIPES);
+        return getSharedFromRecipes(context).contains(SharedGlobals.KY_AUTHOR);
     }
 
     //Difficulty
     public static int getSharedDifficulty(Context context){
         return getSharedFromRecipes(context).getInt(
-                SharedGlobals.KEY_DIFFICULTY_SHARED_RECIPES,
-                SharedGlobals.DEFAULT_INT_SHARED_ALL
+                SharedGlobals.KY_DIFFICULTY,
+                SharedGlobals.DF_INT
         );
     }
 
     public static void setSharedDifficulty(Context context, int difficulty){
         getSharedFromRecipes(context).edit().putInt(
-                SharedGlobals.KEY_DIFFICULTY_SHARED_RECIPES, difficulty).apply();
+                SharedGlobals.KY_DIFFICULTY, difficulty).apply();
     }
 
     public static void removeSharedDifficulty(Context context){
         getSharedFromRecipes(context).edit().remove(
-                SharedGlobals.KEY_DIFFICULTY_SHARED_RECIPES).apply();
+                SharedGlobals.KY_DIFFICULTY).apply();
     }
 
     public static boolean isSharedDifficultyAvailable(Context context){
-        return getSharedFromRecipes(context).contains(SharedGlobals.KEY_DIFFICULTY_SHARED_RECIPES);
+        return getSharedFromRecipes(context).contains(SharedGlobals.KY_DIFFICULTY);
     }
 
     //Spiciness
     public static int getSharedSpiciness(Context context){
         return getSharedFromRecipes(context).getInt(
-                SharedGlobals.KEY_SPICINESS_SHARED_RECIPES,
-                SharedGlobals.DEFAULT_INT_SHARED_ALL
+                SharedGlobals.KY_SPICINESS,
+                SharedGlobals.DF_INT
         );
     }
 
     public static void setSharedSpiciness(Context context, int spiciness){
         getSharedFromRecipes(context).edit().putInt(
-                SharedGlobals.KEY_SPICINESS_SHARED_RECIPES, spiciness).apply();
+                SharedGlobals.KY_SPICINESS, spiciness).apply();
     }
 
     public static void removeSharedSpiciness(Context context){
         getSharedFromRecipes(context).edit().remove(
-                SharedGlobals.KEY_SPICINESS_SHARED_RECIPES).apply();
+                SharedGlobals.KY_SPICINESS).apply();
     }
 
     public static boolean isSharedSpicinessAvailable(Context context){
-        return getSharedFromRecipes(context).contains(SharedGlobals.KEY_SPICINESS_SHARED_RECIPES);
+        return getSharedFromRecipes(context).contains(SharedGlobals.KY_SPICINESS);
     }
 
     //Country
     public static int getSharedCountry(Context context){
         return getSharedFromRecipes(context).getInt(
-                SharedGlobals.KEY_COUNTRY_SHARED_RECIPES,
-                SharedGlobals.DEFAULT_INT_SHARED_ALL
+                SharedGlobals.KY_COUNTRY,
+                SharedGlobals.DF_INT
         );
     }
 
     public static void setSharedCountry(Context context, int country){
         getSharedFromRecipes(context).edit().putInt(
-                SharedGlobals.KEY_COUNTRY_SHARED_RECIPES, country).apply();
+                SharedGlobals.KY_COUNTRY, country).apply();
     }
 
     public static void removeSharedCountry(Context context){
         getSharedFromRecipes(context).edit().remove(
-                SharedGlobals.KEY_COUNTRY_SHARED_RECIPES).apply();
+                SharedGlobals.KY_COUNTRY).apply();
     }
 
     public static boolean isSharedCountryAvailable(Context context){
-        return getSharedFromRecipes(context).contains(SharedGlobals.KEY_COUNTRY_SHARED_RECIPES);
+        return getSharedFromRecipes(context).contains(SharedGlobals.KY_COUNTRY);
     }
 
     //Type
     public static int getSharedType(Context context){
         return getSharedFromRecipes(context).getInt(
-                SharedGlobals.KEY_TYPE_SHARED_RECIPES,
-                SharedGlobals.DEFAULT_INT_SHARED_ALL
+                SharedGlobals.KY_TYPE,
+                SharedGlobals.DF_INT
         );
     }
 
     public static void setSharedType(Context context, int type){
         getSharedFromRecipes(context).edit().putInt(
-                SharedGlobals.KEY_TYPE_SHARED_RECIPES, type).apply();
+                SharedGlobals.KY_TYPE, type).apply();
     }
 
     public static void removeSharedType(Context context){
         getSharedFromRecipes(context).edit().remove(
-                SharedGlobals.KEY_TYPE_SHARED_RECIPES).apply();
+                SharedGlobals.KY_TYPE).apply();
     }
 
     public static boolean isSharedTypeAvailable(Context context){
-        return getSharedFromRecipes(context).contains(SharedGlobals.KEY_TYPE_SHARED_RECIPES);
+        return getSharedFromRecipes(context).contains(SharedGlobals.KY_TYPE);
     }
 
     //Preference
     public static boolean getSharedPreference(Context context){
         return getSharedFromRecipes(context).getBoolean(
-                SharedGlobals.KEY_PREFERENCE_SHARED_RECIPES,
-                SharedGlobals.DEFAULT_BOOL_SHARED_ALL
+                SharedGlobals.KY_PREFERENCE,
+                SharedGlobals.DF_BOOL
         );
     }
 
     public static void setSharedPreference(Context context, boolean isMeat){
         getSharedFromRecipes(context).edit().putBoolean(
-                SharedGlobals.KEY_PREFERENCE_SHARED_RECIPES, isMeat).apply();
+                SharedGlobals.KY_PREFERENCE, isMeat).apply();
     }
 
     public static void removeSharedPreference(Context context){
         getSharedFromRecipes(context).edit().remove(
-                SharedGlobals.KEY_PREFERENCE_SHARED_RECIPES).apply();
+                SharedGlobals.KY_PREFERENCE).apply();
     }
 
     public static boolean isSharedPreferenceAvailable(Context context){
-        return getSharedFromRecipes(context).contains(SharedGlobals.KEY_PREFERENCE_SHARED_RECIPES);
+        return getSharedFromRecipes(context).contains(SharedGlobals.KY_PREFERENCE);
     }
 }

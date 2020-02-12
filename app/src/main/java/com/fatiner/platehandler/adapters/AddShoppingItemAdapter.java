@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.fatiner.platehandler.R;
@@ -80,7 +79,7 @@ public class AddShoppingItemAdapter extends RecyclerView.Adapter<AddShoppingItem
 
         @OnClick(R.id.iv_remove)
         public void onClickImageRemove(){
-            if(shoppingItems.size() == MainGlobals.INT_INCREMENT_VAR_INIT){
+            if(shoppingItems.size() == MainGlobals.DF_INCREMENT){
 
             } else {
                 int position = getAdapterPosition();

@@ -38,7 +38,7 @@ public class ManageInstructionsFragment extends PrimaryFragment implements StepA
         View view = inflater.inflate(R.layout.fragment_manage_instructions, container, false);
         ButterKnife.bind(this, view);
         hideKeyboard();
-        setMenuItem(MainGlobals.ID_RECIPES_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_RECIPE);
         setRecyclerView(
                 rvSteps,
                 getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),

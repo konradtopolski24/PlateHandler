@@ -21,7 +21,6 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.Product;
 import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
-import com.fatiner.platehandler.globals.BundleGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.managers.CalculateManager;
 import com.fatiner.platehandler.managers.ImageManager;
@@ -121,7 +120,7 @@ public class ShowProductFragment extends PrimaryFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_show_product, container, false);
         ButterKnife.bind(this, view);
-        setMenuItem(MainGlobals.ID_INGREDIENTS_DRAW_MAIN);
+        setMenuItem(MainGlobals.ID_PRODUCT);
         setProduct();
         setHasOptionsMenu(true);
         return view;
@@ -136,7 +135,7 @@ public class ShowProductFragment extends PrimaryFragment {
     }
 
     private int getProductId(){
-        return getIntFromBundle(BundleGlobals.BUND_ID_FRAG_SHOWPROD);
+        return getIntFromBundle(MainGlobals.BN_ID);
     }
 
     private void loadPhoto(){
@@ -151,10 +150,10 @@ public class ShowProductFragment extends PrimaryFragment {
         setImagePhoto(product.getEncodedImage());
         setTv(tvName, product.getName());
         setTv(tvType, product.getType(), R.array.tx_product);
-        setTv(tvCarbohydrates, product.getCarbohydrates(), MainGlobals.STR_GRAM);
-        setTv(tvProtein, product.getProtein(), MainGlobals.STR_GRAM);
-        setTv(tvFat, product.getFat(), MainGlobals.STR_GRAM);
-        setTv(tvOther, getOther(product), MainGlobals.STR_GRAM);
+        setTv(tvCarbohydrates, product.getCarbohydrates(), MainGlobals.UT_GRAM);
+        setTv(tvProtein, product.getProtein(), MainGlobals.UT_GRAM);
+        setTv(tvFat, product.getFat(), MainGlobals.UT_GRAM);
+        setTv(tvOther, getOther(product), MainGlobals.UT_GRAM);
 
         ArrayList<PieEntry> entries = getEntries(product, false);
         setPieChart(pcNutrients, entries);
@@ -202,7 +201,7 @@ public class ShowProductFragment extends PrimaryFragment {
         switch(menuItem.getItemId()){
             case R.id.it_edit:
                 Fragment fragment = new ManageProductFragment();
-                setBoolInBundle(fragment, true, BundleGlobals.BUND_BOOL_FRAG_ADDPROD);
+                setBoolInBundle(fragment, true, MainGlobals.BN_BOOL);
                 setFragment(fragment);
                 return true;
             case R.id.it_remove:
@@ -218,7 +217,7 @@ public class ShowProductFragment extends PrimaryFragment {
 
         @Override
         protected Boolean doInBackground(Type... types) {
-            type = types[MainGlobals.INT_STARTING_VAR_INIT];
+            type = types[MainGlobals.DF_ZERO];
             try{
                 switch(type) {
                     case READ:
@@ -300,10 +299,10 @@ public class ShowProductFragment extends PrimaryFragment {
         float fat = CalculateManager.getKcal(product.getFat(),
                 CalculateManager.Organic.FAT);
         float total = getTotal(carbohydrates, protein, fat);
-        setTv(tvCarbohydratesKcal, carbohydrates, MainGlobals.STR_KCAL);
-        setTv(tvProteinKcal, protein, MainGlobals.STR_KCAL);
-        setTv(tvFatKcal, fat, MainGlobals.STR_KCAL);
-        setTv(tvTotalKcal, total, MainGlobals.STR_KCAL);
+        setTv(tvCarbohydratesKcal, carbohydrates, MainGlobals.UT_KCAL);
+        setTv(tvProteinKcal, protein, MainGlobals.UT_KCAL);
+        setTv(tvFatKcal, fat, MainGlobals.UT_KCAL);
+        setTv(tvTotalKcal, total, MainGlobals.UT_KCAL);
 
         ArrayList<PieEntry> entries = getEntries(product, false);
         setPieChart(pcKcal, entries);
@@ -317,10 +316,10 @@ public class ShowProductFragment extends PrimaryFragment {
         float fat = CalculateManager.getKj(product.getFat(),
                 CalculateManager.Organic.FAT);
         float total = getTotal(carbohydrates, protein, fat);
-        setTv(tvCarbohydratesKj, carbohydrates, MainGlobals.STR_KJ);
-        setTv(tvProteinKj, protein, MainGlobals.STR_KJ);
-        setTv(tvFatKj, fat, MainGlobals.STR_KJ);
-        setTv(tvTotalKj, total, MainGlobals.STR_KJ);
+        setTv(tvCarbohydratesKj, carbohydrates, MainGlobals.UT_KJ);
+        setTv(tvProteinKj, protein, MainGlobals.UT_KJ);
+        setTv(tvFatKj, fat, MainGlobals.UT_KJ);
+        setTv(tvTotalKj, total, MainGlobals.UT_KJ);
 
         ArrayList<PieEntry> entries = getEntries(product, false);
         setPieChart(pcKj, entries);
@@ -358,7 +357,7 @@ public class ShowProductFragment extends PrimaryFragment {
     }
 
     private PieDataSet getDataSet(ArrayList<PieEntry> entries, PieChart chart) {
-        PieDataSet dataSet = new PieDataSet(entries, MainGlobals.STR_EMPTY_OBJ_INIT);
+        PieDataSet dataSet = new PieDataSet(entries, MainGlobals.SN_EMPTY);
         dataSet.setColors(getColors());
         dataSet.setSliceSpace(6);
         dataSet.setValueTextSize(12);
@@ -368,7 +367,7 @@ public class ShowProductFragment extends PrimaryFragment {
     }
 
     private BarDataSet getDataSet(ArrayList<BarEntry> entries) {
-        BarDataSet dataSet = new BarDataSet(entries, MainGlobals.STR_EMPTY_OBJ_INIT);
+        BarDataSet dataSet = new BarDataSet(entries, MainGlobals.SN_EMPTY);
         dataSet.setColors(getColors());
         dataSet.setValueTextSize(12);
         dataSet.setValueTextColor(getResources().getColor(android.R.color.white));
