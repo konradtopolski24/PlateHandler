@@ -13,9 +13,10 @@ import android.widget.Switch;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.globals.SharedGlobals;
+import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.database.DbOperations;
-import com.fatiner.platehandler.managers.shared.SharedRecipeManager;
 
 import java.util.ArrayList;
 
@@ -57,15 +58,15 @@ public class SettingsRecipeFragment extends PrimaryFragment {
 
     @OnCheckedChanged(R.id.sw_alphabetical)
     public void onCheckedChangedSwAlphabetical(boolean checked){
-        SharedRecipeManager.setSharedAlphabetical(getContext(), checked);
+        SharedManager.setValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_ALPHABETICAL, checked);
     }
 
     @OnCheckedChanged(R.id.sw_favorite)
     public void onCheckedChangedSwFavorite(boolean checked){
         if(checked){
-            SharedRecipeManager.setSharedFavorite(getContext(), checked);
+            SharedManager.setValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_FAVORITE, checked);
         } else {
-            SharedRecipeManager.removeSharedFavorite(getContext());
+            SharedManager.removeValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_FAVORITE);
         }
     }
 
@@ -75,7 +76,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
             spAuthor.setVisibility(View.VISIBLE);
         } else {
             spAuthor.setVisibility(View.GONE);
-            SharedRecipeManager.removeSharedAuthor(getContext());
+            SharedManager.removeValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_AUTHOR);
         }
     }
 
@@ -85,7 +86,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
             spDifficulty.setVisibility(View.VISIBLE);
         } else {
             spDifficulty.setVisibility(View.GONE);
-            SharedRecipeManager.removeSharedDifficulty(getContext());
+            SharedManager.removeValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_DIFFICULTY);
         }
     }
 
@@ -95,7 +96,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
             spSpiciness.setVisibility(View.VISIBLE);
         } else {
             spSpiciness.setVisibility(View.GONE);
-            SharedRecipeManager.removeSharedSpiciness(getContext());
+            SharedManager.removeValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_SPICINESS);
         }
     }
 
@@ -105,7 +106,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
             spCountry.setVisibility(View.VISIBLE);
         } else {
             spCountry.setVisibility(View.GONE);
-            SharedRecipeManager.removeSharedCountry(getContext());
+            SharedManager.removeValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_COUNTRY);
         }
     }
 
@@ -115,7 +116,7 @@ public class SettingsRecipeFragment extends PrimaryFragment {
             spType.setVisibility(View.VISIBLE);
         } else {
             spType.setVisibility(View.GONE);
-            SharedRecipeManager.removeSharedType(getContext());
+            SharedManager.removeValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_TYPE);
         }
     }
 
@@ -125,38 +126,38 @@ public class SettingsRecipeFragment extends PrimaryFragment {
             spPreference.setVisibility(View.VISIBLE);
         } else {
             spPreference.setVisibility(View.GONE);
-            SharedRecipeManager.removeSharedPreference(getContext());
+            SharedManager.removeValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_PREFERENCE);
         }
     }
 
     @OnItemSelected(R.id.sp_author)
     public void onItemSelectedSpAuthor(int id){
-        SharedRecipeManager.setSharedAuthor(getContext(), spAuthor.getItemAtPosition(id).toString());
+        SharedManager.setValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_AUTHOR, spAuthor.getItemAtPosition(id).toString());
     }
 
     @OnItemSelected(R.id.sp_difficulty)
     public void onItemSelectedSpDifficulty(int id){
-        SharedRecipeManager.setSharedDifficulty(getContext(), id);
+        SharedManager.setValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_DIFFICULTY, id);
     }
 
     @OnItemSelected(R.id.sp_spiciness)
     public void onItemSelectedSpSpiciness(int id){
-        SharedRecipeManager.setSharedSpiciness(getContext(), id);
+        SharedManager.setValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_SPICINESS, id);
     }
 
     @OnItemSelected(R.id.sp_country)
     public void onItemSelectedSpCountry(int id){
-        SharedRecipeManager.setSharedCountry(getContext(), id);
+        SharedManager.setValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_COUNTRY, id);
     }
 
     @OnItemSelected(R.id.sp_type)
     public void onItemSelectedSpType(int id){
-        SharedRecipeManager.setSharedType(getContext(), id);
+        SharedManager.setValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_TYPE, id);
     }
 
     @OnItemSelected(R.id.sp_preference)
     public void onItemSelectedSpPreference(int id){
-        SharedRecipeManager.setSharedPreference(getContext(), TypeManager.integerToBoolean(id));
+        SharedManager.setValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_PREFERENCE, TypeManager.integerToBoolean(id));
     }
 
     public SettingsRecipeFragment() {}
@@ -195,10 +196,10 @@ public class SettingsRecipeFragment extends PrimaryFragment {
 
     private void chooseAction(boolean isDifficulty, int progress){
         if(isDifficulty){
-            SharedRecipeManager.setSharedDifficulty(getContext(), progress);
+            SharedManager.setValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_DIFFICULTY, progress);
         }
         else {
-            SharedRecipeManager.setSharedSpiciness(getContext(), progress);
+            SharedManager.setValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_SPICINESS, progress);
         }
     }
 
@@ -214,19 +215,19 @@ public class SettingsRecipeFragment extends PrimaryFragment {
     }
 
     private void setSwitchAlphabetical(){
-        boolean isChecked = SharedRecipeManager.getSharedAlphabetical(getContext());
+        boolean isChecked = SharedManager.getBoolean(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_ALPHABETICAL);
         swAlphabetical.setChecked(isChecked);
     }
 
     private void setSwitchFavorite(){
-        if(SharedRecipeManager.isSharedFavoriteAvailable(getContext())){
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_FAVORITE)){
             swFavorite.setChecked(true);
         }
     }
 
     private void setSpinAuthor(ArrayList<String> authors){
-        if(SharedRecipeManager.isSharedAuthorAvailable(getContext())){
-            String author = SharedRecipeManager.getSharedAuthor(getContext());
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_AUTHOR)){
+            String author = SharedManager.getString(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_AUTHOR);
             int id = authors.indexOf(author);
             spAuthor.setSelection(id);
             swAuthor.setChecked(true);
@@ -234,40 +235,40 @@ public class SettingsRecipeFragment extends PrimaryFragment {
     }
 
     private void setSpinDifficulty(){
-        if(SharedRecipeManager.isSharedDifficultyAvailable(getContext())){
-            int difficulty = SharedRecipeManager.getSharedDifficulty(getContext());
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_DIFFICULTY)){
+            int difficulty = SharedManager.getInt(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_DIFFICULTY);
             spDifficulty.setSelection(difficulty);
             swDifficulty.setChecked(true);
         }
     }
 
     private void setSpinSpiciness(){
-        if(SharedRecipeManager.isSharedSpicinessAvailable(getContext())){
-            int spiciness = SharedRecipeManager.getSharedSpiciness(getContext());
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_SPICINESS)){
+            int spiciness = SharedManager.getInt(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_SPICINESS);
             spSpiciness.setSelection(spiciness);
             swSpiciness.setChecked(true);
         }
     }
 
     private void setSpinCountry(){
-        if(SharedRecipeManager.isSharedCountryAvailable(getContext())){
-            int country = SharedRecipeManager.getSharedCountry(getContext());
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_COUNTRY)){
+            int country = SharedManager.getInt(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_COUNTRY);
             spCountry.setSelection(country);
             swCountry.setChecked(true);
         }
     }
 
     private void setSpinType(){
-        if(SharedRecipeManager.isSharedTypeAvailable(getContext())){
-            int type = SharedRecipeManager.getSharedType(getContext());
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_TYPE)){
+            int type = SharedManager.getInt(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_TYPE);
             spType.setSelection(type);
             swType.setChecked(true);
         }
     }
 
     private void setSpinPreference(){
-        if(SharedRecipeManager.isSharedPreferenceAvailable(getContext())){
-            boolean preference = SharedRecipeManager.getSharedPreference(getContext());
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_PREFERENCE)){
+            boolean preference = SharedManager.getBoolean(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_PREFERENCE);
             spPreference.setSelection(TypeManager.booleanToInteger(preference));
             swPreferences.setChecked(true);
         }

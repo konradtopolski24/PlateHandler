@@ -23,9 +23,7 @@ public class TypeManager {
 
     private TypeManager(){}
 
-    //
     //Boolean <--> Integer
-    //
     public static int booleanToInteger(boolean bool){
         return bool ? MainGlobals.DF_INCREMENT : MainGlobals.DF_ZERO;
     }
@@ -34,9 +32,8 @@ public class TypeManager {
         return integer == MainGlobals.DF_INCREMENT;
     }
 
-    //
+
     //Time <--> String
-    //
     public static String timeToString(int hours, int minutes){
         return String.format(MainGlobals.FM_HOUR, hours, minutes);
     }
@@ -52,19 +49,13 @@ public class TypeManager {
         return times;
     }
 
-    //
     //Date <--> String
-    //
     public static String dateToString(Date date){
         SimpleDateFormat format = new SimpleDateFormat(MainGlobals.FM_DATE);
         return format.format(date);
     }
 
-
-
-    //
     //ShoppingList <--> Json
-    //
     public static String shoppingListToJson(ShoppingList shoppingList){
         Gson gson = new Gson();
         return gson.toJson(shoppingList);
@@ -75,9 +66,8 @@ public class TypeManager {
         return gson.fromJson(json, ShoppingList.class);
     }
 
-    //
+
     //Recent <--> Json
-    //
     public static String recentToJson(ArrayList<Integer> recent){
         JSONArray jsonArray = new JSONArray(recent);
         return jsonArray.toString();
@@ -96,9 +86,7 @@ public class TypeManager {
         return recent;
     }
 
-    //
     //Image
-    //
     public static String bitmapToBase64String(Bitmap bitmap){
         return Base64.encodeToString(bitmapToByteArray(bitmap), Base64.DEFAULT);
     }

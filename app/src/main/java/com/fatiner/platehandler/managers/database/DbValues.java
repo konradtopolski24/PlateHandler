@@ -15,9 +15,7 @@ public class DbValues {
 
     public static ContentValues getValues(Recipe recipe, boolean isId) {
         ContentValues contentValues = new ContentValues();
-        if(isId) {
-            contentValues.put(DbGlobals.CL_PD_ID, recipe.getId());
-        }
+        if(isId) contentValues.put(DbGlobals.CL_PD_ID, recipe.getId());
         contentValues.put(DbGlobals.CL_RP_NAME, recipe.getName());
         contentValues.put(DbGlobals.CL_RP_AUTHOR, recipe.getAuthor());
         contentValues.put(DbGlobals.CL_RP_SERVING, recipe.getServing());
@@ -26,10 +24,8 @@ public class DbValues {
         contentValues.put(DbGlobals.CL_RP_SPICINESS, recipe.getSpiciness());
         contentValues.put(DbGlobals.CL_RP_COUNTRY, recipe.getCountry());
         contentValues.put(DbGlobals.CL_RP_TYPE, recipe.getType());
-        contentValues.put(DbGlobals.CL_RP_PREFERENCE,
-                TypeManager.booleanToInteger(recipe.getPreference()));
-        contentValues.put(DbGlobals.CL_RP_FAVORITE,
-                TypeManager.booleanToInteger(recipe.getFavorite()));
+        contentValues.put(DbGlobals.CL_RP_PREFERENCE, TypeManager.booleanToInteger(recipe.getPreference()));
+        contentValues.put(DbGlobals.CL_RP_FAVORITE, TypeManager.booleanToInteger(recipe.getFavorite()));
         return contentValues;
     }
 
@@ -52,20 +48,16 @@ public class DbValues {
 
     public static ContentValues getValues(boolean isFavorite) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DbGlobals.CL_RP_FAVORITE,
-                TypeManager.booleanToInteger(isFavorite));
+        contentValues.put(DbGlobals.CL_RP_FAVORITE, TypeManager.booleanToInteger(isFavorite));
         return contentValues;
     }
 
     public static ContentValues getValues(Product product, boolean isId) {
         ContentValues contentValues = new ContentValues();
-        if(isId) {
-            contentValues.put(DbGlobals.CL_PD_ID, product.getId());
-        }
+        if(isId) contentValues.put(DbGlobals.CL_PD_ID, product.getId());
         contentValues.put(DbGlobals.CL_PD_NAME, product.getName());
         contentValues.put(DbGlobals.CL_PD_TYPE, product.getType());
-        contentValues.put(DbGlobals.CL_PD_CARBOHYDRATES,
-                product.getCarbohydrates());
+        contentValues.put(DbGlobals.CL_PD_CARBOHYDRATES, product.getCarbohydrates());
         contentValues.put(DbGlobals.CL_PD_PROTEIN, product.getProtein());
         contentValues.put(DbGlobals.CL_PD_FAT, product.getFat());
         return contentValues;

@@ -16,9 +16,10 @@ import com.fatiner.platehandler.adapters.RecipesAdapter;
 import com.fatiner.platehandler.classes.Recipe;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.globals.SharedGlobals;
+import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.database.DbOperations;
-import com.fatiner.platehandler.managers.shared.SharedMainManager;
 
 import java.util.ArrayList;
 
@@ -64,7 +65,7 @@ public class MainFragment extends PrimaryFragment {
     }
 
     private void checkDay() {
-        if(SharedMainManager.isSharedDishAvailable(getContext())){
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_HOME, SharedGlobals.KY_DAY)){
             asyncReadDay();
         }
     }
@@ -74,10 +75,10 @@ public class MainFragment extends PrimaryFragment {
     }
 
     private void setRecent(){
-        if(SharedMainManager.isSharedRecentAvailable(getContext())){
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_HOME, SharedGlobals.KY_RECENT)){
             asyncReadRecent();
         } else {
-            SharedMainManager.setSharedRecent(getContext(),
+            SharedManager.setValue(getContext(), SharedGlobals.SR_HOME, SharedGlobals.KY_RECENT,
                     TypeManager.recentToJson(new ArrayList<Integer>()));
         }
     }
@@ -104,11 +105,11 @@ public class MainFragment extends PrimaryFragment {
                 switch(type) {
                     case DAY:
                         DbOperations.readDay(getContext(), dish,
-                                SharedMainManager.getSharedDish(getContext()));
+                                SharedManager.getInt(getContext(), SharedGlobals.SR_HOME, SharedGlobals.KY_DAY));
                         break;
                     case RECENT:
                         DbOperations.readRecent(getContext(), recent,
-                                TypeManager.jsonToRecent(SharedMainManager.getSharedRecent(getContext())));
+                                TypeManager.jsonToRecent(SharedManager.getString(getContext(), SharedGlobals.SR_HOME, SharedGlobals.KY_RECENT)));
                         break;
                 }
                 return true;

@@ -13,8 +13,9 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.classes.ShoppingItem;
+import com.fatiner.platehandler.globals.SharedGlobals;
+import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.shared.SharedShoppingManager;
 
 import java.util.ArrayList;
 
@@ -114,7 +115,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
         private void saveCrossedOutPosition(){
             ShoppingListDetails.getShoppingList().setShoppingItems(shoppingItems);
             String json = TypeManager.shoppingListToJson(ShoppingListDetails.getShoppingList());
-            SharedShoppingManager.setSharedList(context, json);
+            SharedManager.setValue(context, SharedGlobals.SR_SHOPPING, SharedGlobals.KY_LIST, json);
         }
     }
 

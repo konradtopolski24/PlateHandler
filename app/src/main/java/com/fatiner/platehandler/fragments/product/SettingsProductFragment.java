@@ -9,7 +9,8 @@ import android.widget.Switch;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
-import com.fatiner.platehandler.managers.shared.SharedProductManager;
+import com.fatiner.platehandler.globals.SharedGlobals;
+import com.fatiner.platehandler.managers.SharedManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +28,7 @@ public class SettingsProductFragment extends PrimaryFragment {
 
     @OnCheckedChanged(R.id.sw_alphabetical)
     public void onCheckedChangedSwAlphabetical(boolean checked){
-        SharedProductManager.setSharedProductAlphabetical(getContext(), checked);
+        SharedManager.setValue(getContext(), SharedGlobals.SR_PRODUCT, SharedGlobals.KY_ALPHABETICAL, checked);
     }
 
     @OnCheckedChanged(R.id.sw_type)
@@ -36,13 +37,13 @@ public class SettingsProductFragment extends PrimaryFragment {
             spType.setVisibility(View.VISIBLE);
         } else {
             spType.setVisibility(View.GONE);
-            SharedProductManager.removeSharedProductType(getContext());
+            SharedManager.removeValue(getContext(), SharedGlobals.SR_PRODUCT, SharedGlobals.KY_TYPE);
         }
     }
 
     @OnItemSelected(R.id.sp_type)
     public void onItemSelectedSpType(int id){
-        SharedProductManager.setSharedProductType(getContext(), id);
+        SharedManager.setValue(getContext(), SharedGlobals.SR_PRODUCT, SharedGlobals.KY_TYPE, id);
     }
 
     public SettingsProductFragment() {}
@@ -63,13 +64,13 @@ public class SettingsProductFragment extends PrimaryFragment {
     }
 
     private void setSwitchAlphabetical(){
-        boolean isChecked = SharedProductManager.getSharedProductAlphabetical(getContext());
+        boolean isChecked = SharedManager.getBoolean(getContext(), SharedGlobals.SR_PRODUCT, SharedGlobals.KY_ALPHABETICAL);
         swAlphabetical.setChecked(isChecked);
     }
 
     private void setSpinType(){
-        if(SharedProductManager.isSharedProductTypeAvailable(getContext())){
-            int type = SharedProductManager.getSharedProductType(getContext());
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_PRODUCT, SharedGlobals.KY_TYPE)){
+            int type = SharedManager.getInt(getContext(), SharedGlobals.SR_PRODUCT, SharedGlobals.KY_TYPE);
             spType.setSelection(type);
             swType.setChecked(true);
         }

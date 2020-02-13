@@ -29,10 +29,11 @@ import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.manage.ManageRecipeFragment;
 import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.globals.SharedGlobals;
 import com.fatiner.platehandler.managers.ImageManager;
+import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.managers.database.DbOperations;
-import com.fatiner.platehandler.managers.shared.SharedMainManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -267,13 +268,13 @@ public class ShowRecipeFragment extends PrimaryFragment {
     }
 
     private void setRecipeInRecent(){
-        if(SharedMainManager.isSharedRecentAvailable(getContext())){
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_HOME, SharedGlobals.KY_RECENT)){
             ArrayList<Integer> recent = TypeManager.jsonToRecent(
-                    SharedMainManager.getSharedRecent(getContext()));
+                    SharedManager.getString(getContext(), SharedGlobals.SR_HOME, SharedGlobals.KY_RECENT));
             checkIfContains(recent);
             checkSize(recent);
             recent.add(MainGlobals.DF_ZERO, getRecipeId());
-            SharedMainManager.setSharedRecent(getContext(), TypeManager.recentToJson(recent));
+            SharedManager.setValue(getContext(), SharedGlobals.SR_HOME, SharedGlobals.KY_RECENT, TypeManager.recentToJson(recent));
         }
     }
 
@@ -291,11 +292,11 @@ public class ShowRecipeFragment extends PrimaryFragment {
     }
 
     private void deleteRecentId(){
-        if(SharedMainManager.isSharedRecentAvailable(getContext())){
-            ArrayList<Integer> recent = TypeManager.jsonToRecent(SharedMainManager.getSharedRecent(getContext()));
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_HOME, SharedGlobals.KY_RECENT)){
+            ArrayList<Integer> recent = TypeManager.jsonToRecent(SharedManager.getString(getContext(), SharedGlobals.SR_HOME, SharedGlobals.KY_RECENT));
             Integer id = RecipeDetails.getRecipe().getId();
             recent.remove(id);
-            SharedMainManager.setSharedRecent(getContext(), TypeManager.recentToJson(recent));
+            SharedManager.setValue(getContext(), SharedGlobals.SR_HOME, SharedGlobals.KY_RECENT, TypeManager.recentToJson(recent));
         }
     }
 

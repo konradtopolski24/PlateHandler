@@ -15,9 +15,10 @@ import android.widget.TextView;
 
 import com.fatiner.platehandler.adapters.RecipesAdapter;
 import com.fatiner.platehandler.globals.DbGlobals;
+import com.fatiner.platehandler.globals.SharedGlobals;
+import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.database.DbOperations;
 import com.fatiner.platehandler.globals.MainGlobals;
-import com.fatiner.platehandler.managers.shared.SharedRecipeManager;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.managers.database.DbSelection;
 import com.fatiner.platehandler.classes.Recipe;
@@ -74,7 +75,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
 
     private String getSelection(){
         String selection = MainGlobals.SN_EMPTY;
-        ArrayList<String> strings = DbSelection.getArraySelection(getContext());
+        ArrayList<String> strings = DbSelection.getRecipeSelection(getContext());
         for(int i = MainGlobals.DF_ZERO; i < strings.size(); i++){
             selection += strings.get(i);
             if(i < strings.size() + MainGlobals.DF_DECREMENT){
@@ -86,7 +87,7 @@ public class ChooseRecipeFragment extends PrimaryFragment {
 
     private String getOrderBy(){
         String orderBy = null;
-        if(SharedRecipeManager.getSharedAlphabetical(getContext())){
+        if(SharedManager.getBoolean(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_ALPHABETICAL)){
             orderBy = DbGlobals.CL_RP_NAME + " ASC";
         }
         return orderBy;

@@ -31,8 +31,9 @@ import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.globals.DbGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.globals.SharedGlobals;
+import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.shared.SharedRecipeManager;
 
 import java.util.ArrayList;
 
@@ -138,7 +139,7 @@ public class PrimaryFragment extends Fragment {
 
     protected boolean isAuthorNotAvailable(ArrayList<String> authors){
         for(String author : authors){
-            if(author.equals(SharedRecipeManager.getSharedAuthor(getContext()))){
+            if(author.equals(SharedManager.getString(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_AUTHOR))){
                 return false;
             }
         }
@@ -147,7 +148,7 @@ public class PrimaryFragment extends Fragment {
 
     protected void removeUnavailableAuthor(ArrayList<String> authors){
         if(isAuthorNotAvailable(authors)){
-            SharedRecipeManager.removeSharedAuthor(getContext());
+            SharedManager.removeValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_AUTHOR);
         }
     }
 

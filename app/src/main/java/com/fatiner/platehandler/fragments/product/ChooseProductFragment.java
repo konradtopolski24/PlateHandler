@@ -18,9 +18,10 @@ import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.globals.DbGlobals;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.classes.Product;
+import com.fatiner.platehandler.globals.SharedGlobals;
 import com.fatiner.platehandler.managers.database.DbOperations;
 import com.fatiner.platehandler.managers.database.DbSelection;
-import com.fatiner.platehandler.managers.shared.SharedProductManager;
+import com.fatiner.platehandler.managers.SharedManager;
 
 import java.util.ArrayList;
 
@@ -61,7 +62,7 @@ public class ChooseProductFragment extends PrimaryFragment {
 
     private String getSelection(){
         String selection = MainGlobals.SN_EMPTY;
-        ArrayList<String> strings = DbSelection.getArraySelectionProduct(getContext());
+        ArrayList<String> strings = DbSelection.getProductSelection(getContext());
         for(int i = MainGlobals.DF_ZERO; i < strings.size(); i++){
             selection += strings.get(i);
             if(i < strings.size() + MainGlobals.DF_DECREMENT){
@@ -73,7 +74,7 @@ public class ChooseProductFragment extends PrimaryFragment {
 
     private String getOrderBy(){
         String orderBy = null;
-        if(SharedProductManager.getSharedProductAlphabetical(getContext())){
+        if(SharedManager.getBoolean(getContext(), SharedGlobals.SR_PRODUCT, SharedGlobals.KY_ALPHABETICAL)){
             orderBy = DbGlobals.CL_PD_NAME + " ASC";
         }
         return orderBy;

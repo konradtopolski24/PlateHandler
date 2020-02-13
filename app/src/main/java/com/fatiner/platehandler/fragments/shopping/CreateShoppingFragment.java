@@ -17,8 +17,9 @@ import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.ChooseRecipeFragment;
 import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.globals.SharedGlobals;
+import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.shared.SharedShoppingManager;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -97,7 +98,7 @@ public class CreateShoppingFragment extends PrimaryFragment {
         Date currentDate = Calendar.getInstance().getTime();
         shoppingList.setDate(TypeManager.dateToString(currentDate));
         String json = TypeManager.shoppingListToJson(shoppingList);
-        SharedShoppingManager.setSharedList(getContext(), json);
+        SharedManager.setValue(getContext(), SharedGlobals.SR_SHOPPING, SharedGlobals.KY_LIST, json);
     }
 
     private DialogInterface.OnClickListener getDialogListener(){

@@ -17,8 +17,9 @@ import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
 import com.fatiner.platehandler.globals.MainGlobals;
 import com.fatiner.platehandler.classes.ShoppingList;
+import com.fatiner.platehandler.globals.SharedGlobals;
+import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.shared.SharedShoppingManager;
 
 import java.util.ArrayList;
 
@@ -87,8 +88,8 @@ public class ShowShoppingFragment extends PrimaryFragment implements ShoppingAda
 
     private void setShoppingListWithJson(){
         resetShoppingListDetails();
-        if(SharedShoppingManager.isSharedListAvailable(getContext())){
-            String json = SharedShoppingManager.getSharedList(getContext());
+        if(SharedManager.isValueAvailable(getContext(), SharedGlobals.SR_SHOPPING, SharedGlobals.KY_LIST)){
+            String json = SharedManager.getString(getContext(), SharedGlobals.SR_SHOPPING, SharedGlobals.KY_LIST);
             ShoppingList shoppingList = TypeManager.jsonToShoppingList(json);
             ShoppingListDetails.getShoppingList().setShoppingItems(
                     shoppingList.getShoppingItems());
