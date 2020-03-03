@@ -6,189 +6,206 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+import androidx.viewpager.widget.ViewPager;
+
+import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.activities.MainActivity;
 import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.details.ShoppingListDetails;
-import com.fatiner.platehandler.globals.DbGlobals;
-import com.fatiner.platehandler.globals.MainGlobals;
-import com.fatiner.platehandler.globals.SharedGlobals;
+import com.fatiner.platehandler.dialogs.TutorialDialog;
+import com.fatiner.platehandler.globals.Db;
+import com.fatiner.platehandler.globals.Format;
+import com.fatiner.platehandler.globals.Globals;
+import com.fatiner.platehandler.globals.Shared;
 import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import butterknife.ButterKnife;
 
 public class PrimaryFragment extends Fragment {
 
-    protected void setToolbarTitle(int id){
-        ((MainActivity) getActivity()).setToolbarTitle(getString(id));
+    private MainActivity getMainActivity() {
+        return (MainActivity) getActivity();
     }
 
-    protected void setToolbarTitle(String title){
-        ((MainActivity) getActivity()).setToolbarTitle(title);
+    protected void init(Object target, View view, int menuId, int toolbarId, boolean hasMenu) {
+        ButterKnife.bind(target, view);
+        setMenuItem(menuId);
+        setTb(toolbarId);
+        setHasOptionsMenu(hasMenu);
     }
 
-    protected void setMenuItem(int id){
-        ((MainActivity) getActivity()).setMenuItem(id);
+    protected void setMenuItem(int id) {
+        getMainActivity().setMenuItem(id);
     }
 
-    protected void setFragment(Fragment fragment){
+    protected void setTb(int id) {
+        getMainActivity().setTbTitle(getString(id));
+    }
+
+    protected PlateHandlerDatabase getDb(Context context) {
+        return Room.databaseBuilder(context, PlateHandlerDatabase.class, Db.DB_NAME).build();
+    }
+
+    protected void setIv(ImageView iv, int value, int arrayId) {
+        TypedArray array = getTypedArray(arrayId);
+        int resource = array.getResourceId(value, Globals.DF_DECREMENT);
+        iv.setImageResource(resource);
+        array.recycle();
+    }
+
+    protected void setIvList(List<ImageView> array, int amount) {
+        hideIvList(array);
+        for(int i = Globals.DF_ZERO; i < amount + Globals.DF_INCREMENT; i++) {
+            array.get(i).setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideIvList(List<ImageView> array) {
+        for(ImageView iv : array) {
+            removeView(iv);
+        }
+    }
+
+    protected void setTv(TextView tv, String text) {
+        tv.setText(text);
+    }
+
+    protected void setTv(TextView tv, int id) {
+        String text = getString(id);
+        tv.setText(text);
+    }
+
+    protected void setTv(TextView tv, float value, String unit) {
+        String text = String.format(Locale.ENGLISH, "%.2f %s", value, unit);
+        tv.setText(text);
+    }
+
+    protected void setTv(TextView tv, int id, int idArray) {
+        String[] array = getStringArray(idArray);
+        tv.setText(array[id]);
+    }
+
+    protected void setCb(CheckBox cb, boolean isChecked) {
+        cb.setChecked(isChecked);
+    }
+
+    protected void setHint(TextInputLayout til, String hint){
+        til.setHint(hint);
+    }
+
+    protected String [] getStringArray(int id) {
+        return getResources().getStringArray(id);
+    }
+
+    protected int [] getIntArray(int id) {
+        return getResources().getIntArray(id);
+    }
+
+    protected TypedArray getTypedArray(int id) {
+        return getResources().obtainTypedArray(id);
+    }
+
+    protected void setFragment(Fragment fragment) {
         ((MainActivity) getActivity()).setFragment(fragment, true);
     }
 
-    protected String [] getStringArray(int id){
-        return getActivity().getResources().getStringArray(id);
-    }
-
-    protected int [] getIntegerArray(int id){
-        return getActivity().getResources().getIntArray(id);
-    }
-
-    protected void resetRecipeDetails(){
-        RecipeDetails.resetRecipeDetails();
-    }
-
-    protected void resetProductDetails(){
-        ProductDetails.resetProductDetails();
-    }
-
-    protected void resetShoppingListDetails(){
-        ShoppingListDetails.resetShoppingListDetails();
-    }
-
-    protected void popFragment(){
-        getFragmentManager().popBackStackImmediate();
-    }
-
-    protected GridLayoutManager getGridLayoutManager(int spanCount){
-        return new GridLayoutManager(getActivity(), spanCount);
-    }
-
-    protected LinearLayoutManager getLinearLayoutManager(int orientation){
-        return new LinearLayoutManager(getContext(), orientation, false);
-    }
-
-    protected LinearLayoutManager getLayoutManagerNoScroll(int orientation){
-        return new LinearLayoutManager(getContext(), orientation, false) {
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        };
-    }
-
-    protected void recipeSuccess(int id){
-        showShortSnack(id);
-        resetRecipeDetails();
-        popFragment();
-    }
-
-    protected void productSuccess(int id){
-        showShortSnack(id);
-        resetProductDetails();
-        popFragment();
-    }
-
-    protected Bundle getBundle(){
-        return this.getArguments();
-    }
-
-    protected boolean isBundleNotEmpty(){
-        Bundle bundle = getBundle();
-        return bundle != null;
-    }
-
-    protected int getIntFromBundle(String id){
-        return getBundle().getInt(id);
-    }
-
-    protected boolean getBoolFromBundle(String id){
-        return getBundle().getBoolean(id);
-    }
-
-    protected void setBoolInBundle(Fragment fragment, boolean bool, String id){
+    protected void setFragment(Fragment fragment, boolean bool, String id) {
         Bundle bundle = new Bundle();
         bundle.putBoolean(id, bool);
         fragment.setArguments(bundle);
+        setFragment(fragment);
     }
 
-    protected void setIntInBundle(Fragment fragment, int integer, String id){
+    protected void setFragment(Fragment fragment, int integer, String id) {
         Bundle bundle = new Bundle();
         bundle.putInt(id, integer);
         fragment.setArguments(bundle);
+        setFragment(fragment);
     }
 
-    protected boolean isAuthorNotAvailable(ArrayList<String> authors){
-        for(String author : authors){
-            if(author.equals(SharedManager.getString(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_AUTHOR))){
-                return false;
-            }
+    protected void setEt(EditText et, String text) {
+        et.setText(text);
+    }
+
+    protected void setEt(EditText et, float value) {
+        et.setText(String.valueOf(value));
+    }
+
+    protected void setSp(Spinner sp, int id) {
+        sp.setSelection(id);
+    }
+
+    protected void setSp(Spinner sp, ArrayList<?> entries, Context context) {
+        ArrayAdapter<?> adapter = new ArrayAdapter<>(context,
+                R.layout.support_simple_spinner_dropdown_item, entries);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        sp.setAdapter(adapter);
+    }
+
+    protected void setVp(ViewPager vp, FragmentPagerAdapter adapter){
+        vp.setAdapter(adapter);
+    }
+
+    protected void setTl(TabLayout tl, ViewPager vp) {
+        tl.setupWithViewPager(vp);
+    }
+
+    protected void setRb(RadioButton rb, boolean checked) {
+        rb.setChecked(checked);
+    }
+
+    protected float getCorrectEtValue(CharSequence text) {
+        try {
+            return Float.parseFloat(String.valueOf(text));
+        } catch(Exception e) {
+            return Globals.DF_ZERO;
         }
-        return true;
     }
 
-    protected void removeUnavailableAuthor(ArrayList<String> authors){
-        if(isAuthorNotAvailable(authors)){
-            SharedManager.removeValue(getContext(), SharedGlobals.SR_RECIPE, SharedGlobals.KY_AUTHOR);
-        }
+    protected void setCorrectInput(EditText et) {
+        et.setKeyListener(DigitsKeyListener.getInstance(false, true));
     }
 
-    protected String getStepHeader(int id){
-        int actualId = id + MainGlobals.DF_INCREMENT;
-        return getString(R.string.ct_step) + MainGlobals.SN_SPACE + actualId;
-    }
-
-    protected void selectPhoto(){
-        Intent intent = new Intent(
-                Intent.ACTION_PICK,
-                MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(intent, MainGlobals.PH_REQUEST);
-    }
-
-    protected String getEncodedImage(int resultCode, Intent data){
-        if(resultCode == getActivity().RESULT_OK && data != null){
-            Uri uri = data.getData();
-            return TypeManager.uriImageToBase64String(getContext(), uri);
-        }
-        return null;
-    }
-
-    protected void showShortToast(int id){
-        Toast.makeText(getContext(), getContext().getString(id), Toast.LENGTH_SHORT).show();
-    }
-
-    protected void showLongToast(int id){
-        Toast.makeText(getContext(), getContext().getString(id), Toast.LENGTH_LONG).show();
-    }
-
-    protected void showShortSnack(int id){
-        Snackbar.make(getView(), getContext().getString(id), Snackbar.LENGTH_SHORT).show();
-    }
-
-    protected void showLongSnack(int id){
-        Snackbar.make(getView(), getContext().getString(id), Snackbar.LENGTH_LONG).show();
-    }
-
-    protected void showAlertDialog(int id, DialogInterface.OnClickListener listener){
+    protected void showDialog(int id, DialogInterface.OnClickListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage(id)
                 .setPositiveButton(R.string.dg_ok, listener)
@@ -196,58 +213,221 @@ public class PrimaryFragment extends Fragment {
                 .show();
     }
 
-    protected void setRecyclerView(RecyclerView recycView, RecyclerView.LayoutManager manager,
-                                   RecyclerView.Adapter adapter){
-        setRecycLayoutManager(recycView, manager);
-        setRecycAdapter(recycView, adapter);
+    protected void checkSwState(boolean checked, String name, String key) {
+        if(checked)
+            SharedManager.setValue(getContext(), name, key, checked);
+        else
+            SharedManager.removeValue(getContext(), name, key);
     }
 
-    private void setRecycLayoutManager(RecyclerView recycView, RecyclerView.LayoutManager manager){
-        recycView.setLayoutManager(manager);
+    protected void checkSwState(boolean checked, Spinner sp, String name, String key) {
+        if(checked) {
+            sp.setVisibility(View.VISIBLE);
+        } else {
+            sp.setVisibility(View.GONE);
+            SharedManager.removeValue(getContext(), name, key);
+        }
     }
 
-    private void setRecycAdapter(RecyclerView recycView, RecyclerView.Adapter adapter){
-        recycView.setAdapter(adapter);
+    protected void setSettingsInt(Switch sw, Spinner sp, String name, String key) {
+        if(SharedManager.isValueAvailable(getContext(), name, key)) {
+            int value = SharedManager.getInt(getContext(), name, key);
+            sp.setSelection(value);
+            sw.setChecked(true);
+        }
     }
 
-    protected void manageSeekBar(SeekBar seekBar, int progress, int max,
-                                 SeekBar.OnSeekBarChangeListener listener){
-        setSeekProgress(seekBar, progress);
-        setSeekMax(seekBar, max);
-        setSeekListener(seekBar, listener);
+    protected void setSettingsBool(Switch sw, String name, String key) {
+        if(SharedManager.isValueAvailable(getContext(), name, key)) {
+            boolean value = SharedManager.getBoolean(getContext(), name, key);
+            sw.setChecked(value);
+        }
     }
 
-    private void setSeekProgress(SeekBar seekBar, int progress){
-        seekBar.setProgress(progress);
+    protected void setSettingsBool(Switch sw, Spinner sp, String name, String key) {
+        if(SharedManager.isValueAvailable(getContext(), name, key)) {
+            boolean value = SharedManager.getBoolean(getContext(), name, key);
+            sp.setSelection(TypeManager.boolToInt(value));
+            sw.setChecked(true);
+        }
     }
 
-    private void setSeekMax(SeekBar seekBar, int max){
-        seekBar.setMax(max);
+    protected void setSettingsString(Switch sw, Spinner sp, String name, String key, ArrayList<String> entries) {
+        if(SharedManager.isValueAvailable(getContext(), name, key)) {
+            String value = SharedManager.getString(getContext(), name, key);
+            int id = entries.indexOf(value);
+            sp.setSelection(id);
+            sw.setChecked(true);
+        }
     }
 
-    private void setSeekListener(SeekBar seekBar, SeekBar.OnSeekBarChangeListener listener){
-        seekBar.setOnSeekBarChangeListener(listener);
+    protected float getDimen(int id) {
+        return getContext().getResources().getDimension(id);
     }
 
-    protected String getOrderByProducts(){
-        return DbGlobals.CL_PD_NAME + " ASC";
+    protected void changeRvSize(RecyclerView rv) {
+        int height = (int) getDimen(R.dimen.ht_rv);
+        rv.post(() -> {
+            if(rv.getHeight() > height) rv.setLayoutParams(getRvParamsBig(height));
+        });
     }
 
-    protected void hideKeyboard(){
+    protected ConstraintLayout.LayoutParams getRvParamsBig(int height) {
+        return new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT, height);
+    }
+
+    protected ConstraintLayout.LayoutParams getRvParamsSmall() {
+        return new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT);
+    }
+
+    protected void resetRecipeDetails() {
+        RecipeDetails.resetRecipeDetails();
+    }
+
+    protected void resetProductDetails() {
+        ProductDetails.resetProductDetails();
+    }
+
+    protected void resetShoppingListDetails() {
+        ShoppingListDetails.resetShoppingListDetails();
+    }
+
+    protected void popFragment() {
+        getFragmentManager().popBackStackImmediate();
+    }
+
+    protected GridLayoutManager getManager(int amount) {
+        return new GridLayoutManager(getContext(), amount);
+    }
+
+    protected LinearLayoutManager getLinearManager() {
+        return new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+    }
+
+    protected LinearLayoutManager getLinearManagerxD() {
+        return new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+    }
+
+    protected int getOrientation() {
+        return getResources().getConfiguration().orientation;
+    }
+
+    protected void recipeSuccess(int id) {
+        showShortSnack(id);
+        resetRecipeDetails();
+        popFragment();
+    }
+
+    protected void productSuccess(int id) {
+        showShortSnack(id);
+        resetProductDetails();
+        popFragment();
+    }
+
+    protected Bundle getBundle() {
+        return this.getArguments();
+    }
+
+    protected boolean isBundleEmpty() {
+        return getBundle() == null;
+    }
+
+    protected boolean isBundle() {
+        return getBundle() != null;
+    }
+
+    protected boolean isValueInBundle(String key) {
+        return isBundle() && getBundle().containsKey(key);
+    }
+
+    protected int getIntFromBundle() {
+        return getBundle().getInt(Globals.BN_INT);
+    }
+
+    protected boolean getBoolFromBundle(String id) {
+        return getBundle().getBoolean(id);
+    }
+
+    protected void setIntInBundle(Fragment fragment, int integer, String id) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(id, integer);
+        fragment.setArguments(bundle);
+    }
+
+    protected boolean isAuthorNotAvailable(ArrayList<String> authors) {
+        for(String author : authors) {
+            if(author.equals(SharedManager.getString(getContext(), Shared.SR_RECIPE, Shared.KY_AUTHOR))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected void removeUnavailableAuthor(ArrayList<String> authors) {
+        if(isAuthorNotAvailable(authors)) {
+            SharedManager.removeValue(getContext(), Shared.SR_RECIPE, Shared.KY_AUTHOR);
+        }
+    }
+
+    protected void selectPhoto() {
+        Intent intent = new Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(intent, Globals.PH_REQUEST);
+    }
+
+    protected String getEncodedImage(int resultCode, Intent data) {
+        if(resultCode == getActivity().RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            return TypeManager.uriImageToBase64String(getContext(), uri);
+        }
+        return null;
+    }
+
+    protected void showShortToast(int id) {
+        Toast.makeText(getContext(), getContext().getString(id), Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showLongToast(int id) {
+        Toast.makeText(getContext(), getContext().getString(id), Toast.LENGTH_LONG).show();
+    }
+
+    protected void showShortSnack(int id) {
+        Snackbar.make(getView(), getContext().getString(id), Snackbar.LENGTH_SHORT).show();
+    }
+
+    protected void showLongSnack(int id) {
+        Snackbar.make(getView(), getContext().getString(id), Snackbar.LENGTH_LONG).show();
+    }
+
+    protected void setRv(RecyclerView rv, RecyclerView.LayoutManager manager, RecyclerView.Adapter adapter) {
+        rv.setLayoutManager(manager);
+        rv.setAdapter(adapter);
+    }
+
+    protected void setSb(SeekBar sb, int max, SeekBar.OnSeekBarChangeListener listener) {
+        sb.setProgress(Globals.SB_START);
+        sb.setMax(max);
+        sb.setOnSeekBarChangeListener(listener);
+    }
+
+    protected void setSb(SeekBar sb, int progress) {
+        sb.setProgress(progress);
+    }
+
+    protected void hideKeyboard() {
         View view = getActivity().getCurrentFocus();
         if(view == null) return;
         InputMethodManager manager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
-    protected float checkEditTextValue(String text){
-        float value;
-        if(text.isEmpty()){
-            value =  MainGlobals.DF_ZERO;
-        } else {
-            value = Float.valueOf(String.valueOf(text));
-        }
-        return value;
     }
 
     protected void showView(View view) {
@@ -284,7 +464,7 @@ public class PrimaryFragment extends Fragment {
         view.setVisibility(View.GONE);
     }
 
-    protected void rotateView(View view, boolean isOpening) {
+    private void rotateView(View view, boolean isOpening) {
         int rotate = getRotate(isOpening);
         Animation animation = AnimationUtils.loadAnimation(getContext(), rotate);
         animation.setFillAfter(true);
@@ -299,8 +479,8 @@ public class PrimaryFragment extends Fragment {
         }
     }
 
-    protected void manageExpandCardView(CardView cv, ImageView iv) {
-        if(cv.getVisibility() == View.VISIBLE){
+    protected void manageExpandCv(CardView cv, ImageView iv) {
+        if(cv.getVisibility() == View.VISIBLE) {
             hideView(cv);
             rotateView(iv, false);
         } else {
@@ -309,27 +489,39 @@ public class PrimaryFragment extends Fragment {
         }
     }
 
-    protected void setTv(TextView tv, String text){
-        tv.setText(text);
-    }
-
-    protected void setTv(TextView tv, int id){
-        tv.setText(getString(id));
-    }
-
-    protected void setTv(TextView tv, float text, String unit) {
-        String full = text + MainGlobals.SN_SPACE + unit;
-        tv.setText(full);
-    }
-
-    protected void setTv(TextView tv, int id, int idArray){
-        String[] array = getStringArray(idArray);
-        tv.setText(array[id]);
-    }
-
     protected void checkIfRvEmpty(RecyclerView rv, TextView tvEmpty) {
-        if (rv.getAdapter() != null && rv.getAdapter().getItemCount() == 0) {
+        if (rv.getAdapter() == null || rv.getAdapter().getItemCount() == Globals.DF_ZERO)
             showView(tvEmpty);
-        }
+        else removeView(tvEmpty);
+    }
+
+    protected void showDialog(int header, int content) {
+        TutorialDialog dialog = getTutorialDialog(header, content);
+        dialog.show(getChildFragmentManager(), null);
+    }
+
+    private TutorialDialog getTutorialDialog(int header, int content) {
+        TutorialDialog dialog = new TutorialDialog();
+        Bundle bundle = new Bundle();
+        bundle.putInt(Globals.BN_HEADER, header);
+        bundle.putInt(Globals.BN_CONTENT, content);
+        dialog.setArguments(bundle);
+        return dialog;
+    }
+
+    protected int getColor(int id) {
+        return getResources().getColor(id);
+    }
+
+    protected boolean isEtEmpty(EditText et) {
+        return et.getText().toString().isEmpty();
+    }
+
+    protected File getExternalDir() {
+        return getContext().getExternalFilesDir(null);
+    }
+
+    protected String getXlsName(String name) {
+        return String.format(Locale.ENGLISH, Format.FM_FILE, name, Globals.FL_XLS);
     }
 }

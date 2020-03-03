@@ -1,7 +1,7 @@
 package com.fatiner.platehandler.details;
 
-import com.fatiner.platehandler.globals.MainGlobals;
-import com.fatiner.platehandler.classes.Product;
+import com.fatiner.platehandler.globals.Globals;
+import com.fatiner.platehandler.models.Product;
 
 public final class ProductDetails {
 
@@ -25,6 +25,6 @@ public final class ProductDetails {
 
     private static boolean isProductNameCorrect(){
         String name = product.getName();
-        return !name.equals(MainGlobals.SN_EMPTY);
+        return !name.equals(Globals.SN_EMPTY);
     }
 }

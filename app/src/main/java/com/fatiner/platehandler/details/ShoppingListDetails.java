@@ -1,6 +1,6 @@
 package com.fatiner.platehandler.details;
 
-import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.classes.ShoppingItem;
 import com.fatiner.platehandler.classes.ShoppingList;
 
@@ -45,7 +45,7 @@ public final class ShoppingListDetails {
         boolean areNotEmpty = true;
         ArrayList<ShoppingItem> shoppingItems = shoppingList.getShoppingItems();
         for(ShoppingItem shoppingItem : shoppingItems){
-            if(shoppingItem.getName().equals(MainGlobals.SN_EMPTY)){
+            if(shoppingItem.getName().equals(Globals.SN_EMPTY)){
                 areNotEmpty = false;
                 break;
             }

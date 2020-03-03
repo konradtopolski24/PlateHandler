@@ -1,10 +1,7 @@
 package com.fatiner.platehandler.fragments.export;
 
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteException;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +9,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+
+import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.classes.Ingredient;
-import com.fatiner.platehandler.classes.Product;
-import com.fatiner.platehandler.classes.Recipe;
-import com.fatiner.platehandler.classes.Step;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
-import com.fatiner.platehandler.globals.DbGlobals;
-import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.globals.Db;
+import com.fatiner.platehandler.globals.Format;
+import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.managers.database.DbOperations;
+import com.fatiner.platehandler.models.Ingredient;
+import com.fatiner.platehandler.models.Product;
+import com.fatiner.platehandler.models.Recipe;
+import com.fatiner.platehandler.models.Step;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -31,213 +31,297 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
 
 public class ExportFragment extends PrimaryFragment {
 
-    @BindView(R.id.et_export)
-    EditText etExport;
-    @BindView(R.id.tv_saved)
-    TextView tvSaved;
-    @BindView(R.id.tv_unsaved)
-    TextView tvUnsaved;
-    @BindView(R.id.cv_info)
-    CardView cvInfo;
-    @BindView(R.id.iv_info)
-    ImageView ivInfo;
+    @BindView(R.id.et_export) EditText etExport;
+    @BindView(R.id.tv_saved) TextView tvSaved;
+    @BindView(R.id.tv_unsaved) TextView tvUnsaved;
+    @BindView(R.id.cv_info) CardView cvInfo;
+    @BindView(R.id.iv_info) ImageView ivInfo;
 
-    @OnClick(R.id.cv_info_hd)
-    public void onClickFbAdd(){
-        manageExpandCardView(cvInfo, ivInfo);
+    @OnClick(R.id.cv_hd_info)
+    void clickCvHdInfo() {
+        manageExpandCv(cvInfo, ivInfo);
     }
 
     @OnClick(R.id.fab_export)
-    public void onClickBtExport(){
+    void clickFabExport() {
         hideKeyboard();
-        if(isEtEmpty(etExport)){
-            showShortToast(R.string.ts_export);
-        } else {
-            showAlertDialog(R.string.dg_ex_add, getDialogListener());
-        }
+        chooseEndAction();
+    }
+
+    @OnClick(R.id.iv_tt_name)
+    void clickIvTtName() {
+        showDialog(R.string.hd_ex_name, R.string.tt_ex_name);
+    }
+
+    @OnClick(R.id.iv_tt_info)
+    void clickIvTtInfo() {
+        showDialog(R.string.hd_ex_info, R.string.tt_ex_info);
     }
 
     public ExportFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_export, container, false);
-        ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_ex_database);
-        setMenuItem(MainGlobals.ID_EXPORT);
-        String saved = getString(R.string.nv_recipe) + MainGlobals.SN_ENTER + getString(R.string.nv_product);
-        setTv(tvSaved, saved);
-        String unsaved = getString(R.string.nv_shopping) + MainGlobals.SN_ENTER + getString(R.string.hd_hm_day) + MainGlobals.SN_ENTER + getString(R.string.hd_hm_recent);
-        setTv(tvUnsaved, unsaved);
+        init(this, view, R.id.it_export, R.string.tb_ex_database, false);
+        manageViews();
         return view;
     }
 
-    private class AsyncExport extends AsyncTask<Void, Void, Boolean> {
-
-        ArrayList<Recipe> recipes;
-        ArrayList<Ingredient> ingredients;
-        ArrayList<Step> steps;
-        ArrayList<Product> products;
-
-        protected void onPreExecute(){
-            recipes = new ArrayList<>();
-            ingredients = new ArrayList<>();
-            steps = new ArrayList<>();
-            products = new ArrayList<>();
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            try{
-                DbOperations.readRecipes(getContext(), recipes, null, null);
-                DbOperations.readIngredients(getContext(), ingredients, null, null);
-                DbOperations.readSteps(getContext(), steps, null, null);
-                DbOperations.readProducts(getContext(), products, null, null);
-                return true;
-            }catch (SQLiteException e){
-                showShortToast(R.string.ts_database);
-                return false;
-            }
-        }
-
-        protected void onPostExecute(Boolean success){
-            if(success){
-                readDatabaseFinished(recipes, ingredients, steps, products);
-            }
-        }
+    private void manageViews() {
+        setTv(tvSaved, getSavedFeatures());
+        setTv(tvUnsaved, getUnsavedFeatures());
     }
 
-    private void readDatabaseFinished(ArrayList<Recipe> recipes, ArrayList<Ingredient> ingredients, ArrayList<Step> steps, ArrayList<Product> products) {
-        HSSFWorkbook workbook = new HSSFWorkbook();
-        createRecipeSheet(workbook, recipes);
-        createIngredientSheet(workbook, ingredients);
-        createStepSheet(workbook, steps);
-        createProductSheet(workbook, products);
-        saveWorkbookFile(workbook);
-        showShortSnack(R.string.sb_ex_add);
-        popFragment();
+    private String getSavedFeatures() {
+        return String.format(Locale.ENGLISH, Format.FM_SAVED,
+                getString(R.string.nv_recipe),
+                getString(R.string.nv_product));
     }
 
-    private HSSFSheet getEmptySheet(HSSFWorkbook workbook, String name, ArrayList<String> columns) {
+    private String getUnsavedFeatures() {
+        return String.format(Locale.ENGLISH, Format.FM_UNSAVED,
+                getString(R.string.nv_shopping),
+                getString(R.string.hd_hm_summary),
+                getString(R.string.hd_hm_recent));
+    }
+
+    private void chooseEndAction() {
+        if(isEtEmpty(etExport)) showShortToast(R.string.ts_export);
+        else showDialog(R.string.dg_ex_add, getDialogListener());
+    }
+
+    private DialogInterface.OnClickListener getDialogListener() {
+        return (dialog, which) -> {
+            switch(which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    exportDb();
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    break;
+            }
+        };
+    }
+
+    private HSSFSheet getSheet(HSSFWorkbook workbook, String name, List<String> columns) {
         HSSFSheet sheet = workbook.createSheet(name);
-        HSSFRow headerRow = sheet.createRow(MainGlobals.DF_ZERO);
-        for(int i = MainGlobals.DF_ZERO; i < columns.size(); i++){
+        HSSFRow headerRow = sheet.createRow(Globals.DF_ZERO);
+        for(int i = Globals.DF_ZERO; i < columns.size(); i++) {
             HSSFCell cell = headerRow.createCell(i);
             cell.setCellValue(columns.get(i));
         }
         return sheet;
     }
 
-    private void createRecipeSheet(HSSFWorkbook workbook, ArrayList<Recipe> recipes) {
-        ArrayList<String> columns = DbGlobals.getRecipesColumns();
-        HSSFSheet sheet = getEmptySheet(workbook,
-                DbGlobals.TB_RECIPE, columns);
+    private void createCell(HSSFRow row, int id, int value) {
+        row.createCell(id).setCellValue(value);
+    }
 
-        int id = MainGlobals.DF_INCREMENT;
-        for(Recipe recipe : recipes){
+    private void createCell(HSSFRow row, int id, float value) {
+        row.createCell(id).setCellValue(value);
+    }
+
+    private void createCell(HSSFRow row, int id, String value) {
+        row.createCell(id).setCellValue(value);
+    }
+
+    private void createCell(HSSFRow row, int id, boolean value) {
+        row.createCell(id).setCellValue(TypeManager.boolToInt(value));
+    }
+
+    private void createRecipeSheet(HSSFWorkbook workbook, List<Recipe> recipes) {
+        List<String> columns = Db.getRecipeColumns();
+        HSSFSheet sheet = getSheet(workbook, Db.TB_RECIPE, columns);
+        int id = Globals.DF_INCREMENT;
+        for(Recipe recipe : recipes) {
             HSSFRow row = sheet.createRow(id);
-            row.createCell(columns.indexOf(DbGlobals.CL_RP_ID)).setCellValue(recipe.getId());
-            row.createCell(columns.indexOf(DbGlobals.CL_RP_NAME)).setCellValue(recipe.getName());
-            row.createCell(columns.indexOf(DbGlobals.CL_RP_AUTHOR)).setCellValue(recipe.getAuthor());
-            row.createCell(columns.indexOf(DbGlobals.CL_RP_SERVING)).setCellValue(recipe.getServing());
-            row.createCell(columns.indexOf(DbGlobals.CL_RP_TIME)).setCellValue(recipe.getTime());
-            row.createCell(columns.indexOf(DbGlobals.CL_RP_DIFFICULTY)).setCellValue(recipe.getDifficulty());
-            row.createCell(columns.indexOf(DbGlobals.CL_RP_SPICINESS)).setCellValue(recipe.getSpiciness());
-            row.createCell(columns.indexOf(DbGlobals.CL_RP_COUNTRY)).setCellValue(recipe.getCountry());
-            row.createCell(columns.indexOf(DbGlobals.CL_RP_TYPE)).setCellValue(recipe.getType());
-            row.createCell(columns.indexOf(DbGlobals.CL_RP_PREFERENCE)).setCellValue(TypeManager.booleanToInteger(recipe.getPreference()));
-            row.createCell(columns.indexOf(DbGlobals.CL_RP_FAVORITE)).setCellValue(TypeManager.booleanToInteger(recipe.getFavorite()));
+            createCell(row, columns.indexOf(Db.CL_RP_ID), recipe.getId());
+            createCell(row, columns.indexOf(Db.CL_RP_NAME), recipe.getName());
+            createCell(row, columns.indexOf(Db.CL_RP_AUTHOR), recipe.getAuthor());
+            createCell(row, columns.indexOf(Db.CL_RP_SERVING), recipe.getServing());
+            createCell(row, columns.indexOf(Db.CL_RP_TIME), recipe.getTime());
+            createCell(row, columns.indexOf(Db.CL_RP_DIFFICULTY), recipe.getDifficulty());
+            createCell(row, columns.indexOf(Db.CL_RP_SPICINESS), recipe.getSpiciness());
+            createCell(row, columns.indexOf(Db.CL_RP_COUNTRY), recipe.getCountry());
+            createCell(row, columns.indexOf(Db.CL_RP_TYPE), recipe.getType());
+            createCell(row, columns.indexOf(Db.CL_RP_PREFERENCE), recipe.getPreference());
+            createCell(row, columns.indexOf(Db.CL_RP_FAVORITE), recipe.getFavorite());
             id++;
         }
     }
 
-    private void createIngredientSheet(HSSFWorkbook workbook, ArrayList<Ingredient> ingredients) {
-        ArrayList<String> columns = DbGlobals.getIngredientsColumns();
-        HSSFSheet sheet = getEmptySheet(workbook,
-                DbGlobals.TB_INGREDIENT, columns);
-
-        int id = MainGlobals.DF_INCREMENT;
-        for(Ingredient ingredient : ingredients){
+    private void createIngredientSheet(HSSFWorkbook workbook, List<Ingredient> ingredients) {
+        List<String> columns = Db.getIngredientColumns();
+        HSSFSheet sheet = getSheet(workbook, Db.TB_INGREDIENT, columns);
+        int id = Globals.DF_INCREMENT;
+        for(Ingredient ingredient : ingredients) {
             HSSFRow row = sheet.createRow(id);
-            row.createCell(columns.indexOf(DbGlobals.CL_IG_ID)).setCellValue(ingredient.getId());
-            row.createCell(columns.indexOf(DbGlobals.CL_IG_RECIPE)).setCellValue(ingredient.getIdRec());
-            row.createCell(columns.indexOf(DbGlobals.CL_IG_PRODUCT)).setCellValue(ingredient.getIdProd());
-            row.createCell(columns.indexOf(DbGlobals.CL_IG_AMOUNT)).setCellValue(ingredient.getAmount());
-            row.createCell(columns.indexOf(DbGlobals.CL_IG_MEASURE)).setCellValue(ingredient.getMeasure());
-            row.createCell(columns.indexOf(DbGlobals.CL_IG_CATEGORY)).setCellValue(ingredient.getCategory());
+            createCell(row, columns.indexOf(Db.CL_IG_ID), ingredient.getId());
+            createCell(row, columns.indexOf(Db.CL_IG_RECIPE_ID), ingredient.getRecipeId());
+            createCell(row, columns.indexOf(Db.CL_IG_PRODUCT_ID), ingredient.getProductId());
+            createCell(row, columns.indexOf(Db.CL_IG_AMOUNT), ingredient.getAmount());
+            createCell(row, columns.indexOf(Db.CL_IG_MEASURE), ingredient.getMeasure());
             id++;
         }
     }
 
-    private void createStepSheet(HSSFWorkbook workbook, ArrayList<Step> steps) {
-        ArrayList<String> columns = DbGlobals.getStepsColumns();
-        HSSFSheet sheet = getEmptySheet(workbook,
-                DbGlobals.TB_STEP, columns);
-
-        int id = MainGlobals.DF_INCREMENT;
-        for(Step step : steps){
+    private void createStepSheet(HSSFWorkbook workbook, List<Step> steps) {
+        List<String> columns = Db.getStepColumns();
+        HSSFSheet sheet = getSheet(workbook, Db.TB_STEP, columns);
+        int id = Globals.DF_INCREMENT;
+        for(Step step : steps) {
             HSSFRow row = sheet.createRow(id);
-            row.createCell(columns.indexOf(DbGlobals.CL_ST_ID)).setCellValue(step.getId());
-            row.createCell(columns.indexOf(DbGlobals.CL_ST_RECIPE)).setCellValue(step.getIdRec());
-            row.createCell(columns.indexOf(DbGlobals.CL_ST_INSTRUCTION)).setCellValue(step.getInstruction());
+            createCell(row, columns.indexOf(Db.CL_ST_ID), step.getId());
+            createCell(row, columns.indexOf(Db.CL_ST_RECIPE_ID), step.getRecipeId());
+            createCell(row, columns.indexOf(Db.CL_ST_CONTENT), step.getContent());
             id++;
         }
     }
 
-    private void createProductSheet(HSSFWorkbook workbook, ArrayList<Product> products) {
-        ArrayList<String> columns = DbGlobals.getProductsColumns();
-        HSSFSheet sheet = getEmptySheet(workbook,
-                DbGlobals.TB_PRODUCT, DbGlobals.getProductsColumns());
-
-        int id = MainGlobals.DF_INCREMENT;
-        for(Product product : products){
+    private void createProductSheet(HSSFWorkbook workbook, List<Product> products) {
+        List<String> columns = Db.getProductColumns();
+        HSSFSheet sheet = getSheet(workbook, Db.TB_PRODUCT, Db.getProductColumns());
+        int id = Globals.DF_INCREMENT;
+        for(Product product : products) {
             HSSFRow row = sheet.createRow(id);
-            row.createCell(columns.indexOf(DbGlobals.CL_PD_ID)).setCellValue(product.getId());
-            row.createCell(columns.indexOf(DbGlobals.CL_PD_NAME)).setCellValue(product.getName());
-            row.createCell(columns.indexOf(DbGlobals.CL_PD_TYPE)).setCellValue(product.getType());
-            row.createCell(columns.indexOf(DbGlobals.CL_PD_CARBOHYDRATES)).setCellValue(product.getCarbohydrates());
-            row.createCell(columns.indexOf(DbGlobals.CL_PD_PROTEIN)).setCellValue(product.getProtein());
-            row.createCell(columns.indexOf(DbGlobals.CL_PD_FAT)).setCellValue(product.getFat());
+            createCell(row, columns.indexOf(Db.CL_PD_ID), product.getId());
+            createCell(row, columns.indexOf(Db.CL_PD_NAME), product.getName());
+            createCell(row, columns.indexOf(Db.CL_PD_TYPE), product.getType());
+            createCell(row, columns.indexOf(Db.CL_PD_SIZE), product.getSize());
+            createCell(row, columns.indexOf(Db.CL_PD_CARBOHYDRATES), product.getCarbohydrates());
+            createCell(row, columns.indexOf(Db.CL_PD_PROTEINS), product.getProteins());
+            createCell(row, columns.indexOf(Db.CL_PD_FATS), product.getFats());
             id++;
         }
     }
 
     private void saveWorkbookFile(HSSFWorkbook workbook) {
-        File file = new File(getContext().getExternalFilesDir(null),
-                etExport.getText().toString() + MainGlobals.FL_XLS);
+        File file = new File(getExternalDir(), getXlsName(etExport.getText().toString()));
         try {
             FileOutputStream output = new FileOutputStream(file);
             workbook.write(output);
             output.close();
         } catch (IOException e) {
-            //
+            showShortToast(R.string.ts_file);
         }
     }
 
-    private DialogInterface.OnClickListener getDialogListener(){
-        return new DialogInterface.OnClickListener() {
+    private void exportDb() {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        readAllRecipes(workbook);
+    }
+
+    //Read All Recipes
+    private void readAllRecipes(HSSFWorkbook workbook) {
+        PlateHandlerDatabase db = getDb(getContext());
+        Single<List<Recipe>> single = db.getRecipeDAO().getAllRecipes();
+        single.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getReadAllRecipesObserver(workbook));
+    }
+
+    private DisposableSingleObserver<List<Recipe>> getReadAllRecipesObserver(HSSFWorkbook workbook) {
+        return new DisposableSingleObserver<List<Recipe>>() {
+
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch(which){
-                    case DialogInterface.BUTTON_POSITIVE:
-                        new AsyncExport().execute();
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        break;
-                }
+            public void onSuccess(List<Recipe> recipes) {
+                createRecipeSheet(workbook, recipes);
+                readAllProducts(workbook);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
             }
         };
     }
 
-    private boolean isEtEmpty(EditText et) {
-        return et.getText().toString().isEmpty();
+    //Read All Products
+    private void readAllProducts(HSSFWorkbook workbook) {
+        PlateHandlerDatabase db = getDb(getContext());
+        Single<List<Product>> single = db.getProductDAO().getAllProducts();
+        single.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getReadAllProductsObserver(workbook));
+    }
+
+    private DisposableSingleObserver<List<Product>> getReadAllProductsObserver(HSSFWorkbook workbook) {
+        return new DisposableSingleObserver<List<Product>>() {
+
+            @Override
+            public void onSuccess(List<Product> products) {
+                createProductSheet(workbook, products);
+                readAllIngredients(workbook);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
+    }
+
+    //Read All Ingredients
+    private void readAllIngredients(HSSFWorkbook workbook) {
+        PlateHandlerDatabase db = getDb(getContext());
+        Single<List<Ingredient>> single = db.getIngredientDAO().getAllIngredients();
+        single.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getReadAllIngredientsObserver(workbook));
+    }
+
+    private DisposableSingleObserver<List<Ingredient>> getReadAllIngredientsObserver(HSSFWorkbook workbook) {
+        return new DisposableSingleObserver<List<Ingredient>>() {
+
+            @Override
+            public void onSuccess(List<Ingredient> ingredients) {
+                createIngredientSheet(workbook, ingredients);
+                readAllSteps(workbook);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
+    }
+
+    //Read All Steps
+    private void readAllSteps(HSSFWorkbook workbook) {
+        PlateHandlerDatabase db = getDb(getContext());
+        Single<List<Step>> single = db.getStepDAO().getAllSteps();
+        single.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getReadAllStepsObserver(workbook));
+    }
+
+    private DisposableSingleObserver<List<Step>> getReadAllStepsObserver(HSSFWorkbook workbook) {
+        return new DisposableSingleObserver<List<Step>>() {
+
+            @Override
+            public void onSuccess(List<Step> steps) {
+                createStepSheet(workbook, steps);
+                saveWorkbookFile(workbook);
+                showShortSnack(R.string.sb_ex_add);
+                popFragment();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
     }
 }

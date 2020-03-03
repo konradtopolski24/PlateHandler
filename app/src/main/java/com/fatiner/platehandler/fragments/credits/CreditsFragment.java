@@ -1,14 +1,15 @@
 package com.fatiner.platehandler.fragments.credits;
 
 
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.LibraryAdapter;
@@ -16,109 +17,140 @@ import com.fatiner.platehandler.adapters.PackAdapter;
 import com.fatiner.platehandler.classes.Library;
 import com.fatiner.platehandler.classes.Pack;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
-import com.fatiner.platehandler.globals.CreditsGlobals;
-import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.globals.Credits;
+import com.fatiner.platehandler.globals.Globals;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CreditsFragment extends PrimaryFragment {
 
-    @BindView(R.id.rv_libraries)
-    RecyclerView rvLibraries;
-    @BindView(R.id.rv_icons)
-    RecyclerView rvIcons;
-    @BindView(R.id.cv_libraries)
-    CardView cvLibraries;
-    @BindView(R.id.cv_icons)
-    CardView cvIcons;
-    @BindView(R.id.iv_libraries)
-    ImageView ivLibraries;
-    @BindView(R.id.iv_icons)
-    ImageView ivIcons;
+    @BindView(R.id.rv_libraries) RecyclerView rvLibraries;
+    @BindView(R.id.rv_icons) RecyclerView rvIcons;
+    @BindView(R.id.cv_libraries) CardView cvLibraries;
+    @BindView(R.id.cv_icons) CardView cvIcons;
+    @BindView(R.id.iv_libraries) ImageView ivLibraries;
+    @BindView(R.id.iv_icons) ImageView ivIcons;
 
-    @OnClick(R.id.cv_libraries_hd)
-    public void onClickFaAdd(){
-        manageExpandCardView(cvLibraries, ivLibraries);
+    @OnClick(R.id.cv_hd_libraries)
+    void clickCvHdLibraries() {
+        manageExpandCv(cvLibraries, ivLibraries);
     }
 
-    @OnClick(R.id.cv_icons_hd)
-    public void onClickFbAdd(){
-        manageExpandCardView(cvIcons, ivIcons);
+    @OnClick(R.id.cv_hd_icons)
+    void clickCvHdIcons() {
+        manageExpandCv(cvIcons, ivIcons);
+    }
+
+    @OnClick(R.id.iv_tt_libraries)
+    void clickIvTtLibraries() {
+        showDialog(R.string.hd_cd_library, R.string.tt_cd_library);
+    }
+
+    @OnClick(R.id.iv_tt_icons)
+    void clickIvTtIcons() {
+        showDialog(R.string.hd_cd_icon, R.string.tt_cd_icon);
     }
 
     public CreditsFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_credits, container, false);
-        ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_cd_show);
-        setMenuItem(MainGlobals.ID_CREDITS);
-        setRecyclerView(
-                rvLibraries,
-                getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),
-                new LibraryAdapter(getContext(), getLibraries())
-        );
-        setRecyclerView(
-                rvIcons,
-                getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),
-                new PackAdapter(getContext(), getPacks())
-        );
+        init(this, view, R.id.it_credits, R.string.tb_cd_show, false);
+        setCreditsInfo();
         return view;
+    }
+
+    private void setCreditsInfo() {
+        setRv(rvLibraries, getManager(getColumnAmount()), getLibraryAdapter());
+        setRv(rvIcons, getManager(getColumnAmount()), getPackAdapter());
+        changeRvSize(rvLibraries);
+        changeRvSize(rvIcons);
+    }
+
+    private int getColumnAmount() {
+        if(getOrientation() == Configuration.ORIENTATION_PORTRAIT) return Globals.GL_ONE;
+        else return Globals.GL_TWO;
+    }
+
+    private LibraryAdapter getLibraryAdapter() {
+        return new LibraryAdapter(getContext(), getLibraries());
+    }
+
+    private PackAdapter getPackAdapter() {
+        return new PackAdapter(getContext(), getPacks());
     }
 
     private ArrayList<Library> getLibraries() {
         ArrayList<Library> libraries = new ArrayList<>();
         libraries.add(getLibrary(
-                CreditsGlobals.LB_BK_NAME,
-                CreditsGlobals.LB_BK_AUTHOR,
-                CreditsGlobals.LB_BK_VERSION,
-                CreditsGlobals.LB_BK_LICENSE));
+                Credits.LB_BK_NAME,
+                Credits.LB_BK_AUTHOR,
+                Credits.LB_BK_VERSION,
+                Credits.LB_BK_LICENSE));
         libraries.add(getLibrary(
-                CreditsGlobals.LB_GS_NAME,
-                CreditsGlobals.LB_GS_AUTHOR,
-                CreditsGlobals.LB_GS_VERSION,
-                CreditsGlobals.LB_GS_LICENSE));
+                Credits.LB_GS_NAME,
+                Credits.LB_GS_AUTHOR,
+                Credits.LB_GS_VERSION,
+                Credits.LB_GS_LICENSE));
         libraries.add(getLibrary(
-                CreditsGlobals.LB_AP_NAME,
-                CreditsGlobals.LB_AP_AUTHOR,
-                CreditsGlobals.LB_AP_VERSION,
-                CreditsGlobals.LB_AP_LICENSE));
+                Credits.LB_AP_NAME,
+                Credits.LB_AP_AUTHOR,
+                Credits.LB_AP_VERSION,
+                Credits.LB_AP_LICENSE));
         libraries.add(getLibrary(
-                CreditsGlobals.LB_MP_NAME,
-                CreditsGlobals.LB_MP_AUTHOR,
-                CreditsGlobals.LB_MP_VERSION,
-                CreditsGlobals.LB_MP_LICENSE));
+                Credits.LB_MP_NAME,
+                Credits.LB_MP_AUTHOR,
+                Credits.LB_MP_VERSION,
+                Credits.LB_MP_LICENSE));
+        libraries.add(getLibrary(
+                Credits.LB_RM_NAME,
+                Credits.LB_RM_AUTHOR,
+                Credits.LB_RM_VERSION,
+                Credits.LB_RM_LICENSE));
+        libraries.add(getLibrary(
+                Credits.LB_RJ_NAME,
+                Credits.LB_RJ_AUTHOR,
+                Credits.LB_RJ_VERSION,
+                Credits.LB_RJ_LICENSE));
+        libraries.add(getLibrary(
+                Credits.LB_RA_NAME,
+                Credits.LB_RA_AUTHOR,
+                Credits.LB_RA_VERSION,
+                Credits.LB_RA_LICENSE));
         return libraries;
     }
 
     private ArrayList<Pack> getPacks() {
         ArrayList<Pack> packs = new ArrayList<>();
         packs.add(getPack(
-                CreditsGlobals.IP_FL_NAME,
-                CreditsGlobals.IP_FL_ATTRIBUTION,
-                CreditsGlobals.IP_FL_LICENSE,
-                CreditsGlobals.IP_FL_AMOUNT));
+                Credits.IP_FL_NAME,
+                Credits.IP_FL_ATTRIBUTION,
+                Credits.IP_FL_LICENSE,
+                Credits.IP_FL_AMOUNT));
         packs.add(getPack(
-                CreditsGlobals.IP_GC_NAME,
-                CreditsGlobals.IP_GC_ATTRIBUTION,
-                CreditsGlobals.IP_GC_LICENSE,
-                CreditsGlobals.IP_GC_AMOUNT));
+                Credits.IP_GC_NAME,
+                Credits.IP_GC_ATTRIBUTION,
+                Credits.IP_GC_LICENSE,
+                Credits.IP_GC_AMOUNT));
         packs.add(getPack(
-                CreditsGlobals.IP_GN_NAME,
-                CreditsGlobals.IP_GN_ATTRIBUTION,
-                CreditsGlobals.IP_GN_LICENSE,
-                CreditsGlobals.IP_GN_AMOUNT));
+                Credits.IP_GN_NAME,
+                Credits.IP_GN_ATTRIBUTION,
+                Credits.IP_GN_LICENSE,
+                Credits.IP_GN_AMOUNT));
         packs.add(getPack(
-                CreditsGlobals.IP_MD_NAME,
-                CreditsGlobals.IP_MD_ATTRIBUTION,
-                CreditsGlobals.IP_MD_LICENSE,
-                CreditsGlobals.IP_MD_AMOUNT));
+                Credits.IP_IF_NAME,
+                Credits.IP_IF_ATTRIBUTION,
+                Credits.IP_IF_LICENSE,
+                Credits.IP_IF_AMOUNT));
+        packs.add(getPack(
+                Credits.IP_MD_NAME,
+                Credits.IP_MD_ATTRIBUTION,
+                Credits.IP_MD_LICENSE,
+                Credits.IP_MD_AMOUNT));
         return packs;
     }
 

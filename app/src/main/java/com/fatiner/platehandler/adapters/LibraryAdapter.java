@@ -1,13 +1,12 @@
 package com.fatiner.platehandler.adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.Library;
@@ -17,33 +16,28 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.LibraryHolder> {
-
-    private Context context;
+public class LibraryAdapter extends PrimaryAdapter<LibraryAdapter.LibraryHolder> {
+    
     private ArrayList<Library> libraries;
 
-    public LibraryAdapter(Context context, ArrayList<Library> libraries){
-        this.context = context;
+    public LibraryAdapter(Context context, ArrayList<Library> libraries) {
+        super(context);
         this.libraries = libraries;
     }
 
     @NonNull
     @Override
     public LibraryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        CardView layout = (CardView) inflater.inflate(
-                R.layout.cardview_library,
-                parent,
-                false);
-        return new LibraryHolder(layout);
+        return new LibraryHolder(getLayout(parent, R.layout.item_library));
     }
 
     @Override
     public void onBindViewHolder(@NonNull LibraryHolder holder, int position) {
-        holder.tvName.setText(libraries.get(position).getName());
-        holder.tvAuthor.setText(libraries.get(position).getAuthor());
-        holder.tvVersion.setText(libraries.get(position).getVersion());
-        holder.tvLicense.setText(libraries.get(position).getLicense());
+        Library library = libraries.get(position);
+        setTv(holder.tvName, library.getName());
+        setTv(holder.tvAuthor, library.getAuthor());
+        setTv(holder.tvVersion, library.getVersion());
+        setTv(holder.tvLicense, library.getLicense());
     }
 
     @Override
@@ -51,18 +45,14 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.LibraryH
         return libraries.size();
     }
 
-    public class LibraryHolder extends RecyclerView.ViewHolder{
+    static class LibraryHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.tv_name)
-        TextView tvName;
-        @BindView(R.id.tv_author)
-        TextView tvAuthor;
-        @BindView(R.id.tv_version)
-        TextView tvVersion;
-        @BindView(R.id.tv_license)
-        TextView tvLicense;
+        @BindView(R.id.tv_name) TextView tvName;
+        @BindView(R.id.tv_author) TextView tvAuthor;
+        @BindView(R.id.tv_version) TextView tvVersion;
+        @BindView(R.id.tv_license) TextView tvLicense;
 
-        public LibraryHolder(View itemView) {
+        private LibraryHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

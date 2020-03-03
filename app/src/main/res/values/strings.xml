@@ -32,8 +32,8 @@
 
     <!-- Button -->
     <string name="bt_shopping">Create New List</string>
-    <string name="bt_category">Add New Ingredient Category</string>
-    <string name="bt_step">Add New Recipe Step</string>
+    <string name="bt_ingredient">Add New Ingredient</string>
+    <string name="bt_step">Add New Step</string>
     <string name="bt_item">Add New Item</string>
     <string name="bt_recipe">Select Recipe</string>
 
@@ -47,11 +47,11 @@
     <string name="dg_sh_add">Do you want to create a new shopping list?</string>
     <string name="dg_ex_add">Do you want to create a new export file?</string>
 
-    <!-- Snackbar Message -->
+    <!-- SnackBar Message -->
     <string name="sb_pd_add">Product added!</string>
     <string name="sb_pd_edit">Product updated!</string>
     <string name="sb_pd_remove">Product removed!</string>
-    <string name="sb_cg_add">New category added!</string>
+    <string name="sb_ig_add">New ingredient added!</string>
     <string name="sb_st_add">New step added!</string>
     <string name="sb_rp_add">Recipe added!</string>
     <string name="sb_rp_edit">Recipe updated!</string>
@@ -61,15 +61,19 @@
     <string name="sb_im_add">Database imported!</string>
 
     <!-- Toast Message -->
+    <string name="ts_welcome">Welcome to Plate Handler!</string>
     <string name="ts_product">Product name is empty!</string>
     <string name="ts_recipe">Recipe is incomplete!</string>
     <string name="ts_category">Category name is empty!</string>
     <string name="ts_step">Step instruction is empty!</string>
     <string name="ts_item">Item names are empty!</string>
+    <string name="ts_shopping">At least one item is required!</string>
     <string name="ts_database">Database error!</string>
     <string name="ts_export">Export File Name is empty!</string>
+    <string name="ts_file">File operation error!</string>
 
     <!-- Empty List -->
+    <string name="ep_recent">No recipes shown!</string>
     <string name="ep_recipe">Recipe list is empty!</string>
     <string name="ep_product">Product list is empty!</string>
     <string name="ep_category">Category list is empty!</string>
@@ -83,6 +87,8 @@
     <string name="fn_step">Step done!</string>
 
     <!-- Captions -->
+    <string name="ct_recipe">Recipe Amount</string>
+    <string name="ct_product">Product Amount</string>
     <string name="ct_name">Name</string>
     <string name="ct_author">Author</string>
     <string name="ct_serving">Serving</string>
@@ -97,9 +103,11 @@
     <string name="ct_alphabetical">Alphabetically</string>
     <string name="ct_favorite">Favorite</string>
     <string name="ct_step">Step</string>
+    <string name="ct_size">Size</string>
     <string name="ct_carbohydrates">Carbohydrates</string>
-    <string name="ct_protein">Protein</string>
-    <string name="ct_fat">Fat</string>
+    <string name="ct_proteins">Proteins</string>
+    <string name="ct_fats">Fats</string>
+    <string name="ct_nutrients">All Nutrients</string>
     <string name="ct_date">List From</string>
     <string name="ct_state">Shopping State</string>
     <string name="ct_other">Other</string>
@@ -116,11 +124,11 @@
     <string name="ct_amount">Amount</string>
 
     <!-- Header -->
-    <string name="hd_hm_day">Dish of the Day</string>
+    <string name="hd_hm_summary">Database Summary</string>
     <string name="hd_hm_recent">Recently shown</string>
     <string name="hd_pd_photo">Add product photo</string>
     <string name="hd_pd_name">Set product name and type</string>
-    <string name="hd_pd_nutrient">Set nutrients for 100 g</string>
+    <string name="hd_pd_nutrient">Set nutrients</string>
     <string name="hd_pd_info">Nutrients in Product</string>
     <string name="hd_pd_kcal">Energy in Kcal</string>
     <string name="hd_pd_kj">Energy in Kj</string>
@@ -133,10 +141,11 @@
     <string name="hd_rp_category">Ingredient Categories</string>
     <string name="hd_rp_step">Recipe Steps</string>
     <string name="hd_rp_settings">Recipe settings</string>
-    <string name="hd_cg_name">Set Category Name</string>
+    <string name="hd_ig_name">Set Category Name</string>
+    <string name="hd_cg_item">Add Items to the Category</string>
     <string name="hd_st_content">Set New Step</string>
     <string name="hd_sh_info">Shopping List Info</string>
-    <string name="hd_sh_item">Add Items to the Shopping List</string>
+    <string name="hd_sh_item">Add Items to the List</string>
     <string name="hd_sh_list">Shopping List</string>
     <string name="hd_ex_name">Set Export File Name</string>
     <string name="hd_ex_info">Export Info</string>
@@ -144,24 +153,78 @@
     <string name="hd_cd_library">Libraries Used in the App</string>
     <string name="hd_cd_icon">Icons Used in the App</string>
 
+    <!-- Tutorial -->
+    <string name="tt_hm_summary">Database Summary</string>
+    <string name="tt_hm_recent">Recently shown</string>
+    <string name="tt_pd_photo">Add product photo</string>
+    <string name="tt_pd_name">Set product name and type</string>
+    <string name="tt_pd_nutrient">Set nutrients for 100 g</string>
+    <string name="tt_pd_info">Nutrients in Product</string>
+    <string name="tt_pd_kcal">Energy in Kcal</string>
+    <string name="tt_pd_kj">Energy in Kj</string>
+    <string name="tt_pd_settings">Product settings</string>
+    <string name="tt_rp_photo">Add recipe photo</string>
+    <string name="tt_rp_name">Set recipe name and author</string>
+    <string name="tt_rp_add">Set recipe info</string>
+    <string name="tt_rp_info">Recipe Info</string>
+    <string name="tt_rp_ingredient">Ingredients List</string>
+    <string name="tt_rp_category">Ingredient Categories</string>
+    <string name="tt_rp_step">Recipe Steps</string>
+    <string name="tt_rp_settings">Recipe settings</string>
+    <string name="tt_cg_name">Set Category Name</string>
+    <string name="tt_cg_item">Add Items to the Category</string>
+    <string name="tt_st_content">Set New Step</string>
+    <string name="tt_sh_info">Shopping List Info</string>
+    <string name="tt_sh_item">Add Items to the Shopping List</string>
+    <string name="tt_sh_list">Shopping List</string>
+    <string name="tt_ex_name">Set Export File Name</string>
+    <string name="tt_ex_info">Export Info</string>
+    <string name="tt_im_file">Import Files</string>
+    <string name="tt_cd_library">Libraries Used in the App</string>
+    <string name="tt_cd_icon">Icons Used in the App</string>
+
     <!-- Main Toolbar Titles -->
     <string name="tb_hm_welcome">Welcome</string>
     <string name="tb_rp_choose">Choose Recipe</string>
     <string name="tb_rp_settings">Recipe Settings</string>
-    <string name="tb_rp_add">Add recipe</string>
-    <string name="tb_rp_edit">Edit recipe</string>
-    <string name="tb_rp_calculate">Calculate recipe</string>
-    <string name="tb_cg_add">Add category</string>
-    <string name="tb_cg_edit">Edit category</string>
-    <string name="tb_st_add">Add step</string>
-    <string name="tb_st_edit">Edit step</string>
-    <string name="tb_pd_choose">Choose product</string>
-    <string name="tb_pd_settings">Product settings</string>
-    <string name="tb_pd_add">Add product</string>
-    <string name="tb_pd_edit">Edit product</string>
-    <string name="tb_sh_list">Shopping list</string>
-    <string name="tb_sh_add">Create shopping list</string>
+    <string name="tb_rp_add">Add Recipe</string>
+    <string name="tb_rp_overview">Recipe Overview</string>
+    <string name="tb_rp_edit">Edit Recipe</string>
+    <string name="tb_rp_calculate">Calculate Recipe</string>
+    <string name="tb_ig_add">Add Category</string>
+    <string name="tb_ig_edit">Edit Category</string>
+    <string name="tb_st_add">Add Step</string>
+    <string name="tb_st_edit">Edit Step</string>
+    <string name="tb_pd_choose">Choose Product</string>
+    <string name="tb_pd_settings">Product Settings</string>
+    <string name="tb_pd_add">Add Product</string>
+    <string name="tb_pd_overview">Product Overview</string>
+    <string name="tb_pd_edit">Edit Product</string>
+    <string name="tb_sh_list">Shopping List</string>
+    <string name="tb_sh_add">Create Shopping List</string>
     <string name="tb_ex_database">Export Database</string>
     <string name="tb_im_database">Import Database</string>
     <string name="tb_cd_show">Credits</string>
+
+    <!-- Content Description -->
+    <string name="dp_pd_photo">Image of the product</string>
+    <string name="dp_pd_type">Icon of the product type</string>
+    <string name="dp_rp_photo">Image of the recipe</string>
+    <string name="dp_rp_spiciness">Icon of the recipe spiciness</string>
+    <string name="dp_rp_type">Icon of the recipe type</string>
+    <string name="dp_rp_country">Icon of the recipe country</string>
+    <string name="dp_rp_preference">Icon of the recipe preference</string>
+    <string name="dp_expand">Icon representing expandable view</string>
+    <string name="dp_caption">Icon of the caption</string>
+    <string name="dp_side">Icon on the side of the item</string>
+    <string name="dp_remove">Option to remove the item</string>
+    <string name="dp_dot">Icon of the shopping item</string>
+    <string name="dp_tutorial">Icon of the tutorial option</string>
+    <string name="dp_bt_add">Button to add a photo</string>
+    <string name="dp_bt_remove">Button to remove a photo</string>
+    <string name="dp_bt_plus">Button to increment number of servings</string>
+    <string name="dp_bt_minus">Button to decrement number of servings</string>
+    <string name="dp_bt_time">Button to set time of the recipe</string>
+    <string name="dp_bt_edit">Button to edit the item</string>
+    <string name="dp_bt_product">Button to new product</string>
 </resources>

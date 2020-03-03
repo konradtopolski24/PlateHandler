@@ -1,0 +1,428 @@
+package com.fatiner.platehandler.fragments.recipe;
+
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.fatiner.platehandler.PlateHandlerDatabase;
+import com.fatiner.platehandler.R;
+import com.fatiner.platehandler.adapters.IngredientAdapter;
+import com.fatiner.platehandler.adapters.StepAdapter;
+import com.fatiner.platehandler.details.RecipeDetails;
+import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.recipe.manage.RecipeManagePagerFragment;
+import com.fatiner.platehandler.globals.Globals;
+import com.fatiner.platehandler.globals.Shared;
+import com.fatiner.platehandler.managers.SharedManager;
+import com.fatiner.platehandler.managers.TypeManager;
+import com.fatiner.platehandler.models.Ingredient;
+import com.fatiner.platehandler.models.Product;
+import com.fatiner.platehandler.models.Recipe;
+import com.fatiner.platehandler.models.RecipeComplete;
+import com.fatiner.platehandler.models.Step;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
+import io.reactivex.Completable;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableCompletableObserver;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
+
+public class RecipeShowFragment extends PrimaryFragment {
+
+    @BindView(R.id.cv_header) CardView cvHeader;
+    @BindView(R.id.cv_info) CardView cvInfo;
+    @BindView(R.id.cv_categories) CardView cvCategories;
+    @BindView(R.id.cv_steps) CardView cvSteps;
+    @BindView(R.id.cv_hd_info) CardView cvHdInfo;
+    @BindView(R.id.cv_hd_categories) CardView cvHdCategories;
+    @BindView(R.id.cv_hd_steps) CardView cvHdSteps;
+    @BindView(R.id.iv_info) ImageView ivInfo;
+    @BindView(R.id.iv_categories) ImageView ivCategories;
+    @BindView(R.id.iv_steps) ImageView ivSteps;
+    @BindViews({
+            R.id.iv_spiciness0,
+            R.id.iv_spiciness1,
+            R.id.iv_spiciness2,
+            R.id.iv_spiciness3}) List<ImageView> ivSpicinessList;
+    @BindView(R.id.iv_photo) ImageView ivPhoto;
+    @BindView(R.id.iv_country) ImageView ivCountry;
+    @BindView(R.id.iv_type) ImageView ivType;
+    @BindView(R.id.iv_preference) ImageView ivPreference;
+    @BindView(R.id.tv_name) TextView tvName;
+    @BindView(R.id.tv_author) TextView tvAuthor;
+    @BindView(R.id.tv_serving) TextView tvServing;
+    @BindView(R.id.tv_time) TextView tvTime;
+    @BindView(R.id.tv_difficulty) TextView tvDifficulty;
+    @BindView(R.id.tv_country) TextView tvCountry;
+    @BindView(R.id.tv_type) TextView tvType;
+    @BindView(R.id.tv_preference) TextView tvPreference;
+    @BindView(R.id.cb_favorite) CheckBox cbFavorite;
+    @BindView(R.id.rv_categories) RecyclerView rvCategories;
+    @BindView(R.id.rv_steps) RecyclerView rvSteps;
+
+    @OnClick(R.id.cv_hd_info)
+    void clickCvHdInfo() {
+        manageExpandCv(cvInfo, ivInfo);
+    }
+
+    @OnClick(R.id.cv_hd_categories)
+    void clickCvHdCategories() {
+        manageExpandCv(cvCategories, ivCategories);
+    }
+
+    @OnClick(R.id.cv_hd_steps)
+    void clickCvHdSteps() {
+        manageExpandCv(cvSteps, ivSteps);
+    }
+
+    @OnCheckedChanged(R.id.cb_favorite)
+    void checkedCbFavorite(boolean checked) {
+        getRecipe().setFavorite(checked);
+        updateFavorite(checked);
+    }
+
+    @OnClick(R.id.iv_tt_info)
+    void clickIvTtInfo() {
+        showDialog(R.string.hd_rp_info, R.string.tt_rp_info);
+    }
+
+    @OnClick(R.id.iv_tt_categories)
+    void clickIvTtCategories() {
+        showDialog(R.string.hd_rp_ingredient, R.string.tt_rp_ingredient);
+    }
+
+    @OnClick(R.id.iv_tt_steps)
+    void clickIvTtSteps() {
+        showDialog(R.string.hd_rp_step, R.string.tt_rp_step);
+    }
+
+    public RecipeShowFragment() {}
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
+        View view = inflater.inflate(R.layout.fragment_recipe_show, container, false);
+        init(this, view, R.id.it_recipe, R.string.tb_rp_overview, true);
+        resetRecipeDetails();
+        checkId();
+        return view;
+    }
+
+    private Recipe getRecipe() {
+        return RecipeDetails.getRecipe();
+    }
+
+    private void checkId() {
+        if(isId()) readRecipe();
+    }
+
+    private boolean isId() {
+        return isValueInBundle(Globals.BN_INT);
+    }
+
+    private void setProductsInIngredients(List<Product> products) {
+        for(Ingredient ingredient : getRecipe().getIngredients()) {
+            for(Product product : products) {
+                if(ingredient.getProductId() == product.getId()) {
+                    ingredient.setProduct(product);
+                    break;
+                }
+            }
+        }
+    }
+
+    private List<Integer> getProductIds() {
+        List<Integer> ids = new ArrayList<>();
+        for(Ingredient ingredient : getRecipe().getIngredients())
+            ids.add(ingredient.getProductId());
+        return ids;
+    }
+
+    private IngredientAdapter getIngredientAdapter() {
+        return new IngredientAdapter(getContext(), getRecipe().getIngredients());
+    }
+
+    private StepAdapter getStepAdapter() {
+        return new StepAdapter(getContext(), getRecipe().getSteps(), null);
+    }
+
+    private int getRecipeId() {
+        return getIntFromBundle();
+    }
+
+    private void setRecipeDetails(Recipe recipe, List<Ingredient> ingredients, List<Step> steps) {
+        getRecipe().setId(recipe.getId());
+        getRecipe().setName(recipe.getName());
+        getRecipe().setAuthor(recipe.getAuthor());
+        getRecipe().setServing(recipe.getServing());
+        getRecipe().setTime(recipe.getTime());
+        getRecipe().setDifficulty(recipe.getDifficulty());
+        getRecipe().setSpiciness(recipe.getSpiciness());
+        getRecipe().setCountry(recipe.getCountry());
+        getRecipe().setType(recipe.getType());
+        getRecipe().setPreference(recipe.getPreference());
+        getRecipe().setFavorite(recipe.getFavorite());
+        getRecipe().setIngredients(ingredients);
+        getRecipe().setSteps(steps);
+    }
+
+    private void setRecipeInfo() {
+        Recipe recipe = getRecipe();
+        setTv(tvName, recipe.getName());
+        setTv(tvAuthor, recipe.getAuthor());
+        setTv(tvServing, String.valueOf(recipe.getServing()));
+        setTv(tvTime, recipe.getTime());
+        setTv(tvDifficulty, recipe.getDifficulty(), R.array.tx_difficulty);
+        setTv(tvCountry, recipe.getCountry(), R.array.tx_country);
+        setTv(tvType, recipe.getType(), R.array.tx_recipe);
+        setTv(tvPreference, TypeManager.boolToInt(recipe.getPreference()), R.array.tx_preference);
+        setIvList(ivSpicinessList, recipe.getSpiciness());
+        setIv(ivCountry, recipe.getCountry(), R.array.dw_country);
+        setIv(ivType, recipe.getType(), R.array.dw_recipe);
+        setIv(ivPreference, TypeManager.boolToInt(recipe.getPreference()), R.array.dw_preference);
+        setCb(cbFavorite, recipe.getFavorite());
+    }
+
+    private void setRecentRecipe() {
+        if(SharedManager.isValueAvailable(getContext(), Shared.SR_HOME, Shared.KY_RECENT))
+            recentExistsAction();
+        else recentUnavailableAction();
+    }
+
+    private void recentExistsAction() {
+        List<Integer> recent = getRecent();
+        checkIfContains(recent);
+        checkIfFull(recent);
+        addNewRecent(recent);
+        setRecentInShared(recent);
+    }
+
+    private void recentUnavailableAction() {
+        List<Integer> recent = new ArrayList<>();
+        addNewRecent(recent);
+        setRecentInShared(recent);
+    }
+
+    private List<Integer> getRecent() {
+        return TypeManager.jsonToRecent(
+                SharedManager.getString(getContext(), Shared.SR_HOME, Shared.KY_RECENT));
+    }
+
+    private void checkIfContains(List<Integer> recent) {
+        if(recent.contains(getRecipeId())) recent.remove(getPosition(recent));
+    }
+
+    private int getPosition(List<Integer> recent) {
+        return recent.indexOf(getRecipeId());
+    }
+
+    private void checkIfFull(List<Integer> recent) {
+        if(recent.size() == Globals.RC_MAX)
+            recent.remove(recent.size() + Globals.DF_DECREMENT);
+    }
+
+    private void addNewRecent(List<Integer> recent) {
+        recent.add(Globals.DF_ZERO, getRecipeId());
+    }
+
+    private void setRecentInShared(List<Integer> recent) {
+        SharedManager.setValue(getContext(), Shared.SR_HOME, Shared.KY_RECENT,
+                TypeManager.recentToJson(recent));
+    }
+
+    private DialogInterface.OnClickListener getDialogListener() {
+        return (dialog, which) -> {
+            switch(which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    deleteRecipe();
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    break;
+            }
+        };
+    }
+
+    private void deleteRecentId() {
+        if(SharedManager.isValueAvailable(getContext(), Shared.SR_HOME, Shared.KY_RECENT)) {
+            List<Integer> recent = getRecent();
+            Integer id = getRecipe().getId();
+            recent.remove(id);
+            SharedManager.setValue(getContext(),
+                    Shared.SR_HOME, Shared.KY_RECENT, TypeManager.recentToJson(recent));
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.rp_show, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch(menuItem.getItemId()) {
+            case R.id.it_calculate:
+                setFragment(new CalculateRecipeFragment());
+                return true;
+            case R.id.it_edit:
+                setFragment(new RecipeManagePagerFragment(), true, Globals.BN_BOOL);
+                return true;
+            case R.id.it_remove:
+                showDialog(R.string.dg_rp_remove, getDialogListener());
+                return true;
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
+    }
+
+    //Read Recipe
+    private void readRecipe() {
+        PlateHandlerDatabase db = getDb(getContext());
+        int id = getIntFromBundle();
+        Single<RecipeComplete> single = db.getRecipeDAO().getCompleteRecipe(id);
+        single.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getReadRecipeObserver());
+    }
+
+    private DisposableSingleObserver<RecipeComplete> getReadRecipeObserver() {
+        return new DisposableSingleObserver<RecipeComplete>() {
+
+            @Override
+            public void onSuccess(RecipeComplete complete) {
+                setRecipeDetails(complete.recipe, complete.ingredients, complete.steps);
+                readProducts();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
+    }
+
+    //Read Products
+    private void readProducts() {
+        PlateHandlerDatabase db = getDb(getContext());
+        Single<List<Product>> single = db.getProductDAO().getProducts(getProductIds());
+        single.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getReadProductsObserver());
+    }
+
+    private DisposableSingleObserver<List<Product>> getReadProductsObserver() {
+        return new DisposableSingleObserver<List<Product>>() {
+
+            @Override
+            public void onSuccess(List<Product> products) {
+                setProductsInIngredients(products);
+                setRecipeInfo();
+                setRv(rvCategories, getManager(Globals.GL_ONE), getIngredientAdapter());
+                setRv(rvSteps, getManager(Globals.GL_ONE), getStepAdapter());
+                changeRvSize(rvCategories);
+                changeRvSize(rvSteps);
+                setRecentRecipe();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
+    }
+
+    //Update Favorite
+    private void updateFavorite(boolean checked) {
+        getCompletable(checked).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getUpdateFavoriteObserver());
+    }
+
+    private Completable getCompletable(boolean checked) {
+        return Completable.fromAction(() -> {
+            PlateHandlerDatabase db = getDb(getContext());
+            db.getRecipeDAO().updateFavorite(getRecipe().getId(), checked);
+        });
+    }
+
+    private DisposableCompletableObserver getUpdateFavoriteObserver() {
+        return new DisposableCompletableObserver() {
+
+            @Override
+            public void onComplete() {}
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
+    }
+
+    //Delete Recipe
+    private void deleteRecipe() {
+        getCompletable().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getDeleteRecipeObserver());
+    }
+
+    private Completable getCompletable() {
+        return Completable.fromAction(() -> {
+            PlateHandlerDatabase db = getDb(getContext());
+            db.getRecipeDAO().deleteRecipe(getRecipe());
+            db.getIngredientDAO().deleteIngredients(getRecipe().getIngredients());
+            db.getStepDAO().deleteSteps(getRecipe().getSteps());
+        });
+    }
+
+    private DisposableCompletableObserver getDeleteRecipeObserver() {
+        return new DisposableCompletableObserver() {
+
+            @Override
+            public void onComplete() {
+                //removeUnavailableAuthor(authors);
+                deleteRecentId();
+                recipeSuccess(R.string.sb_rp_remove);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
+    }
+
+
+
+    //Image
+    /*private void loadPhoto() {
+        Recipe recipe = RecipeDetails.getRecipe();
+        Bitmap bitmap = ImageManager.getImageFromStorage(ImageManager.getImageRecipeName(recipe.getId()));
+        if(bitmap == null) return;
+        recipe.setEncodedImage(TypeManager.bitmapToBase64String(bitmap));
+    }
+
+    private void setImagePhoto(String encodedImage) {
+        if(encodedImage == null) return;
+        ivPhoto.setVisibility(View.VISIBLE);
+        ivPhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
+    }*/
+}

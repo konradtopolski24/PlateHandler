@@ -1,96 +1,291 @@
 package com.fatiner.platehandler.fragments.export;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.adapters.FilesAdapter;
+import com.fatiner.platehandler.adapters.FileAdapter;
 import com.fatiner.platehandler.classes.ImportFile;
 import com.fatiner.platehandler.fragments.PrimaryFragment;
-import com.fatiner.platehandler.globals.DbGlobals;
-import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.globals.Db;
+import com.fatiner.platehandler.globals.Globals;
+import com.fatiner.platehandler.globals.Shared;
+import com.fatiner.platehandler.managers.SharedManager;
+import com.fatiner.platehandler.managers.TypeManager;
+import com.fatiner.platehandler.models.Ingredient;
+import com.fatiner.platehandler.models.Product;
+import com.fatiner.platehandler.models.Recipe;
+import com.fatiner.platehandler.models.Step;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.OnClick;
+import io.reactivex.Completable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableCompletableObserver;
+import io.reactivex.schedulers.Schedulers;
 
-public class ImportFragment extends PrimaryFragment {
+public class ImportFragment extends PrimaryFragment implements FileAdapter.FileListener {
 
-    @BindView(R.id.rv_files)
-    RecyclerView rvFiles;
-    @BindView(R.id.tv_empty)
-    TextView tvEmpty;
+    @BindView(R.id.rv_files) RecyclerView rvFiles;
+    @BindView(R.id.tv_empty) TextView tvEmpty;
+
+    @OnClick(R.id.iv_tt_files)
+    void clickIvTtFiles() {
+        showDialog(R.string.hd_im_file, R.string.tt_im_file);
+    }
 
     public ImportFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_import, container, false);
-        ButterKnife.bind(this, view);
-        setToolbarTitle(R.string.tb_im_database);
-        setMenuItem(MainGlobals.ID_IMPORT);
-        setRecyclerView();
-        checkIfRvEmpty(rvFiles, tvEmpty);
+        init(this, view, R.id.it_import, R.string.tb_im_database, false);
+        manageRv();
         return view;
     }
 
-    private void setRecyclerView() {
-        setRecyclerView(
-                rvFiles,
-                getLayoutManagerNoScroll(LinearLayoutManager.VERTICAL),
-                new FilesAdapter(getContext(), getImportFiles())
-        );
+    private void manageRv() {
+        setRv(rvFiles, getManager(Globals.GL_ONE), getFilesAdapter());
+        checkIfRvEmpty(rvFiles, tvEmpty);
     }
 
-    private ArrayList<ImportFile> getImportFiles() {
-        ArrayList<ImportFile> importFiles = new ArrayList<>();
-        File[] files = getContext().getExternalFilesDir(null).listFiles();
-        for(File file : files) {
-            if(file.isFile() && file.getPath().endsWith(MainGlobals.FL_XLS)) {
-                String full = file.toString();
-                String name = full.substring(full.lastIndexOf(
-                        MainGlobals.SN_SLASH) + MainGlobals.DF_INCREMENT);
-                Workbook workbook = getWorkbookFromFile(name);
-                int recipeAmount = getAmount(workbook, DbGlobals.TB_RECIPE);
-                int producteAmount = getAmount(workbook, DbGlobals.TB_PRODUCT);
-                ImportFile importFile = new ImportFile();
-                importFile.setName(name);
-                importFile.setRecipeAmount(recipeAmount);
-                importFile.setProductAmount(producteAmount);
-                importFiles.add(importFile);
-            }
-        }
+    private FileAdapter getFilesAdapter() {
+        return new FileAdapter(getContext(), getImportFiles(), this);
+    }
+
+    private List<ImportFile> getImportFiles() {
+        List<ImportFile> importFiles = new ArrayList<>();
+        File[] files = getExternalDir().listFiles();
+        if(files == null) return importFiles;
+        for(File file : files) addNewImportFile(importFiles, file);
         return importFiles;
     }
 
-    private Workbook getWorkbookFromFile(String name) {
-        Workbook workbook = new HSSFWorkbook();
-        try {
-            File file = new File(getContext().getExternalFilesDir(null), name);
-            FileInputStream inputStream = new FileInputStream(file);
-            POIFSFileSystem system = new POIFSFileSystem(inputStream);
-            workbook = new HSSFWorkbook(system);
-        } catch (Exception e) {
-
+    private void addNewImportFile(List<ImportFile> importFiles, File file) {
+        if(isFile(file)) {
+            String name = getShortName(file.toString());
+            Workbook workbook = getWorkbook(name);
+            int recipeAmount = getAmount(workbook, Db.TB_RECIPE);
+            int productAmount = getAmount(workbook, Db.TB_PRODUCT);
+            importFiles.add(getImportFile(name, recipeAmount, productAmount));
         }
-        return workbook;
+    }
+
+    private boolean isFile(File file) {
+        return file.isFile() && file.getPath().endsWith(Globals.FL_XLS);
+    }
+
+    private String getShortName(String full) {
+        return full.substring(full.lastIndexOf(Globals.SN_SLASH) + Globals.DF_INCREMENT);
+    }
+
+    private Workbook getWorkbook(String fileName) {
+        try {
+            File file = new File(getExternalDir(), fileName);
+            FileInputStream stream = new FileInputStream(file);
+            POIFSFileSystem system = new POIFSFileSystem(stream);
+            return new HSSFWorkbook(system);
+        } catch (Exception e) {
+            showShortToast(R.string.ts_file);
+            return new HSSFWorkbook();
+        }
+    }
+
+    private ImportFile getImportFile(String name, int recipeAmount, int productAmount) {
+        ImportFile importFile = new ImportFile();
+        importFile.setName(name);
+        importFile.setRecipeAmount(recipeAmount);
+        importFile.setProductAmount(productAmount);
+        return importFile;
     }
 
     private int getAmount(Workbook workbook, String tabName) {
         Sheet sheet = workbook.getSheet(tabName);
-        return sheet.getPhysicalNumberOfRows() - 1;
+        return sheet.getPhysicalNumberOfRows() + Globals.DF_DECREMENT;
+    }
+
+    private void clearShared() {
+        SharedManager.removeAll(getContext(), Shared.SR_RECIPE);
+        SharedManager.removeAll(getContext(), Shared.SR_PRODUCT);
+        SharedManager.removeAll(getContext(), Shared.SR_HOME);
+        SharedManager.removeAll(getContext(), Shared.SR_SHOPPING);
+    }
+
+    private List<Product> getProducts(Workbook workbook) {
+        List<Product> products = new ArrayList<>();
+        Iterator<Row> iterator = getIterator(workbook, Db.TB_PRODUCT);
+        while (iterator.hasNext()) {
+            Row row = iterator.next();
+            if(isRowAvailable(row)) products.add(getProduct(row));
+        }
+        return products;
+    }
+
+    private List<Recipe> getRecipes(Workbook workbook) {
+        List<Recipe> recipes = new ArrayList<>();
+        Iterator<Row> iterator = getIterator(workbook, Db.TB_RECIPE);
+        while (iterator.hasNext()) {
+            Row row = iterator.next();
+            if(isRowAvailable(row)) recipes.add(getRecipe(row));
+        }
+        return recipes;
+    }
+
+    private List<Ingredient> getIngredients(Workbook workbook) {
+        List<Ingredient> ingredients = new ArrayList<>();
+        Iterator<Row> iterator = getIterator(workbook, Db.TB_INGREDIENT);
+        while (iterator.hasNext()) {
+            Row row = iterator.next();
+            if(isRowAvailable(row)) ingredients.add(getIngredient(row));
+        }
+        return ingredients;
+    }
+
+    private List<Step> getSteps(Workbook workbook) {
+        List<Step> steps = new ArrayList<>();
+        Iterator<Row> iterator = getIterator(workbook, Db.TB_STEP);
+        while (iterator.hasNext()) {
+            Row row = iterator.next();
+            if(isRowAvailable(row)) steps.add(getStep(row));
+        }
+        return steps;
+    }
+
+    private Product getProduct(Row row) {
+        List<String> columns = Db.getProductColumns();
+        Product product = new Product();
+        product.setId(getInt(row, columns.indexOf(Db.CL_PD_ID)));
+        product.setName(getString(row, columns.indexOf(Db.CL_PD_NAME)));
+        product.setType(getInt(row, columns.indexOf(Db.CL_PD_TYPE)));
+        product.setSize(getFloat(row, columns.indexOf(Db.CL_PD_SIZE)));
+        product.setCarbohydrates(getFloat(row, columns.indexOf(Db.CL_PD_CARBOHYDRATES)));
+        product.setProteins(getFloat(row, columns.indexOf(Db.CL_PD_PROTEINS)));
+        product.setFats(getFloat(row, columns.indexOf(Db.CL_PD_FATS)));
+        return product;
+    }
+
+    private Recipe getRecipe(Row row) {
+        List<String> columns = Db.getRecipeColumns();
+        Recipe recipe = new Recipe();
+        recipe.setId(getInt(row, columns.indexOf(Db.CL_RP_ID)));
+        recipe.setName(getString(row, columns.indexOf(Db.CL_RP_NAME)));
+        recipe.setAuthor(getString(row, columns.indexOf(Db.CL_RP_AUTHOR)));
+        recipe.setServing(getInt(row, columns.indexOf(Db.CL_RP_SERVING)));
+        recipe.setTime(getString(row, columns.indexOf(Db.CL_RP_TIME)));
+        recipe.setDifficulty(getInt(row, columns.indexOf(Db.CL_RP_DIFFICULTY)));
+        recipe.setSpiciness(getInt(row, columns.indexOf(Db.CL_RP_SPICINESS)));
+        recipe.setCountry(getInt(row, columns.indexOf(Db.CL_RP_COUNTRY)));
+        recipe.setType(getInt(row, columns.indexOf(Db.CL_RP_TYPE)));
+        recipe.setPreference(getBoolean(row, columns.indexOf(Db.CL_RP_PREFERENCE)));
+        recipe.setFavorite(getBoolean(row, columns.indexOf(Db.CL_RP_FAVORITE)));
+        return recipe;
+    }
+
+    private Ingredient getIngredient(Row row) {
+        List<String> columns = Db.getIngredientColumns();
+        Ingredient ingredient = new Ingredient();
+        ingredient.setId(getInt(row, columns.indexOf(Db.CL_IG_ID)));
+        ingredient.setRecipeId(getInt(row, columns.indexOf(Db.CL_IG_RECIPE_ID)));
+        ingredient.setProductId(getInt(row, columns.indexOf(Db.CL_IG_PRODUCT_ID)));
+        ingredient.setAmount(getFloat(row, columns.indexOf(Db.CL_IG_AMOUNT)));
+        ingredient.setMeasure(getInt(row, columns.indexOf(Db.CL_IG_MEASURE)));
+        return ingredient;
+    }
+
+    private Step getStep(Row row) {
+        List<String> columns = Db.getStepColumns();
+        Step step = new Step();
+        step.setId(getInt(row, columns.indexOf(Db.CL_ST_ID)));
+        step.setRecipeId(getInt(row, columns.indexOf(Db.CL_ST_RECIPE_ID)));
+        step.setContent(getString(row, columns.indexOf(Db.CL_ST_CONTENT)));
+        return step;
+    }
+
+    private Iterator<Row> getIterator(Workbook workbook, String table) {
+        Sheet sheet = workbook.getSheet(table);
+        return sheet.rowIterator();
+    }
+
+    private boolean isRowAvailable(Row row) {
+        return row.getRowNum() != Globals.DF_ZERO;
+    }
+
+    private int getInt(Row row, int id) {
+        return (int) row.getCell(id).getNumericCellValue();
+    }
+
+    private float getFloat(Row row, int id) {
+        return Float.parseFloat(row.getCell(id).toString());
+    }
+
+    private String getString(Row row, int id) {
+        return row.getCell(id).toString();
+    }
+
+    private boolean getBoolean(Row row, int id) {
+        return TypeManager.intToBool((int) row.getCell(id).getNumericCellValue());
+    }
+
+    private void endAction() {
+        clearShared();
+        showLongToast(R.string.sb_im_add);
+        popFragment();
+    }
+
+    //Import Data
+    private void importData(Workbook workbook) {
+        getCompletable(workbook).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getImportDataObserver());
+    }
+
+    private Completable getCompletable(Workbook workbook) {
+        return Completable.fromAction(() -> {
+            PlateHandlerDatabase db = getDb(getContext());
+            db.clearAllTables();
+            db.getRecipeDAO().addRecipes(getRecipes(workbook));
+            db.getProductDAO().addProducts(getProducts(workbook));
+            db.getIngredientDAO().addIngredients(getIngredients(workbook));
+            db.getStepDAO().addSteps(getSteps(workbook));
+        });
+    }
+
+    private DisposableCompletableObserver getImportDataObserver() {
+        return new DisposableCompletableObserver() {
+
+            @Override
+            public void onComplete() {
+                endAction();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
+    }
+
+    @Override
+    public void clickFile(String name) {
+        Workbook workbook = getWorkbook(name);
+        importData(workbook);
     }
 }

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BothMatch"
+    tools:context=".fragments.product.ProductManageFragment">
+
+    <androidx.core.widget.NestedScrollView
+        style="@style/BothMatch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/WidthMatch">
+
+            <androidx.cardview.widget.CardView
+                style="@style/CvHeader"
+                android:id="@+id/cv_hd_photo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/ClData">
+
+                    <ImageView
+                        style="@style/IvTutorial"
+                        android:id="@+id/iv_tt_photo"
+                        android:contentDescription="@string/dp_tutorial"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_photo"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_photo" />
+
+                    <TextView
+                        style="@style/TvHeader"
+                        android:id="@+id/tv_photo"
+                        android:text="@string/hd_pd_photo"
+                        app:layout_constraintStart_toEndOf="@+id/iv_tt_photo"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CvData"
+                android:id="@+id/cv_photo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_hd_photo">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/ClData">
+
+                    <ImageView
+                        style="@style/IvPhoto"
+                        android:id="@+id/iv_photo"
+                        android:contentDescription="@string/dp_pd_photo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        style="@style/IbDefault"
+                        android:id="@+id/ib_add"
+                        android:src="@drawable/ic_ot_photo"
+                        android:contentDescription="@string/dp_bt_add"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_photo" />
+
+                    <ImageButton
+                        style="@style/IbDefault"
+                        android:id="@+id/ib_remove"
+                        android:src="@drawable/ic_st_remove"
+                        android:contentDescription="@string/dp_bt_remove"
+                        app:layout_constraintStart_toEndOf="@+id/ib_add"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_photo" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CvHeader"
+                android:id="@+id/cv_hd_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_photo">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/ClData">
+
+                    <ImageView
+                        style="@style/IvTutorial"
+                        android:id="@+id/iv_tt_name"
+                        android:contentDescription="@string/dp_tutorial"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_name"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_name" />
+
+                    <TextView
+                        style="@style/TvHeader"
+                        android:id="@+id/tv_name"
+                        android:text="@string/hd_pd_name"
+                        app:layout_constraintStart_toEndOf="@+id/iv_tt_name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CvData"
+                android:id="@+id/cv_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_hd_name">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/ClData">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TilDefault"
+                        android:id="@+id/til_name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/EtDefault"
+                            android:id="@+id/et_name"
+                            android:hint="@string/ct_name" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        style="@style/IvInfoProduct"
+                        android:id="@+id/iv_ct_type"
+                        android:contentDescription="@string/dp_caption"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_ct_type"
+                        app:layout_constraintTop_toBottomOf="@+id/til_name" />
+
+                    <TextView
+                        style="@style/TvInfo"
+                        android:id="@+id/tv_ct_type"
+                        android:text="@string/ct_type"
+                        app:layout_constraintStart_toEndOf="@+id/iv_ct_type"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/iv_ct_type"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_ct_type"
+                        app:layout_constraintHorizontal_weight="1" />
+
+                    <Spinner
+                        style="@style/BothWrap"
+                        android:id="@+id/sp_type"
+                        android:entries="@array/tx_product"
+                        app:layout_constraintStart_toStartOf="@+id/tv_ct_type"
+                        app:layout_constraintTop_toTopOf="@+id/iv_type"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_type" />
+
+                    <ImageView
+                        style="@style/IvInfoProduct"
+                        android:id="@+id/iv_type"
+                        android:contentDescription="@string/dp_pd_type"
+                        app:layout_constraintStart_toEndOf="@+id/sp_type"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_ct_type" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TilDefault"
+                        android:id="@+id/til_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_type">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/EtNutrients"
+                            android:id="@+id/et_size"
+                            android:hint="@string/ct_size" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CvHeader"
+                android:id="@+id/cv_hd_nutrients"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_name">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/ClData">
+
+                    <ImageView
+                        style="@style/IvTutorial"
+                        android:id="@+id/iv_tt_nutrients"
+                        android:contentDescription="@string/dp_tutorial"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_nutrients"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_nutrients" />
+
+                    <TextView
+                        style="@style/TvHeader"
+                        android:id="@+id/tv_nutrients"
+                        android:text="@string/hd_pd_nutrient"
+                        app:layout_constraintStart_toEndOf="@+id/iv_tt_nutrients"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CvFab"
+                android:id="@+id/cv_nutrients"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_hd_nutrients">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/ClData">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TilDefault"
+                        android:id="@+id/til_carbohydrates"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/EtNutrients"
+                            android:id="@+id/et_carbohydrates"
+                            android:hint="@string/ct_carbohydrates" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TilDefault"
+                        android:id="@+id/til_proteins"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_carbohydrates">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/EtNutrients"
+                            android:id="@+id/et_proteins"
+                            android:hint="@string/ct_proteins" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TilDefault"
+                        android:id="@+id/til_fats"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_proteins">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/EtNutrients"
+                            android:id="@+id/et_fats"
+                            android:hint="@string/ct_fats" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        style="@style/FabDefault"
+        android:id="@+id/fab_finished"
+        android:src="@drawable/ic_ot_finished"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

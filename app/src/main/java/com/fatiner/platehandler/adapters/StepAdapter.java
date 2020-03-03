@@ -1,12 +1,6 @@
 package com.fatiner.platehandler.adapters;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -14,54 +8,43 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.activities.MainActivity;
-import com.fatiner.platehandler.classes.Step;
-import com.fatiner.platehandler.fragments.recipe.manage.ManageStepFragment;
-import com.fatiner.platehandler.globals.MainGlobals;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.fatiner.platehandler.R;
+import com.fatiner.platehandler.globals.Format;
+import com.fatiner.platehandler.globals.Globals;
+import com.fatiner.platehandler.models.Step;
+
+import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
-public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
+public class StepAdapter extends PrimaryAdapter<StepAdapter.StepHolder> {
 
-    private Context context;
-    private ArrayList<Step> steps;
-    private boolean isShowing;
-    private OnStepListener listener;
+    private List<Step> steps;
+    private StepListener listener;
 
-    public StepAdapter(Context context, ArrayList<Step> steps, boolean isShowing, OnStepListener listener){
-        this.context = context;
+    public StepAdapter(Context context, List<Step> steps, StepListener listener) {
+        super(context);
         this.steps = steps;
-        this.isShowing = isShowing;
         this.listener = listener;
     }
 
     @NonNull
     @Override
     public StepHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        CardView layout = (CardView) inflater.inflate(
-                R.layout.layout_step,
-                parent,
-                false);
-        return new StepHolder(layout);
+        return new StepHolder(getLayout(parent, R.layout.item_step));
     }
 
     @Override
     public void onBindViewHolder(@NonNull StepHolder holder, int position) {
-        if(isShowing){
-            hideImageRemove(holder);
-            hideImgbuttEdit(holder);
-            showCbDone(holder);
-        }
-        Step step = steps.get(position);
-        setTextId(holder, position);
-        setTextInstruction(holder, step.getInstruction());
+        manageShowing(holder);
+        setStep(holder, position);
     }
 
     @Override
@@ -69,85 +52,74 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepHolder> {
         return steps.size();
     }
 
-    private void hideImageRemove(StepHolder holder){
-        holder.ivRemove.setVisibility(View.INVISIBLE);
+    private void manageShowing(StepHolder holder) {
+        if (listener == null) {
+            hideView(holder.ivRemove);
+            hideView(holder.ibEdit);
+            showView(holder.cbDone);
+        }
     }
 
-    private void hideImgbuttEdit(StepHolder holder){
-        holder.ibEdit.setVisibility(View.INVISIBLE);
+    private void setStep(StepHolder holder, int position) {
+        Step step = steps.get(position);
+        setTv(holder.tvId, getStep(position));
+        setTv(holder.tvContent, step.getContent());
     }
 
-    private void showCbDone(StepHolder holder){
-        holder.cbDone.setVisibility(View.VISIBLE);
+    private String getStep(int size) {
+        int id = size + Globals.DF_INCREMENT;
+        return String.format(Locale.ENGLISH, Format.FM_STEP, getString(R.string.ct_step), id);
     }
 
-    private void setTextId(StepHolder holder, int id){
-        int actualId = id + MainGlobals.DF_INCREMENT;
-        String text = context.getResources().getString(
-                R.string.ct_step) + MainGlobals.SN_SPACE + actualId;
-        holder.tvId.setText(text);
+    private void checkStepCompletion(StepHolder holder, boolean checked) {
+        if(checked) stepCompleted(holder);
+        else stepRemains(holder);
     }
 
-    private void setTextInstruction(StepHolder holder, String instruction){
-        holder.tvInstruction.setText(instruction);
+    private void stepCompleted(StepHolder holder) {
+        setAlpha(holder.tvId, Globals.AP_SMALL);
+        setAlpha(holder.tvContent, Globals.AP_SMALL);
+        showView(holder.tvDone);
     }
 
-    public class StepHolder extends RecyclerView.ViewHolder{
+    private void stepRemains(StepHolder holder) {
+        setAlpha(holder.tvId, Globals.AP_FULL);
+        setAlpha(holder.tvContent, Globals.AP_FULL);
+        removeView(holder.tvDone);
+    }
 
-        @BindView(R.id.tv_id)
-        TextView tvId;
-        @BindView(R.id.tv_instruction)
-        TextView tvInstruction;
-        @BindView(R.id.iv_remove)
-        ImageView ivRemove;
-        @BindView(R.id.ib_edit)
-        ImageButton ibEdit;
-        @BindView(R.id.cb_done)
-        CheckBox cbDone;
-        @BindView(R.id.tv_done)
-        TextView tvDone;
+    class StepHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.tv_id) TextView tvId;
+        @BindView(R.id.tv_content) TextView tvContent;
+        @BindView(R.id.tv_done) TextView tvDone;
+        @BindView(R.id.iv_remove) ImageView ivRemove;
+        @BindView(R.id.ib_edit) ImageButton ibEdit;
+        @BindView(R.id.cb_done) CheckBox cbDone;
 
         @OnClick(R.id.ib_edit)
-        public void onClickImgbuttEdit(){
-            ManageStepFragment fragment = new ManageStepFragment();
-            setBundle(fragment);
-            ((MainActivity) context).setFragment(fragment, true);
+        void clickIbEdit() {
+            listener.editStep(getAdapterPosition());
         }
 
         @OnClick(R.id.iv_remove)
-        public void onClickImageRemove(){
-            steps.remove(getAdapterPosition());
-            notifyItemRemoved(getAdapterPosition());
-            if (listener == null) return;
-            listener.onClickRemove();
+        void clickIvRemove() {
+            listener.removeStep(getAdapterPosition());
         }
 
         @OnCheckedChanged(R.id.cb_done)
-        public void onCheckedChangedSwFavorite(boolean checked){
-            if(checked) {
-                tvId.setAlpha(0.1f);
-                tvInstruction.setAlpha(0.1f);
-                tvDone.setVisibility(View.VISIBLE);
-            } else {
-                tvId.setAlpha(1.0f);
-                tvInstruction.setAlpha(1.0f);
-                tvDone.setVisibility(View.GONE);
-            }
+        void checkedCbDone(boolean checked) {
+            checkStepCompletion(this, checked);
         }
 
-        public StepHolder(View itemView) {
+        private StepHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-
-        private void setBundle(Fragment fragment){
-            Bundle bundle = new Bundle();
-            bundle.putInt(MainGlobals.BN_ID, getAdapterPosition());
-            fragment.setArguments(bundle);
-        }
     }
 
-    public interface OnStepListener {
-        void onClickRemove();
+    public interface StepListener {
+        void editStep(int position);
+        void removeStep(int position);
     }
 }

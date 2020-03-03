@@ -1,60 +1,59 @@
 package com.fatiner.platehandler.details;
 
-import com.fatiner.platehandler.globals.MainGlobals;
-import com.fatiner.platehandler.classes.Category;
-import com.fatiner.platehandler.classes.Ingredient;
-import com.fatiner.platehandler.classes.Recipe;
-import com.fatiner.platehandler.classes.Step;
+import com.fatiner.platehandler.globals.Globals;
+import com.fatiner.platehandler.models.Ingredient;
+import com.fatiner.platehandler.models.Recipe;
+import com.fatiner.platehandler.models.Step;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public final class RecipeDetails {
 
     private static Recipe recipe;
-    private static ArrayList<Ingredient> tempIngredients;
 
-    private RecipeDetails(){
+    private RecipeDetails() {
         resetRecipeDetails();
     }
 
-    public static void resetRecipeDetails(){
+    public static void resetRecipeDetails() {
         recipe = new Recipe();
         resetName();
         resetAuthor();
         resetServing();
         resetTime();
         resetFavorite();
-        resetCategories();
+        resetIngredients();
         resetSteps();
     }
 
-    private static void resetName(){
-        recipe.setName(MainGlobals.SN_EMPTY);
+    private static void resetName() {
+        recipe.setName(Globals.SN_EMPTY);
     }
 
-    private static void resetAuthor(){
-        recipe.setAuthor(MainGlobals.SN_EMPTY);
+    private static void resetAuthor() {
+        recipe.setAuthor(Globals.SN_EMPTY);
     }
 
-    private static void resetServing(){
-        recipe.setServing(MainGlobals.SV_MIN);
+    private static void resetServing() {
+        recipe.setServing(Globals.SV_MIN);
     }
 
-    private static void resetTime(){
-        recipe.setTime(MainGlobals.TM_DEFAULT);
+    private static void resetTime() {
+        recipe.setTime(Globals.TM_DEFAULT);
     }
 
-    private static void resetFavorite(){
+    private static void resetFavorite() {
         recipe.setFavorite(false);
     }
 
-    private static void resetCategories(){
-        ArrayList<Category> categories = new ArrayList<>();
-        recipe.setCategories(categories);
+    private static void resetIngredients() {
+        List<Ingredient> ingredients = new ArrayList<>();
+        recipe.setIngredients(ingredients);
     }
 
-    private static void resetSteps(){
-        ArrayList<Step> steps = new ArrayList<>();
+    private static void resetSteps() {
+        List<Step> steps = new ArrayList<>();
         recipe.setSteps(steps);
     }
 
@@ -62,41 +61,33 @@ public final class RecipeDetails {
         return recipe;
     }
 
-    public static boolean isRecipeCorrect(){
+    public static boolean isRecipeCorrect() {
         return isRecipeNameCorrect() && isRecipeAuthorCorrect() && isRecipeTimeCorrect()
-                && areRecipeCategoriesCorrect() && areRecipeStepsCorrect();
+                && areRecipeIngredientsCorrect() && areRecipeStepsCorrect();
     }
 
-    private static boolean isRecipeNameCorrect(){
+    private static boolean isRecipeNameCorrect() {
         String name = recipe.getName();
-        return !name.equals(MainGlobals.SN_EMPTY);
+        return !name.equals(Globals.SN_EMPTY);
     }
 
-    private static boolean isRecipeAuthorCorrect(){
+    private static boolean isRecipeAuthorCorrect() {
         String author = recipe.getAuthor();
-        return !author.equals(MainGlobals.SN_EMPTY);
+        return !author.equals(Globals.SN_EMPTY);
     }
 
-    private static boolean isRecipeTimeCorrect(){
+    private static boolean isRecipeTimeCorrect() {
         String time = recipe.getTime();
-        return !time.equals(MainGlobals.TM_DEFAULT);
+        return !time.equals(Globals.TM_DEFAULT);
     }
 
-    private static boolean areRecipeCategoriesCorrect(){
-        ArrayList<Category> categories = recipe.getCategories();
-        return !categories.isEmpty();
+    private static boolean areRecipeIngredientsCorrect() {
+        List<Ingredient> ingredients = recipe.getIngredients();
+        return !ingredients.isEmpty();
     }
-
+    
     private static boolean areRecipeStepsCorrect() {
-        ArrayList<Step> steps = recipe.getSteps();
+        List<Step> steps = recipe.getSteps();
         return !steps.isEmpty();
-    }
-
-    public static void resetTempIngredients(){
-        tempIngredients = new ArrayList<>();
-    }
-
-    public static ArrayList<Ingredient> getTempIngredients() {
-        return tempIngredients;
     }
 }

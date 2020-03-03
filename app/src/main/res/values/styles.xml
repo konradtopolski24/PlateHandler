@@ -58,6 +58,15 @@
     <style name="CvData" parent="WidthMatch">
         <item name="android:layout_marginStart">@dimen/mg_huge</item>
         <item name="android:layout_marginEnd">@dimen/mg_huge</item>
+        <item name="android:layout_marginBottom">@dimen/mg_huge</item>
+        <item name="cardCornerRadius">@dimen/rd_big</item>
+        <item name="cardElevation">@dimen/df_zero</item>
+        <item name="cardBackgroundColor">@color/tv_white</item>
+    </style>
+
+    <style name="CvFab" parent="WidthMatch">
+        <item name="android:layout_marginStart">@dimen/mg_huge</item>
+        <item name="android:layout_marginEnd">@dimen/mg_huge</item>
         <item name="android:layout_marginBottom">@dimen/mg_enormous</item>
         <item name="cardCornerRadius">@dimen/rd_big</item>
         <item name="cardElevation">@dimen/df_zero</item>
@@ -73,10 +82,8 @@
         <item name="cardBackgroundColor">@color/pr_normal</item>
     </style>
 
-    <style name="CvIngredient" parent="WidthMatch">
-        <item name="android:layout_marginTop">@dimen/mg_big</item>
-        <item name="android:layout_marginStart">@dimen/mg_big</item>
-        <item name="android:layout_marginEnd">@dimen/mg_big</item>
+    <style name="CvItem" parent="WidthMatch">
+        <item name="android:layout_margin">@dimen/mg_huge</item>
         <item name="cardCornerRadius">@dimen/rd_small</item>
         <item name="cardElevation">@dimen/df_zero</item>
     </style>
@@ -102,8 +109,17 @@
         <item name="android:layout_margin">@dimen/mg_huge</item>
     </style>
 
+    <style name="ClRv" parent="WidthMatch">
+        <item name="android:layout_marginRight">@dimen/mg_huge</item>
+        <item name="android:layout_marginLeft">@dimen/mg_huge</item>
+    </style>
+
     <style name="ClIngredient" parent="WidthMatch">
         <item name="android:background">@drawable/bg_item</item>
+    </style>
+
+    <style name="ClShopping" parent="WidthMatch">
+        <item name="android:layout_margin">@dimen/mg_small</item>
     </style>
 
     <style name="LlSide" parent="HeightZero">
@@ -114,6 +130,8 @@
     <!-- TextView -->
 
     <style name="TvHeader" parent="WidthZero">
+        <item name="android:layout_marginStart">@dimen/mg_big</item>
+        <item name="android:layout_marginEnd">@dimen/mg_big</item>
         <item name="android:textSize">@dimen/tx_big</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/tv_white</item>
@@ -199,7 +217,6 @@
     </style>
 
     <style name="TvShopping" parent="WidthZero">
-        <item name="android:layout_marginTop">@dimen/mg_medium</item>
         <item name="android:layout_marginStart">@dimen/mg_medium</item>
         <item name="android:layout_marginEnd">@dimen/mg_medium</item>
         <item name="android:textSize">@dimen/tx_big</item>
@@ -212,13 +229,19 @@
     </style>
 
     <style name="TvEmpty" parent="BothWrap">
-        <item name="android:layout_margin">@dimen/mg_big</item>
+        <item name="android:layout_margin">@dimen/mg_huge</item>
         <item name="android:textSize">@dimen/tx_huge</item>
-        <item name="android:visibility">gone</item>
     </style>
 
     <style name="TvCredits" parent="WidthZero">
         <item name="android:layout_marginBottom">@dimen/mg_big</item>
+    </style>
+
+    <style name="TvTutorial" parent="WidthZero">
+        <item name="android:layout_marginTop">@dimen/mg_big</item>
+        <item name="android:layout_marginStart">@dimen/mg_enormous</item>
+        <item name="android:layout_marginEnd">@dimen/mg_enormous</item>
+        <item name="android:textSize">@dimen/tx_medium</item>
     </style>
 
     <!-- ImageView -->
@@ -227,10 +250,18 @@
         <item name="android:src">@drawable/ic_ot_expand</item>
     </style>
 
+    <style name="IvTutorial" parent="BothWrap">
+        <item name="android:src">@drawable/ic_ot_tutorial</item>
+    </style>
+
     <style name="IvInfo" parent="BothWrap">
         <item name="android:layout_marginTop">@dimen/mg_medium</item>
         <item name="android:layout_marginStart">@dimen/mg_medium</item>
         <item name="android:layout_marginEnd">@dimen/mg_medium</item>
+    </style>
+
+    <style name="IvInfoHome" parent="IvInfo">
+        <item name="android:src">@drawable/ic_dl_home</item>
     </style>
 
     <style name="IvInfoRecipe" parent="IvInfo">
@@ -300,10 +331,8 @@
         <item name="android:layout_marginEnd">@dimen/mg_medium</item>
     </style>
 
-    <!-- RecyclerView -->
-
-    <style name="RvDefault" parent="WidthMatch">
-        <item name="android:nestedScrollingEnabled">false</item>
+    <style name="IvType" parent="BothWrap">
+        <item name="android:tint">@color/tv_white</item>
     </style>
 
     <!-- ProgressBar -->
@@ -327,11 +356,18 @@
         <item name="android:visibility">gone</item>
     </style>
 
+    <!-- BarChart -->
+    <style name="BcDefault">
+        <item name="android:layout_width">@dimen/df_zero</item>
+        <item name="android:layout_height">@dimen/ht_bc</item>
+        <item name="android:layout_marginTop">@dimen/mg_huge</item>
+    </style>
+
     <!-- PieChart -->
 
     <style name="PcDefault">
         <item name="android:layout_width">@dimen/df_zero</item>
-        <item name="android:layout_height">@dimen/ht_chart</item>
+        <item name="android:layout_height">@dimen/ht_pc</item>
         <item name="android:layout_marginTop">@dimen/mg_huge</item>
     </style>
 
@@ -443,5 +479,13 @@
     <style name="NvDefault" parent="HeighthMatch">
         <item name="android:layout_gravity">start</item>
         <item name="menu">@menu/nv_main</item>
+    </style>
+
+    <!-- Toolbar -->
+
+    <style name="TbDefault" parent="WidthMatch">
+        <item name="android:background">@color/pr_normal</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
 </resources>

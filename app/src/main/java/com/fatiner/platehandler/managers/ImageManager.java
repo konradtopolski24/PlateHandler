@@ -6,7 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Environment;
 import android.widget.ImageView;
 
-import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.globals.Globals;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,7 +27,7 @@ public class ImageManager {
         OutputStream stream = null;
         try{
             stream = new FileOutputStream(file);
-            image.compress(Bitmap.CompressFormat.PNG, MainGlobals.PH_QUALITY, stream);
+            image.compress(Bitmap.CompressFormat.PNG, Globals.PH_QUALITY, stream);
             stream.flush();
             stream.close();
         } catch (IOException e){
@@ -43,15 +43,15 @@ public class ImageManager {
 
     private static String getDirectoryPath(){
         File sdPath = Environment.getExternalStorageDirectory();
-        return sdPath.getAbsolutePath() + MainGlobals.PT_FOLDER;
+        return sdPath.getAbsolutePath() + Globals.PT_FOLDER;
     }
 
     public static String getImageProductName(int id){
-        return MainGlobals.PT_PRODUCT + id + MainGlobals.FL_PNG;
+        return Globals.PT_PRODUCT + id + Globals.FL_PNG;
     }
 
     public static String getImageRecipeName(int id){
-        return MainGlobals.PT_RECIPE + id + MainGlobals.FL_PNG;
+        return Globals.PT_RECIPE + id + Globals.FL_PNG;
     }
 
     private static String getFullPath(String imageName){

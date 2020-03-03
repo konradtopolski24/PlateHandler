@@ -3,15 +3,15 @@ package com.fatiner.platehandler.dialogs;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.globals.Globals;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,12 +49,12 @@ public class MeasureDialog extends DialogFragment {
     }
 
     private void setTvMeasures() {
-        String text = MainGlobals.SN_EMPTY;
+        String text = Globals.SN_EMPTY;
         String[] measures = getContext().getResources().getStringArray(R.array.tx_measure);
         int[] factors = getContext().getResources().getIntArray(R.array.tx_factor);
-        for(int i = MainGlobals.DF_ZERO; i < measures.length; i++) {
-            text += measures[i] + MainGlobals.SN_SPACE + MainGlobals.SN_EQUALS
-                    + MainGlobals.SN_SPACE + factors[i] + MainGlobals.SN_ENTER;
+        for(int i = Globals.DF_ZERO; i < measures.length; i++) {
+            text += measures[i] + Globals.SN_SPACE + Globals.SN_EQUALS
+                    + Globals.SN_SPACE + factors[i] + Globals.SN_ENTER;
         }
         tvMeasures.setText(text);
     }

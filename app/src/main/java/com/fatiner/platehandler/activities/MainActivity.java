@@ -1,196 +1,166 @@
 package com.fatiner.platehandler.activities;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.fragments.credits.CreditsFragment;
 import com.fatiner.platehandler.fragments.export.ExportFragment;
 import com.fatiner.platehandler.fragments.export.ImportFragment;
-import com.fatiner.platehandler.fragments.product.ChooseProductFragment;
-import com.fatiner.platehandler.fragments.main.MainFragment;
-import com.fatiner.platehandler.fragments.recipe.ChooseRecipeFragment;
-import com.fatiner.platehandler.fragments.shopping.ShowShoppingFragment;
-import com.fatiner.platehandler.globals.MainGlobals;
+import com.fatiner.platehandler.fragments.home.HomeFragment;
+import com.fatiner.platehandler.fragments.product.ProductChooseFragment;
+import com.fatiner.platehandler.fragments.recipe.RecipeChooseFragment;
+import com.fatiner.platehandler.fragments.shopping.ShoppingShowFragment;
+import com.fatiner.platehandler.globals.Globals;
+import com.google.android.material.navigation.NavigationView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.tb_main)
-    Toolbar tbMain;
-    @BindView(R.id.dl_main)
-    DrawerLayout dlMain;
-    @BindView(R.id.nv_main)
-    NavigationView nvMain;
+    @BindView(R.id.tb_main) Toolbar tbMain;
+    @BindView(R.id.dl_main) DrawerLayout dlMain;
+    @BindView(R.id.nv_main) NavigationView nvMain;
 
     public MainActivity() {}
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle state) {
+        super.onCreate(state);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        manageDrawer();
-        setFragment(new MainFragment(), false);
-        setBackStackListener();
+        setViews();
+        manageFirstFragment(state);
     }
 
-    private void manageDrawer() {
+    private void manageFirstFragment(Bundle state) {
+        if(state == null) {
+            Toast.makeText(this, getString(R.string.ts_welcome), Toast.LENGTH_SHORT).show();
+            setFragment(new HomeFragment(), false);
+        }
+    }
+
+    private void setViews() {
         setSupportActionBar(tbMain);
-        setDrawerToggle();
-        setOnItemClickListener();
+        setDl();
+        setNv();
     }
 
-    private void setDrawerToggle() {
-        ActionBarDrawerToggle drawerToggle = getDrawerToggle();
-        dlMain.addDrawerListener(drawerToggle);
-        drawerToggle.syncState();
+    private void setDl() {
+        ActionBarDrawerToggle toggle = getToggle();
+        dlMain.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
-    private ActionBarDrawerToggle getDrawerToggle() {
+    private ActionBarDrawerToggle getToggle() {
         return new ActionBarDrawerToggle (
-                this,
-                dlMain,
-                tbMain,
-                R.string.dt_opened,
-                R.string.dt_closed
-        );
+                this, dlMain, tbMain, R.string.dt_opened, R.string.dt_closed);
     }
 
-    private void setOnItemClickListener() {
-        nvMain.setNavigationItemSelectedListener(getOnItemClickListener());
+    private void setNv() {
+        nvMain.setNavigationItemSelectedListener(getItemListener());
     }
 
-    private NavigationView.OnNavigationItemSelectedListener getOnItemClickListener() {
-        return new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                onItemClick(item);
-                return true;
-            }
+    private NavigationView.OnNavigationItemSelectedListener getItemListener() {
+        return item -> {
+            onItemClick(item);
+            return true;
         };
     }
 
     private void onItemClick(MenuItem item) {
-        Fragment fragment = selectFragment(item);
-        manageFragmentReplacement(fragment);
+        Fragment fragment = getFragment(item);
+        manageNewFragment(fragment);
         closeDrawer();
     }
 
-    private Fragment selectFragment(MenuItem item) {
-        Fragment fragment = new Fragment();
-        switch(item.getItemId()){
+    private Fragment getFragment(MenuItem item) {
+        switch(item.getItemId()) {
             case R.id.it_home:
-                fragment = new MainFragment();
-                break;
+                return new HomeFragment();
             case R.id.it_recipe:
-                fragment = new ChooseRecipeFragment();
-                break;
+                return new RecipeChooseFragment();
             case R.id.it_product:
-                fragment = new ChooseProductFragment();
-                break;
+                return new ProductChooseFragment();
             case R.id.it_shopping:
-                fragment = new ShowShoppingFragment();
-                break;
+                return new ShoppingShowFragment();
             case R.id.it_export:
-                fragment = new ExportFragment();
-                break;
+                return new ExportFragment();
             case R.id.it_import:
-                fragment = new ImportFragment();
-                break;
+                return new ImportFragment();
             case R.id.it_credits:
-                fragment = new CreditsFragment();
-                break;
+                return new CreditsFragment();
+            default:
+                return null;
         }
-        return fragment;
     }
 
-    private void manageFragmentReplacement(Fragment fragment) {
-        if(isPreviousFragment(fragment)) return;
+    private void manageNewFragment(Fragment fragment) {
+        if(isFragmentTheSame(fragment)) return;
         clearBackStack();
-        setFragment(fragment, isNotMainFragment(fragment));
+        setFragment(fragment, isOtherFragment(fragment));
     }
 
-    private boolean isPreviousFragment(Fragment fragment) {
-        Fragment currentFragment = getCurrentFragment();
-        return currentFragment.getClass().equals(fragment.getClass());
+    private boolean isFragmentTheSame(Fragment fragment) {
+        return getCurrentFragment().getClass().equals(fragment.getClass());
+    }
+
+    private boolean isDrawerOpen() {
+        return dlMain.isDrawerOpen(GravityCompat.START);
     }
 
     private Fragment getCurrentFragment() {
         return getSupportFragmentManager().findFragmentById(R.id.fl_main);
     }
 
-    private void clearBackStack(){
+    private void clearBackStack() {
         FragmentManager manager = getSupportFragmentManager();
-        for(int i = MainGlobals.DF_ZERO; i < manager.getBackStackEntryCount(); i++){
-            manager.popBackStack();
-        }
+        for(int i = Globals.DF_ZERO; i < manager.getBackStackEntryCount(); i++)
+            manager.popBackStackImmediate();
     }
 
-    public void setFragment(Fragment fragment, boolean addToBackStack){
+    public void setFragment(Fragment fragment, boolean withBackStack) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_main, fragment);
-        if(addToBackStack){
-            transaction.addToBackStack(null);
-        }
+        if(withBackStack) transaction.addToBackStack(null);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         transaction.commit();
     }
 
-    private boolean isNotMainFragment(Fragment fragment){
-        if(fragment instanceof MainFragment)
-            return false;
-        else
-            return true;
+    private boolean isOtherFragment(Fragment fragment) {
+        return !(fragment instanceof HomeFragment);
     }
 
-    private void closeDrawer(){
-        dlMain.closeDrawer(nvMain);
+    private void closeDrawer() {
+        dlMain.closeDrawers();
     }
 
-    public void setMenuItem(int id){
-        nvMain.getMenu().getItem(id).setChecked(true);
-    }
-
-    private void setBackStackListener(){
-        getSupportFragmentManager().addOnBackStackChangedListener(getBackStackListener());
-    }
-
-    private FragmentManager.OnBackStackChangedListener getBackStackListener(){
-        return new FragmentManager.OnBackStackChangedListener() {
-            @Override
-            public void onBackStackChanged() {
-                //selectMenuItem(getCurrentFragment());
-            }
-        };
+    public void setMenuItem(int id) {
+        nvMain.getMenu().findItem(id).setChecked(true);
     }
 
     @Override
-    public void onBackPressed(){
-        if(dlMain.isDrawerOpen(GravityCompat.START)){
-            closeDrawer();
-        } else {
-            super.onBackPressed();
-        }
+    public void onBackPressed() {
+        if(isDrawerOpen()) closeDrawer();
+        else super.onBackPressed();
     }
 
-    public void setToolbarTitle(String title){
+    public void setTbTitle(String title) {
         tbMain.setTitle(title);
     }
 
-    public void popFragment(){
+    public void popFragment() {
         getSupportFragmentManager().popBackStackImmediate();
     }
 }
