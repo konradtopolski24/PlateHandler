@@ -11,7 +11,10 @@ public class Format {
     public static final String FM_SAVED = "%s\n%s";
     public static final String FM_UNSAVED = "%s\n%s\n%s";
     public static final String FM_FILE = "%s.%s";
+    public static final String FM_DIRECTORY = "%s/%s";
+    public static final String FM_IMAGE = "%s%d.%s";
     public static final String FM_MEASURE = "%.2f x %s";
+    public static final String FM_HINT = "%s (%s)";
 
     public static final String FM_SELECT = "SELECT * FROM %s%s%s";
     public static final String FM_ORDER = " ORDER BY %s ASC";

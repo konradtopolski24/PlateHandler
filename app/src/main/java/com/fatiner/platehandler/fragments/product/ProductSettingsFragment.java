@@ -8,7 +8,7 @@ import android.widget.Spinner;
 import android.widget.Switch;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Shared;
 import com.fatiner.platehandler.managers.SharedManager;
 

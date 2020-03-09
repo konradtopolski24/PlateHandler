@@ -18,8 +18,7 @@ import butterknife.ButterKnife;
 
 public class MeasureDialog extends DialogFragment {
 
-    @BindView(R.id.tv_measures)
-    TextView tvMeasures;
+    @BindView(R.id.tv_measures) TextView tvMeasures;
 
     @NonNull
     @Override
@@ -40,12 +39,7 @@ public class MeasureDialog extends DialogFragment {
     }
 
     private DialogInterface.OnClickListener getOnClickListener(){
-        return new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        };
+        return (dialogInterface, i) -> dialogInterface.dismiss();
     }
 
     private void setTvMeasures() {

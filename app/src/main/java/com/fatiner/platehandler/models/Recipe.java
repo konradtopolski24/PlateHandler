@@ -1,5 +1,7 @@
 package com.fatiner.platehandler.models;
 
+import android.graphics.Bitmap;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -36,13 +38,13 @@ public class Recipe {
     @ColumnInfo(name = Db.CL_RP_FAVORITE)
     private boolean favorite;
     @Ignore
+    private Bitmap photo;
+    @Ignore
     private List<Ingredient> ingredients;
     @Ignore
     private List<Step> steps;
-    @Ignore
-    private String encodedImage;
 
-    public Recipe(){}
+    public Recipe() {}
 
     public int getId() {
         return id;
@@ -132,6 +134,14 @@ public class Recipe {
         this.favorite = favorite;
     }
 
+    public Bitmap getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
+    }
+
     public List<Ingredient> getIngredients() {
         return ingredients;
     }
@@ -146,13 +156,5 @@ public class Recipe {
 
     public void setSteps(List<Step> steps) {
         this.steps = steps;
-    }
-
-    public String getEncodedImage() {
-        return encodedImage;
-    }
-
-    public void setEncodedImage(String encodedImage) {
-        this.encodedImage = encodedImage;
     }
 }

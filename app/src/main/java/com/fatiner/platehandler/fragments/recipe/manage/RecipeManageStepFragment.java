@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.StepAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.models.Step;
 
@@ -47,8 +47,7 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_recipe_manage_step, container, false);
         ButterKnife.bind(this, view);
-        hideKeyboard();
-        manageRv();
+        initAction();
         return view;
     }
 
@@ -56,18 +55,26 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
         return RecipeDetails.getRecipe().getSteps();
     }
 
-    private void manageRv() {
-        setRv(rvSteps, getManager(Globals.GL_ONE), getStepAdapter());
+    private void initAction() {
+        hideKeyboard();
+        setViews();
+    }
+
+    private void setViews() {
+        setRv(rvSteps, getManager(getColumnAmountList()), getStepAdapter());
         checkIfRvEmpty(rvSteps, tvEmpty);
     }
 
     private StepAdapter getStepAdapter() {
-        return new StepAdapter(getContext(), getSteps(),this);
+        return new StepAdapter(getContext(), getSteps(),this, false);
     }
 
     private RecyclerView.Adapter getAdapter() {
         return rvSteps.getAdapter();
     }
+
+    @Override
+    public void setDone(int id, boolean checked) {}
 
     @Override
     public void editStep(int position) {

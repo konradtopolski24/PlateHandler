@@ -33,7 +33,7 @@ public class RecipePagerAdapter extends FragmentPagerAdapter {
             case Globals.PG_STEP:
                 return new RecipeManageStepFragment();
             default:
-                return new RecipeManageInfoFragment();
+                return new Fragment();
         }
     }
 
@@ -52,7 +52,7 @@ public class RecipePagerAdapter extends FragmentPagerAdapter {
             case Globals.PG_STEP:
                 return getString(R.string.pg_step);
             default:
-                return getString(R.string.pg_info);
+                return Globals.SN_EMPTY;
         }
     }
 

@@ -2,6 +2,7 @@ package com.fatiner.platehandler.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.fatiner.platehandler.globals.Db;
@@ -16,6 +17,8 @@ public class Step {
     private int recipeId;
     @ColumnInfo(name = Db.CL_ST_CONTENT)
     private String content;
+    @ColumnInfo(name = Db.CL_ST_DONE)
+    private boolean isDone;
 
     public int getId() {
         return id;
@@ -33,12 +36,19 @@ public class Step {
         this.recipeId = recipeId;
     }
 
-
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 }

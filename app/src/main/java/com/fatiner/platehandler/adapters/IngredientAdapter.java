@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
+import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.models.Ingredient;
@@ -25,10 +26,13 @@ import butterknife.OnCheckedChanged;
 public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.IngredientHolder> {
 
     private List<Ingredient> ingredients;
+    private IngredientListener listener;
 
-    public IngredientAdapter(Context context, List<Ingredient> ingredients) {
+    public IngredientAdapter(Context context,
+                             List<Ingredient> ingredients, IngredientListener listener) {
         super(context);
         this.ingredients = ingredients;
+        this.listener = listener;
     }
 
     @NonNull
@@ -39,8 +43,7 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
 
     @Override
     public void onBindViewHolder(@NonNull IngredientHolder holder, int position) {
-        showView(holder.cbDone);
-        setIngredient(holder, position);
+        setViews(holder, position);
     }
 
     @Override
@@ -48,11 +51,13 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
         return ingredients.size();
     }
 
-    private void setIngredient(IngredientHolder holder, int position) {
+    private void setViews(IngredientHolder holder, int position) {
         Ingredient ingredient = ingredients.get(position);
         setTv(holder.tvMeasure, getMeasure(ingredient.getAmount(), ingredient.getMeasure()));
         setTv(holder.tvProduct, ingredient.getProduct().getName());
         setIv(holder.ivIcon, ingredient.getProduct().getType(), R.array.dw_product);
+        showView(holder.cbDone);
+        setCb(holder.cbDone, ingredient.isUsed());
     }
 
     private String getMeasure(float amount, int measure) {
@@ -88,14 +93,21 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
         @BindView(R.id.iv_icon) ImageView ivIcon;
         @BindView(R.id.cb_done) CheckBox cbDone;
 
+        @OnCheckedChanged(R.id.cb_done)
+        void checkedCbDone(boolean checked) {
+            Ingredient ingredient = RecipeDetails.getRecipe().getIngredients().get(getAdapterPosition());
+            ingredient.setUsed(checked);
+            checkIngredientCompletion(this, checked);
+            listener.setUsed(ingredient.getId(), checked);
+        }
+
         private IngredientHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
 
-        @OnCheckedChanged(R.id.cb_done)
-        void checkedCbDone(boolean checked) {
-            checkIngredientCompletion(this, checked);
-        }
+    public interface IngredientListener {
+        void setUsed(int id, boolean checked);
     }
 }

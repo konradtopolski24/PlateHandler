@@ -1,6 +1,5 @@
 package com.fatiner.platehandler.fragments.recipe;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,7 +18,7 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.RecipeAdapter;
 import com.fatiner.platehandler.classes.ShoppingItem;
 import com.fatiner.platehandler.details.ShoppingListDetails;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.manage.RecipeManagePagerFragment;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Globals;
@@ -56,9 +55,13 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_recipe_choose, container, false);
         init(this, view, getMenuId(), R.string.tb_rp_choose, true);
+        initAction();
+        return view;
+    }
+
+    private void initAction() {
         readRecipes();
         hideFab();
-        return view;
     }
 
     private int getMenuId() {
@@ -74,11 +77,6 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
 
     private RecipeAdapter getRecipeAdapter(List<Recipe> recipes) {
         return new RecipeAdapter(getContext(), recipes, this);
-    }
-
-    private int getColumnAmount() {
-        if(getOrientation() == Configuration.ORIENTATION_PORTRAIT) return Globals.GL_TWO;
-        else return Globals.GL_THREE;
     }
 
     private void hideFab() {
@@ -133,7 +131,7 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
 
             @Override
             public void onSuccess(List<Recipe> recipes) {
-                setRv(rvRecipes, getManager(getColumnAmount()), getRecipeAdapter(recipes));
+                setRv(rvRecipes, getManager(getColumnAmountChoose()), getRecipeAdapter(recipes));
                 checkIfRvEmpty(rvRecipes, tvEmpty);
             }
 

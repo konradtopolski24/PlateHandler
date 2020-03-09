@@ -7,7 +7,7 @@
     tools:context=".fragments.recipe.manage.RecipeManageStepFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/WidthMatch">
+        style="@style/ClFab">
 
         <androidx.cardview.widget.CardView
             style="@style/CvHeader"
@@ -23,12 +23,12 @@
                     android:id="@+id/iv_tt_add"
                     android:contentDescription="@string/dp_tutorial"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_add"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_add" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_add"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_add" />
 
                 <TextView
                     style="@style/TvHeader"
-                    android:id="@+id/tv_add"
+                    android:id="@+id/tv_hd_add"
                     android:text="@string/hd_rp_step"
                     app:layout_constraintStart_toEndOf="@+id/iv_tt_add"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -69,12 +69,12 @@
                     android:id="@+id/iv_tt_steps"
                     android:contentDescription="@string/dp_tutorial"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_steps"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_steps" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_steps"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_steps" />
 
                 <TextView
                     style="@style/TvHeader"
-                    android:id="@+id/tv_steps"
+                    android:id="@+id/tv_hd_steps"
                     android:text="@string/hd_rp_step"
                     app:layout_constraintStart_toEndOf="@+id/iv_tt_steps"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -83,11 +83,10 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            style="@style/CvFab"
+            style="@style/CvData"
             android:id="@+id/cv_steps"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_hd_steps"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/cv_hd_steps">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 style="@style/ClRv">

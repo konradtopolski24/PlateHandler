@@ -1,6 +1,8 @@
 package com.fatiner.platehandler.fragments.product;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +15,15 @@ import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.details.RecipeDetails;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
+import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Product;
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,41 +45,51 @@ public class ProductManageFragment extends PrimaryFragment {
     @BindView(R.id.et_carbohydrates) EditText etCarbohydrates;
     @BindView(R.id.et_proteins) EditText etProteins;
     @BindView(R.id.et_fats) EditText etFats;
+    @BindView(R.id.til_size) TextInputLayout tilSize;
+    @BindView(R.id.til_carbohydrates) TextInputLayout tilCarbohydrates;
+    @BindView(R.id.til_proteins) TextInputLayout tilProteins;
+    @BindView(R.id.til_fats) TextInputLayout tilFats;
     @BindView(R.id.sp_type) Spinner spType;
 
     @OnTextChanged(R.id.et_name)
     void changedEtName(CharSequence text) {
-        ProductDetails.getProduct().setName(String.valueOf(text));
+        getProduct().setName(String.valueOf(text));
+        setError(etName, R.string.er_pd_name, isNameEmpty());
     }
 
     @OnTextChanged(R.id.et_size)
     void changedEtSize(CharSequence text) {
-        ProductDetails.getProduct().setSize(getCorrectEtValue(text));
+        getProduct().setSize(getCorrectEtValue(text));
+        setNutrientsErrors();
     }
 
     @OnTextChanged(R.id.et_carbohydrates)
     void changedEtCarbohydrates(CharSequence text) {
-        ProductDetails.getProduct().setCarbohydrates(getCorrectEtValue(text));
+        getProduct().setCarbohydrates(getCorrectEtValue(text));
+        setNutrientsErrors();
     }
 
     @OnTextChanged(R.id.et_proteins)
     void changedEtProteins(CharSequence text) {
-        ProductDetails.getProduct().setProteins(getCorrectEtValue(text));
+        getProduct().setProteins(getCorrectEtValue(text));
+        setNutrientsErrors();
     }
 
     @OnTextChanged(R.id.et_fats)
     void changedEtFats(CharSequence text) {
-        ProductDetails.getProduct().setFats(getCorrectEtValue(text));
+        getProduct().setFats(getCorrectEtValue(text));
+        setNutrientsErrors();
     }
 
     @OnClick(R.id.ib_add)
     void clickIbAdd() {
-
+        selectImage();
     }
 
     @OnClick(R.id.ib_remove)
     void clickIbRemove() {
-
+        getProduct().setPhoto(null);
+        setIv(ivPhoto, getProduct().getPhoto());
     }
 
     @OnClick(R.id.fab_finished)
@@ -85,7 +101,8 @@ public class ProductManageFragment extends PrimaryFragment {
     @OnItemSelected(R.id.sp_type)
     void selectedSpType(int id) {
         setIv(ivType, id, R.array.dw_product);
-        ProductDetails.getProduct().setType(id);
+        getProduct().setType(id);
+        manageHints();
     }
 
     @OnClick(R.id.iv_tt_photo)
@@ -109,9 +126,17 @@ public class ProductManageFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_product_manage, container, false);
         init(this, view, getMenuId(), getToolbar(), false);
-        manageEtInput();
-        setProductInfo();
+        initAction();
         return view;
+    }
+
+    private Product getProduct() {
+        return ProductDetails.getProduct();
+    }
+
+    private void initAction() {
+        setEtInput();
+        setViews();
     }
 
     private int getMenuId() {
@@ -124,21 +149,23 @@ public class ProductManageFragment extends PrimaryFragment {
         else return R.string.tb_pd_add;
     }
 
-    private void manageEtInput() {
+    private void setEtInput() {
         setCorrectInput(etSize);
         setCorrectInput(etCarbohydrates);
         setCorrectInput(etProteins);
         setCorrectInput(etFats);
     }
 
-    private void setProductInfo() {
-        Product product = ProductDetails.getProduct();
+    private void setViews() {
+        Product product = getProduct();
         setEt(etName, product.getName());
         setSp(spType, product.getType());
         setEt(etSize, product.getSize());
         setEt(etCarbohydrates, product.getCarbohydrates());
         setEt(etProteins, product.getProteins());
         setEt(etFats, product.getFats());
+        manageHints();
+        setIv(ivPhoto, getProduct().getPhoto());
     }
 
     private void chooseDialog() {
@@ -160,8 +187,31 @@ public class ProductManageFragment extends PrimaryFragment {
     }
 
     private void endAction() {
-        if(ProductDetails.isProductCorrect()) chooseDialog();
-        else showShortToast(R.string.ts_product);
+        if(isIncomplete()) showShortToast(R.string.ts_product);
+        else chooseDialog();
+    }
+
+    private void setNutrientsErrors() {
+        setError(etCarbohydrates, R.string.er_pd_nutrients, isSizeSmaller());
+        setError(etProteins, R.string.er_pd_nutrients, isSizeSmaller());
+        setError(etFats, R.string.er_pd_nutrients, isSizeSmaller());
+    }
+
+    private boolean isIncomplete() {
+        return isNameEmpty() || isSizeSmaller();
+    }
+
+    private boolean isNameEmpty() {
+        return getProduct().getName().equals(Globals.SN_EMPTY);
+    }
+
+    private boolean isSizeSmaller() {
+        return getProduct().getSize() < getNutrientsSum();
+    }
+
+    private float getNutrientsSum() {
+        Product product = getProduct();
+        return product.getCarbohydrates() + product.getProteins() + product.getFats();
     }
 
     private DialogInterface.OnClickListener getDialogListener() {
@@ -184,10 +234,43 @@ public class ProductManageFragment extends PrimaryFragment {
         return isValueInBundle(Globals.BN_INT);
     }
 
+    private void manageHints() {
+        if(isMillilitres()) setHints(Globals.UT_MILLILITRE);
+        else setHints(Globals.UT_GRAM);
+    }
+
+    private void setHints(String unit) {
+        setHint(tilSize, getHint(R.string.ct_size, unit));
+        setHint(tilCarbohydrates, getHint(R.string.ct_carbohydrates, unit));
+        setHint(tilProteins, getHint(R.string.ct_proteins, unit));
+        setHint(tilFats, getHint(R.string.ct_fats, unit));
+    }
+
+    private String getHint(int id, String unit) {
+        return String.format(Locale.ENGLISH, Format.FM_HINT, getString(id), unit);
+    }
+
+    private boolean isMillilitres() {
+        return isType(R.string.ar_pd_liquid) || isType(R.string.ar_pd_sauce);
+    }
+
+    private boolean isType(int id) {
+        String[] arrayType = getStringArray(R.array.tx_product);
+        return getString(id).equals(arrayType[getProduct().getType()]);
+    }
+
+    @Override
+    public void onActivityResult(int reqCode, int resultCode, Intent data) {
+        super.onActivityResult(reqCode, resultCode, data);
+        Bitmap photo = getImageFromGallery(resultCode, data);
+        getProduct().setPhoto(photo);
+        setIv(ivPhoto, getProduct().getPhoto());
+    }
+
     //Insert Product
     private void insertProduct() {
         PlateHandlerDatabase db = getDb(getContext());
-        Single<Long> single = db.getProductDAO().addProduct(ProductDetails.getProduct());
+        Single<Long> single = db.getProductDAO().addProduct(getProduct());
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getInsertProductObserver());
@@ -199,6 +282,7 @@ public class ProductManageFragment extends PrimaryFragment {
             @Override
             public void onSuccess(Long id) {
                 setProductInIngredient(TypeManager.longToInt(id));
+                manageImageSaving(getProduct().getPhoto(), Globals.NM_PRODUCT, TypeManager.longToInt(id));
                 productSuccess(R.string.sb_pd_add);
             }
 
@@ -219,7 +303,7 @@ public class ProductManageFragment extends PrimaryFragment {
     private Completable getCompletable() {
         return Completable.fromAction(() -> {
             PlateHandlerDatabase db = getDb(getContext());
-            db.getProductDAO().updateProduct(ProductDetails.getProduct());
+            db.getProductDAO().updateProduct(getProduct());
         });
     }
 
@@ -228,6 +312,7 @@ public class ProductManageFragment extends PrimaryFragment {
 
             @Override
             public void onComplete() {
+                manageImageSaving(getProduct().getPhoto(), Globals.NM_PRODUCT, getProduct().getId());
                 productSuccess(R.string.sb_pd_edit);
             }
 
@@ -237,39 +322,4 @@ public class ProductManageFragment extends PrimaryFragment {
             }
         };
     }
-
-
-
-
-    //Image
-    /*private void setImagePhoto(String encodedImage) {
-        if(encodedImage == null) return;
-        ivPhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
-    }*/
-
-    /*private void setEncodedImageInfo(int resultCode, Intent data) {
-        String encodedImage = getEncodedImage(resultCode, data);
-        //ProductDetails.getProduct().setEncodedImage(encodedImage);
-        setImagePhoto(encodedImage);
-    }*/
-
-    /*private void manageImageSaving() {
-        if(ProductDetails.getProduct().getEncodedImage() == null) {
-            ImageManager.deleteImage(ImageManager.getImageProductName(ProductDetails.getProduct().getId()));
-        } else {
-            ImageManager.saveImage(
-                    TypeManager.base64StringToBitmap(ProductDetails.getProduct().getEncodedImage()),
-                    ImageManager.getImageProductName(ProductDetails.getProduct().getId()));
-        }
-    }*/
-
-    /*@Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
-            case Globals.PH_REQUEST:
-                setEncodedImageInfo(resultCode, data);
-                break;
-        }
-    }*/
 }

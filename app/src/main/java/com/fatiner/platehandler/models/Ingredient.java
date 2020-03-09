@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import androidx.room.Relation;
 
 import com.fatiner.platehandler.globals.Db;
 
@@ -22,10 +21,12 @@ public class Ingredient {
     private float amount;
     @ColumnInfo(name = Db.CL_IG_MEASURE)
     private int measure;
+    @ColumnInfo(name = Db.CL_IG_USED)
+    private boolean isUsed;
     @Ignore
     private Product product;
 
-    public Ingredient(){}
+    public Ingredient() {}
 
     public int getId() {
         return id;
@@ -73,5 +74,13 @@ public class Ingredient {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used) {
+        isUsed = used;
     }
 }

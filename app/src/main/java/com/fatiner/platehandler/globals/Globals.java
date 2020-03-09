@@ -19,9 +19,6 @@ public class Globals {
     public static final int GL_TWO = 2;
     public static final int GL_THREE = 3;
 
-    public static final String FL_PNG = ".png";
-    public static final String FL_XLS = "xls";
-
     public static final String BN_INT = "int";
     public static final String BN_BOOL = "bool";
     public static final String BN_HEADER = "header";
@@ -53,19 +50,24 @@ public class Globals {
     public static final float FC_KJ = 4.184f;
     public static final int FC_GRAM = 100;
 
-    public static final String PT_PRODUCT = "prod";
-    public static final String PT_RECIPE = "recp";
-    public static final String PT_FOLDER = "/phimages/";
+    public static final String NM_PRODUCT = "pd";
+    public static final String NM_RECIPE = "rp";
 
     public static final int PH_REQUEST = 100;
-    public static final int PH_COMPRESSION = 100;
-    public static final int PH_DECODE = 0;
     public static final int PH_QUALITY = 100;
+
+    public static final String DR_IMAGES = "images";
+    public static final String DR_EXPORT = "export";
+
+    public static final String FL_JPG = "jpg";
+    public static final String FL_XLS = "xls";
+
+    public static final String TP_IMAGES = "image/*";
 
     public static final String UT_KCAL = "kcal";
     public static final String UT_KJ = "kj";
     public static final String UT_GRAM = "g";
-    public static final String UT_TIMES = "x";
+    public static final String UT_MILLILITRE = "ml";
 
     public static final int NT_CARBOHYDRATES = 0;
     public static final int NT_PROTEINS = 1;

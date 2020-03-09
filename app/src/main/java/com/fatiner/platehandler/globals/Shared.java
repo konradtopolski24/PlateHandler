@@ -17,8 +17,6 @@ public class Shared {
     public static final String KY_PREFERENCE = "preference";
     public static final String KY_LIST = "list";
     public static final String KY_RECENT = "recent";
-    public static final String KY_DAY = "day";
-    public static final String KY_DATE = "date";
 
     public static final boolean DF_BOOL = false;
     public static final int DF_INT = 0;

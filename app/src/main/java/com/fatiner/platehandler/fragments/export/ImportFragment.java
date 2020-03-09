@@ -1,5 +1,6 @@
 package com.fatiner.platehandler.fragments.export;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,7 @@ import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.FileAdapter;
 import com.fatiner.platehandler.classes.ImportFile;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
@@ -58,12 +59,12 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_import, container, false);
         init(this, view, R.id.it_import, R.string.tb_im_database, false);
-        manageRv();
+        setViews();
         return view;
     }
 
-    private void manageRv() {
-        setRv(rvFiles, getManager(Globals.GL_ONE), getFilesAdapter());
+    private void setViews() {
+        setRv(rvFiles, getManager(getColumnAmountList()), getFilesAdapter());
         checkIfRvEmpty(rvFiles, tvEmpty);
     }
 
@@ -71,9 +72,14 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         return new FileAdapter(getContext(), getImportFiles(), this);
     }
 
+    private File getDir(String name) {
+        return new File(getExternalDir(), name);
+    }
+
     private List<ImportFile> getImportFiles() {
         List<ImportFile> importFiles = new ArrayList<>();
-        File[] files = getExternalDir().listFiles();
+        File directory = getDir(Globals.DR_EXPORT);
+        File[] files = directory.listFiles();
         if(files == null) return importFiles;
         for(File file : files) addNewImportFile(importFiles, file);
         return importFiles;
@@ -99,7 +105,7 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
 
     private Workbook getWorkbook(String fileName) {
         try {
-            File file = new File(getExternalDir(), fileName);
+            File file = new File(getDir(Globals.DR_EXPORT), fileName);
             FileInputStream stream = new FileInputStream(file);
             POIFSFileSystem system = new POIFSFileSystem(stream);
             return new HSSFWorkbook(system);
@@ -207,6 +213,7 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         ingredient.setProductId(getInt(row, columns.indexOf(Db.CL_IG_PRODUCT_ID)));
         ingredient.setAmount(getFloat(row, columns.indexOf(Db.CL_IG_AMOUNT)));
         ingredient.setMeasure(getInt(row, columns.indexOf(Db.CL_IG_MEASURE)));
+        ingredient.setUsed(getBoolean(row, columns.indexOf(Db.CL_IG_USED)));
         return ingredient;
     }
 
@@ -216,6 +223,7 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         step.setId(getInt(row, columns.indexOf(Db.CL_ST_ID)));
         step.setRecipeId(getInt(row, columns.indexOf(Db.CL_ST_RECIPE_ID)));
         step.setContent(getString(row, columns.indexOf(Db.CL_ST_CONTENT)));
+        step.setDone(getBoolean(row, columns.indexOf(Db.CL_ST_DONE)));
         return step;
     }
 
@@ -244,8 +252,16 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         return TypeManager.intToBool((int) row.getCell(id).getNumericCellValue());
     }
 
+    private void removeAllImages() {
+        File directory = getDir(Globals.DR_IMAGES);
+        File[] files = directory.listFiles();
+        if(files == null) return;
+        for(File file : files) removeFile(file);
+    }
+
     private void endAction() {
         clearShared();
+        removeAllImages();
         showLongToast(R.string.sb_im_add);
         popFragment();
     }
@@ -283,9 +299,20 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         };
     }
 
+    private DialogInterface.OnClickListener getDialogListener(String name) {
+        return (dialog, which) -> {
+            switch(which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    importData(getWorkbook(name));
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    break;
+            }
+        };
+    }
+
     @Override
     public void clickFile(String name) {
-        Workbook workbook = getWorkbook(name);
-        importData(workbook);
+        showDialog(R.string.dg_im_choose, getDialogListener(name));
     }
 }

@@ -21,7 +21,7 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.IngredientAdapter;
 import com.fatiner.platehandler.adapters.StepAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.manage.RecipeManagePagerFragment;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
@@ -47,18 +47,16 @@ import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class RecipeShowFragment extends PrimaryFragment {
+public class RecipeShowFragment extends PrimaryFragment implements
+        IngredientAdapter.IngredientListener, StepAdapter.StepListener {
 
     @BindView(R.id.cv_header) CardView cvHeader;
     @BindView(R.id.cv_info) CardView cvInfo;
     @BindView(R.id.cv_categories) CardView cvCategories;
     @BindView(R.id.cv_steps) CardView cvSteps;
-    @BindView(R.id.cv_hd_info) CardView cvHdInfo;
-    @BindView(R.id.cv_hd_categories) CardView cvHdCategories;
-    @BindView(R.id.cv_hd_steps) CardView cvHdSteps;
-    @BindView(R.id.iv_info) ImageView ivInfo;
-    @BindView(R.id.iv_categories) ImageView ivCategories;
-    @BindView(R.id.iv_steps) ImageView ivSteps;
+    @BindView(R.id.iv_hd_info) ImageView ivHdInfo;
+    @BindView(R.id.iv_hd_ingredients) ImageView ivHdCategories;
+    @BindView(R.id.iv_hd_steps) ImageView ivHdSteps;
     @BindViews({
             R.id.iv_spiciness0,
             R.id.iv_spiciness1,
@@ -77,22 +75,22 @@ public class RecipeShowFragment extends PrimaryFragment {
     @BindView(R.id.tv_type) TextView tvType;
     @BindView(R.id.tv_preference) TextView tvPreference;
     @BindView(R.id.cb_favorite) CheckBox cbFavorite;
-    @BindView(R.id.rv_categories) RecyclerView rvCategories;
+    @BindView(R.id.rv_ingredients) RecyclerView rvCategories;
     @BindView(R.id.rv_steps) RecyclerView rvSteps;
 
     @OnClick(R.id.cv_hd_info)
     void clickCvHdInfo() {
-        manageExpandCv(cvInfo, ivInfo);
+        manageExpandCv(cvInfo, ivHdInfo);
     }
 
-    @OnClick(R.id.cv_hd_categories)
+    @OnClick(R.id.cv_hd_ingredients)
     void clickCvHdCategories() {
-        manageExpandCv(cvCategories, ivCategories);
+        manageExpandCv(cvCategories, ivHdCategories);
     }
 
     @OnClick(R.id.cv_hd_steps)
     void clickCvHdSteps() {
-        manageExpandCv(cvSteps, ivSteps);
+        manageExpandCv(cvSteps, ivHdSteps);
     }
 
     @OnCheckedChanged(R.id.cb_favorite)
@@ -106,7 +104,7 @@ public class RecipeShowFragment extends PrimaryFragment {
         showDialog(R.string.hd_rp_info, R.string.tt_rp_info);
     }
 
-    @OnClick(R.id.iv_tt_categories)
+    @OnClick(R.id.iv_tt_ingredients)
     void clickIvTtCategories() {
         showDialog(R.string.hd_rp_ingredient, R.string.tt_rp_ingredient);
     }
@@ -122,13 +120,17 @@ public class RecipeShowFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_recipe_show, container, false);
         init(this, view, R.id.it_recipe, R.string.tb_rp_overview, true);
-        resetRecipeDetails();
-        checkId();
+        initAction();
         return view;
     }
 
     private Recipe getRecipe() {
         return RecipeDetails.getRecipe();
+    }
+
+    private void initAction() {
+        resetRecipeDetails();
+        checkId();
     }
 
     private void checkId() {
@@ -158,11 +160,11 @@ public class RecipeShowFragment extends PrimaryFragment {
     }
 
     private IngredientAdapter getIngredientAdapter() {
-        return new IngredientAdapter(getContext(), getRecipe().getIngredients());
+        return new IngredientAdapter(getContext(), getRecipe().getIngredients(), this);
     }
 
     private StepAdapter getStepAdapter() {
-        return new StepAdapter(getContext(), getRecipe().getSteps(), null);
+        return new StepAdapter(getContext(), getRecipe().getSteps(), this, true);
     }
 
     private int getRecipeId() {
@@ -183,6 +185,12 @@ public class RecipeShowFragment extends PrimaryFragment {
         getRecipe().setFavorite(recipe.getFavorite());
         getRecipe().setIngredients(ingredients);
         getRecipe().setSteps(steps);
+        getRecipe().setPhoto(getImage(Globals.NM_RECIPE, recipe.getId()));
+    }
+
+    private void setViews() {
+        setRecipeInfo();
+        manageRv();
     }
 
     private void setRecipeInfo() {
@@ -200,6 +208,14 @@ public class RecipeShowFragment extends PrimaryFragment {
         setIv(ivType, recipe.getType(), R.array.dw_recipe);
         setIv(ivPreference, TypeManager.boolToInt(recipe.getPreference()), R.array.dw_preference);
         setCb(cbFavorite, recipe.getFavorite());
+        setIv(ivPhoto, recipe.getPhoto());
+    }
+
+    private void manageRv() {
+        setRv(rvCategories, getManager(getColumnAmountList()), getIngredientAdapter());
+        setRv(rvSteps, getManager(getColumnAmountList()), getStepAdapter());
+        changeRvSize(rvCategories);
+        changeRvSize(rvSteps);
     }
 
     private void setRecentRecipe() {
@@ -335,11 +351,7 @@ public class RecipeShowFragment extends PrimaryFragment {
             @Override
             public void onSuccess(List<Product> products) {
                 setProductsInIngredients(products);
-                setRecipeInfo();
-                setRv(rvCategories, getManager(Globals.GL_ONE), getIngredientAdapter());
-                setRv(rvSteps, getManager(Globals.GL_ONE), getStepAdapter());
-                changeRvSize(rvCategories);
-                changeRvSize(rvSteps);
+                setViews();
                 setRecentRecipe();
             }
 
@@ -354,7 +366,7 @@ public class RecipeShowFragment extends PrimaryFragment {
     private void updateFavorite(boolean checked) {
         getCompletable(checked).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getUpdateFavoriteObserver());
+                .subscribe(getUpdateObserver());
     }
 
     private Completable getCompletable(boolean checked) {
@@ -364,7 +376,7 @@ public class RecipeShowFragment extends PrimaryFragment {
         });
     }
 
-    private DisposableCompletableObserver getUpdateFavoriteObserver() {
+    private DisposableCompletableObserver getUpdateObserver() {
         return new DisposableCompletableObserver() {
 
             @Override
@@ -375,6 +387,34 @@ public class RecipeShowFragment extends PrimaryFragment {
                 showShortToast(R.string.ts_database);
             }
         };
+    }
+
+    //Update Ingredient Used
+    private void updateIngredientIsUsed(int id, boolean checked) {
+        getIngredientCompletable(id, checked).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getUpdateObserver());
+    }
+
+    private Completable getIngredientCompletable(int id, boolean checked) {
+        return Completable.fromAction(() -> {
+            PlateHandlerDatabase db = getDb(getContext());
+            db.getIngredientDAO().updateIsUsed(id, checked);
+        });
+    }
+
+    //Update Step Done
+    private void updateStepIsDone(int id, boolean checked) {
+        getStepCompletable(id, checked).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getUpdateObserver());
+    }
+
+    private Completable getStepCompletable(int id, boolean checked) {
+        return Completable.fromAction(() -> {
+            PlateHandlerDatabase db = getDb(getContext());
+            db.getStepDAO().updateIsDone(id, checked);
+        });
     }
 
     //Delete Recipe
@@ -398,8 +438,8 @@ public class RecipeShowFragment extends PrimaryFragment {
 
             @Override
             public void onComplete() {
-                //removeUnavailableAuthor(authors);
                 deleteRecentId();
+                removeImage(Globals.NM_RECIPE, getRecipe().getId());
                 recipeSuccess(R.string.sb_rp_remove);
             }
 
@@ -410,19 +450,19 @@ public class RecipeShowFragment extends PrimaryFragment {
         };
     }
 
-
-
-    //Image
-    /*private void loadPhoto() {
-        Recipe recipe = RecipeDetails.getRecipe();
-        Bitmap bitmap = ImageManager.getImageFromStorage(ImageManager.getImageRecipeName(recipe.getId()));
-        if(bitmap == null) return;
-        recipe.setEncodedImage(TypeManager.bitmapToBase64String(bitmap));
+    @Override
+    public void setUsed(int id, boolean isDone) {
+        updateIngredientIsUsed(id, isDone);
     }
 
-    private void setImagePhoto(String encodedImage) {
-        if(encodedImage == null) return;
-        ivPhoto.setVisibility(View.VISIBLE);
-        ivPhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
-    }*/
+    @Override
+    public void setDone(int id, boolean isDone) {
+        updateStepIsDone(id, isDone);
+    }
+
+    @Override
+    public void editStep(int position) {}
+
+    @Override
+    public void removeStep(int position) {}
 }

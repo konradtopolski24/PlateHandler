@@ -46,17 +46,21 @@ public class IngredientAddAdapter extends PrimaryAdapter<IngredientAddAdapter.In
 
     @Override
     public void onBindViewHolder(@NonNull IngredientAddHolder holder, int position) {
+        setViews(holder, position);
+    }
+
+    @Override
+    public int getItemCount() {
+        return ingredients.size();
+    }
+
+    private void setViews(IngredientAddHolder holder, int position) {
         Ingredient ingredient = ingredients.get(position);
         setCorrectInput(holder.etAmount);
         setEt(holder.etAmount, ingredient.getAmount());
         setSp(holder.spMeasure, ingredient.getMeasure());
         setSp(holder.spProduct, getChosenProduct(ingredient.getProductId()), getAdapter());
         manageSpVisibility(holder);
-    }
-
-    @Override
-    public int getItemCount() {
-        return ingredients.size();
     }
 
     private ArrayAdapter<Product> getAdapter() {
@@ -82,7 +86,11 @@ public class IngredientAddAdapter extends PrimaryAdapter<IngredientAddAdapter.In
         return idSpin;
     }
 
-    class IngredientAddHolder extends RecyclerView.ViewHolder{
+    private boolean isAmountZero(int id) {
+        return ingredients.get(id).getAmount() == Globals.DF_ZERO;
+    }
+
+    class IngredientAddHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.et_amount) EditText etAmount;
         @BindView(R.id.sp_measure) Spinner spMeasure;
@@ -102,6 +110,7 @@ public class IngredientAddAdapter extends PrimaryAdapter<IngredientAddAdapter.In
         @OnTextChanged(R.id.et_amount)
         void changedEtAmount(CharSequence text) {
             ingredients.get(getAdapterPosition()).setAmount(getCorrectEtValue(text));
+            setError(etAmount, R.string.er_ig_amount, isAmountZero(getAdapterPosition()));
         }
 
         @OnItemSelected(R.id.sp_product)

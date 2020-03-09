@@ -7,11 +7,13 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
+import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.models.Step;
@@ -28,11 +30,13 @@ public class StepAdapter extends PrimaryAdapter<StepAdapter.StepHolder> {
 
     private List<Step> steps;
     private StepListener listener;
+    private boolean isShowing;
 
-    public StepAdapter(Context context, List<Step> steps, StepListener listener) {
+    public StepAdapter(Context context, List<Step> steps, StepListener listener, boolean isShowing) {
         super(context);
         this.steps = steps;
         this.listener = listener;
+        this.isShowing = isShowing;
     }
 
     @NonNull
@@ -43,8 +47,7 @@ public class StepAdapter extends PrimaryAdapter<StepAdapter.StepHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull StepHolder holder, int position) {
-        manageShowing(holder);
-        setStep(holder, position);
+        setViews(holder, position);
     }
 
     @Override
@@ -52,18 +55,20 @@ public class StepAdapter extends PrimaryAdapter<StepAdapter.StepHolder> {
         return steps.size();
     }
 
-    private void manageShowing(StepHolder holder) {
-        if (listener == null) {
-            hideView(holder.ivRemove);
-            hideView(holder.ibEdit);
-            showView(holder.cbDone);
-        }
-    }
-
-    private void setStep(StepHolder holder, int position) {
+    private void setViews(StepHolder holder, int position) {
         Step step = steps.get(position);
         setTv(holder.tvId, getStep(position));
         setTv(holder.tvContent, step.getContent());
+        manageShowing(holder, step);
+    }
+
+    private void manageShowing(StepHolder holder, Step step) {
+        if (isShowing) {
+            hideView(holder.ivRemove);
+            hideView(holder.ibEdit);
+            showView(holder.cbDone);
+            setCb(holder.cbDone, step.isDone());
+        }
     }
 
     private String getStep(int size) {
@@ -109,7 +114,10 @@ public class StepAdapter extends PrimaryAdapter<StepAdapter.StepHolder> {
 
         @OnCheckedChanged(R.id.cb_done)
         void checkedCbDone(boolean checked) {
+            Step step = RecipeDetails.getRecipe().getSteps().get(getAdapterPosition());
             checkStepCompletion(this, checked);
+            step.setDone(checked);
+            listener.setDone(step.getId(), checked);
         }
 
         private StepHolder(View itemView) {
@@ -119,6 +127,7 @@ public class StepAdapter extends PrimaryAdapter<StepAdapter.StepHolder> {
     }
 
     public interface StepListener {
+        void setDone(int id, boolean checked);
         void editStep(int position);
         void removeStep(int position);
     }

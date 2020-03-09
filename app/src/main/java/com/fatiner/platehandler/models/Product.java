@@ -1,5 +1,8 @@
 package com.fatiner.platehandler.models;
 
+import android.graphics.Bitmap;
+
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -25,6 +28,8 @@ public class Product {
     private float proteins;
     @ColumnInfo(name = Db.CL_PD_FATS)
     private float fats;
+    @Ignore
+    private Bitmap photo;
 
     public Product() {}
 
@@ -84,8 +89,17 @@ public class Product {
         this.fats = fats;
     }
 
+    public Bitmap getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
+    }
+
+    @NonNull
     @Override
-    public String toString(){
+    public String toString() {
         return this.name;
     }
 }

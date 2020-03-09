@@ -9,13 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.adapters.IngredientAdapter;
 import com.fatiner.platehandler.models.Ingredient;
-import com.fatiner.platehandler.models.Product;
 import com.fatiner.platehandler.dialogs.MeasureDialog;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
-import com.fatiner.platehandler.globals.Globals;
-import com.fatiner.platehandler.managers.CalculateManager;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 
 import java.util.ArrayList;
 

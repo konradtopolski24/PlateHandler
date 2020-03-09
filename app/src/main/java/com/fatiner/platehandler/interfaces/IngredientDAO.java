@@ -30,9 +30,12 @@ public interface IngredientDAO {
     @Query("SELECT * FROM " + Db.TB_INGREDIENT + " WHERE " + Db.CL_IG_RECIPE_ID + "==:id")
     Single<List<IngredientComplete>> getCompleteIngredients(int id);
 
-    @Query("SELECT * FROM " + Db.TB_INGREDIENT + " WHERE " + Db.CL_IG_RECIPE_ID + "==:id")
-    Single<List<Ingredient>> getIngredients(int id);
-
     @Query("SELECT * FROM " + Db.TB_INGREDIENT)
     Single<List<Ingredient>> getAllIngredients();
+
+    @Query("SELECT COUNT( " + Db.CL_IG_ID + ") FROM " + Db.TB_INGREDIENT + " WHERE " + Db.CL_IG_PRODUCT_ID + "==:id")
+    Single<Integer> getRowCount(int id);
+
+    @Query("UPDATE " + Db.TB_INGREDIENT + " SET " + Db.CL_IG_USED + " = :isUsed WHERE " + Db.CL_IG_ID + "==:id")
+    void updateIsUsed(int id, boolean isUsed);
 }

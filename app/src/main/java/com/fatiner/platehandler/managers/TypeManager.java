@@ -90,37 +90,4 @@ public class TypeManager {
     public static int longToInt(Long value) {
         return value.intValue();
     }
-
-    //Image
-    public static String bitmapToBase64String(Bitmap bitmap) {
-        return Base64.encodeToString(bitmapToByteArray(bitmap), Base64.DEFAULT);
-    }
-
-    public static Bitmap base64StringToBitmap(String base64String) {
-        if(base64String == null) return null;
-        byte[] byteArray = Base64.decode(base64String, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(byteArray,
-                Globals.PH_DECODE, byteArray.length);
-    }
-
-    public static String uriImageToBase64String(Context context, Uri uri) {
-        try{
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
-            return Base64.encodeToString(bitmapToByteArray(bitmap), Base64.DEFAULT);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private static byte[] bitmapToByteArray(Bitmap bitmap) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, Globals.PH_COMPRESSION, stream);
-        return stream.toByteArray();
-    }
-
-    public static String[] arrayListToArray(ArrayList<String> arrayList) {
-        String[] array = new String[arrayList.size()];
-        return arrayList.toArray(array);
-    }
 }

@@ -12,7 +12,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            style="@style/WidthMatch">
+            style="@style/ClFab">
 
             <androidx.cardview.widget.CardView
                 style="@style/CvHeader"
@@ -28,12 +28,12 @@
                         android:id="@+id/iv_tt_name"
                         android:contentDescription="@string/dp_tutorial"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tv_name"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_name" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_hd_name"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_hd_name" />
 
                     <TextView
                         style="@style/TvHeader"
-                        android:id="@+id/tv_name"
+                        android:id="@+id/tv_hd_name"
                         android:text="@string/hd_ex_name"
                         app:layout_constraintStart_toEndOf="@+id/iv_tt_name"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -79,24 +79,24 @@
                         android:id="@+id/iv_tt_info"
                         android:contentDescription="@string/dp_tutorial"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tv_info"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_info" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_hd_info"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_hd_info" />
 
                     <TextView
                         style="@style/TvHeader"
-                        android:id="@+id/tv_info"
+                        android:id="@+id/tv_hd_info"
                         android:text="@string/hd_ex_info"
                         app:layout_constraintStart_toEndOf="@+id/iv_tt_info"
-                        app:layout_constraintEnd_toStartOf="@+id/iv_info"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_hd_info"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         style="@style/IvHeader"
-                        android:id="@+id/iv_info"
+                        android:id="@+id/iv_hd_info"
                         android:contentDescription="@string/dp_expand"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tv_info"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_info" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_hd_info"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_hd_info" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 

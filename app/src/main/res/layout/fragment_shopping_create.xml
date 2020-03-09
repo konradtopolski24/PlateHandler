@@ -12,7 +12,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            style="@style/WidthMatch">
+            style="@style/ClFab">
 
             <androidx.cardview.widget.CardView
                 style="@style/CvHeader"
@@ -28,12 +28,12 @@
                         android:id="@+id/iv_tt_add"
                         android:contentDescription="@string/dp_tutorial"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tv_add"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_add" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_hd_add"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_hd_add" />
 
                     <TextView
                         style="@style/TvHeader"
-                        android:id="@+id/tv_add"
+                        android:id="@+id/tv_hd_add"
                         android:text="@string/hd_sh_item"
                         app:layout_constraintStart_toEndOf="@+id/iv_tt_add"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -84,12 +84,12 @@
                         android:id="@+id/iv_tt_list"
                         android:contentDescription="@string/dp_tutorial"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tv_list"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_list" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_hd_list"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_hd_list" />
 
                     <TextView
                         style="@style/TvHeader"
-                        android:id="@+id/tv_list"
+                        android:id="@+id/tv_hd_list"
                         android:text="@string/hd_sh_list"
                         app:layout_constraintStart_toEndOf="@+id/iv_tt_list"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -98,11 +98,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                style="@style/CvFab"
+                style="@style/CvData"
                 android:id="@+id/cv_list"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cv_hd_list"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/cv_hd_list">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     style="@style/ClRv">

@@ -46,6 +46,7 @@ public class Db {
     public static final String CL_IG_PRODUCT_ID = "PRODUCT_ID";
     public static final String CL_IG_AMOUNT = "AMOUNT";
     public static final String CL_IG_MEASURE = "MEASURE";
+    public static final String CL_IG_USED = "USED";
 
     public static List<String> getIngredientColumns() { 
         List<String> columns = new ArrayList<>();
@@ -54,6 +55,7 @@ public class Db {
         columns.add(CL_IG_PRODUCT_ID);
         columns.add(CL_IG_AMOUNT);
         columns.add(CL_IG_MEASURE);
+        columns.add(CL_IG_USED);
         return columns;
     }
 
@@ -63,12 +65,14 @@ public class Db {
     public static final String CL_ST_ID = "ID";
     public static final String CL_ST_RECIPE_ID = "RECIPE_ID";
     public static final String CL_ST_CONTENT = "CONTENT";
+    public static final String CL_ST_DONE = "DONE";
 
     public static List<String> getStepColumns() { 
         List<String> columns = new ArrayList<>();
         columns.add(CL_ST_ID);
         columns.add(CL_ST_RECIPE_ID);
         columns.add(CL_ST_CONTENT);
+        columns.add(CL_ST_DONE);
         return columns;
     }
 

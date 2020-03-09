@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="tx_difficulty">
-        <item>Easy</item>
-        <item>Medium</item>
-        <item>Hard</item>
+        <item>@string/ar_df_easy</item>
+        <item>@string/ar_df_medium</item>
+        <item>@string/ar_df_hard</item>
     </string-array>
 
     <string-array name="tx_spiciness">
-        <item>Mild</item>
-        <item>Medium</item>
-        <item>Hot</item>
-        <item>Extra Hot</item>
+        <item>@string/ar_sp_mild</item>
+        <item>@string/ar_sp_medium</item>
+        <item>@string/ar_sp_hot</item>
+        <item>@string/ar_sp_extra</item>
     </string-array>
 
     <string-array name="tx_preference">
-        <item>Vegetarian</item>
-        <item>Meat</item>
+        <item>@string/ar_pf_vegetarian</item>
+        <item>@string/ar_pf_meat</item>
     </string-array>
 
     <string-array name="tx_country">
-        <item>American</item>
-        <item>Austrian</item>
-        <item>Brazilian</item>
-        <item>British</item>
-        <item>Bulgarian</item>
-        <item>Chinese</item>
-        <item>Croatian</item>
-        <item>Czech</item>
-        <item>French</item>
-        <item>Georgian</item>
-        <item>German</item>
-        <item>Greek</item>
-        <item>Indian</item>
-        <item>Italian</item>
-        <item>Japanese</item>
-        <item>Mexican</item>
-        <item>Moroccan</item>
-        <item>Polish</item>
-        <item>Portuguese</item>
-        <item>Russian</item>
-        <item>South Korean</item>
-        <item>Spanish</item>
-        <item>Thai</item>
-        <item>Turkish</item>
-        <item>Ukrainian</item>
-        <item>Vietnamese</item>
-        <item>Other</item>
+        <item>@string/ar_ct_american</item>
+        <item>@string/ar_ct_austrian</item>
+        <item>@string/ar_ct_brazilian</item>
+        <item>@string/ar_ct_british</item>
+        <item>@string/ar_ct_bulgarian</item>
+        <item>@string/ar_ct_chinese</item>
+        <item>@string/ar_ct_croatian</item>
+        <item>@string/ar_ct_czech</item>
+        <item>@string/ar_ct_french</item>
+        <item>@string/ar_ct_georgian</item>
+        <item>@string/ar_ct_german</item>
+        <item>@string/ar_ct_greek</item>
+        <item>@string/ar_ct_indian</item>
+        <item>@string/ar_ct_italian</item>
+        <item>@string/ar_ct_japanese</item>
+        <item>@string/ar_ct_mexican</item>
+        <item>@string/ar_ct_moroccan</item>
+        <item>@string/ar_ct_polish</item>
+        <item>@string/ar_ct_portuguese</item>
+        <item>@string/ar_ct_russian</item>
+        <item>@string/ar_ct_south_korean</item>
+        <item>@string/ar_ct_spanish</item>
+        <item>@string/ar_ct_thai</item>
+        <item>@string/ar_ct_turkish</item>
+        <item>@string/ar_ct_ukrainian</item>
+        <item>@string/ar_ct_vietnamese</item>
+        <item>@string/ar_ct_other</item>
     </string-array>
 
     <string-array name="tx_measure">
@@ -77,34 +77,34 @@
     </integer-array>
 
     <string-array name="tx_recipe">
-        <item>Breakfast</item>
-        <item>Appetiser</item>
-        <item>Drink</item>
-        <item>Soup</item>
-        <item>Dinner</item>
-        <item>Salad</item>
-        <item>Sauce</item>
-        <item>Spice</item>
-        <item>Dessert</item>
-        <item>Other</item>
+        <item>@string/ar_rp_breakfast</item>
+        <item>@string/ar_rp_appetiser</item>
+        <item>@string/ar_rp_drink</item>
+        <item>@string/ar_rp_soup</item>
+        <item>@string/ar_rp_dinner</item>
+        <item>@string/ar_rp_salad</item>
+        <item>@string/ar_rp_sauce</item>
+        <item>@string/ar_rp_spice</item>
+        <item>@string/ar_rp_dessert</item>
+        <item>@string/ar_rp_other</item>
     </string-array>
 
     <string-array name="tx_product">
-        <item>Grain</item>
-        <item>Bread</item>
-        <item>Dairy</item>
-        <item>Fat</item>
-        <item>Egg</item>
-        <item>Vegetable</item>
-        <item>Fruit</item>
-        <item>Meat</item>
-        <item>Fish</item>
-        <item>Seafood</item>
-        <item>Pasta</item>
-        <item>Spice</item>
-        <item>Liquid</item>
-        <item>Sauce</item>
-        <item>Other</item>
+        <item>@string/ar_pd_grain</item>
+        <item>@string/ar_pd_bread</item>
+        <item>@string/ar_pd_dairy</item>
+        <item>@string/ar_pd_fat</item>
+        <item>@string/ar_pd_egg</item>
+        <item>@string/ar_pd_vegetable</item>
+        <item>@string/ar_pd_fruit</item>
+        <item>@string/ar_pd_meat</item>
+        <item>@string/ar_pd_fish</item>
+        <item>@string/ar_pd_seafood</item>
+        <item>@string/ar_pd_pasta</item>
+        <item>@string/ar_pd_spice</item>
+        <item>@string/ar_pd_liquid</item>
+        <item>@string/ar_pd_sauce</item>
+        <item>@string/ar_pd_other</item>
     </string-array>
 
     <integer-array name="dw_recipe">
@@ -117,7 +117,7 @@
         <item>@drawable/ic_rp_sauce</item>
         <item>@drawable/ic_rp_spice</item>
         <item>@drawable/ic_rp_dessert</item>
-        <item>@drawable/ic_rp_dessert</item>
+        <item>@drawable/ic_ot_other</item>
     </integer-array>
 
     <integer-array name="dw_product">
@@ -135,7 +135,7 @@
         <item>@drawable/ic_pd_spice</item>
         <item>@drawable/ic_pd_liquid</item>
         <item>@drawable/ic_pd_sauce</item>
-        <item>@drawable/ic_pd_liquid</item>
+        <item>@drawable/ic_ot_other</item>
     </integer-array>
 
     <integer-array name="dw_preference">
@@ -170,6 +170,6 @@
         <item>@drawable/ic_ct_turkish</item>
         <item>@drawable/ic_ct_ukrainian</item>
         <item>@drawable/ic_ct_vietnamese</item>
-        <item>@drawable/ic_ct_polish</item>
+        <item>@drawable/ic_ot_other</item>
     </string-array>
 </resources>

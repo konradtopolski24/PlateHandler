@@ -40,15 +40,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(state);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        setViews();
-        manageFirstFragment(state);
+        initAction(state);
     }
 
-    private void manageFirstFragment(Bundle state) {
+    private void initAction(Bundle state) {
+        setViews();
+        appStartAction(state);
+    }
+
+    private void appStartAction(Bundle state) {
         if(state == null) {
-            Toast.makeText(this, getString(R.string.ts_welcome), Toast.LENGTH_SHORT).show();
-            setFragment(new HomeFragment(), false);
+            greetUser();
+            setFirstFragment();
         }
+    }
+
+    private void setFirstFragment() {
+        setFragment(new HomeFragment(), false);
+    }
+
+    private void greetUser() {
+        Toast.makeText(this, getString(R.string.ts_welcome), Toast.LENGTH_SHORT).show();
     }
 
     private void setViews() {
@@ -158,9 +170,5 @@ public class MainActivity extends AppCompatActivity {
 
     public void setTbTitle(String title) {
         tbMain.setTitle(title);
-    }
-
-    public void popFragment() {
-        getSupportFragmentManager().popBackStackImmediate();
     }
 }

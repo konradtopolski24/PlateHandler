@@ -13,10 +13,14 @@ public final class RecipeDetails {
     private static Recipe recipe;
 
     private RecipeDetails() {
-        resetRecipeDetails();
+        resetDetails();
     }
 
-    public static void resetRecipeDetails() {
+    public static Recipe getRecipe() {
+        return recipe;
+    }
+
+    public static void resetDetails() {
         recipe = new Recipe();
         resetName();
         resetAuthor();
@@ -55,39 +59,5 @@ public final class RecipeDetails {
     private static void resetSteps() {
         List<Step> steps = new ArrayList<>();
         recipe.setSteps(steps);
-    }
-
-    public static Recipe getRecipe() {
-        return recipe;
-    }
-
-    public static boolean isRecipeCorrect() {
-        return isRecipeNameCorrect() && isRecipeAuthorCorrect() && isRecipeTimeCorrect()
-                && areRecipeIngredientsCorrect() && areRecipeStepsCorrect();
-    }
-
-    private static boolean isRecipeNameCorrect() {
-        String name = recipe.getName();
-        return !name.equals(Globals.SN_EMPTY);
-    }
-
-    private static boolean isRecipeAuthorCorrect() {
-        String author = recipe.getAuthor();
-        return !author.equals(Globals.SN_EMPTY);
-    }
-
-    private static boolean isRecipeTimeCorrect() {
-        String time = recipe.getTime();
-        return !time.equals(Globals.TM_DEFAULT);
-    }
-
-    private static boolean areRecipeIngredientsCorrect() {
-        List<Ingredient> ingredients = recipe.getIngredients();
-        return !ingredients.isEmpty();
-    }
-    
-    private static boolean areRecipeStepsCorrect() {
-        List<Step> steps = recipe.getSteps();
-        return !steps.isEmpty();
     }
 }

@@ -33,16 +33,20 @@ public class LibraryAdapter extends PrimaryAdapter<LibraryAdapter.LibraryHolder>
 
     @Override
     public void onBindViewHolder(@NonNull LibraryHolder holder, int position) {
-        Library library = libraries.get(position);
-        setTv(holder.tvName, library.getName());
-        setTv(holder.tvAuthor, library.getAuthor());
-        setTv(holder.tvVersion, library.getVersion());
-        setTv(holder.tvLicense, library.getLicense());
+        setViews(holder, position);
     }
 
     @Override
     public int getItemCount() {
         return libraries.size();
+    }
+
+    private void setViews(LibraryHolder holder, int position) {
+        Library library = libraries.get(position);
+        setTv(holder.tvName, library.getName());
+        setTv(holder.tvAuthor, library.getAuthor());
+        setTv(holder.tvVersion, library.getVersion());
+        setTv(holder.tvLicense, library.getLicense());
     }
 
     static class LibraryHolder extends RecyclerView.ViewHolder{

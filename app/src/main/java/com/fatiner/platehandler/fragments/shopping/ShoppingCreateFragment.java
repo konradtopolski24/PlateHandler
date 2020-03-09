@@ -13,7 +13,7 @@ import com.fatiner.platehandler.adapters.ShoppingAddAdapter;
 import com.fatiner.platehandler.classes.ShoppingItem;
 import com.fatiner.platehandler.classes.ShoppingList;
 import com.fatiner.platehandler.details.ShoppingListDetails;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.RecipeChooseFragment;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
@@ -23,6 +23,7 @@ import com.fatiner.platehandler.managers.TypeManager;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -63,7 +64,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_shopping_create, container, false);
         init(this, view, R.id.it_shopping, R.string.tb_sh_add, false);
-        startAction();
+        initAction();
         return view;
     }
 
@@ -71,7 +72,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
         return ShoppingListDetails.getShoppingList();
     }
 
-    private void startAction() {
+    private void initAction() {
         manageRv();
         addFirstItem();
     }
@@ -114,9 +115,26 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
     }
 
     private void endAction() {
-        if(ShoppingListDetails.isShoppingListCorrect())
-            showDialog(R.string.dg_sh_add, getDialogListener());
-        else showShortToast(R.string.ts_item);
+        if(isIncomplete()) showShortToast(R.string.ts_shopping);
+        else showDialog(R.string.dg_sh_add, getDialogListener());
+    }
+
+    private boolean isIncomplete() {
+        return isAmountZero() || isNameEmpty();
+    }
+
+    private boolean isAmountZero() {
+        List<ShoppingItem> items = getShoppingList().getShoppingItems();
+        for(ShoppingItem item : items)
+            if(item.getAmount() == Globals.DF_ZERO) return true;
+        return false;
+    }
+
+    private boolean isNameEmpty() {
+        List<ShoppingItem> items = getShoppingList().getShoppingItems();
+        for(ShoppingItem item : items)
+            if(item.getName().isEmpty()) return true;
+        return false;
     }
 
     private DialogInterface.OnClickListener getDialogListener() {
@@ -137,7 +155,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
     public void removeItem(int position) {
         ArrayList<ShoppingItem> items = getShoppingList().getShoppingItems();
         if(items.size() == Globals.DF_INCREMENT) {
-            showShortToast(R.string.ts_shopping);
+            showShortToast(R.string.ts_item);
         } else {
             items.remove(position);
             getAdapter().notifyItemRemoved(position);

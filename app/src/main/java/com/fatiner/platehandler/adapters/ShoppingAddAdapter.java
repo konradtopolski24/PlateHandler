@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.ShoppingItem;
+import com.fatiner.platehandler.globals.Globals;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,8 @@ public class ShoppingAddAdapter extends PrimaryAdapter<ShoppingAddAdapter.Shoppi
     private ArrayList<ShoppingItem> shoppingItems;
     private ShoppingAddListener listener;
 
-    public ShoppingAddAdapter(Context context, ArrayList<ShoppingItem> shoppingItems, ShoppingAddListener listener) {
+    public ShoppingAddAdapter(Context context,
+                              ArrayList<ShoppingItem> shoppingItems, ShoppingAddListener listener) {
         super(context);
         this.shoppingItems = shoppingItems;
         this.listener = listener;
@@ -39,11 +41,7 @@ public class ShoppingAddAdapter extends PrimaryAdapter<ShoppingAddAdapter.Shoppi
 
     @Override
     public void onBindViewHolder(@NonNull ShoppingAddHolder holder, int position) {
-        ShoppingItem item = shoppingItems.get(position);
-        setCorrectInput(holder.etAmount);
-        setEt(holder.etAmount, item.getAmount());
-        setSp(holder.spMeasure, item.getMeasure());
-        setEt(holder.etName, item.getName());
+        setViews(holder, position);
     }
 
     @Override
@@ -51,8 +49,24 @@ public class ShoppingAddAdapter extends PrimaryAdapter<ShoppingAddAdapter.Shoppi
         return shoppingItems.size();
     }
 
+    private void setViews(ShoppingAddHolder holder, int position) {
+        ShoppingItem item = shoppingItems.get(position);
+        setCorrectInput(holder.etAmount);
+        setEt(holder.etAmount, item.getAmount());
+        setSp(holder.spMeasure, item.getMeasure());
+        setEt(holder.etName, item.getName());
+    }
+
     private ShoppingItem getShoppingItem(int position) {
         return shoppingItems.get(position);
+    }
+
+    private boolean isAmountZero(int id) {
+        return shoppingItems.get(id).getAmount() == Globals.DF_ZERO;
+    }
+
+    private boolean isNameEmpty(int id) {
+        return shoppingItems.get(id).getName().isEmpty();
     }
 
     class ShoppingAddHolder extends RecyclerView.ViewHolder {
@@ -69,12 +83,13 @@ public class ShoppingAddAdapter extends PrimaryAdapter<ShoppingAddAdapter.Shoppi
         @OnTextChanged(R.id.et_amount)
         void changedEtAmount(CharSequence text) {
             getShoppingItem(getAdapterPosition()).setAmount(getCorrectEtValue(text));
+            setError(etAmount, R.string.er_sh_amount, isAmountZero(getAdapterPosition()));
         }
 
         @OnTextChanged(R.id.et_name)
         void changedEtName(CharSequence text) {
-            String name = String.valueOf(text);
-            getShoppingItem(getAdapterPosition()).setName(name);
+            getShoppingItem(getAdapterPosition()).setName(String.valueOf(text));
+            setError(etName, R.string.er_sh_name, isNameEmpty(getAdapterPosition()));
         }
 
         @OnItemSelected(R.id.sp_measure)

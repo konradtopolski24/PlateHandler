@@ -4,7 +4,6 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Transaction;
 
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.models.Step;
@@ -27,4 +26,7 @@ public interface StepDAO {
 
     @Query("SELECT * FROM " + Db.TB_STEP)
     Single<List<Step>> getAllSteps();
+
+    @Query("UPDATE " + Db.TB_STEP + " SET " + Db.CL_ST_DONE + " = :isDone WHERE " + Db.CL_ST_ID + "==:id")
+    void updateIsDone(int id, boolean isDone);
 }

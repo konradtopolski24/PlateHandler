@@ -15,7 +15,7 @@ import com.fatiner.platehandler.adapters.ShoppingAdapter;
 import com.fatiner.platehandler.classes.ShoppingItem;
 import com.fatiner.platehandler.classes.ShoppingList;
 import com.fatiner.platehandler.details.ShoppingListDetails;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
@@ -36,28 +36,28 @@ public class ShoppingShowFragment extends PrimaryFragment implements ShoppingAda
     @BindView(R.id.rv_shopping) RecyclerView rvShopping;
     @BindView(R.id.cv_info) CardView cvInfo;
     @BindView(R.id.cv_list) CardView cvList;
-    @BindView(R.id.iv_info) ImageView ivInfo;
-    @BindView(R.id.iv_list) ImageView ivList;
+    @BindView(R.id.iv_hd_info) ImageView ivHdInfo;
+    @BindView(R.id.iv_hd_list) ImageView ivHdList;
 
     @OnClick(R.id.bt_create)
-    void onClickBtCreate() {
+    void clickBtCreate() {
         resetShoppingListDetails();
         setFragment(new ShoppingCreateFragment());
     }
 
     @OnClick(R.id.rv_shopping)
-    void onClickRvShopping() {
+    void clickRvShopping() {
         checkState();
     }
 
     @OnClick(R.id.cv_hd_info)
-    void onClickFbAdd() {
-        manageExpandCv(cvInfo, ivInfo);
+    void clickCvHdInfo() {
+        manageExpandCv(cvInfo, ivHdInfo);
     }
 
     @OnClick(R.id.cv_hd_list)
-    void onClickFaAdd() {
-        manageExpandCv(cvList, ivList);
+    void clickCvHdList() {
+        manageExpandCv(cvList, ivHdList);
     }
 
     @OnClick(R.id.iv_tt_info)
@@ -76,7 +76,7 @@ public class ShoppingShowFragment extends PrimaryFragment implements ShoppingAda
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_shopping_show, container, false);
         init(this, view, R.id.it_shopping, R.string.tb_sh_list, false);
-        startAction();
+        initAction();
         return view;
     }
 
@@ -84,23 +84,27 @@ public class ShoppingShowFragment extends PrimaryFragment implements ShoppingAda
         return ShoppingListDetails.getShoppingList();
     }
 
-    private void startAction() {
+    private void initAction() {
         resetShoppingListDetails();
-        chooseSharedListAction();
-        manageRv();
+        checkShared();
+        setViews();
     }
 
-    private void chooseSharedListAction() {
-        if(isSharedList()) listExistsAction();
-        else listEmptyAction();
+    private void checkShared() {
+        if(isSharedList()) setShoppingDetails();
     }
 
     private boolean isSharedList() {
         return SharedManager.isValueAvailable(getContext(), Shared.SR_SHOPPING, Shared.KY_LIST);
     }
 
+    private void setViews() {
+        if(getShoppingList().getShoppingItems().isEmpty()) listEmptyAction();
+        else listExistsAction();
+        manageRv();
+    }
+
     private void listExistsAction() {
-        setShoppingDetails();
         setTv(tvDate, getShoppingList().getDate());
         checkState();
     }

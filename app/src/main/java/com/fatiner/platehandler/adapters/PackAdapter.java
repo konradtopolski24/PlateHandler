@@ -33,16 +33,20 @@ public class PackAdapter extends PrimaryAdapter<PackAdapter.PackHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PackHolder holder, int position) {
-        Pack pack = packs.get(position);
-        setTv(holder.tvName, pack.getName());
-        setTv(holder.tvAttribution, pack.getAttribution());
-        setTv(holder.tvLicense, pack.getLicense());
-        setTv(holder.tvAmount, pack.getAmount());
+        setViews(holder, position);
     }
 
     @Override
     public int getItemCount() {
         return packs.size();
+    }
+
+    private void setViews(PackHolder holder, int position) {
+        Pack pack = packs.get(position);
+        setTv(holder.tvName, pack.getName());
+        setTv(holder.tvAttribution, pack.getAttribution());
+        setTv(holder.tvLicense, pack.getLicense());
+        setTv(holder.tvAmount, pack.getAmount());
     }
 
     static class PackHolder extends RecyclerView.ViewHolder{

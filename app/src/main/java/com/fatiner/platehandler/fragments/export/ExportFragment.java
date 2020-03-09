@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
@@ -36,6 +36,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
@@ -47,11 +48,16 @@ public class ExportFragment extends PrimaryFragment {
     @BindView(R.id.tv_saved) TextView tvSaved;
     @BindView(R.id.tv_unsaved) TextView tvUnsaved;
     @BindView(R.id.cv_info) CardView cvInfo;
-    @BindView(R.id.iv_info) ImageView ivInfo;
+    @BindView(R.id.iv_hd_info) ImageView ivHdInfo;
+
+    @OnTextChanged(R.id.et_export)
+    void changedEtExport() {
+        setError(etExport, R.string.er_ex_name, isNameEmpty());
+    }
 
     @OnClick(R.id.cv_hd_info)
     void clickCvHdInfo() {
-        manageExpandCv(cvInfo, ivInfo);
+        manageExpandCv(cvInfo, ivHdInfo);
     }
 
     @OnClick(R.id.fab_export)
@@ -76,13 +82,14 @@ public class ExportFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_export, container, false);
         init(this, view, R.id.it_export, R.string.tb_ex_database, false);
-        manageViews();
+        setViews();
         return view;
     }
 
-    private void manageViews() {
+    private void setViews() {
         setTv(tvSaved, getSavedFeatures());
         setTv(tvUnsaved, getUnsavedFeatures());
+        setError(etExport, R.string.er_ex_name, isNameEmpty());
     }
 
     private String getSavedFeatures() {
@@ -94,13 +101,17 @@ public class ExportFragment extends PrimaryFragment {
     private String getUnsavedFeatures() {
         return String.format(Locale.ENGLISH, Format.FM_UNSAVED,
                 getString(R.string.nv_shopping),
-                getString(R.string.hd_hm_summary),
+                getString(R.string.hd_hm_recent),
                 getString(R.string.hd_hm_recent));
     }
 
     private void chooseEndAction() {
-        if(isEtEmpty(etExport)) showShortToast(R.string.ts_export);
+        if(isNameEmpty()) showShortToast(R.string.ts_export);
         else showDialog(R.string.dg_ex_add, getDialogListener());
+    }
+
+    private boolean isNameEmpty() {
+        return etExport.getText().toString().isEmpty();
     }
 
     private DialogInterface.OnClickListener getDialogListener() {
@@ -173,6 +184,7 @@ public class ExportFragment extends PrimaryFragment {
             createCell(row, columns.indexOf(Db.CL_IG_PRODUCT_ID), ingredient.getProductId());
             createCell(row, columns.indexOf(Db.CL_IG_AMOUNT), ingredient.getAmount());
             createCell(row, columns.indexOf(Db.CL_IG_MEASURE), ingredient.getMeasure());
+            createCell(row, columns.indexOf(Db.CL_IG_USED), ingredient.isUsed());
             id++;
         }
     }
@@ -186,6 +198,7 @@ public class ExportFragment extends PrimaryFragment {
             createCell(row, columns.indexOf(Db.CL_ST_ID), step.getId());
             createCell(row, columns.indexOf(Db.CL_ST_RECIPE_ID), step.getRecipeId());
             createCell(row, columns.indexOf(Db.CL_ST_CONTENT), step.getContent());
+            createCell(row, columns.indexOf(Db.CL_ST_DONE), step.isDone());
             id++;
         }
     }
@@ -208,7 +221,7 @@ public class ExportFragment extends PrimaryFragment {
     }
 
     private void saveWorkbookFile(HSSFWorkbook workbook) {
-        File file = new File(getExternalDir(), getXlsName(etExport.getText().toString()));
+        File file = getFile(getXlsName(etExport.getText().toString()), Globals.DR_EXPORT);
         try {
             FileOutputStream output = new FileOutputStream(file);
             workbook.write(output);
@@ -313,6 +326,7 @@ public class ExportFragment extends PrimaryFragment {
             @Override
             public void onSuccess(List<Step> steps) {
                 createStepSheet(workbook, steps);
+                createDirectory(Globals.DR_EXPORT);
                 saveWorkbookFile(workbook);
                 showShortSnack(R.string.sb_ex_add);
                 popFragment();

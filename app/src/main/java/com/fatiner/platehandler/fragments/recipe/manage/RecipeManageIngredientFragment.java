@@ -12,7 +12,7 @@ import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.IngredientAddAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.product.ProductManageFragment;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Globals;
@@ -33,7 +33,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RecipeManageIngredientFragment extends PrimaryFragment implements IngredientAddAdapter.IngredientAddListener {
 
-    @BindView(R.id.rv_categories) RecyclerView rvCategories;
+    @BindView(R.id.rv_ingredients) RecyclerView rvIngredients;
 
     @OnClick(R.id.bt_add)
     void clickBtAdd() {
@@ -45,8 +45,8 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements I
         showDialog(R.string.hd_rp_add, R.string.tt_rp_add);
     }
 
-    @OnClick(R.id.iv_tt_categories)
-    void clickIvTtCategories() {
+    @OnClick(R.id.iv_tt_ingredients)
+    void clickIvTtIngredients() {
         showDialog(R.string.hd_rp_category, R.string.tt_rp_category);
     }
 
@@ -56,13 +56,17 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements I
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_recipe_manage_ingredient, container, false);
         ButterKnife.bind(this, view);
-        hideKeyboard();
-        readProducts();
+        initAction();
         return view;
     }
 
     private List<Ingredient> getIngredients() {
         return RecipeDetails.getRecipe().getIngredients();
+    }
+
+    private void initAction() {
+        hideKeyboard();
+        readProducts();
     }
 
     private void startAction(List<Product> products) {
@@ -71,8 +75,8 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements I
     }
 
     private void manageRv(List<Product> products) {
-        setRv(rvCategories, getManager(Globals.GL_ONE), getIngredientAddAdapter(products));
-        changeRvSize(rvCategories);
+        setRv(rvIngredients, getManager(Globals.GL_ONE), getIngredientAddAdapter(products));
+        changeRvSize(rvIngredients);
     }
 
     private IngredientAddAdapter getIngredientAddAdapter(List<Product> products) {
@@ -92,11 +96,11 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements I
         Ingredient ingredient = new Ingredient();
         ingredients.add(ingredient);
         getAdapter().notifyItemInserted(ingredients.size() + Globals.DF_DECREMENT);
-        changeRvSize(rvCategories);
+        changeRvSize(rvIngredients);
     }
 
     private RecyclerView.Adapter getAdapter() {
-        return rvCategories.getAdapter();
+        return rvIngredients.getAdapter();
     }
 
     private SimpleSQLiteQuery getProductsQuery() {
@@ -138,11 +142,11 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements I
     public void removeIngredient(int position) {
         List<Ingredient> ingredients = getIngredients();
         if(ingredients.size() == Globals.DF_INCREMENT) {
-            showShortToast(R.string.ts_shopping);
+            showShortToast(R.string.ts_item);
         } else {
             ingredients.remove(position);
             getAdapter().notifyItemRemoved(position);
-            changeRvSize(rvCategories);
+            changeRvSize(rvIngredients);
         }
     }
 }

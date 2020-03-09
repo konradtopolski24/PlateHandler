@@ -1,12 +1,12 @@
 package com.fatiner.platehandler.fragments.credits;
 
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,9 +16,8 @@ import com.fatiner.platehandler.adapters.LibraryAdapter;
 import com.fatiner.platehandler.adapters.PackAdapter;
 import com.fatiner.platehandler.classes.Library;
 import com.fatiner.platehandler.classes.Pack;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Credits;
-import com.fatiner.platehandler.globals.Globals;
 
 import java.util.ArrayList;
 
@@ -29,19 +28,32 @@ public class CreditsFragment extends PrimaryFragment {
 
     @BindView(R.id.rv_libraries) RecyclerView rvLibraries;
     @BindView(R.id.rv_icons) RecyclerView rvIcons;
+    @BindView(R.id.cv_author) CardView cvAuthor;
     @BindView(R.id.cv_libraries) CardView cvLibraries;
     @BindView(R.id.cv_icons) CardView cvIcons;
-    @BindView(R.id.iv_libraries) ImageView ivLibraries;
-    @BindView(R.id.iv_icons) ImageView ivIcons;
+    @BindView(R.id.iv_hd_author) ImageView ivHdAuthor;
+    @BindView(R.id.iv_hd_libraries) ImageView ivHdLibraries;
+    @BindView(R.id.iv_hd_icons) ImageView ivHdIcons;
+    @BindView(R.id.tv_developer) TextView tvDeveloper;
+
+    @OnClick(R.id.cv_hd_author)
+    void clickCvHdAuthor() {
+        manageExpandCv(cvAuthor, ivHdAuthor);
+    }
 
     @OnClick(R.id.cv_hd_libraries)
     void clickCvHdLibraries() {
-        manageExpandCv(cvLibraries, ivLibraries);
+        manageExpandCv(cvLibraries, ivHdLibraries);
     }
 
     @OnClick(R.id.cv_hd_icons)
     void clickCvHdIcons() {
-        manageExpandCv(cvIcons, ivIcons);
+        manageExpandCv(cvIcons, ivHdIcons);
+    }
+
+    @OnClick(R.id.iv_tt_author)
+    void clickIvTtAuthor() {
+        showDialog(R.string.hd_cd_author, R.string.tt_cd_author);
     }
 
     @OnClick(R.id.iv_tt_libraries)
@@ -60,20 +72,16 @@ public class CreditsFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_credits, container, false);
         init(this, view, R.id.it_credits, R.string.tb_cd_show, false);
-        setCreditsInfo();
+        setViews();
         return view;
     }
 
-    private void setCreditsInfo() {
-        setRv(rvLibraries, getManager(getColumnAmount()), getLibraryAdapter());
-        setRv(rvIcons, getManager(getColumnAmount()), getPackAdapter());
+    private void setViews() {
+        setTv(tvDeveloper, Credits.DL_NAME);
+        setRv(rvLibraries, getManager(getColumnAmountList()), getLibraryAdapter());
+        setRv(rvIcons, getManager(getColumnAmountList()), getPackAdapter());
         changeRvSize(rvLibraries);
         changeRvSize(rvIcons);
-    }
-
-    private int getColumnAmount() {
-        if(getOrientation() == Configuration.ORIENTATION_PORTRAIT) return Globals.GL_ONE;
-        else return Globals.GL_TWO;
     }
 
     private LibraryAdapter getLibraryAdapter() {
@@ -146,6 +154,11 @@ public class CreditsFragment extends PrimaryFragment {
                 Credits.IP_IF_ATTRIBUTION,
                 Credits.IP_IF_LICENSE,
                 Credits.IP_IF_AMOUNT));
+        packs.add(getPack(
+                Credits.IP_SP_NAME,
+                Credits.IP_SP_ATTRIBUTION,
+                Credits.IP_SP_LICENSE,
+                Credits.IP_SP_AMOUNT));
         packs.add(getPack(
                 Credits.IP_MD_NAME,
                 Credits.IP_MD_ATTRIBUTION,

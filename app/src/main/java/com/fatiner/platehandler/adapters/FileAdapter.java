@@ -12,7 +12,6 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.classes.ImportFile;
 import com.fatiner.platehandler.globals.Format;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,15 +38,19 @@ public class FileAdapter extends PrimaryAdapter<FileAdapter.FilesHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FilesHolder holder, int position) {
-        ImportFile file = files.get(position);
-        setTv(holder.tvName, file.getName());
-        setTv(holder.tvRecipe, getText(R.string.nv_recipe, file.getRecipeAmount()));
-        setTv(holder.tvProduct, getText(R.string.nv_product, file.getProductAmount()));
+        setViews(holder, position);
     }
 
     @Override
     public int getItemCount() {
         return files.size();
+    }
+
+    private void setViews(FilesHolder holder, int position) {
+        ImportFile file = files.get(position);
+        setTv(holder.tvName, file.getName());
+        setTv(holder.tvRecipe, getText(R.string.nv_recipe, file.getRecipeAmount()));
+        setTv(holder.tvProduct, getText(R.string.nv_product, file.getProductAmount()));
     }
 
     private String getText(int idText, int amount) {

@@ -1,6 +1,8 @@
 package com.fatiner.platehandler.fragments.recipe.manage;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +16,7 @@ import android.widget.TextView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.RecipeDetails;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.models.Recipe;
@@ -55,11 +57,13 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
     @OnTextChanged(R.id.et_name)
     void changedEtName(CharSequence text) {
         getRecipe().setName(String.valueOf(text));
+        setError(etName, R.string.er_rp_name, isNameEmpty());
     }
 
     @OnTextChanged(R.id.et_author)
     void changedEtAuthor(CharSequence text) {
         getRecipe().setAuthor(String.valueOf(text));
+        setError(etAuthor, R.string.er_rp_author, isAuthorEmpty());
     }
 
     @OnTextChanged(R.id.tv_serving)
@@ -70,6 +74,7 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
     @OnTextChanged(R.id.tv_time)
     void changedTvTime(CharSequence text) {
         getRecipe().setTime(String.valueOf(text));
+        setError(tvTime, isTimeZero());
     }
 
     @OnItemSelected(R.id.sp_country)
@@ -106,12 +111,13 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
 
     @OnClick(R.id.ib_add) 
     void clickIbAdd() {
-
+        selectImage();
     }
 
     @OnClick(R.id.ib_remove)
     void clickIbRemove() {
-
+        getRecipe().setPhoto(null);
+        setIv(ivPhoto, getRecipe().getPhoto());
     }
 
     @OnClick(R.id.iv_tt_photo)
@@ -135,14 +141,18 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_recipe_manage_info, container, false);
         ButterKnife.bind(this, view);
-        hideKeyboard();
-        initSb();
-        setRecipeInfo();
+        initAction();
         return view;
     }
 
     private Recipe getRecipe() {
         return RecipeDetails.getRecipe();
+    }
+
+    private void initAction() {
+        hideKeyboard();
+        initSb();
+        setRecipeInfo();
     }
 
     private void initSb() {
@@ -163,6 +173,7 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
         setSp(spCountry, recipe.getCountry());
         setSp(spType, recipe.getType());
         setRb(rbMeat, recipe.getPreference());
+        setIv(ivPhoto, recipe.getPhoto());
     }
 
     private SeekBar.OnSeekBarChangeListener getSbListener(final boolean isDifficulty) {
@@ -222,31 +233,23 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
                 times.get(Globals.TM_MINUTES), true).show();
     }
 
-
-
-
-
-
-
-    //Image
-    /*private void setImagePhoto(String encodedImage) {
-        if(encodedImage == null) return;
-        ivPhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
+    private boolean isNameEmpty() {
+        return getRecipe().getName().equals(Globals.SN_EMPTY);
     }
 
-    private void setEncodedImageInfo(int resultCode, Intent data) {
-        String encodedImage = getEncodedImage(resultCode, data);
-        RecipeDetails.getRecipe().setEncodedImage(encodedImage);
-        setImagePhoto(encodedImage);
+    private boolean isAuthorEmpty() {
+        return getRecipe().getAuthor().equals(Globals.SN_EMPTY);
+    }
+
+    private boolean isTimeZero() {
+        return getRecipe().getTime().equals(Globals.TM_DEFAULT);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
-            case Globals.PH_REQUEST:
-                setEncodedImageInfo(resultCode, data);
-                break;
-        }
-    }*/
+    public void onActivityResult(int reqCode, int resultCode, Intent data) {
+        super.onActivityResult(reqCode, resultCode, data);
+        Bitmap photo = getImageFromGallery(resultCode, data);
+        getRecipe().setPhoto(photo);
+        setIv(ivPhoto, getRecipe().getPhoto());
+    }
 }

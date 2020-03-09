@@ -1,4 +1,4 @@
-package com.fatiner.platehandler.fragments;
+package com.fatiner.platehandler.fragments.primary;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -6,10 +6,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.view.animation.Animation;
@@ -31,7 +33,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
@@ -54,11 +55,17 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import butterknife.ButterKnife;
+
+import static android.app.Activity.RESULT_OK;
 
 public class PrimaryFragment extends Fragment {
 
@@ -107,21 +114,25 @@ public class PrimaryFragment extends Fragment {
 
     protected void setTv(TextView tv, String text) {
         tv.setText(text);
+        tv.setSelected(true);
     }
 
     protected void setTv(TextView tv, int id) {
         String text = getString(id);
         tv.setText(text);
+        tv.setSelected(true);
     }
 
     protected void setTv(TextView tv, float value, String unit) {
         String text = String.format(Locale.ENGLISH, "%.2f %s", value, unit);
         tv.setText(text);
+        tv.setSelected(true);
     }
 
     protected void setTv(TextView tv, int id, int idArray) {
         String[] array = getStringArray(idArray);
         tv.setText(array[id]);
+        tv.setSelected(true);
     }
 
     protected void setCb(CheckBox cb, boolean isChecked) {
@@ -284,15 +295,15 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected void resetRecipeDetails() {
-        RecipeDetails.resetRecipeDetails();
+        RecipeDetails.resetDetails();
     }
 
     protected void resetProductDetails() {
-        ProductDetails.resetProductDetails();
+        ProductDetails.resetDetails();
     }
 
     protected void resetShoppingListDetails() {
-        ShoppingListDetails.resetShoppingListDetails();
+        ShoppingListDetails.resetDetails();
     }
 
     protected void popFragment() {
@@ -303,17 +314,14 @@ public class PrimaryFragment extends Fragment {
         return new GridLayoutManager(getContext(), amount);
     }
 
-    protected LinearLayoutManager getLinearManager() {
-        return new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+    protected int getColumnAmountList() {
+        if(getOrientation() == Configuration.ORIENTATION_PORTRAIT) return Globals.GL_ONE;
+        else return Globals.GL_TWO;
     }
 
-    protected LinearLayoutManager getLinearManagerxD() {
-        return new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false) {
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        };
+    protected int getColumnAmountChoose() {
+        if(getOrientation() == Configuration.ORIENTATION_PORTRAIT) return Globals.GL_TWO;
+        else return Globals.GL_THREE;
     }
 
     protected int getOrientation() {
@@ -375,21 +383,6 @@ public class PrimaryFragment extends Fragment {
         if(isAuthorNotAvailable(authors)) {
             SharedManager.removeValue(getContext(), Shared.SR_RECIPE, Shared.KY_AUTHOR);
         }
-    }
-
-    protected void selectPhoto() {
-        Intent intent = new Intent(
-                Intent.ACTION_PICK,
-                MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(intent, Globals.PH_REQUEST);
-    }
-
-    protected String getEncodedImage(int resultCode, Intent data) {
-        if(resultCode == getActivity().RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            return TypeManager.uriImageToBase64String(getContext(), uri);
-        }
-        return null;
     }
 
     protected void showShortToast(int id) {
@@ -517,11 +510,106 @@ public class PrimaryFragment extends Fragment {
         return et.getText().toString().isEmpty();
     }
 
+
+
+    protected void setError(EditText et, int id, boolean isError) {
+        if(isError) et.setError(getString(id));
+        else et.setError(null);
+    }
+
+    protected void setError(TextView tv, boolean isError) {
+        if(isError) tv.setError(Globals.SN_EMPTY);
+        else tv.setError(null);
+    }
+
+
+
+
+
+
+
+
     protected File getExternalDir() {
         return getContext().getExternalFilesDir(null);
     }
 
+    protected void createDirectory(String name) {
+        File directory = new File(getExternalDir(), name);
+        if (directory.exists()) return;
+        if(directory.mkdirs()) showShortToast(R.string.ts_directory);
+    }
+
+    protected File getFile(String name, String directory) {
+        return new File(String.format(Locale.ENGLISH,
+                Format.FM_DIRECTORY, getExternalDir(), directory), name);
+    }
+
+    protected File getImageFile(String name, int id) {
+        String fullName = String.format(Locale.ENGLISH, Format.FM_IMAGE, name, id, Globals.FL_JPG);
+        return getFile(fullName, Globals.DR_IMAGES);
+    }
+
+    protected void saveImage(Bitmap image, String name, int id) {
+        try {
+            File file = getImageFile(name, id);
+            FileOutputStream stream = new FileOutputStream(file);
+            image.compress(Bitmap.CompressFormat.JPEG, Globals.PH_QUALITY, stream);
+            stream.flush();
+            stream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void removeImage(String name, int id) {
+        File file = getImageFile(name, id);
+        removeFile(file);
+    }
+
+    protected void removeFile(File file) {
+        file.delete();
+    }
+
     protected String getXlsName(String name) {
         return String.format(Locale.ENGLISH, Format.FM_FILE, name, Globals.FL_XLS);
+    }
+
+    protected void setIv(ImageView iv, Bitmap bitmap) {
+        iv.setImageBitmap(bitmap);
+        if(bitmap == null) iv.setVisibility(View.GONE);
+        else iv.setVisibility(View.VISIBLE);
+    }
+
+    protected Bitmap getImage(String name, int id) {
+        try {
+            File file = getImageFile(name, id);
+            return BitmapFactory.decodeStream(new FileInputStream(file));
+        } catch (FileNotFoundException e) {
+            return null;
+        }
+    }
+
+    protected void selectImage() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(Globals.TP_IMAGES);
+        startActivityForResult(intent, Globals.PH_REQUEST);
+    }
+
+    protected Bitmap getImageFromGallery(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            try {
+                Uri uri = data.getData();
+                InputStream stream = getContext().getContentResolver().openInputStream(uri);
+                return BitmapFactory.decodeStream(stream);
+            } catch (FileNotFoundException e) {
+                return null;
+            }
+        } else return null;
+    }
+
+    protected void manageImageSaving(Bitmap image, String name, int id) {
+        createDirectory(Globals.DR_IMAGES);
+        if(image == null) removeImage(name, id);
+        else saveImage(image, name, id);
     }
 }

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.RecipeAdapter;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.RecipeShowFragment;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
@@ -22,6 +22,9 @@ import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.models.Recipe;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -37,20 +40,20 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
     @BindView(R.id.rv_recent) RecyclerView rvRecent;
     @BindView(R.id.cv_summary) CardView cvSummary;
     @BindView(R.id.cv_recent) CardView cvRecent;
-    @BindView(R.id.iv_summary) ImageView ivSummary;
-    @BindView(R.id.iv_recent) ImageView ivRecent;
+    @BindView(R.id.iv_hd_summary) ImageView ivHdSummary;
+    @BindView(R.id.iv_hd_recent) ImageView ivHdRecent;
     @BindView(R.id.tv_recipe) TextView tvRecipe;
     @BindView(R.id.tv_product) TextView tvProduct;
     @BindView(R.id.tv_empty) TextView tvEmpty;
 
     @OnClick(R.id.cv_hd_summary)
     void clickCvHdSummary() {
-        manageExpandCv(cvSummary, ivSummary);
+        manageExpandCv(cvSummary, ivHdSummary);
     }
 
     @OnClick(R.id.cv_hd_recent)
     void clickCvHdRecent() {
-        manageExpandCv(cvRecent, ivRecent);
+        manageExpandCv(cvRecent, ivHdRecent);
     }
 
     @OnClick(R.id.iv_tt_summary)
@@ -69,10 +72,14 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         init(this, view, R.id.it_home, R.string.tb_hm_welcome, false);
+        initAction();
+        return view;
+    }
+
+    private void initAction() {
         readRecipeAmount();
         readProductAmount();
         setRecent();
-        return view;
     }
 
     private void setRecent() {
@@ -93,6 +100,14 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
         return String.format(Locale.ENGLISH, Format.FM_AMOUNT, getString(id), amount);
     }
 
+    private List<Recipe> getSortedRecent(List<Recipe> recipes) {
+        List<Recipe> sortedRecipes = new ArrayList<>();
+        for(Integer recent : getRecent()) {
+            for(Recipe recipe : recipes) if(recent == recipe.getId()) sortedRecipes.add(recipe);
+        }
+        return sortedRecipes;
+    }
+
     //Read Recent
     private void readRecent() {
         PlateHandlerDatabase db = getDb(getContext());
@@ -107,7 +122,8 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
 
             @Override
             public void onSuccess(List<Recipe> recipes) {
-                setRv(rvRecent, getManager(Globals.GL_TWO), getRecipeAdapter(recipes));
+                List<Recipe> sortRecipes = getSortedRecent(recipes);
+                setRv(rvRecent, getManager(getColumnAmountChoose()), getRecipeAdapter(sortRecipes));
                 changeRvSize(rvRecent);
                 checkIfRvEmpty(rvRecent, tvEmpty);
             }

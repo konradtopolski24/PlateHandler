@@ -7,7 +7,7 @@ public class ShoppingList {
     private String date;
     private ArrayList<ShoppingItem> shoppingItems;
 
-    public ShoppingList(){}
+    public ShoppingList() {}
 
     public String getDate() {
         return date;

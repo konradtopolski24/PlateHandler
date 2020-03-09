@@ -7,7 +7,7 @@
     tools:context=".fragments.recipe.RecipeShowFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/WidthMatch">
+        style="@style/ClMain">
 
         <androidx.cardview.widget.CardView
             style="@style/CvHeader"
@@ -63,24 +63,24 @@
                     android:id="@+id/iv_tt_info"
                     android:contentDescription="@string/dp_tutorial"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_info"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_info" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_info"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_info" />
 
                 <TextView
                     style="@style/TvHeader"
-                    android:id="@+id/tv_info"
+                    android:id="@+id/tv_hd_info"
                     android:text="@string/hd_rp_info"
                     app:layout_constraintStart_toEndOf="@+id/iv_tt_info"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_info"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_hd_info"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     style="@style/IvHeader"
-                    android:id="@+id/iv_info"
+                    android:id="@+id/iv_hd_info"
                     android:contentDescription="@string/dp_expand"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_info"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_info" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_info"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_info" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -132,14 +132,14 @@
                     app:layout_constraintHorizontal_weight="1" />
 
                 <TextView
-                    style="@style/WidthZero"
+                    style="@style/TvPrimary"
                     android:id="@+id/tv_serving"
                     app:layout_constraintStart_toStartOf="@+id/tv_ct_serving"
                     app:layout_constraintEnd_toEndOf="@+id/tv_ct_serving"
                     app:layout_constraintTop_toBottomOf="@+id/tv_ct_serving" />
 
                 <TextView
-                    style="@style/WidthZero"
+                    style="@style/TvPrimary"
                     android:id="@+id/tv_time"
                     app:layout_constraintStart_toStartOf="@+id/tv_ct_time"
                     app:layout_constraintEnd_toEndOf="@+id/tv_ct_time"
@@ -190,7 +190,7 @@
                     app:layout_constraintHorizontal_weight="1" />
 
                 <TextView
-                    style="@style/WidthZero"
+                    style="@style/TvPrimary"
                     android:id="@+id/tv_difficulty"
                     app:layout_constraintStart_toStartOf="@+id/tv_ct_difficulty"
                     app:layout_constraintEnd_toEndOf="@+id/tv_ct_difficulty"
@@ -268,37 +268,37 @@
                     app:layout_constraintBottom_toBottomOf="@+id/iv_ct_type"
                     app:layout_constraintHorizontal_weight="1" />
 
-                <TextView
-                    style="@style/BothWrap"
-                    android:id="@+id/tv_country"
+                <ImageView
+                    style="@style/IvInfo"
+                    android:id="@+id/iv_country"
+                    android:contentDescription="@string/dp_rp_country"
                     app:layout_constraintStart_toStartOf="@+id/tv_ct_country"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_country"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_country"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_ct_country" />
+
+                <TextView
+                    style="@style/TvPrimary"
+                    android:id="@+id/tv_country"
+                    app:layout_constraintStart_toEndOf="@+id/iv_country"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_ct_country"
                     app:layout_constraintTop_toTopOf="@+id/iv_country"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_country" />
 
                 <ImageView
-                    style="@style/IvStretch"
-                    android:id="@+id/iv_country"
-                    android:contentDescription="@string/dp_rp_country"
-                    app:layout_constraintStart_toEndOf="@+id/tv_country"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_ct_country"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_ct_country" />
-
-                <TextView
-                    style="@style/BothWrap"
-                    android:id="@+id/tv_type"
-                    app:layout_constraintStart_toStartOf="@+id/tv_ct_type"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_type"
-                    app:layout_constraintTop_toTopOf="@+id/iv_type"
-                    app:layout_constraintBottom_toBottomOf="@+id/iv_type" />
-
-                <ImageView
-                    style="@style/IvStretch"
+                    style="@style/IvInfo"
                     android:id="@+id/iv_type"
                     android:contentDescription="@string/dp_rp_type"
-                    app:layout_constraintStart_toEndOf="@+id/tv_type"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_ct_type"
+                    app:layout_constraintStart_toStartOf="@+id/tv_ct_type"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_type"
                     app:layout_constraintTop_toBottomOf="@+id/tv_ct_type" />
+
+                <TextView
+                    style="@style/TvPrimary"
+                    android:id="@+id/tv_type"
+                    app:layout_constraintStart_toEndOf="@+id/iv_type"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_ct_type"
+                    app:layout_constraintTop_toTopOf="@+id/iv_type"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_type" />
 
                 <View
                     style="@style/VwLine"
@@ -326,27 +326,27 @@
                     app:layout_constraintBottom_toBottomOf="@+id/iv_ct_preference"
                     app:layout_constraintHorizontal_weight="1" />
 
-                <TextView
-                    style="@style/BothWrap"
-                    android:id="@+id/tv_preference"
-                    app:layout_constraintStart_toStartOf="@+id/tv_ct_preference"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_preference"
-                    app:layout_constraintTop_toTopOf="@+id/iv_preference"
-                    app:layout_constraintBottom_toBottomOf="@+id/iv_preference" />
-
                 <ImageView
-                    style="@style/IvStretch"
+                    style="@style/IvInfo"
                     android:id="@+id/iv_preference"
                     android:contentDescription="@string/dp_rp_preference"
-                    app:layout_constraintStart_toEndOf="@+id/tv_preference"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_ct_preference"
+                    app:layout_constraintStart_toStartOf="@+id/tv_ct_preference"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_preference"
                     app:layout_constraintTop_toBottomOf="@+id/tv_ct_preference" />
+
+                <TextView
+                    style="@style/TvPrimary"
+                    android:id="@+id/tv_preference"
+                    app:layout_constraintStart_toEndOf="@+id/iv_preference"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_ct_preference"
+                    app:layout_constraintTop_toTopOf="@+id/iv_preference"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_preference" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             style="@style/CvHeader"
-            android:id="@+id/cv_hd_categories"
+            android:id="@+id/cv_hd_ingredients"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cv_info">
 
@@ -355,27 +355,27 @@
 
                 <ImageView
                     style="@style/IvTutorial"
-                    android:id="@+id/iv_tt_categories"
+                    android:id="@+id/iv_tt_ingredients"
                     android:contentDescription="@string/dp_tutorial"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_categories"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_categories" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_ingredients"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_ingredients" />
 
                 <TextView
                     style="@style/TvHeader"
-                    android:id="@+id/tv_categories"
+                    android:id="@+id/tv_hd_ingredients"
                     android:text="@string/hd_rp_ingredient"
-                    app:layout_constraintStart_toEndOf="@+id/iv_tt_categories"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_categories"
+                    app:layout_constraintStart_toEndOf="@+id/iv_tt_ingredients"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_hd_ingredients"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     style="@style/IvHeader"
-                    android:id="@+id/iv_categories"
+                    android:id="@+id/iv_hd_ingredients"
                     android:contentDescription="@string/dp_expand"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_categories"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_categories" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_ingredients"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_ingredients" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -383,14 +383,14 @@
             style="@style/CvData"
             android:id="@+id/cv_categories"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_hd_categories">
+            app:layout_constraintTop_toBottomOf="@+id/cv_hd_ingredients">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 style="@style/ClRv">
 
                 <androidx.recyclerview.widget.RecyclerView
                     style="@style/WidthMatch"
-                    android:id="@+id/rv_categories"
+                    android:id="@+id/rv_ingredients"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -410,24 +410,24 @@
                     android:id="@+id/iv_tt_steps"
                     android:contentDescription="@string/dp_tutorial"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_steps"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_steps" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_steps"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_steps" />
 
                 <TextView
                     style="@style/TvHeader"
-                    android:id="@+id/tv_steps"
+                    android:id="@+id/tv_hd_steps"
                     android:text="@string/hd_rp_step"
                     app:layout_constraintStart_toEndOf="@+id/iv_tt_steps"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_steps"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_hd_steps"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     style="@style/IvHeader"
-                    android:id="@+id/iv_steps"
+                    android:id="@+id/iv_hd_steps"
                     android:contentDescription="@string/dp_expand"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_steps"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_steps" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_steps"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_steps" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -435,8 +435,7 @@
             style="@style/CvData"
             android:id="@+id/cv_steps"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_hd_steps"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/cv_hd_steps">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 style="@style/ClRv">

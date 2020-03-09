@@ -1,6 +1,5 @@
 package com.fatiner.platehandler.fragments.product;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,7 +16,7 @@ import androidx.sqlite.db.SimpleSQLiteQuery;
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.ProductAdapter;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
@@ -64,11 +63,6 @@ public class ProductChooseFragment extends PrimaryFragment implements ProductAda
         return new ProductAdapter(getContext(), products, this);
     }
 
-    private int getColumnAmount() {
-        if(getOrientation() == Configuration.ORIENTATION_PORTRAIT) return Globals.GL_TWO;
-        else return Globals.GL_THREE;
-    }
-
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.pd_choose, menu);
@@ -98,7 +92,7 @@ public class ProductChooseFragment extends PrimaryFragment implements ProductAda
 
             @Override
             public void onSuccess(List<Product> products) {
-                setRv(rvProducts, getManager(getColumnAmount()), getProductAdapter(products));
+                setRv(rvProducts, getManager(getColumnAmountChoose()), getProductAdapter(products));
                 checkIfRvEmpty(rvProducts, tvEmpty);
             }
 

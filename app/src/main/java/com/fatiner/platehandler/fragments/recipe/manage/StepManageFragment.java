@@ -12,18 +12,25 @@ import android.widget.EditText;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.models.Step;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Globals;
 
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 
 public class StepManageFragment extends PrimaryFragment {
 
     @BindView(R.id.et_content) EditText etContent;
     @BindView(R.id.til_step) TextInputLayout tilStep;
+
+    @OnTextChanged(R.id.et_content)
+    void changedEtContent() {
+        setError(etContent, R.string.er_st_content, isContentEmpty());
+    }
 
     @OnClick(R.id.fab_finished)
     void clickFabFinished() {
@@ -42,8 +49,12 @@ public class StepManageFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_step_manage, container, false);
         init(this, view, R.id.it_recipe, getToolbar(), false);
-        startingAction();
+        initAction();
         return view;
+    }
+
+    private List<Step> getSteps() {
+        return RecipeDetails.getRecipe().getSteps();
     }
 
     private int getToolbar() {
@@ -55,14 +66,15 @@ public class StepManageFragment extends PrimaryFragment {
         return isValueInBundle(Globals.BN_INT);
     }
 
-    private void startingAction() {
-        if(isPosition()) setStepInfo();
-        else setHint(tilStep, getStepHint(RecipeDetails.getRecipe().getSteps().size()));
+    private void initAction() {
+        if(isPosition()) setViews();
+        else setHint(tilStep, getStepHint(getSteps().size()));
+        setError(etContent, R.string.er_st_content, isContentEmpty());
     }
 
-    private void setStepInfo() {
+    private void setViews() {
         int id = getIntFromBundle();
-        Step step = RecipeDetails.getRecipe().getSteps().get(id);
+        Step step = getSteps().get(id);
         setHint(tilStep, getStepHint(id));
         setEt(etContent, step.getContent());
     }
@@ -75,9 +87,9 @@ public class StepManageFragment extends PrimaryFragment {
     private void setStepInDetails(Step step) {
         if(isPosition()) {
             int id = getIntFromBundle();
-            RecipeDetails.getRecipe().getSteps().remove(id);
-            RecipeDetails.getRecipe().getSteps().add(id, step);
-        } else RecipeDetails.getRecipe().getSteps().add(step);
+            getSteps().remove(id);
+            getSteps().add(id, step);
+        } else getSteps().add(step);
     }
 
     private boolean isContentEmpty() {

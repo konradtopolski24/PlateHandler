@@ -12,13 +12,15 @@ import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.RecipePagerAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Recipe;
 import com.fatiner.platehandler.models.Step;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -81,18 +83,57 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
     }
 
     private void chooseFinished() {
-        if(RecipeDetails.isRecipeCorrect()) chooseDialog();
-        else showShortToast(R.string.ts_recipe);
+        if(isIncomplete()) showShortToast(R.string.ts_recipe);
+        else chooseDialog();
     }
 
-    private void setRecipeIdInIngredients(int id) {
-        for(Ingredient ingredient : RecipeDetails.getRecipe().getIngredients())
+    private boolean isIncomplete() {
+        return isNameEmpty() || isAuthorEmpty() || isTimeZero()
+                || isAmountZero() || isProductIdZero() || isStepListEmpty();
+    }
+
+    private boolean isNameEmpty() {
+        return getRecipe().getName().equals(Globals.SN_EMPTY);
+    }
+
+    private boolean isAuthorEmpty() {
+        return getRecipe().getAuthor().equals(Globals.SN_EMPTY);
+    }
+
+    private boolean isTimeZero() {
+        return getRecipe().getTime().equals(Globals.TM_DEFAULT);
+    }
+
+    private boolean isAmountZero() {
+        List<Ingredient> ingredients = getRecipe().getIngredients();
+        for(Ingredient ingredient : ingredients)
+            if(ingredient.getAmount() == Globals.DF_ZERO) return true;
+        return false;
+    }
+
+    private boolean isProductIdZero() {
+        List<Ingredient> ingredients = getRecipe().getIngredients();
+        for(Ingredient ingredient : ingredients)
+            if(ingredient.getProductId() == Globals.DF_ZERO) return true;
+        return false;
+    }
+
+    private boolean isStepListEmpty() {
+        return getRecipe().getSteps().isEmpty();
+    }
+
+    private void manageIngredientsDb(int id) {
+        for(Ingredient ingredient : getRecipe().getIngredients()) {
             ingredient.setRecipeId(id);
+            ingredient.setUsed(false);
+        }
     }
 
-    private void setRecipeIdInSteps(int id) {
-        for(Step step : RecipeDetails.getRecipe().getSteps())
+    private void manageStepsDb(int id) {
+        for(Step step : getRecipe().getSteps()) {
             step.setRecipeId(id);
+            step.setDone(false);
+        }
     }
 
     //Insert Recipe
@@ -105,11 +146,12 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
     private Completable getInsertCompletable() {
         return Completable.fromAction(() -> {
             PlateHandlerDatabase db = getDb(getContext());
-            long id = db.getRecipeDAO().addRecipe(RecipeDetails.getRecipe());
-            setRecipeIdInIngredients(TypeManager.longToInt(id));
-            setRecipeIdInSteps(TypeManager.longToInt(id));
-            db.getIngredientDAO().addIngredients(RecipeDetails.getRecipe().getIngredients());
-            db.getStepDAO().addSteps(RecipeDetails.getRecipe().getSteps());
+            long id = db.getRecipeDAO().addRecipe(getRecipe());
+            getRecipe().setId(TypeManager.longToInt(id));
+            manageIngredientsDb(TypeManager.longToInt(id));
+            manageStepsDb(TypeManager.longToInt(id));
+            db.getIngredientDAO().addIngredients(getRecipe().getIngredients());
+            db.getStepDAO().addSteps(getRecipe().getSteps());
         });
     }
 
@@ -118,6 +160,7 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
 
             @Override
             public void onComplete() {
+                manageImageSaving(getRecipe().getPhoto(), Globals.NM_RECIPE, getRecipe().getId());
                 recipeSuccess(R.string.sb_rp_add);
             }
 
@@ -139,8 +182,8 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
         return Completable.fromAction(() -> {
             PlateHandlerDatabase db = getDb(getContext());
             int id = getRecipe().getId();
-            setRecipeIdInIngredients(id);
-            setRecipeIdInSteps(id);
+            manageIngredientsDb(id);
+            manageStepsDb(id);
             db.getRecipeDAO().updateRecipe(getRecipe());
             db.getIngredientDAO().deleteIngredients(id);
             db.getStepDAO().deleteSteps(id);
@@ -154,6 +197,7 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
 
             @Override
             public void onComplete() {
+                manageImageSaving(getRecipe().getPhoto(), Globals.NM_RECIPE, getRecipe().getId());
                 recipeSuccess(R.string.sb_rp_edit);
             }
 
@@ -175,22 +219,4 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
             }
         };
     }
-
-    //Image
-    /*private void manageImageRecipeSaving() {
-        if(RecipeDetails.getRecipe().getEncodedImage() == null) {
-            ImageManager.deleteImage(ImageManager.getImageRecipeName(RecipeDetails.getRecipe().getId()));
-        } else {
-            ImageManager.saveImage(
-                    TypeManager.base64StringToBitmap(
-                            RecipeDetails.getRecipe().getEncodedImage()),
-                    ImageManager.getImageRecipeName(RecipeDetails.getRecipe().getId()));
-        }
-    }
-
-    private void setImage(int[] idRecipe) {
-        ImageManager.saveImage(
-                TypeManager.base64StringToBitmap(RecipeDetails.getRecipe().getEncodedImage()),
-                ImageManager.getImageRecipeName(idRecipe[Globals.DF_ZERO]));
-    }*/
 }

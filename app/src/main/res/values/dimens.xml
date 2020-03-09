@@ -2,7 +2,7 @@
 <resources>
     <dimen name="df_zero">0dp</dimen>
 
-    <dimen name="mg_enormous">50dp</dimen>
+    <dimen name="mg_enormous">56dp</dimen>
     <dimen name="mg_huge">12dp</dimen>
     <dimen name="mg_big">8dp</dimen>
     <dimen name="mg_medium">6dp</dimen>

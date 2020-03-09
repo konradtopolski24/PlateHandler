@@ -2,6 +2,9 @@ package com.fatiner.platehandler.globals;
 
 public class Credits {
 
+    //Developer
+    public static final String DL_NAME = "Konrad \"Fatiner\" Topolski";
+
     //Butter Knife
     public static final String LB_BK_NAME = "Butter Knife";
     public static final String LB_BK_AUTHOR = "Jake Wharton";
@@ -67,6 +70,12 @@ public class Credits {
     public static final String IP_IF_ATTRIBUTION = "Icons made by Those Icons from www.flaticon.com";
     public static final String IP_IF_LICENSE = "Flaticon License";
     public static final int IP_IF_AMOUNT = 1;
+
+    //Support Icon Pack
+    public static final String IP_SP_NAME = "Support Icon Pack";
+    public static final String IP_SP_ATTRIBUTION = "Icons made by Freepik from www.flaticon.com";
+    public static final String IP_SP_LICENSE = "Flaticon License";
+    public static final int IP_SP_AMOUNT = 1;
 
     //Material Design Icons
     public static final String IP_MD_NAME = "Material Design Icons";

@@ -46,6 +46,8 @@
     <string name="dg_rp_remove">Do you want to remove the recipe?</string>
     <string name="dg_sh_add">Do you want to create a new shopping list?</string>
     <string name="dg_ex_add">Do you want to create a new export file?</string>
+    <string name="dg_im_choose">Do you want to import data from this file?
+        All your previous data will be removed!</string>
 
     <!-- SnackBar Message -->
     <string name="sb_pd_add">Product added!</string>
@@ -62,15 +64,27 @@
 
     <!-- Toast Message -->
     <string name="ts_welcome">Welcome to Plate Handler!</string>
-    <string name="ts_product">Product name is empty!</string>
-    <string name="ts_recipe">Recipe is incomplete!</string>
-    <string name="ts_category">Category name is empty!</string>
-    <string name="ts_step">Step instruction is empty!</string>
-    <string name="ts_item">Item names are empty!</string>
-    <string name="ts_shopping">At least one item is required!</string>
+    <string name="ts_product">Product data is incomplete!</string>
+    <string name="ts_used">This product cannot be removed because it is used in a recipe!</string>
+    <string name="ts_recipe">Recipe data is incomplete!</string>
+    <string name="ts_step">Step data is incomplete!</string>
+    <string name="ts_shopping">Shopping list data is incomplete!</string>
+    <string name="ts_export">Export data is incomplete!</string>
+    <string name="ts_item">At least one item is required!</string>
     <string name="ts_database">Database error!</string>
-    <string name="ts_export">Export File Name is empty!</string>
     <string name="ts_file">File operation error!</string>
+    <string name="ts_directory">New directory created!</string>
+
+    <!-- Errors -->
+    <string name="er_pd_name">Product name is empty!</string>
+    <string name="er_pd_nutrients">Sum of nutrients cannot be higher than average size!</string>
+    <string name="er_rp_name">Recipe name is empty!</string>
+    <string name="er_rp_author">Name of the author is empty!</string>
+    <string name="er_ig_amount">The amount of ingredient cannot equal to zero!</string>
+    <string name="er_st_content">Content of this step is empty!</string>
+    <string name="er_sh_amount">The amount of shopping item cannot equal to zero!</string>
+    <string name="er_sh_name">Name of the shopping item is empty!</string>
+    <string name="er_ex_name">Name of the file to export is empty!</string>
 
     <!-- Empty List -->
     <string name="ep_recent">No recipes shown!</string>
@@ -103,7 +117,7 @@
     <string name="ct_alphabetical">Alphabetically</string>
     <string name="ct_favorite">Favorite</string>
     <string name="ct_step">Step</string>
-    <string name="ct_size">Size</string>
+    <string name="ct_size">Average Size</string>
     <string name="ct_carbohydrates">Carbohydrates</string>
     <string name="ct_proteins">Proteins</string>
     <string name="ct_fats">Fats</string>
@@ -115,6 +129,7 @@
     <string name="ct_total">Total energy</string>
     <string name="ct_kcal">Percentage chart of energy in kcal</string>
     <string name="ct_kj">Percentage chart of energy in kj</string>
+    <string name="ct_developer">Developer</string>
     <string name="ct_version">Version</string>
     <string name="ct_license">License</string>
     <string name="ct_attribution">Attribution</string>
@@ -150,6 +165,7 @@
     <string name="hd_ex_name">Set Export File Name</string>
     <string name="hd_ex_info">Export Info</string>
     <string name="hd_im_file">Import Files</string>
+    <string name="hd_cd_author">Author of the App</string>
     <string name="hd_cd_library">Libraries Used in the App</string>
     <string name="hd_cd_icon">Icons Used in the App</string>
 
@@ -180,6 +196,7 @@
     <string name="tt_ex_name">Set Export File Name</string>
     <string name="tt_ex_info">Export Info</string>
     <string name="tt_im_file">Import Files</string>
+    <string name="tt_cd_author">Author of the App</string>
     <string name="tt_cd_library">Libraries Used in the App</string>
     <string name="tt_cd_icon">Icons Used in the App</string>
 
@@ -227,4 +244,77 @@
     <string name="dp_bt_time">Button to set time of the recipe</string>
     <string name="dp_bt_edit">Button to edit the item</string>
     <string name="dp_bt_product">Button to new product</string>
+
+    <!-- Array Text Difficulty -->
+    <string name="ar_df_easy">Easy</string>
+    <string name="ar_df_medium">Medium</string>
+    <string name="ar_df_hard">Hard</string>
+
+    <!-- Array Text Spiciness -->
+    <string name="ar_sp_mild">Mild</string>
+    <string name="ar_sp_medium">Medium</string>
+    <string name="ar_sp_hot">Hot</string>
+    <string name="ar_sp_extra">Extra Hot</string>
+
+    <!-- Array Text Preference -->
+    <string name="ar_pf_vegetarian">Vegetarian</string>
+    <string name="ar_pf_meat">Meat</string>
+
+    <!-- Array Text Country -->
+    <string name="ar_ct_american">American</string>
+    <string name="ar_ct_austrian">Austrian</string>
+    <string name="ar_ct_brazilian">Brazilian</string>
+    <string name="ar_ct_british">British</string>
+    <string name="ar_ct_bulgarian">Bulgarian</string>
+    <string name="ar_ct_chinese">Chinese</string>
+    <string name="ar_ct_croatian">Croatian</string>
+    <string name="ar_ct_czech">Czech</string>
+    <string name="ar_ct_french">French</string>
+    <string name="ar_ct_georgian">Georgian</string>
+    <string name="ar_ct_german">German</string>
+    <string name="ar_ct_greek">Greek</string>
+    <string name="ar_ct_indian">Indian</string>
+    <string name="ar_ct_italian">Italian</string>
+    <string name="ar_ct_japanese">Japanese</string>
+    <string name="ar_ct_mexican">Mexican</string>
+    <string name="ar_ct_moroccan">Moroccan</string>
+    <string name="ar_ct_polish">Polish</string>
+    <string name="ar_ct_portuguese">Portuguese</string>
+    <string name="ar_ct_russian">Russian</string>
+    <string name="ar_ct_south_korean">South Korean</string>
+    <string name="ar_ct_spanish">Spanish</string>
+    <string name="ar_ct_thai">Thai</string>
+    <string name="ar_ct_turkish">Turkish</string>
+    <string name="ar_ct_ukrainian">Ukrainian</string>
+    <string name="ar_ct_vietnamese">Vietnamese</string>
+    <string name="ar_ct_other">Other</string>
+
+    <!-- Array Text Recipe -->
+    <string name="ar_rp_breakfast">Breakfast</string>
+    <string name="ar_rp_appetiser">Appetiser</string>
+    <string name="ar_rp_drink">Drink</string>
+    <string name="ar_rp_soup">Soup</string>
+    <string name="ar_rp_dinner">Dinner</string>
+    <string name="ar_rp_salad">Salad</string>
+    <string name="ar_rp_sauce">Sauce</string>
+    <string name="ar_rp_spice">Spice</string>
+    <string name="ar_rp_dessert">Dessert</string>
+    <string name="ar_rp_other">Other</string>
+
+    <!-- Array Text Product -->
+    <string name="ar_pd_grain">Grain</string>
+    <string name="ar_pd_bread">Bread</string>
+    <string name="ar_pd_dairy">Dairy</string>
+    <string name="ar_pd_fat">Fat</string>
+    <string name="ar_pd_egg">Egg</string>
+    <string name="ar_pd_vegetable">Vegetable</string>
+    <string name="ar_pd_fruit">Fruit</string>
+    <string name="ar_pd_meat">Meat</string>
+    <string name="ar_pd_fish">Fish</string>
+    <string name="ar_pd_seafood">Seafood</string>
+    <string name="ar_pd_pasta">Pasta</string>
+    <string name="ar_pd_spice">Spice</string>
+    <string name="ar_pd_liquid">Liquid</string>
+    <string name="ar_pd_sauce">Sauce</string>
+    <string name="ar_pd_other">Other</string>
 </resources>

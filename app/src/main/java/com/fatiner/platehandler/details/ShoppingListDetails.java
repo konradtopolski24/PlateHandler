@@ -10,46 +10,21 @@ public final class ShoppingListDetails {
 
     private static ShoppingList shoppingList;
 
-    private ShoppingListDetails(){
-        resetShoppingListDetails();
+    private ShoppingListDetails() {
+        resetDetails();
     }
 
-    public static void resetShoppingListDetails(){
+    public static ShoppingList getShoppingList() {
+        return shoppingList;
+    }
+
+    public static void resetDetails() {
         shoppingList = new ShoppingList();
         resetShoppingItems();
     }
 
-    private static void resetShoppingItems(){
+    private static void resetShoppingItems() {
         ArrayList<ShoppingItem> shoppingItems = new ArrayList<>();
         shoppingList.setShoppingItems(shoppingItems);
-    }
-
-    public static ShoppingList getShoppingList(){
-        return shoppingList;
-    }
-
-    public static boolean isShoppingListCorrect(){
-        return areShoppingItemsCorrect();
-    }
-
-    private static boolean areShoppingItemsCorrect(){
-        return areShoppingItemsNotEmpty() && areShoppingItemsNamesNotEmpty();
-    }
-
-    private static boolean areShoppingItemsNotEmpty(){
-        ArrayList<ShoppingItem> shoppingItems = shoppingList.getShoppingItems();
-        return !shoppingItems.isEmpty();
-    }
-
-    private static boolean areShoppingItemsNamesNotEmpty(){
-        boolean areNotEmpty = true;
-        ArrayList<ShoppingItem> shoppingItems = shoppingList.getShoppingItems();
-        for(ShoppingItem shoppingItem : shoppingItems){
-            if(shoppingItem.getName().equals(Globals.SN_EMPTY)){
-                areNotEmpty = false;
-                break;
-            }
-        }
-        return areNotEmpty;
     }
 }

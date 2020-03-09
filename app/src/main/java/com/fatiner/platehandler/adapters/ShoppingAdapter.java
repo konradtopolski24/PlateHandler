@@ -25,7 +25,8 @@ public class ShoppingAdapter extends PrimaryAdapter<ShoppingAdapter.ShoppingHold
     private ArrayList<ShoppingItem> shoppingItems;
     private ShoppingListener listener;
 
-    public ShoppingAdapter(Context context, ArrayList<ShoppingItem> shoppingItems, ShoppingListener listener) {
+    public ShoppingAdapter(Context context,
+                           ArrayList<ShoppingItem> shoppingItems, ShoppingListener listener) {
         super(context);
         this.shoppingItems = shoppingItems;
         this.listener = listener;
@@ -39,14 +40,18 @@ public class ShoppingAdapter extends PrimaryAdapter<ShoppingAdapter.ShoppingHold
 
     @Override
     public void onBindViewHolder(@NonNull ShoppingHolder holder, int position) {
-        ShoppingItem item = shoppingItems.get(position);
-        setTv(holder.tvItem, getItemText(item));
-        if(item.isCrossedOut()) crossOutLine(holder.tvItem);
+        setViews(holder, position);
     }
 
     @Override
     public int getItemCount() {
         return shoppingItems.size();
+    }
+
+    private void setViews(ShoppingHolder holder, int position) {
+        ShoppingItem item = shoppingItems.get(position);
+        setTv(holder.tvItem, getItemText(item));
+        if(item.isCrossedOut()) crossOutLine(holder.tvItem);
     }
 
     private String getItemText(ShoppingItem item) {

@@ -17,7 +17,8 @@ import androidx.cardview.widget.CardView;
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.ProductDetails;
-import com.fatiner.platehandler.fragments.PrimaryFragment;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
+import com.fatiner.platehandler.globals.Chart;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.managers.CalculateManager;
 import com.fatiner.platehandler.models.Product;
@@ -53,9 +54,9 @@ public class ProductShowFragment extends PrimaryFragment {
     @BindView(R.id.cv_nutrients) CardView cvNutrients;
     @BindView(R.id.cv_kcal) CardView cvKcal;
     @BindView(R.id.cv_kj) CardView cvKj;
-    @BindView(R.id.iv_nutrients) ImageView ivNutrients;
-    @BindView(R.id.iv_kcal) ImageView ivKcal;
-    @BindView(R.id.iv_kj) ImageView ivKj;
+    @BindView(R.id.iv_hd_nutrients) ImageView ivHdNutrients;
+    @BindView(R.id.iv_hd_kcal) ImageView ivHdKcal;
+    @BindView(R.id.iv_hd_kj) ImageView ivHdKj;
     @BindView(R.id.tv_name) TextView tvName;
     @BindView(R.id.tv_type) TextView tvType;
     @BindView(R.id.tv_carbohydrates1) TextView tvCarbohydrates1;
@@ -76,17 +77,17 @@ public class ProductShowFragment extends PrimaryFragment {
 
     @OnClick(R.id.cv_hd_nutrients)
     void clickCvHdNutrients() {
-        manageExpandCv(cvNutrients, ivNutrients);
+        manageExpandCv(cvNutrients, ivHdNutrients);
     }
 
     @OnClick(R.id.cv_hd_kcal)
     void clickCvHdKcal() {
-        manageExpandCv(cvKcal, ivKcal);
+        manageExpandCv(cvKcal, ivHdKcal);
     }
 
     @OnClick(R.id.cv_hd_kj)
     void clickCvHdKj() {
-        manageExpandCv(cvKj, ivKj);
+        manageExpandCv(cvKj, ivHdKj);
     }
 
     @OnClick(R.id.iv_tt_nutrients)
@@ -110,7 +111,7 @@ public class ProductShowFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_product_show, container, false);
         init(this, view, R.id.it_product, R.string.tb_pd_overview, true);
-        startAction();
+        initAction();
         return view;
     }
 
@@ -118,7 +119,7 @@ public class ProductShowFragment extends PrimaryFragment {
         return ProductDetails.getProduct();
     }
 
-    private void startAction() {
+    private void initAction() {
         resetProductDetails();
         checkId();
     }
@@ -135,9 +136,10 @@ public class ProductShowFragment extends PrimaryFragment {
         getProduct().setCarbohydrates(product.getCarbohydrates());
         getProduct().setProteins(product.getProteins());
         getProduct().setFats(product.getFats());
+        getProduct().setPhoto(getImage(Globals.NM_PRODUCT, product.getId()));
     }
 
-    private void chooseNutrientsAction() {
+    private void setViews() {
         if(areNutrientsEmpty()) setEmptyInfo();
         else {
             setProductInfo();
@@ -161,6 +163,7 @@ public class ProductShowFragment extends PrimaryFragment {
         setTv(tvProteins1, product.getProteins(), Globals.UT_GRAM);
         setTv(tvFats1, product.getFats(), Globals.UT_GRAM);
         setTv(tvOther, getOther(product), Globals.UT_GRAM);
+        setIv(ivPhoto, product.getPhoto());
     }
 
     private float getOther(Product product) {
@@ -205,7 +208,7 @@ public class ProductShowFragment extends PrimaryFragment {
         return (DialogInterface dialog, int which) -> {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
-                    removeProduct();
+                    readIngredientAmount();
                     break;
                 case DialogInterface.BUTTON_NEGATIVE:
                     break;
@@ -224,8 +227,8 @@ public class ProductShowFragment extends PrimaryFragment {
         bc.setTouchEnabled(false);
         bc.getDescription().setEnabled(false);
         bc.getLegend().setEnabled(false);
-        bc.animateY(1000);
-        bc.setExtraOffsets(Globals.DF_ZERO, Globals.DF_ZERO, Globals.DF_ZERO, 10);
+        bc.animateY(Chart.AM_BC);
+        bc.setExtraOffsets(Globals.DF_ZERO, Globals.DF_ZERO, Globals.DF_ZERO, Chart.OS_BC);
         bc.getAxisRight().setEnabled(false);
         setXAxis(bc.getXAxis());
         setYAxis(bc.getAxisLeft());
@@ -237,21 +240,24 @@ public class ProductShowFragment extends PrimaryFragment {
         axis.setValueFormatter(new IndexAxisValueFormatter(getLabels()));
         axis.setPosition(XAxis.XAxisPosition.BOTTOM);
         axis.setTextColor(getColor(R.color.tv_gray));
-        axis.setTextSize(12);
+        axis.setTextSize(Chart.TS_AXIS);
     }
 
     private void setYAxis(YAxis axis) {
         axis.setValueFormatter(new PercentFormatter());
         axis.setTextColor(getColor(R.color.tv_gray));
-        axis.setTextSize(12);
+        axis.setTextSize(Chart.TS_AXIS);
     }
 
     private ArrayList<BarEntry> getBarEntries() {
         Product product = getProduct();
         ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(1f, getPercentage(product.getCarbohydrates(), product.getSize())));
-        entries.add(new BarEntry(2f, getPercentage(product.getProteins(), product.getSize())));
-        entries.add(new BarEntry(3f, getPercentage(product.getFats(), product.getSize())));
+        entries.add(new BarEntry(Chart.VX_CARBOHYDRATES, getPercentage(
+                product.getCarbohydrates(), product.getSize())));
+        entries.add(new BarEntry(Chart.VX_PROTEINS, getPercentage(
+                product.getProteins(), product.getSize())));
+        entries.add(new BarEntry(Chart.VX_FATS, getPercentage(
+                product.getFats(), product.getSize())));
         return entries;
     }
 
@@ -268,14 +274,14 @@ public class ProductShowFragment extends PrimaryFragment {
         BarDataSet dataSet = new BarDataSet(getBarEntries(), Globals.SN_EMPTY);
         dataSet.setValueTextColor(getColor(R.color.tv_gray));
         dataSet.setColors(getBcColors());
-        dataSet.setValueTextSize(16);
+        dataSet.setValueTextSize(Chart.TS_BAR);
         return dataSet;
     }
 
     private BarData getBarData() {
         BarData data = new BarData(getBarDataSet());
         data.setValueFormatter(new PercentFormatter());
-        data.setBarWidth(0.85f);
+        data.setBarWidth(Chart.WT_BAR);
         return data;
     }
 
@@ -285,10 +291,10 @@ public class ProductShowFragment extends PrimaryFragment {
         pc.setHighlightPerTapEnabled(false);
         pc.setUsePercentValues(true);
         pc.setRotationEnabled(true);
-        pc.setTransparentCircleAlpha(0);
-        pc.setHoleRadius(25f);
-        pc.animateY(1000);
-        pc.setExtraOffsets(20, Globals.DF_ZERO, 20, Globals.DF_ZERO);
+        pc.setTransparentCircleAlpha(Globals.DF_ZERO);
+        pc.setHoleRadius(Chart.RD_HOLE);
+        pc.animateY(Chart.AM_PC);
+        pc.setExtraOffsets(Chart.OS_PC, Globals.DF_ZERO, Chart.OS_PC, Globals.DF_ZERO);
         setLegend(pc.getLegend());
         pc.setData(new PieData(getPieDataSet(pc)));
         pc.invalidate();
@@ -321,10 +327,10 @@ public class ProductShowFragment extends PrimaryFragment {
     private PieDataSet getPieDataSet(PieChart pc) {
         PieDataSet dataSet = new PieDataSet(getPieEntries(), Globals.SN_EMPTY);
         dataSet.setColors(getPcColors());
-        dataSet.setSliceSpace(6);
-        dataSet.setValueTextSize(14);
-        dataSet.setValueLinePart1Length(0.5f);
-        dataSet.setValueLinePart2Length(0.5f);
+        dataSet.setSliceSpace(Chart.SC_SLICE);
+        dataSet.setValueTextSize(Chart.TS_PIE);
+        dataSet.setValueLinePart1Length(Chart.LT_LINE);
+        dataSet.setValueLinePart2Length(Chart.LT_LINE);
         dataSet.setValueTextColor(getColor(R.color.tv_gray));
         dataSet.setValueLineColor(getColor(R.color.tv_gray));
         dataSet.setValueFormatter(new PercentFormatter(pc));
@@ -335,8 +341,8 @@ public class ProductShowFragment extends PrimaryFragment {
 
     private void setLegend(Legend legend) {
         legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setTextSize(14);
-        legend.setXEntrySpace(25f);
+        legend.setTextSize(Chart.TS_LEGEND);
+        legend.setXEntrySpace(Chart.SC_LEGEND);
         legend.setTextColor(getColor(R.color.tv_gray));
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
@@ -389,6 +395,7 @@ public class ProductShowFragment extends PrimaryFragment {
         setTv(tvName, product.getName());
         setTv(tvType, product.getType(), R.array.tx_product);
         setIv(ivType, product.getType(), R.array.dw_product);
+        setIv(ivPhoto, product.getPhoto());
         setTv(tvCarbohydrates1, Globals.SN_DASH);
         setTv(tvCarbohydrates2, Globals.SN_DASH);
         setTv(tvCarbohydrates3, Globals.SN_DASH);
@@ -422,7 +429,7 @@ public class ProductShowFragment extends PrimaryFragment {
             @Override
             public void onSuccess(Product product) {
                 setProductDetails(product);
-                chooseNutrientsAction();
+                setViews();
             }
 
             @Override
@@ -451,6 +458,7 @@ public class ProductShowFragment extends PrimaryFragment {
 
             @Override
             public void onComplete() {
+                removeImage(Globals.NM_PRODUCT, getProduct().getId());
                 productSuccess(R.string.sb_pd_remove);
             }
 
@@ -461,16 +469,28 @@ public class ProductShowFragment extends PrimaryFragment {
         };
     }
 
-    //Image
-    /*private void loadPhoto() {
-        Product product = ProductDetails.getProduct();
-        Bitmap bitmap = ImageManager.getImageFromStorage(ImageManager.getImageProductName(product.getId()));
-        if(bitmap == null) return;
-        //ProductDetails.getProduct().setEncodedImage(TypeManager.bitmapToBase64String(bitmap));
-    }*/
+    //Read Amount
+    private void readIngredientAmount() {
+        PlateHandlerDatabase db = getDb(getContext());
+        Single<Integer> single = db.getIngredientDAO().getRowCount(getProduct().getId());
+        single.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getReadAmountObserver());
+    }
 
-    /*private void setImagePhoto(String encodedImage) {
-        if(encodedImage == null) return;
-        ivPhoto.setImageBitmap(TypeManager.base64StringToBitmap(encodedImage));
-    }*/
+    private DisposableSingleObserver<Integer> getReadAmountObserver() {
+        return new DisposableSingleObserver<Integer>() {
+
+            @Override
+            public void onSuccess(Integer amount) {
+                if(amount == Globals.DF_ZERO) removeProduct();
+                else showShortToast(R.string.ts_used);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
+    }
 }

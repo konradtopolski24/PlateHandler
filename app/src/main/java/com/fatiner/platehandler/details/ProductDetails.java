@@ -7,24 +7,15 @@ public final class ProductDetails {
 
     private static Product product;
 
-    private ProductDetails(){
-        resetProductDetails();
+    private ProductDetails() {
+        resetDetails();
     }
 
-    public static void resetProductDetails(){
-        product = new Product();
-    }
-
-    public static Product getProduct(){
+    public static Product getProduct() {
         return product;
     }
-
-    public static boolean isProductCorrect(){
-        return isProductNameCorrect();
-    }
-
-    private static boolean isProductNameCorrect(){
-        String name = product.getName();
-        return !name.equals(Globals.SN_EMPTY);
+    
+    public static void resetDetails() {
+        product = new Product();
     }
 }

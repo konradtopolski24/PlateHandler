@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -44,11 +45,13 @@ public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends
 
     void setTv(TextView tv, String text) {
         tv.setText(text);
+        tv.setSelected(true);
     }
 
     void setTv(TextView tv, int value) {
         String text = String.valueOf(value);
         tv.setText(text);
+        tv.setSelected(true);
     }
 
     void setEt(EditText et, String text) {
@@ -69,6 +72,10 @@ public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends
         sp.setSelection(position);
     }
 
+    void setCb(CheckBox cb, boolean checked) {
+        cb.setChecked(checked);
+    }
+
     private Resources getResources() {
         return context.getResources();
     }
@@ -85,7 +92,7 @@ public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends
         return getResources().getStringArray(id);
     }
 
-    private TypedArray getTypedArray(int id) {
+    TypedArray getTypedArray(int id) {
         return getResources().obtainTypedArray(id);
     }
 
@@ -106,5 +113,10 @@ public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends
 
     void setCorrectInput(EditText et) {
         et.setKeyListener(DigitsKeyListener.getInstance(false, true));
+    }
+
+    void setError(EditText et, int id, boolean isError) {
+        if(isError) et.setError(getString(id));
+        else et.setError(null);
     }
 }
