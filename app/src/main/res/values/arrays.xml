@@ -49,20 +49,19 @@
     </string-array>
 
     <string-array name="tx_measure">
-        <item>Gram</item>
-        <item>Decagram</item>
-        <item>Kilogram</item>
-        <item>Millilitre</item>
-        <item>Litre</item>
-        <item>Teaspoon</item>
-        <item>Tablespoon</item>
-        <item>Cup</item>
-        <item>Can</item>
-        <item>Pinch</item>
-        <item>Piece</item>
+        <item>@string/ar_ms_piece</item>
+        <item>@string/ar_ms_grams</item>
+        <item>@string/ar_ms_decagrams</item>
+        <item>@string/ar_ms_kilograms</item>
+        <item>@string/ar_ms_millilitres</item>
+        <item>@string/ar_ms_litres</item>
+        <item>@string/ar_ms_teaspoon</item>
+        <item>@string/ar_ms_tablespoon</item>
+        <item>@string/ar_ms_cup</item>
     </string-array>
 
     <integer-array name="tx_factor">
+        <item>1</item>
         <item>1</item>
         <item>10</item>
         <item>1000</item>
@@ -70,9 +69,6 @@
         <item>1000</item>
         <item>5</item>
         <item>10</item>
-        <item>100</item>
-        <item>100</item>
-        <item>1</item>
         <item>100</item>
     </integer-array>
 

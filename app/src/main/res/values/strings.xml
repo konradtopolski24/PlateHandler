@@ -74,6 +74,7 @@
     <string name="ts_database">Database error!</string>
     <string name="ts_file">File operation error!</string>
     <string name="ts_directory">New directory created!</string>
+    <string name="ts_empty">At least one product has no set average size!</string>
 
     <!-- Errors -->
     <string name="er_pd_name">Product name is empty!</string>
@@ -156,6 +157,8 @@
     <string name="hd_rp_category">Ingredient Categories</string>
     <string name="hd_rp_step">Recipe Steps</string>
     <string name="hd_rp_settings">Recipe settings</string>
+    <string name="hd_rp_kcal">Total Calories in Kcal</string>
+    <string name="hd_rp_kj">Total Calories in Kj</string>
     <string name="hd_ig_name">Set Category Name</string>
     <string name="hd_cg_item">Add Items to the Category</string>
     <string name="hd_st_content">Set New Step</string>
@@ -187,6 +190,8 @@
     <string name="tt_rp_category">Ingredient Categories</string>
     <string name="tt_rp_step">Recipe Steps</string>
     <string name="tt_rp_settings">Recipe settings</string>
+    <string name="tt_rp_kcal">Total Calories in Kcal</string>
+    <string name="tt_rp_kj">Total Calories in Kj</string>
     <string name="tt_cg_name">Set Category Name</string>
     <string name="tt_cg_item">Add Items to the Category</string>
     <string name="tt_st_content">Set New Step</string>
@@ -317,4 +322,15 @@
     <string name="ar_pd_liquid">Liquid</string>
     <string name="ar_pd_sauce">Sauce</string>
     <string name="ar_pd_other">Other</string>
+
+    <!-- Array Text Measure -->
+    <string name="ar_ms_grams">Grams</string>
+    <string name="ar_ms_decagrams">Decagrams</string>
+    <string name="ar_ms_kilograms">Kilograms</string>
+    <string name="ar_ms_millilitres">Millilitres</string>
+    <string name="ar_ms_litres">Litres</string>
+    <string name="ar_ms_teaspoon">Teaspoon</string>
+    <string name="ar_ms_tablespoon">Tablespoon</string>
+    <string name="ar_ms_cup">Cup</string>
+    <string name="ar_ms_piece">Piece</string>
 </resources>

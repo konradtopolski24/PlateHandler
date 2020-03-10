@@ -48,7 +48,7 @@ public class Globals {
     public static final int FC_PROTEINS = 4;
     public static final int FC_FATS = 9;
     public static final float FC_KJ = 4.184f;
-    public static final int FC_GRAM = 100;
+    public static final int FC_PERCENTAGE = 100;
 
     public static final String NM_PRODUCT = "pd";
     public static final String NM_RECIPE = "rp";

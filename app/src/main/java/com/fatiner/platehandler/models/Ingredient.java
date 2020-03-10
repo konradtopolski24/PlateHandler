@@ -5,7 +5,9 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.globals.Db;
+import com.fatiner.platehandler.globals.Globals;
 
 @Entity(tableName = Db.TB_INGREDIENT)
 public class Ingredient {
@@ -82,5 +84,22 @@ public class Ingredient {
 
     public void setUsed(boolean used) {
         isUsed = used;
+    }
+
+    public float getTotalKcal(int[] factors) {
+        return (getSize(factors) * product.getTotalKcal()) / product.getSize();
+    }
+
+    public float getTotalKj(int[] factors) {
+        return getTotalKcal(factors) * Globals.FC_KJ;
+    }
+
+    private float getFactor(int[] factors) {
+        if(measure == Globals.DF_ZERO) return product.getSize();
+        return factors[measure];
+    }
+
+    private float getSize(int[] factors) {
+        return amount * getFactor(factors);
     }
 }

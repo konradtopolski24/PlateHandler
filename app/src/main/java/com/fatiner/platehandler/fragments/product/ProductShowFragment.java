@@ -20,7 +20,6 @@ import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Chart;
 import com.fatiner.platehandler.globals.Globals;
-import com.fatiner.platehandler.managers.CalculateManager;
 import com.fatiner.platehandler.models.Product;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -159,30 +158,29 @@ public class ProductShowFragment extends PrimaryFragment {
         setTv(tvName, product.getName());
         setTv(tvType, product.getType(), R.array.tx_product);
         setIv(ivType, product.getType(), R.array.dw_product);
-        setTv(tvCarbohydrates1, product.getCarbohydrates(), Globals.UT_GRAM);
-        setTv(tvProteins1, product.getProteins(), Globals.UT_GRAM);
-        setTv(tvFats1, product.getFats(), Globals.UT_GRAM);
-        setTv(tvOther, getOther(product), Globals.UT_GRAM);
+        setTv(tvCarbohydrates1, product.getCarbohydrates(), getUnit());
+        setTv(tvProteins1, product.getProteins(), getUnit());
+        setTv(tvFats1, product.getFats(), getUnit());
+        setTv(tvOther, product.getOther(), getUnit());
         setIv(ivPhoto, product.getPhoto());
     }
 
-    private float getOther(Product product) {
-        return  product.getSize() - getSum(
-                product.getCarbohydrates(),
-                product.getProteins(),
-                product.getFats());
+    private String getUnit() {
+        if(isMillilitres()) return Globals.UT_MILLILITRE;
+        return Globals.UT_GRAM;
+    }
+
+    private boolean isMillilitres() {
+        return isType(R.string.ar_pd_liquid) || isType(R.string.ar_pd_sauce);
+    }
+
+    private boolean isType(int id) {
+        String[] arrayType = getStringArray(R.array.tx_product);
+        return getString(id).equals(arrayType[getProduct().getType()]);
     }
 
     private boolean isId() {
         return isValueInBundle(Globals.BN_INT);
-    }
-
-    private float getSum(float carbohydrates, float protein, float fat) {
-        return carbohydrates + protein + fat;
-    }
-
-    private float getPercentage(float value, float sum) {
-        return value/sum * Globals.FC_GRAM;
     }
 
     @Override
@@ -252,12 +250,9 @@ public class ProductShowFragment extends PrimaryFragment {
     private ArrayList<BarEntry> getBarEntries() {
         Product product = getProduct();
         ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(Chart.VX_CARBOHYDRATES, getPercentage(
-                product.getCarbohydrates(), product.getSize())));
-        entries.add(new BarEntry(Chart.VX_PROTEINS, getPercentage(
-                product.getProteins(), product.getSize())));
-        entries.add(new BarEntry(Chart.VX_FATS, getPercentage(
-                product.getFats(), product.getSize())));
+        entries.add(new BarEntry(Chart.VX_CARBOHYDRATES, product.getPercentage(Globals.NT_CARBOHYDRATES)));
+        entries.add(new BarEntry(Chart.VX_PROTEINS, product.getPercentage(Globals.NT_PROTEINS)));
+        entries.add(new BarEntry(Chart.VX_FATS, product.getPercentage(Globals.NT_FATS)));
         return entries;
     }
 
@@ -318,9 +313,8 @@ public class ProductShowFragment extends PrimaryFragment {
     private ArrayList<PieEntry> getPieEntries() {
         Product product = getProduct();
         ArrayList<PieEntry> values = new ArrayList<>();
-        float total = getSum(product.getCarbohydrates(), product.getProteins(), product.getFats());
-        values.add(new PieEntry(total, getString(R.string.ct_nutrients)));
-        values.add(new PieEntry(getOther(product), getString(R.string.ct_other)));
+        values.add(new PieEntry(product.getTotalNutrients(), getString(R.string.ct_nutrients)));
+        values.add(new PieEntry(product.getOther(), getString(R.string.ct_other)));
         return values;
     }
 
@@ -349,45 +343,19 @@ public class ProductShowFragment extends PrimaryFragment {
     }
 
     private void setKcalInfo() {
-        ArrayList<Float> energy = getKcalArray();
-        float total = getSum(
-                energy.get(Globals.NT_CARBOHYDRATES),
-                energy.get(Globals.NT_PROTEINS),
-                energy.get(Globals.NT_FATS));
-        setTv(tvCarbohydrates2, energy.get(Globals.NT_CARBOHYDRATES), Globals.UT_KCAL);
-        setTv(tvProteins2, energy.get(Globals.NT_PROTEINS), Globals.UT_KCAL);
-        setTv(tvFats2, energy.get(Globals.NT_FATS), Globals.UT_KCAL);
-        setTv(tvTotal1, total, Globals.UT_KCAL);
+        Product product = getProduct();
+        setTv(tvCarbohydrates2, product.getKcal(Globals.NT_CARBOHYDRATES), Globals.UT_KCAL);
+        setTv(tvProteins2, product.getKcal(Globals.NT_PROTEINS), Globals.UT_KCAL);
+        setTv(tvFats2, product.getKcal(Globals.NT_FATS), Globals.UT_KCAL);
+        setTv(tvTotal1, product.getTotalKcal(), Globals.UT_KCAL);
     }
 
     private void setKjInfo() {
-        ArrayList<Float> energy = getKjArray();
-        float total = getSum(
-                energy.get(Globals.NT_CARBOHYDRATES),
-                energy.get(Globals.NT_PROTEINS),
-                energy.get(Globals.NT_FATS));
-        setTv(tvCarbohydrates3, energy.get(Globals.NT_CARBOHYDRATES), Globals.UT_KJ);
-        setTv(tvProteins3, energy.get(Globals.NT_PROTEINS), Globals.UT_KJ);
-        setTv(tvFats3, energy.get(Globals.NT_FATS), Globals.UT_KJ);
-        setTv(tvTotal2, total, Globals.UT_KJ);
-    }
-
-    private ArrayList<Float> getKcalArray() {
         Product product = getProduct();
-        ArrayList<Float> energy = new ArrayList<>();
-        energy.add(CalculateManager.getKcal(product.getCarbohydrates(), Globals.NT_CARBOHYDRATES));
-        energy.add(CalculateManager.getKcal(product.getProteins(), Globals.NT_PROTEINS));
-        energy.add(CalculateManager.getKcal(product.getFats(), Globals.NT_FATS));
-        return energy;
-    }
-
-    private ArrayList<Float> getKjArray() {
-        Product product = getProduct();
-        ArrayList<Float> energy = new ArrayList<>();
-        energy.add(CalculateManager.getKj(product.getCarbohydrates(), Globals.NT_CARBOHYDRATES));
-        energy.add(CalculateManager.getKj(product.getProteins(), Globals.NT_PROTEINS));
-        energy.add(CalculateManager.getKj(product.getFats(), Globals.NT_FATS));
-        return energy;
+        setTv(tvCarbohydrates3, product.getKj(Globals.NT_CARBOHYDRATES), Globals.UT_KJ);
+        setTv(tvProteins3, product.getKj(Globals.NT_PROTEINS), Globals.UT_KJ);
+        setTv(tvFats3, product.getKj(Globals.NT_FATS), Globals.UT_KJ);
+        setTv(tvTotal2, product.getTotalKj(), Globals.UT_KJ);
     }
 
     private void setEmptyInfo() {

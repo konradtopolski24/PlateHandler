@@ -24,8 +24,18 @@
             style="@style/TvIngredient"
             android:id="@+id/tv_product"
             app:layout_constraintStart_toEndOf="@+id/ll_icon"
+            app:layout_constraintEnd_toStartOf="@+id/tv_kcal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_weight="2" />
+
+        <TextView
+            style="@style/TvCalories"
+            android:id="@+id/tv_kcal"
+            app:layout_constraintStart_toEndOf="@+id/tv_product"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/tv_product"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product"
+            app:layout_constraintHorizontal_weight="1" />
 
         <ImageView
             style="@style/IvIngredient"
@@ -41,6 +51,14 @@
             android:id="@+id/tv_measure"
             app:layout_constraintStart_toEndOf="@+id/iv_ct_measure"
             app:layout_constraintEnd_toEndOf="@+id/tv_product"
+            app:layout_constraintTop_toTopOf="@+id/iv_ct_measure"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_ct_measure" />
+
+        <TextView
+            style="@style/TvCalories"
+            android:id="@+id/tv_kj"
+            app:layout_constraintStart_toStartOf="@+id/tv_kcal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_ct_measure"
             app:layout_constraintBottom_toBottomOf="@+id/iv_ct_measure" />
 

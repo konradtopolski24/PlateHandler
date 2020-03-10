@@ -15,6 +15,7 @@ public class Format {
     public static final String FM_IMAGE = "%s%d.%s";
     public static final String FM_MEASURE = "%.2f x %s";
     public static final String FM_HINT = "%s (%s)";
+    public static final String FM_UNIT = "%.2f %s";
 
     public static final String FM_SELECT = "SELECT * FROM %s%s%s";
     public static final String FM_ORDER = " ORDER BY %s ASC";

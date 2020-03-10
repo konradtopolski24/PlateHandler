@@ -50,7 +50,6 @@ import io.reactivex.schedulers.Schedulers;
 public class RecipeShowFragment extends PrimaryFragment implements
         IngredientAdapter.IngredientListener, StepAdapter.StepListener {
 
-    @BindView(R.id.cv_header) CardView cvHeader;
     @BindView(R.id.cv_info) CardView cvInfo;
     @BindView(R.id.cv_categories) CardView cvCategories;
     @BindView(R.id.cv_steps) CardView cvSteps;
@@ -75,7 +74,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
     @BindView(R.id.tv_type) TextView tvType;
     @BindView(R.id.tv_preference) TextView tvPreference;
     @BindView(R.id.cb_favorite) CheckBox cbFavorite;
-    @BindView(R.id.rv_ingredients) RecyclerView rvCategories;
+    @BindView(R.id.rv_ingredients) RecyclerView rvIngredients;
     @BindView(R.id.rv_steps) RecyclerView rvSteps;
 
     @OnClick(R.id.cv_hd_info)
@@ -212,9 +211,9 @@ public class RecipeShowFragment extends PrimaryFragment implements
     }
 
     private void manageRv() {
-        setRv(rvCategories, getManager(getColumnAmountList()), getIngredientAdapter());
+        setRv(rvIngredients, getManager(getColumnAmountList()), getIngredientAdapter());
         setRv(rvSteps, getManager(getColumnAmountList()), getStepAdapter());
-        changeRvSize(rvCategories);
+        changeRvSize(rvIngredients);
         changeRvSize(rvSteps);
     }
 
@@ -297,7 +296,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch(menuItem.getItemId()) {
             case R.id.it_calculate:
-                setFragment(new CalculateRecipeFragment());
+                setFragment(new RecipeCalculateFragment());
                 return true;
             case R.id.it_edit:
                 setFragment(new RecipeManagePagerFragment(), true, Globals.BN_BOOL);

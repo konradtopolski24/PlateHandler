@@ -173,6 +173,11 @@
         <item name="android:layout_marginStart">@dimen/mg_small</item>
     </style>
 
+    <style name="TvCalories" parent="TvPrimary">
+        <item name="android:layout_marginEnd">@dimen/mg_big</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="TvCategory" parent="TvPrimary">
         <item name="android:textSize">@dimen/tx_big</item>
         <item name="android:textStyle">bold</item>

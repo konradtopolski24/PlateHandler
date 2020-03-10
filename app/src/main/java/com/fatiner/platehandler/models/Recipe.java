@@ -8,6 +8,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.fatiner.platehandler.globals.Db;
+import com.fatiner.platehandler.globals.Globals;
 
 import java.util.List;
 
@@ -156,5 +157,25 @@ public class Recipe {
 
     public void setSteps(List<Step> steps) {
         this.steps = steps;
+    }
+
+    public float getTotalKcal(int[] factors) {
+        float total = Globals.DF_ZERO;
+        for(Ingredient ingredient : ingredients) total += ingredient.getTotalKcal(factors);
+        return total;
+    }
+
+    public float getTotalKj(int[] factors) {
+        float total = Globals.DF_ZERO;
+        for(Ingredient ingredient : ingredients) total += ingredient.getTotalKj(factors);
+        return total;
+    }
+
+    public float getServingKcal(int[] factors) {
+        return getTotalKcal(factors) / serving;
+    }
+
+    public float getServingKj(int[] factors) {
+        return getTotalKj(factors) / serving;
     }
 }

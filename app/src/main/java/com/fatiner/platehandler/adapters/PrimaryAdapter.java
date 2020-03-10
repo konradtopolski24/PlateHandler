@@ -16,7 +16,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
+
+import java.util.Locale;
 
 public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
@@ -50,6 +53,12 @@ public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends
 
     void setTv(TextView tv, int value) {
         String text = String.valueOf(value);
+        tv.setText(text);
+        tv.setSelected(true);
+    }
+
+    protected void setTv(TextView tv, float value, String unit) {
+        String text = String.format(Locale.ENGLISH, Format.FM_UNIT, value, unit);
         tv.setText(text);
         tv.setSelected(true);
     }
@@ -92,7 +101,11 @@ public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends
         return getResources().getStringArray(id);
     }
 
-    TypedArray getTypedArray(int id) {
+    int [] getIntArray(int id) {
+        return getResources().getIntArray(id);
+    }
+
+    private TypedArray getTypedArray(int id) {
         return getResources().obtainTypedArray(id);
     }
 

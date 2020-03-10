@@ -9,6 +9,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.fatiner.platehandler.globals.Db;
+import com.fatiner.platehandler.globals.Globals;
 
 @Entity(tableName = Db.TB_PRODUCT)
 public class Product {
@@ -101,5 +102,58 @@ public class Product {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    public float getKcal(int id) {
+        switch(id) {
+            case Globals.NT_CARBOHYDRATES:
+                return Globals.FC_CARBOHYDRATES * carbohydrates;
+            case Globals.NT_PROTEINS:
+                return Globals.FC_PROTEINS * proteins;
+            case Globals.NT_FATS:
+                return Globals.FC_FATS * fats;
+            default:
+                return Globals.DF_ZERO;
+        }
+    }
+
+    public float getKj(int id) {
+        return getKcal(id) * Globals.FC_KJ;
+    }
+
+    public float getTotalKcal() {
+        return getKcal(Globals.NT_CARBOHYDRATES)
+                + getKcal(Globals.NT_PROTEINS)
+                + getKcal(Globals.NT_FATS);
+    }
+
+    public float getTotalKj() {
+        return getTotalKcal() * Globals.FC_KJ;
+    }
+
+    public float getOther() {
+        return  size - getTotalNutrients();
+    }
+
+    public float getTotalNutrients() {
+        return carbohydrates + proteins + fats;
+    }
+
+    public float getPercentage(int id) {
+        float value = getNutrients(id);
+        return value/size * Globals.FC_PERCENTAGE;
+    }
+
+    private float getNutrients(int id) {
+        switch(id) {
+            case Globals.NT_CARBOHYDRATES:
+                return carbohydrates;
+            case Globals.NT_PROTEINS:
+                return proteins;
+            case Globals.NT_FATS:
+                return fats;
+            default:
+                return Globals.DF_ZERO;
+        }
     }
 }

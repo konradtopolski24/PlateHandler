@@ -124,7 +124,7 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected void setTv(TextView tv, float value, String unit) {
-        String text = String.format(Locale.ENGLISH, "%.2f %s", value, unit);
+        String text = String.format(Locale.ENGLISH, Format.FM_UNIT, value, unit);
         tv.setText(text);
         tv.setSelected(true);
     }
@@ -521,13 +521,6 @@ public class PrimaryFragment extends Fragment {
         if(isError) tv.setError(Globals.SN_EMPTY);
         else tv.setError(null);
     }
-
-
-
-
-
-
-
 
     protected File getExternalDir() {
         return getContext().getExternalFilesDir(null);

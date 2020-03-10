@@ -15,6 +15,7 @@ import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.models.Ingredient;
+import com.fatiner.platehandler.models.Product;
 
 import java.util.List;
 import java.util.Locale;
@@ -56,6 +57,33 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
         setTv(holder.tvMeasure, getMeasure(ingredient.getAmount(), ingredient.getMeasure()));
         setTv(holder.tvProduct, ingredient.getProduct().getName());
         setIv(holder.ivIcon, ingredient.getProduct().getType(), R.array.dw_product);
+        manageShowing(holder, ingredient);
+    }
+
+    private void manageShowing(IngredientHolder holder, Ingredient ingredient) {
+        if (listener == null) setCaloriesInfo(holder, ingredient);
+        else setDoneInfo(holder, ingredient);
+    }
+
+    private void setCaloriesInfo(IngredientHolder holder, Ingredient ingredient) {
+        int[] factors = getIntArray(R.array.tx_factor);
+        if(ingredient.getProduct().getSize() == Globals.DF_ZERO) setEmptyInfo(holder);
+        else setCaloriesInfo(holder, ingredient, factors);
+    }
+
+    private void setCaloriesInfo(IngredientHolder holder, Ingredient ingredient, int[] factors) {
+        setTv(holder.tvKcal, ingredient.getTotalKcal(factors), Globals.UT_KCAL);
+        setTv(holder.tvKj, ingredient.getTotalKj(factors), Globals.UT_KJ);
+    }
+
+    private void setEmptyInfo(IngredientHolder holder) {
+        setTv(holder.tvKcal, Globals.SN_DASH);
+        setTv(holder.tvKj, Globals.SN_DASH);
+    }
+
+    private void setDoneInfo(IngredientHolder holder, Ingredient ingredient) {
+        hideView(holder.tvKcal);
+        hideView(holder.tvKj);
         showView(holder.cbDone);
         setCb(holder.cbDone, ingredient.isUsed());
     }
@@ -88,6 +116,8 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
 
         @BindView(R.id.tv_measure) TextView tvMeasure;
         @BindView(R.id.tv_product) TextView tvProduct;
+        @BindView(R.id.tv_kcal) TextView tvKcal;
+        @BindView(R.id.tv_kj) TextView tvKj;
         @BindView(R.id.tv_used) TextView tvUsed;
         @BindView(R.id.iv_ct_measure) ImageView ivMeasure;
         @BindView(R.id.iv_icon) ImageView ivIcon;
@@ -95,7 +125,8 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
 
         @OnCheckedChanged(R.id.cb_done)
         void checkedCbDone(boolean checked) {
-            Ingredient ingredient = RecipeDetails.getRecipe().getIngredients().get(getAdapterPosition());
+            Ingredient ingredient = RecipeDetails.getRecipe().getIngredients().get(
+                    getAdapterPosition());
             ingredient.setUsed(checked);
             checkIngredientCompletion(this, checked);
             listener.setUsed(ingredient.getId(), checked);
