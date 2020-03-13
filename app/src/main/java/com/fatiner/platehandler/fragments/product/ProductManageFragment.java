@@ -107,17 +107,17 @@ public class ProductManageFragment extends PrimaryFragment {
 
     @OnClick(R.id.iv_tt_photo)
     void clickIvTtPhoto() {
-        showDialog(R.string.hd_pd_photo, R.string.tt_pd_photo);
+        showDialog(R.string.hd_pd_mg_photo, R.string.tt_pd_mg_photo);
     }
 
-    @OnClick(R.id.iv_tt_name)
-    void clickIvTtName() {
-        showDialog(R.string.hd_pd_name, R.string.tt_pd_name);
+    @OnClick(R.id.iv_tt_essential)
+    void clickIvTtEssential() {
+        showDialog(R.string.hd_pd_mg_essential, R.string.tt_pd_mg_essential);
     }
 
-    @OnClick(R.id.iv_tt_nutrients)
-    void clickIvTtNutrients() {
-        showDialog(R.string.hd_pd_nutrient, R.string.tt_pd_nutrient);
+    @OnClick(R.id.iv_tt_composition)
+    void clickIvTtComposition() {
+        showDialog(R.string.hd_pd_mg_composition, R.string.tt_pd_mg_composition);
     }
 
     public ProductManageFragment() {}

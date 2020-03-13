@@ -47,7 +47,7 @@
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_hd_kcal"
-                    android:text="@string/hd_rp_kcal"
+                    android:text="@string/hd_rp_cl_kcal"
                     app:layout_constraintStart_toEndOf="@+id/iv_tt_kcal"
                     app:layout_constraintEnd_toStartOf="@+id/iv_hd_kcal"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -100,7 +100,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_ct_serving1"
-                    android:text="@string/ct_serving"
+                    android:text="@string/ct_per"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_serving1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_ct_serving1"
@@ -143,7 +143,7 @@
                 <TextView
                     style="@style/TvHeader"
                     android:id="@+id/tv_hd_kj"
-                    android:text="@string/hd_rp_kj"
+                    android:text="@string/hd_rp_cl_kj"
                     app:layout_constraintStart_toEndOf="@+id/iv_tt_kj"
                     app:layout_constraintEnd_toStartOf="@+id/iv_hd_kj"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -196,7 +196,7 @@
                 <TextView
                     style="@style/TvInfo"
                     android:id="@+id/tv_ct_serving2"
-                    android:text="@string/ct_serving"
+                    android:text="@string/ct_per"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_serving2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_ct_serving2"
@@ -221,7 +221,7 @@
 
         <androidx.cardview.widget.CardView
             style="@style/CvHeader"
-            android:id="@+id/cv_hd_ingredients"
+            android:id="@+id/cv_hd_ingredient"
             app:layout_constraintTop_toBottomOf="@+id/cv_kj"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -230,42 +230,42 @@
 
                 <ImageView
                     style="@style/IvTutorial"
-                    android:id="@+id/iv_tt_ingredients"
+                    android:id="@+id/iv_tt_ingredient"
                     android:contentDescription="@string/dp_tutorial"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_hd_ingredients"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_ingredients" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_ingredient"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_ingredient" />
 
                 <TextView
                     style="@style/TvHeader"
-                    android:id="@+id/tv_hd_ingredients"
-                    android:text="@string/hd_rp_ingredient"
-                    app:layout_constraintStart_toEndOf="@+id/iv_tt_ingredients"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_hd_ingredients"
+                    android:id="@+id/tv_hd_ingredient"
+                    android:text="@string/hd_rp_cl_ingredient"
+                    app:layout_constraintStart_toEndOf="@+id/iv_tt_ingredient"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_hd_ingredient"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     style="@style/IvHeader"
-                    android:id="@+id/iv_hd_ingredients"
+                    android:id="@+id/iv_hd_ingredient"
                     android:contentDescription="@string/dp_expand"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_hd_ingredients"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_ingredients" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_ingredient"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_ingredient" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             style="@style/CvData"
-            android:id="@+id/cv_ingredients"
+            android:id="@+id/cv_ingredient"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_hd_ingredients">
+            app:layout_constraintTop_toBottomOf="@+id/cv_hd_ingredient">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 style="@style/ClRv">
 
                 <androidx.recyclerview.widget.RecyclerView
                     style="@style/WidthMatch"
-                    android:id="@+id/rv_ingredients"
+                    android:id="@+id/rv_ingredient"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

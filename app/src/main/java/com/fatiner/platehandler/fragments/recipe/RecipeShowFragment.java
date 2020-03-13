@@ -50,21 +50,21 @@ import io.reactivex.schedulers.Schedulers;
 public class RecipeShowFragment extends PrimaryFragment implements
         IngredientAdapter.IngredientListener, StepAdapter.StepListener {
 
-    @BindView(R.id.cv_info) CardView cvInfo;
-    @BindView(R.id.cv_categories) CardView cvCategories;
-    @BindView(R.id.cv_steps) CardView cvSteps;
-    @BindView(R.id.iv_hd_info) ImageView ivHdInfo;
-    @BindView(R.id.iv_hd_ingredients) ImageView ivHdCategories;
-    @BindView(R.id.iv_hd_steps) ImageView ivHdSteps;
+    @BindView(R.id.cv_data) CardView cvData;
+    @BindView(R.id.cv_ingredient) CardView cvIngredient;
+    @BindView(R.id.cv_step) CardView cvStep;
+    @BindView(R.id.iv_hd_data) ImageView ivHdData;
+    @BindView(R.id.iv_hd_ingredient) ImageView ivHdIngredient;
+    @BindView(R.id.iv_hd_step) ImageView ivHdStep;
+    @BindView(R.id.iv_photo) ImageView ivPhoto;
+    @BindView(R.id.iv_country) ImageView ivCountry;
+    @BindView(R.id.iv_type) ImageView ivType;
+    @BindView(R.id.iv_preference) ImageView ivPreference;
     @BindViews({
             R.id.iv_spiciness0,
             R.id.iv_spiciness1,
             R.id.iv_spiciness2,
             R.id.iv_spiciness3}) List<ImageView> ivSpicinessList;
-    @BindView(R.id.iv_photo) ImageView ivPhoto;
-    @BindView(R.id.iv_country) ImageView ivCountry;
-    @BindView(R.id.iv_type) ImageView ivType;
-    @BindView(R.id.iv_preference) ImageView ivPreference;
     @BindView(R.id.tv_name) TextView tvName;
     @BindView(R.id.tv_author) TextView tvAuthor;
     @BindView(R.id.tv_serving) TextView tvServing;
@@ -73,24 +73,9 @@ public class RecipeShowFragment extends PrimaryFragment implements
     @BindView(R.id.tv_country) TextView tvCountry;
     @BindView(R.id.tv_type) TextView tvType;
     @BindView(R.id.tv_preference) TextView tvPreference;
+    @BindView(R.id.rv_ingredient) RecyclerView rvIngredients;
+    @BindView(R.id.rv_step) RecyclerView rvStep;
     @BindView(R.id.cb_favorite) CheckBox cbFavorite;
-    @BindView(R.id.rv_ingredients) RecyclerView rvIngredients;
-    @BindView(R.id.rv_steps) RecyclerView rvSteps;
-
-    @OnClick(R.id.cv_hd_info)
-    void clickCvHdInfo() {
-        manageExpandCv(cvInfo, ivHdInfo);
-    }
-
-    @OnClick(R.id.cv_hd_ingredients)
-    void clickCvHdCategories() {
-        manageExpandCv(cvCategories, ivHdCategories);
-    }
-
-    @OnClick(R.id.cv_hd_steps)
-    void clickCvHdSteps() {
-        manageExpandCv(cvSteps, ivHdSteps);
-    }
 
     @OnCheckedChanged(R.id.cb_favorite)
     void checkedCbFavorite(boolean checked) {
@@ -98,19 +83,34 @@ public class RecipeShowFragment extends PrimaryFragment implements
         updateFavorite(checked);
     }
 
-    @OnClick(R.id.iv_tt_info)
-    void clickIvTtInfo() {
-        showDialog(R.string.hd_rp_info, R.string.tt_rp_info);
+    @OnClick(R.id.cv_hd_data)
+    void clickCvHdData() {
+        manageExpandCv(cvData, ivHdData);
     }
 
-    @OnClick(R.id.iv_tt_ingredients)
-    void clickIvTtCategories() {
-        showDialog(R.string.hd_rp_ingredient, R.string.tt_rp_ingredient);
+    @OnClick(R.id.cv_hd_ingredient)
+    void clickCvHdIngredient() {
+        manageExpandCv(cvIngredient, ivHdIngredient);
     }
 
-    @OnClick(R.id.iv_tt_steps)
-    void clickIvTtSteps() {
-        showDialog(R.string.hd_rp_step, R.string.tt_rp_step);
+    @OnClick(R.id.cv_hd_step)
+    void clickCvHdStep() {
+        manageExpandCv(cvStep, ivHdStep);
+    }
+
+    @OnClick(R.id.iv_tt_data)
+    void clickIvTtData() {
+        showDialog(R.string.hd_rp_sh_data, R.string.tt_rp_sh_data);
+    }
+
+    @OnClick(R.id.iv_tt_ingredient)
+    void clickIvTtIngredient() {
+        showDialog(R.string.hd_rp_sh_ingredient, R.string.tt_rp_sh_ingredient);
+    }
+
+    @OnClick(R.id.iv_tt_step)
+    void clickIvTtStep() {
+        showDialog(R.string.hd_rp_sh_step, R.string.tt_rp_sh_step);
     }
 
     public RecipeShowFragment() {}
@@ -118,7 +118,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_recipe_show, container, false);
-        init(this, view, R.id.it_recipe, R.string.tb_rp_overview, true);
+        init(this, view, R.id.it_recipe, R.string.tb_rp_show, true);
         initAction();
         return view;
     }
@@ -212,9 +212,9 @@ public class RecipeShowFragment extends PrimaryFragment implements
 
     private void manageRv() {
         setRv(rvIngredients, getManager(getColumnAmountList()), getIngredientAdapter());
-        setRv(rvSteps, getManager(getColumnAmountList()), getStepAdapter());
+        setRv(rvStep, getManager(getColumnAmountList()), getStepAdapter());
         changeRvSize(rvIngredients);
-        changeRvSize(rvSteps);
+        changeRvSize(rvStep);
     }
 
     private void setRecentRecipe() {

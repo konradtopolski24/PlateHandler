@@ -33,7 +33,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RecipeManageIngredientFragment extends PrimaryFragment implements IngredientAddAdapter.IngredientAddListener {
 
-    @BindView(R.id.rv_ingredients) RecyclerView rvIngredients;
+    @BindView(R.id.rv_ingredient) RecyclerView rvIngredients;
 
     @OnClick(R.id.bt_add)
     void clickBtAdd() {
@@ -42,12 +42,12 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements I
 
     @OnClick(R.id.iv_tt_add)
     void clickIvTtAdd() {
-        showDialog(R.string.hd_rp_add, R.string.tt_rp_add);
+        showDialog(R.string.hd_ig_mg_add, R.string.tt_ig_mg_add);
     }
 
-    @OnClick(R.id.iv_tt_ingredients)
-    void clickIvTtIngredients() {
-        showDialog(R.string.hd_rp_category, R.string.tt_rp_category);
+    @OnClick(R.id.iv_tt_data)
+    void clickIvTtData() {
+        showDialog(R.string.hd_ig_mg_data, R.string.tt_ig_mg_data);
     }
 
     public RecipeManageIngredientFragment() {}

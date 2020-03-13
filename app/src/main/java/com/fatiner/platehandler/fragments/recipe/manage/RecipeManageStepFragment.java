@@ -23,7 +23,7 @@ import butterknife.OnClick;
 
 public class RecipeManageStepFragment extends PrimaryFragment implements StepAdapter.StepListener {
 
-    @BindView(R.id.rv_steps) RecyclerView rvSteps;
+    @BindView(R.id.rv_step) RecyclerView rvStep;
     @BindView(R.id.tv_empty) TextView tvEmpty;
 
     @OnClick(R.id.bt_add)
@@ -33,12 +33,12 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
 
     @OnClick(R.id.iv_tt_add)
     void clickIvTtAdd() {
-        showDialog(R.string.hd_rp_add, R.string.tt_rp_add);
+        showDialog(R.string.hd_st_mg_add, R.string.tt_st_mg_add);
     }
 
-    @OnClick(R.id.iv_tt_steps)
-    void clickIvTtSteps() {
-        showDialog(R.string.hd_rp_step, R.string.tt_rp_step);
+    @OnClick(R.id.iv_tt_current)
+    void clickIvTtCurrent() {
+        showDialog(R.string.hd_st_mg_current, R.string.tt_st_mg_current);
     }
 
     public RecipeManageStepFragment() {}
@@ -61,8 +61,8 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
     }
 
     private void setViews() {
-        setRv(rvSteps, getManager(getColumnAmountList()), getStepAdapter());
-        checkIfRvEmpty(rvSteps, tvEmpty);
+        setRv(rvStep, getManager(getColumnAmountList()), getStepAdapter());
+        checkIfRvEmpty(rvStep, tvEmpty);
     }
 
     private StepAdapter getStepAdapter() {
@@ -70,7 +70,7 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
     }
 
     private RecyclerView.Adapter getAdapter() {
-        return rvSteps.getAdapter();
+        return rvStep.getAdapter();
     }
 
     @Override
@@ -85,6 +85,6 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
     public void removeStep(int position) {
         getSteps().remove(position);
         getAdapter().notifyItemRemoved(position);
-        checkIfRvEmpty(rvSteps, tvEmpty);
+        checkIfRvEmpty(rvStep, tvEmpty);
     }
 }

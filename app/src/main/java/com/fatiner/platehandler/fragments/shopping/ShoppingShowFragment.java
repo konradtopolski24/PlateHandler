@@ -30,14 +30,14 @@ import butterknife.OnClick;
 
 public class ShoppingShowFragment extends PrimaryFragment implements ShoppingAdapter.ShoppingListener {
 
+    @BindView(R.id.cv_data) CardView cvData;
+    @BindView(R.id.cv_list) CardView cvList;
+    @BindView(R.id.iv_hd_data) ImageView ivHdData;
+    @BindView(R.id.iv_hd_list) ImageView ivHdList;
     @BindView(R.id.tv_date) TextView tvDate;
     @BindView(R.id.tv_state) TextView tvState;
     @BindView(R.id.tv_empty) TextView tvEmpty;
     @BindView(R.id.rv_shopping) RecyclerView rvShopping;
-    @BindView(R.id.cv_info) CardView cvInfo;
-    @BindView(R.id.cv_list) CardView cvList;
-    @BindView(R.id.iv_hd_info) ImageView ivHdInfo;
-    @BindView(R.id.iv_hd_list) ImageView ivHdList;
 
     @OnClick(R.id.bt_create)
     void clickBtCreate() {
@@ -50,9 +50,9 @@ public class ShoppingShowFragment extends PrimaryFragment implements ShoppingAda
         checkState();
     }
 
-    @OnClick(R.id.cv_hd_info)
-    void clickCvHdInfo() {
-        manageExpandCv(cvInfo, ivHdInfo);
+    @OnClick(R.id.cv_hd_data)
+    void clickCvHdData() {
+        manageExpandCv(cvData, ivHdData);
     }
 
     @OnClick(R.id.cv_hd_list)
@@ -60,14 +60,14 @@ public class ShoppingShowFragment extends PrimaryFragment implements ShoppingAda
         manageExpandCv(cvList, ivHdList);
     }
 
-    @OnClick(R.id.iv_tt_info)
-    void clickIvTtInfo() {
-        showDialog(R.string.hd_sh_info, R.string.tt_sh_info);
+    @OnClick(R.id.iv_tt_data)
+    void clickIvTtData() {
+        showDialog(R.string.hd_sp_sh_data, R.string.tt_sp_sh_data);
     }
 
     @OnClick(R.id.iv_tt_list)
     void clickIvTtList() {
-        showDialog(R.string.hd_sh_list, R.string.tt_sh_list);
+        showDialog(R.string.hd_sp_sh_list, R.string.tt_sp_sh_list);
     }
 
     public ShoppingShowFragment() {}
@@ -75,7 +75,7 @@ public class ShoppingShowFragment extends PrimaryFragment implements ShoppingAda
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_shopping_show, container, false);
-        init(this, view, R.id.it_shopping, R.string.tb_sh_list, false);
+        init(this, view, R.id.it_shopping, R.string.tb_sp_show, false);
         initAction();
         return view;
     }

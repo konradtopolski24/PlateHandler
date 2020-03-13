@@ -38,9 +38,9 @@ public class StepManageFragment extends PrimaryFragment {
         endingAction();
     }
 
-    @OnClick(R.id.iv_tt_name)
-    void clickIvTtName() {
-        showDialog(R.string.hd_st_content, R.string.tt_st_content);
+    @OnClick(R.id.iv_tt_data)
+    void clickIvTtData() {
+        showDialog(R.string.hd_st_mg_data, R.string.tt_st_mg_data);
     }
 
     public StepManageFragment() {}

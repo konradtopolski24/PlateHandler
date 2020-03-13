@@ -25,16 +25,16 @@ public class RecipeCalculateFragment extends PrimaryFragment {
 
     @BindView(R.id.cv_kcal) CardView cvKcal;
     @BindView(R.id.cv_kj) CardView cvKj;
-    @BindView(R.id.cv_ingredients) CardView cvIngredients;
+    @BindView(R.id.cv_ingredient) CardView cvIngredient;
     @BindView(R.id.iv_hd_kcal) ImageView ivHdKcal;
     @BindView(R.id.iv_hd_kj) ImageView ivHdKj;
-    @BindView(R.id.iv_hd_ingredients) ImageView ivHdIngredients;
+    @BindView(R.id.iv_hd_ingredient) ImageView ivHdIngredient;
     @BindView(R.id.tv_name) TextView tvName;
     @BindView(R.id.tv_total1) TextView tvTotal1;
     @BindView(R.id.tv_total2) TextView tvTotal2;
     @BindView(R.id.tv_serving1) TextView tvServing1;
     @BindView(R.id.tv_serving2) TextView tvServing2;
-    @BindView(R.id.rv_ingredients) RecyclerView rvIngredients;
+    @BindView(R.id.rv_ingredient) RecyclerView rvIngredient;
 
     @OnClick(R.id.cv_hd_kcal)
     void clickCvHdKcal() {
@@ -46,24 +46,24 @@ public class RecipeCalculateFragment extends PrimaryFragment {
         manageExpandCv(cvKj, ivHdKj);
     }
 
-    @OnClick(R.id.cv_hd_ingredients)
-    void clickCvHdIngredients() {
-        manageExpandCv(cvIngredients, ivHdIngredients);
+    @OnClick(R.id.cv_hd_ingredient)
+    void clickCvHdIngredient() {
+        manageExpandCv(cvIngredient, ivHdIngredient);
     }
 
     @OnClick(R.id.iv_tt_kcal)
     void clickIvTtKcal() {
-        showDialog(R.string.hd_rp_kcal, R.string.tt_rp_kcal);
+        showDialog(R.string.hd_rp_cl_kcal, R.string.tt_rp_cl_kcal);
     }
 
     @OnClick(R.id.iv_tt_kj)
     void clickIvTtKj() {
-        showDialog(R.string.hd_rp_kj, R.string.tt_rp_kj);
+        showDialog(R.string.hd_rp_cl_kj, R.string.tt_rp_cl_kj);
     }
 
-    @OnClick(R.id.iv_tt_ingredients)
-    void clickIvTtIngredients() {
-        showDialog(R.string.hd_rp_ingredient, R.string.tt_rp_ingredient);
+    @OnClick(R.id.iv_tt_ingredient)
+    void clickIvTtIngredient() {
+        showDialog(R.string.hd_rp_cl_ingredient, R.string.tt_rp_cl_ingredient);
     }
 
     public RecipeCalculateFragment() {}
@@ -110,8 +110,8 @@ public class RecipeCalculateFragment extends PrimaryFragment {
     }
 
     private void manageRv() {
-        setRv(rvIngredients, getManager(getColumnAmountList()), getIngredientAdapter());
-        changeRvSize(rvIngredients);
+        setRv(rvIngredient, getManager(getColumnAmountList()), getIngredientAdapter());
+        changeRvSize(rvIngredient);
     }
 
     private IngredientAdapter getIngredientAdapter() {
@@ -123,9 +123,5 @@ public class RecipeCalculateFragment extends PrimaryFragment {
             if(ingredient.getProduct().getSize() == Globals.DF_ZERO) return true;
         }
         return false;
-    }
-
-    private void manageEmpty() {
-
     }
 }

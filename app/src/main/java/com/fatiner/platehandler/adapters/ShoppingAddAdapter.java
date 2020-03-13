@@ -83,13 +83,13 @@ public class ShoppingAddAdapter extends PrimaryAdapter<ShoppingAddAdapter.Shoppi
         @OnTextChanged(R.id.et_amount)
         void changedEtAmount(CharSequence text) {
             getShoppingItem(getAdapterPosition()).setAmount(getCorrectEtValue(text));
-            setError(etAmount, R.string.er_sh_amount, isAmountZero(getAdapterPosition()));
+            setError(etAmount, R.string.er_sp_amount, isAmountZero(getAdapterPosition()));
         }
 
         @OnTextChanged(R.id.et_name)
         void changedEtName(CharSequence text) {
             getShoppingItem(getAdapterPosition()).setName(String.valueOf(text));
-            setError(etName, R.string.er_sh_name, isNameEmpty(getAdapterPosition()));
+            setError(etName, R.string.er_sp_name, isNameEmpty(getAdapterPosition()));
         }
 
         @OnItemSelected(R.id.sp_measure)

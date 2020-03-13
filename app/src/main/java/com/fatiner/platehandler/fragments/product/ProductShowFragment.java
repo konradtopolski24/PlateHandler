@@ -48,14 +48,14 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ProductShowFragment extends PrimaryFragment {
 
-    @BindView(R.id.iv_photo) ImageView ivPhoto;
-    @BindView(R.id.iv_ct_type) ImageView ivType;
-    @BindView(R.id.cv_nutrients) CardView cvNutrients;
+    @BindView(R.id.cv_composition) CardView cvComposition;
     @BindView(R.id.cv_kcal) CardView cvKcal;
     @BindView(R.id.cv_kj) CardView cvKj;
-    @BindView(R.id.iv_hd_nutrients) ImageView ivHdNutrients;
+    @BindView(R.id.iv_hd_composition) ImageView ivHdComposition;
     @BindView(R.id.iv_hd_kcal) ImageView ivHdKcal;
     @BindView(R.id.iv_hd_kj) ImageView ivHdKj;
+    @BindView(R.id.iv_photo) ImageView ivPhoto;
+    @BindView(R.id.iv_type) ImageView ivType;
     @BindView(R.id.tv_name) TextView tvName;
     @BindView(R.id.tv_type) TextView tvType;
     @BindView(R.id.tv_carbohydrates1) TextView tvCarbohydrates1;
@@ -71,12 +71,12 @@ public class ProductShowFragment extends PrimaryFragment {
     @BindView(R.id.tv_fats3) TextView tvFats3;
     @BindView(R.id.tv_total2) TextView tvTotal2;
     @BindView(R.id.tv_empty) TextView tvEmpty;
-    @BindView(R.id.bc_nutrients) BarChart bcNutrients;
-    @BindView(R.id.pc_nutrients) PieChart pcNutrients;
+    @BindView(R.id.bc_composition) BarChart bcComposition;
+    @BindView(R.id.pc_composition) PieChart pcComposition;
 
-    @OnClick(R.id.cv_hd_nutrients)
-    void clickCvHdNutrients() {
-        manageExpandCv(cvNutrients, ivHdNutrients);
+    @OnClick(R.id.cv_hd_composition)
+    void clickCvHdComposition() {
+        manageExpandCv(cvComposition, ivHdComposition);
     }
 
     @OnClick(R.id.cv_hd_kcal)
@@ -89,19 +89,19 @@ public class ProductShowFragment extends PrimaryFragment {
         manageExpandCv(cvKj, ivHdKj);
     }
 
-    @OnClick(R.id.iv_tt_nutrients)
+    @OnClick(R.id.iv_tt_composition)
     void clickIvTtNutrients() {
-        showDialog(R.string.hd_pd_info, R.string.tt_pd_info);
+        showDialog(R.string.hd_pd_sh_composition, R.string.tt_pd_sh_composition);
     }
 
     @OnClick(R.id.iv_tt_kcal)
     void clickIvTtKcal() {
-        showDialog(R.string.hd_pd_kcal, R.string.tt_pd_kcal);
+        showDialog(R.string.hd_pd_sh_kcal, R.string.tt_pd_sh_kcal);
     }
 
     @OnClick(R.id.iv_tt_kj)
     void clickIvTtKj() {
-        showDialog(R.string.hd_pd_kj, R.string.tt_pd_kj);
+        showDialog(R.string.hd_pd_sh_kj, R.string.tt_pd_sh_kj);
     }
 
     public ProductShowFragment() {}
@@ -109,7 +109,7 @@ public class ProductShowFragment extends PrimaryFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_product_show, container, false);
-        init(this, view, R.id.it_product, R.string.tb_pd_overview, true);
+        init(this, view, R.id.it_product, R.string.tb_pd_show, true);
         initAction();
         return view;
     }
@@ -215,8 +215,8 @@ public class ProductShowFragment extends PrimaryFragment {
     }
 
     private void setEnergyInfo() {
-        setBc(bcNutrients);
-        setPc(pcNutrients);
+        setBc(bcComposition);
+        setPc(pcComposition);
         setKcalInfo();
         setKjInfo();
     }
@@ -377,8 +377,8 @@ public class ProductShowFragment extends PrimaryFragment {
         setTv(tvTotal1, Globals.SN_DASH);
         setTv(tvTotal2, Globals.SN_DASH);
         setTv(tvEmpty, Globals.SN_DASH);
-        removeView(bcNutrients);
-        removeView(pcNutrients);
+        removeView(bcComposition);
+        removeView(pcComposition);
     }
 
     //Read Product

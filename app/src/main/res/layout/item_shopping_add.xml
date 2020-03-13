@@ -27,6 +27,14 @@
             android:hint="@string/ct_amount" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        style="@style/TvTiny"
+        android:id="@+id/tv_ct_measure"
+        android:text="@string/ct_measure"
+        app:layout_constraintStart_toStartOf="@+id/sp_measure"
+        app:layout_constraintEnd_toEndOf="@+id/sp_measure"
+        app:layout_constraintTop_toTopOf="@+id/tl_amount" />
+
     <Spinner
         style="@style/WidthZero"
         android:id="@+id/sp_measure"

@@ -41,7 +41,7 @@ public class Globals {
     public static final int TM_MINUTES = 1;
     public static final int TM_SIZE = 2;
 
-    public static final int RC_MAX = 4;
+    public static final int RC_MAX = 6;
     public static final int RC_LAST = 3;
 
     public static final int FC_CARBOHYDRATES = 4;

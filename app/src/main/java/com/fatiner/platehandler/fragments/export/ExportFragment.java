@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 
@@ -15,7 +14,6 @@ import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Db;
-import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.models.Ingredient;
@@ -32,7 +30,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -44,20 +41,18 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ExportFragment extends PrimaryFragment {
 
-    @BindView(R.id.et_export) EditText etExport;
-    @BindView(R.id.tv_saved) TextView tvSaved;
-    @BindView(R.id.tv_unsaved) TextView tvUnsaved;
-    @BindView(R.id.cv_info) CardView cvInfo;
-    @BindView(R.id.iv_hd_info) ImageView ivHdInfo;
+    @BindView(R.id.cv_guideline) CardView cvGuideline;
+    @BindView(R.id.iv_hd_guideline) ImageView ivHdGuideline;
+    @BindView(R.id.et_name) EditText etName;
 
-    @OnTextChanged(R.id.et_export)
-    void changedEtExport() {
-        setError(etExport, R.string.er_ex_name, isNameEmpty());
+    @OnTextChanged(R.id.et_name)
+    void changedEtName() {
+        setError(etName, R.string.er_ex_name, isNameEmpty());
     }
 
-    @OnClick(R.id.cv_hd_info)
-    void clickCvHdInfo() {
-        manageExpandCv(cvInfo, ivHdInfo);
+    @OnClick(R.id.cv_hd_guideline)
+    void clickCvHdGuideline() {
+        manageExpandCv(cvGuideline, ivHdGuideline);
     }
 
     @OnClick(R.id.fab_export)
@@ -66,14 +61,14 @@ public class ExportFragment extends PrimaryFragment {
         chooseEndAction();
     }
 
-    @OnClick(R.id.iv_tt_name)
-    void clickIvTtName() {
-        showDialog(R.string.hd_ex_name, R.string.tt_ex_name);
+    @OnClick(R.id.iv_tt_data)
+    void clickIvTtData() {
+        showDialog(R.string.hd_ex_data, R.string.tt_ex_data);
     }
 
-    @OnClick(R.id.iv_tt_info)
-    void clickIvTtInfo() {
-        showDialog(R.string.hd_ex_info, R.string.tt_ex_info);
+    @OnClick(R.id.iv_tt_guideline)
+    void clickIvTtGuideline() {
+        showDialog(R.string.hd_ex_guideline, R.string.tt_ex_guideline);
     }
 
     public ExportFragment() {}
@@ -87,22 +82,7 @@ public class ExportFragment extends PrimaryFragment {
     }
 
     private void setViews() {
-        setTv(tvSaved, getSavedFeatures());
-        setTv(tvUnsaved, getUnsavedFeatures());
-        setError(etExport, R.string.er_ex_name, isNameEmpty());
-    }
-
-    private String getSavedFeatures() {
-        return String.format(Locale.ENGLISH, Format.FM_SAVED,
-                getString(R.string.nv_recipe),
-                getString(R.string.nv_product));
-    }
-
-    private String getUnsavedFeatures() {
-        return String.format(Locale.ENGLISH, Format.FM_UNSAVED,
-                getString(R.string.nv_shopping),
-                getString(R.string.hd_hm_recent),
-                getString(R.string.hd_hm_recent));
+        setError(etName, R.string.er_ex_name, isNameEmpty());
     }
 
     private void chooseEndAction() {
@@ -111,7 +91,7 @@ public class ExportFragment extends PrimaryFragment {
     }
 
     private boolean isNameEmpty() {
-        return etExport.getText().toString().isEmpty();
+        return etName.getText().toString().isEmpty();
     }
 
     private DialogInterface.OnClickListener getDialogListener() {
@@ -221,7 +201,7 @@ public class ExportFragment extends PrimaryFragment {
     }
 
     private void saveWorkbookFile(HSSFWorkbook workbook) {
-        File file = getFile(getXlsName(etExport.getText().toString()), Globals.DR_EXPORT);
+        File file = getFile(getXlsName(etName.getText().toString()), Globals.DR_EXPORT);
         try {
             FileOutputStream output = new FileOutputStream(file);
             workbook.write(output);

@@ -45,11 +45,11 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ImportFragment extends PrimaryFragment implements FileAdapter.FileListener {
 
-    @BindView(R.id.rv_files) RecyclerView rvFiles;
     @BindView(R.id.tv_empty) TextView tvEmpty;
+    @BindView(R.id.rv_file) RecyclerView rvFile;
 
-    @OnClick(R.id.iv_tt_files)
-    void clickIvTtFiles() {
+    @OnClick(R.id.iv_tt_file)
+    void clickIvTtFile() {
         showDialog(R.string.hd_im_file, R.string.tt_im_file);
     }
 
@@ -64,8 +64,8 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
     }
 
     private void setViews() {
-        setRv(rvFiles, getManager(getColumnAmountList()), getFilesAdapter());
-        checkIfRvEmpty(rvFiles, tvEmpty);
+        setRv(rvFile, getManager(getColumnAmountList()), getFilesAdapter());
+        checkIfRvEmpty(rvFile, tvEmpty);
     }
 
     private FileAdapter getFilesAdapter() {

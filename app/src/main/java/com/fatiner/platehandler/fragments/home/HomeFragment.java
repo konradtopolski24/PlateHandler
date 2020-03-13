@@ -23,8 +23,6 @@ import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.models.Recipe;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -37,18 +35,18 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeFragment extends PrimaryFragment implements RecipeAdapter.RecipeListener {
 
-    @BindView(R.id.rv_recent) RecyclerView rvRecent;
-    @BindView(R.id.cv_summary) CardView cvSummary;
+    @BindView(R.id.cv_statistics) CardView cvStatistics;
     @BindView(R.id.cv_recent) CardView cvRecent;
-    @BindView(R.id.iv_hd_summary) ImageView ivHdSummary;
+    @BindView(R.id.iv_hd_statistics) ImageView ivHdStatistics;
     @BindView(R.id.iv_hd_recent) ImageView ivHdRecent;
     @BindView(R.id.tv_recipe) TextView tvRecipe;
     @BindView(R.id.tv_product) TextView tvProduct;
     @BindView(R.id.tv_empty) TextView tvEmpty;
+    @BindView(R.id.rv_recent) RecyclerView rvRecent;
 
-    @OnClick(R.id.cv_hd_summary)
-    void clickCvHdSummary() {
-        manageExpandCv(cvSummary, ivHdSummary);
+    @OnClick(R.id.cv_hd_statistics)
+    void clickCvHdStatistics() {
+        manageExpandCv(cvStatistics, ivHdStatistics);
     }
 
     @OnClick(R.id.cv_hd_recent)
@@ -56,9 +54,9 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
         manageExpandCv(cvRecent, ivHdRecent);
     }
 
-    @OnClick(R.id.iv_tt_summary)
-    void clickIvTtSummary() {
-        showDialog(R.string.hd_hm_summary, R.string.tt_hm_summary);
+    @OnClick(R.id.iv_tt_statistics)
+    void clickIvTtStatistics() {
+        showDialog(R.string.hd_hm_statistics, R.string.tt_hm_statistics);
     }
 
     @OnClick(R.id.iv_tt_recent)

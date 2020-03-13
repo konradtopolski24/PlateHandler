@@ -30,7 +30,7 @@ import butterknife.OnClick;
 
 public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingAddAdapter.ShoppingAddListener {
 
-    @BindView(R.id.rv_positions) RecyclerView rvPositions;
+    @BindView(R.id.rv_shopping) RecyclerView rvShopping;
 
     @OnClick(R.id.bt_add)
     void clickBtAdd() {
@@ -50,12 +50,12 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
 
     @OnClick(R.id.iv_tt_add)
     void clickIvTtAdd() {
-        showDialog(R.string.hd_sh_item, R.string.tt_sh_item);
+        showDialog(R.string.hd_sp_mg_add, R.string.tt_sp_mg_add);
     }
 
-    @OnClick(R.id.iv_tt_list)
-    void clickIvTtList() {
-        showDialog(R.string.hd_sh_list, R.string.tt_sh_list);
+    @OnClick(R.id.iv_tt_data)
+    void clickIvTtData() {
+        showDialog(R.string.hd_sp_mg_data, R.string.tt_sp_mg_data);
     }
 
     public ShoppingCreateFragment() {}
@@ -63,7 +63,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_shopping_create, container, false);
-        init(this, view, R.id.it_shopping, R.string.tb_sh_add, false);
+        init(this, view, R.id.it_shopping, R.string.tb_sp_add, false);
         initAction();
         return view;
     }
@@ -78,8 +78,8 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
     }
 
     private void manageRv() {
-        setRv(rvPositions, getManager(Globals.GL_ONE), getAddShoppingItemAdapter());
-        changeRvSize(rvPositions);
+        setRv(rvShopping, getManager(Globals.GL_ONE), getAddShoppingItemAdapter());
+        changeRvSize(rvShopping);
     }
 
     private ShoppingAddAdapter getAddShoppingItemAdapter() {
@@ -95,7 +95,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
         ShoppingItem shoppingItem = new ShoppingItem();
         shoppingItems.add(shoppingItem);
         getAdapter().notifyItemInserted(shoppingItems.size() + Globals.DF_DECREMENT);
-        changeRvSize(rvPositions);
+        changeRvSize(rvShopping);
     }
 
     private boolean isShoppingListEmpty() {
@@ -103,7 +103,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
     }
 
     private RecyclerView.Adapter getAdapter() {
-        return rvPositions.getAdapter();
+        return rvShopping.getAdapter();
     }
 
     private void setShoppingListInShared() {
@@ -116,7 +116,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
 
     private void endAction() {
         if(isIncomplete()) showShortToast(R.string.ts_shopping);
-        else showDialog(R.string.dg_sh_add, getDialogListener());
+        else showDialog(R.string.dg_sp_add, getDialogListener());
     }
 
     private boolean isIncomplete() {
@@ -142,7 +142,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
             switch(which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     setShoppingListInShared();
-                    showShortSnack(R.string.sb_sh_add);
+                    showShortSnack(R.string.sb_sp_add);
                     popFragment();
                     break;
                 case DialogInterface.BUTTON_NEGATIVE:

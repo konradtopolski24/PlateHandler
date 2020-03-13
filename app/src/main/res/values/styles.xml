@@ -214,6 +214,12 @@
         <item name="android:textSize">@dimen/tx_big</item>
     </style>
 
+    <style name="TvTiny" parent="TvPrimary">
+        <item name="android:layout_marginStart">@dimen/mg_tiny</item>
+        <item name="android:layout_marginEnd">@dimen/mg_tiny</item>
+        <item name="android:textSize">@dimen/tx_tiny</item>
+    </style>
+
     <style name="TvDone" parent="BothWrap">
         <item name="android:layout_margin">@dimen/mg_big</item>
         <item name="android:textSize">@dimen/tx_enormous</item>
@@ -232,7 +238,7 @@
         <item name="android:textColor">@color/pr_normal</item>
     </style>
 
-    <style name="TvTiny" parent="BothWrap">
+    <style name="TvNo" parent="BothWrap">
         <item name="android:layout_margin">@dimen/mg_tiny</item>
         <item name="android:textSize">@dimen/tx_tiny</item>
         <item name="android:visibility">gone</item>

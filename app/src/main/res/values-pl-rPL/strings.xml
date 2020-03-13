@@ -1,0 +1,345 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Plate Handler</string>
+
+    <!-- NavigationView Menu -->
+    <string name="nv_home">Strona Główna</string>
+    <string name="nv_recipe">Przepisy</string>
+    <string name="nv_product">Produkty</string>
+    <string name="nv_shopping">Lista Zakupów</string>
+    <string name="nv_export">Eksport Bazy Danych</string>
+    <string name="nv_import">Import Bazy Danych</string>
+    <string name="nv_credits">Przypisy</string>
+
+    <!-- Drawer -->
+    <string name="dt_opened">Szuflada Otwarta</string>
+    <string name="dt_closed">Szuflada Zamknięta</string>
+
+    <!-- Dialog -->
+    <string name="dg_ok">OK</string>
+    <string name="dg_cancel">Anuluj</string>
+
+    <!-- Pager -->
+    <string name="pg_info">Dane</string>
+    <string name="pg_ingredient">Składniki</string>
+    <string name="pg_step">Kroki</string>
+
+    <!-- Menu Items -->
+    <string name="mn_settings">Ustawienia</string>
+    <string name="mn_calculate">Obliczanie</string>
+    <string name="mn_edit">Edycja</string>
+    <string name="mn_remove">Usuwanie</string>
+
+    <!-- Button -->
+    <string name="bt_shopping">Stwórz Nową Listę</string>
+    <string name="bt_ingredient">Dodaj Nowy Składnik</string>
+    <string name="bt_step">Dodaj Nowy Krok</string>
+    <string name="bt_item">Dodaj Nowy Przedmiot</string>
+    <string name="bt_recipe">Wybierz Przepis</string>
+
+    <!-- Dialog Message -->
+    <string name="dg_pd_add">Czy chcesz dodać nowy produkt?</string>
+    <string name="dg_pd_edit">Czy chcesz zedytować informacje o produkcie?</string>
+    <string name="dg_pd_remove">Czy chcesz usunąć produkt?</string>
+    <string name="dg_rp_add">Czy chcesz dodać nowy przepis?</string>
+    <string name="dg_rp_edit">Czy chcesz zedytować informacje o przepisie?</string>
+    <string name="dg_rp_remove">Czy chcesz usunąć przepis?</string>
+    <string name="dg_sp_add">Czy chcesz stworzyć nową listę zakupów?</string>
+    <string name="dg_ex_add">Czy chcesz stworzyć nowy plik eksportu?</string>
+    <string name="dg_im_choose">Czy chcesz importować dane z wybranego pliku?
+        Wszystkie wcześniejsze dane zostaną usunięte!</string>
+
+    <!-- SnackBar Message -->
+    <string name="sb_pd_add">Nowy produkt został dodany!</string>
+    <string name="sb_pd_edit">Produkt został zaktualizowany!</string>
+    <string name="sb_pd_remove">Product został usunięty!</string>
+    <string name="sb_st_add">Nowy krok został dodany!</string>
+    <string name="sb_rp_add">Nowy przepis został dodany!</string>
+    <string name="sb_rp_edit">Przepis został zaktualizowany!</string>
+    <string name="sb_rp_remove">Przepis został usunięty!</string>
+    <string name="sb_sp_add">Nowa lista zakupów została utworzona!</string>
+    <string name="sb_ex_add">Baza danych została wyeksportowana!</string>
+    <string name="sb_im_add">Baza danych została zaimportowana!</string>
+
+    <!-- Toast Message -->
+    <string name="ts_welcome">Witamy w Plate Handler!</string>
+    <string name="ts_product">Dane produktu są niekompletne!</string>
+    <string name="ts_used">Nie można usunąć tego produktu, ponieważ jest używany w przepisie!</string>
+    <string name="ts_recipe">Dane przepisu są niekompletne!</string>
+    <string name="ts_step">Dane kroku są niekompletne!</string>
+    <string name="ts_shopping">Dane listy zakupów są niekompletne!</string>
+    <string name="ts_export">Dane eksportu są niekompletne!</string>
+    <string name="ts_item">Przynajmniej jedna pozycja jest wymagana!</string>
+    <string name="ts_database">Błąd bazy danych!</string>
+    <string name="ts_file">Błąd operacji na pliku!</string>
+    <string name="ts_directory">Nowy folder został utworzony!</string>
+    <string name="ts_empty">Przynajmniej jeden produkt nie ma ustalonego średniego rozmiaru!</string>
+
+    <!-- Errors -->
+    <string name="er_pd_name">Nazwa produktu jest pusta!</string>
+    <string name="er_pd_nutrients">Suma składników odżywczych w produkcie nie może być większa niż jego średnia wielkość!</string>
+    <string name="er_rp_name">Nazwa przepisu jest pusta!</string>
+    <string name="er_rp_author">Imię autora jest puste!</string>
+    <string name="er_ig_amount">Ilość danego składnika nie może być równa zero!</string>
+    <string name="er_st_content">Zawartość danego kroku jest pusta!</string>
+    <string name="er_sp_amount">Ilość danego przedmiotu nie może być równa zero!</string>
+    <string name="er_sp_name">Nazwa przedmiotu jest pusta!</string>
+    <string name="er_ex_name">Nazwa pliku eksportowego jest pusta!</string>
+
+    <!-- Empty List -->
+    <string name="ep_recent">Nie przejrzano przepisów!</string>
+    <string name="ep_recipe">Lista przepisów jest pusta!</string>
+    <string name="ep_product">Lista produktów jest pusta!</string>
+    <string name="ep_step">Lista kroków jest pusta!</string>
+    <string name="ep_shopping">Lista zakupów jest pusta!</string>
+    <string name="ep_import">Lista plików jest pusta!</string>
+    <string name="ep_spinner">Brak Produktów!</string>
+
+    <!-- Finished -->
+    <string name="fn_ingredient">Użyto!</string>
+    <string name="fn_step">Wykonano!</string>
+
+    <!-- Captions -->
+    <string name="ct_statistics1">Ilość Przepisów</string>
+    <string name="ct_statistics2">Ilość Produktów</string>
+    <string name="ct_name">Nazwa</string>
+    <string name="ct_author">Autor</string>
+    <string name="ct_serving">Porcje</string>
+    <string name="ct_time">Czas</string>
+    <string name="ct_difficulty">Trudność</string>
+    <string name="ct_spiciness">Ostrość</string>
+    <string name="ct_country">Kuchnia</string>
+    <string name="ct_type">Typ</string>
+    <string name="ct_preference">Preferencje</string>
+    <string name="ct_meat">Mięsne</string>
+    <string name="ct_vegetarian">Wegetariańskie</string>
+    <string name="ct_alphabetical">Alfabetycznie</string>
+    <string name="ct_favorite">Ulubione</string>
+    <string name="ct_measure">Miara</string>
+    <string name="ct_amount">Ilość</string>
+    <string name="ct_product">Produkt</string>
+    <string name="ct_step">Krok</string>
+    <string name="ct_size">Średni Rozmiar</string>
+    <string name="ct_carbohydrates">Węglowodany</string>
+    <string name="ct_proteins">Białka</string>
+    <string name="ct_fats">Tłuszcze</string>
+    <string name="ct_nutrients">Substancje Odżywcze</string>
+    <string name="ct_date">Data Zakupów</string>
+    <string name="ct_state">Stan Zakupów</string>
+    <string name="ct_other">Pozostałe</string>
+    <string name="ct_chart">Wykresy Procentowe Substancji</string>
+    <string name="ct_total">Suma Kalorii</string>
+    <string name="ct_per">Na Porcję</string>
+    <string name="ct_developer">Twórca</string>
+    <string name="ct_version">Wersja</string>
+    <string name="ct_license">Licencja</string>
+    <string name="ct_attribution">Przypisanie</string>
+    <string name="ct_saved">Zapisywane Dane</string>
+    <string name="ct_unsaved">Pomijane Dane</string>
+
+    <!-- Export -->
+    <string name="ex_recipe">Wszystkie Przepisy</string>
+    <string name="ex_product">Wszystkie Produkty</string>
+    <string name="ex_shopping">Lista Zakupów</string>
+    <string name="ex_settings">Wszystkie Ustawienia</string>
+    <string name="ex_photo">Wszystkie Zdjęcia</string>
+
+    <!-- Header -->
+    <string name="hd_hm_statistics">Statystyki Aplikacji</string>
+    <string name="hd_hm_recent">Sprawdzane Przepisy</string>
+    <string name="hd_rp_mg_photo">Ustaw Zdjęcie Przepisu</string>
+    <string name="hd_rp_mg_essential">Ustaw Kluczowe Dane</string>
+    <string name="hd_rp_mg_data">Ustaw Dane Przepisu</string>
+    <string name="hd_rp_sh_data">Dane Przepisu</string>
+    <string name="hd_rp_sh_ingredient">Składniki</string>
+    <string name="hd_rp_sh_step">Kroki Przygotowania</string>
+    <string name="hd_rp_cl_kcal">Kalorie w Przepisie (Kcal)</string>
+    <string name="hd_rp_cl_kj">Kalorie w Przepisie (Kj)</string>
+    <string name="hd_rp_cl_ingredient">Kalorie Produktów</string>
+    <string name="hd_rp_settings">Ustawienia Wyszukiwania</string>
+    <string name="hd_ig_mg_add">Dodaj Składnik</string>
+    <string name="hd_ig_mg_data">Ustaw Dane Składników</string>
+    <string name="hd_st_mg_add">Dodaj Krok</string>
+    <string name="hd_st_mg_current">Obecne Kroki</string>
+    <string name="hd_st_mg_data">Ustaw Zawartość Kroku</string>
+    <string name="hd_pd_mg_photo">Ustaw Zdjęcie Produktu</string>
+    <string name="hd_pd_mg_essential">Ustaw Kluczowe Dane</string>
+    <string name="hd_pd_mg_composition">Ustaw Skład Produktu</string>
+    <string name="hd_pd_sh_composition">Skład Produktu</string>
+    <string name="hd_pd_sh_kcal">Kalorie w Produkcie (Kcal)</string>
+    <string name="hd_pd_sh_kj">Kalorie w Produkcie (Kj)</string>
+    <string name="hd_pd_settings">Ustawienia Wyszukiwania</string>
+    <string name="hd_sp_sh_data">Dane Listy Zakupów</string>
+    <string name="hd_sp_sh_list">Lista Zakupów</string>
+    <string name="hd_sp_mg_add">Dodaj Pozycję Zakupową</string>
+    <string name="hd_sp_mg_data">Ustaw Dane Pozycji</string>
+    <string name="hd_ex_data">Ustaw Nazwę Pliku</string>
+    <string name="hd_ex_guideline">Wytyczne Eksportu</string>
+    <string name="hd_im_file">Pliki Importu</string>
+    <string name="hd_cd_author">Autor Aplikacji</string>
+    <string name="hd_cd_library">Wykorzystane Biblioteki</string>
+    <string name="hd_cd_icon">Wykorzystane Ikony</string>
+
+    <!-- Tutorial -->
+    <string name="tt_hm_statistics"></string>
+    <string name="tt_hm_recent"></string>
+    <string name="tt_rp_mg_photo"></string>
+    <string name="tt_rp_mg_essential"></string>
+    <string name="tt_rp_mg_data"></string>
+    <string name="tt_rp_sh_data"></string>
+    <string name="tt_rp_sh_ingredient"></string>
+    <string name="tt_rp_sh_step"></string>
+    <string name="tt_rp_cl_kcal"></string>
+    <string name="tt_rp_cl_kj"></string>
+    <string name="tt_rp_cl_ingredient"></string>
+    <string name="tt_rp_settings"></string>
+    <string name="tt_ig_mg_add"></string>
+    <string name="tt_ig_mg_data"></string>
+    <string name="tt_st_mg_add"></string>
+    <string name="tt_st_mg_current"></string>
+    <string name="tt_st_mg_data"></string>
+    <string name="tt_pd_mg_photo"></string>
+    <string name="tt_pd_mg_essential"></string>
+    <string name="tt_pd_mg_composition"></string>
+    <string name="tt_pd_sh_composition"></string>
+    <string name="tt_pd_sh_kcal"></string>
+    <string name="tt_pd_sh_kj"></string>
+    <string name="tt_pd_settings"></string>
+    <string name="tt_sp_sh_data"></string>
+    <string name="tt_sp_sh_list"></string>
+    <string name="tt_sp_mg_add"></string>
+    <string name="tt_sp_mg_data"></string>
+    <string name="tt_ex_data"></string>
+    <string name="tt_ex_guideline"></string>
+    <string name="tt_im_file"></string>
+    <string name="tt_cd_author"></string>
+    <string name="tt_cd_library"></string>
+    <string name="tt_cd_icon"></string>
+
+    <!-- Main Toolbar Titles -->
+    <string name="tb_hm_welcome">Witamy</string>
+    <string name="tb_rp_choose">Wybierz Przepis</string>
+    <string name="tb_rp_settings">Ustawienia Przepisu</string>
+    <string name="tb_rp_add">Dodaj Przepis</string>
+    <string name="tb_rp_show">Strona Przepisu</string>
+    <string name="tb_rp_edit">Edytuj Przepis</string>
+    <string name="tb_rp_calculate">Obliczanie Kalorii</string>
+    <string name="tb_st_add">Dodaj Krok</string>
+    <string name="tb_st_edit">Edytuj Krok</string>
+    <string name="tb_pd_choose">Wybierz Produkt</string>
+    <string name="tb_pd_settings">Ustawienia Produktu</string>
+    <string name="tb_pd_add">Dodaj Produkt</string>
+    <string name="tb_pd_show">Strona Produktu</string>
+    <string name="tb_pd_edit">Edycja Produktu</string>
+    <string name="tb_sp_show">Strona Listy Zakupów</string>
+    <string name="tb_sp_add">Stwórz Listę Zakupów</string>
+    <string name="tb_ex_database">Eksport Bazy Danych</string>
+    <string name="tb_im_database">Import Bazy Danych</string>
+    <string name="tb_cd_show">Przypisy</string>
+
+    <!-- Content Description -->
+    <string name="dp_pd_photo">Zdjęcie produktu</string>
+    <string name="dp_pd_type">Ikona typu produktu</string>
+    <string name="dp_rp_photo">Zdjęcie przepisu</string>
+    <string name="dp_rp_spiciness">Ikona ostrości przepisu</string>
+    <string name="dp_rp_type">Ikona typu przepisu</string>
+    <string name="dp_rp_country">Ikona kuchnii przepisu</string>
+    <string name="dp_rp_preference">Ikona preferencji przepisu</string>
+    <string name="dp_expand">Ikona reprezentująca widok rozwijany</string>
+    <string name="dp_caption">Ikona nagłówka</string>
+    <string name="dp_side">Ikona z boku pozycji</string>
+    <string name="dp_remove">Opcja do usuwania pozycji</string>
+    <string name="dp_dot">Ikona pozycji zakupowej</string>
+    <string name="dp_tutorial">Ikona opcji wyboru samouczka</string>
+    <string name="dp_bt_add">Przycisk dodawania zdjęcia</string>
+    <string name="dp_bt_remove">Przycisk usuwania zdjęcia</string>
+    <string name="dp_bt_plus">Przycisk zwiększający liczbę porcji</string>
+    <string name="dp_bt_minus">Przycisk zmniejszający liczbę porcji</string>
+    <string name="dp_bt_time">Przycisk ustawiania czasu wykonania przepisu</string>
+    <string name="dp_bt_edit">Przycisk edycji pozycji</string>
+    <string name="dp_bt_product">Przycisk dodawania nowego produktu</string>
+
+    <!-- Array Text Difficulty -->
+    <string name="ar_df_easy">Łatwy</string>
+    <string name="ar_df_medium">Średni</string>
+    <string name="ar_df_hard">Trudny</string>
+
+    <!-- Array Text Spiciness -->
+    <string name="ar_sp_mild">Łagodne</string>
+    <string name="ar_sp_medium">Średnie</string>
+    <string name="ar_sp_hot">Ostre</string>
+    <string name="ar_sp_extra">Super Ostre</string>
+
+    <!-- Array Text Preference -->
+    <string name="ar_pf_vegetarian">Wegetariańskie</string>
+    <string name="ar_pf_meat">Mięsne</string>
+
+    <!-- Array Text Country -->
+    <string name="ar_ct_american">Amerykańska</string>
+    <string name="ar_ct_austrian">Austriacka</string>
+    <string name="ar_ct_brazilian">Brazylijska</string>
+    <string name="ar_ct_british">Brytyjska</string>
+    <string name="ar_ct_bulgarian">Bułgarska</string>
+    <string name="ar_ct_chinese">Chińska</string>
+    <string name="ar_ct_croatian">Chorwacka</string>
+    <string name="ar_ct_czech">Czeska</string>
+    <string name="ar_ct_french">Francuska</string>
+    <string name="ar_ct_georgian">Gruzińska</string>
+    <string name="ar_ct_german">Niemiecka</string>
+    <string name="ar_ct_greek">Grecka</string>
+    <string name="ar_ct_indian">Indyjska</string>
+    <string name="ar_ct_italian">Włoska</string>
+    <string name="ar_ct_japanese">Japońska</string>
+    <string name="ar_ct_mexican">Meksykańska</string>
+    <string name="ar_ct_moroccan">Marokańska</string>
+    <string name="ar_ct_polish">Polska</string>
+    <string name="ar_ct_portuguese">Portugalska</string>
+    <string name="ar_ct_russian">Rosyjska</string>
+    <string name="ar_ct_south_korean">Południowo Koreańska</string>
+    <string name="ar_ct_spanish">Hiszpańska</string>
+    <string name="ar_ct_thai">Tajska</string>
+    <string name="ar_ct_turkish">Turecka</string>
+    <string name="ar_ct_ukrainian">Ukraińska</string>
+    <string name="ar_ct_vietnamese">Wietnamska</string>
+    <string name="ar_ct_other">Inna</string>
+
+    <!-- Array Text Recipe -->
+    <string name="ar_rp_breakfast">Śniadanie</string>
+    <string name="ar_rp_appetiser">Przekąska</string>
+    <string name="ar_rp_drink">Napój</string>
+    <string name="ar_rp_soup">Zupa</string>
+    <string name="ar_rp_dinner">Obiad</string>
+    <string name="ar_rp_salad">Sałatka</string>
+    <string name="ar_rp_sauce">Sos</string>
+    <string name="ar_rp_spice">Przyprawa</string>
+    <string name="ar_rp_dessert">Deser</string>
+    <string name="ar_rp_other">Inny</string>
+
+    <!-- Array Text Product -->
+    <string name="ar_pd_grain">Zbożowy</string>
+    <string name="ar_pd_bread">Pieczywo</string>
+    <string name="ar_pd_dairy">Nabiał</string>
+    <string name="ar_pd_fat">Tłuszczowy</string>
+    <string name="ar_pd_egg">Jajko</string>
+    <string name="ar_pd_vegetable">Warzywo</string>
+    <string name="ar_pd_fruit">Owoc</string>
+    <string name="ar_pd_meat">Mięso</string>
+    <string name="ar_pd_fish">Ryba</string>
+    <string name="ar_pd_seafood">Owoc Morza</string>
+    <string name="ar_pd_pasta">Makaron</string>
+    <string name="ar_pd_spice">Przyprawa</string>
+    <string name="ar_pd_liquid">Płyn</string>
+    <string name="ar_pd_sauce">Sos</string>
+    <string name="ar_pd_other">Inny</string>
+
+    <!-- Array Text Measure -->
+    <string name="ar_ms_piece">Sztuka</string>
+    <string name="ar_ms_gram">Gram</string>
+    <string name="ar_ms_decagram">Dekagram</string>
+    <string name="ar_ms_kilogram">Kilogram</string>
+    <string name="ar_ms_millilitre">Mililitr</string>
+    <string name="ar_ms_litre">Litr</string>
+    <string name="ar_ms_teaspoon">Łyżeczka</string>
+    <string name="ar_ms_tablespoon">Łyżka</string>
+    <string name="ar_ms_cup">Szklanka</string>
+</resources>

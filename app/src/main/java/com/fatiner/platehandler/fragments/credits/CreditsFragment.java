@@ -26,29 +26,29 @@ import butterknife.OnClick;
 
 public class CreditsFragment extends PrimaryFragment {
 
-    @BindView(R.id.rv_libraries) RecyclerView rvLibraries;
-    @BindView(R.id.rv_icons) RecyclerView rvIcons;
     @BindView(R.id.cv_author) CardView cvAuthor;
-    @BindView(R.id.cv_libraries) CardView cvLibraries;
-    @BindView(R.id.cv_icons) CardView cvIcons;
+    @BindView(R.id.cv_library) CardView cvLibrary;
+    @BindView(R.id.cv_icon) CardView cvIcon;
     @BindView(R.id.iv_hd_author) ImageView ivHdAuthor;
-    @BindView(R.id.iv_hd_libraries) ImageView ivHdLibraries;
-    @BindView(R.id.iv_hd_icons) ImageView ivHdIcons;
+    @BindView(R.id.iv_hd_library) ImageView ivHdLibrary;
+    @BindView(R.id.iv_hd_icon) ImageView ivHdIcon;
     @BindView(R.id.tv_developer) TextView tvDeveloper;
+    @BindView(R.id.rv_library) RecyclerView rvLibrary;
+    @BindView(R.id.rv_icon) RecyclerView rvIcon;
 
     @OnClick(R.id.cv_hd_author)
     void clickCvHdAuthor() {
         manageExpandCv(cvAuthor, ivHdAuthor);
     }
 
-    @OnClick(R.id.cv_hd_libraries)
-    void clickCvHdLibraries() {
-        manageExpandCv(cvLibraries, ivHdLibraries);
+    @OnClick(R.id.cv_hd_library)
+    void clickCvHdLibrary() {
+        manageExpandCv(cvLibrary, ivHdLibrary);
     }
 
-    @OnClick(R.id.cv_hd_icons)
-    void clickCvHdIcons() {
-        manageExpandCv(cvIcons, ivHdIcons);
+    @OnClick(R.id.cv_hd_icon)
+    void clickCvHdIcon() {
+        manageExpandCv(cvIcon, ivHdIcon);
     }
 
     @OnClick(R.id.iv_tt_author)
@@ -56,13 +56,13 @@ public class CreditsFragment extends PrimaryFragment {
         showDialog(R.string.hd_cd_author, R.string.tt_cd_author);
     }
 
-    @OnClick(R.id.iv_tt_libraries)
-    void clickIvTtLibraries() {
+    @OnClick(R.id.iv_tt_library)
+    void clickIvTtLibrary() {
         showDialog(R.string.hd_cd_library, R.string.tt_cd_library);
     }
 
-    @OnClick(R.id.iv_tt_icons)
-    void clickIvTtIcons() {
+    @OnClick(R.id.iv_tt_icon)
+    void clickIvTtIcon() {
         showDialog(R.string.hd_cd_icon, R.string.tt_cd_icon);
     }
 
@@ -78,10 +78,10 @@ public class CreditsFragment extends PrimaryFragment {
 
     private void setViews() {
         setTv(tvDeveloper, Credits.DL_NAME);
-        setRv(rvLibraries, getManager(getColumnAmountList()), getLibraryAdapter());
-        setRv(rvIcons, getManager(getColumnAmountList()), getPackAdapter());
-        changeRvSize(rvLibraries);
-        changeRvSize(rvIcons);
+        setRv(rvLibrary, getManager(getColumnAmountList()), getLibraryAdapter());
+        setRv(rvIcon, getManager(getColumnAmountList()), getPackAdapter());
+        changeRvSize(rvLibrary);
+        changeRvSize(rvIcon);
     }
 
     private LibraryAdapter getLibraryAdapter() {

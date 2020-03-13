@@ -122,17 +122,17 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
 
     @OnClick(R.id.iv_tt_photo)
     void clickIvTtPhoto() {
-        showDialog(R.string.hd_rp_photo, R.string.tt_rp_photo);
+        showDialog(R.string.hd_rp_mg_photo, R.string.tt_rp_mg_photo);
     }
 
-    @OnClick(R.id.iv_tt_name)
-    void clickIvTtName() {
-        showDialog(R.string.hd_rp_name, R.string.tt_rp_name);
+    @OnClick(R.id.iv_tt_essential)
+    void clickIvTtEssential() {
+        showDialog(R.string.hd_rp_mg_essential, R.string.tt_rp_mg_essential);
     }
 
-    @OnClick(R.id.iv_tt_info)
-    void clickIvTtInfo() {
-        showDialog(R.string.hd_rp_info, R.string.tt_rp_info);
+    @OnClick(R.id.iv_tt_data)
+    void clickIvTtData() {
+        showDialog(R.string.hd_rp_mg_data, R.string.tt_rp_mg_data);
     }
 
     public RecipeManageInfoFragment() {}
