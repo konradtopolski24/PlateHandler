@@ -1,4 +1,4 @@
-package com.fatiner.platehandler.adapters;
+package com.fatiner.platehandler.adapters.pager;
 
 import android.content.Context;
 

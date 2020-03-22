@@ -152,10 +152,10 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_ct_type" />
 
                     <Spinner
-                        style="@style/BothWrap"
+                        style="@style/WidthZero"
                         android:id="@+id/sp_type"
-                        android:entries="@array/tx_product"
                         app:layout_constraintStart_toEndOf="@+id/iv_type"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/iv_type"
                         app:layout_constraintBottom_toBottomOf="@+id/iv_type" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

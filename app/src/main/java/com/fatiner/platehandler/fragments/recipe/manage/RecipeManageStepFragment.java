@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.adapters.StepAdapter;
+import com.fatiner.platehandler.adapters.recyclerview.StepAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Globals;
@@ -62,6 +62,7 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
 
     private void setViews() {
         setRv(rvStep, getManager(getColumnAmountList()), getStepAdapter());
+        changeRvSize(rvStep);
         checkIfRvEmpty(rvStep, tvEmpty);
     }
 
@@ -85,6 +86,7 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
     public void removeStep(int position) {
         getSteps().remove(position);
         getAdapter().notifyItemRemoved(position);
+        changeRvSize(rvStep);
         checkIfRvEmpty(rvStep, tvEmpty);
     }
 }

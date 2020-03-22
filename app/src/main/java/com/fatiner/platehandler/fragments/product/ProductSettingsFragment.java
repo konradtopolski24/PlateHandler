@@ -49,8 +49,17 @@ public class ProductSettingsFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_product_settings, container, false);
         init(this, view, R.id.it_product, R.string.tb_pd_settings, false);
-        setSettings();
+        initAction();
         return view;
+    }
+
+    private void initAction() {
+        setViews();
+        setSettings();
+    }
+
+    private void setViews() {
+        setSp(spType, getEntries(R.array.tx_product), getContext());
     }
 
     private void setSettings() {

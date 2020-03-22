@@ -34,7 +34,7 @@
     <string name="bt_shopping">Stwórz Nową Listę</string>
     <string name="bt_ingredient">Dodaj Nowy Składnik</string>
     <string name="bt_step">Dodaj Nowy Krok</string>
-    <string name="bt_item">Dodaj Nowy Przedmiot</string>
+    <string name="bt_item">Dodaj Nową Pozycję</string>
     <string name="bt_recipe">Wybierz Przepis</string>
 
     <!-- Dialog Message -->
@@ -64,7 +64,8 @@
     <!-- Toast Message -->
     <string name="ts_welcome">Witamy w Plate Handler!</string>
     <string name="ts_product">Dane produktu są niekompletne!</string>
-    <string name="ts_used">Nie można usunąć tego produktu, ponieważ jest używany w przepisie!</string>
+    <string name="ts_used">Nie można usunąć tego produktu, ponieważ jest używany w
+        przepisie!</string>
     <string name="ts_recipe">Dane przepisu są niekompletne!</string>
     <string name="ts_step">Dane kroku są niekompletne!</string>
     <string name="ts_shopping">Dane listy zakupów są niekompletne!</string>
@@ -73,11 +74,13 @@
     <string name="ts_database">Błąd bazy danych!</string>
     <string name="ts_file">Błąd operacji na pliku!</string>
     <string name="ts_directory">Nowy folder został utworzony!</string>
-    <string name="ts_empty">Przynajmniej jeden produkt nie ma ustalonego średniego rozmiaru!</string>
+    <string name="ts_empty">Przynajmniej jeden produkt nie ma ustalonego średniego
+        rozmiaru!</string>
 
     <!-- Errors -->
     <string name="er_pd_name">Nazwa produktu jest pusta!</string>
-    <string name="er_pd_nutrients">Suma składników odżywczych w produkcie nie może być większa niż jego średnia wielkość!</string>
+    <string name="er_pd_nutrients">Suma składników odżywczych w produkcie nie może być większa niż
+        jego średnia wielkość!</string>
     <string name="er_rp_name">Nazwa przepisu jest pusta!</string>
     <string name="er_rp_author">Imię autora jest puste!</string>
     <string name="er_ig_amount">Ilość danego składnika nie może być równa zero!</string>
@@ -134,15 +137,15 @@
     <string name="ct_version">Wersja</string>
     <string name="ct_license">Licencja</string>
     <string name="ct_attribution">Przypisanie</string>
-    <string name="ct_saved">Zapisywane Dane</string>
-    <string name="ct_unsaved">Pomijane Dane</string>
+    <string name="ct_saved">Zapisywane</string>
+    <string name="ct_unsaved">Pomijane</string>
 
     <!-- Export -->
-    <string name="ex_recipe">Wszystkie Przepisy</string>
-    <string name="ex_product">Wszystkie Produkty</string>
+    <string name="ex_recipe">Przepisy</string>
+    <string name="ex_product">Produkty</string>
     <string name="ex_shopping">Lista Zakupów</string>
-    <string name="ex_settings">Wszystkie Ustawienia</string>
-    <string name="ex_photo">Wszystkie Zdjęcia</string>
+    <string name="ex_settings">Ustawienia</string>
+    <string name="ex_photo">Zdjęcia</string>
 
     <!-- Header -->
     <string name="hd_hm_statistics">Statystyki Aplikacji</string>
@@ -181,40 +184,242 @@
     <string name="hd_cd_icon">Wykorzystane Ikony</string>
 
     <!-- Tutorial -->
-    <string name="tt_hm_statistics"></string>
-    <string name="tt_hm_recent"></string>
-    <string name="tt_rp_mg_photo"></string>
-    <string name="tt_rp_mg_essential"></string>
-    <string name="tt_rp_mg_data"></string>
-    <string name="tt_rp_sh_data"></string>
-    <string name="tt_rp_sh_ingredient"></string>
-    <string name="tt_rp_sh_step"></string>
-    <string name="tt_rp_cl_kcal"></string>
-    <string name="tt_rp_cl_kj"></string>
-    <string name="tt_rp_cl_ingredient"></string>
-    <string name="tt_rp_settings"></string>
-    <string name="tt_ig_mg_add"></string>
-    <string name="tt_ig_mg_data"></string>
-    <string name="tt_st_mg_add"></string>
-    <string name="tt_st_mg_current"></string>
-    <string name="tt_st_mg_data"></string>
-    <string name="tt_pd_mg_photo"></string>
-    <string name="tt_pd_mg_essential"></string>
-    <string name="tt_pd_mg_composition"></string>
-    <string name="tt_pd_sh_composition"></string>
-    <string name="tt_pd_sh_kcal"></string>
-    <string name="tt_pd_sh_kj"></string>
-    <string name="tt_pd_settings"></string>
-    <string name="tt_sp_sh_data"></string>
-    <string name="tt_sp_sh_list"></string>
-    <string name="tt_sp_mg_add"></string>
-    <string name="tt_sp_mg_data"></string>
-    <string name="tt_ex_data"></string>
-    <string name="tt_ex_guideline"></string>
-    <string name="tt_im_file"></string>
-    <string name="tt_cd_author"></string>
-    <string name="tt_cd_library"></string>
-    <string name="tt_cd_icon"></string>
+    <string name="tt_hm_statistics">Sekcja prezentująca użytkownikowi statystyki dotyczące bazy
+        danych wykorzystywanej w aplikacji <b>Plate Handler</b>.\n\nFragment <b>Ilość Przepisów</b>
+        określa liczbę dodanych przez autora przepisów, natomiast <b>Ilość Produktów</b> wyraża
+        sumę wszystkich zapisanych produktów oraz tych dołączonych domyślnie do bazy po pierwszym
+        uruchomieniu aplikacji.</string>
+    <string name="tt_hm_recent">Sekcja ukazująca listę <b>sześciu</b> ostatnio przeglądanych przez
+        użytkownika przepisów dostępnych w aplikacji.\n\nPoszczególne pozycje ułożone są w porządku
+        <b>od ostatnio sprawdzanego</b> przepisu. Wybór jednej z nich przenosi użytkownika do
+        określonej strony przepisu.</string>
+    <string name="tt_rp_mg_photo">Sekcja pozwalająca użytkownikowi na dodawanie zdjęcia
+        reprezentującego <b>przybliżony wygląd</b> obecnie tworzonego przepisu. Nie jest ono
+        wymaganą częścią do uzupełnienia.\n\nUżytkownik może wybrać konkretny obraz z galerii
+        poprzez wybór <b>przycisku z lewej strony</b>. Jeżeli nie będzie on zgadzać się z
+        wymaganiami, może zostać usunięty za pomocą <b>przycisku po stronie prawej</b>.</string>
+    <string name="tt_rp_mg_essential">Sekcja pozwalająca użytkownikowi na uzupełnianie <b>danych
+        podstawowych</b> dotyczących przepisu. Są one wymaganą częścią informacji do uzupełnienia
+        i <b>nie mogą pozostać puste</b>.\n\nPole tekstowe <b>Nazwa</b> oznacza nadaną przepisowi
+        nazwę, natomiast <b>Autor</b> charakteryzuje twórcę określonego dania.</string>
+    <string name="tt_rp_mg_data">Sekcja pozwalająca użytkownikowi na określenie informacji na temat
+        przepisu, umożliwiających m. in. <b>łatwiejszą identyfikację</b> dań. Ustawianie danych
+        odbywa się tutaj za pomocą różnego rodzaju <b>elementów kontrolnych</b>.\n\nWe fragmencie
+        <b>Porcje</b> użytkownik może zwiększać lub zmniejszać ilość porcji przydzielonych w
+        tworzonym przepisie za pomocą <b>przycisków plus oraz minus</b>.\n\nFragment <b>Czas</b>
+        informuje o okresie przygotowania przepisu, który należy ustawić po kliknięciu
+        <b>specjalnego przycisku</b> (<b>nie może</b> równać się zero minut).\n\nFragment
+        <b>Trudność</b> oraz <b>Ostrość</b> zawierają paski postępu, poprzez które użytkownik może
+        zwiększać poziom skomplikowania przepisu oraz jak pikantne jest opisywane danie.
+        \n\nWidniejące we fragmentach <b>Kuchnia</b> i <b>Typ</b> elementy rozwijane pozwalają na
+        wybór kraju, z którego kuchni pochodzi dany przepis oraz do jakiej kategorii się ono
+        zalicza.\n\nOstatni już fragment <b>Preferencje</b> pozwala użytkownikowi na zaznaczenie
+        pozycji reprezentującej preferencje pod względem składników przepisu, w zależności czy
+        zawiera mięso, czy jest wegetariańskie.</string>
+    <string name="tt_rp_sh_data">Sekcja prezentująca użytkownikowi <b>główne informacje</b>
+        dotyczące wybranego przepisu.\n\nFragment <b>Porcje</b> reprezentuje ilość przydzielonych
+        porcji w przepisie, fragment <b>Czas</b> pokazuje w jakim czasie przygotowywane jest danie,
+        natomiast <b>Trudność</b> wyraża stopień trudności przepisu.\n\nPikantność dania
+        reprezentowana jest za pomocą ikon we fragmencie <b>Ostrość</b>. Jedna papryczka oznacza
+        <b>łagodną</b> potrawę, a cztery <b>super ostrą</b>.\n\nFragmenty <b>Kuchnia</b>,
+        <b>Typ</b> oraz <b>Preferencje</b> charakteryzują kolejno kraj, z którego kuchni pochodzi
+        dany przepis, do jakiej kategorii się on zalicza oraz czy jest wegetariański czy nie.
+        Dodatkowo informacje te oznaczone są pasującymi <b>ikonami</b>.</string>
+    <string name="tt_rp_sh_ingredient">Sekcja ukazująca listę <b>składników</b> danego przepisu.
+        Każda pozycja zawiera podstawowe informacje na temat określonego składnika, zgodne z tymi
+        ustawionymi na etapie tworzenia przepisu.\n\nW górnej części konkretnej pozycji znajduje
+        się <b>nazwa</b> produktu użytego jako składnik, poniżej <b>ilość w połączeniu z miarą</b>
+        składnika, a po lewej stronie widnieje ikona reprezentująca <b>typ</b> produktu.\n\nW
+        <b>prawym górnym rogu</b> każdego składnika znajduje się <b>pole wyboru</b>, po
+        zaznaczeniu którego użytkownik zostaje poinformowany o <b>użyciu danego składnika</b>
+        podczas wykonywania przepisu.</string>
+    <string name="tt_rp_sh_step">Sekcja ukazująca listę <b>kroków przygotowania</b> danego
+        przepisu. Każda pozycja zawiera podstawowe informacje na temat określonego kroku, zgodne z
+        tymi ustawionymi na etapie tworzenia przepisu.\n\nW górnej części konkretnej pozycji
+        znajduje się <b>numer</b> kroku reprezentujący porządek, w którym powinien być wykonany, a
+        poniżej jego <b>zawartość</b> w postaci instrukcji do wykonania.\n\nW
+        <b>prawym górnym rogu</b> każdego kroku znajduje się <b>pole wyboru</b>, po
+        zaznaczeniu którego użytkownik zostaje poinformowany o <b>wykonaniu danego kroku</b>
+        podczas wykonywania przepisu.</string>
+    <string name="tt_rp_cl_kcal">Sekcja prezentująca użytkownikowi informacje dotyczące
+        <b>całkowitej ilości kalorii</b> w danym przepisie, wyrażone w <b>kilokaloriach</b>.
+        Zsumowane zostały tutaj wszystkie wartości kaloryczne poszczególnych
+        składników.\n\nFragment <b>Suma Kalorii</b> określa całkowitą wartość kalorii w danym
+        przepisie, natomiast <b>Na Porcję</b> wyraża ilość kalorii przydzielonych na <b>dokładnie
+        jedną porcję</b> danego posiłku.\n\nJeżeli w przynajmniej <b>jednym produkcie</b> należącym
+        do składnika nie zostały ustawione informacje na temat jego składu to dane kaloryczne
+        <b>będą puste</b>.</string>
+    <string name="tt_rp_cl_kj">Sekcja prezentująca użytkownikowi informacje dotyczące
+        <b>całkowitej ilości kalorii</b> w danym przepisie, wyrażone w <b>kilodżulach</b>.
+        Zsumowane zostały tutaj wszystkie wartości kaloryczne poszczególnych
+        składników.\n\nFragment <b>Suma Kalorii</b> określa całkowitą wartość kalorii w danym
+        przepisie, natomiast <b>Na Porcję</b> wyraża ilość kalorii przydzielonych na <b>dokładnie
+        jedną porcję</b> danego posiłku.\n\nJeżeli w przynajmniej <b>jednym produkcie</b> należącym
+        do składnika nie zostały ustawione informacje na temat jego składu to dane kaloryczne
+        <b>będą puste</b>.</string>
+    <string name="tt_rp_cl_ingredient">Sekcja ukazująca listę <b>składników</b> danego przepisu,
+        wraz z ich kaloriami. Dzięki takiemu rozwiązaniu użytkownik może dowiedzieć się dokładnie
+        jakie wartości wchodzą skład sumy kalorii całego przepisu.\n\nKażda pozycja zawiera
+        <b>podstawowe informacje</b> na temat określonego składnika, zgodne z tymi dostępnymi na
+        stronie przepisu.\n\nPo <b>lewej stronie</b> każdej pozycji widnieją
+        <b>wartości kaloryczne</b> danego składnika, wyrażonych w <b>kilokaloriach</b> oraz
+        <b>kilodżulach</b>. Jeżeli w wykorzystywanym w składniku produkcie nie zostały ustawione
+        informacje na temat składu to dane o kaloriach <b>będą puste</b>.</string>
+    <string name="tt_rp_settings">Sekcja pozwalająca użytkownikowi na określenie
+        <b>ustawień wyszukiwania</b> dotyczących wyboru przepisów. Poszczególne zmiany odbywają
+        się tutaj poprzez użycie <b>przełączników</b>, dostępnych w każdym fragmencie.\n\nJeżeli
+        użytkownik zaznaczy przełącznik we fragmencie <b>Alfabetycznie</b> to lista przepisów
+        zostanie wyświetlona w porządku alfabetycznym.\n\nPoprzez kliknięcie przełącznika w
+        <b>Ulubione</b> wprowadzone zostaje ograniczenie, dzięki któremu widoczne są tylko przepisy
+        <b>oznaczone gwiazdką</b>.\n\nPo wybraniu przełącznika w <b>kolejnych fragmentach</b>
+        pojawią się obok <b>elementy rozwijane</b> służące do wprowadzania kolejnych ograniczeń
+        wyszukiwania przepisów.\n\nJeżeli użytkownik chce znieść restrykcje wyświetlanych pozycji
+        może <b>odznaczyć</b> konkretne przełączniki.</string>
+    <string name="tt_ig_mg_add">Sekcja pozwalająca  użytkownikowi na dodawanie nowych pozycji
+        służących do ustawiania danych poszczególnych <b>składników w przepisie</b>.\n\nUżytkownik
+        może zwiększać ilość elementów poprzez kliknięcie przycisku <b>Dodaj Nowy Składnik</b>.
+        Kolejne pozycje pojawiać się będą w liście w sekcji <b>Ustaw Dane Składników</b>
+        znajdującej się poniżej.</string>
+    <string name="tt_ig_mg_data">Sekcja pozwalająca użytkownikowi na określenie informacji na temat
+        poszczególnych składników przepisu. Ustawianie danych odbywa się tutaj za pomocą różnego
+        rodzaju <b>elementów kontrolnych</b> dostępnych dla każdej pozycji.\n\nPole tekstowe
+        <b>Ilość</b> oznacza liczbę reprezentującą ilość konkretnego składnika o określonej mierze,
+        wymaganą do poprawnego wykonania dania. Jej wartość musi być <b>większa od zera</b>.\n\nWe
+        fragmencie <b>Miara</b> element rozwijany pozwala na wybór poprawnej miary
+        składnika.\n\nW zależności czy w aplikacji <b>występują produkty</b>, fragment
+        <b>Produkt</b> może zawierać element rozwijany pozwalający na wybór dostępnego produktu
+        jako składnik przepisu. W kolejnych pozycjach <b>nie może powtarzać się</b> ten sam
+        produkt.\n\nPrzycisk <b>plus</b> znajdujący się po <b>prawej stronie</b> każdej pozycji
+        umożliwia dodawanie nowego produktu w przypadku gdy w elemencie rozwijanym wymagany element
+        <b>nie istnieje</b>. Po jego kliknięciu otworzony zostanie widok tworzenia
+        produktu.\n\nPo <b>lewej stronie</b> każdej pozycji znajduje się <b>ikona krzyżyka</b>, po
+        kliknięciu której dana pozycja zostanie usunięta.</string>
+    <string name="tt_st_mg_add">Sekcja pozwalająca  użytkownikowi na dodawanie nowych <b>kroków
+        przygotowania przepisu</b>.\n\nUżytkownik może zwiększać ilość elementów poprzez kliknięcie
+        przycisku <b>Dodaj Nowy Krok</b>, po czym otwarty zostanie nowy widok. Po wypełnieniu
+        określonych informacji kolejne pozycje pojawiać się będą w liście w sekcji
+        <b>Obecne Kroki</b> znajdującej się poniżej.</string>
+    <string name="tt_st_mg_current">Sekcja ukazująca listę wcześniej dodanych <b>kroków</b>
+        wykonania przepisu. W sytuacji gdy konkretny krok nie jest zgodny z wymaganiami może on
+        zostać tutaj zmieniony.\n\nW <b>prawym górnym rogu</b> każdego kroku znajduje się
+        <b>ikona krzyżyka</b>, po kliknięciu której dana pozycja zostanie usunięta.\n\nObok niego
+        <b>z lewej strony</b> widnieje przycisk <b>edycji</b> pozwalający na zmianę zawartości
+        wybranego kroku.\n\nW przypadku <b>braku dodanych kroków</b> lista będzie pusta.</string>
+    <string name="tt_st_mg_data">Sekcja pozwalająca użytkownikowi na uzupełnianie <b>zawartości</b>
+        dotyczącej określonego kroku wykonania przepisu. Jest ona wymaganą częścią do uzupełnienia
+        i <b>nie może pozostać pusta</b>.\n\nPole tekstowe <b>Krok</b> oznacza dokładny opis
+        instrukcji wymaganej do wykonania w danym etapie przepisu.</string>
+    <string name="tt_pd_mg_photo">Sekcja pozwalająca użytkownikowi na dodawanie zdjęcia
+        reprezentującego <b>przybliżony wygląd</b> obecnie dodawanego produktu. Nie jest ono
+        wymaganą częścią do uzupełnienia.\n\nUżytkownik może wybrać konkretny obraz z galerii
+        poprzez wybór <b>przycisku z lewej strony</b>. Jeżeli nie będzie on zgadzać się z
+        wymaganiami, może zostać usunięty za pomocą <b>przycisku po stronie prawej</b>.</string>
+    <string name="tt_pd_mg_essential">Sekcja pozwalająca użytkownikowi na ustawienie <b>danych
+        podstawowych</b> dotyczących produktu.\n\nPole tekstowe <b>Nazwa</b> oznacza nadaną
+        produktowi nazwę. Jest ona wymaganą częścią informacji do uzupełnienia i
+        <b>nie może pozostać pusta</b>.\n\nFragment <b>Typ</b> zawiera element rozwijany
+        pozwalający na wybór kategorii, do której zalicza się dany produkt.</string>
+    <string name="tt_pd_mg_composition">Sekcja pozwalająca użytkownikowi na uzupełnianie
+        poszczególnych <b>wartości składu</b> produktu. Pola <b>mogą pozostać puste</b>, jednak
+        uniemożliwia to obliczanie kalorii zarówno dla danego produktu, jak i przepisu, w którym
+        został on wykorzystany.\n\nPole tekstowe <b>Średni Rozmiar</b> określa średnią całkowitą
+        wagę konkretnego produktu, natomiast <b>Węglowodany</b>, <b>Białka</b> oraz <b>Tłuszcze</b>
+        charakteryzują ilość zawartych w niej substancji odżywczych (ich suma
+        <b>nie może przekraczać</b> całkowitego rozmiaru). Jednostka uzależniona jest od
+        ustawionego wcześniej <b>typu</b> produktu (<b>gramy</b> lub <b>mililitry</b>).</string>
+    <string name="tt_pd_sh_composition">Sekcja prezentująca użytkownikowi informacje dotyczące
+        <b>składu</b> danego produktu, wyrażone w <b>gramach</b> lub <b>mililitrach</b>
+        (w zależności od <b>typu</b> produktu).\n\nFragmenty <b>Węglowodany</b>, <b>Białka</b> oraz
+        <b>Tłuszcze</b> określają wartości substancji odżywczych w produkcie, natomiast
+        <b>Pozostałe</b> wyraża pozostały skład, uzyskany po odjęciu wartości substancji odżywczych
+        od całkowitej wagi.\n\nWe fragmencie <b>Wykresy Procentowe Substancji</b> widnieją dwa
+        wykresy - <b>słupkowy</b> osobno określa wartości procentowe substancji odżywczych,
+        natomiast <b>kołowy</b> ukazuje wartości procentowe sumy substancji w porównaniu do
+        pozostałego składu produktu.\n\nJeżeli w produkcie nie zostały ustawione informacje na
+        temat jego składu to dane kaloryczne <b>będą puste</b>.</string>
+    <string name="tt_pd_sh_kcal">Sekcja prezentująca użytkownikowi informacje dotyczące
+        <b>ilości kalorii</b> w danym produkcie, wyrażone w <b>kilokaloriach</b>.\n\nFragmenty
+        <b>Węglowodany</b>, <b>Białka</b> oraz <b>Tłuszcze</b> określają wartości kaloryczne dla
+        poszczególnych składników odżywczych w produkcie, natomiast <b>Suma Kalorii</b> wyraża sumę
+        wszystkie wartości kalorycznych produktu.\n\nJeżeli w produkcie nie zostały ustawione
+        informacje na temat jego składu to dane kaloryczne <b>będą puste</b>.</string>
+    <string name="tt_pd_sh_kj">Sekcja prezentująca użytkownikowi informacje dotyczące
+        <b>ilości kalorii</b> w danym produkcie, wyrażone w <b>kilodżulach</b>.\n\nFragmenty
+        <b>Węglowodany</b>, <b>Białka</b> oraz <b>Tłuszcze</b> określają wartości kaloryczne dla
+        poszczególnych składników odżywczych w produkcie, natomiast <b>Suma Kalorii</b> wyraża sumę
+        wszystkie wartości kalorycznych produktu.\n\nJeżeli w produkcie nie zostały ustawione
+        informacje na temat jego składu to dane kaloryczne <b>będą puste</b>.</string>
+    <string name="tt_pd_settings">Sekcja pozwalająca użytkownikowi na określenie
+        <b>ustawień wyszukiwania</b> dotyczących wyboru produktów. Poszczególne zmiany odbywają
+        się tutaj poprzez użycie <b>przełączników</b>, dostępnych w każdym fragmencie.\n\nJeżeli
+        użytkownik zaznaczy przełącznik we fragmencie <b>Alfabetycznie</b> to lista produktów
+        zostanie wyświetlona w porządku alfabetycznym.\n\nPo wybraniu przełącznika we fragmencie
+        <b>Typ</b> pojawi się obok <b>element rozwijany</b> służący do wprowadzania ograniczenia
+        wyszukiwania produktów według wybranego typu.\n\nJeżeli użytkownik chce znieść restrykcje
+        wyświetlanych pozycji może <b>odznaczyć</b> konkretne przełączniki.</string>
+    <string name="tt_sp_sh_data">Sekcja prezentująca użytkownikowi informacje dotyczące obecnej
+        <b>listy zakupów</b>. W przypadku gdy lista zakupów nie istnieje
+        <b>dane będą puste</b>.\n\nFragment <b>Data Zakupów</b> określa dokładny dzień, w którym
+        została utworzona lista zakupów, natomiast <b>Stan Zakupów</b> wyraża ile pozycji
+        zakupowych zostało skreślonych z danej listy.\n\nUżytkownik może stworzyć nową listę
+        zakupów poprzez kliknięcie przycisku <b>Stwórz Nową Listę</b>, po czym otwarty zostanie
+        widok tworzenia listy.</string>
+    <string name="tt_sp_sh_list">Sekcja ukazująca listę zakupów w formie
+        <b>pozycji jedna pod drugą</b>. Mogą one zostać <b>wykreślone</b> poprzez ich kliknięcie,
+        dzięki czemu użytkownik nie musi pamiętać jakie produkty zostały już kupione.\n\nJeżeli
+        użytkownik wykreślił pozycję przez pomyłkę to może on naprawić taki błąd poprzez
+        <b>ponowne kliknięcie</b> elementu.</string>
+    <string name="tt_sp_mg_add">Sekcja pozwalająca użytkownikowi na dodawanie nowych pozycji
+        służących do ustawiania danych poszczególnych <b>elementów listy zakupów</b>.\n\nUżytkownik
+        może zwiększać ilość elementów poprzez kliknięcie przycisku <b>Dodaj Nową Pozycję</b>.
+        Kolejne pozycje pojawiać się będą w liście w sekcji <b>Ustaw Dane Pozycji</b>
+        znajdującej się poniżej.\n\nAby zapewnić wygodę użytkownika istnieje możliwość
+        natychmiastowego dodania <b>wszystkich składników</b> konkretnego przepisu jako pozycje
+        listy zakupów poprzez kliknięcie przycisku <b>Wybierz Przepis</b> i wskazanie odpowiedniego
+        dania w nowym widoku.</string>
+    <string name="tt_sp_mg_data">Sekcja pozwalająca użytkownikowi na określenie informacji na temat
+        poszczególnych pozycji listy zakupów. Ustawianie danych odbywa się tutaj za pomocą różnego
+        rodzaju <b>elementów kontrolnych</b> dostępnych dla każdej z nich.\n\nPole tekstowe
+        <b>Ilość</b> oznacza liczbę reprezentującą ilość konkretnej pozycji do kupienia o
+        określonej mierze. Jej wartość musi być <b>większa od zera</b>.\n\nWe fragmencie
+        <b>Miara</b> element rozwijany pozwala na wybór poprawnej miary elementu listy
+        zakupów.\n\nW polu tekstowym <b>Nazwa</b> wpisywana wartość oznacza nazwę pozycji listy
+        zakupów i <b>nie może pozostać pusta</b>.\n\nPo <b>lewej stronie</b> każdej pozycji
+        znajduje się <b>ikona krzyżyka</b>, po kliknięciu której dana pozycja zostanie usunięta.
+    </string>
+    <string name="tt_ex_data">Sekcja pozwalająca użytkownikowi na uzupełnianie <b>nazwy</b>
+        dotyczącej pliku eksportowanej bazy danych aplikacji. Wartość ta jest wymaganą częścią do
+        uzupełnienia i <b>nie może pozostać pusta</b>.\n\nWartość tą należy wpisać w polu tekstowym
+        <b>Nazwa</b>. <b>Nie należy</b> dopisywać na końcu nazwy rozszerzenia pliku, domyślnie
+        zostanie on ustawiony jako <b>xls</b> po wykonaniu operacji eksportu.</string>
+    <string name="tt_ex_guideline">Sekcja prezentująca użytkownikowi wytyczne dotyczące
+        zapisywania bazy danych w formie <b>pliku eksportowego</b>. Niektóre informacje
+        <b>zostaną pominięte</b>.\n\nFragment <b>Zapisywane</b> określa jakie dokładnie grupy
+        danych zostaną zarejestrowane w generowanym pliku xls, natomiast w <b>Pomijane</b> została
+        sporządzona lista informacji niezapisywanych oraz usuwanych z aplikacji po wykonaniu
+        <b>operacji importu</b>.</string>
+    <string name="tt_im_file">Sekcja ukazująca listę plików powstałych w ramach
+        <b>operacji eksportu</b>. Zawierają one określone informacje z bazy danych aplikacji i
+        służą do ich importowania.\n\nDla każdej pozycji określone są
+        <b>ilości przepisów oraz produktów</b> jaką w sobie zawierają. Po wybraniu konkretnego
+        pliku wykonywana jest <b>operacja importu</b> co wiąże się z usunięciem obecnych danych
+        aplikacji.</string>
+    <string name="tt_cd_author">Sekcja prezentująca użytkownikowi informacje dotyczące autora
+        aplikacji <b>Plate Handler</b>. \n\nFragment <b>Twórca</b> zawiera imię, nazwisko oraz
+        pseudonim autora. Informacje na temat wykorzystanych przez twórcę
+        <b>bibliotek oraz ikon</b> znajdują się w sekcjach poniżej.</string>
+    <string name="tt_cd_library">Sekcja ukazująca listę bibliotek wykorzystanych w aplikacji
+        <b>Plate Handler</b>. Każda pozycja zawiera podstawowe informacje na temat określonej
+        biblioteki, rozpoczynając od jej <b>nazwy</b> w górnej części elementu.\n\nFragment
+        <b>Autor</b> określa kto jest autorem danego rozszerzenia, fragment <b>Wersja</b> wyraża
+        identyfikator wersji wykorzystanej w aplikacji, natomiast <b>Licencja</b> charakteryzuje
+        jaka licencja obejmuje daną bibliotekę.</string>
+    <string name="tt_cd_icon">Sekcja ukazująca listę paczek z ikonami wykorzystanymi w aplikacji
+        <b>Plate Handler</b>. Każda pozycja zawiera podstawowe informacje na temat określonej
+        paczki, rozpoczynając od jej <b>nazwy</b> w górnej części elementu.\n\nFragment
+        <b>Przypisanie</b> ukazuje dokładny tekst atrybutacji na temat autora pakietu, fragment
+        <b>Licencja</b> charakteryzuje jaka licencja obejmuje paczkę, natomiast <b>Ilość</b>
+        określa liczbę ikon z danej paczki wykorzystanych w aplikacji.</string>
 
     <!-- Main Toolbar Titles -->
     <string name="tb_hm_welcome">Witamy</string>

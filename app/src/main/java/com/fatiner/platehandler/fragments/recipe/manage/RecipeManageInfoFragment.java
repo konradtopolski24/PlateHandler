@@ -170,8 +170,8 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
         setIvList(ivSpicinessList, recipe.getSpiciness());
         setSb(sbDifficulty, recipe.getDifficulty());
         setSb(sbSpiciness, recipe.getSpiciness());
-        setSp(spCountry, recipe.getCountry());
-        setSp(spType, recipe.getType());
+        setSp(spCountry, recipe.getCountry(), getEntries(R.array.tx_country), getContext());
+        setSp(spType, recipe.getType(), getEntries(R.array.tx_recipe), getContext());
         setRb(rbMeat, recipe.getPreference());
         setIv(ivPhoto, recipe.getPhoto());
     }

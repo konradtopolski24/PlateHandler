@@ -1,4 +1,4 @@
-package com.fatiner.platehandler.adapters;
+package com.fatiner.platehandler.adapters.recyclerview;
 
 import android.content.Context;
 import android.view.View;
@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ProductAdapter extends PrimaryAdapter<ProductAdapter.ProductHolder>{
+public class ProductAdapter extends PrimaryAdapter<ProductAdapter.ProductHolder> {
 
     private List<Product> products;
     private ProductListener listener;

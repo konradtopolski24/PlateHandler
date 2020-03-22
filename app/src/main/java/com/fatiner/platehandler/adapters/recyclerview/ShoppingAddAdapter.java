@@ -1,4 +1,4 @@
-package com.fatiner.platehandler.adapters;
+package com.fatiner.platehandler.adapters.recyclerview;
 
 import android.content.Context;
 import android.view.View;
@@ -14,6 +14,8 @@ import com.fatiner.platehandler.classes.ShoppingItem;
 import com.fatiner.platehandler.globals.Globals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +55,7 @@ public class ShoppingAddAdapter extends PrimaryAdapter<ShoppingAddAdapter.Shoppi
         ShoppingItem item = shoppingItems.get(position);
         setCorrectInput(holder.etAmount);
         setEt(holder.etAmount, item.getAmount());
-        setSp(holder.spMeasure, item.getMeasure());
+        setSp(holder.spMeasure, item.getMeasure(), getMeasures(), context);
         setEt(holder.etName, item.getName());
     }
 
@@ -67,6 +69,11 @@ public class ShoppingAddAdapter extends PrimaryAdapter<ShoppingAddAdapter.Shoppi
 
     private boolean isNameEmpty(int id) {
         return shoppingItems.get(id).getName().isEmpty();
+    }
+
+    private List<String> getMeasures() {
+        String[] measures = getStringArray(R.array.tx_measure);
+        return Arrays.asList(measures);
     }
 
     class ShoppingAddHolder extends RecyclerView.ViewHolder {

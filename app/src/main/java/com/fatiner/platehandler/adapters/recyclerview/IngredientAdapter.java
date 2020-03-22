@@ -1,4 +1,4 @@
-package com.fatiner.platehandler.adapters;
+package com.fatiner.platehandler.adapters.recyclerview;
 
 import android.content.Context;
 import android.view.View;
@@ -15,7 +15,6 @@ import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.models.Ingredient;
-import com.fatiner.platehandler.models.Product;
 
 import java.util.List;
 import java.util.Locale;

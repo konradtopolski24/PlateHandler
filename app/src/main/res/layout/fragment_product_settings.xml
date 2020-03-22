@@ -96,7 +96,6 @@
                 <Spinner
                     style="@style/SpInvisible"
                     android:id="@+id/sp_type"
-                    android:entries="@array/tx_product"
                     app:layout_constraintStart_toEndOf="@+id/sw_type"
                     app:layout_constraintEnd_toEndOf="@+id/tv_ct_type"
                     app:layout_constraintTop_toTopOf="@+id/sw_type"

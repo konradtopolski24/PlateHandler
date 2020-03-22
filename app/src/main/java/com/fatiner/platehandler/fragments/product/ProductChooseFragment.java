@@ -15,7 +15,7 @@ import androidx.sqlite.db.SimpleSQLiteQuery;
 
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.adapters.ProductAdapter;
+import com.fatiner.platehandler.adapters.recyclerview.ProductAdapter;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Globals;

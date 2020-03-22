@@ -12,8 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.adapters.LibraryAdapter;
-import com.fatiner.platehandler.adapters.PackAdapter;
+import com.fatiner.platehandler.adapters.recyclerview.LibraryAdapter;
+import com.fatiner.platehandler.adapters.recyclerview.PackAdapter;
 import com.fatiner.platehandler.classes.Library;
 import com.fatiner.platehandler.classes.Pack;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;

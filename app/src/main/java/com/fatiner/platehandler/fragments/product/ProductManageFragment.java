@@ -159,7 +159,7 @@ public class ProductManageFragment extends PrimaryFragment {
     private void setViews() {
         Product product = getProduct();
         setEt(etName, product.getName());
-        setSp(spType, product.getType());
+        setSp(spType, product.getType(), getEntries(R.array.tx_product), getContext());
         setEt(etSize, product.getSize());
         setEt(etCarbohydrates, product.getCarbohydrates());
         setEt(etProteins, product.getProteins());

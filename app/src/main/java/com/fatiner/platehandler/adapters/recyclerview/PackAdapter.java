@@ -1,4 +1,4 @@
-package com.fatiner.platehandler.adapters;
+package com.fatiner.platehandler.adapters.recyclerview;
 
 import android.content.Context;
 import android.view.View;

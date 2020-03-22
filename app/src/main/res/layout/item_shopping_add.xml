@@ -38,7 +38,6 @@
     <Spinner
         style="@style/WidthZero"
         android:id="@+id/sp_measure"
-        android:entries="@array/tx_measure"
         app:layout_constraintStart_toEndOf="@+id/tl_amount"
         app:layout_constraintEnd_toStartOf="@+id/tl_name"
         app:layout_constraintTop_toTopOf="@+id/tl_amount"

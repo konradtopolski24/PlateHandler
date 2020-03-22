@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.adapters.RecipeAdapter;
+import com.fatiner.platehandler.adapters.recyclerview.RecipeAdapter;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.RecipeShowFragment;
 import com.fatiner.platehandler.globals.Format;

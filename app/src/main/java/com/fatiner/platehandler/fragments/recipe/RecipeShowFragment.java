@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.adapters.IngredientAdapter;
-import com.fatiner.platehandler.adapters.StepAdapter;
+import com.fatiner.platehandler.adapters.recyclerview.IngredientAdapter;
+import com.fatiner.platehandler.adapters.recyclerview.StepAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.manage.RecipeManagePagerFragment;

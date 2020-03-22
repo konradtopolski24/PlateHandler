@@ -1,9 +1,8 @@
-package com.fatiner.platehandler.adapters;
+package com.fatiner.platehandler.adapters.recyclerview;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,6 +15,7 @@ import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Product;
 
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -58,16 +58,14 @@ public class IngredientAddAdapter extends PrimaryAdapter<IngredientAddAdapter.In
         Ingredient ingredient = ingredients.get(position);
         setCorrectInput(holder.etAmount);
         setEt(holder.etAmount, ingredient.getAmount());
-        setSp(holder.spMeasure, ingredient.getMeasure());
-        setSp(holder.spProduct, getChosenProduct(ingredient.getProductId()), getAdapter());
+        setSp(holder.spMeasure, ingredient.getMeasure(), getMeasures(), context);
+        setSp(holder.spProduct, getChosenProduct(ingredient.getProductId()), products, context);
         manageSpVisibility(holder);
     }
 
-    private ArrayAdapter<Product> getAdapter() {
-        ArrayAdapter<Product> adapter = new ArrayAdapter<>(context,
-                R.layout.support_simple_spinner_dropdown_item, products);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        return adapter;
+    private List<String> getMeasures() {
+        String[] measures = getStringArray(R.array.tx_measure);
+        return Arrays.asList(measures);
     }
 
     private void manageSpVisibility(IngredientAddHolder holder) {

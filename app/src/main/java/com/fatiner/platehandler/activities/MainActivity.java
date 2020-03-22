@@ -119,13 +119,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void manageNewFragment(Fragment fragment) {
-        if(isFragmentTheSame(fragment)) return;
         clearBackStack();
         setFragment(fragment, isOtherFragment(fragment));
-    }
-
-    private boolean isFragmentTheSame(Fragment fragment) {
-        return getCurrentFragment().getClass().equals(fragment.getClass());
     }
 
     private boolean isDrawerOpen() {
@@ -138,8 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void clearBackStack() {
         FragmentManager manager = getSupportFragmentManager();
-        for(int i = Globals.DF_ZERO; i < manager.getBackStackEntryCount(); i++)
-            manager.popBackStackImmediate();
+        manager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
     public void setFragment(Fragment fragment, boolean withBackStack) {

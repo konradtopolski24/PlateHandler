@@ -1,4 +1,4 @@
-package com.fatiner.platehandler.adapters;
+package com.fatiner.platehandler.adapters.recyclerview;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -16,9 +16,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fatiner.platehandler.adapters.spinner.SpinnerAdapter;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 
+import java.util.List;
 import java.util.Locale;
 
 public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
@@ -72,12 +74,8 @@ public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends
         et.setText(text);
     }
 
-    void setSp(Spinner sp, int position) {
-        sp.setSelection(position);
-    }
-
-    void setSp(Spinner sp, int position, ArrayAdapter<?> adapter) {
-        sp.setAdapter(adapter);
+    void setSp(Spinner sp, int position, List<?> entries, Context context) {
+        sp.setAdapter(new SpinnerAdapter(context, entries));
         sp.setSelection(position);
     }
 

@@ -15,7 +15,7 @@ import androidx.sqlite.db.SimpleSQLiteQuery;
 
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.adapters.RecipeAdapter;
+import com.fatiner.platehandler.adapters.recyclerview.RecipeAdapter;
 import com.fatiner.platehandler.classes.ShoppingItem;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;

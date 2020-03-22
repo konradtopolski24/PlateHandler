@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.adapters.ShoppingAddAdapter;
+import com.fatiner.platehandler.adapters.recyclerview.ShoppingAddAdapter;
 import com.fatiner.platehandler.classes.ShoppingItem;
 import com.fatiner.platehandler.classes.ShoppingList;
 import com.fatiner.platehandler.details.ShoppingListDetails;
@@ -159,6 +159,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
         } else {
             items.remove(position);
             getAdapter().notifyItemRemoved(position);
+            changeRvSize(rvShopping);
         }
     }
 }

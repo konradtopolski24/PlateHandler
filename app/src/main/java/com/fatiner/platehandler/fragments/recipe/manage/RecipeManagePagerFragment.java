@@ -10,7 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.adapters.RecipePagerAdapter;
+import com.fatiner.platehandler.adapters.pager.RecipePagerAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Globals;

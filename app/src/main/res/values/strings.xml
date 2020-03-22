@@ -64,7 +64,8 @@
     <!-- Toast Message -->
     <string name="ts_welcome">Welcome to Plate Handler!</string>
     <string name="ts_product">Product data is incomplete!</string>
-    <string name="ts_used">This product cannot be removed because it is used in a recipe!</string>
+    <string name="ts_used">This product cannot be removed because
+        it is used in a recipe!</string>
     <string name="ts_recipe">Recipe data is incomplete!</string>
     <string name="ts_step">Step data is incomplete!</string>
     <string name="ts_shopping">Shopping list data is incomplete!</string>
@@ -77,7 +78,8 @@
 
     <!-- Errors -->
     <string name="er_pd_name">Product name is empty!</string>
-    <string name="er_pd_nutrients">Sum of nutrients in product cannot be higher than its average size!</string>
+    <string name="er_pd_nutrients">Sum of nutrients in product
+        cannot be higher than its average size!</string>
     <string name="er_rp_name">Recipe name is empty!</string>
     <string name="er_rp_author">Name of the author is empty!</string>
     <string name="er_ig_amount">The amount of ingredient cannot be equal to zero!</string>
@@ -181,40 +183,237 @@
     <string name="hd_cd_icon">Icons Used</string>
 
     <!-- Tutorial -->
-    <string name="tt_hm_statistics"></string>
-    <string name="tt_hm_recent"></string>
-    <string name="tt_rp_mg_photo"></string>
-    <string name="tt_rp_mg_essential"></string>
-    <string name="tt_rp_mg_data"></string>
-    <string name="tt_rp_sh_data"></string>
-    <string name="tt_rp_sh_ingredient"></string>
-    <string name="tt_rp_sh_step"></string>
-    <string name="tt_rp_cl_kcal"></string>
-    <string name="tt_rp_cl_kj"></string>
-    <string name="tt_rp_cl_ingredient"></string>
-    <string name="tt_rp_settings"></string>
-    <string name="tt_ig_mg_add"></string>
-    <string name="tt_ig_mg_data"></string>
-    <string name="tt_st_mg_add"></string>
-    <string name="tt_st_mg_current"></string>
-    <string name="tt_st_mg_data"></string>
-    <string name="tt_pd_mg_photo"></string>
-    <string name="tt_pd_mg_essential"></string>
-    <string name="tt_pd_mg_composition"></string>
-    <string name="tt_pd_sh_composition"></string>
-    <string name="tt_pd_sh_kcal"></string>
-    <string name="tt_pd_sh_kj"></string>
-    <string name="tt_pd_settings"></string>
-    <string name="tt_sp_sh_data"></string>
-    <string name="tt_sp_sh_list"></string>
-    <string name="tt_sp_mg_add"></string>
-    <string name="tt_sp_mg_data"></string>
-    <string name="tt_ex_data"></string>
-    <string name="tt_ex_guideline"></string>
-    <string name="tt_im_file"></string>
-    <string name="tt_cd_author"></string>
-    <string name="tt_cd_library"></string>
-    <string name="tt_cd_icon"></string>
+    <string name="tt_hm_statistics">A section presenting the user with statistics regarding the
+        database used in the <b>Plate Handler</b> app.\n\nThe fragment <b>Recipe Number</b>
+        defines the number of recipes added by the author, while <b>Product Number</b> expresses
+        the sum of all saved products and those added by default to the database after the first
+        launch of the app.</string>
+    <string name="tt_hm_recent">A section showing a list of <b>six</b> recently viewed recipes
+        available in the app.\n\nThe individual items are ordered <b>from the last
+        shown</b> recipe. Choosing one of them takes the user to a specific page of the recipe.
+    </string>
+    <string name="tt_rp_mg_photo">A section allowing the user to add a photo representing the
+        <b>approximate appearance</b> of the currently created recipe. It is not a required part of
+        the creation process to be completed.\n\nThe user can select a specific image from the
+        gallery by selecting <b>the button on the left side</b>. If the photo does not meet the
+        requirements, it can be removed using <b>the button on the right side</b>.</string>
+    <string name="tt_rp_mg_essential">A section allowing the user to supplement
+        <b>main data</b> regarding the recipe. It is a required part to be completed and
+        <b>cannot be left empty</b>.\n\nThe <b>Name</b> text field stands for the name given to the
+        recipe, while <b>Author</b> text field describes the creator of a particular dish.</string>
+    <string name="tt_rp_mg_data">A section allowing the user to specify information about the
+        recipe, allowing <b>easier identification</b> of dishes among other functions. Data is set
+        here using various types of <b>control views</b>.\n\nIn the <b>Servings</b> fragment, the
+        user can increase or decrease the number of portions allocated in the recipe by using the
+        <b>plus and minus buttons</b>.\n\nThe <b>Time</b> fragment informs about the time period of
+        preparation of the recipe, which is set by clicking the <b>special button</b>
+        (<b>cannot</b> be equal to zero minutes).\n\nThe <b>Difficulty</b> and <b>Spiciness</b>
+        fragments contain progress bars through which the user can increase the level of
+        difficulty of the recipe and how spicy the dish is.\n\nThe drop-down views appearing in
+        <b>Cuisine</b> and <b>Type</b> fragments allow user to choose the country from which the
+        recipe comes from and in which category it belongs.\n\nThe last fragment named
+        <b>Preferences</b> allows the user to select the item representing the preferences in terms
+        of composition of the recipe, depending on whether it contains meat or is vegetarian.
+    </string>
+    <string name="tt_rp_sh_data">A section presenting the user with <b>main information</b>
+        regarding the selected recipe.\n\nThe <b>Servings</b> fragment represents the number of
+        portions allocated in the recipe, the <b>Time</b> fragment shows how much time is needed
+        to prepare the dish, while <b>Difficulty</b> expresses the level of difficulty of the
+        recipe.\n\nThe spiciness of the dish is represented by icons in the <b>Spiciness</b>
+        section. One pepper means a <b>mild</b> dish, while four peppers mean a <b>super hot</b>
+        one.\n\nThe <b>Cuisine</b>, <b>Type</b> and <b>Preferences</b> fragments characterize the
+        country from which the recipe comes from, which category it falls in and whether it is
+        vegetarian or not in that order. In addition, this data is marked with matching
+        <b>icons</b>.</string>
+    <string name="tt_rp_sh_ingredient">A section showing a list of <b>ingredients</b> included in
+        a selected recipe. Each item contains basic information about a specific ingredient,
+        consistent with those set at the stage of recipe creation.\n\nAt the top of the specific
+        item is the <b>name</b> of the product used as the ingredient, <b>the quantity combined
+        with the measure</b> of the ingredient is located below it, and on the left there is the
+        icon representing the <b>type</b> of the product.\n\nIn the <b>upper right corner</b> of
+        each ingredient there is a <b>checkbox</b>, which after being clicked informs the user
+        about <b>ingredient being used</b> while executing the recipe.</string>
+    <string name="tt_rp_sh_step">A section showing a list of <b>preparation steps</b> of the
+        recipe. Each item contains basic information about a specific step, in line with those
+        set at the stage of creating the recipe.\n\nAt the top of the specific item there is the
+        <b>number</b> of the step representing the order in which steps should be followed, and
+        below it the <b>content</b> in the form of instructions to follow is located.\n\nIn
+        the <b>upper right corner</b> of each step there is a <b>checkbox</b>, which after being
+        clicked informs the user about <b>completing the given step</b> while executing the recipe.
+    </string>
+    <string name="tt_rp_cl_kcal">A section presenting information about <b>total amount of
+        calories</b> in a selected recipe to the user, expressed in <b>kilocalories</b>. All
+        calorific values of individual ingredients have been summed up here.\n\nThe
+        <b>Total Calories</b> fragment determines the total amount of calories in a given recipe,
+        while <b>Per Serving</b> fragment expresses the number of calories allocated to <b>exactly
+        one portion</b> of a given meal.\n\nIf at least <b>one product</b> belonging to an
+        ingredient does not have its information about composition set, the caloric data
+        <b>will be empty</b>.</string>
+    <string name="tt_rp_cl_kj">A section presenting information about <b>total amount of
+        calories</b> in a selected recipe to the user, expressed in <b>kilojoules</b>. All
+        calorific values of individual ingredients have been summed up here.\n\nThe
+        <b>Total Calories</b> fragment determines the total amount of calories in a given recipe,
+        while <b>Per Serving</b> fragment expresses the number of calories allocated to <b>exactly
+        one portion</b> of a given meal.\n\nIf at least <b>one product</b> belonging to an
+        ingredient does not have its information about composition set, the caloric data
+        <b>will be empty</b>.</string>
+    <string name="tt_rp_cl_ingredient">A section showing a list of <b>ingredients</b> for a
+        selected recipe, along with their calories. With this solution, the user can find out
+        exactly what values are included in the summed up calorie composition of the entire
+        recipe.\n\nEach individual item contains <b>basic information</b> about a specific
+        ingredient, consistent with that available on the recipe page.\n\n<b>The left side</b>
+        of each item shows the <b>calorific value</b> of the ingredient, expressed in both
+        <b>kilocalories</b> and <b>kilojoules</b>. If the composition information has not been
+        set in the product used in the ingredient, the calorie data <b>will be empty</b>.</string>
+    <string name="tt_rp_settings">A section allowing the user to specify <b>search settings</b>
+        regarding recipe selection. Individual changes are made here by using the <b>switches</b>,
+        available in every fragment.\n\nIf the user selects a switch in the <b>Alphabetical</b>
+        fragment, then the list of recipes will be displayed in alphabetical order.\n\nBy clicking
+        the switch in the <b>Favorite</b> fragment, a restriction is introduced so that only
+        recipes <b>marked with a star</b> are visible.\n\nAfter selecting the switch in the
+        <b>subsequent fragments</b> <b>the drop-down views</b> will appear for setting
+        further restrictions on recipe searching.\n\nIf the user wants to lift the restrictions on
+        displayed items, the specific switches need to be <b>unchecked</b>.</string>
+    <string name="tt_ig_mg_add">A section allowing the user to add new items to set data for
+        individual <b>ingredients in a recipe</b>.\n\nThe user can increase the number of items by
+        clicking the <b>Add New Ingredient</b> button. The following items will appear in the list
+        in the <b>Set Ingredient Data</b> section down below.</string>
+    <string name="tt_ig_mg_data">A section allowing the user to specify information about
+        individual ingredients of a recipe. Data is set here using various types of
+        <b>control views</b> available for each item.\n\nThe <b>Amount</b> text field signifies a
+        number representing the quantity of a specific ingredient with a certain measure, which is
+        required to correctly complete the dish. Its value must be <b>greater than zero</b>.\n\nIn
+        the <b>Measure</b> fragment, the drop-down view allows the user to choose the correct
+        measure of the ingredient.\n\nDepending on whether <b>there are products</b> in the
+        app, the <b>Product</b> fragment may contain a drop-down view that allows the
+        user to select an available product as a part of the ingredient in the recipe. The
+        following items <b>cannot use</b> the same product repeatedly.\n\nThe <b>plus</b> button
+        located on the <b>right side</b> of each item allows the user to add a new product if the
+        required element <b>does not exist</b> in the drop-down view. By clicking it the user
+        will open the product creation page.\n\nOn <b>the left side</b> of each item there is a
+        <b>cross out icon</b>, which will delete the item after clicking it.</string>
+    <string name="tt_st_mg_add">A section that allows the user to add new <b>recipe preparation
+        steps</b>.\n\nThe user can increase the number of items by clicking the <b>Add New Step</b>
+        button, and a new page will open. After completing certain information, subsequent items
+        will appear in the list in the <b>Current Steps</b> section down below.</string>
+    <string name="tt_st_mg_current">A section showing a list of previously added <b>steps</b> of
+        the recipe. If a specific step does not meet the requirements, it can be changed
+        here.\n\nIn the <b>upper right corner</b> of each step there is a <b>cross out icon</b> and
+        by clicking it the user will delete the following item.\n\nNext to it <b>on the left</b>
+        is the <b>edit</b> button that allows the user to change the content of the selected
+        step.\n\nIf <b> no steps are added</b>, the list will be empty.</string>
+    <string name="tt_st_mg_data">A section allowing the user to complete <b>the content</b>
+        regarding a specific step of the recipe. It is a required part to be completed and
+        <b>cannot be left empty</b>.\n\nThe <b>Step</b> text field signyfies a detailed description
+        of the instructions required to complete the recipe at a given stage.</string>
+    <string name="tt_pd_mg_photo">A section allowing the user to add a photo representing the
+        <b>approximate appearance</b> of the currently created product. It is not a required part
+        of the creation process to be completed.\n\nThe user can select a specific image from the
+        gallery by selecting <b>the button on the left side</b>. If the photo does not meet the
+        requirements, it can be removed using <b>the button on the right side</b>.</string>
+    <string name="tt_pd_mg_essential">A section allowing the user to set <b>primary data </b> of
+        the product.\n\nThe <b>Name</b> text field indicates the name given to the product. It is
+        a required part to be completed and <b>cannot be left empty</b>.\n\nThe <b>Type</b>
+        fragment contains a drop-down view that allows the user to choose the category of the
+        product.</string>
+    <string name="tt_pd_mg_composition">A section allowing the user to specify
+        <b>composition values</b> of the product. The <b>text fields may remain empty</b>,
+        however, this prevents the app from calculating calories for both the product and the
+        recipe in which it was used.\n\nThe <b>Average Size</b> text field specifies the average
+        total weight of a particular product, while <b>Carbohydrates</b>, <b>Proteins</b> and
+        <b>Fats</b> fields characterize the amount of nutrients the product includes (their sum
+        <b>must not exceed</b> the total size). The unit of each value depends on the previously
+        set <b>type</b> of the product (<b>grams</b> or <b>milliliters</b>).</string>
+    <string name="tt_pd_sh_composition">A section presenting the user with information about the
+        <b>composition</b> of a given product, expressed in <b>grams</b> or <b>milliliters</b>
+        (depending on the <b>product type</b>).\n\nThe <b>Carbohydrates</b>, <b>Proteins</b> and
+        <b>Fats</b> fragments determine the nutrient values of the product, while the <b>Other</b>
+        fragment expresses the remaining composition, obtained after subtracting nutrient values
+        from total weight.\n\nIn the <b>Percentage Charts of Nutrients</b> fragment there are two
+        charts - <b>bar chart</b> shows the percentage values of each nutrient separately, while
+        the <b>pie chart</b> presents the percentage values of the sum of all the nutrients
+        compared to the remaining composition of the product.\n\nIf composition data of the
+        product has not been set, the calorific data <b>will be empty</b>.</string>
+    <string name="tt_pd_sh_kcal">A section presenting the user with information about
+        <b>calories</b> in a selected product, expressed in <b>kilocalories</b>.\n\nThe
+        <b>Carbohydrates</b>, <b>Proteins</b> and <b>Fats</b> fragments specify the calorific
+        values for individual nutrients in the product, while the <b>Total Calories</b> expresses
+        the sum of all calorific values of the product. \n\nIf composition data of the
+        product has not been set, the calorific data <b>will be empty</b>.</string>
+    <string name="tt_pd_sh_kj">A section presenting the user with information about
+        <b>calories</b> in a selected product, expressed in <b>kilojoules</b>.\n\nThe
+        <b>Carbohydrates</b>, <b>Proteins</b> and <b>Fats</b> fragments specify the calorific
+        values for individual nutrients in the product, while the <b>Total Calories</b> expresses
+        the sum of all calorific values of the product. \n\nIf composition data of the
+        product has not been set, the calorific data <b>will be empty</b>.</string>
+    <string name="tt_pd_settings">A section allowing the user to specify <b>search settings</b>
+        regarding product selection. Individual changes are made here by using the <b>switches</b>,
+        available in every fragment.\n\nIf the user selects a switch in the <b>Alphabetical</b>
+        fragment, then the list of products will be displayed in alphabetical order.\n\nAfter
+        selecting the switch in the <b>Type</b> fragment, a <b>drop-down view</b> will appear for
+        setting a search restriction based on selected type of the product.\n\nIf the user wants to
+        lift the restrictions on displayed items, the specific switches need to be
+        <b>unchecked</b>.</string>
+    <string name="tt_sp_sh_data">A section presenting the user with information about the current
+        <b>shopping list</b>. If the shopping list does not exist, <b>data will be
+        empty</b>.\n\nThe <b>Shopping Date</b> fragment specifies the exact day the shopping list
+        was created, while the <b>Shopping State</b> expresses how many shopping items were
+        crossed out from the list.\n\nThe user can create a new shopping list by clicking the
+        <b>Create New List</b> button, and the list creation view will open.</string>
+    <string name="tt_sp_sh_list">A section presenting a shopping list with <b>items placed one
+        after the other</b>. They can be <b>crossed out</b> by clicking them, so the user do not
+        have to remember what items are already bought.\n\nIf the user has crossed out an item by
+        mistake, the error can be fixed by <b>clicking the item again</b>.</string>
+    <string name="tt_sp_mg_add">A section allowing the user to add new elements to set data for
+        individual <b>shopping list items</b>.\n\nThe user can increase the number of items by
+        clicking the <b>Add New Item</b> button. The following items will appear in the list
+        in the <b>Set Shopping Item Data</b> section down below.\n\nTo ensure user convenience,
+        there is an option to immediately add <b>all ingredients</b> of a specific recipe as
+        shopping list items by clicking the <b>Choose Recipe</b> button and selecting the
+        appropriate recipe in the newly opened view.</string>
+    <string name="tt_sp_mg_data">A section allowing the user to specify information about
+        individual items of the shopping list. Data setting is done here using the various
+        <b>control view</b> available for each of the items.\n\nThe <b>Amount</b> text field
+        indicates a number representing the quantity of a specific item to buy with a certain
+        measure. Its value must be <b>greater than zero</b>.\n\nIn the <b>Measure</b> fragment,
+        the drop-down view allows the user to select the correct measure for the shopping list
+        element.\n\nIn the <b>Name</b> text field, the entered value is the name of the shopping
+        list item and <b>cannot be left empty</b>.\n\nOn <b>the left side</b> of each item, there
+        is a <b>cross out icon</b>, which removes the item after clicking it.</string>
+    <string name="tt_ex_data">A section allowing the user to specify a <b>name</b> of the file
+        containing exported database from the app. This data is a required part to be
+        completed and <b>cannot be left empty</b>.\n\nThis value must be entered in the <b>Name</b>
+        text field. Appending the file extension name to the end <b>is unnecessary</b>, by default
+        it will be set as <b>xls</b> after the export operation is completed.</string>
+    <string name="tt_ex_guideline">A section presenting guidelines to the user regarding saving the
+        database in the form of an <b>export file</b>. Some parts of data
+        <b>will be omitted</b>.\n\nThe <b>Saved Data</b> fragment specifies exactly what data
+        groups will be saved in the generated xls file, while the <b>Unsaved Data</b> fragment
+        lists the information, which will be unsaved and deleted from the app after the
+        <b>import operation</b> is completed.</string>
+    <string name="tt_im_file">A section showing a list of files created as part of the
+        <b>export operation</b>. They contain specific information from the database of the
+        app and are used to import said data.\n\nFor each item, <b>the number of recipes
+        and products</b> it contains is determined. After selecting a specific file,
+        <b>import operation</b> is performed, which involves deleting the current data of
+        the app.</string>
+    <string name="tt_cd_author">A section presenting the user with information about the author of
+        the <b>Plate Handler</b> app.\n\nThe <b>Developer</b> fragment contains the
+        name, surname and nickname of the author. Information about <b>libraries and icon</b> used
+        by the creator of the app can be found in the sections below.</string>
+    <string name="tt_cd_library">A section showing a list of libraries used in the
+        <b>Plate Handler</b> app. Each item contains basic information about a
+        particular library, starting with its <b>name</b> at the top of the item.\n\nThe
+        <b>Author</b> fragment defines who the author of the library is, the <b>Version</b>
+        fragment expresses the identifier of the library version used in the app, while the
+        <b>License</b> fragment describes which license covers each library.</string>
+    <string name="tt_cd_icon">A section showing a list of packs with icons used in the
+        <b>Plate Handler</b> app. Each item contains basic information about a
+        particular pack, starting with its <b>name</b> at the top of the item.\n\nThe
+        <b>Attribution</b> fragment shows the exact contents of the attribution about the author
+        of the icon pack, the <b>License</b> fragment describes what license the package is
+        covered by, while the <b>Amount</b> fragment determines the number of icons from the given
+        pack used in the app.</string>
 
     <!-- Main Toolbar Titles -->
     <string name="tb_hm_welcome">Welcome</string>
@@ -334,11 +533,11 @@
 
     <!-- Array Text Measure -->
     <string name="ar_ms_piece">Piece</string>
-    <string name="ar_ms_gram">Grams</string>
-    <string name="ar_ms_decagram">Decagrams</string>
-    <string name="ar_ms_kilogram">Kilograms</string>
-    <string name="ar_ms_millilitre">Millilitres</string>
-    <string name="ar_ms_litre">Litres</string>
+    <string name="ar_ms_gram">Gram</string>
+    <string name="ar_ms_decagram">Decagram</string>
+    <string name="ar_ms_kilogram">Kilogram</string>
+    <string name="ar_ms_millilitre">Millilitre</string>
+    <string name="ar_ms_litre">Litre</string>
     <string name="ar_ms_teaspoon">Teaspoon</string>
     <string name="ar_ms_tablespoon">Tablespoon</string>
     <string name="ar_ms_cup">Cup</string>

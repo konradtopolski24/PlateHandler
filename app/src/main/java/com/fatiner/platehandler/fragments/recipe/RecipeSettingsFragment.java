@@ -140,7 +140,16 @@ public class RecipeSettingsFragment extends PrimaryFragment {
         return isValueInBundle(Globals.BN_BOOL);
     }
 
-    private void setSettings(ArrayList<String> authors) {
+    private void setViews(List<String> authors) {
+        setSp(spAuthor, authors, getContext());
+        setSp(spDifficulty, getEntries(R.array.tx_difficulty), getContext());
+        setSp(spSpiciness, getEntries(R.array.tx_spiciness), getContext());
+        setSp(spCountry, getEntries(R.array.tx_country), getContext());
+        setSp(spType, getEntries(R.array.tx_recipe), getContext());
+        setSp(spPreference, getEntries(R.array.tx_preference), getContext());
+    }
+
+    private void setSettings(List<String> authors) {
         setSettingsBool(swAlphabetical, Shared.SR_RECIPE, Shared.KY_ALPHABETICAL);
         setSettingsBool(swFavorite, Shared.SR_RECIPE, Shared.KY_FAVORITE);
         setSettingsString(swAuthor, spAuthor, Shared.SR_RECIPE, Shared.KY_AUTHOR, authors);
@@ -165,9 +174,8 @@ public class RecipeSettingsFragment extends PrimaryFragment {
 
             @Override
             public void onSuccess(List<String> authors) {
-                ArrayList<String> array = new ArrayList<>(authors);
-                setSp(spAuthor, array, getContext());
-                setSettings(array);
+                setViews(authors);
+                setSettings(authors);
             }
 
             @Override

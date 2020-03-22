@@ -44,7 +44,7 @@ public class TutorialDialog extends DialogFragment {
     }
 
     private void setTv(TextView tv, int id) {
-        String text = getString(id);
+        CharSequence text = getText(id);
         tv.setText(text);
     }
 }

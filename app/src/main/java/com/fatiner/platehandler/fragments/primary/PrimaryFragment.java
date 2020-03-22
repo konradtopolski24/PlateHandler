@@ -40,6 +40,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.activities.MainActivity;
+import com.fatiner.platehandler.adapters.spinner.SpinnerAdapter;
 import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.details.ShoppingListDetails;
@@ -60,6 +61,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -181,15 +183,13 @@ public class PrimaryFragment extends Fragment {
         et.setText(String.valueOf(value));
     }
 
-    protected void setSp(Spinner sp, int id) {
-        sp.setSelection(id);
+    protected void setSp(Spinner sp, int position, List<?> entries, Context context) {
+        sp.setAdapter(new SpinnerAdapter(context, entries));
+        sp.setSelection(position);
     }
 
-    protected void setSp(Spinner sp, ArrayList<?> entries, Context context) {
-        ArrayAdapter<?> adapter = new ArrayAdapter<>(context,
-                R.layout.support_simple_spinner_dropdown_item, entries);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        sp.setAdapter(adapter);
+    protected void setSp(Spinner sp, List<?> entries, Context context) {
+        sp.setAdapter(new SpinnerAdapter(context, entries));
     }
 
     protected void setVp(ViewPager vp, FragmentPagerAdapter adapter){
@@ -202,6 +202,11 @@ public class PrimaryFragment extends Fragment {
 
     protected void setRb(RadioButton rb, boolean checked) {
         rb.setChecked(checked);
+    }
+
+    protected List<String> getEntries(int id) {
+        String[] types = getStringArray(id);
+        return Arrays.asList(types);
     }
 
     protected float getCorrectEtValue(CharSequence text) {
@@ -263,7 +268,7 @@ public class PrimaryFragment extends Fragment {
         }
     }
 
-    protected void setSettingsString(Switch sw, Spinner sp, String name, String key, ArrayList<String> entries) {
+    protected void setSettingsString(Switch sw, Spinner sp, String name, String key, List<String> entries) {
         if(SharedManager.isValueAvailable(getContext(), name, key)) {
             String value = SharedManager.getString(getContext(), name, key);
             int id = entries.indexOf(value);
@@ -279,7 +284,8 @@ public class PrimaryFragment extends Fragment {
     protected void changeRvSize(RecyclerView rv) {
         int height = (int) getDimen(R.dimen.ht_rv);
         rv.post(() -> {
-            if(rv.getHeight() > height) rv.setLayoutParams(getRvParamsBig(height));
+            if(rv.computeVerticalScrollRange() > height) rv.setLayoutParams(getRvParamsBig(height));
+            else rv.setLayoutParams(getRvParamsSmall());
         });
     }
 

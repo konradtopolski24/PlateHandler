@@ -122,9 +122,7 @@
     <style name="TvPrimary" parent="WidthZero">
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">marquee</item>
-        <item name="android:marqueeRepeatLimit">marquee_forever</item>
-        <item name="android:focusable">true</item>
-        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:marqueeRepeatLimit">2</item>
         <item name="android:scrollHorizontally">true</item>
     </style>
 
@@ -192,6 +190,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TvSpinner" parent="TvPrimary">
+        <item name="android:layout_marginStart">@dimen/mg_small</item>
+    </style>
+
     <style name="TvStep" parent="WidthZero">
         <item name="android:layout_margin">@dimen/mg_huge</item>
         <item name="android:textSize">@dimen/tx_small</item>
@@ -199,13 +201,6 @@
 
     <style name="TvCredits" parent="TvPrimary">
         <item name="android:layout_marginBottom">@dimen/mg_big</item>
-    </style>
-
-    <style name="TvTutorial" parent="TvPrimary">
-        <item name="android:layout_marginTop">@dimen/mg_big</item>
-        <item name="android:layout_marginStart">@dimen/mg_enormous</item>
-        <item name="android:layout_marginEnd">@dimen/mg_enormous</item>
-        <item name="android:textSize">@dimen/tx_medium</item>
     </style>
 
     <style name="TvShopping" parent="TvPrimary">
@@ -218,6 +213,13 @@
         <item name="android:layout_marginStart">@dimen/mg_tiny</item>
         <item name="android:layout_marginEnd">@dimen/mg_tiny</item>
         <item name="android:textSize">@dimen/tx_tiny</item>
+    </style>
+
+    <style name="TvTutorial" parent="WidthZero">
+        <item name="android:layout_marginTop">@dimen/mg_big</item>
+        <item name="android:layout_marginStart">@dimen/mg_huge</item>
+        <item name="android:layout_marginEnd">@dimen/mg_huge</item>
+        <item name="android:textSize">@dimen/tx_medium</item>
     </style>
 
     <style name="TvDone" parent="BothWrap">
@@ -247,6 +249,11 @@
     <style name="TvEmpty" parent="BothWrap">
         <item name="android:layout_margin">@dimen/mg_huge</item>
         <item name="android:textSize">@dimen/tx_huge</item>
+    </style>
+
+    <style name="TvDropdown" parent="BothWrap">
+        <item name="android:layout_margin">@dimen/mg_big</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <!-- ImageView -->
