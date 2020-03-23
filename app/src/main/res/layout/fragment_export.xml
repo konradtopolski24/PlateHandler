@@ -118,7 +118,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        style="@style/TvInfo"
+                        style="@style/TvCaption"
                         android:id="@+id/tv_ct_saved"
                         android:text="@string/ct_saved"
                         app:layout_constraintStart_toEndOf="@+id/iv_ct_saved"
@@ -136,7 +136,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        style="@style/TvInfo"
+                        style="@style/TvCaption"
                         android:id="@+id/tv_ct_unsaved"
                         android:text="@string/ct_unsaved"
                         app:layout_constraintStart_toEndOf="@+id/iv_ct_unsaved"

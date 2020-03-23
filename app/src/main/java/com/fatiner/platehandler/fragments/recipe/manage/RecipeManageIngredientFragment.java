@@ -31,7 +31,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class RecipeManageIngredientFragment extends PrimaryFragment implements IngredientAddAdapter.IngredientAddListener {
+public class RecipeManageIngredientFragment extends PrimaryFragment implements
+        IngredientAddAdapter.IngredientAddListener {
 
     @BindView(R.id.rv_ingredient) RecyclerView rvIngredients;
 
@@ -54,7 +55,8 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements I
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_recipe_manage_ingredient, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_manage_ingredient, container,
+                false);
         ButterKnife.bind(this, view);
         initAction();
         return view;
@@ -84,7 +86,7 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements I
     }
 
     private void addFirstItem() {
-        if(areIngredientsEmpty()) addNewItem();
+        if (areIngredientsEmpty()) addNewItem();
     }
 
     private boolean areIngredientsEmpty() {
@@ -141,7 +143,7 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements I
     @Override
     public void removeIngredient(int position) {
         List<Ingredient> ingredients = getIngredients();
-        if(ingredients.size() == Globals.DF_INCREMENT) {
+        if (ingredients.size() == Globals.DF_INCREMENT) {
             showShortToast(R.string.ts_item);
         } else {
             ingredients.remove(position);

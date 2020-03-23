@@ -7,7 +7,6 @@ import android.text.method.DigitsKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,7 +22,8 @@ import com.fatiner.platehandler.globals.Globals;
 import java.util.List;
 import java.util.Locale;
 
-public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class PrimaryAdapter<VH
+        extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
     protected Context context;
 
@@ -117,7 +117,7 @@ public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends
     float getCorrectEtValue(CharSequence text) {
         try {
             return Float.parseFloat(String.valueOf(text));
-        } catch(Exception e) {
+        } catch (Exception e) {
             return Globals.DF_ZERO;
         }
     }
@@ -127,7 +127,7 @@ public abstract class PrimaryAdapter<VH extends RecyclerView.ViewHolder> extends
     }
 
     void setError(EditText et, int id, boolean isError) {
-        if(isError) et.setError(getString(id));
+        if (isError) et.setError(getString(id));
         else et.setError(null);
     }
 }

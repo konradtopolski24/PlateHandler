@@ -28,7 +28,8 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ShoppingShowFragment extends PrimaryFragment implements ShoppingAdapter.ShoppingListener {
+public class ShoppingShowFragment extends PrimaryFragment implements
+        ShoppingAdapter.ShoppingListener {
 
     @BindView(R.id.cv_data) CardView cvData;
     @BindView(R.id.cv_list) CardView cvList;
@@ -74,7 +75,8 @@ public class ShoppingShowFragment extends PrimaryFragment implements ShoppingAda
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_shopping_show, container, false);
+        View view = inflater.inflate(R.layout.fragment_shopping_show, container,
+                false);
         init(this, view, R.id.it_shopping, R.string.tb_sp_show, false);
         initAction();
         return view;
@@ -91,7 +93,7 @@ public class ShoppingShowFragment extends PrimaryFragment implements ShoppingAda
     }
 
     private void checkShared() {
-        if(isSharedList()) setShoppingDetails();
+        if (isSharedList()) setShoppingDetails();
     }
 
     private boolean isSharedList() {
@@ -99,7 +101,7 @@ public class ShoppingShowFragment extends PrimaryFragment implements ShoppingAda
     }
 
     private void setViews() {
-        if(getShoppingList().getShoppingItems().isEmpty()) listEmptyAction();
+        if (getShoppingList().getShoppingItems().isEmpty()) listEmptyAction();
         else listExistsAction();
         manageRv();
     }

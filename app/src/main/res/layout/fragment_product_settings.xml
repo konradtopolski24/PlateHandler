@@ -54,7 +54,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_alphabetical"
                     android:text="@string/ct_alphabetical"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_alphabetical"
@@ -72,7 +72,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_type"
                     android:text="@string/ct_type"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_type"

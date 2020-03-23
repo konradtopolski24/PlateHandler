@@ -25,7 +25,7 @@ public class RecipePagerAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch(position) {
+        switch (position) {
             case Globals.PG_RECIPE:
                 return new RecipeManageInfoFragment();
             case Globals.PG_INGREDIENT:
@@ -44,7 +44,7 @@ public class RecipePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch(position) {
+        switch (position) {
             case Globals.PG_RECIPE:
                 return getString(R.string.pg_info);
             case Globals.PG_INGREDIENT:

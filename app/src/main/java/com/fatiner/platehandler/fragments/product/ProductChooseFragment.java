@@ -32,7 +32,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class ProductChooseFragment extends PrimaryFragment implements ProductAdapter.ProductListener {
+public class ProductChooseFragment extends PrimaryFragment
+        implements ProductAdapter.ProductListener {
 
     @BindView(R.id.rv_products) RecyclerView rvProducts;
     @BindView(R.id.tv_empty) TextView tvEmpty;
@@ -47,7 +48,8 @@ public class ProductChooseFragment extends PrimaryFragment implements ProductAda
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_product_choose, container, false);
+        View view = inflater.inflate(R.layout.fragment_product_choose, container,
+                false);
         init(this, view, R.id.it_product, R.string.tb_pd_choose, true);
         readProducts();
         return view;
@@ -71,7 +73,7 @@ public class ProductChooseFragment extends PrimaryFragment implements ProductAda
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        if(menuItem.getItemId() == R.id.it_settings) {
+        if (menuItem.getItemId() == R.id.it_settings) {
             setFragment(new ProductSettingsFragment());
             return true;
         }

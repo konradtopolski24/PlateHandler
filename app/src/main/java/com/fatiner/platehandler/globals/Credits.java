@@ -32,7 +32,7 @@ public class Credits {
     //Room
     public static final String LB_RM_NAME = "Room";
     public static final String LB_RM_AUTHOR = "Google";
-    public static final String LB_RM_VERSION = "2.2.4";
+    public static final String LB_RM_VERSION = "2.2.5";
     public static final String LB_RM_LICENSE = "Apache License 2.0";
 
     //RxJava2
@@ -67,7 +67,8 @@ public class Credits {
 
     //Interface Icon Pack
     public static final String IP_IF_NAME = "Interface Icon Pack";
-    public static final String IP_IF_ATTRIBUTION = "Icons made by Those Icons from www.flaticon.com";
+    public static final String IP_IF_ATTRIBUTION = "Icons made by Those Icons from " +
+            "www.flaticon.com";
     public static final String IP_IF_LICENSE = "Flaticon License";
     public static final int IP_IF_AMOUNT = 1;
 

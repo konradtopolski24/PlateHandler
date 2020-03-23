@@ -77,9 +77,9 @@ public class IngredientAddAdapter extends PrimaryAdapter<IngredientAddAdapter.In
 
     private int getChosenProduct(int idDatabase) {
         int idSpin = Globals.DF_ZERO;
-        for(int i = Globals.DF_ZERO; i < products.size(); i++) {
+        for (int i = Globals.DF_ZERO; i < products.size(); i++) {
             Product product = products.get(i);
-            if(product.getId() == idDatabase) return i;
+            if (product.getId() == idDatabase) return i;
         }
         return idSpin;
     }

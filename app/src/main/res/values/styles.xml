@@ -1,5 +1,6 @@
 <resources>
 
+    <!-- Theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/pr_normal</item>
         <item name="colorPrimaryDark">@color/pr_dark</item>
@@ -8,7 +9,6 @@
     </style>
 
     <!-- Base -->
-
     <style name="BothWrap">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -45,7 +45,6 @@
     </style>
 
     <!-- View -->
-
     <style name="VwLine">
         <item name="android:layout_width">@dimen/df_zero</item>
         <item name="android:layout_height">@dimen/ht_line</item>
@@ -54,7 +53,6 @@
     </style>
 
     <!-- CardView -->
-
     <style name="CvData" parent="WidthMatch">
         <item name="cardCornerRadius">@dimen/rd_big</item>
         <item name="cardElevation">@dimen/df_zero</item>
@@ -82,7 +80,6 @@
     </style>
 
     <!-- ConstraintLayout -->
-
     <style name="ClMain" parent="WidthMatch">
         <item name="android:paddingStart">@dimen/mg_huge</item>
         <item name="android:paddingEnd">@dimen/mg_huge</item>
@@ -104,7 +101,7 @@
         <item name="android:layout_marginLeft">@dimen/mg_huge</item>
     </style>
 
-    <style name="ClIngredient" parent="WidthMatch">
+    <style name="ClItem" parent="WidthMatch">
         <item name="android:background">@drawable/bg_item</item>
     </style>
 
@@ -118,7 +115,6 @@
     </style>
 
     <!-- TextView -->
-
     <style name="TvPrimary" parent="WidthZero">
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">marquee</item>
@@ -149,17 +145,17 @@
 
     </style>
 
-    <style name="TvAuthor" parent="TvPrimary">
+    <style name="TvUnder" parent="TvPrimary">
         <item name="android:textColor">@color/tv_white</item>
         <item name="android:textSize">@dimen/tx_small</item>
     </style>
 
-    <style name="TvInfo" parent="TvPrimary">
+    <style name="TvCaption" parent="TvPrimary">
         <item name="android:textSize">@dimen/tx_small</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TvIngredient" parent="TvPrimary">
+    <style name="TvItem" parent="TvPrimary">
         <item name="android:layout_marginTop">@dimen/mg_big</item>
         <item name="android:layout_marginStart">@dimen/mg_big</item>
         <item name="android:layout_marginEnd">@dimen/mg_big</item>
@@ -173,11 +169,6 @@
 
     <style name="TvCalories" parent="TvPrimary">
         <item name="android:layout_marginEnd">@dimen/mg_big</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="TvCategory" parent="TvPrimary">
-        <item name="android:textSize">@dimen/tx_big</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -257,7 +248,6 @@
     </style>
 
     <!-- ImageView -->
-
     <style name="IvPrimary" parent="BothWrap">
         <item name="android:layout_width">@dimen/ic_small</item>
         <item name="android:layout_height">@dimen/ic_small</item>
@@ -301,7 +291,7 @@
         <item name="android:src">@drawable/ic_dl_credits</item>
     </style>
 
-    <style name="IvIngredient" parent="IvPrimary">
+    <style name="IvItem" parent="IvPrimary">
         <item name="android:layout_marginTop">@dimen/mg_small</item>
         <item name="android:layout_marginStart">@dimen/mg_big</item>
         <item name="android:layout_marginBottom">@dimen/mg_big</item>
@@ -347,20 +337,17 @@
     </style>
 
     <!-- ProgressBar -->
-
     <style name="PbDefault" parent="BothWrap">
         <item name="android:visibility">gone</item>
     </style>
 
     <!-- ImageButton -->
-
     <style name="IbDefault" parent="BothWrap">
         <item name="android:layout_marginStart">@dimen/mg_medium</item>
         <item name="android:layout_marginEnd">@dimen/mg_medium</item>
     </style>
 
     <!-- CheckBox -->
-
     <style name="CbDone" parent="BothWrap">
         <item name="android:layout_marginTop">@dimen/mg_medium</item>
         <item name="android:layout_marginEnd">@dimen/mg_medium</item>
@@ -375,7 +362,6 @@
     </style>
 
     <!-- PieChart -->
-
     <style name="PcDefault">
         <item name="android:layout_width">@dimen/df_zero</item>
         <item name="android:layout_height">@dimen/ht_pc</item>
@@ -383,26 +369,22 @@
     </style>
 
     <!-- TabLayout -->
-
     <style name="TlDefault" parent="WidthMatch">
         <item name="android:background">@color/pr_normal</item>
         <item name="tabSelectedTextColor">@color/tv_white</item>
     </style>
 
     <!-- FabDefault -->
-
     <style name="FabDefault" parent="BothWrap">
         <item name="android:layout_margin">@dimen/mg_big</item>
     </style>
 
     <!-- TextInputLayout -->
-
     <style name="TilDefault" parent="WidthZero">
         <item name="android:layout_marginTop">@dimen/mg_big</item>
     </style>
 
     <!-- EditText -->
-
     <style name="EtDefault" parent="WidthMatch">
         <item name="android:inputType">textCapSentences</item>
         <item name="android:lines">1</item>
@@ -410,7 +392,7 @@
         <item name="android:singleLine">true</item>
     </style>
 
-    <style name="EtNutrients" parent="WidthMatch">
+    <style name="EtComposition" parent="WidthMatch">
         <item name="android:digits">0123456789.</item>
         <item name="android:inputType">numberDecimal</item>
         <item name="android:lines">1</item>
@@ -444,32 +426,27 @@
     </style>
 
     <!-- RadioGroup -->
-
     <style name="RgDefault" parent="WidthZero">
         <item name="android:layout_marginTop">@dimen/mg_big</item>
         <item name="android:orientation">vertical</item>
     </style>
 
     <!-- RadioButton -->
-
     <style name="RbDefault" parent="BothWrap">
         <item name="android:drawablePadding">@dimen/mg_medium</item>
     </style>
 
     <!-- SeekBar -->
-
     <style name="SbDefault" parent="WidthZero">
         <item name="android:layout_marginEnd">@dimen/mg_huge</item>
     </style>
 
     <!-- Spinner -->
-
     <style name="SpInvisible" parent="WidthZero">
         <item name="android:visibility">gone</item>
     </style>
 
     <!-- Button -->
-
     <style name="BtDefault" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="android:layout_width">@dimen/df_zero</item>
         <item name="android:layout_height">wrap_content</item>
@@ -486,14 +463,12 @@
     </style>
 
     <!-- NavigationView -->
-
     <style name="NvDefault" parent="HeightMatch">
         <item name="android:layout_gravity">start</item>
         <item name="menu">@menu/nv_main</item>
     </style>
 
     <!-- Toolbar -->
-
     <style name="TbDefault" parent="WidthMatch">
         <item name="android:background">@color/pr_normal</item>
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>

@@ -58,7 +58,7 @@ public class StepManageFragment extends PrimaryFragment {
     }
 
     private int getToolbar() {
-        if(isPosition()) return R.string.tb_st_edit;
+        if (isPosition()) return R.string.tb_st_edit;
         else return R.string.tb_st_add;
     }
 
@@ -67,7 +67,7 @@ public class StepManageFragment extends PrimaryFragment {
     }
 
     private void initAction() {
-        if(isPosition()) setViews();
+        if (isPosition()) setViews();
         else setHint(tilStep, getStepHint(getSteps().size()));
         setError(etContent, R.string.er_st_content, isContentEmpty());
     }
@@ -85,7 +85,7 @@ public class StepManageFragment extends PrimaryFragment {
     }
 
     private void setStepInDetails(Step step) {
-        if(isPosition()) {
+        if (isPosition()) {
             int id = getIntFromBundle();
             getSteps().remove(id);
             getSteps().add(id, step);
@@ -97,7 +97,7 @@ public class StepManageFragment extends PrimaryFragment {
     }
 
     private void endingAction() {
-        if(isContentEmpty()) showShortToast(R.string.ts_step);
+        if (isContentEmpty()) showShortToast(R.string.ts_step);
         else correctAction();
     }
 

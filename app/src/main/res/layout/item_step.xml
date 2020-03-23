@@ -5,7 +5,7 @@
     style="@style/CvItem">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/ClIngredient">
+        style="@style/ClItem">
 
         <TextView
             style="@style/TvSide"

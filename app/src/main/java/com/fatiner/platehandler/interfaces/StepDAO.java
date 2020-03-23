@@ -27,6 +27,7 @@ public interface StepDAO {
     @Query("SELECT * FROM " + Db.TB_STEP)
     Single<List<Step>> getAllSteps();
 
-    @Query("UPDATE " + Db.TB_STEP + " SET " + Db.CL_ST_DONE + " = :isDone WHERE " + Db.CL_ST_ID + "==:id")
+    @Query("UPDATE " + Db.TB_STEP + " SET " + Db.CL_ST_DONE + " = :isDone WHERE "
+            + Db.CL_ST_ID + "==:id")
     void updateIsDone(int id, boolean isDone);
 }

@@ -47,7 +47,8 @@ public class ProductSettingsFragment extends PrimaryFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_product_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_product_settings, container,
+                false);
         init(this, view, R.id.it_product, R.string.tb_pd_settings, false);
         initAction();
         return view;

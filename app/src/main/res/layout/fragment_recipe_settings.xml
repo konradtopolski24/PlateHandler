@@ -56,7 +56,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_alphabetical"
                     android:text="@string/ct_alphabetical"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_alphabetical"
@@ -74,7 +74,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_favorite"
                     android:text="@string/ct_favorite"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_favorite"
@@ -112,7 +112,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line1" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_author"
                     android:text="@string/ct_author"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_author"
@@ -130,7 +130,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line1" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_difficulty"
                     android:text="@string/ct_difficulty"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_difficulty"
@@ -184,7 +184,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line2" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_spiciness"
                     android:text="@string/ct_spiciness"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_spiciness"
@@ -202,7 +202,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line2" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_country"
                     android:text="@string/ct_country"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_country"
@@ -256,7 +256,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line3" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_type"
                     android:text="@string/ct_type"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_type"
@@ -274,7 +274,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line3" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_preference"
                     android:text="@string/ct_preference"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_preference"

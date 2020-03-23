@@ -15,7 +15,6 @@ import com.fatiner.platehandler.globals.Shared;
 import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -125,14 +124,15 @@ public class RecipeSettingsFragment extends PrimaryFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_recipe_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_settings, container,
+                false);
         init(this, view, getMenuId(), R.string.tb_rp_settings, false);
         readAuthors();
         return view;
     }
 
     private int getMenuId() {
-        if(isShopping()) return R.id.it_shopping;
+        if (isShopping()) return R.id.it_shopping;
         else return R.id.it_recipe;
     }
 

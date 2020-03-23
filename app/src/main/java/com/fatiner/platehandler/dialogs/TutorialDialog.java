@@ -33,13 +33,13 @@ public class TutorialDialog extends DialogFragment {
         return builder.create();
     }
 
-    private void setBuilder(AlertDialog.Builder builder, View view){
+    private void setBuilder(AlertDialog.Builder builder, View view) {
         builder.setView(view)
                 .setTitle(getArguments().getInt(Globals.BN_HEADER))
                 .setPositiveButton(getString(R.string.dg_ok), getOnClickListener());
     }
 
-    private DialogInterface.OnClickListener getOnClickListener(){
+    private DialogInterface.OnClickListener getOnClickListener() {
         return (dialogInterface, i) -> dialogInterface.dismiss();
     }
 

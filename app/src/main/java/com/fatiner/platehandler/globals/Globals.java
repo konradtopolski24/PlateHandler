@@ -26,12 +26,8 @@ public class Globals {
 
     public static final String SN_EMPTY = "";
     public static final String SN_COLON = ":";
-    public static final String SN_SPACE = " ";
     public static final String SN_SLASH = "/";
-    public static final String SN_EQUALS = "=";
-    public static final String SN_ENTER = "\n";
     public static final String SN_DASH = "--";
-    public static final String SN_DOT = ".";
 
     public static final int SV_MIN = 1;
     public static final int SV_MAX = 99;
@@ -39,10 +35,8 @@ public class Globals {
     public static final String TM_DEFAULT = "00:00";
     public static final int TM_HOURS = 0;
     public static final int TM_MINUTES = 1;
-    public static final int TM_SIZE = 2;
 
     public static final int RC_MAX = 6;
-    public static final int RC_LAST = 3;
 
     public static final int FC_CARBOHYDRATES = 4;
     public static final int FC_PROTEINS = 4;

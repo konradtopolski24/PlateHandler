@@ -66,7 +66,7 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
 
     private void setCaloriesInfo(IngredientHolder holder, Ingredient ingredient) {
         int[] factors = getIntArray(R.array.tx_factor);
-        if(ingredient.getProduct().getSize() == Globals.DF_ZERO) setEmptyInfo(holder);
+        if (ingredient.getProduct().getSize() == Globals.DF_ZERO) setEmptyInfo(holder);
         else setCaloriesInfo(holder, ingredient, factors);
     }
 
@@ -93,7 +93,7 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
     }
 
     private void checkIngredientCompletion(IngredientHolder holder, boolean checked) {
-        if(checked) ingredientUsed(holder);
+        if (checked) ingredientUsed(holder);
         else ingredientRemains(holder);
     }
 

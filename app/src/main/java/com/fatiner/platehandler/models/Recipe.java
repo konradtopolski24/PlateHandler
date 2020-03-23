@@ -161,13 +161,13 @@ public class Recipe {
 
     public float getTotalKcal(int[] factors) {
         float total = Globals.DF_ZERO;
-        for(Ingredient ingredient : ingredients) total += ingredient.getTotalKcal(factors);
+        for (Ingredient ingredient : ingredients) total += ingredient.getTotalKcal(factors);
         return total;
     }
 
     public float getTotalKj(int[] factors) {
         float total = Globals.DF_ZERO;
-        for(Ingredient ingredient : ingredients) total += ingredient.getTotalKj(factors);
+        for (Ingredient ingredient : ingredients) total += ingredient.getTotalKj(factors);
         return total;
     }
 

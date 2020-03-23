@@ -33,7 +33,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/iv_photo" />
 
                 <TextView
-                    style="@style/TvAuthor"
+                    style="@style/TvUnder"
                     android:id="@+id/tv_type"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_type"
@@ -104,7 +104,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_carbohydrates1"
                     android:text="@string/ct_carbohydrates"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_carbohydrates1"
@@ -122,7 +122,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_proteins1"
                     android:text="@string/ct_proteins"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_proteins1"
@@ -162,7 +162,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line1" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_fats1"
                     android:text="@string/ct_fats"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_fats1"
@@ -180,7 +180,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line1" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_other"
                     android:text="@string/ct_other"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_other"
@@ -220,7 +220,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line2" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_chart"
                     android:text="@string/ct_chart"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_chart"
@@ -307,7 +307,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_carbohydrates2"
                     android:text="@string/ct_carbohydrates"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_carbohydrates2"
@@ -325,7 +325,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_proteins2"
                     android:text="@string/ct_proteins"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_proteins2"
@@ -365,7 +365,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line3" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_fats2"
                     android:text="@string/ct_fats"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_fats2"
@@ -383,7 +383,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line3" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_total1"
                     android:text="@string/ct_total"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_total1"
@@ -463,7 +463,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_carbohydrates3"
                     android:text="@string/ct_carbohydrates"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_carbohydrates3"
@@ -481,7 +481,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_proteins3"
                     android:text="@string/ct_proteins"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_proteins3"
@@ -521,7 +521,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line5" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_fats3"
                     android:text="@string/ct_fats"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_fats3"
@@ -539,7 +539,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/vw_line5" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_total2"
                     android:text="@string/ct_total"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_total2"

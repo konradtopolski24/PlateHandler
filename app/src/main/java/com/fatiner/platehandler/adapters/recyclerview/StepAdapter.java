@@ -31,7 +31,8 @@ public class StepAdapter extends PrimaryAdapter<StepAdapter.StepHolder> {
     private StepListener listener;
     private boolean isShowing;
 
-    public StepAdapter(Context context, List<Step> steps, StepListener listener, boolean isShowing) {
+    public StepAdapter(Context context, List<Step> steps,
+                       StepListener listener, boolean isShowing) {
         super(context);
         this.steps = steps;
         this.listener = listener;
@@ -76,7 +77,7 @@ public class StepAdapter extends PrimaryAdapter<StepAdapter.StepHolder> {
     }
 
     private void checkStepCompletion(StepHolder holder, boolean checked) {
-        if(checked) stepCompleted(holder);
+        if (checked) stepCompleted(holder);
         else stepRemains(holder);
     }
 

@@ -45,7 +45,8 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_recipe_manage_step, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_manage_step, container,
+                false);
         ButterKnife.bind(this, view);
         initAction();
         return view;

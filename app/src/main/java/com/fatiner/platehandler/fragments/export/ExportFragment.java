@@ -86,7 +86,7 @@ public class ExportFragment extends PrimaryFragment {
     }
 
     private void chooseEndAction() {
-        if(isNameEmpty()) showShortToast(R.string.ts_export);
+        if (isNameEmpty()) showShortToast(R.string.ts_export);
         else showDialog(R.string.dg_ex_add, getDialogListener());
     }
 
@@ -96,7 +96,7 @@ public class ExportFragment extends PrimaryFragment {
 
     private DialogInterface.OnClickListener getDialogListener() {
         return (dialog, which) -> {
-            switch(which) {
+            switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     exportDb();
                     break;
@@ -109,7 +109,7 @@ public class ExportFragment extends PrimaryFragment {
     private HSSFSheet getSheet(HSSFWorkbook workbook, String name, List<String> columns) {
         HSSFSheet sheet = workbook.createSheet(name);
         HSSFRow headerRow = sheet.createRow(Globals.DF_ZERO);
-        for(int i = Globals.DF_ZERO; i < columns.size(); i++) {
+        for (int i = Globals.DF_ZERO; i < columns.size(); i++) {
             HSSFCell cell = headerRow.createCell(i);
             cell.setCellValue(columns.get(i));
         }
@@ -136,7 +136,7 @@ public class ExportFragment extends PrimaryFragment {
         List<String> columns = Db.getRecipeColumns();
         HSSFSheet sheet = getSheet(workbook, Db.TB_RECIPE, columns);
         int id = Globals.DF_INCREMENT;
-        for(Recipe recipe : recipes) {
+        for (Recipe recipe : recipes) {
             HSSFRow row = sheet.createRow(id);
             createCell(row, columns.indexOf(Db.CL_RP_ID), recipe.getId());
             createCell(row, columns.indexOf(Db.CL_RP_NAME), recipe.getName());
@@ -157,7 +157,7 @@ public class ExportFragment extends PrimaryFragment {
         List<String> columns = Db.getIngredientColumns();
         HSSFSheet sheet = getSheet(workbook, Db.TB_INGREDIENT, columns);
         int id = Globals.DF_INCREMENT;
-        for(Ingredient ingredient : ingredients) {
+        for (Ingredient ingredient : ingredients) {
             HSSFRow row = sheet.createRow(id);
             createCell(row, columns.indexOf(Db.CL_IG_ID), ingredient.getId());
             createCell(row, columns.indexOf(Db.CL_IG_RECIPE_ID), ingredient.getRecipeId());
@@ -173,7 +173,7 @@ public class ExportFragment extends PrimaryFragment {
         List<String> columns = Db.getStepColumns();
         HSSFSheet sheet = getSheet(workbook, Db.TB_STEP, columns);
         int id = Globals.DF_INCREMENT;
-        for(Step step : steps) {
+        for (Step step : steps) {
             HSSFRow row = sheet.createRow(id);
             createCell(row, columns.indexOf(Db.CL_ST_ID), step.getId());
             createCell(row, columns.indexOf(Db.CL_ST_RECIPE_ID), step.getRecipeId());
@@ -187,7 +187,7 @@ public class ExportFragment extends PrimaryFragment {
         List<String> columns = Db.getProductColumns();
         HSSFSheet sheet = getSheet(workbook, Db.TB_PRODUCT, Db.getProductColumns());
         int id = Globals.DF_INCREMENT;
-        for(Product product : products) {
+        for (Product product : products) {
             HSSFRow row = sheet.createRow(id);
             createCell(row, columns.indexOf(Db.CL_PD_ID), product.getId());
             createCell(row, columns.indexOf(Db.CL_PD_NAME), product.getName());
@@ -225,7 +225,8 @@ public class ExportFragment extends PrimaryFragment {
                 .subscribe(getReadAllRecipesObserver(workbook));
     }
 
-    private DisposableSingleObserver<List<Recipe>> getReadAllRecipesObserver(HSSFWorkbook workbook) {
+    private DisposableSingleObserver<List<Recipe>> getReadAllRecipesObserver(
+            HSSFWorkbook workbook) {
         return new DisposableSingleObserver<List<Recipe>>() {
 
             @Override
@@ -250,7 +251,8 @@ public class ExportFragment extends PrimaryFragment {
                 .subscribe(getReadAllProductsObserver(workbook));
     }
 
-    private DisposableSingleObserver<List<Product>> getReadAllProductsObserver(HSSFWorkbook workbook) {
+    private DisposableSingleObserver<List<Product>> getReadAllProductsObserver(
+            HSSFWorkbook workbook) {
         return new DisposableSingleObserver<List<Product>>() {
 
             @Override
@@ -275,7 +277,8 @@ public class ExportFragment extends PrimaryFragment {
                 .subscribe(getReadAllIngredientsObserver(workbook));
     }
 
-    private DisposableSingleObserver<List<Ingredient>> getReadAllIngredientsObserver(HSSFWorkbook workbook) {
+    private DisposableSingleObserver<List<Ingredient>> getReadAllIngredientsObserver(
+            HSSFWorkbook workbook) {
         return new DisposableSingleObserver<List<Ingredient>>() {
 
             @Override

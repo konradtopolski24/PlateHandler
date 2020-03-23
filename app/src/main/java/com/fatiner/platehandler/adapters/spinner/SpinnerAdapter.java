@@ -53,7 +53,7 @@ public class SpinnerAdapter extends BaseAdapter {
 
     private View getSpView(int position, View view, ViewGroup parent, int layoutId) {
         SpinnerHolder holder;
-        if(view == null) {
+        if (view == null) {
             view = getLayout(layoutId, parent);
             holder = new SpinnerHolder(view);
             view.setTag(holder);

@@ -28,7 +28,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingAddAdapter.ShoppingAddListener {
+public class ShoppingCreateFragment extends PrimaryFragment implements
+        ShoppingAddAdapter.ShoppingAddListener {
 
     @BindView(R.id.rv_shopping) RecyclerView rvShopping;
 
@@ -62,7 +63,8 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_shopping_create, container, false);
+        View view = inflater.inflate(R.layout.fragment_shopping_create, container,
+                false);
         init(this, view, R.id.it_shopping, R.string.tb_sp_add, false);
         initAction();
         return view;
@@ -83,11 +85,12 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
     }
 
     private ShoppingAddAdapter getAddShoppingItemAdapter() {
-        return new ShoppingAddAdapter(getContext(), getShoppingList().getShoppingItems(), this);
+        return new ShoppingAddAdapter(getContext(), getShoppingList().getShoppingItems(),
+                this);
     }
 
     private void addFirstItem() {
-        if(isShoppingListEmpty()) addNewItem();
+        if (isShoppingListEmpty()) addNewItem();
     }
 
     private void addNewItem() {
@@ -115,7 +118,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
     }
 
     private void endAction() {
-        if(isIncomplete()) showShortToast(R.string.ts_shopping);
+        if (isIncomplete()) showShortToast(R.string.ts_shopping);
         else showDialog(R.string.dg_sp_add, getDialogListener());
     }
 
@@ -125,21 +128,21 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
 
     private boolean isAmountZero() {
         List<ShoppingItem> items = getShoppingList().getShoppingItems();
-        for(ShoppingItem item : items)
-            if(item.getAmount() == Globals.DF_ZERO) return true;
+        for (ShoppingItem item : items)
+            if (item.getAmount() == Globals.DF_ZERO) return true;
         return false;
     }
 
     private boolean isNameEmpty() {
         List<ShoppingItem> items = getShoppingList().getShoppingItems();
-        for(ShoppingItem item : items)
-            if(item.getName().isEmpty()) return true;
+        for (ShoppingItem item : items)
+            if (item.getName().isEmpty()) return true;
         return false;
     }
 
     private DialogInterface.OnClickListener getDialogListener() {
         return (dialog, which) -> {
-            switch(which) {
+            switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     setShoppingListInShared();
                     showShortSnack(R.string.sb_sp_add);
@@ -154,7 +157,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements ShoppingA
     @Override
     public void removeItem(int position) {
         ArrayList<ShoppingItem> items = getShoppingList().getShoppingItems();
-        if(items.size() == Globals.DF_INCREMENT) {
+        if (items.size() == Globals.DF_INCREMENT) {
             showShortToast(R.string.ts_item);
         } else {
             items.remove(position);

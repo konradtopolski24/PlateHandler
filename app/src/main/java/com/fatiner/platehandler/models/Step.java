@@ -2,7 +2,6 @@ package com.fatiner.platehandler.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.fatiner.platehandler.globals.Db;

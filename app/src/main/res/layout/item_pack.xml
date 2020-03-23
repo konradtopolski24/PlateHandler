@@ -5,7 +5,7 @@
     style="@style/CvItem">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/ClIngredient">
+        style="@style/ClItem">
 
         <LinearLayout
             style="@style/LlSide"
@@ -22,7 +22,7 @@
         </LinearLayout>
 
         <TextView
-            style="@style/TvIngredient"
+            style="@style/TvItem"
             android:id="@+id/tv_name"
             app:layout_constraintStart_toEndOf="@+id/ll_icon"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
         <TextView
-            style="@style/TvInfo"
+            style="@style/TvCaption"
             android:id="@+id/tv_ct_attribution"
             android:text="@string/ct_attribution"
             app:layout_constraintStart_toEndOf="@+id/iv_ct_attribution"
@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/vw_line1" />
 
         <TextView
-            style="@style/TvInfo"
+            style="@style/TvCaption"
             android:id="@+id/tv_ct_license"
             android:text="@string/ct_license"
             app:layout_constraintStart_toEndOf="@+id/iv_ct_license"
@@ -105,7 +105,7 @@
             app:layout_constraintTop_toBottomOf="@+id/vw_line2" />
 
         <TextView
-            style="@style/TvInfo"
+            style="@style/TvCaption"
             android:id="@+id/tv_ct_amount"
             android:text="@string/ct_amount"
             app:layout_constraintStart_toEndOf="@+id/iv_ct_amount"

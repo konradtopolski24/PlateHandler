@@ -80,7 +80,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_total1"
                     android:text="@string/ct_total"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_total1"
@@ -98,7 +98,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_serving1"
                     android:text="@string/ct_per"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_serving1"
@@ -176,7 +176,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_total2"
                     android:text="@string/ct_total"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_total2"
@@ -194,7 +194,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_serving2"
                     android:text="@string/ct_per"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_serving2"

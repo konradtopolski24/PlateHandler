@@ -7,6 +7,6 @@
             android:id="@+id/it_settings"
             android:title="@string/mn_settings"
             android:icon="@drawable/ic_st_settings"
-            app:showAsAction="ifRoom"/>
+            app:showAsAction="ifRoom" />
     </group>
 </menu>

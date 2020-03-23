@@ -86,14 +86,14 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
     }
 
     private void setProducts() {
-        if(SharedManager.isValueAvailable(getContext(), Shared.SR_LAUNCH, Shared.KY_LAUNCH))
+        if (SharedManager.isValueAvailable(getContext(), Shared.SR_LAUNCH, Shared.KY_LAUNCH))
             return;
         SharedManager.setValue(getContext(), Shared.SR_LAUNCH, Shared.KY_LAUNCH, true);
         addDefaultProducts();
     }
 
     private void setRecent() {
-        if(SharedManager.isValueAvailable(getContext(), Shared.SR_HOME, Shared.KY_RECENT))
+        if (SharedManager.isValueAvailable(getContext(), Shared.SR_HOME, Shared.KY_RECENT))
             readRecent();
     }
 
@@ -112,14 +112,14 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
 
     private List<Recipe> getSortedRecent(List<Recipe> recipes) {
         List<Recipe> sortedRecipes = new ArrayList<>();
-        for(Integer recent : getRecent()) {
-            for(Recipe recipe : recipes) if(recent == recipe.getId()) sortedRecipes.add(recipe);
+        for (Integer recent : getRecent()) {
+            for (Recipe recipe : recipes) if (recent == recipe.getId()) sortedRecipes.add(recipe);
         }
         return sortedRecipes;
     }
 
     private void readAmount() {
-        if(SharedManager.isValueAvailable(getContext(), Shared.SR_LAUNCH, Shared.KY_LAUNCH)) {
+        if (SharedManager.isValueAvailable(getContext(), Shared.SR_LAUNCH, Shared.KY_LAUNCH)) {
             readRecipeAmount();
             readProductAmount();
         }

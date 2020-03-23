@@ -17,7 +17,7 @@ public class QueryManager {
     private QueryManager() {}
 
     private static String getBool(Context context, String column, String name, String key) {
-        if(SharedManager.isValueAvailable(context, name, key)) {
+        if (SharedManager.isValueAvailable(context, name, key)) {
             boolean value = SharedManager.getBoolean(context, name, key);
             String text = String.valueOf(TypeManager.boolToInt(value));
             return String.format(Locale.ENGLISH, Format.FM_OTHER, column, text);
@@ -26,7 +26,7 @@ public class QueryManager {
     }
 
     private static String getString(Context context, String column, String name, String key) {
-        if(SharedManager.isValueAvailable(context, name, key)) {
+        if (SharedManager.isValueAvailable(context, name, key)) {
             String text = SharedManager.getString(context, name, key);
             return String.format(Locale.ENGLISH, Format.FM_STRING, column, text);
         }
@@ -34,7 +34,7 @@ public class QueryManager {
     }
 
     private static String getInt(Context context, String column, String name, String key) {
-        if(SharedManager.isValueAvailable(context, name, key)) {
+        if (SharedManager.isValueAvailable(context, name, key)) {
             int value = SharedManager.getInt(context, name, key);
             String text = String.valueOf(value);
             return String.format(Locale.ENGLISH, Format.FM_OTHER, column, text);
@@ -62,16 +62,16 @@ public class QueryManager {
 
     public static String getWhere(ArrayList<String> conditions) {
         StringBuilder builder = new StringBuilder();
-        for(String condition : conditions) builder.append(condition);
+        for (String condition : conditions) builder.append(condition);
         String where = builder.toString();
-        if(where.endsWith(Format.FM_AND)) {
+        if (where.endsWith(Format.FM_AND)) {
             where = where.substring(Globals.DF_ZERO, where.length() - Format.FM_AND.length());
             return String.format(Locale.ENGLISH, Format.FM_WHERE, where);
         } else return Globals.SN_EMPTY;
     }
 
     public static String getOrderBy(Context context, String name, String column) {
-        if(SharedManager.getBoolean(context, name, Shared.KY_ALPHABETICAL))
+        if (SharedManager.getBoolean(context, name, Shared.KY_ALPHABETICAL))
             return String.format(Locale.ENGLISH, Format.FM_ORDER, column);
         return Globals.SN_EMPTY;
     }

@@ -5,7 +5,7 @@
     style="@style/CvItem">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/ClIngredient"
+        style="@style/ClItem"
         android:id="@+id/cl_file">
 
         <LinearLayout
@@ -23,14 +23,14 @@
         </LinearLayout>
 
         <TextView
-            style="@style/TvIngredient"
+            style="@style/TvItem"
             android:id="@+id/tv_name"
             app:layout_constraintStart_toEndOf="@+id/ll_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            style="@style/IvIngredient"
+            style="@style/IvItem"
             android:id="@+id/iv_ct_recipe"
             android:src="@drawable/ic_dl_recipe"
             android:contentDescription="@string/dp_caption"
@@ -49,7 +49,7 @@
             app:layout_constraintHorizontal_weight="1" />
 
         <ImageView
-            style="@style/IvIngredient"
+            style="@style/IvItem"
             android:id="@+id/iv_ct_product"
             android:src="@drawable/ic_dl_product"
             android:contentDescription="@string/dp_caption"

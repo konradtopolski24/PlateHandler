@@ -105,7 +105,7 @@ public class Product {
     }
 
     public float getKcal(int id) {
-        switch(id) {
+        switch (id) {
             case Globals.NT_CARBOHYDRATES:
                 return Globals.FC_CARBOHYDRATES * carbohydrates;
             case Globals.NT_PROTEINS:
@@ -145,7 +145,7 @@ public class Product {
     }
 
     private float getNutrients(int id) {
-        switch(id) {
+        switch (id) {
             case Globals.NT_CARBOHYDRATES:
                 return carbohydrates;
             case Globals.NT_PROTEINS:

@@ -5,7 +5,6 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Globals;
 
@@ -95,7 +94,7 @@ public class Ingredient {
     }
 
     private float getFactor(int[] factors) {
-        if(measure == Globals.DF_ZERO) return product.getSize();
+        if (measure == Globals.DF_ZERO) return product.getSize();
         return factors[measure];
     }
 

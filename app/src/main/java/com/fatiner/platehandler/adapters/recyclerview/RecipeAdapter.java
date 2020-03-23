@@ -59,7 +59,7 @@ public class RecipeAdapter extends PrimaryAdapter<RecipeAdapter.RecipeHolder> {
     }
 
     private void checkCountryOther(RecipeHolder holder, int type) {
-        if(isOther(type)) changeIvTint(holder);
+        if (isOther(type)) changeIvTint(holder);
     }
 
     private boolean isOther(int type) {

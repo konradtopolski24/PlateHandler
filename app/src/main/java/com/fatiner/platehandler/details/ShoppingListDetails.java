@@ -1,6 +1,5 @@
 package com.fatiner.platehandler.details;
 
-import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.classes.ShoppingItem;
 import com.fatiner.platehandler.classes.ShoppingList;
 

@@ -21,7 +21,6 @@ import com.fatiner.platehandler.fragments.home.HomeFragment;
 import com.fatiner.platehandler.fragments.product.ProductChooseFragment;
 import com.fatiner.platehandler.fragments.recipe.RecipeChooseFragment;
 import com.fatiner.platehandler.fragments.shopping.ShoppingShowFragment;
-import com.fatiner.platehandler.globals.Globals;
 import com.google.android.material.navigation.NavigationView;
 
 import butterknife.BindView;
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void appStartAction(Bundle state) {
-        if(state == null) {
+        if (state == null) {
             greetUser();
             setFirstFragment();
         }
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Fragment getFragment(MenuItem item) {
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.it_home:
                 return new HomeFragment();
             case R.id.it_recipe:
@@ -127,10 +126,6 @@ public class MainActivity extends AppCompatActivity {
         return dlMain.isDrawerOpen(GravityCompat.START);
     }
 
-    private Fragment getCurrentFragment() {
-        return getSupportFragmentManager().findFragmentById(R.id.fl_main);
-    }
-
     private void clearBackStack() {
         FragmentManager manager = getSupportFragmentManager();
         manager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -139,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     public void setFragment(Fragment fragment, boolean withBackStack) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_main, fragment);
-        if(withBackStack) transaction.addToBackStack(null);
+        if (withBackStack) transaction.addToBackStack(null);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         transaction.commit();
     }
@@ -158,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(isDrawerOpen()) closeDrawer();
+        if (isDrawerOpen()) closeDrawer();
         else super.onBackPressed();
     }
 

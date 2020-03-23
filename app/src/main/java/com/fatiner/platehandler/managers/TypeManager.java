@@ -1,11 +1,6 @@
 package com.fatiner.platehandler.managers;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.util.Base64;
+import android.widget.Toast;
 
 import com.fatiner.platehandler.classes.ShoppingList;
 import com.fatiner.platehandler.globals.Format;
@@ -14,8 +9,6 @@ import com.google.gson.Gson;
 
 import org.json.JSONArray;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -75,9 +68,9 @@ public class TypeManager {
 
     public static List<Integer> jsonToRecent(String json) {
         List<Integer> recent = new ArrayList<>();
-        try{
+        try {
             JSONArray jsonArray = new JSONArray(json);
-            for(int i = Globals.DF_ZERO; i < jsonArray.length(); i++) {
+            for (int i = Globals.DF_ZERO; i < jsonArray.length(); i++) {
                 recent.add(jsonArray.getInt(i));
             }
         } catch (Exception e) {

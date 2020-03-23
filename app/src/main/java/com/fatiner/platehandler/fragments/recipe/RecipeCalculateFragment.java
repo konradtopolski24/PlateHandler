@@ -70,7 +70,8 @@ public class RecipeCalculateFragment extends PrimaryFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_recipe_calculate, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_calculate, container,
+                false);
         init(this, view, R.id.it_recipe, R.string.tb_rp_calculate, true);
         setViews();
         return view;
@@ -83,7 +84,7 @@ public class RecipeCalculateFragment extends PrimaryFragment {
     private void setViews() {
         Recipe recipe = getRecipe();
         setTv(tvName, recipe.getName());
-        if(isSizeZero()) zeroAction();
+        if (isSizeZero()) zeroAction();
         else setCaloriesInfo();
         manageRv();
     }
@@ -119,8 +120,8 @@ public class RecipeCalculateFragment extends PrimaryFragment {
     }
 
     private boolean isSizeZero() {
-        for(Ingredient ingredient : getRecipe().getIngredients()) {
-            if(ingredient.getProduct().getSize() == Globals.DF_ZERO) return true;
+        for (Ingredient ingredient : getRecipe().getIngredients()) {
+            if (ingredient.getProduct().getSize() == Globals.DF_ZERO) return true;
         }
         return false;
     }

@@ -64,7 +64,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_date"
                     android:text="@string/ct_date"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_date"
@@ -82,7 +82,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvInfo"
+                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_state"
                     android:text="@string/ct_state"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_state"

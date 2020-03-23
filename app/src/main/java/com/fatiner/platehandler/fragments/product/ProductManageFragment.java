@@ -124,7 +124,8 @@ public class ProductManageFragment extends PrimaryFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_product_manage, container, false);
+        View view = inflater.inflate(R.layout.fragment_product_manage, container,
+                false);
         init(this, view, getMenuId(), getToolbar(), false);
         initAction();
         return view;
@@ -140,12 +141,12 @@ public class ProductManageFragment extends PrimaryFragment {
     }
 
     private int getMenuId() {
-        if(isPosition()) return R.id.it_recipe;
+        if (isPosition()) return R.id.it_recipe;
         else return R.id.it_product;
     }
 
     private int getToolbar() {
-        if(isEditing()) return R.string.tb_pd_edit;
+        if (isEditing()) return R.string.tb_pd_edit;
         else return R.string.tb_pd_add;
     }
 
@@ -169,17 +170,17 @@ public class ProductManageFragment extends PrimaryFragment {
     }
 
     private void chooseDialog() {
-        if(isEditing()) showDialog(R.string.dg_pd_edit, getDialogListener());
+        if (isEditing()) showDialog(R.string.dg_pd_edit, getDialogListener());
         else showDialog(R.string.dg_pd_add, getDialogListener());
     }
 
     private void chooseDbAction() {
-        if(isEditing()) updateProduct();
+        if (isEditing()) updateProduct();
         else insertProduct();
     }
 
     private void setProductInIngredient(int id) {
-        if(isPosition()) {
+        if (isPosition()) {
             int position = getIntFromBundle();
             Ingredient ingredient = RecipeDetails.getRecipe().getIngredients().get(position);
             ingredient.setProductId(id);
@@ -187,7 +188,7 @@ public class ProductManageFragment extends PrimaryFragment {
     }
 
     private void endAction() {
-        if(isIncomplete()) showShortToast(R.string.ts_product);
+        if (isIncomplete()) showShortToast(R.string.ts_product);
         else chooseDialog();
     }
 
@@ -235,7 +236,7 @@ public class ProductManageFragment extends PrimaryFragment {
     }
 
     private void manageHints() {
-        if(isMillilitres()) setHints(Globals.UT_MILLILITRE);
+        if (isMillilitres()) setHints(Globals.UT_MILLILITRE);
         else setHints(Globals.UT_GRAM);
     }
 
@@ -282,7 +283,8 @@ public class ProductManageFragment extends PrimaryFragment {
             @Override
             public void onSuccess(Long id) {
                 setProductInIngredient(TypeManager.longToInt(id));
-                manageImageSaving(getProduct().getPhoto(), Globals.NM_PRODUCT, TypeManager.longToInt(id));
+                manageImageSaving(getProduct().getPhoto(), Globals.NM_PRODUCT,
+                        TypeManager.longToInt(id));
                 productSuccess(R.string.sb_pd_add);
             }
 
@@ -312,7 +314,8 @@ public class ProductManageFragment extends PrimaryFragment {
 
             @Override
             public void onComplete() {
-                manageImageSaving(getProduct().getPhoto(), Globals.NM_PRODUCT, getProduct().getId());
+                manageImageSaving(getProduct().getPhoto(), Globals.NM_PRODUCT,
+                        getProduct().getId());
                 productSuccess(R.string.sb_pd_edit);
             }
 

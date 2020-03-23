@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -48,7 +47,6 @@ import com.fatiner.platehandler.dialogs.TutorialDialog;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
-import com.fatiner.platehandler.globals.Shared;
 import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.google.android.material.snackbar.Snackbar;
@@ -60,7 +58,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -82,11 +79,11 @@ public class PrimaryFragment extends Fragment {
         setHasOptionsMenu(hasMenu);
     }
 
-    protected void setMenuItem(int id) {
+    private void setMenuItem(int id) {
         getMainActivity().setMenuItem(id);
     }
 
-    protected void setTb(int id) {
+    private void setTb(int id) {
         getMainActivity().setTbTitle(getString(id));
     }
 
@@ -103,13 +100,13 @@ public class PrimaryFragment extends Fragment {
 
     protected void setIvList(List<ImageView> array, int amount) {
         hideIvList(array);
-        for(int i = Globals.DF_ZERO; i < amount + Globals.DF_INCREMENT; i++) {
+        for (int i = Globals.DF_ZERO; i < amount + Globals.DF_INCREMENT; i++) {
             array.get(i).setVisibility(View.VISIBLE);
         }
     }
 
     private void hideIvList(List<ImageView> array) {
-        for(ImageView iv : array) {
+        for (ImageView iv : array) {
             removeView(iv);
         }
     }
@@ -141,7 +138,7 @@ public class PrimaryFragment extends Fragment {
         cb.setChecked(isChecked);
     }
 
-    protected void setHint(TextInputLayout til, String hint){
+    protected void setHint(TextInputLayout til, String hint) {
         til.setHint(hint);
     }
 
@@ -153,12 +150,12 @@ public class PrimaryFragment extends Fragment {
         return getResources().getIntArray(id);
     }
 
-    protected TypedArray getTypedArray(int id) {
+    private TypedArray getTypedArray(int id) {
         return getResources().obtainTypedArray(id);
     }
 
     protected void setFragment(Fragment fragment) {
-        ((MainActivity) getActivity()).setFragment(fragment, true);
+        getMainActivity().setFragment(fragment, true);
     }
 
     protected void setFragment(Fragment fragment, boolean bool, String id) {
@@ -192,7 +189,7 @@ public class PrimaryFragment extends Fragment {
         sp.setAdapter(new SpinnerAdapter(context, entries));
     }
 
-    protected void setVp(ViewPager vp, FragmentPagerAdapter adapter){
+    protected void setVp(ViewPager vp, FragmentPagerAdapter adapter) {
         vp.setAdapter(adapter);
     }
 
@@ -212,7 +209,7 @@ public class PrimaryFragment extends Fragment {
     protected float getCorrectEtValue(CharSequence text) {
         try {
             return Float.parseFloat(String.valueOf(text));
-        } catch(Exception e) {
+        } catch (Exception e) {
             return Globals.DF_ZERO;
         }
     }
@@ -230,14 +227,14 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected void checkSwState(boolean checked, String name, String key) {
-        if(checked)
+        if (checked)
             SharedManager.setValue(getContext(), name, key, checked);
         else
             SharedManager.removeValue(getContext(), name, key);
     }
 
     protected void checkSwState(boolean checked, Spinner sp, String name, String key) {
-        if(checked) {
+        if (checked) {
             sp.setVisibility(View.VISIBLE);
         } else {
             sp.setVisibility(View.GONE);
@@ -246,7 +243,7 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected void setSettingsInt(Switch sw, Spinner sp, String name, String key) {
-        if(SharedManager.isValueAvailable(getContext(), name, key)) {
+        if (SharedManager.isValueAvailable(getContext(), name, key)) {
             int value = SharedManager.getInt(getContext(), name, key);
             sp.setSelection(value);
             sw.setChecked(true);
@@ -254,22 +251,23 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected void setSettingsBool(Switch sw, String name, String key) {
-        if(SharedManager.isValueAvailable(getContext(), name, key)) {
+        if (SharedManager.isValueAvailable(getContext(), name, key)) {
             boolean value = SharedManager.getBoolean(getContext(), name, key);
             sw.setChecked(value);
         }
     }
 
     protected void setSettingsBool(Switch sw, Spinner sp, String name, String key) {
-        if(SharedManager.isValueAvailable(getContext(), name, key)) {
+        if (SharedManager.isValueAvailable(getContext(), name, key)) {
             boolean value = SharedManager.getBoolean(getContext(), name, key);
             sp.setSelection(TypeManager.boolToInt(value));
             sw.setChecked(true);
         }
     }
 
-    protected void setSettingsString(Switch sw, Spinner sp, String name, String key, List<String> entries) {
-        if(SharedManager.isValueAvailable(getContext(), name, key)) {
+    protected void setSettingsString(Switch sw, Spinner sp,
+                                     String name, String key, List<String> entries) {
+        if (SharedManager.isValueAvailable(getContext(), name, key)) {
             String value = SharedManager.getString(getContext(), name, key);
             int id = entries.indexOf(value);
             sp.setSelection(id);
@@ -277,24 +275,24 @@ public class PrimaryFragment extends Fragment {
         }
     }
 
-    protected float getDimen(int id) {
-        return getContext().getResources().getDimension(id);
+    private float getDimen(int id) {
+        return getResources().getDimension(id);
     }
 
     protected void changeRvSize(RecyclerView rv) {
         int height = (int) getDimen(R.dimen.ht_rv);
         rv.post(() -> {
-            if(rv.computeVerticalScrollRange() > height) rv.setLayoutParams(getRvParamsBig(height));
+            if (rv.computeVerticalScrollRange() > height) rv.setLayoutParams(getRvParamsBig(height));
             else rv.setLayoutParams(getRvParamsSmall());
         });
     }
 
-    protected ConstraintLayout.LayoutParams getRvParamsBig(int height) {
+    private ConstraintLayout.LayoutParams getRvParamsBig(int height) {
         return new ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_PARENT, height);
     }
 
-    protected ConstraintLayout.LayoutParams getRvParamsSmall() {
+    private ConstraintLayout.LayoutParams getRvParamsSmall() {
         return new ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT);
@@ -313,7 +311,7 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected void popFragment() {
-        getFragmentManager().popBackStackImmediate();
+        getMainActivity().getFragmentManager().popBackStackImmediate();
     }
 
     protected GridLayoutManager getManager(int amount) {
@@ -321,16 +319,16 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected int getColumnAmountList() {
-        if(getOrientation() == Configuration.ORIENTATION_PORTRAIT) return Globals.GL_ONE;
+        if (getOrientation() == Configuration.ORIENTATION_PORTRAIT) return Globals.GL_ONE;
         else return Globals.GL_TWO;
     }
 
     protected int getColumnAmountChoose() {
-        if(getOrientation() == Configuration.ORIENTATION_PORTRAIT) return Globals.GL_TWO;
+        if (getOrientation() == Configuration.ORIENTATION_PORTRAIT) return Globals.GL_TWO;
         else return Globals.GL_THREE;
     }
 
-    protected int getOrientation() {
+    private int getOrientation() {
         return getResources().getConfiguration().orientation;
     }
 
@@ -346,15 +344,11 @@ public class PrimaryFragment extends Fragment {
         popFragment();
     }
 
-    protected Bundle getBundle() {
+    private Bundle getBundle() {
         return this.getArguments();
     }
 
-    protected boolean isBundleEmpty() {
-        return getBundle() == null;
-    }
-
-    protected boolean isBundle() {
+    private boolean isBundle() {
         return getBundle() != null;
     }
 
@@ -366,48 +360,20 @@ public class PrimaryFragment extends Fragment {
         return getBundle().getInt(Globals.BN_INT);
     }
 
-    protected boolean getBoolFromBundle(String id) {
-        return getBundle().getBoolean(id);
-    }
-
-    protected void setIntInBundle(Fragment fragment, int integer, String id) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(id, integer);
-        fragment.setArguments(bundle);
-    }
-
-    protected boolean isAuthorNotAvailable(ArrayList<String> authors) {
-        for(String author : authors) {
-            if(author.equals(SharedManager.getString(getContext(), Shared.SR_RECIPE, Shared.KY_AUTHOR))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    protected void removeUnavailableAuthor(ArrayList<String> authors) {
-        if(isAuthorNotAvailable(authors)) {
-            SharedManager.removeValue(getContext(), Shared.SR_RECIPE, Shared.KY_AUTHOR);
-        }
-    }
-
     protected void showShortToast(int id) {
-        Toast.makeText(getContext(), getContext().getString(id), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), getString(id), Toast.LENGTH_SHORT).show();
     }
 
     protected void showLongToast(int id) {
-        Toast.makeText(getContext(), getContext().getString(id), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), getString(id), Toast.LENGTH_LONG).show();
     }
 
     protected void showShortSnack(int id) {
-        Snackbar.make(getView(), getContext().getString(id), Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), getString(id), Snackbar.LENGTH_SHORT).show();
     }
 
-    protected void showLongSnack(int id) {
-        Snackbar.make(getView(), getContext().getString(id), Snackbar.LENGTH_LONG).show();
-    }
-
-    protected void setRv(RecyclerView rv, RecyclerView.LayoutManager manager, RecyclerView.Adapter adapter) {
+    protected void setRv(RecyclerView rv,
+                         RecyclerView.LayoutManager manager, RecyclerView.Adapter adapter) {
         rv.setLayoutManager(manager);
         rv.setAdapter(adapter);
     }
@@ -423,13 +389,18 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected void hideKeyboard() {
-        View view = getActivity().getCurrentFocus();
-        if(view == null) return;
-        InputMethodManager manager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        View view = getMainActivity().getCurrentFocus();
+        if (view == null) return;
+        InputMethodManager manager = getInputMethodManager();
+        manager.hideSoftInputFromWindow(view.getWindowToken(), Globals.DF_ZERO);
     }
 
-    protected void showView(View view) {
+    private InputMethodManager getInputMethodManager() {
+        return (InputMethodManager) getMainActivity().getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+    }
+
+    private void showView(View view) {
         view.setAlpha(0f);
         view.setVisibility(View.VISIBLE);
         view.animate()
@@ -438,7 +409,7 @@ public class PrimaryFragment extends Fragment {
                 .setListener(null);
     }
 
-    protected void hideView(View view) {
+    private void hideView(View view) {
         view.animate()
                 .alpha(0f)
                 .setDuration(getAnimationDuration())
@@ -471,7 +442,7 @@ public class PrimaryFragment extends Fragment {
     }
 
     private int getRotate(boolean isOpening) {
-        if(isOpening) {
+        if (isOpening) {
             return R.anim.rotate_open;
         } else {
             return R.anim.rotate_close;
@@ -479,7 +450,7 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected void manageExpandCv(CardView cv, ImageView iv) {
-        if(cv.getVisibility() == View.VISIBLE) {
+        if (cv.getVisibility() == View.VISIBLE) {
             hideView(cv);
             rotateView(iv, false);
         } else {
@@ -512,19 +483,13 @@ public class PrimaryFragment extends Fragment {
         return getResources().getColor(id);
     }
 
-    protected boolean isEtEmpty(EditText et) {
-        return et.getText().toString().isEmpty();
-    }
-
-
-
     protected void setError(EditText et, int id, boolean isError) {
-        if(isError) et.setError(getString(id));
+        if (isError) et.setError(getString(id));
         else et.setError(null);
     }
 
     protected void setError(TextView tv, boolean isError) {
-        if(isError) tv.setError(Globals.SN_EMPTY);
+        if (isError) tv.setError(Globals.SN_EMPTY);
         else tv.setError(null);
     }
 
@@ -535,7 +500,7 @@ public class PrimaryFragment extends Fragment {
     protected void createDirectory(String name) {
         File directory = new File(getExternalDir(), name);
         if (directory.exists()) return;
-        if(directory.mkdirs()) showShortToast(R.string.ts_directory);
+        directory.mkdirs();
     }
 
     protected File getFile(String name, String directory) {
@@ -543,12 +508,12 @@ public class PrimaryFragment extends Fragment {
                 Format.FM_DIRECTORY, getExternalDir(), directory), name);
     }
 
-    protected File getImageFile(String name, int id) {
+    private File getImageFile(String name, int id) {
         String fullName = String.format(Locale.ENGLISH, Format.FM_IMAGE, name, id, Globals.FL_JPG);
         return getFile(fullName, Globals.DR_IMAGES);
     }
 
-    protected void saveImage(Bitmap image, String name, int id) {
+    private void saveImage(Bitmap image, String name, int id) {
         try {
             File file = getImageFile(name, id);
             FileOutputStream stream = new FileOutputStream(file);
@@ -575,7 +540,7 @@ public class PrimaryFragment extends Fragment {
 
     protected void setIv(ImageView iv, Bitmap bitmap) {
         iv.setImageBitmap(bitmap);
-        if(bitmap == null) iv.setVisibility(View.GONE);
+        if (bitmap == null) iv.setVisibility(View.GONE);
         else iv.setVisibility(View.VISIBLE);
     }
 
@@ -608,7 +573,7 @@ public class PrimaryFragment extends Fragment {
 
     protected void manageImageSaving(Bitmap image, String name, int id) {
         createDirectory(Globals.DR_IMAGES);
-        if(image == null) removeImage(name, id);
+        if (image == null) removeImage(name, id);
         else saveImage(image, name, id);
     }
 }

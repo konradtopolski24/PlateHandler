@@ -80,13 +80,13 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         List<ImportFile> importFiles = new ArrayList<>();
         File directory = getDir(Globals.DR_EXPORT);
         File[] files = directory.listFiles();
-        if(files == null) return importFiles;
-        for(File file : files) addNewImportFile(importFiles, file);
+        if (files == null) return importFiles;
+        for (File file : files) addNewImportFile(importFiles, file);
         return importFiles;
     }
 
     private void addNewImportFile(List<ImportFile> importFiles, File file) {
-        if(isFile(file)) {
+        if (isFile(file)) {
             String name = getShortName(file.toString());
             Workbook workbook = getWorkbook(name);
             int recipeAmount = getAmount(workbook, Db.TB_RECIPE);
@@ -140,7 +140,7 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         Iterator<Row> iterator = getIterator(workbook, Db.TB_PRODUCT);
         while (iterator.hasNext()) {
             Row row = iterator.next();
-            if(isRowAvailable(row)) products.add(getProduct(row));
+            if (isRowAvailable(row)) products.add(getProduct(row));
         }
         return products;
     }
@@ -150,7 +150,7 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         Iterator<Row> iterator = getIterator(workbook, Db.TB_RECIPE);
         while (iterator.hasNext()) {
             Row row = iterator.next();
-            if(isRowAvailable(row)) recipes.add(getRecipe(row));
+            if (isRowAvailable(row)) recipes.add(getRecipe(row));
         }
         return recipes;
     }
@@ -160,7 +160,7 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         Iterator<Row> iterator = getIterator(workbook, Db.TB_INGREDIENT);
         while (iterator.hasNext()) {
             Row row = iterator.next();
-            if(isRowAvailable(row)) ingredients.add(getIngredient(row));
+            if (isRowAvailable(row)) ingredients.add(getIngredient(row));
         }
         return ingredients;
     }
@@ -170,7 +170,7 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         Iterator<Row> iterator = getIterator(workbook, Db.TB_STEP);
         while (iterator.hasNext()) {
             Row row = iterator.next();
-            if(isRowAvailable(row)) steps.add(getStep(row));
+            if (isRowAvailable(row)) steps.add(getStep(row));
         }
         return steps;
     }
@@ -255,8 +255,8 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
     private void removeAllImages() {
         File directory = getDir(Globals.DR_IMAGES);
         File[] files = directory.listFiles();
-        if(files == null) return;
-        for(File file : files) removeFile(file);
+        if (files == null) return;
+        for (File file : files) removeFile(file);
     }
 
     private void endAction() {
@@ -301,7 +301,7 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
 
     private DialogInterface.OnClickListener getDialogListener(String name) {
         return (dialog, which) -> {
-            switch(which) {
+            switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     importData(getWorkbook(name));
                     break;

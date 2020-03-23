@@ -51,7 +51,7 @@ public class ShoppingAdapter extends PrimaryAdapter<ShoppingAdapter.ShoppingHold
     private void setViews(ShoppingHolder holder, int position) {
         ShoppingItem item = shoppingItems.get(position);
         setTv(holder.tvItem, getItemText(item));
-        if(item.isCrossedOut()) crossOutLine(holder.tvItem);
+        if (item.isCrossedOut()) crossOutLine(holder.tvItem);
     }
 
     private String getItemText(ShoppingItem item) {
@@ -87,7 +87,7 @@ public class ShoppingAdapter extends PrimaryAdapter<ShoppingAdapter.ShoppingHold
     }
 
     private void manageCrossOut(ShoppingHolder holder) {
-        if(isCrossedOut(holder.tvItem)) removeAction(holder);
+        if (isCrossedOut(holder.tvItem)) removeAction(holder);
         else crossOutAction(holder);
     }
 

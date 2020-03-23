@@ -124,7 +124,7 @@ public class ProductShowFragment extends PrimaryFragment {
     }
 
     private void checkId() {
-        if(isId()) readProduct();
+        if (isId()) readProduct();
     }
 
     private void setProductDetails(Product product) {
@@ -139,7 +139,7 @@ public class ProductShowFragment extends PrimaryFragment {
     }
 
     private void setViews() {
-        if(areNutrientsEmpty()) setEmptyInfo();
+        if (areNutrientsEmpty()) setEmptyInfo();
         else {
             setProductInfo();
             setEnergyInfo();
@@ -166,7 +166,7 @@ public class ProductShowFragment extends PrimaryFragment {
     }
 
     private String getUnit() {
-        if(isMillilitres()) return Globals.UT_MILLILITRE;
+        if (isMillilitres()) return Globals.UT_MILLILITRE;
         return Globals.UT_GRAM;
     }
 
@@ -191,7 +191,7 @@ public class ProductShowFragment extends PrimaryFragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        switch(menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
             case R.id.it_edit:
                 setFragment(new ProductManageFragment(), true, Globals.BN_BOOL);
                 return true;
@@ -250,7 +250,8 @@ public class ProductShowFragment extends PrimaryFragment {
     private ArrayList<BarEntry> getBarEntries() {
         Product product = getProduct();
         ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(Chart.VX_CARBOHYDRATES, product.getPercentage(Globals.NT_CARBOHYDRATES)));
+        entries.add(new BarEntry(Chart.VX_CARBOHYDRATES, product.getPercentage(
+                Globals.NT_CARBOHYDRATES)));
         entries.add(new BarEntry(Chart.VX_PROTEINS, product.getPercentage(Globals.NT_PROTEINS)));
         entries.add(new BarEntry(Chart.VX_FATS, product.getPercentage(Globals.NT_FATS)));
         return entries;
@@ -451,7 +452,7 @@ public class ProductShowFragment extends PrimaryFragment {
 
             @Override
             public void onSuccess(Integer amount) {
-                if(amount == Globals.DF_ZERO) removeProduct();
+                if (amount == Globals.DF_ZERO) removeProduct();
                 else showShortToast(R.string.ts_used);
             }
 

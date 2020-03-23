@@ -139,7 +139,8 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_recipe_manage_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_manage_info, container,
+                false);
         ButterKnife.bind(this, view);
         initAction();
         return view;
@@ -192,7 +193,7 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
     }
 
     private void chooseSbAction(boolean isDifficulty, int progress) {
-        if(isDifficulty) {
+        if (isDifficulty) {
             getRecipe().setDifficulty(progress);
             setTv(tvDifficulty, progress, R.array.tx_difficulty);
         }
@@ -217,13 +218,13 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
 
     private void incrementServing() {
         int value = Integer.parseInt(String.valueOf(tvServing.getText()));
-        if(isValueMax(value)) return;
+        if (isValueMax(value)) return;
         tvServing.setText(String.valueOf(value + Globals.DF_INCREMENT));
     }
 
     private void decrementServing() {
         int value = Integer.parseInt(String.valueOf(tvServing.getText()));
-        if(isValueMin(value)) return;
+        if (isValueMin(value)) return;
         tvServing.setText(String.valueOf(value + Globals.DF_DECREMENT));
     }
 

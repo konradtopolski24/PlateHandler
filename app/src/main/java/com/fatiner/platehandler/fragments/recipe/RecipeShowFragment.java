@@ -133,7 +133,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
     }
 
     private void checkId() {
-        if(isId()) readRecipe();
+        if (isId()) readRecipe();
     }
 
     private boolean isId() {
@@ -141,9 +141,9 @@ public class RecipeShowFragment extends PrimaryFragment implements
     }
 
     private void setProductsInIngredients(List<Product> products) {
-        for(Ingredient ingredient : getRecipe().getIngredients()) {
-            for(Product product : products) {
-                if(ingredient.getProductId() == product.getId()) {
+        for (Ingredient ingredient : getRecipe().getIngredients()) {
+            for (Product product : products) {
+                if (ingredient.getProductId() == product.getId()) {
                     ingredient.setProduct(product);
                     break;
                 }
@@ -153,7 +153,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
 
     private List<Integer> getProductIds() {
         List<Integer> ids = new ArrayList<>();
-        for(Ingredient ingredient : getRecipe().getIngredients())
+        for (Ingredient ingredient : getRecipe().getIngredients())
             ids.add(ingredient.getProductId());
         return ids;
     }
@@ -218,7 +218,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
     }
 
     private void setRecentRecipe() {
-        if(SharedManager.isValueAvailable(getContext(), Shared.SR_HOME, Shared.KY_RECENT))
+        if (SharedManager.isValueAvailable(getContext(), Shared.SR_HOME, Shared.KY_RECENT))
             recentExistsAction();
         else recentUnavailableAction();
     }
@@ -243,7 +243,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
     }
 
     private void checkIfContains(List<Integer> recent) {
-        if(recent.contains(getRecipeId())) recent.remove(getPosition(recent));
+        if (recent.contains(getRecipeId())) recent.remove(getPosition(recent));
     }
 
     private int getPosition(List<Integer> recent) {
@@ -251,7 +251,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
     }
 
     private void checkIfFull(List<Integer> recent) {
-        if(recent.size() == Globals.RC_MAX)
+        if (recent.size() == Globals.RC_MAX)
             recent.remove(recent.size() + Globals.DF_DECREMENT);
     }
 
@@ -266,7 +266,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
 
     private DialogInterface.OnClickListener getDialogListener() {
         return (dialog, which) -> {
-            switch(which) {
+            switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     deleteRecipe();
                     break;
@@ -277,7 +277,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
     }
 
     private void deleteRecentId() {
-        if(SharedManager.isValueAvailable(getContext(), Shared.SR_HOME, Shared.KY_RECENT)) {
+        if (SharedManager.isValueAvailable(getContext(), Shared.SR_HOME, Shared.KY_RECENT)) {
             List<Integer> recent = getRecent();
             Integer id = getRecipe().getId();
             recent.remove(id);
@@ -294,7 +294,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        switch(menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
             case R.id.it_calculate:
                 setFragment(new RecipeCalculateFragment());
                 return true;

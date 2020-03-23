@@ -53,7 +53,8 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_recipe_choose, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_choose, container,
+                false);
         init(this, view, getMenuId(), R.string.tb_rp_choose, true);
         initAction();
         return view;
@@ -65,7 +66,7 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
     }
 
     private int getMenuId() {
-        if(isShopping()) return R.id.it_shopping;
+        if (isShopping()) return R.id.it_shopping;
         else return R.id.it_recipe;
     }
 
@@ -80,7 +81,7 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
     }
 
     private void hideFab() {
-        if(isShopping()) removeView(fabAdd);
+        if (isShopping()) removeView(fabAdd);
     }
 
     private boolean isShopping() {
@@ -88,7 +89,7 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
     }
 
     private void chooseSetFragment() {
-        if(isShopping()) setFragment(new RecipeSettingsFragment(), true, Globals.BN_BOOL);
+        if (isShopping()) setFragment(new RecipeSettingsFragment(), true, Globals.BN_BOOL);
         else setFragment(new RecipeSettingsFragment());
     }
 
@@ -100,7 +101,7 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        if(menuItem.getItemId() == R.id.it_settings) {
+        if (menuItem.getItemId() == R.id.it_settings) {
             chooseSetFragment();
             return true;
         }
@@ -108,7 +109,7 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
     }
 
     private void setIngredientsFromRecipe(List<IngredientComplete> ingredients) {
-        for(IngredientComplete ingredientComplete : ingredients) {
+        for (IngredientComplete ingredientComplete : ingredients) {
             ShoppingItem item = new ShoppingItem();
             item.setAmount(ingredientComplete.ingredient.getAmount());
             item.setMeasure(ingredientComplete.ingredient.getMeasure());
@@ -169,7 +170,7 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
 
     @Override
     public void clickRecipe(int id) {
-        if(isShopping()) readIngredients(id);
+        if (isShopping()) readIngredients(id);
         else {
             resetRecipeDetails();
             setFragment(new RecipeShowFragment(), id, Globals.BN_INT);

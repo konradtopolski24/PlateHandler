@@ -44,7 +44,8 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_recipe_manage_pager, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_manage_pager, container,
+                false);
         init(this, view, R.id.it_recipe, getToolbar(), false);
         setViews();
         return view;
@@ -55,7 +56,7 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
     }
 
     private int getToolbar() {
-        if(isEditing()) return R.string.tb_rp_edit;
+        if (isEditing()) return R.string.tb_rp_edit;
         else return R.string.tb_rp_add;
     }
 
@@ -73,17 +74,17 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
     }
 
     private void chooseDialog() {
-        if(isEditing()) showDialog(R.string.dg_rp_edit, getDialogListener());
+        if (isEditing()) showDialog(R.string.dg_rp_edit, getDialogListener());
         else showDialog(R.string.dg_rp_add, getDialogListener());
     }
 
     private void chooseDbAction() {
-        if(isEditing()) updateRecipe();
+        if (isEditing()) updateRecipe();
         else insertRecipe();
     }
 
     private void chooseFinished() {
-        if(isIncomplete()) showShortToast(R.string.ts_recipe);
+        if (isIncomplete()) showShortToast(R.string.ts_recipe);
         else chooseDialog();
     }
 
@@ -106,15 +107,15 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
 
     private boolean isAmountZero() {
         List<Ingredient> ingredients = getRecipe().getIngredients();
-        for(Ingredient ingredient : ingredients)
-            if(ingredient.getAmount() == Globals.DF_ZERO) return true;
+        for (Ingredient ingredient : ingredients)
+            if (ingredient.getAmount() == Globals.DF_ZERO) return true;
         return false;
     }
 
     private boolean isProductIdZero() {
         List<Ingredient> ingredients = getRecipe().getIngredients();
-        for(Ingredient ingredient : ingredients)
-            if(ingredient.getProductId() == Globals.DF_ZERO) return true;
+        for (Ingredient ingredient : ingredients)
+            if (ingredient.getProductId() == Globals.DF_ZERO) return true;
         return false;
     }
 
@@ -123,14 +124,14 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
     }
 
     private void manageIngredientsDb(int id) {
-        for(Ingredient ingredient : getRecipe().getIngredients()) {
+        for (Ingredient ingredient : getRecipe().getIngredients()) {
             ingredient.setRecipeId(id);
             ingredient.setUsed(false);
         }
     }
 
     private void manageStepsDb(int id) {
-        for(Step step : getRecipe().getSteps()) {
+        for (Step step : getRecipe().getSteps()) {
             step.setRecipeId(id);
             step.setDone(false);
         }
@@ -210,7 +211,7 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
 
     private DialogInterface.OnClickListener getDialogListener() {
         return (dialog, which) -> {
-            switch(which) {
+            switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     chooseDbAction();
                     break;

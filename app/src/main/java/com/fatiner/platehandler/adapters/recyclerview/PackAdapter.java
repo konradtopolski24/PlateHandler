@@ -49,7 +49,7 @@ public class PackAdapter extends PrimaryAdapter<PackAdapter.PackHolder> {
         setTv(holder.tvAmount, pack.getAmount());
     }
 
-    static class PackHolder extends RecyclerView.ViewHolder{
+    static class PackHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tv_name) TextView tvName;
         @BindView(R.id.tv_attribution) TextView tvAttribution;

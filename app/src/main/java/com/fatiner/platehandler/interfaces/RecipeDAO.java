@@ -42,13 +42,15 @@ public interface RecipeDAO {
     @Query("SELECT * FROM " + Db.TB_RECIPE + " WHERE " + Db.CL_RP_ID + " IN (:ids)")
     Single<List<Recipe>> getRecipes(List<Integer> ids);
 
-    @Query("SELECT DISTINCT " + Db.CL_RP_AUTHOR + " FROM " + Db.TB_RECIPE + " ORDER BY " + Db.CL_RP_AUTHOR)
+    @Query("SELECT DISTINCT " + Db.CL_RP_AUTHOR + " FROM " + Db.TB_RECIPE + " ORDER BY "
+            + Db.CL_RP_AUTHOR)
     Single<List<String>> getAuthors();
 
     @Query("SELECT COUNT( " + Db.CL_RP_ID + ") FROM " + Db.TB_RECIPE)
     Single<Integer> getRowCount();
 
-    @Query("UPDATE " + Db.TB_RECIPE + " SET " + Db.CL_RP_FAVORITE + " = :favorite WHERE " + Db.CL_RP_ID + "==:id")
+    @Query("UPDATE " + Db.TB_RECIPE + " SET " + Db.CL_RP_FAVORITE + " = :favorite WHERE "
+            + Db.CL_RP_ID + "==:id")
     void updateFavorite(int id, boolean favorite);
 
     @Query("SELECT * FROM " + Db.TB_RECIPE)
