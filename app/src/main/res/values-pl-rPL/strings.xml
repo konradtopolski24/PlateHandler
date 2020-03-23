@@ -533,7 +533,7 @@
     <string name="ar_pd_seafood">Owoc Morza</string>
     <string name="ar_pd_pasta">Makaron</string>
     <string name="ar_pd_spice">Przyprawa</string>
-    <string name="ar_pd_liquid">Płyn</string>
+    <string name="ar_pd_liquid">Napój</string>
     <string name="ar_pd_sauce">Sos</string>
     <string name="ar_pd_other">Inny</string>
 
@@ -547,4 +547,56 @@
     <string name="ar_ms_teaspoon">Łyżeczka</string>
     <string name="ar_ms_tablespoon">Łyżka</string>
     <string name="ar_ms_cup">Szklanka</string>
+
+    <!-- Default Products -->
+    <string name="df_tomato">Pomidor</string>
+    <string name="df_carrot">Marchewka</string>
+    <string name="df_onion">Cebula</string>
+    <string name="df_bread">Chleb Razowy</string>
+    <string name="df_grain">Chleb Pełnoziarnisty</string>
+    <string name="df_gouda">Ser Gouda</string>
+    <string name="df_cow">Mleko Krowie</string>
+    <string name="df_breast">Pierś z Kurczaka</string>
+    <string name="df_egg">Jajko Kurze</string>
+    <string name="df_lemon">Cytryna</string>
+    <string name="df_salt">Sól</string>
+    <string name="df_pepper">Pieprz</string>
+    <string name="df_ketchup">Ketchup</string>
+    <string name="df_mayonnaise">Majonez</string>
+    <string name="df_butter">Masło</string>
+    <string name="df_sugar">Cukier</string>
+    <string name="df_garlic">Ząbek Czosnku</string>
+    <string name="df_red">Czerwona Papryka</string>
+    <string name="df_juice">Sok Pomarańczowy</string>
+    <string name="df_tenderloin">Polędwiczka Wołowa</string>
+    <string name="df_pork">Mięso Mielone Wieprzowe</string>
+    <string name="df_cod">Dorsz</string>
+    <string name="df_trout">Pstrąg</string>
+    <string name="df_parsley">Pietruszka</string>
+    <string name="df_celery">Seler</string>
+    <string name="df_wheat">Mąka Pszenna</string>
+    <string name="df_rye">Mąka Żytnia</string>
+    <string name="df_cream">Śmietana 18%</string>
+    <string name="df_yogurt">Jogurt Naturalny</string>
+    <string name="df_buckwheat">Kasza Gryczana</string>
+    <string name="df_rice">Ryż Biały</string>
+    <string name="df_pasta">Makaron Nitki</string>
+    <string name="df_oil">Olej Rzepakowy</string>
+    <string name="df_orange">Pomarańcza</string>
+    <string name="df_apple">Jabłko</string>
+    <string name="df_broccoli">Brokuł</string>
+    <string name="df_toast">Chleb Tostowy</string>
+    <string name="df_spaghetti">Makaron Spaghetti</string>
+    <string name="df_tagliatelle">Makaron Tagliatelle</string>
+    <string name="df_lard">Smalec</string>
+    <string name="df_corn">Kukurydza</string>
+    <string name="df_peas">Groszek</string>
+    <string name="df_cucumber">Ogórek</string>
+    <string name="df_sweet">Słodka Papryka</string>
+    <string name="df_hot">Ostra Papryka</string>
+    <string name="df_gyros">Gyros</string>
+    <string name="df_curry">Curry</string>
+    <string name="df_mustard">Musztarda</string>
+    <string name="df_shrimp">Krewetka</string>
+    <string name="df_squid">Kalmar</string>
 </resources>

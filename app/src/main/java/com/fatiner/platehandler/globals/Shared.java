@@ -2,6 +2,7 @@ package com.fatiner.platehandler.globals;
 
 public class Shared {
 
+    public static final String SR_LAUNCH = "Launched";
     public static final String SR_RECIPE = "Recipes";
     public static final String SR_PRODUCT = "Products";
     public static final String SR_SHOPPING = "Shopping";
@@ -17,6 +18,7 @@ public class Shared {
     public static final String KY_PREFERENCE = "preference";
     public static final String KY_LIST = "list";
     public static final String KY_RECENT = "recent";
+    public static final String KY_LAUNCH = "launch";
 
     public static final boolean DF_BOOL = false;
     public static final int DF_INT = 0;
