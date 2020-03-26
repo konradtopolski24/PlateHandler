@@ -110,16 +110,15 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements
         return QueryManager.getRowsQuery(Db.TB_PRODUCT, Globals.SN_EMPTY, orderBy);
     }
 
-    //Read Products
     private void readProducts() {
         PlateHandlerDatabase db = getDb(getContext());
         Single<List<Product>> single = db.getProductDAO().getProducts(getProductsQuery());
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadProductsObserver());
+                .subscribe(getProductObserver());
     }
 
-    private DisposableSingleObserver<List<Product>> getReadProductsObserver() {
+    private DisposableSingleObserver<List<Product>> getProductObserver() {
         return new DisposableSingleObserver<List<Product>>() {
 
             @Override

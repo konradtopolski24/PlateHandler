@@ -266,14 +266,25 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         popFragment();
     }
 
-    //Import Data
-    private void importData(Workbook workbook) {
-        getCompletable(workbook).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getImportDataObserver());
+    private DialogInterface.OnClickListener getDialogListener(String name) {
+        return (dialog, which) -> {
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    importData(getWorkbook(name));
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    break;
+            }
+        };
     }
 
-    private Completable getCompletable(Workbook workbook) {
+    private void importData(Workbook workbook) {
+        getImportCompletable(workbook).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getImportObserver());
+    }
+
+    private Completable getImportCompletable(Workbook workbook) {
         return Completable.fromAction(() -> {
             PlateHandlerDatabase db = getDb(getContext());
             db.clearAllTables();
@@ -284,7 +295,7 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         });
     }
 
-    private DisposableCompletableObserver getImportDataObserver() {
+    private DisposableCompletableObserver getImportObserver() {
         return new DisposableCompletableObserver() {
 
             @Override
@@ -295,18 +306,6 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
             @Override
             public void onError(Throwable e) {
                 showShortToast(R.string.ts_database);
-            }
-        };
-    }
-
-    private DialogInterface.OnClickListener getDialogListener(String name) {
-        return (dialog, which) -> {
-            switch (which) {
-                case DialogInterface.BUTTON_POSITIVE:
-                    importData(getWorkbook(name));
-                    break;
-                case DialogInterface.BUTTON_NEGATIVE:
-                    break;
             }
         };
     }

@@ -137,11 +137,22 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
         }
     }
 
-    //Insert Recipe
+    private DialogInterface.OnClickListener getDialogListener() {
+        return (dialog, which) -> {
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    chooseDbAction();
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    break;
+            }
+        };
+    }
+
     private void insertRecipe() {
         getInsertCompletable().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getAddRecipeObserver());
+                .subscribe(getInsertObserver());
     }
 
     private Completable getInsertCompletable() {
@@ -156,7 +167,7 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
         });
     }
 
-    private DisposableCompletableObserver getAddRecipeObserver() {
+    private DisposableCompletableObserver getInsertObserver() {
         return new DisposableCompletableObserver() {
 
             @Override
@@ -172,11 +183,10 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
         };
     }
 
-    //Update Recipe
     private void updateRecipe() {
         getUpdateCompletable().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getUpdateRecipeObserver());
+                .subscribe(getUpdateObserver());
     }
 
     private Completable getUpdateCompletable() {
@@ -193,7 +203,7 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
         });
     }
 
-    private DisposableCompletableObserver getUpdateRecipeObserver() {
+    private DisposableCompletableObserver getUpdateObserver() {
         return new DisposableCompletableObserver() {
 
             @Override
@@ -205,18 +215,6 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
             @Override
             public void onError(Throwable e) {
                 showShortToast(R.string.ts_database);
-            }
-        };
-    }
-
-    private DialogInterface.OnClickListener getDialogListener() {
-        return (dialog, which) -> {
-            switch (which) {
-                case DialogInterface.BUTTON_POSITIVE:
-                    chooseDbAction();
-                    break;
-                case DialogInterface.BUTTON_NEGATIVE:
-                    break;
             }
         };
     }

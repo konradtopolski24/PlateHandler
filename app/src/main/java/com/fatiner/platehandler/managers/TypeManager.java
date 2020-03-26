@@ -1,7 +1,5 @@
 package com.fatiner.platehandler.managers;
 
-import android.widget.Toast;
-
 import com.fatiner.platehandler.classes.ShoppingList;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;

@@ -215,17 +215,16 @@ public class ExportFragment extends PrimaryFragment {
         HSSFWorkbook workbook = new HSSFWorkbook();
         readAllRecipes(workbook);
     }
-
-    //Read All Recipes
+    
     private void readAllRecipes(HSSFWorkbook workbook) {
         PlateHandlerDatabase db = getDb(getContext());
         Single<List<Recipe>> single = db.getRecipeDAO().getAllRecipes();
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadAllRecipesObserver(workbook));
+                .subscribe(getRecipeObserver(workbook));
     }
 
-    private DisposableSingleObserver<List<Recipe>> getReadAllRecipesObserver(
+    private DisposableSingleObserver<List<Recipe>> getRecipeObserver(
             HSSFWorkbook workbook) {
         return new DisposableSingleObserver<List<Recipe>>() {
 
@@ -241,17 +240,16 @@ public class ExportFragment extends PrimaryFragment {
             }
         };
     }
-
-    //Read All Products
+    
     private void readAllProducts(HSSFWorkbook workbook) {
         PlateHandlerDatabase db = getDb(getContext());
         Single<List<Product>> single = db.getProductDAO().getAllProducts();
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadAllProductsObserver(workbook));
+                .subscribe(getProductObserver(workbook));
     }
 
-    private DisposableSingleObserver<List<Product>> getReadAllProductsObserver(
+    private DisposableSingleObserver<List<Product>> getProductObserver(
             HSSFWorkbook workbook) {
         return new DisposableSingleObserver<List<Product>>() {
 
@@ -268,16 +266,15 @@ public class ExportFragment extends PrimaryFragment {
         };
     }
 
-    //Read All Ingredients
     private void readAllIngredients(HSSFWorkbook workbook) {
         PlateHandlerDatabase db = getDb(getContext());
         Single<List<Ingredient>> single = db.getIngredientDAO().getAllIngredients();
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadAllIngredientsObserver(workbook));
+                .subscribe(getIngredientObserver(workbook));
     }
 
-    private DisposableSingleObserver<List<Ingredient>> getReadAllIngredientsObserver(
+    private DisposableSingleObserver<List<Ingredient>> getIngredientObserver(
             HSSFWorkbook workbook) {
         return new DisposableSingleObserver<List<Ingredient>>() {
 
@@ -294,16 +291,15 @@ public class ExportFragment extends PrimaryFragment {
         };
     }
 
-    //Read All Steps
     private void readAllSteps(HSSFWorkbook workbook) {
         PlateHandlerDatabase db = getDb(getContext());
         Single<List<Step>> single = db.getStepDAO().getAllSteps();
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadAllStepsObserver(workbook));
+                .subscribe(getStepObserver(workbook));
     }
 
-    private DisposableSingleObserver<List<Step>> getReadAllStepsObserver(HSSFWorkbook workbook) {
+    private DisposableSingleObserver<List<Step>> getStepObserver(HSSFWorkbook workbook) {
         return new DisposableSingleObserver<List<Step>>() {
 
             @Override

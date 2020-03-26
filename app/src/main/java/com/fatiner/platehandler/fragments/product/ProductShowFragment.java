@@ -382,17 +382,16 @@ public class ProductShowFragment extends PrimaryFragment {
         removeView(pcComposition);
     }
 
-    //Read Product
     private void readProduct() {
         PlateHandlerDatabase db = getDb(getContext());
         int id = getIntFromBundle();
         Single<Product> single = db.getProductDAO().getProduct(id);
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadProductObserver());
+                .subscribe(getReadObserver());
     }
 
-    private DisposableSingleObserver<Product> getReadProductObserver() {
+    private DisposableSingleObserver<Product> getReadObserver() {
         return new DisposableSingleObserver<Product>() {
 
             @Override
@@ -408,21 +407,20 @@ public class ProductShowFragment extends PrimaryFragment {
         };
     }
 
-    //Remove Product
     private void removeProduct() {
-        getCompletable().subscribeOn(Schedulers.io())
+        getRemoveCompletable().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getRemoveProductObserver());
+                .subscribe(getRemoveObserver());
     }
 
-    private Completable getCompletable() {
+    private Completable getRemoveCompletable() {
         return Completable.fromAction(() -> {
             PlateHandlerDatabase db = getDb(getContext());
             db.getProductDAO().deleteProduct(getProduct());
         });
     }
 
-    private DisposableCompletableObserver getRemoveProductObserver() {
+    private DisposableCompletableObserver getRemoveObserver() {
         return new DisposableCompletableObserver() {
 
             @Override
@@ -438,16 +436,15 @@ public class ProductShowFragment extends PrimaryFragment {
         };
     }
 
-    //Read Amount
     private void readIngredientAmount() {
         PlateHandlerDatabase db = getDb(getContext());
         Single<Integer> single = db.getIngredientDAO().getRowCount(getProduct().getId());
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadAmountObserver());
+                .subscribe(getAmountObserver());
     }
 
-    private DisposableSingleObserver<Integer> getReadAmountObserver() {
+    private DisposableSingleObserver<Integer> getAmountObserver() {
         return new DisposableSingleObserver<Integer>() {
 
             @Override

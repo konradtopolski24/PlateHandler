@@ -118,16 +118,15 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
         }
     }
 
-    //Read Recipes
     private void readRecipes() {
         PlateHandlerDatabase db = getDb(getContext());
         Single<List<Recipe>> single = db.getRecipeDAO().getRecipes(getRecipesQuery());
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadRecipesObserver());
+                .subscribe(getRecipeObserver());
     }
 
-    private DisposableSingleObserver<List<Recipe>> getReadRecipesObserver() {
+    private DisposableSingleObserver<List<Recipe>> getRecipeObserver() {
         return new DisposableSingleObserver<List<Recipe>>() {
 
             @Override
@@ -143,16 +142,15 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
         };
     }
 
-    //Read Ingredients
     private void readIngredients(int id) {
         PlateHandlerDatabase db = getDb(getContext());
         Single<List<IngredientComplete>> single = db.getIngredientDAO().getCompleteIngredients(id);
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadIngredientsObserver());
+                .subscribe(getIngredientObserver());
     }
 
-    private DisposableSingleObserver<List<IngredientComplete>> getReadIngredientsObserver() {
+    private DisposableSingleObserver<List<IngredientComplete>> getIngredientObserver() {
         return new DisposableSingleObserver<List<IngredientComplete>>() {
 
             @Override

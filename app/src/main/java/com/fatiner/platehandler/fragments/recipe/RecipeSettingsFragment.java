@@ -160,16 +160,15 @@ public class RecipeSettingsFragment extends PrimaryFragment {
         setSettingsBool(swPreference, spPreference, Shared.SR_RECIPE, Shared.KY_PREFERENCE);
     }
 
-    //Read Authors
     private void readAuthors() {
         PlateHandlerDatabase db = getDb(getContext());
         Single<List<String>> single = db.getRecipeDAO().getAuthors();
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadAuthorsObserver());
+                .subscribe(getAuthorObserver());
     }
 
-    private DisposableSingleObserver<List<String>> getReadAuthorsObserver() {
+    private DisposableSingleObserver<List<String>> getAuthorObserver() {
         return new DisposableSingleObserver<List<String>>() {
 
             @Override

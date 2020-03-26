@@ -293,21 +293,20 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
         return product;
     }
 
-    //Add Products
     private void addDefaultProducts() {
-        getCompletable().subscribeOn(Schedulers.io())
+        getProductCompletable().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getImportDataObserver());
+                .subscribe(getProductObserver());
     }
 
-    private Completable getCompletable() {
+    private Completable getProductCompletable() {
         return Completable.fromAction(() -> {
             PlateHandlerDatabase db = getDb(getContext());
             db.getProductDAO().addProducts(getProducts());
         });
     }
 
-    private DisposableCompletableObserver getImportDataObserver() {
+    private DisposableCompletableObserver getProductObserver() {
         return new DisposableCompletableObserver() {
 
             @Override
@@ -322,17 +321,15 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
         };
     }
 
-
-    //Read Recent
     private void readRecent() {
         PlateHandlerDatabase db = getDb(getContext());
         Single<List<Recipe>> single = db.getRecipeDAO().getRecipes(getRecent());
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadRecentObserver());
+                .subscribe(getRecentObserver());
     }
 
-    private DisposableSingleObserver<List<Recipe>> getReadRecentObserver() {
+    private DisposableSingleObserver<List<Recipe>> getRecentObserver() {
         return new DisposableSingleObserver<List<Recipe>>() {
 
             @Override
@@ -350,13 +347,12 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
         };
     }
 
-    //Read Amount
     private void readRecipeAmount() {
         PlateHandlerDatabase db = getDb(getContext());
         Single<Integer> single = db.getRecipeDAO().getRowCount();
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadAmountObserver(tvRecipe, R.string.nv_recipe));
+                .subscribe(getAmountObserver(tvRecipe, R.string.nv_recipe));
     }
 
     private void readProductAmount() {
@@ -364,10 +360,10 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
         Single<Integer> single = db.getProductDAO().getRowCount();
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReadAmountObserver(tvProduct, R.string.nv_product));
+                .subscribe(getAmountObserver(tvProduct, R.string.nv_product));
     }
 
-    private DisposableSingleObserver<Integer> getReadAmountObserver(TextView tv, int id) {
+    private DisposableSingleObserver<Integer> getAmountObserver(TextView tv, int id) {
         return new DisposableSingleObserver<Integer>() {
 
             @Override

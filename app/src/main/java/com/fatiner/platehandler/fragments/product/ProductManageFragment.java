@@ -268,16 +268,15 @@ public class ProductManageFragment extends PrimaryFragment {
         setIv(ivPhoto, getProduct().getPhoto());
     }
 
-    //Insert Product
     private void insertProduct() {
         PlateHandlerDatabase db = getDb(getContext());
         Single<Long> single = db.getProductDAO().addProduct(getProduct());
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getInsertProductObserver());
+                .subscribe(getInsertObserver());
     }
 
-    private DisposableSingleObserver<Long> getInsertProductObserver() {
+    private DisposableSingleObserver<Long> getInsertObserver() {
         return new DisposableSingleObserver<Long>() {
 
             @Override
@@ -295,11 +294,10 @@ public class ProductManageFragment extends PrimaryFragment {
         };
     }
 
-    //Update Product
     private void updateProduct() {
         getCompletable().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getUpdateProductObserver());
+                .subscribe(getUpdateObserver());
     }
 
     private Completable getCompletable() {
@@ -309,7 +307,7 @@ public class ProductManageFragment extends PrimaryFragment {
         });
     }
 
-    private DisposableCompletableObserver getUpdateProductObserver() {
+    private DisposableCompletableObserver getUpdateObserver() {
         return new DisposableCompletableObserver() {
 
             @Override
