@@ -311,7 +311,7 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected void popFragment() {
-        getMainActivity().getFragmentManager().popBackStackImmediate();
+        getMainActivity().getSupportFragmentManager().popBackStackImmediate();
     }
 
     protected GridLayoutManager getManager(int amount) {

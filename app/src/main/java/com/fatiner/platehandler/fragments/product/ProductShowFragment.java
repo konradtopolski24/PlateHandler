@@ -147,10 +147,7 @@ public class ProductShowFragment extends PrimaryFragment {
     }
 
     private boolean areNutrientsEmpty() {
-        Product product = getProduct();
-        return product.getCarbohydrates() == Globals.DF_ZERO
-                && product.getProteins() == Globals.DF_ZERO
-                && product.getFats() == Globals.DF_ZERO;
+        return getProduct().getSize() == Globals.DF_ZERO;
     }
 
     private void setProductInfo() {
