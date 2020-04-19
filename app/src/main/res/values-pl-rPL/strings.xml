@@ -182,6 +182,7 @@
     <string name="hd_cd_author">Autor Aplikacji</string>
     <string name="hd_cd_library">Wykorzystane Biblioteki</string>
     <string name="hd_cd_icon">Wykorzystane Ikony</string>
+    <string name="hd_cd_font">Wykorzystane Czcionki</string>
 
     <!-- Tutorial -->
     <string name="tt_hm_statistics">Sekcja prezentująca użytkownikowi statystyki dotyczące bazy
@@ -420,6 +421,13 @@
         <b>Przypisanie</b> ukazuje dokładny tekst atrybutacji na temat autora pakietu, fragment
         <b>Licencja</b> charakteryzuje jaka licencja obejmuje paczkę, natomiast <b>Ilość</b>
         określa liczbę ikon z danej paczki wykorzystanych w aplikacji.</string>
+    <string name="tt_cd_font">Sekcja ukazująca listę czcionek wykorzystanych w logo oraz ikonie
+        aplikacji <b>Plate Handler</b>. Każda pozycja zawiera podstawowe informacje na temat
+        określonej czcionki, rozpoczynając od jej <b>nazwy</b> w górnej części
+        elementu.\n\nFragment <b>Autor</b> określa kto jest autorem danej czcionki, fragment
+        <b>Wersja</b> wyraża identyfikator wersji czcionki wykorzystanej w logo oraz ikonie
+        aplikacji, natomiast <b>Licencja</b> charakteryzuje jaka licencja obejmuje daną
+        czcionkę.</string>
 
     <!-- Main Toolbar Titles -->
     <string name="tb_hm_welcome">Witamy</string>
@@ -443,6 +451,7 @@
     <string name="tb_cd_show">Przypisy</string>
 
     <!-- Content Description -->
+    <string name="dp_logo">Logo aplikacji</string>
     <string name="dp_pd_photo">Zdjęcie produktu</string>
     <string name="dp_pd_type">Ikona typu produktu</string>
     <string name="dp_rp_photo">Zdjęcie przepisu</string>

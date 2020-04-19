@@ -109,6 +109,10 @@
         <item name="android:layout_margin">@dimen/mg_small</item>
     </style>
 
+    <style name="ClHeader" parent="WidthMatch">
+        <item name="android:background">@color/pr_normal</item>
+    </style>
+
     <style name="LlSide" parent="HeightZero">
         <item name="android:padding">@dimen/mg_big</item>
         <item name="android:background">@color/pr_normal</item>
@@ -248,6 +252,15 @@
     </style>
 
     <!-- ImageView -->
+    <style name="IvLogo" parent="BothWrap">
+        <item name="android:layout_margin">@dimen/mg_huge</item>
+        <item name="android:src">@drawable/logo</item>
+    </style>
+
+    <style name="IvLogoSmall" parent="IvLogo">
+        <item name="android:layout_width">@dimen/wt_header</item>
+    </style>
+
     <style name="IvPrimary" parent="BothWrap">
         <item name="android:layout_width">@dimen/ic_small</item>
         <item name="android:layout_height">@dimen/ic_small</item>
@@ -466,6 +479,7 @@
     <style name="NvDefault" parent="HeightMatch">
         <item name="android:layout_gravity">start</item>
         <item name="menu">@menu/nv_main</item>
+        <item name="headerLayout">@layout/header_main</item>
     </style>
 
     <!-- Toolbar -->

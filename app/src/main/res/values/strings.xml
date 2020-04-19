@@ -181,6 +181,7 @@
     <string name="hd_cd_author">Author of the App</string>
     <string name="hd_cd_library">Libraries Used</string>
     <string name="hd_cd_icon">Icons Used</string>
+    <string name="hd_cd_font">Fonts Used</string>
 
     <!-- Tutorial -->
     <string name="tt_hm_statistics">A section presenting the user with statistics regarding the
@@ -414,6 +415,13 @@
         of the icon pack, the <b>License</b> fragment describes what license the package is
         covered by, while the <b>Amount</b> fragment determines the number of icons from the given
         pack used in the app.</string>
+    <string name="tt_cd_font">A section showing a list of fonts used in the logo and the icon of
+        the <b>Plate Handler</b> app. Each item contains basic information about a
+        particular font, starting with its <b>name</b> at the top of the item.\n\nThe
+        <b>Author</b> fragment defines who the author of the font is, the <b>Version</b>
+        fragment expresses the identifier of the font version used in the logo and the icon of
+        the app, while the <b>License</b> fragment describes which license covers each
+        font.</string>
 
     <!-- Main Toolbar Titles -->
     <string name="tb_hm_welcome">Welcome</string>
@@ -437,6 +445,7 @@
     <string name="tb_cd_show">Credits</string>
 
     <!-- Content Description -->
+    <string name="dp_logo">Logo of the app</string>
     <string name="dp_pd_photo">Image of the product</string>
     <string name="dp_pd_type">Icon of the product type</string>
     <string name="dp_rp_photo">Image of the recipe</string>

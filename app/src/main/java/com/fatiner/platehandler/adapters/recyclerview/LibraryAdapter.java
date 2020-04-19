@@ -49,7 +49,7 @@ public class LibraryAdapter extends PrimaryAdapter<LibraryAdapter.LibraryHolder>
         setTv(holder.tvLicense, library.getLicense());
     }
 
-    static class LibraryHolder extends RecyclerView.ViewHolder{
+    static class LibraryHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tv_name) TextView tvName;
         @BindView(R.id.tv_author) TextView tvAuthor;

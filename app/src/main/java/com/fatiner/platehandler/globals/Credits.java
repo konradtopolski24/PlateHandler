@@ -82,5 +82,17 @@ public class Credits {
     public static final String IP_MD_NAME = "Material Design Icons";
     public static final String IP_MD_ATTRIBUTION = "Icons made by Google";
     public static final String IP_MD_LICENSE = "Apache License 2.0";
-    public static final int IP_MD_AMOUNT = 21;
+    public static final int IP_MD_AMOUNT = 22;
+
+    //Mops
+    public static final String FT_MP_NAME = "Mops";
+    public static final String FT_MP_AUTHOR = "Uwe Borchert";
+    public static final String FT_MP_VERSION = "1.3";
+    public static final String FT_MP_LICENSE = "SIL Open Font License";
+
+    //Gentium
+    public static final String FT_GT_NAME = "Gentium";
+    public static final String FT_GT_AUTHOR = "SIL International";
+    public static final String FT_GT_VERSION = "1.02";
+    public static final String FT_GT_LICENSE = "SIL Open Font License";
 }

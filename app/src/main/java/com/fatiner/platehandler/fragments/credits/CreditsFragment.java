@@ -12,8 +12,10 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
+import com.fatiner.platehandler.adapters.recyclerview.FontAdapter;
 import com.fatiner.platehandler.adapters.recyclerview.LibraryAdapter;
 import com.fatiner.platehandler.adapters.recyclerview.PackAdapter;
+import com.fatiner.platehandler.classes.Font;
 import com.fatiner.platehandler.classes.Library;
 import com.fatiner.platehandler.classes.Pack;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
@@ -29,12 +31,15 @@ public class CreditsFragment extends PrimaryFragment {
     @BindView(R.id.cv_author) CardView cvAuthor;
     @BindView(R.id.cv_library) CardView cvLibrary;
     @BindView(R.id.cv_icon) CardView cvIcon;
+    @BindView(R.id.cv_font) CardView cvFont;
     @BindView(R.id.iv_hd_author) ImageView ivHdAuthor;
     @BindView(R.id.iv_hd_library) ImageView ivHdLibrary;
     @BindView(R.id.iv_hd_icon) ImageView ivHdIcon;
+    @BindView(R.id.iv_hd_font) ImageView ivHdFont;
     @BindView(R.id.tv_developer) TextView tvDeveloper;
     @BindView(R.id.rv_library) RecyclerView rvLibrary;
     @BindView(R.id.rv_icon) RecyclerView rvIcon;
+    @BindView(R.id.rv_font) RecyclerView rvFont;
 
     @OnClick(R.id.cv_hd_author)
     void clickCvHdAuthor() {
@@ -49,6 +54,11 @@ public class CreditsFragment extends PrimaryFragment {
     @OnClick(R.id.cv_hd_icon)
     void clickCvHdIcon() {
         manageExpandCv(cvIcon, ivHdIcon);
+    }
+
+    @OnClick(R.id.cv_hd_font)
+    void clickCvHdFont() {
+        manageExpandCv(cvFont, ivHdFont);
     }
 
     @OnClick(R.id.iv_tt_author)
@@ -66,6 +76,11 @@ public class CreditsFragment extends PrimaryFragment {
         showDialog(R.string.hd_cd_icon, R.string.tt_cd_icon);
     }
 
+    @OnClick(R.id.iv_tt_font)
+    void clickIvTtFont() {
+        showDialog(R.string.hd_cd_font, R.string.tt_cd_font);
+    }
+
     public CreditsFragment() {}
 
     @Override
@@ -80,8 +95,10 @@ public class CreditsFragment extends PrimaryFragment {
         setTv(tvDeveloper, Credits.DL_NAME);
         setRv(rvLibrary, getManager(getColumnAmountList()), getLibraryAdapter());
         setRv(rvIcon, getManager(getColumnAmountList()), getPackAdapter());
+        setRv(rvFont, getManager(getColumnAmountList()), getFontAdapter());
         changeRvSize(rvLibrary);
         changeRvSize(rvIcon);
+        changeRvSize(rvFont);
     }
 
     private LibraryAdapter getLibraryAdapter() {
@@ -90,6 +107,10 @@ public class CreditsFragment extends PrimaryFragment {
 
     private PackAdapter getPackAdapter() {
         return new PackAdapter(getContext(), getPacks());
+    }
+
+    private FontAdapter getFontAdapter() {
+        return new FontAdapter(getContext(), getFonts());
     }
 
     private ArrayList<Library> getLibraries() {
@@ -167,6 +188,21 @@ public class CreditsFragment extends PrimaryFragment {
         return packs;
     }
 
+    private ArrayList<Font> getFonts() {
+        ArrayList<Font> fonts = new ArrayList<>();
+        fonts.add(getFont(
+                Credits.FT_MP_NAME,
+                Credits.FT_MP_AUTHOR,
+                Credits.FT_MP_VERSION,
+                Credits.FT_MP_LICENSE));
+        fonts.add(getFont(
+                Credits.FT_GT_NAME,
+                Credits.FT_GT_AUTHOR,
+                Credits.FT_GT_VERSION,
+                Credits.FT_GT_LICENSE));
+        return fonts;
+    }
+
     private Library getLibrary(String name, String author, String version, String license) {
         Library library = new Library();
         library.setName(name);
@@ -183,5 +219,14 @@ public class CreditsFragment extends PrimaryFragment {
         pack.setLicense(license);
         pack.setAmount(amount);
         return pack;
+    }
+
+    private Font getFont(String name, String author, String version, String license) {
+        Font font = new Font();
+        font.setName(name);
+        font.setAuthor(author);
+        font.setVersion(version);
+        font.setLicense(license);
+        return font;
     }
 }

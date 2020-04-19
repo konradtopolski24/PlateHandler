@@ -9,11 +9,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/ClMain">
 
+        <ImageView
+            style="@style/IvLogo"
+            android:id="@+id/iv_logo"
+            android:contentDescription="@string/dp_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.cardview.widget.CardView
             style="@style/CvHeader"
             android:id="@+id/cv_hd_statistics"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/iv_logo">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 style="@style/ClData">
