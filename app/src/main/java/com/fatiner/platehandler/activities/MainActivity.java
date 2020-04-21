@@ -2,6 +2,7 @@ package com.fatiner.platehandler.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -21,6 +22,7 @@ import com.fatiner.platehandler.fragments.home.HomeFragment;
 import com.fatiner.platehandler.fragments.product.ProductChooseFragment;
 import com.fatiner.platehandler.fragments.recipe.RecipeChooseFragment;
 import com.fatiner.platehandler.fragments.shopping.ShoppingShowFragment;
+import com.fatiner.platehandler.globals.Globals;
 import com.google.android.material.navigation.NavigationView;
 
 import butterknife.BindView;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tb_main) Toolbar tbMain;
     @BindView(R.id.dl_main) DrawerLayout dlMain;
     @BindView(R.id.nv_main) NavigationView nvMain;
+
+    private boolean isNotReady = true;
 
     public MainActivity() {}
 
@@ -75,8 +79,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ActionBarDrawerToggle getToggle() {
-        return new ActionBarDrawerToggle (
-                this, dlMain, tbMain, R.string.dt_opened, R.string.dt_closed);
+        return new ActionBarDrawerToggle (this, dlMain, tbMain,
+                R.string.dt_opened, R.string.dt_closed) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                if(isNotReady || nvMain.getCheckedItem() == null) return;
+                Fragment fragment = getFragment(nvMain.getCheckedItem());
+                manageNewFragment(fragment);
+            }
+        };
     }
 
     private void setNv() {
@@ -91,9 +103,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onItemClick(MenuItem item) {
-        Fragment fragment = getFragment(item);
-        manageNewFragment(fragment);
+        isNotReady = false;
         closeDrawer();
+        setMenuItem(item.getItemId());
     }
 
     private Fragment getFragment(MenuItem item) {
@@ -118,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void manageNewFragment(Fragment fragment) {
+        isNotReady = true;
         clearBackStack();
         setFragment(fragment, isOtherFragment(fragment));
     }
@@ -126,15 +139,17 @@ public class MainActivity extends AppCompatActivity {
         return dlMain.isDrawerOpen(GravityCompat.START);
     }
 
-    private void clearBackStack() {
+    public void clearBackStack() {
         FragmentManager manager = getSupportFragmentManager();
-        manager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        for(int i = Globals.DF_ZERO; i < manager.getBackStackEntryCount(); i++)
+            manager.popBackStack();
     }
 
     public void setFragment(Fragment fragment, boolean withBackStack) {
+        String name = fragment.getClass().getName();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_main, fragment);
-        if (withBackStack) transaction.addToBackStack(null);
+        if (withBackStack) transaction.addToBackStack(name);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         transaction.commit();
     }
