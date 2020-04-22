@@ -6,7 +6,7 @@ public class Format {
     public static final String FM_HOUR = "%02d:%02d";
     public static final String FM_STEP = "%s %d";
     public static final String FM_STATE = "%d/%d";
-    public static final String FM_SHOPPING = "%s (%.2f %s)";
+    public static final String FM_SHOPPING = "%s (%.2f x %s)";
     public static final String FM_AMOUNT = "%s: %d";
     public static final String FM_FILE = "%s.%s";
     public static final String FM_DIRECTORY = "%s/%s";

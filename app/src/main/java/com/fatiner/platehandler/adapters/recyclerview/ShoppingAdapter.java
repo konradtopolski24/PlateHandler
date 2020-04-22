@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.classes.ShoppingItem;
+import com.fatiner.platehandler.items.ShoppingItem;
 import com.fatiner.platehandler.globals.Format;
 
 import java.util.ArrayList;

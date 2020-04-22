@@ -295,9 +295,9 @@ public class ProductShowFragment extends PrimaryFragment {
 
     private ArrayList<Integer> getBcColors() {
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(getColor(R.color.pr_dark));
-        colors.add(getColor(R.color.pr_normal));
-        colors.add(getColor(R.color.pr_light));
+        colors.add(getColor(R.color.bc_red));
+        colors.add(getColor(R.color.bc_green));
+        colors.add(getColor(R.color.bc_blue));
         return colors;
     }
 

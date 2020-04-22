@@ -198,16 +198,16 @@
         <item name="android:layout_marginBottom">@dimen/mg_big</item>
     </style>
 
-    <style name="TvShopping" parent="TvPrimary">
-        <item name="android:layout_marginStart">@dimen/mg_medium</item>
-        <item name="android:layout_marginEnd">@dimen/mg_medium</item>
-        <item name="android:textSize">@dimen/tx_big</item>
-    </style>
-
     <style name="TvTiny" parent="TvPrimary">
         <item name="android:layout_marginStart">@dimen/mg_tiny</item>
         <item name="android:layout_marginEnd">@dimen/mg_tiny</item>
         <item name="android:textSize">@dimen/tx_tiny</item>
+    </style>
+
+    <style name="TvShopping" parent="WidthZero">
+        <item name="android:layout_marginStart">@dimen/mg_medium</item>
+        <item name="android:layout_marginEnd">@dimen/mg_medium</item>
+        <item name="android:textSize">@dimen/tx_big</item>
     </style>
 
     <style name="TvTutorial" parent="WidthZero">

@@ -84,12 +84,14 @@ public class ProductManageFragment extends PrimaryFragment {
     @OnClick(R.id.ib_add)
     void clickIbAdd() {
         selectImage();
+        getProduct().setPhotoChanged(true);
     }
 
     @OnClick(R.id.ib_remove)
     void clickIbRemove() {
         getProduct().setPhoto(null);
         setIv(ivPhoto, getProduct().getPhoto());
+        getProduct().setPhotoChanged(true);
     }
 
     @OnClick(R.id.fab_finished)
@@ -282,8 +284,8 @@ public class ProductManageFragment extends PrimaryFragment {
             @Override
             public void onSuccess(Long id) {
                 setProductInIngredient(TypeManager.longToInt(id));
-                manageImageSaving(getProduct().getPhoto(), Globals.NM_PRODUCT,
-                        TypeManager.longToInt(id));
+                if (getProduct().isPhotoChanged()) manageImageSaving(getProduct().getPhoto(),
+                        Globals.NM_PRODUCT, TypeManager.longToInt(id));
                 productSuccess(R.string.sb_pd_add);
             }
 
@@ -295,12 +297,12 @@ public class ProductManageFragment extends PrimaryFragment {
     }
 
     private void updateProduct() {
-        getCompletable().subscribeOn(Schedulers.io())
+        getUpdateCompletable().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getUpdateObserver());
     }
 
-    private Completable getCompletable() {
+    private Completable getUpdateCompletable() {
         return Completable.fromAction(() -> {
             PlateHandlerDatabase db = getDb(getContext());
             db.getProductDAO().updateProduct(getProduct());
@@ -312,8 +314,8 @@ public class ProductManageFragment extends PrimaryFragment {
 
             @Override
             public void onComplete() {
-                manageImageSaving(getProduct().getPhoto(), Globals.NM_PRODUCT,
-                        getProduct().getId());
+                if (getProduct().isPhotoChanged()) manageImageSaving(getProduct().getPhoto(),
+                        Globals.NM_PRODUCT, getProduct().getId());
                 productSuccess(R.string.sb_pd_edit);
             }
 

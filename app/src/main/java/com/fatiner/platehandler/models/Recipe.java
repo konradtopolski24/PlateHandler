@@ -44,6 +44,8 @@ public class Recipe {
     private List<Ingredient> ingredients;
     @Ignore
     private List<Step> steps;
+    @Ignore
+    private boolean isPhotoChanged;
 
     public Recipe() {}
 
@@ -157,6 +159,14 @@ public class Recipe {
 
     public void setSteps(List<Step> steps) {
         this.steps = steps;
+    }
+
+    public boolean isPhotoChanged() {
+        return isPhotoChanged;
+    }
+
+    public void setPhotoChanged(boolean photoChanged) {
+        isPhotoChanged = photoChanged;
     }
 
     public float getTotalKcal(int[] factors) {

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.classes.ImportFile;
+import com.fatiner.platehandler.items.ImportFile;
 import com.fatiner.platehandler.globals.Format;
 
 import java.util.List;

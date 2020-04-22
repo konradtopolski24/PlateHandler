@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.ShoppingAdapter;
-import com.fatiner.platehandler.classes.ShoppingItem;
-import com.fatiner.platehandler.classes.ShoppingList;
+import com.fatiner.platehandler.items.ShoppingItem;
+import com.fatiner.platehandler.items.ShoppingList;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Format;

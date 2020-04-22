@@ -112,12 +112,14 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
     @OnClick(R.id.ib_add) 
     void clickIbAdd() {
         selectImage();
+        getRecipe().setPhotoChanged(true);
     }
 
     @OnClick(R.id.ib_remove)
     void clickIbRemove() {
         getRecipe().setPhoto(null);
         setIv(ivPhoto, getRecipe().getPhoto());
+        getRecipe().setPhotoChanged(true);
     }
 
     @OnClick(R.id.iv_tt_photo)

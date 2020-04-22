@@ -1,7 +1,7 @@
 package com.fatiner.platehandler.details;
 
-import com.fatiner.platehandler.classes.ShoppingItem;
-import com.fatiner.platehandler.classes.ShoppingList;
+import com.fatiner.platehandler.items.ShoppingItem;
+import com.fatiner.platehandler.items.ShoppingList;
 
 import java.util.ArrayList;
 

@@ -15,9 +15,9 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.FontAdapter;
 import com.fatiner.platehandler.adapters.recyclerview.LibraryAdapter;
 import com.fatiner.platehandler.adapters.recyclerview.PackAdapter;
-import com.fatiner.platehandler.classes.Font;
-import com.fatiner.platehandler.classes.Library;
-import com.fatiner.platehandler.classes.Pack;
+import com.fatiner.platehandler.items.Font;
+import com.fatiner.platehandler.items.Library;
+import com.fatiner.platehandler.items.Pack;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Credits;
 

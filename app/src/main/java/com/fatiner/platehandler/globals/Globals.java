@@ -50,6 +50,8 @@ public class Globals {
     public static final int PH_REQUEST = 100;
     public static final int PH_QUALITY = 100;
 
+    public static final int IM_SIZE = 1000;
+
     public static final String DR_IMAGES = "images";
     public static final String DR_EXPORT = "export";
 

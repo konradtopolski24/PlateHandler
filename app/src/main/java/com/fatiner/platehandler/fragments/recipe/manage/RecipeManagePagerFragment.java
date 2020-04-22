@@ -172,7 +172,8 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
 
             @Override
             public void onComplete() {
-                manageImageSaving(getRecipe().getPhoto(), Globals.NM_RECIPE, getRecipe().getId());
+                if (getRecipe().isPhotoChanged()) manageImageSaving(getRecipe().getPhoto(),
+                        Globals.NM_RECIPE, getRecipe().getId());
                 recipeSuccess(R.string.sb_rp_add);
             }
 
@@ -208,7 +209,8 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
 
             @Override
             public void onComplete() {
-                manageImageSaving(getRecipe().getPhoto(), Globals.NM_RECIPE, getRecipe().getId());
+                if (getRecipe().isPhotoChanged()) manageImageSaving(getRecipe().getPhoto(),
+                        Globals.NM_RECIPE, getRecipe().getId());
                 recipeSuccess(R.string.sb_rp_edit);
             }
 

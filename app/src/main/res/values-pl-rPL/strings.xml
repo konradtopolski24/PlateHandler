@@ -434,7 +434,7 @@
     <string name="tb_rp_choose">Wybierz Przepis</string>
     <string name="tb_rp_settings">Ustawienia Przepisu</string>
     <string name="tb_rp_add">Dodaj Przepis</string>
-    <string name="tb_rp_show">Strona Przepisu</string>
+    <string name="tb_rp_show">Przepis</string>
     <string name="tb_rp_edit">Edytuj Przepis</string>
     <string name="tb_rp_calculate">Obliczanie Kalorii</string>
     <string name="tb_st_add">Dodaj Krok</string>
@@ -442,9 +442,9 @@
     <string name="tb_pd_choose">Wybierz Produkt</string>
     <string name="tb_pd_settings">Ustawienia Produktu</string>
     <string name="tb_pd_add">Dodaj Produkt</string>
-    <string name="tb_pd_show">Strona Produktu</string>
+    <string name="tb_pd_show">Produkt</string>
     <string name="tb_pd_edit">Edycja Produktu</string>
-    <string name="tb_sp_show">Strona Listy Zakupów</string>
+    <string name="tb_sp_show">Lista Zakupów</string>
     <string name="tb_sp_add">Stwórz Listę Zakupów</string>
     <string name="tb_ex_database">Eksport Bazy Danych</string>
     <string name="tb_im_database">Import Bazy Danych</string>

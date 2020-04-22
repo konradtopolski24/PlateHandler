@@ -9,4 +9,8 @@
     <color name="tv_white">#FFFFFF</color>
     <color name="tv_gray">#808080</color>
     <color name="bg_gray">#D1D1D1</color>
+
+    <color name="bc_red">#EA4C4C</color>
+    <color name="bc_green">#B8E125</color>
+    <color name="bc_blue">#2D86E6</color>
 </resources>

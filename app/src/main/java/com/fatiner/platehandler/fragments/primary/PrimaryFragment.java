@@ -282,7 +282,8 @@ public class PrimaryFragment extends Fragment {
     protected void changeRvSize(RecyclerView rv) {
         int height = (int) getDimen(R.dimen.ht_rv);
         rv.post(() -> {
-            if (rv.computeVerticalScrollRange() > height) rv.setLayoutParams(getRvParamsBig(height));
+            if (rv.computeVerticalScrollRange() > height)
+                rv.setLayoutParams(getRvParamsBig(height));
             else rv.setLayoutParams(getRvParamsSmall());
         });
     }
@@ -564,7 +565,8 @@ public class PrimaryFragment extends Fragment {
             try {
                 Uri uri = data.getData();
                 InputStream stream = getContext().getContentResolver().openInputStream(uri);
-                return BitmapFactory.decodeStream(stream);
+                Bitmap image = BitmapFactory.decodeStream(stream);
+                return getOptimalImage(image);
             } catch (FileNotFoundException e) {
                 return null;
             }
@@ -575,5 +577,19 @@ public class PrimaryFragment extends Fragment {
         createDirectory(Globals.DR_IMAGES);
         if (image == null) removeImage(name, id);
         else saveImage(image, name, id);
+    }
+
+    private Bitmap getOptimalImage(Bitmap image) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+        float ratio = (float) width / (float) height;
+        if (ratio > Globals.DF_INCREMENT) {
+            width = Globals.IM_SIZE;
+            height = (int) (width / ratio);
+        } else {
+            width = (int) (height * ratio);
+            height = Globals.IM_SIZE;
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
     }
 }

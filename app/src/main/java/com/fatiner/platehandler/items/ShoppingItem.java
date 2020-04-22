@@ -1,4 +1,4 @@
-package com.fatiner.platehandler.classes;
+package com.fatiner.platehandler.items;
 
 public class ShoppingItem {
 

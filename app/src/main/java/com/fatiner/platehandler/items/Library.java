@@ -1,6 +1,6 @@
-package com.fatiner.platehandler.classes;
+package com.fatiner.platehandler.items;
 
-public class Font {
+public class Library {
 
     private String name;
     private String author;

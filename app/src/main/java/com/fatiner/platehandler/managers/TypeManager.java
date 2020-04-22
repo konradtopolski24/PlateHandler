@@ -1,6 +1,6 @@
 package com.fatiner.platehandler.managers;
 
-import com.fatiner.platehandler.classes.ShoppingList;
+import com.fatiner.platehandler.items.ShoppingList;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 import com.google.gson.Gson;
@@ -17,7 +17,6 @@ public class TypeManager {
 
     private TypeManager() {}
 
-    //Boolean <--> Integer
     public static int boolToInt(boolean bool) {
         return bool ? Globals.DF_INCREMENT : Globals.DF_ZERO;
     }
@@ -26,8 +25,6 @@ public class TypeManager {
         return integer == Globals.DF_INCREMENT;
     }
 
-
-    //Time <--> String
     public static String timeToString(int hours, int minutes) {
         return String.format(Locale.ENGLISH, Format.FM_HOUR, hours, minutes);
     }
@@ -40,13 +37,11 @@ public class TypeManager {
         return times;
     }
 
-    //Date <--> String
     public static String dateToString(Date date) {
         SimpleDateFormat format = new SimpleDateFormat(Format.FM_DATE);
         return format.format(date);
     }
 
-    //ShoppingList <--> Json
     public static String shoppingListToJson(ShoppingList shoppingList) {
         Gson gson = new Gson();
         return gson.toJson(shoppingList);
@@ -57,8 +52,6 @@ public class TypeManager {
         return gson.fromJson(json, ShoppingList.class);
     }
 
-
-    //Recent <--> Json
     public static String recentToJson(List<Integer> recent) {
         JSONArray jsonArray = new JSONArray(recent);
         return jsonArray.toString();
@@ -68,16 +61,14 @@ public class TypeManager {
         List<Integer> recent = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(json);
-            for (int i = Globals.DF_ZERO; i < jsonArray.length(); i++) {
+            for (int i = Globals.DF_ZERO; i < jsonArray.length(); i++)
                 recent.add(jsonArray.getInt(i));
-            }
+            return recent;
         } catch (Exception e) {
-            //
+            return recent;
         }
-        return recent;
     }
 
-    //Int <--> Long
     public static int longToInt(Long value) {
         return value.intValue();
     }

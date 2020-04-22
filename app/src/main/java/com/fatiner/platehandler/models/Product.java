@@ -31,6 +31,8 @@ public class Product {
     private float fats;
     @Ignore
     private Bitmap photo;
+    @Ignore
+    private boolean isPhotoChanged;
 
     public Product() {}
 
@@ -96,6 +98,14 @@ public class Product {
 
     public void setPhoto(Bitmap photo) {
         this.photo = photo;
+    }
+
+    public boolean isPhotoChanged() {
+        return isPhotoChanged;
+    }
+
+    public void setPhotoChanged(boolean photoChanged) {
+        isPhotoChanged = photoChanged;
     }
 
     @NonNull
