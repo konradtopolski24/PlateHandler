@@ -26,6 +26,7 @@
 
     <!-- Menu Items -->
     <string name="mn_settings">Ustawienia</string>
+    <string name="mn_share">Udostępnij</string>
     <string name="mn_calculate">Obliczanie</string>
     <string name="mn_edit">Edycja</string>
     <string name="mn_remove">Usuwanie</string>

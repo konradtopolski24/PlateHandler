@@ -71,4 +71,6 @@ public class Globals {
 
     public static final float AP_FULL = 1.0f;
     public static final float AP_SMALL = 0.1f;
+
+    public static final String SR_TYPE = "text/plain";
 }

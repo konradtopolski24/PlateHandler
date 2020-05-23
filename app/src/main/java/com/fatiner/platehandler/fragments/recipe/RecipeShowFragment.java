@@ -1,6 +1,7 @@
 package com.fatiner.platehandler.fragments.recipe;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,6 +24,7 @@ import com.fatiner.platehandler.adapters.recyclerview.StepAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.manage.RecipeManagePagerFragment;
+import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
 import com.fatiner.platehandler.managers.SharedManager;
@@ -35,6 +37,7 @@ import com.fatiner.platehandler.models.Step;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -286,6 +289,64 @@ public class RecipeShowFragment extends PrimaryFragment implements
         }
     }
 
+    private void shareRecipe() {
+        Intent intent = Intent.createChooser(getSendIntent(), null);
+        startActivity(intent);
+    }
+
+    private Intent getSendIntent() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, getShareText());
+        intent.setType(Globals.SR_TYPE);
+        return intent;
+    }
+
+    private String getShareText() {
+        return String.format(Locale.ENGLISH, Format.FM_SHARE,
+                getInfoText(),
+                getString(R.string.hd_rp_sh_ingredient), getIngredientText(),
+                getString(R.string.hd_rp_sh_step), getStepText());
+    }
+
+    private String getInfoText() {
+        Recipe recipe = getRecipe();
+        return String.format(Locale.ENGLISH, Format.FM_INFO,
+                recipe.getName(),
+                getString(R.string.ct_author), recipe.getAuthor(),
+                getString(R.string.ct_serving), recipe.getServing(),
+                getString(R.string.ct_time), recipe.getTime(),
+                getString(R.string.ct_difficulty), recipe.getDifficulty(),
+                getString(R.string.ct_spiciness), getStringArray(
+                        R.array.tx_spiciness)[recipe.getSpiciness()],
+                getString(R.string.ct_country), getStringArray(
+                        R.array.tx_country)[recipe.getCountry()],
+                getString(R.string.ct_type), getStringArray(
+                        R.array.tx_recipe)[recipe.getType()],
+                getString(R.string.ct_preference), getStringArray(
+                        R.array.tx_preference)[TypeManager.boolToInt(recipe.getPreference())]);
+    }
+
+    private String getIngredientText() {
+        StringBuilder text = new StringBuilder(Globals.SN_EMPTY);
+        for(Ingredient ingredient : getRecipe().getIngredients())
+            text.append(String.format(Locale.ENGLISH, Format.FM_INGREDIENT,
+                    ingredient.getProduct().getName(),
+                    ingredient.getAmount(),
+                    getStringArray(R.array.tx_measure)[ingredient.getMeasure()]));
+        return text.toString();
+    }
+
+    private String getStepText() {
+        int number = Globals.DF_INCREMENT;
+        StringBuilder text = new StringBuilder(Globals.SN_EMPTY);
+        for(Step step : getRecipe().getSteps()) {
+            text.append(String.format(Locale.ENGLISH, Format.FM_STEP, number, step.getContent()));
+            number++;
+        }
+        return text.toString();
+    }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.rp_show, menu);
@@ -295,6 +356,9 @@ public class RecipeShowFragment extends PrimaryFragment implements
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
+            case R.id.it_share:
+                shareRecipe();
+                return true;
             case R.id.it_calculate:
                 setFragment(new RecipeCalculateFragment());
                 return true;

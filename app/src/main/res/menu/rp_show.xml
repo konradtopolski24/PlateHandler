@@ -4,6 +4,12 @@
 
     <group>
         <item
+            android:id="@+id/it_share"
+            android:title="@string/mn_share"
+            android:icon="@drawable/ic_st_share"
+            app:showAsAction="ifRoom" />
+
+        <item
             android:id="@+id/it_calculate"
             android:title="@string/mn_calculate"
             android:icon="@drawable/ic_st_calculate"

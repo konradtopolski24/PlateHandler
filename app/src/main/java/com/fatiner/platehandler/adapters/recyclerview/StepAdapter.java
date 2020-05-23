@@ -73,7 +73,7 @@ public class StepAdapter extends PrimaryAdapter<StepAdapter.StepHolder> {
 
     private String getStep(int size) {
         int id = size + Globals.DF_INCREMENT;
-        return String.format(Locale.ENGLISH, Format.FM_STEP, getString(R.string.ct_step), id);
+        return String.format(Locale.ENGLISH, Format.FM_NUMBERED, getString(R.string.ct_step), id);
     }
 
     private void checkStepCompletion(StepHolder holder, boolean checked) {

@@ -81,7 +81,7 @@ public class StepManageFragment extends PrimaryFragment {
 
     private String getStepHint(int size) {
         int id = size + Globals.DF_INCREMENT;
-        return String.format(Locale.ENGLISH, Format.FM_STEP, getString(R.string.ct_step), id);
+        return String.format(Locale.ENGLISH, Format.FM_NUMBERED, getString(R.string.ct_step), id);
     }
 
     private void setStepInDetails(Step step) {

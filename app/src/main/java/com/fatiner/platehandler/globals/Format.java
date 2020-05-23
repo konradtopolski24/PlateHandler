@@ -4,7 +4,7 @@ public class Format {
 
     public static final String FM_DATE = "dd.MM.yyyy";
     public static final String FM_HOUR = "%02d:%02d";
-    public static final String FM_STEP = "%s %d";
+    public static final String FM_NUMBERED = "%s %d";
     public static final String FM_STATE = "%d/%d";
     public static final String FM_SHOPPING = "%s (%.2f x %s)";
     public static final String FM_AMOUNT = "%s: %d";
@@ -14,6 +14,11 @@ public class Format {
     public static final String FM_MEASURE = "%.2f x %s";
     public static final String FM_HINT = "%s (%s)";
     public static final String FM_UNIT = "%.2f %s";
+    public static final String FM_SHARE = "%s\n%s:\n%s\n%s:\n%s";
+    public static final String FM_INFO = "%s\n%s: %s\n%s: %d\n%s: %s\n%s: %s\n%s: %s\n%s: %s\n" +
+            "%s: %s\n%s: %s\n";
+    public static final String FM_INGREDIENT = "-%s (%.2f x %s)\n";
+    public static final String FM_STEP = "(%d) %s\n";
 
     public static final String FM_SELECT = "SELECT * FROM %s%s%s";
     public static final String FM_ORDER = " ORDER BY %s ASC";
