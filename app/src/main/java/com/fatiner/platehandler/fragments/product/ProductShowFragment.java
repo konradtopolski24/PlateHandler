@@ -235,13 +235,13 @@ public class ProductShowFragment extends PrimaryFragment {
         axis.setValueFormatter(new IndexAxisValueFormatter(getLabels()));
         axis.setPosition(XAxis.XAxisPosition.BOTTOM);
         axis.setTextColor(getColor(R.color.tv_gray));
-        axis.setTextSize(Chart.TS_AXIS);
+        axis.setTextSize(getInt(R.integer.tx_axis));
     }
 
     private void setYAxis(YAxis axis) {
         axis.setValueFormatter(new PercentFormatter());
         axis.setTextColor(getColor(R.color.tv_gray));
-        axis.setTextSize(Chart.TS_AXIS);
+        axis.setTextSize(getInt(R.integer.tx_axis));
     }
 
     private ArrayList<BarEntry> getBarEntries() {
@@ -267,7 +267,7 @@ public class ProductShowFragment extends PrimaryFragment {
         BarDataSet dataSet = new BarDataSet(getBarEntries(), Globals.SN_EMPTY);
         dataSet.setValueTextColor(getColor(R.color.tv_gray));
         dataSet.setColors(getBcColors());
-        dataSet.setValueTextSize(Chart.TS_BAR);
+        dataSet.setValueTextSize(getInt(R.integer.tx_bar));
         return dataSet;
     }
 
@@ -320,7 +320,7 @@ public class ProductShowFragment extends PrimaryFragment {
         PieDataSet dataSet = new PieDataSet(getPieEntries(), Globals.SN_EMPTY);
         dataSet.setColors(getPcColors());
         dataSet.setSliceSpace(Chart.SC_SLICE);
-        dataSet.setValueTextSize(Chart.TS_PIE);
+        dataSet.setValueTextSize(getInt(R.integer.tx_pie));
         dataSet.setValueLinePart1Length(Chart.LT_LINE);
         dataSet.setValueLinePart2Length(Chart.LT_LINE);
         dataSet.setValueTextColor(getColor(R.color.tv_gray));
@@ -333,7 +333,7 @@ public class ProductShowFragment extends PrimaryFragment {
 
     private void setLegend(Legend legend) {
         legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setTextSize(Chart.TS_LEGEND);
+        legend.setTextSize(getInt(R.integer.tx_legend));
         legend.setXEntrySpace(Chart.SC_LEGEND);
         legend.setTextColor(getColor(R.color.tv_gray));
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);

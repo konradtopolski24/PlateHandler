@@ -15,11 +15,6 @@ public class Chart {
 
     public static final float RD_HOLE = 25f;
 
-    public static final int TS_AXIS = 12;
-    public static final int TS_BAR = 16;
-    public static final int TS_PIE = 14;
-    public static final int TS_LEGEND = 14;
-
     public static final float LT_LINE = 0.5f;
 
     public static final int SC_SLICE = 6;

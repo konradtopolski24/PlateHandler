@@ -34,4 +34,9 @@
     <dimen name="ht_rv">263dp</dimen>
     <dimen name="ht_bc">133dp</dimen>
     <dimen name="ht_pc">200dp</dimen>
+
+    <integer name="tx_axis">9</integer>
+    <integer name="tx_bar">12</integer>
+    <integer name="tx_pie">11</integer>
+    <integer name="tx_legend">11</integer>
 </resources>

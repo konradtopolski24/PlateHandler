@@ -143,6 +143,10 @@ public class PrimaryFragment extends Fragment {
         til.setHint(hint);
     }
 
+    protected int getInt(int id) {
+        return getResources().getInteger(id);
+    }
+
     protected String [] getStringArray(int id) {
         return getResources().getStringArray(id);
     }
