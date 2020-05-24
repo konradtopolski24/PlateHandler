@@ -45,6 +45,7 @@ public class ProductManageFragment extends PrimaryFragment {
     @BindView(R.id.et_carbohydrates) EditText etCarbohydrates;
     @BindView(R.id.et_proteins) EditText etProteins;
     @BindView(R.id.et_fats) EditText etFats;
+    @BindView(R.id.til_name) TextInputLayout tilName;
     @BindView(R.id.til_size) TextInputLayout tilSize;
     @BindView(R.id.til_carbohydrates) TextInputLayout tilCarbohydrates;
     @BindView(R.id.til_proteins) TextInputLayout tilProteins;
@@ -54,7 +55,7 @@ public class ProductManageFragment extends PrimaryFragment {
     @OnTextChanged(R.id.et_name)
     void changedEtName(CharSequence text) {
         getProduct().setName(String.valueOf(text));
-        setError(etName, R.string.er_pd_name, isNameEmpty());
+        setError(tilName, R.string.er_pd_name, isNameEmpty());
     }
 
     @OnTextChanged(R.id.et_size)
@@ -195,9 +196,9 @@ public class ProductManageFragment extends PrimaryFragment {
     }
 
     private void setNutrientsErrors() {
-        setError(etCarbohydrates, R.string.er_pd_nutrients, isSizeSmaller());
-        setError(etProteins, R.string.er_pd_nutrients, isSizeSmaller());
-        setError(etFats, R.string.er_pd_nutrients, isSizeSmaller());
+        setError(tilCarbohydrates, R.string.er_pd_nutrients, isSizeSmaller());
+        setError(tilProteins, R.string.er_pd_nutrients, isSizeSmaller());
+        setError(tilFats, R.string.er_pd_nutrients, isSizeSmaller());
     }
 
     private boolean isIncomplete() {

@@ -83,10 +83,10 @@
         cannot be higher than its average size!</string>
     <string name="er_rp_name">Recipe name is empty!</string>
     <string name="er_rp_author">Name of the author is empty!</string>
-    <string name="er_ig_amount">The amount of ingredient cannot be equal to zero!</string>
+    <string name="er_ig_amount">Empty amount!</string>
     <string name="er_st_content">Content of this step is empty!</string>
-    <string name="er_sp_amount">The amount of shopping item cannot equal to zero!</string>
-    <string name="er_sp_name">Name of the shopping item is empty!</string>
+    <string name="er_sp_amount">Empty amount!</string>
+    <string name="er_sp_name">Empty name!</string>
     <string name="er_ex_name">Name of the file to export is empty!</string>
 
     <!-- Empty List -->

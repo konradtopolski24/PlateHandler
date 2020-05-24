@@ -48,17 +48,12 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
         View view = inflater.inflate(R.layout.fragment_recipe_manage_step, container,
                 false);
         ButterKnife.bind(this, view);
-        initAction();
+        setViews();
         return view;
     }
 
     private List<Step> getSteps() {
         return RecipeDetails.getRecipe().getSteps();
-    }
-
-    private void initAction() {
-        hideKeyboard();
-        setViews();
     }
 
     private void setViews() {

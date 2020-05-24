@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.items.ShoppingItem;
 import com.fatiner.platehandler.globals.Globals;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,6 +79,8 @@ public class ShoppingAddAdapter extends PrimaryAdapter<ShoppingAddAdapter.Shoppi
 
     class ShoppingAddHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.til_amount) TextInputLayout tilAmount;
+        @BindView(R.id.til_name) TextInputLayout tilName;
         @BindView(R.id.et_amount) EditText etAmount;
         @BindView(R.id.et_name) EditText etName;
         @BindView(R.id.sp_measure) Spinner spMeasure;
@@ -90,13 +93,13 @@ public class ShoppingAddAdapter extends PrimaryAdapter<ShoppingAddAdapter.Shoppi
         @OnTextChanged(R.id.et_amount)
         void changedEtAmount(CharSequence text) {
             getShoppingItem(getAdapterPosition()).setAmount(getCorrectEtValue(text));
-            setError(etAmount, R.string.er_sp_amount, isAmountZero(getAdapterPosition()));
+            setError(tilAmount, R.string.er_sp_amount, isAmountZero(getAdapterPosition()));
         }
 
         @OnTextChanged(R.id.et_name)
         void changedEtName(CharSequence text) {
             getShoppingItem(getAdapterPosition()).setName(String.valueOf(text));
-            setError(etName, R.string.er_sp_name, isNameEmpty(getAdapterPosition()));
+            setError(tilName, R.string.er_sp_name, isNameEmpty(getAdapterPosition()));
         }
 
         @OnItemSelected(R.id.sp_measure)

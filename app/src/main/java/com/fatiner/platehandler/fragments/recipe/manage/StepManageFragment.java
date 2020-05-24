@@ -24,12 +24,12 @@ import butterknife.OnTextChanged;
 
 public class StepManageFragment extends PrimaryFragment {
 
+    @BindView(R.id.til_content) TextInputLayout tilContent;
     @BindView(R.id.et_content) EditText etContent;
-    @BindView(R.id.til_step) TextInputLayout tilStep;
 
     @OnTextChanged(R.id.et_content)
     void changedEtContent() {
-        setError(etContent, R.string.er_st_content, isContentEmpty());
+        setError(tilContent, R.string.er_st_content, isContentEmpty());
     }
 
     @OnClick(R.id.fab_finished)
@@ -68,14 +68,14 @@ public class StepManageFragment extends PrimaryFragment {
 
     private void initAction() {
         if (isPosition()) setViews();
-        else setHint(tilStep, getStepHint(getSteps().size()));
-        setError(etContent, R.string.er_st_content, isContentEmpty());
+        else setHint(tilContent, getStepHint(getSteps().size()));
+        setError(tilContent, R.string.er_st_content, isContentEmpty());
     }
 
     private void setViews() {
         int id = getIntFromBundle();
         Step step = getSteps().get(id);
-        setHint(tilStep, getStepHint(id));
+        setHint(tilContent, getStepHint(id));
         setEt(etContent, step.getContent());
     }
 

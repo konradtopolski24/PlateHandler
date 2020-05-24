@@ -10,12 +10,12 @@
         android:src="@drawable/ic_ot_close"
         android:contentDescription="@string/dp_remove"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tl_amount"
-        app:layout_constraintBottom_toBottomOf="@+id/tl_amount" />
+        app:layout_constraintTop_toTopOf="@+id/til_amount"
+        app:layout_constraintBottom_toBottomOf="@+id/til_amount" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/TilDefault"
-        android:id="@+id/tl_amount"
+        android:id="@+id/til_amount"
         app:layout_constraintStart_toEndOf="@+id/iv_remove"
         app:layout_constraintEnd_toStartOf="@+id/sp_measure"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,15 +33,15 @@
         android:text="@string/ct_measure"
         app:layout_constraintStart_toStartOf="@+id/sp_measure"
         app:layout_constraintEnd_toEndOf="@+id/sp_measure"
-        app:layout_constraintTop_toTopOf="@+id/tl_amount" />
+        app:layout_constraintTop_toTopOf="@+id/til_amount" />
 
     <Spinner
         style="@style/WidthZero"
         android:id="@+id/sp_measure"
-        app:layout_constraintStart_toEndOf="@+id/tl_amount"
+        app:layout_constraintStart_toEndOf="@+id/til_amount"
         app:layout_constraintEnd_toStartOf="@+id/sp_product"
-        app:layout_constraintTop_toTopOf="@+id/tl_amount"
-        app:layout_constraintBottom_toBottomOf="@+id/tl_amount"
+        app:layout_constraintTop_toTopOf="@+id/til_amount"
+        app:layout_constraintBottom_toBottomOf="@+id/til_amount"
         app:layout_constraintHorizontal_weight="1" />
 
     <TextView
@@ -50,15 +50,15 @@
         android:text="@string/ct_product"
         app:layout_constraintStart_toStartOf="@+id/sp_product"
         app:layout_constraintEnd_toEndOf="@+id/sp_product"
-        app:layout_constraintTop_toTopOf="@+id/tl_amount" />
+        app:layout_constraintTop_toTopOf="@+id/til_amount" />
 
     <Spinner
         style="@style/WidthZero"
         android:id="@+id/sp_product"
         app:layout_constraintStart_toEndOf="@+id/sp_measure"
         app:layout_constraintEnd_toStartOf="@+id/ib_add"
-        app:layout_constraintTop_toTopOf="@+id/tl_amount"
-        app:layout_constraintBottom_toBottomOf="@+id/tl_amount"
+        app:layout_constraintTop_toTopOf="@+id/til_amount"
+        app:layout_constraintBottom_toBottomOf="@+id/til_amount"
         app:layout_constraintHorizontal_weight="1" />
 
     <TextView
@@ -67,8 +67,8 @@
         android:text="@string/ep_spinner"
         app:layout_constraintStart_toEndOf="@+id/sp_measure"
         app:layout_constraintEnd_toStartOf="@+id/ib_add"
-        app:layout_constraintTop_toTopOf="@+id/tl_amount"
-        app:layout_constraintBottom_toBottomOf="@+id/tl_amount"
+        app:layout_constraintTop_toTopOf="@+id/til_amount"
+        app:layout_constraintBottom_toBottomOf="@+id/til_amount"
         app:layout_constraintHorizontal_weight="1" />
 
     <ImageButton
@@ -78,6 +78,6 @@
         android:contentDescription="@string/dp_bt_product"
         app:layout_constraintStart_toEndOf="@+id/sp_product"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tl_amount"
-        app:layout_constraintBottom_toBottomOf="@+id/tl_amount" />
+        app:layout_constraintTop_toTopOf="@+id/til_amount"
+        app:layout_constraintBottom_toBottomOf="@+id/til_amount" />
 </androidx.constraintlayout.widget.ConstraintLayout>

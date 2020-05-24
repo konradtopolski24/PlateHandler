@@ -58,17 +58,12 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements
         View view = inflater.inflate(R.layout.fragment_recipe_manage_ingredient, container,
                 false);
         ButterKnife.bind(this, view);
-        initAction();
+        readProducts();
         return view;
     }
 
     private List<Ingredient> getIngredients() {
         return RecipeDetails.getRecipe().getIngredients();
-    }
-
-    private void initAction() {
-        hideKeyboard();
-        readProducts();
     }
 
     private void startAction(List<Product> products) {

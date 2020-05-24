@@ -20,6 +20,7 @@ import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Product;
 import com.fatiner.platehandler.models.Recipe;
 import com.fatiner.platehandler.models.Step;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -43,11 +44,12 @@ public class ExportFragment extends PrimaryFragment {
 
     @BindView(R.id.cv_guideline) CardView cvGuideline;
     @BindView(R.id.iv_hd_guideline) ImageView ivHdGuideline;
+    @BindView(R.id.til_name) TextInputLayout tilName;
     @BindView(R.id.et_name) EditText etName;
 
     @OnTextChanged(R.id.et_name)
     void changedEtName() {
-        setError(etName, R.string.er_ex_name, isNameEmpty());
+        setError(tilName, R.string.er_ex_name, isNameEmpty());
     }
 
     @OnClick(R.id.cv_hd_guideline)
@@ -82,7 +84,7 @@ public class ExportFragment extends PrimaryFragment {
     }
 
     private void setViews() {
-        setError(etName, R.string.er_ex_name, isNameEmpty());
+        setError(tilName, R.string.er_ex_name, isNameEmpty());
     }
 
     private void chooseEndAction() {

@@ -14,6 +14,7 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Product;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Arrays;
 import java.util.List;
@@ -90,6 +91,7 @@ public class IngredientAddAdapter extends PrimaryAdapter<IngredientAddAdapter.In
 
     class IngredientAddHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.til_amount) TextInputLayout tilAmount;
         @BindView(R.id.et_amount) EditText etAmount;
         @BindView(R.id.sp_measure) Spinner spMeasure;
         @BindView(R.id.sp_product) Spinner spProduct;
@@ -108,7 +110,7 @@ public class IngredientAddAdapter extends PrimaryAdapter<IngredientAddAdapter.In
         @OnTextChanged(R.id.et_amount)
         void changedEtAmount(CharSequence text) {
             ingredients.get(getAdapterPosition()).setAmount(getCorrectEtValue(text));
-            setError(etAmount, R.string.er_ig_amount, isAmountZero(getAdapterPosition()));
+            setError(tilAmount, R.string.er_ig_amount, isAmountZero(getAdapterPosition()));
         }
 
         @OnItemSelected(R.id.sp_product)

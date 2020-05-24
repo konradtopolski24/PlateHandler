@@ -84,10 +84,10 @@
         jego średnia wielkość!</string>
     <string name="er_rp_name">Nazwa przepisu jest pusta!</string>
     <string name="er_rp_author">Imię autora jest puste!</string>
-    <string name="er_ig_amount">Ilość danego składnika nie może być równa zero!</string>
+    <string name="er_ig_amount">Pusta ilość!</string>
     <string name="er_st_content">Zawartość danego kroku jest pusta!</string>
-    <string name="er_sp_amount">Ilość danego przedmiotu nie może być równa zero!</string>
-    <string name="er_sp_name">Nazwa przedmiotu jest pusta!</string>
+    <string name="er_sp_amount">Pusta ilość!</string>
+    <string name="er_sp_name">Pusta nazwa!</string>
     <string name="er_ex_name">Nazwa pliku eksportowego jest pusta!</string>
 
     <!-- Empty List -->

@@ -20,6 +20,7 @@ import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.models.Recipe;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,8 @@ import butterknife.OnTextChanged;
 
 public class RecipeManageInfoFragment extends PrimaryFragment {
 
+    @BindView(R.id.til_name) TextInputLayout tilName;
+    @BindView(R.id.til_author) TextInputLayout tilAuthor;
     @BindView(R.id.et_name) EditText etName;
     @BindView(R.id.et_author) EditText etAuthor;
     @BindView(R.id.tv_serving) TextView tvServing;
@@ -57,13 +60,13 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
     @OnTextChanged(R.id.et_name)
     void changedEtName(CharSequence text) {
         getRecipe().setName(String.valueOf(text));
-        setError(etName, R.string.er_rp_name, isNameEmpty());
+        setError(tilName, R.string.er_rp_name, isNameEmpty());
     }
 
     @OnTextChanged(R.id.et_author)
     void changedEtAuthor(CharSequence text) {
         getRecipe().setAuthor(String.valueOf(text));
-        setError(etAuthor, R.string.er_rp_author, isAuthorEmpty());
+        setError(tilAuthor, R.string.er_rp_author, isAuthorEmpty());
     }
 
     @OnTextChanged(R.id.tv_serving)
@@ -153,7 +156,6 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
     }
 
     private void initAction() {
-        hideKeyboard();
         initSb();
         setRecipeInfo();
     }

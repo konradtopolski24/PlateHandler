@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fatiner.platehandler.adapters.spinner.SpinnerAdapter;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 import java.util.Locale;
@@ -126,8 +127,13 @@ public abstract class PrimaryAdapter<VH
         et.setKeyListener(DigitsKeyListener.getInstance(false, true));
     }
 
-    void setError(EditText et, int id, boolean isError) {
-        if (isError) et.setError(getString(id));
-        else et.setError(null);
+    void setError(TextInputLayout til, int id, boolean isError) {
+        if (isError) {
+            til.setErrorEnabled(true);
+            til.setError(getString(id));
+        } else {
+            til.setError(null);
+            til.setErrorEnabled(false);
+        }
     }
 }

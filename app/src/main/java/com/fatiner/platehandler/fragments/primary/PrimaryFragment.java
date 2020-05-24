@@ -77,6 +77,7 @@ public class PrimaryFragment extends Fragment {
         setMenuItem(menuId);
         setTb(toolbarId);
         setHasOptionsMenu(hasMenu);
+        hideKeyboard();
     }
 
     private void setMenuItem(int id) {
@@ -484,9 +485,14 @@ public class PrimaryFragment extends Fragment {
         return getResources().getColor(id);
     }
 
-    protected void setError(EditText et, int id, boolean isError) {
-        if (isError) et.setError(getString(id));
-        else et.setError(null);
+    protected void setError(TextInputLayout til, int id, boolean isError) {
+        if (isError) {
+            til.setErrorEnabled(true);
+            til.setError(getString(id));
+        } else {
+            til.setError(null);
+            til.setErrorEnabled(false);
+        }
     }
 
     protected void setError(TextView tv, boolean isError) {
