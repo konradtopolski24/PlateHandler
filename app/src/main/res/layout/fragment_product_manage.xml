@@ -120,7 +120,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/EtDefault"
+                            style="@style/EtText"
                             android:id="@+id/et_name"
                             android:hint="@string/ct_name" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -205,7 +205,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/EtComposition"
+                            style="@style/EtNumber"
                             android:id="@+id/et_size"
                             android:hint="@string/ct_size" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -218,7 +218,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/til_size">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/EtComposition"
+                            style="@style/EtNumber"
                             android:id="@+id/et_carbohydrates"
                             android:hint="@string/ct_carbohydrates" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -231,7 +231,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/til_carbohydrates">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/EtComposition"
+                            style="@style/EtNumber"
                             android:id="@+id/et_proteins"
                             android:hint="@string/ct_proteins" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -244,7 +244,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/til_proteins">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/EtComposition"
+                            style="@style/EtNumber"
                             android:id="@+id/et_fats"
                             android:hint="@string/ct_fats" />
                     </com.google.android.material.textfield.TextInputLayout>

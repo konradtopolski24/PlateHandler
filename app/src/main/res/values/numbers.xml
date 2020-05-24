@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="fc_piece">1</integer>
+    <integer name="fc_gram">1</integer>
+    <integer name="fc_decagram">10</integer>
+    <integer name="fc_kilogram">1000</integer>
+    <integer name="fc_millilitre">1</integer>
+    <integer name="fc_litre">1000</integer>
+    <integer name="fc_teaspoon">5</integer>
+    <integer name="fc_tablespoon">15</integer>
+    <integer name="fc_cup">250</integer>
+</resources>

@@ -46,7 +46,7 @@
                 style="@style/ClData">
 
                 <Button
-                    style="@style/BtAlone"
+                    style="@style/BtDefault"
                     android:id="@+id/bt_add"
                     android:text="@string/bt_ingredient"
                     app:layout_constraintStart_toStartOf="parent"

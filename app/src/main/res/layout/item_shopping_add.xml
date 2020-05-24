@@ -19,6 +19,7 @@
         app:layout_constraintStart_toEndOf="@+id/iv_remove"
         app:layout_constraintEnd_toStartOf="@+id/sp_measure"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1">
 
         <com.google.android.material.textfield.TextInputEditText

@@ -316,7 +316,8 @@ public class RecipeShowFragment extends PrimaryFragment implements
                 getString(R.string.ct_author), recipe.getAuthor(),
                 getString(R.string.ct_serving), recipe.getServing(),
                 getString(R.string.ct_time), recipe.getTime(),
-                getString(R.string.ct_difficulty), recipe.getDifficulty(),
+                getString(R.string.ct_difficulty), getStringArray(
+                        R.array.tx_difficulty)[recipe.getDifficulty()],
                 getString(R.string.ct_spiciness), getStringArray(
                         R.array.tx_spiciness)[recipe.getSpiciness()],
                 getString(R.string.ct_country), getStringArray(

@@ -115,7 +115,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        style="@style/EtDefault"
+                        style="@style/EtText"
                         android:id="@+id/et_name"
                         android:hint="@string/ct_name" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -128,7 +128,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/til_name">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        style="@style/EtDefault"
+                        style="@style/EtText"
                         android:id="@+id/et_author"
                         android:hint="@string/ct_author" />
                 </com.google.android.material.textfield.TextInputLayout>

@@ -108,7 +108,7 @@
                 <!-- 2nd level -->
 
                 <Button
-                    style="@style/BtDefault"
+                    style="@style/BtPadding"
                     android:id="@+id/bt_create"
                     android:text="@string/bt_shopping"
                     app:layout_constraintStart_toStartOf="parent"
