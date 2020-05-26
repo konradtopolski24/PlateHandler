@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="df_zero">0dp</dimen>
+
+    <dimen name="mg_enormous">84dp</dimen>
+    <dimen name="mg_huge">18dp</dimen>
+    <dimen name="mg_big">12dp</dimen>
+    <dimen name="mg_medium">10dp</dimen>
+    <dimen name="mg_small">6dp</dimen>
+    <dimen name="mg_tiny">4dp</dimen>
+
+    <dimen name="tx_enormous">61sp</dimen>
+    <dimen name="tx_huge">44sp</dimen>
+    <dimen name="tx_big">34sp</dimen>
+    <dimen name="tx_medium">30sp</dimen>
+    <dimen name="tx_small">27sp</dimen>
+    <dimen name="tx_tiny">21sp</dimen>
+    <dimen name="tx_default">23sp</dimen>
+
+    <dimen name="rd_big">18dp</dimen>
+    <dimen name="rd_small">12dp</dimen>
+
+    <dimen name="ic_small">36dp</dimen>
+    <dimen name="ic_medium">48dp</dimen>
+    <dimen name="ic_big">96dp</dimen>
+    <dimen name="ic_launcher">162dp</dimen>
+
+    <dimen name="wt_logo">450dp</dimen>
+    <dimen name="wt_header">300dp</dimen>
+
+    <dimen name="ht_logo">126dp</dimen>
+    <dimen name="ht_line">4dp</dimen>
+    <dimen name="ht_photo">300dp</dimen>
+    <dimen name="ht_rv">526dp</dimen>
+    <dimen name="ht_bc">300dp</dimen>
+    <dimen name="ht_pc">450dp</dimen>
+
+    <integer name="tx_axis">21</integer>
+    <integer name="tx_bar">27</integer>
+    <integer name="tx_pie">23</integer>
+    <integer name="tx_legend">23</integer>
+</resources>

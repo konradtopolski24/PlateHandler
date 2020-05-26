@@ -36,7 +36,7 @@
     <string name="bt_ingredient">Add New Ingredient</string>
     <string name="bt_step">Add New Step</string>
     <string name="bt_item">Add New Item</string>
-    <string name="bt_recipe">Select Recipe</string>
+    <string name="bt_recipe">From Recipe</string>
 
     <!-- Dialog Message -->
     <string name="dg_pd_add">Do you want to add a new product?</string>
@@ -148,7 +148,7 @@
     <string name="ex_photo">All Photos</string>
 
     <!-- Header -->
-    <string name="hd_hm_statistics">App Statistics</string>
+    <string name="hd_hm_statistics">App Stats</string>
     <string name="hd_hm_recent">Recently Shown Recipes</string>
     <string name="hd_rp_mg_photo">Set Recipe Photo</string>
     <string name="hd_rp_mg_essential">Set Recipe Essentials</string>
@@ -159,7 +159,7 @@
     <string name="hd_rp_cl_kcal">Recipe Calories (Kcal)</string>
     <string name="hd_rp_cl_kj">Recipe Calories (Kj)</string>
     <string name="hd_rp_cl_ingredient">Ingredient Calories</string>
-    <string name="hd_rp_settings">Recipe Searching Settings</string>
+    <string name="hd_rp_settings">Recipe Search Settings</string>
     <string name="hd_ig_mg_add">Add Ingredient</string>
     <string name="hd_ig_mg_data">Set Ingredient Data</string>
     <string name="hd_st_mg_add">Add Step</string>
@@ -171,7 +171,7 @@
     <string name="hd_pd_sh_composition">Product Composition</string>
     <string name="hd_pd_sh_kcal">Product Calories (Kcal)</string>
     <string name="hd_pd_sh_kj">Product Calories (Kj)</string>
-    <string name="hd_pd_settings">Product Searching Settings</string>
+    <string name="hd_pd_settings">Product Search Settings</string>
     <string name="hd_sp_sh_data">Shopping List Data</string>
     <string name="hd_sp_sh_list">Shopping List</string>
     <string name="hd_sp_mg_add">Add Shopping Item</string>
@@ -371,7 +371,7 @@
         clicking the <b>Add New Item</b> button. The following items will appear in the list
         in the <b>Set Shopping Item Data</b> section down below.\n\nTo ensure user convenience,
         there is an option to immediately add <b>all ingredients</b> of a specific recipe as
-        shopping list items by clicking the <b>Choose Recipe</b> button and selecting the
+        shopping list items by clicking the <b>From Recipe</b> button and selecting the
         appropriate recipe in the newly opened view.</string>
     <string name="tt_sp_mg_data">A section allowing the user to specify information about
         individual items of the shopping list. Data setting is done here using the various
