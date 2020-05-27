@@ -24,6 +24,9 @@
     <string name="pg_ingredient">Składniki</string>
     <string name="pg_step">Kroki</string>
 
+    <!-- Share -->
+    <string name="sr_recipe">Przepis na</string>
+
     <!-- Menu Items -->
     <string name="mn_settings">Ustawienia</string>
     <string name="mn_share">Udostępnij</string>
@@ -36,7 +39,7 @@
     <string name="bt_ingredient">Dodaj Nowy Składnik</string>
     <string name="bt_step">Dodaj Nowy Krok</string>
     <string name="bt_item">Dodaj Nową Pozycję</string>
-    <string name="bt_recipe">Wybierz Przepis</string>
+    <string name="bt_recipe">Z Przepisu</string>
 
     <!-- Dialog Message -->
     <string name="dg_pd_add">Czy chcesz dodać nowy produkt?</string>
@@ -157,8 +160,8 @@
     <string name="hd_rp_sh_data">Dane Przepisu</string>
     <string name="hd_rp_sh_ingredient">Składniki</string>
     <string name="hd_rp_sh_step">Kroki Przygotowania</string>
-    <string name="hd_rp_cl_kcal">Kalorie w Przepisie (Kcal)</string>
-    <string name="hd_rp_cl_kj">Kalorie w Przepisie (Kj)</string>
+    <string name="hd_rp_cl_kcal">Kalorie Przepisu (Kcal)</string>
+    <string name="hd_rp_cl_kj">Kalorie Przepisu (Kj)</string>
     <string name="hd_rp_cl_ingredient">Kalorie Produktów</string>
     <string name="hd_rp_settings">Ustawienia Wyszukiwania</string>
     <string name="hd_ig_mg_add">Dodaj Składnik</string>
@@ -170,8 +173,8 @@
     <string name="hd_pd_mg_essential">Ustaw Kluczowe Dane</string>
     <string name="hd_pd_mg_composition">Ustaw Skład Produktu</string>
     <string name="hd_pd_sh_composition">Skład Produktu</string>
-    <string name="hd_pd_sh_kcal">Kalorie w Produkcie (Kcal)</string>
-    <string name="hd_pd_sh_kj">Kalorie w Produkcie (Kj)</string>
+    <string name="hd_pd_sh_kcal">Kalorie Produktu (Kcal)</string>
+    <string name="hd_pd_sh_kj">Kalorie Produktu (Kj)</string>
     <string name="hd_pd_settings">Ustawienia Wyszukiwania</string>
     <string name="hd_sp_sh_data">Dane Listy Zakupów</string>
     <string name="hd_sp_sh_list">Lista Zakupów</string>
@@ -377,7 +380,7 @@
         Kolejne pozycje pojawiać się będą w liście w sekcji <b>Ustaw Dane Pozycji</b>
         znajdującej się poniżej.\n\nAby zapewnić wygodę użytkownika istnieje możliwość
         natychmiastowego dodania <b>wszystkich składników</b> konkretnego przepisu jako pozycje
-        listy zakupów poprzez kliknięcie przycisku <b>Wybierz Przepis</b> i wskazanie odpowiedniego
+        listy zakupów poprzez kliknięcie przycisku <b>Z Przepisu</b> i wskazanie odpowiedniego
         dania w nowym widoku.</string>
     <string name="tt_sp_mg_data">Sekcja pozwalająca użytkownikowi na określenie informacji na temat
         poszczególnych pozycji listy zakupów. Ustawianie danych odbywa się tutaj za pomocą różnego

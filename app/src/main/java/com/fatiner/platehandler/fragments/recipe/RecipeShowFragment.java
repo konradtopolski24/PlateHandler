@@ -304,7 +304,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
 
     private String getShareText() {
         return String.format(Locale.ENGLISH, Format.FM_SHARE,
-                getInfoText(),
+                getString(R.string.sr_recipe), getRecipe().getName(), getInfoText(),
                 getString(R.string.hd_rp_sh_ingredient), getIngredientText(),
                 getString(R.string.hd_rp_sh_step), getStepText());
     }
@@ -312,7 +312,6 @@ public class RecipeShowFragment extends PrimaryFragment implements
     private String getInfoText() {
         Recipe recipe = getRecipe();
         return String.format(Locale.ENGLISH, Format.FM_INFO,
-                recipe.getName(),
                 getString(R.string.ct_author), recipe.getAuthor(),
                 getString(R.string.ct_serving), recipe.getServing(),
                 getString(R.string.ct_time), recipe.getTime(),

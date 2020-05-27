@@ -14,10 +14,10 @@ public class Format {
     public static final String FM_MEASURE = "%.2f x %s";
     public static final String FM_HINT = "%s (%s)";
     public static final String FM_UNIT = "%.2f %s";
-    public static final String FM_SHARE = "%s\n%s:\n%s\n%s:\n%s";
-    public static final String FM_INFO = "%s\n%s: %s\n%s: %d\n%s: %s\n%s: %s\n%s: %s\n%s: %s\n" +
-            "%s: %s\n%s: %s\n";
-    public static final String FM_INGREDIENT = "-%s (%.2f x %s)\n";
+    public static final String FM_SHARE = "%s %s\n---\n%s---\n[%s]:\n%s---\n[%s]:\n%s";
+    public static final String FM_INFO = "[%s]: %s\n[%s]: %d\n[%s]: %s\n[%s]: %s\n[%s]: %s\n" +
+            "[%s]: %s\n[%s]: %s\n[%s]: %s\n";
+    public static final String FM_INGREDIENT = "(-) %s (%.2f x %s)\n";
     public static final String FM_STEP = "(%d) %s\n";
 
     public static final String FM_SELECT = "SELECT * FROM %s%s%s";
