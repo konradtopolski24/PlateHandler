@@ -106,8 +106,8 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
                 getContext(), Shared.SR_HOME, Shared.KY_RECENT));
     }
 
-    private String getAmount(int amount, int id) {
-        return String.format(Locale.ENGLISH, Format.FM_AMOUNT, getString(id), amount);
+    private String getAmount(int amount) {
+        return String.format(Locale.ENGLISH, Format.FM_AMOUNT, getString(R.string.ct_amount), amount);
     }
 
     private List<Recipe> getSortedRecent(List<Recipe> recipes) {
@@ -368,7 +368,7 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
 
             @Override
             public void onSuccess(Integer amount) {
-                setTv(tv, getAmount(amount, id));
+                setTv(tv, getAmount(amount));
             }
 
             @Override

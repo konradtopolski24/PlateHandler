@@ -31,14 +31,14 @@
     <string name="mn_settings">Ustawienia</string>
     <string name="mn_share">Udostępnij</string>
     <string name="mn_calculate">Obliczanie</string>
-    <string name="mn_edit">Edycja</string>
-    <string name="mn_remove">Usuwanie</string>
+    <string name="mn_edit">Edytuj</string>
+    <string name="mn_remove">Usuń</string>
 
     <!-- Button -->
-    <string name="bt_shopping">Stwórz Nową Listę</string>
-    <string name="bt_ingredient">Dodaj Nowy Składnik</string>
-    <string name="bt_step">Dodaj Nowy Krok</string>
-    <string name="bt_item">Dodaj Nową Pozycję</string>
+    <string name="bt_shopping">Nowa Lista</string>
+    <string name="bt_ingredient">Nowy Składnik</string>
+    <string name="bt_step">Nowy Krok</string>
+    <string name="bt_item">Nowa Pozycja</string>
     <string name="bt_recipe">Z Przepisu</string>
 
     <!-- Dialog Message -->
@@ -94,12 +94,12 @@
     <string name="er_ex_name">Nazwa pliku eksportowego jest pusta!</string>
 
     <!-- Empty List -->
-    <string name="ep_recent">Nie przejrzano przepisów!</string>
-    <string name="ep_recipe">Lista przepisów jest pusta!</string>
-    <string name="ep_product">Lista produktów jest pusta!</string>
-    <string name="ep_step">Lista kroków jest pusta!</string>
-    <string name="ep_shopping">Lista zakupów jest pusta!</string>
-    <string name="ep_import">Lista plików jest pusta!</string>
+    <string name="ep_recent">Brak przepisów!</string>
+    <string name="ep_recipe">Pusta lista przepisów!</string>
+    <string name="ep_product">Pusta lista produktów!</string>
+    <string name="ep_step">Pusta lista kroków!</string>
+    <string name="ep_shopping">Pusta lista zakupów!</string>
+    <string name="ep_import">Pusta lista plików!</string>
     <string name="ep_spinner">Brak Produktów!</string>
 
     <!-- Finished -->
@@ -107,8 +107,8 @@
     <string name="fn_step">Wykonano!</string>
 
     <!-- Captions -->
-    <string name="ct_statistics1">Ilość Przepisów</string>
-    <string name="ct_statistics2">Ilość Produktów</string>
+    <string name="ct_recipes">Przepisy</string>
+    <string name="ct_products">Produkty</string>
     <string name="ct_name">Nazwa</string>
     <string name="ct_author">Autor</string>
     <string name="ct_serving">Porcje</string>
@@ -131,10 +131,10 @@
     <string name="ct_proteins">Białka</string>
     <string name="ct_fats">Tłuszcze</string>
     <string name="ct_nutrients">Substancje Odżywcze</string>
-    <string name="ct_date">Data Zakupów</string>
-    <string name="ct_state">Stan Zakupów</string>
+    <string name="ct_date">Data</string>
+    <string name="ct_state">Stan</string>
     <string name="ct_other">Pozostałe</string>
-    <string name="ct_chart">Wykresy Procentowe Substancji</string>
+    <string name="ct_chart">Wykresy Substancji</string>
     <string name="ct_total">Suma Kalorii</string>
     <string name="ct_per">Na Porcję</string>
     <string name="ct_developer">Twórca</string>
@@ -153,40 +153,40 @@
 
     <!-- Header -->
     <string name="hd_hm_statistics">Statystyki Aplikacji</string>
-    <string name="hd_hm_recent">Sprawdzane Przepisy</string>
-    <string name="hd_rp_mg_photo">Ustaw Zdjęcie Przepisu</string>
+    <string name="hd_hm_recent">Odwiedzone Przepisy</string>
+    <string name="hd_rp_mg_photo">Ustaw Zdjęcie</string>
     <string name="hd_rp_mg_essential">Ustaw Kluczowe Dane</string>
-    <string name="hd_rp_mg_data">Ustaw Dane Przepisu</string>
+    <string name="hd_rp_mg_data">Ustaw Pozostałe Dane</string>
     <string name="hd_rp_sh_data">Dane Przepisu</string>
     <string name="hd_rp_sh_ingredient">Składniki</string>
     <string name="hd_rp_sh_step">Kroki Przygotowania</string>
-    <string name="hd_rp_cl_kcal">Kalorie Przepisu (Kcal)</string>
-    <string name="hd_rp_cl_kj">Kalorie Przepisu (Kj)</string>
+    <string name="hd_rp_cl_kcal">Kalorie w Kcal</string>
+    <string name="hd_rp_cl_kj">Kalorie w Kj</string>
     <string name="hd_rp_cl_ingredient">Kalorie Produktów</string>
-    <string name="hd_rp_settings">Ustawienia Wyszukiwania</string>
+    <string name="hd_rp_settings">Szukanie Przepisów</string>
     <string name="hd_ig_mg_add">Dodaj Składnik</string>
-    <string name="hd_ig_mg_data">Ustaw Dane Składników</string>
+    <string name="hd_ig_mg_data">Ustaw Składniki</string>
     <string name="hd_st_mg_add">Dodaj Krok</string>
     <string name="hd_st_mg_current">Obecne Kroki</string>
-    <string name="hd_st_mg_data">Ustaw Zawartość Kroku</string>
-    <string name="hd_pd_mg_photo">Ustaw Zdjęcie Produktu</string>
+    <string name="hd_st_mg_data">Ustaw Krok</string>
+    <string name="hd_pd_mg_photo">Ustaw Zdjęcie</string>
     <string name="hd_pd_mg_essential">Ustaw Kluczowe Dane</string>
-    <string name="hd_pd_mg_composition">Ustaw Skład Produktu</string>
+    <string name="hd_pd_mg_composition">Ustaw Skład</string>
     <string name="hd_pd_sh_composition">Skład Produktu</string>
-    <string name="hd_pd_sh_kcal">Kalorie Produktu (Kcal)</string>
-    <string name="hd_pd_sh_kj">Kalorie Produktu (Kj)</string>
-    <string name="hd_pd_settings">Ustawienia Wyszukiwania</string>
+    <string name="hd_pd_sh_kcal">Kalorie w Kcal</string>
+    <string name="hd_pd_sh_kj">Kalorie w Kj</string>
+    <string name="hd_pd_settings">Szukanie Produktów</string>
     <string name="hd_sp_sh_data">Dane Listy Zakupów</string>
     <string name="hd_sp_sh_list">Lista Zakupów</string>
-    <string name="hd_sp_mg_add">Dodaj Pozycję Zakupową</string>
-    <string name="hd_sp_mg_data">Ustaw Dane Pozycji</string>
-    <string name="hd_ex_data">Ustaw Nazwę Pliku</string>
+    <string name="hd_sp_mg_add">Dodaj Nową Pozycję</string>
+    <string name="hd_sp_mg_data">Ustaw Pozycję</string>
+    <string name="hd_ex_data">Ustaw Plik Eksportu</string>
     <string name="hd_ex_guideline">Wytyczne Eksportu</string>
     <string name="hd_im_file">Pliki Importu</string>
     <string name="hd_cd_author">Autor Aplikacji</string>
-    <string name="hd_cd_library">Wykorzystane Biblioteki</string>
-    <string name="hd_cd_icon">Wykorzystane Ikony</string>
-    <string name="hd_cd_font">Wykorzystane Czcionki</string>
+    <string name="hd_cd_library">Użyte Biblioteki</string>
+    <string name="hd_cd_icon">Użyte Ikony</string>
+    <string name="hd_cd_font">Użyte Czcionki</string>
 
     <!-- Tutorial -->
     <string name="tt_hm_statistics">Sekcja prezentująca użytkownikowi statystyki dotyczące bazy

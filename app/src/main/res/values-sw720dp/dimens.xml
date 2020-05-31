@@ -34,6 +34,7 @@
     <dimen name="ht_rv">658dp</dimen>
     <dimen name="ht_bc">375dp</dimen>
     <dimen name="ht_pc">563dp</dimen>
+    <dimen name="ht_bt">86dp</dimen>
 
     <integer name="tx_axis">27</integer>
     <integer name="tx_bar">35</integer>

@@ -194,10 +194,6 @@
         <item name="android:textSize">@dimen/tx_small</item>
     </style>
 
-    <style name="TvCredits" parent="TvPrimary">
-        <item name="android:layout_marginBottom">@dimen/mg_big</item>
-    </style>
-
     <style name="TvTiny" parent="TvPrimary">
         <item name="android:layout_marginStart">@dimen/mg_tiny</item>
         <item name="android:layout_marginEnd">@dimen/mg_tiny</item>
@@ -215,6 +211,11 @@
         <item name="android:layout_marginStart">@dimen/mg_huge</item>
         <item name="android:layout_marginEnd">@dimen/mg_huge</item>
         <item name="android:textSize">@dimen/tx_medium</item>
+    </style>
+
+    <style name="TvCredits" parent="WidthZero">
+        <item name="android:textSize">@dimen/tx_default</item>
+        <item name="android:layout_marginBottom">@dimen/mg_big</item>
     </style>
 
     <style name="TvDone" parent="BothWrap">
@@ -474,7 +475,7 @@
     <!-- Button -->
     <style name="BtDefault" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="android:layout_width">@dimen/df_zero</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">@dimen/ht_bt</item>
         <item name="android:layout_marginStart">@dimen/mg_big</item>
         <item name="android:layout_marginEnd">@dimen/mg_big</item>
         <item name="android:textSize">@dimen/tx_default</item>

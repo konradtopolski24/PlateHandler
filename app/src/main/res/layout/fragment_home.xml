@@ -72,7 +72,7 @@
                 <TextView
                     style="@style/TvCaption"
                     android:id="@+id/tv_ct_recipe"
-                    android:text="@string/ct_statistics1"
+                    android:text="@string/ct_recipes"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_recipe"
                     app:layout_constraintEnd_toStartOf="@+id/iv_ct_product"
                     app:layout_constraintTop_toTopOf="@+id/iv_ct_recipe"
@@ -90,7 +90,7 @@
                 <TextView
                     style="@style/TvCaption"
                     android:id="@+id/tv_ct_product"
-                    android:text="@string/ct_statistics2"
+                    android:text="@string/ct_products"
                     app:layout_constraintStart_toEndOf="@+id/iv_ct_product"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_ct_product"

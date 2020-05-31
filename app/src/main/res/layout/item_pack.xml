@@ -61,7 +61,7 @@
             app:layout_constraintEnd_toEndOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_attribution" />
 
-        <!-- 1nd level -->
+        <!-- 2nd level -->
 
         <ImageView
             style="@style/IvInfoCredits"
@@ -94,7 +94,7 @@
             app:layout_constraintEnd_toEndOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_license" />
 
-        <!-- 2rd level -->
+        <!-- 3rd level -->
 
         <ImageView
             style="@style/IvInfoCredits"

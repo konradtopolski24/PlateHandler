@@ -15,6 +15,7 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.FontAdapter;
 import com.fatiner.platehandler.adapters.recyclerview.LibraryAdapter;
 import com.fatiner.platehandler.adapters.recyclerview.PackAdapter;
+import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.items.Font;
 import com.fatiner.platehandler.items.Library;
 import com.fatiner.platehandler.items.Pack;
@@ -93,9 +94,9 @@ public class CreditsFragment extends PrimaryFragment {
 
     private void setViews() {
         setTv(tvDeveloper, Credits.DL_NAME);
-        setRv(rvLibrary, getManager(getColumnAmountList()), getLibraryAdapter());
-        setRv(rvIcon, getManager(getColumnAmountList()), getPackAdapter());
-        setRv(rvFont, getManager(getColumnAmountList()), getFontAdapter());
+        setRv(rvLibrary, getManager(Globals.DF_INCREMENT), getLibraryAdapter());
+        setRv(rvIcon, getManager(Globals.DF_INCREMENT), getPackAdapter());
+        setRv(rvFont, getManager(Globals.DF_INCREMENT), getFontAdapter());
         changeRvSize(rvLibrary);
         changeRvSize(rvIcon);
         changeRvSize(rvFont);

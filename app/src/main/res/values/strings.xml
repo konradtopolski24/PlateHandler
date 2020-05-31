@@ -35,10 +35,10 @@
     <string name="mn_remove">Remove</string>
 
     <!-- Button -->
-    <string name="bt_shopping">Create New List</string>
-    <string name="bt_ingredient">Add New Ingredient</string>
-    <string name="bt_step">Add New Step</string>
-    <string name="bt_item">Add New Item</string>
+    <string name="bt_shopping">New List</string>
+    <string name="bt_ingredient">New Ingredient</string>
+    <string name="bt_step">New Step</string>
+    <string name="bt_item">New Item</string>
     <string name="bt_recipe">From Recipe</string>
 
     <!-- Dialog Message -->
@@ -93,21 +93,21 @@
     <string name="er_ex_name">Name of the file to export is empty!</string>
 
     <!-- Empty List -->
-    <string name="ep_recent">No recipes shown!</string>
-    <string name="ep_recipe">Recipe list is empty!</string>
-    <string name="ep_product">Product list is empty!</string>
-    <string name="ep_step">Step list is empty!</string>
-    <string name="ep_shopping">Shopping list is empty!</string>
-    <string name="ep_import">Import file list is empty!</string>
-    <string name="ep_spinner">No Products!</string>
+    <string name="ep_recent">No recipes!</string>
+    <string name="ep_recipe">Empty recipe list!</string>
+    <string name="ep_product">Empty product list!</string>
+    <string name="ep_step">Empty step list!</string>
+    <string name="ep_shopping">Empty shopping list!</string>
+    <string name="ep_import">Empty import list!</string>
+    <string name="ep_spinner">No products!</string>
 
     <!-- Finished -->
     <string name="fn_ingredient">Used!</string>
     <string name="fn_step">Done!</string>
 
     <!-- Captions -->
-    <string name="ct_statistics1">Recipe Amount</string>
-    <string name="ct_statistics2">Product Amount</string>
+    <string name="ct_recipes">Recipes</string>
+    <string name="ct_products">Products</string>
     <string name="ct_name">Name</string>
     <string name="ct_author">Author</string>
     <string name="ct_serving">Servings</string>
@@ -130,10 +130,10 @@
     <string name="ct_proteins">Proteins</string>
     <string name="ct_fats">Fats</string>
     <string name="ct_nutrients">All Nutrients</string>
-    <string name="ct_date">Shopping Date</string>
-    <string name="ct_state">Shopping State</string>
+    <string name="ct_date">Date</string>
+    <string name="ct_state">State</string>
     <string name="ct_other">Other</string>
-    <string name="ct_chart">Percentage Charts of Nutrients</string>
+    <string name="ct_chart">Nutrients Charts</string>
     <string name="ct_total">Total Calories</string>
     <string name="ct_per">Per Serving</string>
     <string name="ct_developer">Developer</string>
@@ -152,34 +152,34 @@
 
     <!-- Header -->
     <string name="hd_hm_statistics">App Stats</string>
-    <string name="hd_hm_recent">Recently Shown Recipes</string>
+    <string name="hd_hm_recent">Visited Recipes</string>
     <string name="hd_rp_mg_photo">Set Recipe Photo</string>
-    <string name="hd_rp_mg_essential">Set Recipe Essentials</string>
+    <string name="hd_rp_mg_essential">Set Recipe Basics</string>
     <string name="hd_rp_mg_data">Set Recipe Data</string>
     <string name="hd_rp_sh_data">Recipe Data</string>
     <string name="hd_rp_sh_ingredient">Ingredients</string>
     <string name="hd_rp_sh_step">Preparation Steps</string>
-    <string name="hd_rp_cl_kcal">Recipe Calories (Kcal)</string>
-    <string name="hd_rp_cl_kj">Recipe Calories (Kj)</string>
-    <string name="hd_rp_cl_ingredient">Ingredient Calories</string>
-    <string name="hd_rp_settings">Recipe Search Settings</string>
+    <string name="hd_rp_cl_kcal">Calories in Kcal</string>
+    <string name="hd_rp_cl_kj">Calories in Kj</string>
+    <string name="hd_rp_cl_ingredient">Partial Calories</string>
+    <string name="hd_rp_settings">Recipe Search</string>
     <string name="hd_ig_mg_add">Add Ingredient</string>
     <string name="hd_ig_mg_data">Set Ingredient Data</string>
     <string name="hd_st_mg_add">Add Step</string>
     <string name="hd_st_mg_current">Current Steps</string>
     <string name="hd_st_mg_data">Set Step Content</string>
     <string name="hd_pd_mg_photo">Set Product Photo</string>
-    <string name="hd_pd_mg_essential">Set Product Essentials</string>
-    <string name="hd_pd_mg_composition">Set Product Composition</string>
+    <string name="hd_pd_mg_essential">Set Product Basics</string>
+    <string name="hd_pd_mg_composition">Set Composition</string>
     <string name="hd_pd_sh_composition">Product Composition</string>
-    <string name="hd_pd_sh_kcal">Product Calories (Kcal)</string>
-    <string name="hd_pd_sh_kj">Product Calories (Kj)</string>
-    <string name="hd_pd_settings">Product Search Settings</string>
-    <string name="hd_sp_sh_data">Shopping List Data</string>
+    <string name="hd_pd_sh_kcal">Calories in Kcal</string>
+    <string name="hd_pd_sh_kj">Calories in Kj</string>
+    <string name="hd_pd_settings">Product Search</string>
+    <string name="hd_sp_sh_data">Shopping Data</string>
     <string name="hd_sp_sh_list">Shopping List</string>
     <string name="hd_sp_mg_add">Add Shopping Item</string>
-    <string name="hd_sp_mg_data">Set Shopping Item Data</string>
-    <string name="hd_ex_data">Set Export File Name</string>
+    <string name="hd_sp_mg_data">Set Item Data</string>
+    <string name="hd_ex_data">Set Export File</string>
     <string name="hd_ex_guideline">Export Guidelines</string>
     <string name="hd_im_file">Import Files</string>
     <string name="hd_cd_author">Author of the App</string>
