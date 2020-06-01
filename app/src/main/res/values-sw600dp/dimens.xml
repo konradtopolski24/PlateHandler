@@ -26,7 +26,7 @@
     <dimen name="ic_launcher">162dp</dimen>
 
     <dimen name="wt_logo">450dp</dimen>
-    <dimen name="wt_header">300dp</dimen>
+    <dimen name="wt_header">260dp</dimen>
 
     <dimen name="ht_logo">126dp</dimen>
     <dimen name="ht_line">4dp</dimen>

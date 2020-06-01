@@ -189,8 +189,8 @@
 
     <!-- Tutorial -->
     <string name="tt_hm_statistics">A section presenting the user with statistics regarding the
-        database used in the <b>Plate Handler</b> app.\n\nThe fragment <b>Recipe Number</b>
-        defines the number of recipes added by the author, while <b>Product Number</b> expresses
+        database used in the <b>Plate Handler</b> app.\n\nThe fragment <b>Recipes</b>
+        defines the number of recipes added by the author, while <b>Products</b> expresses
         the sum of all saved products and those added by default to the database after the first
         launch of the app.</string>
     <string name="tt_hm_recent">A section showing a list of <b>six</b> recently viewed recipes
@@ -334,7 +334,7 @@
         (depending on the <b>product type</b>).\n\nThe <b>Carbohydrates</b>, <b>Proteins</b> and
         <b>Fats</b> fragments determine the nutrient values of the product, while the <b>Other</b>
         fragment expresses the remaining composition, obtained after subtracting nutrient values
-        from total weight.\n\nIn the <b>Percentage Charts of Nutrients</b> fragment there are two
+        from total weight.\n\nIn the <b>Charts of Nutrients</b> fragment there are two
         charts - <b>bar chart</b> shows the percentage values of each nutrient separately, while
         the <b>pie chart</b> presents the percentage values of the sum of all the nutrients
         compared to the remaining composition of the product.\n\nIf composition data of the
@@ -361,8 +361,8 @@
         <b>unchecked</b>.</string>
     <string name="tt_sp_sh_data">A section presenting the user with information about the current
         <b>shopping list</b>. If the shopping list does not exist, <b>data will be
-        empty</b>.\n\nThe <b>Shopping Date</b> fragment specifies the exact day the shopping list
-        was created, while the <b>Shopping State</b> expresses how many shopping items were
+        empty</b>.\n\nThe <b>Date</b> fragment specifies the exact day the shopping list
+        was created, while the <b>State</b> expresses how many shopping items were
         crossed out from the list.\n\nThe user can create a new shopping list by clicking the
         <b>Create New List</b> button, and the list creation view will open.</string>
     <string name="tt_sp_sh_list">A section presenting a shopping list with <b>items placed one

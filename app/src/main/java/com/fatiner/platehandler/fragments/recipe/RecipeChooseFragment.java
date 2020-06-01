@@ -23,6 +23,7 @@ import com.fatiner.platehandler.fragments.recipe.manage.RecipeManagePagerFragmen
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
+import com.fatiner.platehandler.items.ShoppingList;
 import com.fatiner.platehandler.managers.QueryManager;
 import com.fatiner.platehandler.models.IngredientComplete;
 import com.fatiner.platehandler.models.Recipe;
@@ -70,6 +71,10 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
         else return R.id.it_recipe;
     }
 
+    private List<ShoppingItem> getShoppingItems() {
+        return ShoppingListDetails.getShoppingList().getShoppingItems();
+    }
+
     private SimpleSQLiteQuery getRecipesQuery() {
         String where = QueryManager.getWhere(QueryManager.getRpConditions(getContext()));
         String orderBy = QueryManager.getOrderBy(getContext(), Shared.SR_RECIPE, Db.CL_RP_NAME);
@@ -109,13 +114,21 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
     }
 
     private void setIngredientsFromRecipe(List<IngredientComplete> ingredients) {
+        if (isEmptyItemOnly()) getShoppingItems().clear();
         for (IngredientComplete ingredientComplete : ingredients) {
             ShoppingItem item = new ShoppingItem();
             item.setAmount(ingredientComplete.ingredient.getAmount());
             item.setMeasure(ingredientComplete.ingredient.getMeasure());
             item.setName(ingredientComplete.product.getName());
-            ShoppingListDetails.getShoppingList().getShoppingItems().add(item);
+            getShoppingItems().add(item);
         }
+    }
+
+    private boolean isEmptyItemOnly() {
+        if (getShoppingItems().size() == Globals.DF_INCREMENT) {
+            ShoppingItem item = getShoppingItems().get(Globals.DF_ZERO);
+            return item.getAmount() == Globals.DF_ZERO && item.getName().equals(Globals.SN_EMPTY);
+        } else return false;
     }
 
     private void readRecipes() {

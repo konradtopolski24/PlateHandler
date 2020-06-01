@@ -153,7 +153,7 @@
 
     <!-- Header -->
     <string name="hd_hm_statistics">Statystyki Aplikacji</string>
-    <string name="hd_hm_recent">Odwiedzone Przepisy</string>
+    <string name="hd_hm_recent">Przeglądane Przepisy</string>
     <string name="hd_rp_mg_photo">Ustaw Zdjęcie</string>
     <string name="hd_rp_mg_essential">Ustaw Kluczowe Dane</string>
     <string name="hd_rp_mg_data">Ustaw Pozostałe Dane</string>
@@ -190,8 +190,8 @@
 
     <!-- Tutorial -->
     <string name="tt_hm_statistics">Sekcja prezentująca użytkownikowi statystyki dotyczące bazy
-        danych wykorzystywanej w aplikacji <b>Plate Handler</b>.\n\nFragment <b>Ilość Przepisów</b>
-        określa liczbę dodanych przez autora przepisów, natomiast <b>Ilość Produktów</b> wyraża
+        danych wykorzystywanej w aplikacji <b>Plate Handler</b>.\n\nFragment <b>Przepisy</b>
+        określa liczbę dodanych przez autora przepisów, natomiast <b>Produkty</b> wyraża
         sumę wszystkich zapisanych produktów oraz tych dołączonych domyślnie do bazy po pierwszym
         uruchomieniu aplikacji.</string>
     <string name="tt_hm_recent">Sekcja ukazująca listę <b>sześciu</b> ostatnio przeglądanych przez
@@ -288,7 +288,7 @@
     <string name="tt_ig_mg_data">Sekcja pozwalająca użytkownikowi na określenie informacji na temat
         poszczególnych składników przepisu. Ustawianie danych odbywa się tutaj za pomocą różnego
         rodzaju <b>elementów kontrolnych</b> dostępnych dla każdej pozycji.\n\nPole tekstowe
-        <b>Ilość</b> oznacza liczbę reprezentującą ilość konkretnego składnika o określonej mierze,
+        <b>Ilość</b> oznacza liczbę reprezentującą ilość konkretnego składnika o określonej miarze,
         wymaganą do poprawnego wykonania dania. Jej wartość musi być <b>większa od zera</b>.\n\nWe
         fragmencie <b>Miara</b> element rozwijany pozwala na wybór poprawnej miary
         składnika.\n\nW zależności czy w aplikacji <b>występują produkty</b>, fragment
@@ -337,7 +337,7 @@
         (w zależności od <b>typu</b> produktu).\n\nFragmenty <b>Węglowodany</b>, <b>Białka</b> oraz
         <b>Tłuszcze</b> określają wartości substancji odżywczych w produkcie, natomiast
         <b>Pozostałe</b> wyraża pozostały skład, uzyskany po odjęciu wartości substancji odżywczych
-        od całkowitej wagi.\n\nWe fragmencie <b>Wykresy Procentowe Substancji</b> widnieją dwa
+        od całkowitej wagi.\n\nWe fragmencie <b>Wykresy Substancji</b> widnieją dwa
         wykresy - <b>słupkowy</b> osobno określa wartości procentowe substancji odżywczych,
         natomiast <b>kołowy</b> ukazuje wartości procentowe sumy substancji w porównaniu do
         pozostałego składu produktu.\n\nJeżeli w produkcie nie zostały ustawione informacje na
@@ -364,8 +364,8 @@
         wyświetlanych pozycji może <b>odznaczyć</b> konkretne przełączniki.</string>
     <string name="tt_sp_sh_data">Sekcja prezentująca użytkownikowi informacje dotyczące obecnej
         <b>listy zakupów</b>. W przypadku gdy lista zakupów nie istnieje
-        <b>dane będą puste</b>.\n\nFragment <b>Data Zakupów</b> określa dokładny dzień, w którym
-        została utworzona lista zakupów, natomiast <b>Stan Zakupów</b> wyraża ile pozycji
+        <b>dane będą puste</b>.\n\nFragment <b>Data</b> określa dokładny dzień, w którym
+        została utworzona lista zakupów, natomiast <b>Stan</b> wyraża ile pozycji
         zakupowych zostało skreślonych z danej listy.\n\nUżytkownik może stworzyć nową listę
         zakupów poprzez kliknięcie przycisku <b>Stwórz Nową Listę</b>, po czym otwarty zostanie
         widok tworzenia listy.</string>
@@ -386,7 +386,7 @@
         poszczególnych pozycji listy zakupów. Ustawianie danych odbywa się tutaj za pomocą różnego
         rodzaju <b>elementów kontrolnych</b> dostępnych dla każdej z nich.\n\nPole tekstowe
         <b>Ilość</b> oznacza liczbę reprezentującą ilość konkretnej pozycji do kupienia o
-        określonej mierze. Jej wartość musi być <b>większa od zera</b>.\n\nWe fragmencie
+        określonej miarze. Jej wartość musi być <b>większa od zera</b>.\n\nWe fragmencie
         <b>Miara</b> element rozwijany pozwala na wybór poprawnej miary elementu listy
         zakupów.\n\nW polu tekstowym <b>Nazwa</b> wpisywana wartość oznacza nazwę pozycji listy
         zakupów i <b>nie może pozostać pusta</b>.\n\nPo <b>lewej stronie</b> każdej pozycji
@@ -534,10 +534,10 @@
     <string name="ar_rp_other">Inny</string>
 
     <!-- Array Text Product -->
-    <string name="ar_pd_grain">Zbożowy</string>
+    <string name="ar_pd_grain">Zboża</string>
     <string name="ar_pd_bread">Pieczywo</string>
     <string name="ar_pd_dairy">Nabiał</string>
-    <string name="ar_pd_fat">Tłuszczowy</string>
+    <string name="ar_pd_fat">Tłuszcze</string>
     <string name="ar_pd_egg">Jajko</string>
     <string name="ar_pd_vegetable">Warzywo</string>
     <string name="ar_pd_fruit">Owoc</string>

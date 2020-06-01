@@ -210,7 +210,6 @@
         <item name="android:layout_marginTop">@dimen/mg_big</item>
         <item name="android:layout_marginStart">@dimen/mg_huge</item>
         <item name="android:layout_marginEnd">@dimen/mg_huge</item>
-        <item name="android:textSize">@dimen/tx_medium</item>
     </style>
 
     <style name="TvCredits" parent="WidthZero">
@@ -387,11 +386,6 @@
     <style name="TlDefault" parent="WidthMatch">
         <item name="android:background">@color/pr_normal</item>
         <item name="tabSelectedTextColor">@color/tv_white</item>
-        <item name="tabTextAppearance">@style/TlText</item>
-    </style>
-
-    <style name="TlText" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">@dimen/tx_default</item>
     </style>
 
     <!-- FabDefault -->
@@ -478,7 +472,7 @@
         <item name="android:layout_height">@dimen/ht_bt</item>
         <item name="android:layout_marginStart">@dimen/mg_big</item>
         <item name="android:layout_marginEnd">@dimen/mg_big</item>
-        <item name="android:textSize">@dimen/tx_default</item>
+        <item name="android:textSize">@dimen/tx_tiny</item>
     </style>
 
     <style name="BtPadding" parent="BtDefault">
@@ -490,11 +484,6 @@
         <item name="android:layout_gravity">start</item>
         <item name="menu">@menu/nv_main</item>
         <item name="headerLayout">@layout/header_main</item>
-        <item name="theme">@style/NvText</item>
-    </style>
-
-    <style name="NvText">
-        <item name="android:textSize">@dimen/tx_default</item>
     </style>
 
     <!-- Toolbar -->
@@ -502,11 +491,6 @@
         <item name="android:background">@color/pr_normal</item>
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="android:popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="titleTextAppearance">@style/TbText</item>
-    </style>
-
-    <style name="TbText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">@dimen/tx_big</item>
     </style>
 
     <!-- RecyclerView -->

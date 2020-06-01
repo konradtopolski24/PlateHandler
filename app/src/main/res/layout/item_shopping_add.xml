@@ -41,7 +41,7 @@
         android:id="@+id/sp_measure"
         app:layout_constraintStart_toEndOf="@+id/til_amount"
         app:layout_constraintEnd_toStartOf="@+id/til_name"
-        app:layout_constraintTop_toTopOf="@+id/til_amount"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ct_measure"
         app:layout_constraintBottom_toBottomOf="@+id/til_amount"
         app:layout_constraintHorizontal_weight="1" />
 
@@ -51,6 +51,7 @@
         app:layout_constraintStart_toEndOf="@+id/sp_measure"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1">
 
         <com.google.android.material.textfield.TextInputEditText
