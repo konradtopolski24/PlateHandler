@@ -41,7 +41,7 @@
         android:id="@+id/sp_measure"
         app:layout_constraintStart_toEndOf="@+id/til_amount"
         app:layout_constraintEnd_toStartOf="@+id/sp_product"
-        app:layout_constraintTop_toTopOf="@+id/til_amount"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ct_measure"
         app:layout_constraintBottom_toBottomOf="@+id/til_amount"
         app:layout_constraintHorizontal_weight="1" />
 
@@ -58,7 +58,7 @@
         android:id="@+id/sp_product"
         app:layout_constraintStart_toEndOf="@+id/sp_measure"
         app:layout_constraintEnd_toStartOf="@+id/ib_add"
-        app:layout_constraintTop_toTopOf="@+id/til_amount"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ct_product"
         app:layout_constraintBottom_toBottomOf="@+id/til_amount"
         app:layout_constraintHorizontal_weight="1" />
 
