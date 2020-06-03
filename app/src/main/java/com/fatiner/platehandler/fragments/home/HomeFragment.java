@@ -80,14 +80,15 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
     }
 
     private void initAction() {
-        readAmount();
         setProducts();
-        setRecent();
     }
 
     private void setProducts() {
-        if (SharedManager.isValueAvailable(getContext(), Shared.SR_LAUNCH, Shared.KY_LAUNCH))
+        if (SharedManager.isValueAvailable(getContext(), Shared.SR_LAUNCH, Shared.KY_LAUNCH)) {
+            readAmount();
+            setRecent();
             return;
+        }
         SharedManager.setValue(getContext(), Shared.SR_LAUNCH, Shared.KY_LAUNCH, true);
         addDefaultProducts();
     }
@@ -310,9 +311,7 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
         return new DisposableCompletableObserver() {
 
             @Override
-            public void onComplete() {
-                readAmount();
-            }
+            public void onComplete() {}
 
             @Override
             public void onError(Throwable e) {
@@ -352,7 +351,7 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
         Single<Integer> single = db.getRecipeDAO().getRowCount();
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getAmountObserver(tvRecipe, R.string.nv_recipe));
+                .subscribe(getAmountObserver(tvRecipe));
     }
 
     private void readProductAmount() {
@@ -360,10 +359,10 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
         Single<Integer> single = db.getProductDAO().getRowCount();
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getAmountObserver(tvProduct, R.string.nv_product));
+                .subscribe(getAmountObserver(tvProduct));
     }
 
-    private DisposableSingleObserver<Integer> getAmountObserver(TextView tv, int id) {
+    private DisposableSingleObserver<Integer> getAmountObserver(TextView tv) {
         return new DisposableSingleObserver<Integer>() {
 
             @Override
