@@ -43,7 +43,9 @@ public class ProductSettingsFragment extends PrimaryFragment {
         showDialog(R.string.hd_pd_settings, R.string.tt_pd_settings);
     }
 
-    public ProductSettingsFragment() {}
+    public static ProductSettingsFragment getInstance() {
+        return new ProductSettingsFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {

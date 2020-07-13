@@ -28,7 +28,7 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
 
     @OnClick(R.id.bt_add)
     void clickBtAdd() {
-        setFragment(new StepManageFragment());
+        setFragment(StepManageFragment.getInstance(Globals.DF_DECREMENT));
     }
 
     @OnClick(R.id.iv_tt_add)
@@ -41,7 +41,9 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
         showDialog(R.string.hd_st_mg_current, R.string.tt_st_mg_current);
     }
 
-    public RecipeManageStepFragment() {}
+    public static RecipeManageStepFragment getInstance() {
+        return new RecipeManageStepFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -75,7 +77,7 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
 
     @Override
     public void editStep(int position) {
-        setFragment(new StepManageFragment(), position, Globals.BN_INT);
+        setFragment(StepManageFragment.getInstance(position));
     }
 
     @Override

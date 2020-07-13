@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.ShoppingAddAdapter;
+import com.fatiner.platehandler.fragments.recipe.manage.RecipeManageIngredientFragment;
 import com.fatiner.platehandler.items.ShoppingItem;
 import com.fatiner.platehandler.items.ShoppingList;
 import com.fatiner.platehandler.details.ShoppingListDetails;
@@ -40,7 +41,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements
 
     @OnClick(R.id.bt_select)
     void clickBtSelect() {
-        setFragment(new RecipeChooseFragment(), true, Globals.BN_BOOL);
+        setFragment(RecipeChooseFragment.getInstance(true));
     }
 
     @OnClick(R.id.fab_finished)
@@ -59,7 +60,9 @@ public class ShoppingCreateFragment extends PrimaryFragment implements
         showDialog(R.string.hd_sp_mg_data, R.string.tt_sp_mg_data);
     }
 
-    public ShoppingCreateFragment() {}
+    public static ShoppingCreateFragment getInstance() {
+        return new ShoppingCreateFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {

@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.ShoppingAdapter;
-import com.fatiner.platehandler.items.ShoppingItem;
-import com.fatiner.platehandler.items.ShoppingList;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
+import com.fatiner.platehandler.items.ShoppingItem;
+import com.fatiner.platehandler.items.ShoppingList;
 import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
 
@@ -43,7 +43,7 @@ public class ShoppingShowFragment extends PrimaryFragment implements
     @OnClick(R.id.bt_create)
     void clickBtCreate() {
         resetShoppingListDetails();
-        setFragment(new ShoppingCreateFragment());
+        setFragment(ShoppingCreateFragment.getInstance());
     }
 
     @OnClick(R.id.rv_shopping)
@@ -71,7 +71,9 @@ public class ShoppingShowFragment extends PrimaryFragment implements
         showDialog(R.string.hd_sp_sh_list, R.string.tt_sp_sh_list);
     }
 
-    public ShoppingShowFragment() {}
+    public static ShoppingShowFragment getInstance() {
+        return new ShoppingShowFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {

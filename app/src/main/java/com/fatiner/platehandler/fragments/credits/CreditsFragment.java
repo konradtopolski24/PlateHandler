@@ -15,12 +15,12 @@ import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.FontAdapter;
 import com.fatiner.platehandler.adapters.recyclerview.LibraryAdapter;
 import com.fatiner.platehandler.adapters.recyclerview.PackAdapter;
+import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
+import com.fatiner.platehandler.globals.Credits;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.items.Font;
 import com.fatiner.platehandler.items.Library;
 import com.fatiner.platehandler.items.Pack;
-import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
-import com.fatiner.platehandler.globals.Credits;
 
 import java.util.ArrayList;
 
@@ -82,7 +82,9 @@ public class CreditsFragment extends PrimaryFragment {
         showDialog(R.string.hd_cd_font, R.string.tt_cd_font);
     }
 
-    public CreditsFragment() {}
+    public static CreditsFragment getInstance() {
+        return new CreditsFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {

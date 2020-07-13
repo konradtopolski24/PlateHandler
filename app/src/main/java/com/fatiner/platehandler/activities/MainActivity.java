@@ -111,19 +111,19 @@ public class MainActivity extends AppCompatActivity {
     private Fragment getFragment(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.it_home:
-                return new HomeFragment();
+                return HomeFragment.getInstance();
             case R.id.it_recipe:
-                return new RecipeChooseFragment();
+                return RecipeChooseFragment.getInstance(false);
             case R.id.it_product:
-                return new ProductChooseFragment();
+                return ProductChooseFragment.getInstance();
             case R.id.it_shopping:
-                return new ShoppingShowFragment();
+                return ShoppingShowFragment.getInstance();
             case R.id.it_export:
-                return new ExportFragment();
+                return ExportFragment.getInstance();
             case R.id.it_import:
-                return new ImportFragment();
+                return ImportFragment.getInstance();
             case R.id.it_credits:
-                return new CreditsFragment();
+                return CreditsFragment.getInstance();
             default:
                 return null;
         }

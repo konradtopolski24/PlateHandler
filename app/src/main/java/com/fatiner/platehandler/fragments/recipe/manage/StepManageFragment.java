@@ -1,19 +1,18 @@
 package com.fatiner.platehandler.fragments.recipe.manage;
 
 import android.os.Bundle;
-
-import com.fatiner.platehandler.details.RecipeDetails;
-import com.fatiner.platehandler.globals.Format;
-import com.google.android.material.textfield.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.models.Step;
+import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
+import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
+import com.fatiner.platehandler.models.Step;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 import java.util.Locale;
@@ -43,7 +42,13 @@ public class StepManageFragment extends PrimaryFragment {
         showDialog(R.string.hd_st_mg_data, R.string.tt_st_mg_data);
     }
 
-    public StepManageFragment() {}
+    public static StepManageFragment getInstance(int position) {
+        StepManageFragment fragment = new StepManageFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(Globals.BN_INT, position);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -63,7 +68,8 @@ public class StepManageFragment extends PrimaryFragment {
     }
 
     private boolean isPosition() {
-        return isValueInBundle(Globals.BN_INT);
+        int position = getBundle().getInt(Globals.BN_INT);
+        return position != Globals.DF_DECREMENT;
     }
 
     private void initAction() {

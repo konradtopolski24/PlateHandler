@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.FileAdapter;
-import com.fatiner.platehandler.items.ImportFile;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
+import com.fatiner.platehandler.items.ImportFile;
 import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.models.Ingredient;
@@ -53,7 +53,9 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         showDialog(R.string.hd_im_file, R.string.tt_im_file);
     }
 
-    public ImportFragment() {}
+    public static ImportFragment getInstance() {
+        return new ImportFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {

@@ -41,10 +41,12 @@ public class ProductChooseFragment extends PrimaryFragment
     @OnClick(R.id.fab_add)
     void clickFabAdd() {
         resetProductDetails();
-        setFragment(new ProductManageFragment());
+        setFragment(ProductManageFragment.getInstance(false, Globals.DF_DECREMENT));
     }
 
-    public ProductChooseFragment() {}
+    public static ProductChooseFragment getInstance() {
+        return new ProductChooseFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -74,7 +76,7 @@ public class ProductChooseFragment extends PrimaryFragment
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.it_settings) {
-            setFragment(new ProductSettingsFragment());
+            setFragment(ProductSettingsFragment.getInstance());
             return true;
         }
         return super.onOptionsItemSelected(menuItem);
@@ -107,6 +109,6 @@ public class ProductChooseFragment extends PrimaryFragment
     @Override
     public void clickProduct(int id) {
         resetProductDetails();
-        setFragment(new ProductShowFragment(), id, Globals.BN_INT);
+        setFragment(ProductShowFragment.getInstance(id));
     }
 }

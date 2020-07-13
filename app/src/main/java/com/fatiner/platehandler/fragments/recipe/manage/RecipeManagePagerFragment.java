@@ -40,7 +40,13 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
         chooseFinished();
     }
 
-    public RecipeManagePagerFragment() {}
+    public static RecipeManagePagerFragment getInstance(boolean isEditing) {
+        RecipeManagePagerFragment fragment = new RecipeManagePagerFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(Globals.BN_BOOL, isEditing);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -61,7 +67,7 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
     }
 
     private boolean isEditing() {
-        return isValueInBundle(Globals.BN_BOOL);
+        return getBundle().getBoolean(Globals.BN_BOOL);
     }
 
     private void setViews() {

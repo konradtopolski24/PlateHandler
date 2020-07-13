@@ -27,11 +27,11 @@ public class RecipePagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case Globals.PG_RECIPE:
-                return new RecipeManageInfoFragment();
+                return RecipeManageInfoFragment.getInstance();
             case Globals.PG_INGREDIENT:
-                return new RecipeManageIngredientFragment();
+                return RecipeManageIngredientFragment.getInstance();
             case Globals.PG_STEP:
-                return new RecipeManageStepFragment();
+                return RecipeManageStepFragment.getInstance();
             default:
                 return new Fragment();
         }

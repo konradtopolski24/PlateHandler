@@ -89,7 +89,7 @@ public class PrimaryFragment extends Fragment {
     }
 
     protected PlateHandlerDatabase getDb(Context context) {
-        return Room.databaseBuilder(context, PlateHandlerDatabase.class, Db.DB_NAME).build();
+        return PlateHandlerDatabase.getInstance(context);
     }
 
     protected void setIv(ImageView iv, int value, int arrayId) {
@@ -161,20 +161,6 @@ public class PrimaryFragment extends Fragment {
 
     protected void setFragment(Fragment fragment) {
         getMainActivity().setFragment(fragment, true);
-    }
-
-    protected void setFragment(Fragment fragment, boolean bool, String id) {
-        Bundle bundle = new Bundle();
-        bundle.putBoolean(id, bool);
-        fragment.setArguments(bundle);
-        setFragment(fragment);
-    }
-
-    protected void setFragment(Fragment fragment, int integer, String id) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(id, integer);
-        fragment.setArguments(bundle);
-        setFragment(fragment);
     }
 
     protected void setEt(EditText et, String text) {
@@ -350,7 +336,7 @@ public class PrimaryFragment extends Fragment {
         popFragment();
     }
 
-    private Bundle getBundle() {
+    protected Bundle getBundle() {
         return this.getArguments();
     }
 

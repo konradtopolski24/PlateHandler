@@ -116,7 +116,13 @@ public class RecipeShowFragment extends PrimaryFragment implements
         showDialog(R.string.hd_rp_sh_step, R.string.tt_rp_sh_step);
     }
 
-    public RecipeShowFragment() {}
+    public static RecipeShowFragment getInstance(int id) {
+        RecipeShowFragment fragment = new RecipeShowFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(Globals.BN_INT, id);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -132,15 +138,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
 
     private void initAction() {
         resetRecipeDetails();
-        checkId();
-    }
-
-    private void checkId() {
-        if (isId()) readRecipe();
-    }
-
-    private boolean isId() {
-        return isValueInBundle(Globals.BN_INT);
+        readRecipe();
     }
 
     private void setProductsInIngredients(List<Product> products) {
@@ -360,10 +358,10 @@ public class RecipeShowFragment extends PrimaryFragment implements
                 shareRecipe();
                 return true;
             case R.id.it_calculate:
-                setFragment(new RecipeCalculateFragment());
+                setFragment(RecipeCalculateFragment.getInstance());
                 return true;
             case R.id.it_edit:
-                setFragment(new RecipeManagePagerFragment(), true, Globals.BN_BOOL);
+                setFragment(RecipeManagePagerFragment.getInstance(true));
                 return true;
             case R.id.it_remove:
                 showDialog(R.string.dg_rp_remove, getDialogListener());

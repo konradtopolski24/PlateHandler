@@ -16,14 +16,13 @@ import androidx.sqlite.db.SimpleSQLiteQuery;
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.RecipeAdapter;
-import com.fatiner.platehandler.items.ShoppingItem;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.manage.RecipeManagePagerFragment;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
-import com.fatiner.platehandler.items.ShoppingList;
+import com.fatiner.platehandler.items.ShoppingItem;
 import com.fatiner.platehandler.managers.QueryManager;
 import com.fatiner.platehandler.models.IngredientComplete;
 import com.fatiner.platehandler.models.Recipe;
@@ -47,10 +46,16 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
     @OnClick(R.id.fab_add)
     void clickFabAdd() {
         resetRecipeDetails();
-        setFragment(new RecipeManagePagerFragment());
+        setFragment(RecipeManagePagerFragment.getInstance(false));
     }
 
-    public RecipeChooseFragment() {}
+    public static RecipeChooseFragment getInstance(boolean isShopping) {
+        RecipeChooseFragment fragment = new RecipeChooseFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(Globals.BN_BOOL, isShopping);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -90,12 +95,7 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
     }
 
     private boolean isShopping() {
-        return isValueInBundle(Globals.BN_BOOL);
-    }
-
-    private void chooseSetFragment() {
-        if (isShopping()) setFragment(new RecipeSettingsFragment(), true, Globals.BN_BOOL);
-        else setFragment(new RecipeSettingsFragment());
+        return getBundle().getBoolean(Globals.BN_BOOL);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.it_settings) {
-            chooseSetFragment();
+            setFragment(RecipeSettingsFragment.getInstance(isShopping()));
             return true;
         }
         return super.onOptionsItemSelected(menuItem);
@@ -184,7 +184,7 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
         if (isShopping()) readIngredients(id);
         else {
             resetRecipeDetails();
-            setFragment(new RecipeShowFragment(), id, Globals.BN_INT);
+            setFragment(RecipeShowFragment.getInstance(id));
         }
     }
 }

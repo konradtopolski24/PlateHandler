@@ -17,7 +17,6 @@ import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.RecipeShowFragment;
 import com.fatiner.platehandler.globals.Defaults;
 import com.fatiner.platehandler.globals.Format;
-import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
 import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
@@ -69,7 +68,9 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
         showDialog(R.string.hd_hm_recent, R.string.tt_hm_recent);
     }
 
-    public HomeFragment() {}
+    public static HomeFragment getInstance() {
+        return new HomeFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -380,6 +381,6 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
     @Override
     public void clickRecipe(int id) {
         resetRecipeDetails();
-        setFragment(new RecipeShowFragment(), id, Globals.BN_INT);
+        setFragment(RecipeShowFragment.getInstance(id));
     }
 }

@@ -73,7 +73,9 @@ public class ExportFragment extends PrimaryFragment {
         showDialog(R.string.hd_ex_guideline, R.string.tt_ex_guideline);
     }
 
-    public ExportFragment() {}
+    public static ExportFragment getInstance() {
+        return new ExportFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {

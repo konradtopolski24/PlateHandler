@@ -123,7 +123,14 @@ public class ProductManageFragment extends PrimaryFragment {
         showDialog(R.string.hd_pd_mg_composition, R.string.tt_pd_mg_composition);
     }
 
-    public ProductManageFragment() {}
+    public static ProductManageFragment getInstance(boolean isEditing, int position) {
+        ProductManageFragment fragment = new ProductManageFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(Globals.BN_BOOL, isEditing);
+        bundle.putInt(Globals.BN_INT, position);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -231,11 +238,12 @@ public class ProductManageFragment extends PrimaryFragment {
     }
 
     private boolean isEditing() {
-        return isValueInBundle(Globals.BN_BOOL);
+        return getBundle().getBoolean(Globals.BN_BOOL);
     }
 
     private boolean isPosition() {
-        return isValueInBundle(Globals.BN_INT);
+        int position = getBundle().getInt(Globals.BN_INT);
+        return position != Globals.DF_DECREMENT;
     }
 
     private void manageHints() {

@@ -140,7 +140,9 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
         showDialog(R.string.hd_rp_mg_data, R.string.tt_rp_mg_data);
     }
 
-    public RecipeManageInfoFragment() {}
+    public static RecipeManageInfoFragment getInstance() {
+        return new RecipeManageInfoFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {

@@ -104,7 +104,13 @@ public class ProductShowFragment extends PrimaryFragment {
         showDialog(R.string.hd_pd_sh_kj, R.string.tt_pd_sh_kj);
     }
 
-    public ProductShowFragment() {}
+    public static ProductShowFragment getInstance(int id) {
+        ProductShowFragment fragment = new ProductShowFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(Globals.BN_INT, id);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -120,11 +126,7 @@ public class ProductShowFragment extends PrimaryFragment {
 
     private void initAction() {
         resetProductDetails();
-        checkId();
-    }
-
-    private void checkId() {
-        if (isId()) readProduct();
+        readProduct();
     }
 
     private void setProductDetails(Product product) {
@@ -176,10 +178,6 @@ public class ProductShowFragment extends PrimaryFragment {
         return getString(id).equals(arrayType[getProduct().getType()]);
     }
 
-    private boolean isId() {
-        return isValueInBundle(Globals.BN_INT);
-    }
-
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.pd_show, menu);
@@ -190,7 +188,7 @@ public class ProductShowFragment extends PrimaryFragment {
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.it_edit:
-                setFragment(new ProductManageFragment(), true, Globals.BN_BOOL);
+                setFragment(ProductManageFragment.getInstance(true, Globals.DF_DECREMENT));
                 return true;
             case R.id.it_remove:
                 showDialog(R.string.dg_pd_remove, getDialogListener());

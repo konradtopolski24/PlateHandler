@@ -51,7 +51,9 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements
         showDialog(R.string.hd_ig_mg_data, R.string.tt_ig_mg_data);
     }
 
-    public RecipeManageIngredientFragment() {}
+    public static RecipeManageIngredientFragment getInstance() {
+        return new RecipeManageIngredientFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -131,7 +133,7 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements
     @Override
     public void clickIb(int position) {
         resetProductDetails();
-        setFragment(new ProductManageFragment(), position, Globals.BN_INT);
+        setFragment(ProductManageFragment.getInstance(false, position));
     }
 
     @Override

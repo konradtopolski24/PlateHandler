@@ -120,7 +120,13 @@ public class RecipeSettingsFragment extends PrimaryFragment {
         showDialog(R.string.hd_rp_settings, R.string.tt_rp_settings);
     }
 
-    public RecipeSettingsFragment() {}
+    public static RecipeSettingsFragment getInstance(boolean isShopping) {
+        RecipeSettingsFragment fragment = new RecipeSettingsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(Globals.BN_BOOL, isShopping);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -137,7 +143,7 @@ public class RecipeSettingsFragment extends PrimaryFragment {
     }
 
     private boolean isShopping() {
-        return isValueInBundle(Globals.BN_BOOL);
+        return getBundle().getBoolean(Globals.BN_BOOL);
     }
 
     private void setViews(List<String> authors) {
