@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.ProductDetails;
@@ -26,6 +29,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import butterknife.OnTextChanged;
@@ -136,9 +140,15 @@ public class ProductManageFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_product_manage, container,
                 false);
-        init(this, view, getMenuId(), getToolbar(), false);
-        initAction();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(getMenuId(), getToolbar(), false);
+        initAction();
     }
 
     private Product getProduct() {

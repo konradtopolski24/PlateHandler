@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import com.fatiner.platehandler.PlateHandlerDatabase;
@@ -23,6 +25,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -52,9 +55,15 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_recipe_manage_pager, container,
                 false);
-        init(this, view, R.id.it_recipe, getToolbar(), false);
-        setViews();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(R.id.it_recipe, getToolbar(), false);
+        setViews();
     }
 
     private Recipe getRecipe() {

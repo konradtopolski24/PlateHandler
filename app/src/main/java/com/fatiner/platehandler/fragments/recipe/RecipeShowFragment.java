@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,6 +42,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.BindViews;
+import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import io.reactivex.Completable;
@@ -127,9 +129,15 @@ public class RecipeShowFragment extends PrimaryFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_recipe_show, container, false);
-        init(this, view, R.id.it_recipe, R.string.tb_rp_show, true);
-        initAction();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(R.id.it_recipe, R.string.tb_rp_show, true);
+        initAction();
     }
 
     private Recipe getRecipe() {

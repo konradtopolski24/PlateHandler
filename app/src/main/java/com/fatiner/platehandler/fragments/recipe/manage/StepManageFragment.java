@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
@@ -18,6 +21,7 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
@@ -53,9 +57,15 @@ public class StepManageFragment extends PrimaryFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_step_manage, container, false);
-        init(this, view, R.id.it_recipe, getToolbar(), false);
-        initAction();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(R.id.it_recipe, getToolbar(), false);
+        initAction();
     }
 
     private List<Step> getSteps() {

@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
@@ -50,8 +52,13 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
         View view = inflater.inflate(R.layout.fragment_recipe_manage_step, container,
                 false);
         ButterKnife.bind(this, view);
-        setViews();
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setViews();
     }
 
     private List<Step> getSteps() {

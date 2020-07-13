@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
@@ -18,6 +21,7 @@ import com.fatiner.platehandler.managers.TypeManager;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
@@ -132,9 +136,15 @@ public class RecipeSettingsFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_recipe_settings, container,
                 false);
-        init(this, view, getMenuId(), R.string.tb_rp_settings, false);
-        readAuthors();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(getMenuId(), R.string.tb_rp_settings, false);
+        readAuthors();
     }
 
     private int getMenuId() {

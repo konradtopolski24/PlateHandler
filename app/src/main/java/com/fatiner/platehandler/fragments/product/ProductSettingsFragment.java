@@ -7,12 +7,16 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Shared;
 import com.fatiner.platehandler.managers.SharedManager;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
@@ -51,9 +55,15 @@ public class ProductSettingsFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_product_settings, container,
                 false);
-        init(this, view, R.id.it_product, R.string.tb_pd_settings, false);
-        initAction();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(R.id.it_product, R.string.tb_pd_settings, false);
+        initAction();
     }
 
     private void initAction() {

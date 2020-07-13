@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
@@ -60,8 +62,13 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements
         View view = inflater.inflate(R.layout.fragment_recipe_manage_ingredient, container,
                 false);
         ButterKnife.bind(this, view);
-        readProducts();
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        readProducts();
     }
 
     private List<Ingredient> getIngredients() {

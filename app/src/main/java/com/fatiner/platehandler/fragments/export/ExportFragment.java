@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.fatiner.platehandler.PlateHandlerDatabase;
@@ -33,6 +35,7 @@ import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import io.reactivex.Single;
@@ -80,9 +83,15 @@ public class ExportFragment extends PrimaryFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_export, container, false);
-        init(this, view, R.id.it_export, R.string.tb_ex_database, false);
-        setViews();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(R.id.it_export, R.string.tb_ex_database, false);
+        setViews();
     }
 
     private void setViews() {

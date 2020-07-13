@@ -72,8 +72,7 @@ public class PrimaryFragment extends Fragment {
         return (MainActivity) getActivity();
     }
 
-    protected void init(Object target, View view, int menuId, int toolbarId, boolean hasMenu) {
-        ButterKnife.bind(target, view);
+    protected void init(int menuId, int toolbarId, boolean hasMenu) {
         setMenuItem(menuId);
         setTb(toolbarId);
         setHasOptionsMenu(hasMenu);

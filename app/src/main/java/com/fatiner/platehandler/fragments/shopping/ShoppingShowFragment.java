@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ShoppingShowFragment extends PrimaryFragment implements
@@ -79,9 +82,15 @@ public class ShoppingShowFragment extends PrimaryFragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_shopping_show, container,
                 false);
-        init(this, view, R.id.it_shopping, R.string.tb_sp_show, false);
-        initAction();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(R.id.it_shopping, R.string.tb_sp_show, false);
+        initAction();
     }
 
     private ShoppingList getShoppingList() {

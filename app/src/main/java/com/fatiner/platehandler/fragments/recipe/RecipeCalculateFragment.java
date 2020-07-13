@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,7 @@ import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Recipe;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RecipeCalculateFragment extends PrimaryFragment {
@@ -75,9 +78,15 @@ public class RecipeCalculateFragment extends PrimaryFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_recipe_calculate, container,
                 false);
-        init(this, view, R.id.it_recipe, R.string.tb_rp_calculate, true);
-        setViews();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(R.id.it_recipe, R.string.tb_rp_calculate, true);
+        setViews();
     }
 
     private Recipe getRecipe() {

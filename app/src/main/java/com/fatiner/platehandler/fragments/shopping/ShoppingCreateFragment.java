@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
@@ -27,6 +29,7 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ShoppingCreateFragment extends PrimaryFragment implements
@@ -68,9 +71,15 @@ public class ShoppingCreateFragment extends PrimaryFragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_shopping_create, container,
                 false);
-        init(this, view, R.id.it_shopping, R.string.tb_sp_add, false);
-        initAction();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(R.id.it_shopping, R.string.tb_sp_add, false);
+        initAction();
     }
 
     private ShoppingList getShoppingList() {

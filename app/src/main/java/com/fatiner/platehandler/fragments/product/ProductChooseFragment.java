@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
@@ -26,6 +27,7 @@ import com.fatiner.platehandler.models.Product;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -52,9 +54,15 @@ public class ProductChooseFragment extends PrimaryFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_product_choose, container,
                 false);
-        init(this, view, R.id.it_product, R.string.tb_pd_choose, true);
-        readProducts();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(R.id.it_product, R.string.tb_pd_choose, true);
+        readProducts();
     }
 
     private SimpleSQLiteQuery getProductsQuery() {

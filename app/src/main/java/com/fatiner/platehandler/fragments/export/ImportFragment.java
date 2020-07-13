@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.PlateHandlerDatabase;
@@ -37,6 +39,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -60,9 +63,15 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View view = inflater.inflate(R.layout.fragment_import, container, false);
-        init(this, view, R.id.it_import, R.string.tb_im_database, false);
-        setViews();
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(R.id.it_import, R.string.tb_im_database, false);
+        setViews();
     }
 
     private void setViews() {

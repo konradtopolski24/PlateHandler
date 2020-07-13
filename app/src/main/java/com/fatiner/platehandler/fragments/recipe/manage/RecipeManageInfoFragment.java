@@ -14,6 +14,9 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
@@ -149,8 +152,13 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
         View view = inflater.inflate(R.layout.fragment_recipe_manage_info, container,
                 false);
         ButterKnife.bind(this, view);
-        initAction();
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initAction();
     }
 
     private Recipe getRecipe() {
