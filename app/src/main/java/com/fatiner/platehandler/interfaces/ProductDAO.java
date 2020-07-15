@@ -44,4 +44,7 @@ public interface ProductDAO {
 
     @Query("SELECT * FROM " + Db.TB_PRODUCT)
     Single<List<Product>> getAllProducts();
+
+    @Query("DELETE FROM " + Db.TB_PRODUCT)
+    void deleteAllProducts();
 }

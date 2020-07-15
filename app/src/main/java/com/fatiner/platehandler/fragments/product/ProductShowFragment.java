@@ -14,14 +14,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Chart;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.models.Product;
+import com.fatiner.platehandler.viewmodels.product.ProductShowViewModel;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -41,14 +42,17 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Completable;
-import io.reactivex.Single;
+import io.reactivex.CompletableObserver;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableCompletableObserver;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class ProductShowFragment extends PrimaryFragment {
+
+    private ProductShowViewModel viewModel;
+    private CompositeDisposable disposables;
 
     @BindView(R.id.cv_composition) CardView cvComposition;
     @BindView(R.id.cv_kcal) CardView cvKcal;
@@ -124,8 +128,14 @@ public class ProductShowFragment extends PrimaryFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_product, R.string.tb_pd_show, true);
+        initOptions(R.id.it_product, R.string.tb_pd_show, true);
+        initViewModelEssentials();
         initAction();
+    }
+
+    private void initViewModelEssentials() {
+        viewModel = new ViewModelProvider(this).get(ProductShowViewModel.class);
+        disposables = new CompositeDisposable();
     }
 
     private Product getProduct() {
@@ -134,7 +144,7 @@ public class ProductShowFragment extends PrimaryFragment {
 
     private void initAction() {
         resetProductDetails();
-        readProduct();
+        observeGetProduct();
     }
 
     private void setProductDetails(Product product) {
@@ -209,7 +219,7 @@ public class ProductShowFragment extends PrimaryFragment {
         return (DialogInterface dialog, int which) -> {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
-                    readIngredientAmount();
+                    observeGetRowCount();
                     break;
                 case DialogInterface.BUTTON_NEGATIVE:
                     break;
@@ -385,17 +395,34 @@ public class ProductShowFragment extends PrimaryFragment {
         removeView(pcComposition);
     }
 
-    private void readProduct() {
-        PlateHandlerDatabase db = getDb(getContext());
-        int id = getIntFromBundle();
-        Single<Product> single = db.getProductDAO().getProduct(id);
-        single.subscribeOn(Schedulers.io())
+    private void observeGetProduct() {
+        viewModel.getProduct(getIntFromBundle())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getReadObserver());
     }
 
-    private DisposableSingleObserver<Product> getReadObserver() {
-        return new DisposableSingleObserver<Product>() {
+    private void observeDeleteProduct() {
+        viewModel.deleteProduct(getProduct())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getRemoveObserver());
+    }
+
+    private void observeGetRowCount() {
+        viewModel.getRowCount(getProduct().getId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getAmountObserver());
+    }
+
+    private SingleObserver<Product> getReadObserver() {
+        return new SingleObserver<Product>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(Product product) {
@@ -410,21 +437,13 @@ public class ProductShowFragment extends PrimaryFragment {
         };
     }
 
-    private void removeProduct() {
-        getRemoveCompletable().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getRemoveObserver());
-    }
+    private CompletableObserver getRemoveObserver() {
+        return new CompletableObserver() {
 
-    private Completable getRemoveCompletable() {
-        return Completable.fromAction(() -> {
-            PlateHandlerDatabase db = getDb(getContext());
-            db.getProductDAO().deleteProduct(getProduct());
-        });
-    }
-
-    private DisposableCompletableObserver getRemoveObserver() {
-        return new DisposableCompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onComplete() {
@@ -439,20 +458,17 @@ public class ProductShowFragment extends PrimaryFragment {
         };
     }
 
-    private void readIngredientAmount() {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<Integer> single = db.getIngredientDAO().getRowCount(getProduct().getId());
-        single.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getAmountObserver());
-    }
+    private SingleObserver<Integer> getAmountObserver() {
+        return new SingleObserver<Integer>() {
 
-    private DisposableSingleObserver<Integer> getAmountObserver() {
-        return new DisposableSingleObserver<Integer>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(Integer amount) {
-                if (amount == Globals.DF_ZERO) removeProduct();
+                if (amount == Globals.DF_ZERO) observeDeleteProduct();
                 else showShortToast(R.string.ts_used);
             }
 
@@ -461,5 +477,11 @@ public class ProductShowFragment extends PrimaryFragment {
                 showShortToast(R.string.ts_database);
             }
         };
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposables.clear();
     }
 }

@@ -10,37 +10,37 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.RecipeAdapter;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.RecipeShowFragment;
-import com.fatiner.platehandler.globals.Defaults;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Shared;
 import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
-import com.fatiner.platehandler.models.Product;
 import com.fatiner.platehandler.models.Recipe;
+import com.fatiner.platehandler.viewmodels.home.HomeViewModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Completable;
-import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableCompletableObserver;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class HomeFragment extends PrimaryFragment implements RecipeAdapter.RecipeListener {
+
+    private HomeViewModel viewModel;
+    private CompositeDisposable disposables;
 
     @BindView(R.id.cv_statistics) CardView cvStatistics;
     @BindView(R.id.cv_recent) CardView cvRecent;
@@ -85,8 +85,14 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_home, R.string.tb_hm_welcome, false);
+        initOptions(R.id.it_home, R.string.tb_hm_welcome, false);
+        initViewModelEssentials();
         initAction();
+    }
+
+    private void initViewModelEssentials() {
+        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        disposables = new CompositeDisposable();
     }
 
     private void initAction() {
@@ -96,14 +102,14 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
 
     private void setRecent() {
         if (SharedManager.isValueAvailable(getContext(), Shared.SR_HOME, Shared.KY_RECENT))
-            readRecent();
+            observeGetRecipes();
     }
 
     private RecipeAdapter getRecipeAdapter(List<Recipe> recipes) {
         return new RecipeAdapter(getContext(), recipes, this);
     }
 
-    private List<Integer> getRecent() {
+    private List<Integer> getRecentIds() {
         return TypeManager.jsonToRecent(SharedManager.getString(
                 getContext(), Shared.SR_HOME, Shared.KY_RECENT));
     }
@@ -114,27 +120,39 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
 
     private List<Recipe> getSortedRecent(List<Recipe> recipes) {
         List<Recipe> sortedRecipes = new ArrayList<>();
-        for (Integer recent : getRecent()) {
+        for (Integer recent : getRecentIds()) {
             for (Recipe recipe : recipes) if (recent == recipe.getId()) sortedRecipes.add(recipe);
         }
         return sortedRecipes;
     }
 
     private void readAmount() {
-        readRecipeAmount();
-        readProductAmount();
+        observeGetRowCount(tvRecipe, true);
+        observeGetRowCount(tvProduct, false);
     }
 
-    private void readRecent() {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<List<Recipe>> single = db.getRecipeDAO().getRecipes(getRecent());
-        single.subscribeOn(Schedulers.io())
+
+    private void observeGetRecipes() {
+        viewModel.getRecipes(getRecentIds())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getRecentObserver());
     }
 
-    private DisposableSingleObserver<List<Recipe>> getRecentObserver() {
-        return new DisposableSingleObserver<List<Recipe>>() {
+    private void observeGetRowCount(TextView tv, boolean isRecipe) {
+        viewModel.getRowCount(isRecipe)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getAmountObserver(tv));
+    }
+
+    private SingleObserver<List<Recipe>> getRecentObserver() {
+        return new SingleObserver<List<Recipe>>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(List<Recipe> recipes) {
@@ -151,24 +169,13 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
         };
     }
 
-    private void readRecipeAmount() {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<Integer> single = db.getRecipeDAO().getRowCount();
-        single.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getAmountObserver(tvRecipe));
-    }
+    private SingleObserver<Integer> getAmountObserver(TextView tv) {
+        return new SingleObserver<Integer>() {
 
-    private void readProductAmount() {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<Integer> single = db.getProductDAO().getRowCount();
-        single.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getAmountObserver(tvProduct));
-    }
-
-    private DisposableSingleObserver<Integer> getAmountObserver(TextView tv) {
-        return new DisposableSingleObserver<Integer>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(Integer amount) {
@@ -186,5 +193,11 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
     public void clickRecipe(int id) {
         resetRecipeDetails();
         setFragment(RecipeShowFragment.getInstance(id));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposables.clear();
     }
 }

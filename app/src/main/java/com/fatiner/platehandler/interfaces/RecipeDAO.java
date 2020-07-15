@@ -21,7 +21,7 @@ import io.reactivex.Single;
 public interface RecipeDAO {
 
     @Insert
-    Long addRecipe(Recipe recipe);
+    Single<Long> addRecipe(Recipe recipe);
 
     @Insert
     void addRecipes(List<Recipe> recipes);
@@ -55,4 +55,7 @@ public interface RecipeDAO {
 
     @Query("SELECT * FROM " + Db.TB_RECIPE)
     Single<List<Recipe>> getAllRecipes();
+
+    @Query("DELETE FROM " + Db.TB_RECIPE)
+    void deleteAllRecipes();
 }

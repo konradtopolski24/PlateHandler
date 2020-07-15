@@ -44,7 +44,7 @@ public class Credits {
     //RxAndroid
     public static final String LB_RA_NAME = "RxAndroid";
     public static final String LB_RA_AUTHOR = "ReactiveX";
-    public static final String LB_RA_VERSION = "2.0.1";
+    public static final String LB_RA_VERSION = "2.1.1";
     public static final String LB_RA_LICENSE = "Apache License 2.0";
 
     //International Flags Icon Pack

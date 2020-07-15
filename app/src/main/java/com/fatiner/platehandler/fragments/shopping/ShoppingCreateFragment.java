@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.ShoppingAddAdapter;
-import com.fatiner.platehandler.fragments.recipe.manage.RecipeManageIngredientFragment;
 import com.fatiner.platehandler.items.ShoppingItem;
 import com.fatiner.platehandler.items.ShoppingList;
 import com.fatiner.platehandler.details.ShoppingListDetails;
@@ -78,7 +77,7 @@ public class ShoppingCreateFragment extends PrimaryFragment implements
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_shopping, R.string.tb_sp_add, false);
+        initOptions(R.id.it_shopping, R.string.tb_sp_add, false);
         initAction();
     }
 

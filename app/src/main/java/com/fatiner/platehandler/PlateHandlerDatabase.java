@@ -24,7 +24,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-@Database(entities = {Product.class, Recipe.class, Step.class, Ingredient.class}, version = Db.DB_CURRENT)
+@Database(entities = {Product.class, Recipe.class, Step.class, Ingredient.class}, version = Db.DB_CURRENT, exportSchema = false)
 public abstract class PlateHandlerDatabase extends RoomDatabase {
 
     private static PlateHandlerDatabase instance;
@@ -72,9 +72,7 @@ public abstract class PlateHandlerDatabase extends RoomDatabase {
         return new DisposableCompletableObserver() {
 
             @Override
-            public void onComplete() {
-
-            }
+            public void onComplete() {}
 
             @Override
             public void onError(Throwable e) {

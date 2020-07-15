@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.pager.RecipePagerAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
@@ -20,6 +20,7 @@ import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Recipe;
 import com.fatiner.platehandler.models.Step;
+import com.fatiner.platehandler.viewmodels.recipe.RecipeManagePagerViewModel;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
@@ -27,12 +28,17 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableCompletableObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class RecipeManagePagerFragment extends PrimaryFragment {
+
+    private RecipeManagePagerViewModel viewModel;
+    private CompositeDisposable disposables;
 
     @BindView(R.id.vp_recipe) ViewPager vpRecipe;
     @BindView(R.id.tl_recipe) TabLayout tlRecipe;
@@ -53,8 +59,7 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_recipe_manage_pager, container,
-                false);
+        View view = inflater.inflate(R.layout.fragment_recipe_manage_pager, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -62,8 +67,14 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_recipe, getToolbar(), false);
+        initOptions(R.id.it_recipe, getToolbar(), false);
+        initViewModelEssentials();
         setViews();
+    }
+
+    private void initViewModelEssentials() {
+        viewModel = new ViewModelProvider(this).get(RecipeManagePagerViewModel.class);
+        disposables = new CompositeDisposable();
     }
 
     private Recipe getRecipe() {
@@ -94,8 +105,13 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
     }
 
     private void chooseDbAction() {
-        if (isEditing()) updateRecipe();
-        else insertRecipe();
+        if (isEditing()) {
+            int id = getRecipe().getId();
+            manageIngredientsDb(id);
+            manageStepsDb(id);
+            observeUpdateRecipe();
+        }
+        else observeAddRecipe();
     }
 
     private void chooseFinished() {
@@ -164,26 +180,57 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
         };
     }
 
-    private void insertRecipe() {
-        getInsertCompletable().subscribeOn(Schedulers.io())
+    private void observeAddRecipe() {
+        viewModel.addRecipe(getRecipe())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getInsertObserver());
     }
 
-    private Completable getInsertCompletable() {
-        return Completable.fromAction(() -> {
-            PlateHandlerDatabase db = getDb(getContext());
-            long id = db.getRecipeDAO().addRecipe(getRecipe());
-            getRecipe().setId(TypeManager.longToInt(id));
-            manageIngredientsDb(TypeManager.longToInt(id));
-            manageStepsDb(TypeManager.longToInt(id));
-            db.getIngredientDAO().addIngredients(getRecipe().getIngredients());
-            db.getStepDAO().addSteps(getRecipe().getSteps());
-        });
+    private void observeAddRest() {
+        viewModel.addRest(getRecipe())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getRestObserver());
     }
 
-    private DisposableCompletableObserver getInsertObserver() {
-        return new DisposableCompletableObserver() {
+    private void observeUpdateRecipe() {
+        viewModel.updateRecipe(getRecipe())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getUpdateObserver());
+    }
+
+    private SingleObserver<Long> getInsertObserver() {
+        return new SingleObserver<Long>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
+
+            @Override
+            public void onSuccess(Long id) {
+                getRecipe().setId(TypeManager.longToInt(id));
+                manageIngredientsDb(TypeManager.longToInt(id));
+                manageStepsDb(TypeManager.longToInt(id));
+                observeAddRest();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
+    }
+
+    private CompletableObserver getRestObserver() {
+        return new CompletableObserver() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onComplete() {
@@ -199,28 +246,13 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
         };
     }
 
-    private void updateRecipe() {
-        getUpdateCompletable().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getUpdateObserver());
-    }
+    private CompletableObserver getUpdateObserver() {
+        return new CompletableObserver() {
 
-    private Completable getUpdateCompletable() {
-        return Completable.fromAction(() -> {
-            PlateHandlerDatabase db = getDb(getContext());
-            int id = getRecipe().getId();
-            manageIngredientsDb(id);
-            manageStepsDb(id);
-            db.getRecipeDAO().updateRecipe(getRecipe());
-            db.getIngredientDAO().deleteIngredients(id);
-            db.getStepDAO().deleteSteps(id);
-            db.getIngredientDAO().addIngredients(getRecipe().getIngredients());
-            db.getStepDAO().addSteps(getRecipe().getSteps());
-        });
-    }
-
-    private DisposableCompletableObserver getUpdateObserver() {
-        return new DisposableCompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onComplete() {
@@ -234,5 +266,11 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
                 showShortToast(R.string.ts_database);
             }
         };
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposables.clear();
     }
 }

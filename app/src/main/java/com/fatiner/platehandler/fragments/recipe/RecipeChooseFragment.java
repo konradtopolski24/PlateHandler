@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.RecipeAdapter;
 import com.fatiner.platehandler.details.ShoppingListDetails;
@@ -27,6 +27,7 @@ import com.fatiner.platehandler.items.ShoppingItem;
 import com.fatiner.platehandler.managers.QueryManager;
 import com.fatiner.platehandler.models.IngredientComplete;
 import com.fatiner.platehandler.models.Recipe;
+import com.fatiner.platehandler.viewmodels.recipe.RecipeChooseViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -34,12 +35,16 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapter.RecipeListener {
+
+    private RecipeChooseViewModel viewModel;
+    private CompositeDisposable disposables;
 
     @BindView(R.id.rv_recipes) RecyclerView rvRecipes;
     @BindView(R.id.tv_empty) TextView tvEmpty;
@@ -70,12 +75,18 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(getMenuId(), R.string.tb_rp_choose, true);
+        initOptions(getMenuId(), R.string.tb_rp_choose, true);
+        initViewModelEssentials();
         initAction();
     }
 
+    private void initViewModelEssentials() {
+        viewModel = new ViewModelProvider(this).get(RecipeChooseViewModel.class);
+        disposables = new CompositeDisposable();
+    }
+
     private void initAction() {
-        readRecipes();
+        observeGetRecipes();
         hideFab();
     }
 
@@ -139,16 +150,27 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
         } else return false;
     }
 
-    private void readRecipes() {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<List<Recipe>> single = db.getRecipeDAO().getRecipes(getRecipesQuery());
-        single.subscribeOn(Schedulers.io())
+    private void observeGetRecipes() {
+        viewModel.getRecipes(getRecipesQuery())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getRecipeObserver());
     }
 
-    private DisposableSingleObserver<List<Recipe>> getRecipeObserver() {
-        return new DisposableSingleObserver<List<Recipe>>() {
+    private void observeGetCompleteIngredients(int id) {
+        viewModel.getCompleteIngredients(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getIngredientObserver());
+    }
+
+    private SingleObserver<List<Recipe>> getRecipeObserver() {
+        return new SingleObserver<List<Recipe>>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(List<Recipe> recipes) {
@@ -163,16 +185,13 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
         };
     }
 
-    private void readIngredients(int id) {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<List<IngredientComplete>> single = db.getIngredientDAO().getCompleteIngredients(id);
-        single.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getIngredientObserver());
-    }
+    private SingleObserver<List<IngredientComplete>> getIngredientObserver() {
+        return new SingleObserver<List<IngredientComplete>>() {
 
-    private DisposableSingleObserver<List<IngredientComplete>> getIngredientObserver() {
-        return new DisposableSingleObserver<List<IngredientComplete>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(List<IngredientComplete> ingredients) {
@@ -189,10 +208,16 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
 
     @Override
     public void clickRecipe(int id) {
-        if (isShopping()) readIngredients(id);
+        if (isShopping()) observeGetCompleteIngredients(id);
         else {
             resetRecipeDetails();
             setFragment(RecipeShowFragment.getInstance(id));
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposables.clear();
     }
 }

@@ -33,10 +33,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.activities.MainActivity;
 import com.fatiner.platehandler.adapters.spinner.SpinnerAdapter;
@@ -44,7 +42,6 @@ import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.dialogs.TutorialDialog;
-import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.managers.SharedManager;
@@ -62,8 +59,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.ButterKnife;
-
 import static android.app.Activity.RESULT_OK;
 
 public class PrimaryFragment extends Fragment {
@@ -72,7 +67,7 @@ public class PrimaryFragment extends Fragment {
         return (MainActivity) getActivity();
     }
 
-    protected void init(int menuId, int toolbarId, boolean hasMenu) {
+    protected void initOptions(int menuId, int toolbarId, boolean hasMenu) {
         setMenuItem(menuId);
         setTb(toolbarId);
         setHasOptionsMenu(hasMenu);
@@ -85,10 +80,6 @@ public class PrimaryFragment extends Fragment {
 
     private void setTb(int id) {
         getMainActivity().setTbTitle(getString(id));
-    }
-
-    protected PlateHandlerDatabase getDb(Context context) {
-        return PlateHandlerDatabase.getInstance(context);
     }
 
     protected void setIv(ImageView iv, int value, int arrayId) {

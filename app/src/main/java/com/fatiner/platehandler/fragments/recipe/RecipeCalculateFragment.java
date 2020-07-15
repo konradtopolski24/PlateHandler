@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.IngredientAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
-import com.fatiner.platehandler.fragments.home.HomeFragment;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.models.Ingredient;
@@ -85,7 +84,7 @@ public class RecipeCalculateFragment extends PrimaryFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_recipe, R.string.tb_rp_calculate, true);
+        initOptions(R.id.it_recipe, R.string.tb_rp_calculate, true);
         setViews();
     }
 

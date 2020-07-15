@@ -13,8 +13,8 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.details.ProductDetails;
 import com.fatiner.platehandler.details.RecipeDetails;
@@ -24,6 +24,7 @@ import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.managers.TypeManager;
 import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Product;
+import com.fatiner.platehandler.viewmodels.product.ProductManageViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Locale;
@@ -33,14 +34,17 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import butterknife.OnTextChanged;
-import io.reactivex.Completable;
-import io.reactivex.Single;
+import io.reactivex.CompletableObserver;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableCompletableObserver;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class ProductManageFragment extends PrimaryFragment {
+
+    private ProductManageViewModel viewModel;
+    private CompositeDisposable disposables;
 
     @BindView(R.id.iv_photo) ImageView ivPhoto;
     @BindView(R.id.iv_type) ImageView ivType;
@@ -138,8 +142,7 @@ public class ProductManageFragment extends PrimaryFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_product_manage, container,
-                false);
+        View view = inflater.inflate(R.layout.fragment_product_manage, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -147,17 +150,19 @@ public class ProductManageFragment extends PrimaryFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(getMenuId(), getToolbar(), false);
-        initAction();
+        initOptions(getMenuId(), getToolbar(), false);
+        initViewModelEssentials();
+        setEtInput();
+        setViews();
+    }
+
+    private void initViewModelEssentials() {
+        viewModel = new ViewModelProvider(this).get(ProductManageViewModel.class);
+        disposables = new CompositeDisposable();
     }
 
     private Product getProduct() {
         return ProductDetails.getProduct();
-    }
-
-    private void initAction() {
-        setEtInput();
-        setViews();
     }
 
     private int getMenuId() {
@@ -195,8 +200,8 @@ public class ProductManageFragment extends PrimaryFragment {
     }
 
     private void chooseDbAction() {
-        if (isEditing()) updateProduct();
-        else insertProduct();
+        if (isEditing()) observeUpdateProduct();
+        else observeAddProduct();
     }
 
     private void setProductInIngredient(int id) {
@@ -289,16 +294,27 @@ public class ProductManageFragment extends PrimaryFragment {
         setIv(ivPhoto, getProduct().getPhoto());
     }
 
-    private void insertProduct() {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<Long> single = db.getProductDAO().addProduct(getProduct());
-        single.subscribeOn(Schedulers.io())
+    private void observeAddProduct() {
+        viewModel.addProduct(getProduct())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getInsertObserver());
     }
 
-    private DisposableSingleObserver<Long> getInsertObserver() {
-        return new DisposableSingleObserver<Long>() {
+    private void observeUpdateProduct() {
+        viewModel.updateProduct(getProduct())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getUpdateObserver());
+    }
+
+    private SingleObserver<Long> getInsertObserver() {
+        return new SingleObserver<Long>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(Long id) {
@@ -315,21 +331,13 @@ public class ProductManageFragment extends PrimaryFragment {
         };
     }
 
-    private void updateProduct() {
-        getUpdateCompletable().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getUpdateObserver());
-    }
+    private CompletableObserver getUpdateObserver() {
+        return new CompletableObserver() {
 
-    private Completable getUpdateCompletable() {
-        return Completable.fromAction(() -> {
-            PlateHandlerDatabase db = getDb(getContext());
-            db.getProductDAO().updateProduct(getProduct());
-        });
-    }
-
-    private DisposableCompletableObserver getUpdateObserver() {
-        return new DisposableCompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onComplete() {
@@ -343,5 +351,11 @@ public class ProductManageFragment extends PrimaryFragment {
                 showShortToast(R.string.ts_database);
             }
         };
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposables.clear();
     }
 }

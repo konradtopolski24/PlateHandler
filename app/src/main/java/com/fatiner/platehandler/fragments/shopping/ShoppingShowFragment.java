@@ -89,7 +89,7 @@ public class ShoppingShowFragment extends PrimaryFragment implements
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_shopping, R.string.tb_sp_show, false);
+        initOptions(R.id.it_shopping, R.string.tb_sp_show, false);
         initAction();
     }
 

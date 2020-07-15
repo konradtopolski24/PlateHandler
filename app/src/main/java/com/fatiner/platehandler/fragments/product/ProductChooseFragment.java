@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.ProductAdapter;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
@@ -23,19 +23,23 @@ import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
 import com.fatiner.platehandler.managers.QueryManager;
 import com.fatiner.platehandler.models.Product;
+import com.fatiner.platehandler.viewmodels.product.ProductChooseViewModel;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class ProductChooseFragment extends PrimaryFragment
-        implements ProductAdapter.ProductListener {
+public class ProductChooseFragment extends PrimaryFragment implements ProductAdapter.ProductListener {
+
+    private ProductChooseViewModel viewModel;
+    private CompositeDisposable disposables;
 
     @BindView(R.id.rv_products) RecyclerView rvProducts;
     @BindView(R.id.tv_empty) TextView tvEmpty;
@@ -52,8 +56,7 @@ public class ProductChooseFragment extends PrimaryFragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_product_choose, container,
-                false);
+        View view = inflater.inflate(R.layout.fragment_product_choose, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -61,14 +64,14 @@ public class ProductChooseFragment extends PrimaryFragment
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_product, R.string.tb_pd_choose, true);
-        readProducts();
+        initOptions(R.id.it_product, R.string.tb_pd_choose, true);
+        initViewModelEssentials();
+        observeGetProducts();
     }
 
-    private SimpleSQLiteQuery getProductsQuery() {
-        String where = QueryManager.getWhere(QueryManager.getPdConditions(getContext()));
-        String orderBy = QueryManager.getOrderBy(getContext(), Shared.SR_PRODUCT, Db.CL_PD_NAME);
-        return QueryManager.getRowsQuery(Db.TB_PRODUCT, where, orderBy);
+    private void initViewModelEssentials() {
+        viewModel = new ViewModelProvider(this).get(ProductChooseViewModel.class);
+        disposables = new CompositeDisposable();
     }
 
     private ProductAdapter getProductAdapter(List<Product> products) {
@@ -90,16 +93,26 @@ public class ProductChooseFragment extends PrimaryFragment
         return super.onOptionsItemSelected(menuItem);
     }
 
-    private void readProducts() {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<List<Product>> single = db.getProductDAO().getProducts(getProductsQuery());
-        single.subscribeOn(Schedulers.io())
+    private SimpleSQLiteQuery getProductsQuery() {
+        String where = QueryManager.getWhere(QueryManager.getPdConditions(getContext()));
+        String orderBy = QueryManager.getOrderBy(getContext(), Shared.SR_PRODUCT, Db.CL_PD_NAME);
+        return QueryManager.getRowsQuery(Db.TB_PRODUCT, where, orderBy);
+    }
+
+    private void observeGetProducts() {
+        viewModel.getProducts(getProductsQuery())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getProductObserver());
     }
 
-    private DisposableSingleObserver<List<Product>> getProductObserver() {
-        return new DisposableSingleObserver<List<Product>>() {
+    private SingleObserver<List<Product>> getProductObserver() {
+        return new SingleObserver<List<Product>>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(List<Product> products) {
@@ -118,5 +131,11 @@ public class ProductChooseFragment extends PrimaryFragment
     public void clickProduct(int id) {
         resetProductDetails();
         setFragment(ProductShowFragment.getInstance(id));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposables.clear();
     }
 }

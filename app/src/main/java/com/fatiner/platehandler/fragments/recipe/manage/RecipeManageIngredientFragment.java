@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.IngredientAddAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
@@ -22,19 +22,24 @@ import com.fatiner.platehandler.globals.Shared;
 import com.fatiner.platehandler.managers.QueryManager;
 import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Product;
+import com.fatiner.platehandler.viewmodels.recipe.RecipeManageIngredientViewModel;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class RecipeManageIngredientFragment extends PrimaryFragment implements
         IngredientAddAdapter.IngredientAddListener {
+
+    private RecipeManageIngredientViewModel viewModel;
+    private CompositeDisposable disposables;
 
     @BindView(R.id.rv_ingredient) RecyclerView rvIngredients;
 
@@ -59,8 +64,7 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-        View view = inflater.inflate(R.layout.fragment_recipe_manage_ingredient, container,
-                false);
+        View view = inflater.inflate(R.layout.fragment_recipe_manage_ingredient, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -68,7 +72,13 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        readProducts();
+        initViewModelEssentials();
+        observeGetProducts();
+    }
+
+    private void initViewModelEssentials() {
+        viewModel = new ViewModelProvider(this).get(RecipeManageIngredientViewModel.class);
+        disposables = new CompositeDisposable();
     }
 
     private List<Ingredient> getIngredients() {
@@ -114,16 +124,20 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements
         return QueryManager.getRowsQuery(Db.TB_PRODUCT, Globals.SN_EMPTY, orderBy);
     }
 
-    private void readProducts() {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<List<Product>> single = db.getProductDAO().getProducts(getProductsQuery());
-        single.subscribeOn(Schedulers.io())
+    private void observeGetProducts() {
+        viewModel.getProducts(getProductsQuery())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getProductObserver());
     }
 
-    private DisposableSingleObserver<List<Product>> getProductObserver() {
-        return new DisposableSingleObserver<List<Product>>() {
+    private SingleObserver<List<Product>> getProductObserver() {
+        return new SingleObserver<List<Product>>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(List<Product> products) {
@@ -153,5 +167,11 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements
             getAdapter().notifyItemRemoved(position);
             changeRvSize(rvIngredients);
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposables.clear();
     }
 }

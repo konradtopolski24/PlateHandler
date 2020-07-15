@@ -40,4 +40,7 @@ public interface IngredientDAO {
     @Query("UPDATE " + Db.TB_INGREDIENT + " SET " + Db.CL_IG_USED + " = :isUsed WHERE "
             + Db.CL_IG_ID + "==:id")
     void updateIsUsed(int id, boolean isUsed);
+
+    @Query("DELETE FROM " + Db.TB_INGREDIENT)
+    void deleteAllIngredients();
 }

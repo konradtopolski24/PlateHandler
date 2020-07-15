@@ -9,9 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.FileAdapter;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
@@ -25,6 +25,7 @@ import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Product;
 import com.fatiner.platehandler.models.Recipe;
 import com.fatiner.platehandler.models.Step;
+import com.fatiner.platehandler.viewmodels.export.ImportViewModel;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -41,12 +42,16 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableCompletableObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class ImportFragment extends PrimaryFragment implements FileAdapter.FileListener {
+
+    private ImportViewModel viewModel;
+    private CompositeDisposable disposables;
 
     @BindView(R.id.tv_empty) TextView tvEmpty;
     @BindView(R.id.rv_file) RecyclerView rvFile;
@@ -70,8 +75,14 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_import, R.string.tb_im_database, false);
+        initOptions(R.id.it_import, R.string.tb_im_database, false);
+        initViewModelEssentials();
         setViews();
+    }
+
+    private void initViewModelEssentials() {
+        viewModel = new ViewModelProvider(this).get(ImportViewModel.class);
+        disposables = new CompositeDisposable();
     }
 
     private void setViews() {
@@ -281,7 +292,7 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         return (dialog, which) -> {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
-                    importData(getWorkbook(name));
+                    observeImportDatabase(getWorkbook(name));
                     break;
                 case DialogInterface.BUTTON_NEGATIVE:
                     break;
@@ -289,25 +300,24 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
         };
     }
 
-    private void importData(Workbook workbook) {
-        getImportCompletable(workbook).subscribeOn(Schedulers.io())
+    private void observeImportDatabase(Workbook workbook) {
+        viewModel.importDatabase(
+                getRecipes(workbook),
+                getProducts(workbook),
+                getIngredients(workbook),
+                getSteps(workbook))
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getImportObserver());
     }
 
-    private Completable getImportCompletable(Workbook workbook) {
-        return Completable.fromAction(() -> {
-            PlateHandlerDatabase db = getDb(getContext());
-            db.clearAllTables();
-            db.getRecipeDAO().addRecipes(getRecipes(workbook));
-            db.getProductDAO().addProducts(getProducts(workbook));
-            db.getIngredientDAO().addIngredients(getIngredients(workbook));
-            db.getStepDAO().addSteps(getSteps(workbook));
-        });
-    }
+    private CompletableObserver getImportObserver() {
+        return new CompletableObserver() {
 
-    private DisposableCompletableObserver getImportObserver() {
-        return new DisposableCompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onComplete() {
@@ -324,5 +334,11 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
     @Override
     public void clickFile(String name) {
         showDialog(R.string.dg_im_choose, getDialogListener(name));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposables.clear();
     }
 }

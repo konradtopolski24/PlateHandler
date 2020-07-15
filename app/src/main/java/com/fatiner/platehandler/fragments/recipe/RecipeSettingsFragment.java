@@ -9,14 +9,15 @@ import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
 import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
+import com.fatiner.platehandler.viewmodels.recipe.RecipeSettingsViewModel;
 
 import java.util.List;
 
@@ -25,12 +26,16 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
-import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class RecipeSettingsFragment extends PrimaryFragment {
+
+    private RecipeSettingsViewModel viewModel;
+    private CompositeDisposable disposables;
 
     @BindView(R.id.sw_alphabetical) Switch swAlphabetical;
     @BindView(R.id.sw_favorite) Switch swFavorite;
@@ -143,8 +148,14 @@ public class RecipeSettingsFragment extends PrimaryFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(getMenuId(), R.string.tb_rp_settings, false);
-        readAuthors();
+        initOptions(getMenuId(), R.string.tb_rp_settings, false);
+        initViewModelEssentials();
+        observeGetAuthors();
+    }
+
+    private void initViewModelEssentials() {
+        viewModel = new ViewModelProvider(this).get(RecipeSettingsViewModel.class);
+        disposables = new CompositeDisposable();
     }
 
     private int getMenuId() {
@@ -176,16 +187,20 @@ public class RecipeSettingsFragment extends PrimaryFragment {
         setSettingsBool(swPreference, spPreference, Shared.SR_RECIPE, Shared.KY_PREFERENCE);
     }
 
-    private void readAuthors() {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<List<String>> single = db.getRecipeDAO().getAuthors();
-        single.subscribeOn(Schedulers.io())
+    private void observeGetAuthors() {
+        viewModel.getAuthors()
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getAuthorObserver());
     }
 
-    private DisposableSingleObserver<List<String>> getAuthorObserver() {
-        return new DisposableSingleObserver<List<String>>() {
+    private SingleObserver<List<String>> getAuthorObserver() {
+        return new SingleObserver<List<String>>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(List<String> authors) {
@@ -198,5 +213,11 @@ public class RecipeSettingsFragment extends PrimaryFragment {
                 showShortToast(R.string.ts_database);
             }
         };
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposables.clear();
     }
 }

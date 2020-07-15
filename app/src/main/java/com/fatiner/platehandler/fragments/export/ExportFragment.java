@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Db;
@@ -22,6 +22,7 @@ import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Product;
 import com.fatiner.platehandler.models.Recipe;
 import com.fatiner.platehandler.models.Step;
+import com.fatiner.platehandler.viewmodels.export.ExportViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -38,12 +39,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
-import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class ExportFragment extends PrimaryFragment {
+
+    private ExportViewModel viewModel;
+    private CompositeDisposable disposables;
 
     @BindView(R.id.cv_guideline) CardView cvGuideline;
     @BindView(R.id.iv_hd_guideline) ImageView ivHdGuideline;
@@ -90,8 +95,14 @@ public class ExportFragment extends PrimaryFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_export, R.string.tb_ex_database, false);
+        initOptions(R.id.it_export, R.string.tb_ex_database, false);
+        initViewModelEssentials();
         setViews();
+    }
+
+    private void initViewModelEssentials() {
+        viewModel = new ViewModelProvider(this).get(ExportViewModel.class);
+        disposables = new CompositeDisposable();
     }
 
     private void setViews() {
@@ -226,75 +237,49 @@ public class ExportFragment extends PrimaryFragment {
 
     private void exportDb() {
         HSSFWorkbook workbook = new HSSFWorkbook();
-        readAllRecipes(workbook);
+        observeGetAllRecipes(workbook);
     }
-    
-    private void readAllRecipes(HSSFWorkbook workbook) {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<List<Recipe>> single = db.getRecipeDAO().getAllRecipes();
-        single.subscribeOn(Schedulers.io())
+
+    private void observeGetAllRecipes(HSSFWorkbook workbook) {
+        viewModel.getAllRecipes()
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getRecipeObserver(workbook));
     }
 
-    private DisposableSingleObserver<List<Recipe>> getRecipeObserver(
-            HSSFWorkbook workbook) {
-        return new DisposableSingleObserver<List<Recipe>>() {
-
-            @Override
-            public void onSuccess(List<Recipe> recipes) {
-                createRecipeSheet(workbook, recipes);
-                readAllProducts(workbook);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                showShortToast(R.string.ts_database);
-            }
-        };
-    }
-    
-    private void readAllProducts(HSSFWorkbook workbook) {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<List<Product>> single = db.getProductDAO().getAllProducts();
-        single.subscribeOn(Schedulers.io())
+    private void observeGetAllProducts(HSSFWorkbook workbook) {
+        viewModel.getAllProducts()
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getProductObserver(workbook));
     }
 
-    private DisposableSingleObserver<List<Product>> getProductObserver(
-            HSSFWorkbook workbook) {
-        return new DisposableSingleObserver<List<Product>>() {
-
-            @Override
-            public void onSuccess(List<Product> products) {
-                createProductSheet(workbook, products);
-                readAllIngredients(workbook);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                showShortToast(R.string.ts_database);
-            }
-        };
-    }
-
-    private void readAllIngredients(HSSFWorkbook workbook) {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<List<Ingredient>> single = db.getIngredientDAO().getAllIngredients();
-        single.subscribeOn(Schedulers.io())
+    private void observeGetAllIngredients(HSSFWorkbook workbook) {
+        viewModel.getAllIngredients()
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getIngredientObserver(workbook));
     }
 
-    private DisposableSingleObserver<List<Ingredient>> getIngredientObserver(
-            HSSFWorkbook workbook) {
-        return new DisposableSingleObserver<List<Ingredient>>() {
+    private void observeGetAllSteps(HSSFWorkbook workbook) {
+        viewModel.getAllSteps()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getStepObserver(workbook));
+    }
+
+    private SingleObserver<List<Recipe>> getRecipeObserver(HSSFWorkbook workbook) {
+        return new SingleObserver<List<Recipe>>() {
 
             @Override
-            public void onSuccess(List<Ingredient> ingredients) {
-                createIngredientSheet(workbook, ingredients);
-                readAllSteps(workbook);
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
+
+            @Override
+            public void onSuccess(List<Recipe> recipes) {
+                createRecipeSheet(workbook, recipes);
+                observeGetAllProducts(workbook);
             }
 
             @Override
@@ -304,16 +289,55 @@ public class ExportFragment extends PrimaryFragment {
         };
     }
 
-    private void readAllSteps(HSSFWorkbook workbook) {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<List<Step>> single = db.getStepDAO().getAllSteps();
-        single.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getStepObserver(workbook));
+    private SingleObserver<List<Product>> getProductObserver(HSSFWorkbook workbook) {
+        return new SingleObserver<List<Product>>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
+
+            @Override
+            public void onSuccess(List<Product> products) {
+                createProductSheet(workbook, products);
+                observeGetAllIngredients(workbook);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
     }
 
-    private DisposableSingleObserver<List<Step>> getStepObserver(HSSFWorkbook workbook) {
-        return new DisposableSingleObserver<List<Step>>() {
+    private SingleObserver<List<Ingredient>> getIngredientObserver(HSSFWorkbook workbook) {
+        return new SingleObserver<List<Ingredient>>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
+
+            @Override
+            public void onSuccess(List<Ingredient> ingredients) {
+                createIngredientSheet(workbook, ingredients);
+                observeGetAllSteps(workbook);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showShortToast(R.string.ts_database);
+            }
+        };
+    }
+
+    private SingleObserver<List<Step>> getStepObserver(HSSFWorkbook workbook) {
+        return new SingleObserver<List<Step>>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(List<Step> steps) {
@@ -329,5 +353,11 @@ public class ExportFragment extends PrimaryFragment {
                 showShortToast(R.string.ts_database);
             }
         };
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposables.clear();
     }
 }

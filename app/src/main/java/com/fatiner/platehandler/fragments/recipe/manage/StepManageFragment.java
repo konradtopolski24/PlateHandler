@@ -64,7 +64,7 @@ public class StepManageFragment extends PrimaryFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_recipe, getToolbar(), false);
+        initOptions(R.id.it_recipe, getToolbar(), false);
         initAction();
     }
 

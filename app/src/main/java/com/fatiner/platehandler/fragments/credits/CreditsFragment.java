@@ -99,7 +99,7 @@ public class CreditsFragment extends PrimaryFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_credits, R.string.tb_cd_show, false);
+        initOptions(R.id.it_credits, R.string.tb_cd_show, false);
         setViews();
     }
 

@@ -16,9 +16,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fatiner.platehandler.PlateHandlerDatabase;
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.IngredientAdapter;
 import com.fatiner.platehandler.adapters.recyclerview.StepAdapter;
@@ -35,6 +35,7 @@ import com.fatiner.platehandler.models.Product;
 import com.fatiner.platehandler.models.Recipe;
 import com.fatiner.platehandler.models.RecipeComplete;
 import com.fatiner.platehandler.models.Step;
+import com.fatiner.platehandler.viewmodels.recipe.RecipeShowViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,15 +46,18 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
-import io.reactivex.Completable;
-import io.reactivex.Single;
+import io.reactivex.CompletableObserver;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableCompletableObserver;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class RecipeShowFragment extends PrimaryFragment implements
         IngredientAdapter.IngredientListener, StepAdapter.StepListener {
+
+    private RecipeShowViewModel viewModel;
+    private CompositeDisposable disposables;
 
     @BindView(R.id.cv_data) CardView cvData;
     @BindView(R.id.cv_ingredient) CardView cvIngredient;
@@ -85,7 +89,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
     @OnCheckedChanged(R.id.cb_favorite)
     void checkedCbFavorite(boolean checked) {
         getRecipe().setFavorite(checked);
-        updateFavorite(checked);
+        observeUpdateFavorite(checked);
     }
 
     @OnClick(R.id.cv_hd_data)
@@ -136,8 +140,14 @@ public class RecipeShowFragment extends PrimaryFragment implements
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(R.id.it_recipe, R.string.tb_rp_show, true);
+        initOptions(R.id.it_recipe, R.string.tb_rp_show, true);
+        initViewModelEssentials();
         initAction();
+    }
+
+    private void initViewModelEssentials() {
+        viewModel = new ViewModelProvider(this).get(RecipeShowViewModel.class);
+        disposables = new CompositeDisposable();
     }
 
     private Recipe getRecipe() {
@@ -146,7 +156,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
 
     private void initAction() {
         resetRecipeDetails();
-        readRecipe();
+        observeGetCompleteRecipe();
     }
 
     private void setProductsInIngredients(List<Product> products) {
@@ -277,7 +287,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
         return (dialog, which) -> {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
-                    deleteRecipe();
+                    observeDeleteRecipe();
                     break;
                 case DialogInterface.BUTTON_NEGATIVE:
                     break;
@@ -379,22 +389,60 @@ public class RecipeShowFragment extends PrimaryFragment implements
         }
     }
 
-    private void readRecipe() {
-        PlateHandlerDatabase db = getDb(getContext());
-        int id = getIntFromBundle();
-        Single<RecipeComplete> single = db.getRecipeDAO().getCompleteRecipe(id);
-        single.subscribeOn(Schedulers.io())
+    private void observeGetCompleteRecipe() {
+        viewModel.getCompleteRecipe(getIntFromBundle())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getReadObserver());
     }
 
-    private DisposableSingleObserver<RecipeComplete> getReadObserver() {
-        return new DisposableSingleObserver<RecipeComplete>() {
+    private void observeGetProducts() {
+        viewModel.getProducts(getProductIds())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getProductObserver());
+    }
+
+    private void observeUpdateFavorite(boolean checked) {
+        viewModel.updateFavorite(getRecipe().getId(), checked)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getUpdateObserver());
+    }
+
+    private void observeUpdateIsUsed(int id, boolean checked) {
+        viewModel.updateIsUsed(id, checked)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getUpdateObserver());
+    }
+
+    private void observeUpdateIsDone(int id, boolean checked) {
+        viewModel.updateIsDone(id, checked)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getUpdateObserver());
+    }
+
+    private void observeDeleteRecipe() {
+        viewModel.deleteRecipe(getRecipe())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getDeleteObserver());
+    }
+
+    private SingleObserver<RecipeComplete> getReadObserver() {
+        return new SingleObserver<RecipeComplete>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(RecipeComplete complete) {
                 setRecipeDetails(complete.recipe, complete.ingredients, complete.steps);
-                readProducts();
+                observeGetProducts();
             }
 
             @Override
@@ -404,16 +452,13 @@ public class RecipeShowFragment extends PrimaryFragment implements
         };
     }
 
-    private void readProducts() {
-        PlateHandlerDatabase db = getDb(getContext());
-        Single<List<Product>> single = db.getProductDAO().getProducts(getProductIds());
-        single.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getProductObserver());
-    }
+    private SingleObserver<List<Product>> getProductObserver() {
+        return new SingleObserver<List<Product>>() {
 
-    private DisposableSingleObserver<List<Product>> getProductObserver() {
-        return new DisposableSingleObserver<List<Product>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onSuccess(List<Product> products) {
@@ -429,21 +474,13 @@ public class RecipeShowFragment extends PrimaryFragment implements
         };
     }
 
-    private void updateFavorite(boolean checked) {
-        getUpdateCompletable(checked).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getUpdateObserver());
-    }
+    private CompletableObserver getUpdateObserver() {
+        return new CompletableObserver() {
 
-    private Completable getUpdateCompletable(boolean checked) {
-        return Completable.fromAction(() -> {
-            PlateHandlerDatabase db = getDb(getContext());
-            db.getRecipeDAO().updateFavorite(getRecipe().getId(), checked);
-        });
-    }
-
-    private DisposableCompletableObserver getUpdateObserver() {
-        return new DisposableCompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onComplete() {}
@@ -455,49 +492,13 @@ public class RecipeShowFragment extends PrimaryFragment implements
         };
     }
 
-    private void updateIngredientIsUsed(int id, boolean checked) {
-        getIngredientCompletable(id, checked).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getUpdateObserver());
-    }
+    private CompletableObserver getDeleteObserver() {
+        return new CompletableObserver() {
 
-    private Completable getIngredientCompletable(int id, boolean checked) {
-        return Completable.fromAction(() -> {
-            PlateHandlerDatabase db = getDb(getContext());
-            db.getIngredientDAO().updateIsUsed(id, checked);
-        });
-    }
-
-    private void updateStepIsDone(int id, boolean checked) {
-        getStepCompletable(id, checked).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getUpdateObserver());
-    }
-
-    private Completable getStepCompletable(int id, boolean checked) {
-        return Completable.fromAction(() -> {
-            PlateHandlerDatabase db = getDb(getContext());
-            db.getStepDAO().updateIsDone(id, checked);
-        });
-    }
-
-    private void deleteRecipe() {
-        getDeleteCompletable().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getDeleteObserver());
-    }
-
-    private Completable getDeleteCompletable() {
-        return Completable.fromAction(() -> {
-            PlateHandlerDatabase db = getDb(getContext());
-            db.getRecipeDAO().deleteRecipe(getRecipe());
-            db.getIngredientDAO().deleteIngredients(getRecipe().getIngredients());
-            db.getStepDAO().deleteSteps(getRecipe().getSteps());
-        });
-    }
-
-    private DisposableCompletableObserver getDeleteObserver() {
-        return new DisposableCompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
 
             @Override
             public void onComplete() {
@@ -515,12 +516,12 @@ public class RecipeShowFragment extends PrimaryFragment implements
 
     @Override
     public void setUsed(int id, boolean isDone) {
-        updateIngredientIsUsed(id, isDone);
+        observeUpdateIsUsed(id, isDone);
     }
 
     @Override
     public void setDone(int id, boolean isDone) {
-        updateStepIsDone(id, isDone);
+        observeUpdateIsDone(id, isDone);
     }
 
     @Override
@@ -528,4 +529,10 @@ public class RecipeShowFragment extends PrimaryFragment implements
 
     @Override
     public void removeStep(int position) {}
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposables.clear();
+    }
 }
