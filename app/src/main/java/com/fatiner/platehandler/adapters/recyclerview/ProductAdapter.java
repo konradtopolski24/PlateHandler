@@ -39,7 +39,7 @@ public class ProductAdapter extends PrimaryAdapter<ProductAdapter.ProductHolder>
     public void onBindViewHolder(@NonNull ProductHolder holder, int position) {
         Product product = products.get(position);
         setTv(holder.tvName, product.getName());
-        setIv(holder.ivType, product.getType(), R.array.dw_product);
+        setIv(holder.ivType, product.getType(), R.array.dw_pd_type);
     }
 
     @Override

@@ -72,7 +72,7 @@ public class ProductSettingsFragment extends PrimaryFragment {
     }
 
     private void setViews() {
-        setSp(spType, getEntries(R.array.tx_product), getContext());
+        setSp(spType, getEntries(R.array.tx_pd_type), getContext());
     }
 
     private void setSettings() {

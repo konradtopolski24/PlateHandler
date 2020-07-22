@@ -35,6 +35,12 @@ public class Credits {
     public static final String LB_RM_VERSION = "2.2.5";
     public static final String LB_RM_LICENSE = "Apache License 2.0";
 
+    //Lifecycle
+    public static final String LB_LC_NAME = "Lifecycle";
+    public static final String LB_LC_AUTHOR = "Google";
+    public static final String LB_LC_VERSION = "2.2.0";
+    public static final String LB_LC_LICENSE = "Apache License 2.0";
+
     //RxJava2
     public static final String LB_RJ_NAME = "RxJava";
     public static final String LB_RJ_AUTHOR = "ReactiveX";
@@ -78,11 +84,23 @@ public class Credits {
     public static final String IP_SP_LICENSE = "Flaticon License";
     public static final int IP_SP_AMOUNT = 1;
 
+    //Discotheque Icon Pack
+    public static final String IP_DT_NAME = "Discotheque Icon Pack";
+    public static final String IP_DT_ATTRIBUTION = "Icons made by Freepik from www.flaticon.com";
+    public static final String IP_DT_LICENSE = "Flaticon License";
+    public static final int IP_DT_AMOUNT = 1;
+
+    //Cleaning Services Icon Pack
+    public static final String IP_CS_NAME = "Cleaning Services Icon Pack";
+    public static final String IP_CS_ATTRIBUTION = "Icons made by Freepik from www.flaticon.com";
+    public static final String IP_CS_LICENSE = "Flaticon License";
+    public static final int IP_CS_AMOUNT = 1;
+
     //Material Design Icons
     public static final String IP_MD_NAME = "Material Design Icons";
     public static final String IP_MD_ATTRIBUTION = "Icons made by Google";
     public static final String IP_MD_LICENSE = "Apache License 2.0";
-    public static final int IP_MD_AMOUNT = 22;
+    public static final int IP_MD_AMOUNT = 26;
 
     //Mops
     public static final String FT_MP_NAME = "Mops";

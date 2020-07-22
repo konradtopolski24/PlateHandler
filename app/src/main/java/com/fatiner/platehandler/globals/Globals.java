@@ -35,6 +35,7 @@ public class Globals {
     public static final String TM_DEFAULT = "00:00";
     public static final int TM_HOURS = 0;
     public static final int TM_MINUTES = 1;
+    public static final int TM_BURNING = 60;
 
     public static final int RC_MAX = 6;
 
@@ -64,6 +65,7 @@ public class Globals {
     public static final String UT_KJ = "kj";
     public static final String UT_GRAM = "g";
     public static final String UT_MILLILITRE = "ml";
+    public static final String UT_MINUTE = "min";
 
     public static final int NT_CARBOHYDRATES = 0;
     public static final int NT_PROTEINS = 1;

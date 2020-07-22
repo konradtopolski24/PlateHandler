@@ -78,7 +78,7 @@
     <string name="ts_database">Database error!</string>
     <string name="ts_file">File operation error!</string>
     <string name="ts_directory">New directory created!</string>
-    <string name="ts_empty">At least one product has no set average size!</string>
+    <string name="ts_empty">At least one of the product average sizes is not set!</string>
 
     <!-- Errors -->
     <string name="er_pd_name">Product name is empty!</string>
@@ -136,6 +136,12 @@
     <string name="ct_chart">Nutrients Charts</string>
     <string name="ct_total">Total Calories</string>
     <string name="ct_per">Per Serving</string>
+    <string name="ct_walk">Walking</string>
+    <string name="ct_bike">Cycling</string>
+    <string name="ct_run">Running</string>
+    <string name="ct_vacuum">Vacuuming</string>
+    <string name="ct_dance">Dancing</string>
+    <string name="ct_swim">Swimming</string>
     <string name="ct_developer">Developer</string>
     <string name="ct_version">Version</string>
     <string name="ct_license">License</string>
@@ -162,6 +168,7 @@
     <string name="hd_rp_cl_kcal">Calories in Kcal</string>
     <string name="hd_rp_cl_kj">Calories in Kj</string>
     <string name="hd_rp_cl_ingredient">Partial Calories</string>
+    <string name="hd_rp_cl_burn">Burn One Serving</string>
     <string name="hd_rp_settings">Recipe Search</string>
     <string name="hd_ig_mg_add">Add Ingredient</string>
     <string name="hd_ig_mg_data">Set Ingredient Data</string>
@@ -270,6 +277,13 @@
         of each item shows the <b>calorific value</b> of the ingredient, expressed in both
         <b>kilocalories</b> and <b>kilojoules</b>. If the composition information has not been
         set in the product used in the ingredient, the calorie data <b>will be empty</b>.</string>
+    <string name="tt_rp_cl_burn">A section presenting <b>examples of physical activities</b> that
+        allow burning the calories contained in a specific recipe. The user can find out in what
+        time <b>expressed in minutes</b> one of the indicated steps should be performed in order to
+        be to get rid of the calories acquired by consuming <b>one serving</b> of a given
+        dish.\n\nThe <b>Walking</b>, <b>Cycling</b>, <b>Running</b>, <b>Vacuuming</b>,
+        <b>Dancing</b> and <b>Swimming</b> fragments represent successive physical activities with
+        their corresponding execution times.</string>
     <string name="tt_rp_settings">A section allowing the user to specify <b>search settings</b>
         regarding recipe selection. Individual changes are made here by using the <b>switches</b>,
         available in every fragment.\n\nIf the user selects a switch in the <b>Alphabetical</b>

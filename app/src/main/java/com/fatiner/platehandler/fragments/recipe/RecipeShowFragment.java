@@ -217,14 +217,14 @@ public class RecipeShowFragment extends PrimaryFragment implements
         setTv(tvAuthor, recipe.getAuthor());
         setTv(tvServing, String.valueOf(recipe.getServing()));
         setTv(tvTime, recipe.getTime());
-        setTv(tvDifficulty, recipe.getDifficulty(), R.array.tx_difficulty);
-        setTv(tvCountry, recipe.getCountry(), R.array.tx_country);
-        setTv(tvType, recipe.getType(), R.array.tx_recipe);
-        setTv(tvPreference, TypeManager.boolToInt(recipe.getPreference()), R.array.tx_preference);
+        setTv(tvDifficulty, recipe.getDifficulty(), R.array.tx_rp_difficulty);
+        setTv(tvCountry, recipe.getCountry(), R.array.tx_rp_country);
+        setTv(tvType, recipe.getType(), R.array.tx_rp_type);
+        setTv(tvPreference, TypeManager.boolToInt(recipe.getPreference()), R.array.tx_rp_preference);
         setIvList(ivSpicinessList, recipe.getSpiciness());
-        setIv(ivCountry, recipe.getCountry(), R.array.dw_country);
-        setIv(ivType, recipe.getType(), R.array.dw_recipe);
-        setIv(ivPreference, TypeManager.boolToInt(recipe.getPreference()), R.array.dw_preference);
+        setIv(ivCountry, recipe.getCountry(), R.array.dw_rp_country);
+        setIv(ivType, recipe.getType(), R.array.dw_rp_type);
+        setIv(ivPreference, TypeManager.boolToInt(recipe.getPreference()), R.array.dw_rp_preference);
         setCb(cbFavorite, recipe.getFavorite());
         setIv(ivPhoto, recipe.getPhoto());
     }
@@ -332,15 +332,15 @@ public class RecipeShowFragment extends PrimaryFragment implements
                 getString(R.string.ct_serving), recipe.getServing(),
                 getString(R.string.ct_time), recipe.getTime(),
                 getString(R.string.ct_difficulty), getStringArray(
-                        R.array.tx_difficulty)[recipe.getDifficulty()],
+                        R.array.tx_rp_difficulty)[recipe.getDifficulty()],
                 getString(R.string.ct_spiciness), getStringArray(
-                        R.array.tx_spiciness)[recipe.getSpiciness()],
+                        R.array.tx_rp_spiciness)[recipe.getSpiciness()],
                 getString(R.string.ct_country), getStringArray(
-                        R.array.tx_country)[recipe.getCountry()],
+                        R.array.tx_rp_country)[recipe.getCountry()],
                 getString(R.string.ct_type), getStringArray(
-                        R.array.tx_recipe)[recipe.getType()],
+                        R.array.tx_rp_type)[recipe.getType()],
                 getString(R.string.ct_preference), getStringArray(
-                        R.array.tx_preference)[TypeManager.boolToInt(recipe.getPreference())]);
+                        R.array.tx_rp_preference)[TypeManager.boolToInt(recipe.getPreference())]);
     }
 
     private String getIngredientText() {
@@ -349,7 +349,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
             text.append(String.format(Locale.ENGLISH, Format.FM_INGREDIENT,
                     ingredient.getProduct().getName(),
                     ingredient.getAmount(),
-                    getStringArray(R.array.tx_measure)[ingredient.getMeasure()]));
+                    getStringArray(R.array.tx_rp_measure)[ingredient.getMeasure()]));
         return text.toString();
     }
 

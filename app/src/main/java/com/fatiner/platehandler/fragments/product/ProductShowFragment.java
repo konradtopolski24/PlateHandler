@@ -173,8 +173,8 @@ public class ProductShowFragment extends PrimaryFragment {
     private void setProductInfo() {
         Product product = getProduct();
         setTv(tvName, product.getName());
-        setTv(tvType, product.getType(), R.array.tx_product);
-        setIv(ivType, product.getType(), R.array.dw_product);
+        setTv(tvType, product.getType(), R.array.tx_pd_type);
+        setIv(ivType, product.getType(), R.array.dw_pd_type);
         setTv(tvCarbohydrates1, product.getCarbohydrates(), getUnit());
         setTv(tvProteins1, product.getProteins(), getUnit());
         setTv(tvFats1, product.getFats(), getUnit());
@@ -192,7 +192,7 @@ public class ProductShowFragment extends PrimaryFragment {
     }
 
     private boolean isType(int id) {
-        String[] arrayType = getStringArray(R.array.tx_product);
+        String[] arrayType = getStringArray(R.array.tx_pd_type);
         return getString(id).equals(arrayType[getProduct().getType()]);
     }
 
@@ -375,8 +375,8 @@ public class ProductShowFragment extends PrimaryFragment {
     private void setEmptyInfo() {
         Product product = getProduct();
         setTv(tvName, product.getName());
-        setTv(tvType, product.getType(), R.array.tx_product);
-        setIv(ivType, product.getType(), R.array.dw_product);
+        setTv(tvType, product.getType(), R.array.tx_pd_type);
+        setIv(ivType, product.getType(), R.array.dw_pd_type);
         setIv(ivPhoto, product.getPhoto());
         setTv(tvCarbohydrates1, Globals.SN_DASH);
         setTv(tvCarbohydrates2, Globals.SN_DASH);

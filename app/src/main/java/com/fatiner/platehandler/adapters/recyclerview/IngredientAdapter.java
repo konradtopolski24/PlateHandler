@@ -55,7 +55,7 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
         Ingredient ingredient = ingredients.get(position);
         setTv(holder.tvMeasure, getMeasure(ingredient.getAmount(), ingredient.getMeasure()));
         setTv(holder.tvProduct, ingredient.getProduct().getName());
-        setIv(holder.ivIcon, ingredient.getProduct().getType(), R.array.dw_product);
+        setIv(holder.ivIcon, ingredient.getProduct().getType(), R.array.dw_pd_type);
         manageShowing(holder, ingredient);
     }
 
@@ -65,7 +65,7 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
     }
 
     private void setCaloriesInfo(IngredientHolder holder, Ingredient ingredient) {
-        int[] factors = getIntArray(R.array.tx_factor);
+        int[] factors = getIntArray(R.array.nb_cl_factor);
         if (ingredient.getProduct().getSize() == Globals.DF_ZERO) setEmptyInfo(holder);
         else setCaloriesInfo(holder, ingredient, factors);
     }
@@ -88,7 +88,7 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
     }
 
     private String getMeasure(float amount, int measure) {
-        String[] arrayMeasure = getStringArray(R.array.tx_measure);
+        String[] arrayMeasure = getStringArray(R.array.tx_rp_measure);
         return String.format(Locale.ENGLISH, Format.FM_MEASURE, amount, arrayMeasure[measure]);
     }
 

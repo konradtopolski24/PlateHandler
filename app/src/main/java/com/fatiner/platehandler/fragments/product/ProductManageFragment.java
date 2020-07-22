@@ -111,7 +111,7 @@ public class ProductManageFragment extends PrimaryFragment {
 
     @OnItemSelected(R.id.sp_type)
     void selectedSpType(int id) {
-        setIv(ivType, id, R.array.dw_product);
+        setIv(ivType, id, R.array.dw_pd_type);
         getProduct().setType(id);
         manageHints();
     }
@@ -185,7 +185,7 @@ public class ProductManageFragment extends PrimaryFragment {
     private void setViews() {
         Product product = getProduct();
         setEt(etName, product.getName());
-        setSp(spType, product.getType(), getEntries(R.array.tx_product), getContext());
+        setSp(spType, product.getType(), getEntries(R.array.tx_pd_type), getContext());
         setEt(etSize, product.getSize());
         setEt(etCarbohydrates, product.getCarbohydrates());
         setEt(etProteins, product.getProteins());
@@ -282,7 +282,7 @@ public class ProductManageFragment extends PrimaryFragment {
     }
 
     private boolean isType(int id) {
-        String[] arrayType = getStringArray(R.array.tx_product);
+        String[] arrayType = getStringArray(R.array.tx_pd_type);
         return getString(id).equals(arrayType[getProduct().getType()]);
     }
 

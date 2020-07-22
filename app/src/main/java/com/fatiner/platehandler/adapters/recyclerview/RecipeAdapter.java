@@ -49,8 +49,8 @@ public class RecipeAdapter extends PrimaryAdapter<RecipeAdapter.RecipeHolder> {
     private void setViews(RecipeHolder holder, int position) {
         Recipe recipe = recipes.get(position);
         setTv(holder.tvName, recipe.getName());
-        setIv(holder.ivCountry, recipe.getCountry(), R.array.dw_country);
-        setIv(holder.ivType, recipe.getType(), R.array.dw_recipe);
+        setIv(holder.ivCountry, recipe.getCountry(), R.array.dw_rp_country);
+        setIv(holder.ivType, recipe.getType(), R.array.dw_rp_type);
         checkCountryOther(holder, recipe.getCountry());
     }
 
@@ -63,7 +63,7 @@ public class RecipeAdapter extends PrimaryAdapter<RecipeAdapter.RecipeHolder> {
     }
 
     private boolean isOther(int type) {
-        String[] arrayCountry = getStringArray(R.array.tx_country);
+        String[] arrayCountry = getStringArray(R.array.tx_rp_country);
         return getString(R.string.ar_ct_other).equals(arrayCountry[type]);
     }
 

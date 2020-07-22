@@ -16,7 +16,7 @@ public class Products {
         String type = context.getString(idType);
         Product product = new Product();
         product.setName(name);
-        product.setType(Arrays.asList(context.getResources().getStringArray(R.array.tx_product)).indexOf(type));
+        product.setType(Arrays.asList(context.getResources().getStringArray(R.array.tx_pd_type)).indexOf(type));
         product.setSize(size);
         product.setCarbohydrates(carbohydrates);
         product.setProteins(proteins);

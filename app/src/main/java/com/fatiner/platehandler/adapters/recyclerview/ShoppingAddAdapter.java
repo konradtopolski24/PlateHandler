@@ -73,7 +73,7 @@ public class ShoppingAddAdapter extends PrimaryAdapter<ShoppingAddAdapter.Shoppi
     }
 
     private List<String> getMeasures() {
-        String[] measures = getStringArray(R.array.tx_measure);
+        String[] measures = getStringArray(R.array.tx_rp_measure);
         return Arrays.asList(measures);
     }
 

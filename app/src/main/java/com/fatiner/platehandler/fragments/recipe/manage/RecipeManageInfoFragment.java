@@ -86,13 +86,13 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
     @OnItemSelected(R.id.sp_country)
     void selectedSpCountry(int id) {
         getRecipe().setCountry(id);
-        setIv(ivCountry, id, R.array.dw_country);
+        setIv(ivCountry, id, R.array.dw_rp_country);
     }
 
     @OnItemSelected(R.id.sp_type)
     void selectedSpType(int id) {
         getRecipe().setType(id);
-        setIv(ivType, id, R.array.dw_recipe);
+        setIv(ivType, id, R.array.dw_rp_type);
     }
 
     @OnCheckedChanged(R.id.rb_meat)
@@ -181,12 +181,12 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
         setEt(etAuthor, recipe.getAuthor());
         setTv(tvServing, String.valueOf(recipe.getServing()));
         setTv(tvTime, recipe.getTime());
-        setTv(tvDifficulty, recipe.getDifficulty(), R.array.tx_difficulty);
+        setTv(tvDifficulty, recipe.getDifficulty(), R.array.tx_rp_difficulty);
         setIvList(ivSpicinessList, recipe.getSpiciness());
         setSb(sbDifficulty, recipe.getDifficulty());
         setSb(sbSpiciness, recipe.getSpiciness());
-        setSp(spCountry, recipe.getCountry(), getEntries(R.array.tx_country), getContext());
-        setSp(spType, recipe.getType(), getEntries(R.array.tx_recipe), getContext());
+        setSp(spCountry, recipe.getCountry(), getEntries(R.array.tx_rp_country), getContext());
+        setSp(spType, recipe.getType(), getEntries(R.array.tx_rp_type), getContext());
         setRb(rbMeat, recipe.getPreference());
         setIv(ivPhoto, recipe.getPhoto());
     }
@@ -209,7 +209,7 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
     private void chooseSbAction(boolean isDifficulty, int progress) {
         if (isDifficulty) {
             getRecipe().setDifficulty(progress);
-            setTv(tvDifficulty, progress, R.array.tx_difficulty);
+            setTv(tvDifficulty, progress, R.array.tx_rp_difficulty);
         }
         else {
             getRecipe().setSpiciness(progress);

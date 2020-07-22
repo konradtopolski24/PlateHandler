@@ -153,6 +153,11 @@ public class CreditsFragment extends PrimaryFragment {
                 Credits.LB_RM_VERSION,
                 Credits.LB_RM_LICENSE));
         libraries.add(getLibrary(
+                Credits.LB_LC_NAME,
+                Credits.LB_LC_AUTHOR,
+                Credits.LB_LC_VERSION,
+                Credits.LB_LC_LICENSE));
+        libraries.add(getLibrary(
                 Credits.LB_RJ_NAME,
                 Credits.LB_RJ_AUTHOR,
                 Credits.LB_RJ_VERSION,
@@ -192,6 +197,16 @@ public class CreditsFragment extends PrimaryFragment {
                 Credits.IP_SP_ATTRIBUTION,
                 Credits.IP_SP_LICENSE,
                 Credits.IP_SP_AMOUNT));
+        packs.add(getPack(
+                Credits.IP_DT_NAME,
+                Credits.IP_DT_ATTRIBUTION,
+                Credits.IP_DT_LICENSE,
+                Credits.IP_DT_AMOUNT));
+        packs.add(getPack(
+                Credits.IP_CS_NAME,
+                Credits.IP_CS_ATTRIBUTION,
+                Credits.IP_CS_LICENSE,
+                Credits.IP_CS_AMOUNT));
         packs.add(getPack(
                 Credits.IP_MD_NAME,
                 Credits.IP_MD_ATTRIBUTION,

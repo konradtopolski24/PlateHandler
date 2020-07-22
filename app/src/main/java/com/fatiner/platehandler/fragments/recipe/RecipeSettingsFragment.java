@@ -169,11 +169,11 @@ public class RecipeSettingsFragment extends PrimaryFragment {
 
     private void setViews(List<String> authors) {
         setSp(spAuthor, authors, getContext());
-        setSp(spDifficulty, getEntries(R.array.tx_difficulty), getContext());
-        setSp(spSpiciness, getEntries(R.array.tx_spiciness), getContext());
-        setSp(spCountry, getEntries(R.array.tx_country), getContext());
-        setSp(spType, getEntries(R.array.tx_recipe), getContext());
-        setSp(spPreference, getEntries(R.array.tx_preference), getContext());
+        setSp(spDifficulty, getEntries(R.array.tx_rp_difficulty), getContext());
+        setSp(spSpiciness, getEntries(R.array.tx_rp_spiciness), getContext());
+        setSp(spCountry, getEntries(R.array.tx_rp_country), getContext());
+        setSp(spType, getEntries(R.array.tx_rp_type), getContext());
+        setSp(spPreference, getEntries(R.array.tx_rp_preference), getContext());
     }
 
     private void setSettings(List<String> authors) {

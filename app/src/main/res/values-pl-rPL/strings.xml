@@ -137,6 +137,12 @@
     <string name="ct_chart">Wykresy Substancji</string>
     <string name="ct_total">Suma Kalorii</string>
     <string name="ct_per">Na Porcję</string>
+    <string name="ct_walk">Spacer</string>
+    <string name="ct_bike">Jazda Rowerem</string>
+    <string name="ct_run">Bieg</string>
+    <string name="ct_vacuum">Odkurzanie</string>
+    <string name="ct_dance">Taniec</string>
+    <string name="ct_swim">Pływanie</string>
     <string name="ct_developer">Twórca</string>
     <string name="ct_version">Wersja</string>
     <string name="ct_license">Licencja</string>
@@ -163,6 +169,7 @@
     <string name="hd_rp_cl_kcal">Kalorie w Kcal</string>
     <string name="hd_rp_cl_kj">Kalorie w Kj</string>
     <string name="hd_rp_cl_ingredient">Kalorie Produktów</string>
+    <string name="hd_rp_cl_burn">Spal Jedną Porcję</string>
     <string name="hd_rp_settings">Szukanie Przepisów</string>
     <string name="hd_ig_mg_add">Dodaj Składnik</string>
     <string name="hd_ig_mg_data">Ustaw Składniki</string>
@@ -270,6 +277,13 @@
         <b>wartości kaloryczne</b> danego składnika, wyrażonych w <b>kilokaloriach</b> oraz
         <b>kilodżulach</b>. Jeżeli w wykorzystywanym w składniku produkcie nie zostały ustawione
         informacje na temat składu to dane o kaloriach <b>będą puste</b>.</string>
+    <string name="tt_rp_cl_burn">Sekcja prezentująca <b>przykłady aktywności fizycznych</b>
+        pozwalających na spalanie kalorii zawartych w określonym przepisie. Użytkownik może
+        dowiedzieć się w jakim czasie <b>wyrażonym w minutach</b> należy wykonać jedną ze
+        wskazanych czynności, aby mógł pozbyć się kalorii nabytych poprzez spożycie
+        <b>jednej porcji</b> konkrentego dania.\n\nFragmenty <b>Spacer</b>, <b>Jazda Rowerem</b>,
+        <b>Bieg</b>, <b>Odkurzanie</b>, <b>Taniec</b> oraz <b>Pływanie</b> reprezentują kolejne
+        aktywności fizyczne wraz z odpowiadającym im czasem wykonania.</string>
     <string name="tt_rp_settings">Sekcja pozwalająca użytkownikowi na określenie
         <b>ustawień wyszukiwania</b> dotyczących wyboru przepisów. Poszczególne zmiany odbywają
         się tutaj poprzez użycie <b>przełączników</b>, dostępnych w każdym fragmencie.\n\nJeżeli

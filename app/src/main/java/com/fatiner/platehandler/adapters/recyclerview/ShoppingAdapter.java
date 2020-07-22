@@ -55,7 +55,7 @@ public class ShoppingAdapter extends PrimaryAdapter<ShoppingAdapter.ShoppingHold
     }
 
     private String getItemText(ShoppingItem item) {
-        String[] measures = getStringArray(R.array.tx_measure);
+        String[] measures = getStringArray(R.array.tx_rp_measure);
         return String.format(Locale.ENGLISH, Format.FM_SHOPPING,
                 item.getName(), item.getAmount(), measures[item.getMeasure()]);
     }

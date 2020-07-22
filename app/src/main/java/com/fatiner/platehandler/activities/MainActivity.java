@@ -166,13 +166,13 @@ public class MainActivity extends AppCompatActivity {
         nvMain.getMenu().findItem(id).setChecked(true);
     }
 
+    public void setTbTitle(String title) {
+        if (getSupportActionBar() != null) getSupportActionBar().setTitle(title);
+    }
+
     @Override
     public void onBackPressed() {
         if (isDrawerOpen()) closeDrawer();
         else super.onBackPressed();
-    }
-
-    public void setTbTitle(String title) {
-        tbMain.setTitle(title);
     }
 }

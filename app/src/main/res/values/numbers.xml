@@ -9,4 +9,11 @@
     <integer name="fc_teaspoon">5</integer>
     <integer name="fc_tablespoon">15</integer>
     <integer name="fc_cup">250</integer>
+
+    <integer name="fc_walk">227</integer>
+    <integer name="fc_bike">456</integer>
+    <integer name="fc_run">1185</integer>
+    <integer name="fc_vacuum">241</integer>
+    <integer name="fc_dance">489</integer>
+    <integer name="fc_swim">390</integer>
 </resources>

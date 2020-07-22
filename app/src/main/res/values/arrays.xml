@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="tx_difficulty">
+    <string-array name="tx_rp_difficulty">
         <item>@string/ar_df_easy</item>
         <item>@string/ar_df_medium</item>
         <item>@string/ar_df_hard</item>
     </string-array>
 
-    <string-array name="tx_spiciness">
+    <string-array name="tx_rp_spiciness">
         <item>@string/ar_sp_mild</item>
         <item>@string/ar_sp_medium</item>
         <item>@string/ar_sp_hot</item>
         <item>@string/ar_sp_extra</item>
     </string-array>
 
-    <string-array name="tx_preference">
+    <string-array name="tx_rp_preference">
         <item>@string/ar_pf_vegetarian</item>
         <item>@string/ar_pf_meat</item>
     </string-array>
 
-    <string-array name="tx_country">
+    <string-array name="tx_rp_country">
         <item>@string/ar_ct_american</item>
         <item>@string/ar_ct_austrian</item>
         <item>@string/ar_ct_brazilian</item>
@@ -48,7 +48,7 @@
         <item>@string/ar_ct_other</item>
     </string-array>
 
-    <string-array name="tx_measure">
+    <string-array name="tx_rp_measure">
         <item>@string/ar_ms_piece</item>
         <item>@string/ar_ms_gram</item>
         <item>@string/ar_ms_decagram</item>
@@ -60,19 +60,7 @@
         <item>@string/ar_ms_cup</item>
     </string-array>
 
-    <integer-array name="tx_factor">
-        <item>@integer/fc_piece</item>
-        <item>@integer/fc_gram</item>
-        <item>@integer/fc_decagram</item>
-        <item>@integer/fc_kilogram</item>
-        <item>@integer/fc_millilitre</item>
-        <item>@integer/fc_litre</item>
-        <item>@integer/fc_teaspoon</item>
-        <item>@integer/fc_tablespoon</item>
-        <item>@integer/fc_cup</item>
-    </integer-array>
-
-    <string-array name="tx_recipe">
+    <string-array name="tx_rp_type">
         <item>@string/ar_rp_breakfast</item>
         <item>@string/ar_rp_appetiser</item>
         <item>@string/ar_rp_drink</item>
@@ -85,7 +73,7 @@
         <item>@string/ar_rp_other</item>
     </string-array>
 
-    <string-array name="tx_product">
+    <string-array name="tx_pd_type">
         <item>@string/ar_pd_grain</item>
         <item>@string/ar_pd_bread</item>
         <item>@string/ar_pd_dairy</item>
@@ -103,7 +91,28 @@
         <item>@string/ar_pd_other</item>
     </string-array>
 
-    <integer-array name="dw_recipe">
+    <integer-array name="nb_cl_factor">
+        <item>@integer/fc_piece</item>
+        <item>@integer/fc_gram</item>
+        <item>@integer/fc_decagram</item>
+        <item>@integer/fc_kilogram</item>
+        <item>@integer/fc_millilitre</item>
+        <item>@integer/fc_litre</item>
+        <item>@integer/fc_teaspoon</item>
+        <item>@integer/fc_tablespoon</item>
+        <item>@integer/fc_cup</item>
+    </integer-array>
+
+    <integer-array name="nb_bn_factor">
+        <item>@integer/fc_walk</item>
+        <item>@integer/fc_bike</item>
+        <item>@integer/fc_run</item>
+        <item>@integer/fc_vacuum</item>
+        <item>@integer/fc_dance</item>
+        <item>@integer/fc_swim</item>
+    </integer-array>
+
+    <integer-array name="dw_rp_type">
         <item>@drawable/ic_rp_breakfast</item>
         <item>@drawable/ic_rp_appetiser</item>
         <item>@drawable/ic_rp_drink</item>
@@ -116,7 +125,7 @@
         <item>@drawable/ic_ot_other</item>
     </integer-array>
 
-    <integer-array name="dw_product">
+    <integer-array name="dw_pd_type">
         <item>@drawable/ic_pd_grain</item>
         <item>@drawable/ic_pd_bread</item>
         <item>@drawable/ic_pd_dairy</item>
@@ -134,12 +143,12 @@
         <item>@drawable/ic_ot_other</item>
     </integer-array>
 
-    <integer-array name="dw_preference">
+    <integer-array name="dw_rp_preference">
         <item>@drawable/ic_pf_vegetarian</item>
         <item>@drawable/ic_pf_meat</item>
     </integer-array>
 
-    <string-array name="dw_country">
+    <string-array name="dw_rp_country">
         <item>@drawable/ic_ct_american</item>
         <item>@drawable/ic_ct_austrian</item>
         <item>@drawable/ic_ct_brazilian</item>
