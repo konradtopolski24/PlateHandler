@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LibraryAdapter extends PrimaryAdapter<LibraryAdapter.LibraryHolder> {
-    
+
     private ArrayList<Library> libraries;
 
     public LibraryAdapter(Context context, ArrayList<Library> libraries) {
@@ -51,10 +51,14 @@ public class LibraryAdapter extends PrimaryAdapter<LibraryAdapter.LibraryHolder>
 
     static class LibraryHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_name) TextView tvName;
-        @BindView(R.id.tv_author) TextView tvAuthor;
-        @BindView(R.id.tv_version) TextView tvVersion;
-        @BindView(R.id.tv_license) TextView tvLicense;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.tv_author)
+        TextView tvAuthor;
+        @BindView(R.id.tv_version)
+        TextView tvVersion;
+        @BindView(R.id.tv_license)
+        TextView tvLicense;
 
         private LibraryHolder(View itemView) {
             super(itemView);

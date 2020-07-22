@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.adapters.recyclerview.ShoppingAddAdapter;
-import com.fatiner.platehandler.items.ShoppingItem;
-import com.fatiner.platehandler.items.ShoppingList;
 import com.fatiner.platehandler.details.ShoppingListDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.fragments.recipe.RecipeChooseFragment;
 import com.fatiner.platehandler.globals.Globals;
 import com.fatiner.platehandler.globals.Shared;
+import com.fatiner.platehandler.items.ShoppingItem;
+import com.fatiner.platehandler.items.ShoppingList;
 import com.fatiner.platehandler.managers.SharedManager;
 import com.fatiner.platehandler.managers.TypeManager;
 
@@ -34,7 +34,8 @@ import butterknife.OnClick;
 public class ShoppingCreateFragment extends PrimaryFragment implements
         ShoppingAddAdapter.ShoppingAddListener {
 
-    @BindView(R.id.rv_shopping) RecyclerView rvShopping;
+    @BindView(R.id.rv_shopping)
+    RecyclerView rvShopping;
 
     @OnClick(R.id.bt_add)
     void clickBtAdd() {

@@ -7,6 +7,9 @@ public class Font {
     private String version;
     private String license;
 
+    public Font() {
+    }
+
     public String getName() {
         return name;
     }

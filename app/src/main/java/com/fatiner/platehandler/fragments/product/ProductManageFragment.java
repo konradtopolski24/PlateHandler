@@ -46,19 +46,32 @@ public class ProductManageFragment extends PrimaryFragment {
     private ProductManageViewModel viewModel;
     private CompositeDisposable disposables;
 
-    @BindView(R.id.iv_photo) ImageView ivPhoto;
-    @BindView(R.id.iv_type) ImageView ivType;
-    @BindView(R.id.et_name) EditText etName;
-    @BindView(R.id.et_size) EditText etSize;
-    @BindView(R.id.et_carbohydrates) EditText etCarbohydrates;
-    @BindView(R.id.et_proteins) EditText etProteins;
-    @BindView(R.id.et_fats) EditText etFats;
-    @BindView(R.id.til_name) TextInputLayout tilName;
-    @BindView(R.id.til_size) TextInputLayout tilSize;
-    @BindView(R.id.til_carbohydrates) TextInputLayout tilCarbohydrates;
-    @BindView(R.id.til_proteins) TextInputLayout tilProteins;
-    @BindView(R.id.til_fats) TextInputLayout tilFats;
-    @BindView(R.id.sp_type) Spinner spType;
+    @BindView(R.id.iv_photo)
+    ImageView ivPhoto;
+    @BindView(R.id.iv_type)
+    ImageView ivType;
+    @BindView(R.id.et_name)
+    EditText etName;
+    @BindView(R.id.et_size)
+    EditText etSize;
+    @BindView(R.id.et_carbohydrates)
+    EditText etCarbohydrates;
+    @BindView(R.id.et_proteins)
+    EditText etProteins;
+    @BindView(R.id.et_fats)
+    EditText etFats;
+    @BindView(R.id.til_name)
+    TextInputLayout tilName;
+    @BindView(R.id.til_size)
+    TextInputLayout tilSize;
+    @BindView(R.id.til_carbohydrates)
+    TextInputLayout tilCarbohydrates;
+    @BindView(R.id.til_proteins)
+    TextInputLayout tilProteins;
+    @BindView(R.id.til_fats)
+    TextInputLayout tilFats;
+    @BindView(R.id.sp_type)
+    Spinner spType;
 
     @OnTextChanged(R.id.et_name)
     void changedEtName(CharSequence text) {

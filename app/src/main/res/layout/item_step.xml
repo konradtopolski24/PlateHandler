@@ -1,57 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/CvItem">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/ClItem">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/ClItem">
 
         <TextView
-            style="@style/TvSide"
             android:id="@+id/tv_id"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/TvSide"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_edit"
             app:layout_constraintEnd_toStartOf="@+id/ib_edit"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/ib_edit" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            style="@style/IbDefault"
             android:id="@+id/ib_edit"
-            android:src="@drawable/ic_st_edit"
+            style="@style/IbDefault"
             android:contentDescription="@string/dp_bt_edit"
-            app:layout_constraintStart_toEndOf="@+id/tv_id"
+            android:src="@drawable/ic_st_edit"
             app:layout_constraintEnd_toStartOf="@+id/iv_remove"
+            app:layout_constraintStart_toEndOf="@+id/tv_id"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            style="@style/IvClose"
             android:id="@+id/iv_remove"
+            style="@style/IvClose"
             android:contentDescription="@string/dp_remove"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_edit"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ib_edit"
-            app:layout_constraintBottom_toBottomOf="@+id/ib_edit" />
+            app:layout_constraintTop_toTopOf="@+id/ib_edit" />
 
         <TextView
-            style="@style/TvStep"
             android:id="@+id/tv_content"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/TvStep"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_id"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_id" />
 
         <CheckBox
-            style="@style/CbDone"
             android:id="@+id/cb_done"
+            style="@style/CbDone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            style="@style/TvDone"
             android:id="@+id/tv_done"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/TvDone"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

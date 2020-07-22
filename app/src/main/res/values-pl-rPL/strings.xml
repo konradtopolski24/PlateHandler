@@ -1,8 +1,6 @@
 <resources>
-    <!-- App Name -->
     <string name="app_name">Plate Handler</string>
 
-    <!-- NavigationView Menu -->
     <string name="nv_home">Strona Główna</string>
     <string name="nv_recipe">Przepisy</string>
     <string name="nv_product">Produkty</string>
@@ -11,37 +9,30 @@
     <string name="nv_import">Import Bazy Danych</string>
     <string name="nv_credits">Przypisy</string>
 
-    <!-- Drawer -->
     <string name="dt_opened">Szuflada Otwarta</string>
     <string name="dt_closed">Szuflada Zamknięta</string>
 
-    <!-- Dialog -->
     <string name="dg_ok">OK</string>
     <string name="dg_cancel">Anuluj</string>
 
-    <!-- Pager -->
     <string name="pg_info">Dane</string>
     <string name="pg_ingredient">Składniki</string>
     <string name="pg_step">Kroki</string>
 
-    <!-- Share -->
     <string name="sr_recipe">Przepis na</string>
 
-    <!-- Menu Items -->
     <string name="mn_settings">Ustawienia</string>
     <string name="mn_share">Udostępnij</string>
     <string name="mn_calculate">Obliczanie</string>
     <string name="mn_edit">Edytuj</string>
     <string name="mn_remove">Usuń</string>
 
-    <!-- Button -->
     <string name="bt_shopping">Nowa Lista</string>
     <string name="bt_ingredient">Nowy Składnik</string>
     <string name="bt_step">Nowy Krok</string>
     <string name="bt_item">Nowa Pozycja</string>
     <string name="bt_recipe">Z Przepisu</string>
 
-    <!-- Dialog Message -->
     <string name="dg_pd_add">Czy chcesz dodać nowy produkt?</string>
     <string name="dg_pd_edit">Czy chcesz zedytować informacje o produkcie?</string>
     <string name="dg_pd_remove">Czy chcesz usunąć produkt?</string>
@@ -53,7 +44,6 @@
     <string name="dg_im_choose">Czy chcesz importować dane z wybranego pliku?
         Wszystkie wcześniejsze dane zostaną usunięte!</string>
 
-    <!-- SnackBar Message -->
     <string name="sb_pd_add">Nowy produkt został dodany!</string>
     <string name="sb_pd_edit">Produkt został zaktualizowany!</string>
     <string name="sb_pd_remove">Product został usunięty!</string>
@@ -65,7 +55,6 @@
     <string name="sb_ex_add">Baza danych została wyeksportowana!</string>
     <string name="sb_im_add">Baza danych została zaimportowana!</string>
 
-    <!-- Toast Message -->
     <string name="ts_welcome">Witamy w Plate Handler!</string>
     <string name="ts_product">Dane produktu są niekompletne!</string>
     <string name="ts_used">Nie można usunąć tego produktu, ponieważ jest używany w
@@ -81,7 +70,6 @@
     <string name="ts_empty">Przynajmniej jeden produkt nie ma ustalonego średniego
         rozmiaru!</string>
 
-    <!-- Errors -->
     <string name="er_pd_name">Nazwa produktu jest pusta!</string>
     <string name="er_pd_nutrients">Suma składników odżywczych w produkcie nie może być większa niż
         jego średnia wielkość!</string>
@@ -93,7 +81,6 @@
     <string name="er_sp_name">Pusta nazwa!</string>
     <string name="er_ex_name">Nazwa pliku eksportowego jest pusta!</string>
 
-    <!-- Empty List -->
     <string name="ep_recent">Brak przepisów!</string>
     <string name="ep_recipe">Pusta lista przepisów!</string>
     <string name="ep_product">Pusta lista produktów!</string>
@@ -102,11 +89,9 @@
     <string name="ep_import">Pusta lista plików!</string>
     <string name="ep_spinner">Brak Produktów!</string>
 
-    <!-- Finished -->
     <string name="fn_ingredient">Użyto!</string>
     <string name="fn_step">Wykonano!</string>
 
-    <!-- Captions -->
     <string name="ct_recipes">Przepisy</string>
     <string name="ct_products">Produkty</string>
     <string name="ct_name">Nazwa</string>
@@ -150,14 +135,12 @@
     <string name="ct_saved">Zapisywane</string>
     <string name="ct_unsaved">Pomijane</string>
 
-    <!-- Export -->
     <string name="ex_recipe">Przepisy</string>
     <string name="ex_product">Produkty</string>
     <string name="ex_shopping">Lista Zakupów</string>
     <string name="ex_settings">Ustawienia</string>
     <string name="ex_photo">Zdjęcia</string>
 
-    <!-- Header -->
     <string name="hd_hm_statistics">Statystyki Aplikacji</string>
     <string name="hd_hm_recent">Przeglądane Przepisy</string>
     <string name="hd_rp_mg_photo">Ustaw Zdjęcie</string>
@@ -195,7 +178,6 @@
     <string name="hd_cd_icon">Użyte Ikony</string>
     <string name="hd_cd_font">Użyte Czcionki</string>
 
-    <!-- Tutorial -->
     <string name="tt_hm_statistics">Sekcja prezentująca użytkownikowi statystyki dotyczące bazy
         danych wykorzystywanej w aplikacji <b>Plate Handler</b>.\n\nFragment <b>Przepisy</b>
         określa liczbę dodanych przez autora przepisów, natomiast <b>Produkty</b> wyraża
@@ -447,7 +429,6 @@
         aplikacji, natomiast <b>Licencja</b> charakteryzuje jaka licencja obejmuje daną
         czcionkę.</string>
 
-    <!-- Main Toolbar Titles -->
     <string name="tb_hm_welcome">Witamy</string>
     <string name="tb_rp_choose">Wybierz Przepis</string>
     <string name="tb_rp_settings">Ustawienia Przepisu</string>
@@ -468,7 +449,6 @@
     <string name="tb_im_database">Import Bazy Danych</string>
     <string name="tb_cd_show">Przypisy</string>
 
-    <!-- Content Description -->
     <string name="dp_logo">Logo aplikacji</string>
     <string name="dp_pd_photo">Zdjęcie produktu</string>
     <string name="dp_pd_type">Ikona typu produktu</string>
@@ -491,22 +471,18 @@
     <string name="dp_bt_edit">Przycisk edycji pozycji</string>
     <string name="dp_bt_product">Przycisk dodawania nowego produktu</string>
 
-    <!-- Array Text Difficulty -->
     <string name="ar_df_easy">Łatwy</string>
     <string name="ar_df_medium">Średni</string>
     <string name="ar_df_hard">Trudny</string>
 
-    <!-- Array Text Spiciness -->
     <string name="ar_sp_mild">Łagodne</string>
     <string name="ar_sp_medium">Średnie</string>
     <string name="ar_sp_hot">Ostre</string>
     <string name="ar_sp_extra">Super Ostre</string>
 
-    <!-- Array Text Preference -->
     <string name="ar_pf_vegetarian">Wegetariańskie</string>
     <string name="ar_pf_meat">Mięsne</string>
 
-    <!-- Array Text Country -->
     <string name="ar_ct_american">Amerykańska</string>
     <string name="ar_ct_austrian">Austriacka</string>
     <string name="ar_ct_brazilian">Brazylijska</string>
@@ -535,7 +511,6 @@
     <string name="ar_ct_vietnamese">Wietnamska</string>
     <string name="ar_ct_other">Inna</string>
 
-    <!-- Array Text Recipe -->
     <string name="ar_rp_breakfast">Śniadanie</string>
     <string name="ar_rp_appetiser">Przekąska</string>
     <string name="ar_rp_drink">Napój</string>
@@ -547,7 +522,6 @@
     <string name="ar_rp_dessert">Deser</string>
     <string name="ar_rp_other">Inny</string>
 
-    <!-- Array Text Product -->
     <string name="ar_pd_grain">Zboża</string>
     <string name="ar_pd_bread">Pieczywo</string>
     <string name="ar_pd_dairy">Nabiał</string>
@@ -564,7 +538,6 @@
     <string name="ar_pd_sauce">Sos</string>
     <string name="ar_pd_other">Inny</string>
 
-    <!-- Array Text Measure -->
     <string name="ar_ms_piece">Sztuka</string>
     <string name="ar_ms_gram">Gram</string>
     <string name="ar_ms_decagram">Dekagram</string>
@@ -575,7 +548,6 @@
     <string name="ar_ms_tablespoon">Łyżka</string>
     <string name="ar_ms_cup">Szklanka</string>
 
-    <!-- Default Products -->
     <string name="df_tomato">Pomidor</string>
     <string name="df_carrot">Marchewka</string>
     <string name="df_onion">Cebula</string>

@@ -73,9 +73,12 @@ public class RecipeAdapter extends PrimaryAdapter<RecipeAdapter.RecipeHolder> {
 
     class RecipeHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_name) TextView tvName;
-        @BindView(R.id.iv_country) ImageView ivCountry;
-        @BindView(R.id.iv_type) ImageView ivType;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.iv_country)
+        ImageView ivCountry;
+        @BindView(R.id.iv_type)
+        ImageView ivType;
 
         @OnClick(R.id.cl_recipe)
         void clickClRecipe() {

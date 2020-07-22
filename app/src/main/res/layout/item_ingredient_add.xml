@@ -1,84 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/WidthMatch">
 
     <ImageView
-        style="@style/IvClose"
         android:id="@+id/iv_remove"
-        android:src="@drawable/ic_ot_close"
+        style="@style/IvClose"
         android:contentDescription="@string/dp_remove"
+        android:src="@drawable/ic_ot_close"
+        app:layout_constraintBottom_toBottomOf="@+id/til_amount"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/til_amount"
-        app:layout_constraintBottom_toBottomOf="@+id/til_amount" />
+        app:layout_constraintTop_toTopOf="@+id/til_amount" />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/TilDefault"
         android:id="@+id/til_amount"
-        app:layout_constraintStart_toEndOf="@+id/iv_remove"
-        app:layout_constraintEnd_toStartOf="@+id/sp_measure"
-        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TilDefault"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1">
+        app:layout_constraintEnd_toStartOf="@+id/sp_measure"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/iv_remove"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            style="@style/EtItemAmount"
             android:id="@+id/et_amount"
+            style="@style/EtItemAmount"
             android:hint="@string/ct_amount" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        style="@style/TvTiny"
         android:id="@+id/tv_ct_measure"
-        android:text="@string/ct_measure"
-        app:layout_constraintStart_toStartOf="@+id/sp_measure"
-        app:layout_constraintEnd_toEndOf="@+id/sp_measure"
-        app:layout_constraintTop_toTopOf="@+id/til_amount" />
-
-    <Spinner
-        style="@style/WidthZero"
-        android:id="@+id/sp_measure"
-        app:layout_constraintStart_toEndOf="@+id/til_amount"
-        app:layout_constraintEnd_toStartOf="@+id/sp_product"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ct_measure"
-        app:layout_constraintBottom_toBottomOf="@+id/til_amount"
-        app:layout_constraintHorizontal_weight="1" />
-
-    <TextView
         style="@style/TvTiny"
-        android:id="@+id/tv_ct_product"
-        android:text="@string/ct_product"
-        app:layout_constraintStart_toStartOf="@+id/sp_product"
-        app:layout_constraintEnd_toEndOf="@+id/sp_product"
+        android:text="@string/ct_measure"
+        app:layout_constraintEnd_toEndOf="@+id/sp_measure"
+        app:layout_constraintStart_toStartOf="@+id/sp_measure"
         app:layout_constraintTop_toTopOf="@+id/til_amount" />
 
     <Spinner
+        android:id="@+id/sp_measure"
         style="@style/WidthZero"
-        android:id="@+id/sp_product"
-        app:layout_constraintStart_toEndOf="@+id/sp_measure"
-        app:layout_constraintEnd_toStartOf="@+id/ib_add"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ct_product"
         app:layout_constraintBottom_toBottomOf="@+id/til_amount"
-        app:layout_constraintHorizontal_weight="1" />
+        app:layout_constraintEnd_toStartOf="@+id/sp_product"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/til_amount"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ct_measure" />
 
     <TextView
-        style="@style/TvNo"
-        android:id="@+id/tv_empty"
-        android:text="@string/ep_spinner"
-        app:layout_constraintStart_toEndOf="@+id/sp_measure"
-        app:layout_constraintEnd_toStartOf="@+id/ib_add"
-        app:layout_constraintTop_toTopOf="@+id/til_amount"
+        android:id="@+id/tv_ct_product"
+        style="@style/TvTiny"
+        android:text="@string/ct_product"
+        app:layout_constraintEnd_toEndOf="@+id/sp_product"
+        app:layout_constraintStart_toStartOf="@+id/sp_product"
+        app:layout_constraintTop_toTopOf="@+id/til_amount" />
+
+    <Spinner
+        android:id="@+id/sp_product"
+        style="@style/WidthZero"
         app:layout_constraintBottom_toBottomOf="@+id/til_amount"
-        app:layout_constraintHorizontal_weight="1" />
+        app:layout_constraintEnd_toStartOf="@+id/ib_add"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/sp_measure"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ct_product" />
+
+    <TextView
+        android:id="@+id/tv_empty"
+        style="@style/TvNo"
+        android:text="@string/ep_spinner"
+        app:layout_constraintBottom_toBottomOf="@+id/til_amount"
+        app:layout_constraintEnd_toStartOf="@+id/ib_add"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/sp_measure"
+        app:layout_constraintTop_toTopOf="@+id/til_amount" />
 
     <ImageButton
-        style="@style/BothWrap"
         android:id="@+id/ib_add"
-        android:src="@drawable/ic_ot_plus"
+        style="@style/BothWrap"
         android:contentDescription="@string/dp_bt_product"
-        app:layout_constraintStart_toEndOf="@+id/sp_product"
+        android:src="@drawable/ic_ot_plus"
+        app:layout_constraintBottom_toBottomOf="@+id/til_amount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/til_amount"
-        app:layout_constraintBottom_toBottomOf="@+id/til_amount" />
+        app:layout_constraintStart_toEndOf="@+id/sp_product"
+        app:layout_constraintTop_toTopOf="@+id/til_amount" />
 </androidx.constraintlayout.widget.ConstraintLayout>

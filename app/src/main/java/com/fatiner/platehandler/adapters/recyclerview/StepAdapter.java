@@ -95,12 +95,18 @@ public class StepAdapter extends PrimaryAdapter<StepAdapter.StepHolder> {
 
     class StepHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_id) TextView tvId;
-        @BindView(R.id.tv_content) TextView tvContent;
-        @BindView(R.id.tv_done) TextView tvDone;
-        @BindView(R.id.iv_remove) ImageView ivRemove;
-        @BindView(R.id.ib_edit) ImageButton ibEdit;
-        @BindView(R.id.cb_done) CheckBox cbDone;
+        @BindView(R.id.tv_id)
+        TextView tvId;
+        @BindView(R.id.tv_content)
+        TextView tvContent;
+        @BindView(R.id.tv_done)
+        TextView tvDone;
+        @BindView(R.id.iv_remove)
+        ImageView ivRemove;
+        @BindView(R.id.ib_edit)
+        ImageButton ibEdit;
+        @BindView(R.id.cb_done)
+        CheckBox cbDone;
 
         @OnClick(R.id.ib_edit)
         void clickIbEdit() {
@@ -128,7 +134,9 @@ public class StepAdapter extends PrimaryAdapter<StepAdapter.StepHolder> {
 
     public interface StepListener {
         void setDone(int id, boolean checked);
+
         void editStep(int position);
+
         void removeStep(int position);
     }
 }

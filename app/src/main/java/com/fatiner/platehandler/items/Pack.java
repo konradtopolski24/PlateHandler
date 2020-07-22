@@ -7,6 +7,9 @@ public class Pack {
     private String license;
     private int amount;
 
+    public Pack() {
+    }
+
     public String getName() {
         return name;
     }

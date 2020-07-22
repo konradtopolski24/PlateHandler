@@ -53,8 +53,10 @@ public class ProductAdapter extends PrimaryAdapter<ProductAdapter.ProductHolder>
 
     class ProductHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_name) TextView tvName;
-        @BindView(R.id.iv_type) ImageView ivType;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.iv_type)
+        ImageView ivType;
 
         @OnClick(R.id.cl_product)
         void clickClProduct() {

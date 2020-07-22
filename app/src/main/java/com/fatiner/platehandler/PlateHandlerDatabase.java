@@ -24,14 +24,18 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-@Database(entities = {Product.class, Recipe.class, Step.class, Ingredient.class}, version = Db.DB_CURRENT, exportSchema = false)
+@Database(entities = {Product.class, Recipe.class, Step.class, Ingredient.class},
+        version = Db.DB_CURRENT, exportSchema = false)
 public abstract class PlateHandlerDatabase extends RoomDatabase {
 
     private static PlateHandlerDatabase instance;
 
     public abstract ProductDAO getProductDAO();
+
     public abstract RecipeDAO getRecipeDAO();
+
     public abstract IngredientDAO getIngredientDAO();
+
     public abstract StepDAO getStepDAO();
 
     public static synchronized PlateHandlerDatabase getInstance(Context context) {
@@ -72,11 +76,11 @@ public abstract class PlateHandlerDatabase extends RoomDatabase {
         return new DisposableCompletableObserver() {
 
             @Override
-            public void onComplete() {}
+            public void onComplete() {
+            }
 
             @Override
             public void onError(Throwable e) {
-                //showShortToast(R.string.ts_database);
             }
         };
     }

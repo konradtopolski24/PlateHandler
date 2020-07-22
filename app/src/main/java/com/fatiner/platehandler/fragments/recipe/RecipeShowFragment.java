@@ -59,32 +59,54 @@ public class RecipeShowFragment extends PrimaryFragment implements
     private RecipeShowViewModel viewModel;
     private CompositeDisposable disposables;
 
-    @BindView(R.id.cv_data) CardView cvData;
-    @BindView(R.id.cv_ingredient) CardView cvIngredient;
-    @BindView(R.id.cv_step) CardView cvStep;
-    @BindView(R.id.iv_hd_data) ImageView ivHdData;
-    @BindView(R.id.iv_hd_ingredient) ImageView ivHdIngredient;
-    @BindView(R.id.iv_hd_step) ImageView ivHdStep;
-    @BindView(R.id.iv_photo) ImageView ivPhoto;
-    @BindView(R.id.iv_country) ImageView ivCountry;
-    @BindView(R.id.iv_type) ImageView ivType;
-    @BindView(R.id.iv_preference) ImageView ivPreference;
+    @BindView(R.id.cv_data)
+    CardView cvData;
+    @BindView(R.id.cv_ingredient)
+    CardView cvIngredient;
+    @BindView(R.id.cv_step)
+    CardView cvStep;
+    @BindView(R.id.iv_hd_data)
+    ImageView ivHdData;
+    @BindView(R.id.iv_hd_ingredient)
+    ImageView ivHdIngredient;
+    @BindView(R.id.iv_hd_step)
+    ImageView ivHdStep;
+    @BindView(R.id.iv_photo)
+    ImageView ivPhoto;
+    @BindView(R.id.iv_country)
+    ImageView ivCountry;
+    @BindView(R.id.iv_type)
+    ImageView ivType;
+    @BindView(R.id.iv_preference)
+    ImageView ivPreference;
     @BindViews({
             R.id.iv_spiciness0,
             R.id.iv_spiciness1,
             R.id.iv_spiciness2,
-            R.id.iv_spiciness3}) List<ImageView> ivSpicinessList;
-    @BindView(R.id.tv_name) TextView tvName;
-    @BindView(R.id.tv_author) TextView tvAuthor;
-    @BindView(R.id.tv_serving) TextView tvServing;
-    @BindView(R.id.tv_time) TextView tvTime;
-    @BindView(R.id.tv_difficulty) TextView tvDifficulty;
-    @BindView(R.id.tv_country) TextView tvCountry;
-    @BindView(R.id.tv_type) TextView tvType;
-    @BindView(R.id.tv_preference) TextView tvPreference;
-    @BindView(R.id.rv_ingredient) RecyclerView rvIngredients;
-    @BindView(R.id.rv_step) RecyclerView rvStep;
-    @BindView(R.id.cb_favorite) CheckBox cbFavorite;
+            R.id.iv_spiciness3})
+    List<ImageView> ivSpicinessList;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_author)
+    TextView tvAuthor;
+    @BindView(R.id.tv_serving)
+    TextView tvServing;
+    @BindView(R.id.tv_time)
+    TextView tvTime;
+    @BindView(R.id.tv_difficulty)
+    TextView tvDifficulty;
+    @BindView(R.id.tv_country)
+    TextView tvCountry;
+    @BindView(R.id.tv_type)
+    TextView tvType;
+    @BindView(R.id.tv_preference)
+    TextView tvPreference;
+    @BindView(R.id.rv_ingredient)
+    RecyclerView rvIngredients;
+    @BindView(R.id.rv_step)
+    RecyclerView rvStep;
+    @BindView(R.id.cb_favorite)
+    CheckBox cbFavorite;
 
     @OnCheckedChanged(R.id.cb_favorite)
     void checkedCbFavorite(boolean checked) {
@@ -220,11 +242,13 @@ public class RecipeShowFragment extends PrimaryFragment implements
         setTv(tvDifficulty, recipe.getDifficulty(), R.array.tx_rp_difficulty);
         setTv(tvCountry, recipe.getCountry(), R.array.tx_rp_country);
         setTv(tvType, recipe.getType(), R.array.tx_rp_type);
-        setTv(tvPreference, TypeManager.boolToInt(recipe.getPreference()), R.array.tx_rp_preference);
+        setTv(tvPreference, TypeManager.boolToInt(recipe.getPreference()),
+                R.array.tx_rp_preference);
         setIvList(ivSpicinessList, recipe.getSpiciness());
         setIv(ivCountry, recipe.getCountry(), R.array.dw_rp_country);
         setIv(ivType, recipe.getType(), R.array.dw_rp_type);
-        setIv(ivPreference, TypeManager.boolToInt(recipe.getPreference()), R.array.dw_rp_preference);
+        setIv(ivPreference, TypeManager.boolToInt(recipe.getPreference()),
+                R.array.dw_rp_preference);
         setCb(cbFavorite, recipe.getFavorite());
         setIv(ivPhoto, recipe.getPhoto());
     }
@@ -345,7 +369,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
 
     private String getIngredientText() {
         StringBuilder text = new StringBuilder(Globals.SN_EMPTY);
-        for(Ingredient ingredient : getRecipe().getIngredients())
+        for (Ingredient ingredient : getRecipe().getIngredients())
             text.append(String.format(Locale.ENGLISH, Format.FM_INGREDIENT,
                     ingredient.getProduct().getName(),
                     ingredient.getAmount(),
@@ -356,7 +380,7 @@ public class RecipeShowFragment extends PrimaryFragment implements
     private String getStepText() {
         int number = Globals.DF_INCREMENT;
         StringBuilder text = new StringBuilder(Globals.SN_EMPTY);
-        for(Step step : getRecipe().getSteps()) {
+        for (Step step : getRecipe().getSteps()) {
             text.append(String.format(Locale.ENGLISH, Format.FM_STEP, number, step.getContent()));
             number++;
         }
@@ -483,7 +507,8 @@ public class RecipeShowFragment extends PrimaryFragment implements
             }
 
             @Override
-            public void onComplete() {}
+            public void onComplete() {
+            }
 
             @Override
             public void onError(Throwable e) {
@@ -525,10 +550,12 @@ public class RecipeShowFragment extends PrimaryFragment implements
     }
 
     @Override
-    public void editStep(int position) {}
+    public void editStep(int position) {
+    }
 
     @Override
-    public void removeStep(int position) {}
+    public void removeStep(int position) {
+    }
 
     @Override
     public void onStop() {

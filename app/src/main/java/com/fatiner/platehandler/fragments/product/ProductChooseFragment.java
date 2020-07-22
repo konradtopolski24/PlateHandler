@@ -36,13 +36,16 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class ProductChooseFragment extends PrimaryFragment implements ProductAdapter.ProductListener {
+public class ProductChooseFragment extends PrimaryFragment implements
+        ProductAdapter.ProductListener {
 
     private ProductChooseViewModel viewModel;
     private CompositeDisposable disposables;
 
-    @BindView(R.id.rv_products) RecyclerView rvProducts;
-    @BindView(R.id.tv_empty) TextView tvEmpty;
+    @BindView(R.id.rv_products)
+    RecyclerView rvProducts;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
 
     @OnClick(R.id.fab_add)
     void clickFabAdd() {

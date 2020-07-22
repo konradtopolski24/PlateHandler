@@ -46,9 +46,12 @@ public class RecipeChooseFragment extends PrimaryFragment implements RecipeAdapt
     private RecipeChooseViewModel viewModel;
     private CompositeDisposable disposables;
 
-    @BindView(R.id.rv_recipes) RecyclerView rvRecipes;
-    @BindView(R.id.tv_empty) TextView tvEmpty;
-    @BindView(R.id.fab_add) FloatingActionButton fabAdd;
+    @BindView(R.id.rv_recipes)
+    RecyclerView rvRecipes;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
+    @BindView(R.id.fab_add)
+    FloatingActionButton fabAdd;
 
     @OnClick(R.id.fab_add)
     void clickFabAdd() {

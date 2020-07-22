@@ -1,8 +1,6 @@
 <resources>
-    <!-- App Name -->
     <string name="app_name">Plate Handler</string>
 
-    <!-- NavigationView Menu -->
     <string name="nv_home">Home</string>
     <string name="nv_recipe">Recipes</string>
     <string name="nv_product">Products</string>
@@ -11,37 +9,30 @@
     <string name="nv_import">Import Database</string>
     <string name="nv_credits">Credits</string>
 
-    <!-- Drawer -->
     <string name="dt_opened">Drawer Opened</string>
     <string name="dt_closed">Drawer Closed</string>
 
-    <!-- Dialog -->
     <string name="dg_ok">OK</string>
     <string name="dg_cancel">Cancel</string>
 
-    <!-- Pager -->
     <string name="pg_info">Information</string>
     <string name="pg_ingredient">Ingredients</string>
     <string name="pg_step">Steps</string>
 
-    <!-- Share -->
     <string name="sr_recipe">Recipe for</string>
 
-    <!-- Menu Items -->
     <string name="mn_settings">Settings</string>
     <string name="mn_share">Share</string>
     <string name="mn_calculate">Calculate</string>
     <string name="mn_edit">Edit</string>
     <string name="mn_remove">Remove</string>
 
-    <!-- Button -->
     <string name="bt_shopping">New List</string>
     <string name="bt_ingredient">New Ingredient</string>
     <string name="bt_step">New Step</string>
     <string name="bt_item">New Item</string>
     <string name="bt_recipe">From Recipe</string>
 
-    <!-- Dialog Message -->
     <string name="dg_pd_add">Do you want to add a new product?</string>
     <string name="dg_pd_edit">Do you want to edit the product?</string>
     <string name="dg_pd_remove">Do you want to remove the product?</string>
@@ -53,7 +44,6 @@
     <string name="dg_im_choose">Do you want to import data from this file?
         All your previous data will be removed!</string>
 
-    <!-- SnackBar Message -->
     <string name="sb_pd_add">New product added!</string>
     <string name="sb_pd_edit">Product updated!</string>
     <string name="sb_pd_remove">Product removed!</string>
@@ -65,7 +55,6 @@
     <string name="sb_ex_add">Database exported!</string>
     <string name="sb_im_add">Database imported!</string>
 
-    <!-- Toast Message -->
     <string name="ts_welcome">Welcome to Plate Handler!</string>
     <string name="ts_product">Product data is incomplete!</string>
     <string name="ts_used">This product cannot be removed because
@@ -80,7 +69,6 @@
     <string name="ts_directory">New directory created!</string>
     <string name="ts_empty">At least one of the product average sizes is not set!</string>
 
-    <!-- Errors -->
     <string name="er_pd_name">Product name is empty!</string>
     <string name="er_pd_nutrients">Sum of nutrients in product
         cannot be higher than its average size!</string>
@@ -92,7 +80,6 @@
     <string name="er_sp_name">Empty name!</string>
     <string name="er_ex_name">Name of the file to export is empty!</string>
 
-    <!-- Empty List -->
     <string name="ep_recent">No recipes!</string>
     <string name="ep_recipe">Empty recipe list!</string>
     <string name="ep_product">Empty product list!</string>
@@ -101,11 +88,9 @@
     <string name="ep_import">Empty import list!</string>
     <string name="ep_spinner">No products!</string>
 
-    <!-- Finished -->
     <string name="fn_ingredient">Used!</string>
     <string name="fn_step">Done!</string>
 
-    <!-- Captions -->
     <string name="ct_recipes">Recipes</string>
     <string name="ct_products">Products</string>
     <string name="ct_name">Name</string>
@@ -149,14 +134,12 @@
     <string name="ct_saved">Saved Data</string>
     <string name="ct_unsaved">Unsaved Data</string>
 
-    <!-- Export -->
     <string name="ex_recipe">All Recipes</string>
     <string name="ex_product">All Products</string>
     <string name="ex_shopping">Shopping List</string>
     <string name="ex_settings">All Settings</string>
     <string name="ex_photo">All Photos</string>
 
-    <!-- Header -->
     <string name="hd_hm_statistics">App Stats</string>
     <string name="hd_hm_recent">Visited Recipes</string>
     <string name="hd_rp_mg_photo">Set Recipe Photo</string>
@@ -168,7 +151,7 @@
     <string name="hd_rp_cl_kcal">Calories in Kcal</string>
     <string name="hd_rp_cl_kj">Calories in Kj</string>
     <string name="hd_rp_cl_ingredient">Partial Calories</string>
-    <string name="hd_rp_cl_burn">Burn One Serving</string>
+    <string name="hd_rp_cl_burn">Burn Off One Serving</string>
     <string name="hd_rp_settings">Recipe Search</string>
     <string name="hd_ig_mg_add">Add Ingredient</string>
     <string name="hd_ig_mg_data">Set Ingredient Data</string>
@@ -194,7 +177,6 @@
     <string name="hd_cd_icon">Icons Used</string>
     <string name="hd_cd_font">Fonts Used</string>
 
-    <!-- Tutorial -->
     <string name="tt_hm_statistics">A section presenting the user with statistics regarding the
         database used in the <b>Plate Handler</b> app.\n\nThe fragment <b>Recipes</b>
         defines the number of recipes added by the author, while <b>Products</b> expresses
@@ -278,7 +260,7 @@
         <b>kilocalories</b> and <b>kilojoules</b>. If the composition information has not been
         set in the product used in the ingredient, the calorie data <b>will be empty</b>.</string>
     <string name="tt_rp_cl_burn">A section presenting <b>examples of physical activities</b> that
-        allow burning the calories contained in a specific recipe. The user can find out in what
+        allow burning off calories contained in a specific recipe. The user can find out in what
         time <b>expressed in minutes</b> one of the indicated steps should be performed in order to
         be to get rid of the calories acquired by consuming <b>one serving</b> of a given
         dish.\n\nThe <b>Walking</b>, <b>Cycling</b>, <b>Running</b>, <b>Vacuuming</b>,
@@ -441,7 +423,6 @@
         the app, while the <b>License</b> fragment describes which license covers each
         font.</string>
 
-    <!-- Main Toolbar Titles -->
     <string name="tb_hm_welcome">Welcome</string>
     <string name="tb_rp_choose">Choose Recipe</string>
     <string name="tb_rp_settings">Recipe Settings</string>
@@ -462,7 +443,6 @@
     <string name="tb_im_database">Import Database</string>
     <string name="tb_cd_show">Credits</string>
 
-    <!-- Content Description -->
     <string name="dp_logo">Logo of the app</string>
     <string name="dp_pd_photo">Image of the product</string>
     <string name="dp_pd_type">Icon of the product type</string>
@@ -485,22 +465,18 @@
     <string name="dp_bt_edit">Button to edit the item</string>
     <string name="dp_bt_product">Button to add the new product</string>
 
-    <!-- Array Text Difficulty -->
     <string name="ar_df_easy">Easy</string>
     <string name="ar_df_medium">Medium</string>
     <string name="ar_df_hard">Hard</string>
 
-    <!-- Array Text Spiciness -->
     <string name="ar_sp_mild">Mild</string>
     <string name="ar_sp_medium">Medium</string>
     <string name="ar_sp_hot">Hot</string>
     <string name="ar_sp_extra">Extra Hot</string>
 
-    <!-- Array Text Preference -->
     <string name="ar_pf_vegetarian">Vegetarian</string>
     <string name="ar_pf_meat">Meat</string>
 
-    <!-- Array Text Country -->
     <string name="ar_ct_american">American</string>
     <string name="ar_ct_austrian">Austrian</string>
     <string name="ar_ct_brazilian">Brazilian</string>
@@ -529,7 +505,6 @@
     <string name="ar_ct_vietnamese">Vietnamese</string>
     <string name="ar_ct_other">Other</string>
 
-    <!-- Array Text Recipe -->
     <string name="ar_rp_breakfast">Breakfast</string>
     <string name="ar_rp_appetiser">Appetiser</string>
     <string name="ar_rp_drink">Drink</string>
@@ -541,7 +516,6 @@
     <string name="ar_rp_dessert">Dessert</string>
     <string name="ar_rp_other">Other</string>
 
-    <!-- Array Text Product -->
     <string name="ar_pd_grain">Grain</string>
     <string name="ar_pd_bread">Bread</string>
     <string name="ar_pd_dairy">Dairy</string>
@@ -558,7 +532,6 @@
     <string name="ar_pd_sauce">Sauce</string>
     <string name="ar_pd_other">Other</string>
 
-    <!-- Array Text Measure -->
     <string name="ar_ms_piece">Piece</string>
     <string name="ar_ms_gram">Gram</string>
     <string name="ar_ms_decagram">Decagram</string>
@@ -569,7 +542,6 @@
     <string name="ar_ms_tablespoon">Tablespoon</string>
     <string name="ar_ms_cup">Cup</string>
 
-    <!-- Default Products -->
     <string name="df_tomato">Tomato</string>
     <string name="df_carrot">Carrot</string>
     <string name="df_onion">Onion</string>

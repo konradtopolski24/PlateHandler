@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.fatiner.platehandler.models.Recipe;
 import com.fatiner.platehandler.repositories.IngredientRepository;
-import com.fatiner.platehandler.repositories.ProductRepository;
 import com.fatiner.platehandler.repositories.RecipeRepository;
 import com.fatiner.platehandler.repositories.StepRepository;
 
@@ -17,14 +16,12 @@ import io.reactivex.Single;
 public class RecipeManagePagerViewModel extends AndroidViewModel {
 
     private RecipeRepository recipeRepository;
-    private ProductRepository productRepository;
     private IngredientRepository ingredientRepository;
     private StepRepository stepRepository;
 
     public RecipeManagePagerViewModel(@NonNull Application application) {
         super(application);
         recipeRepository = new RecipeRepository(application);
-        productRepository = new ProductRepository(application);
         ingredientRepository = new IngredientRepository(application);
         stepRepository = new StepRepository(application);
     }

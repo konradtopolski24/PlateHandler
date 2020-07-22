@@ -1,79 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/CvItem">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/ClItem">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/ClItem">
 
         <LinearLayout
-            style="@style/LlSide"
             android:id="@+id/ll_icon"
+            style="@style/LlSide"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                style="@style/IvSide"
                 android:id="@+id/iv_icon"
+                style="@style/IvSide"
                 android:contentDescription="@string/dp_side" />
         </LinearLayout>
 
         <TextView
-            style="@style/TvItem"
             android:id="@+id/tv_product"
-            app:layout_constraintStart_toEndOf="@+id/ll_icon"
+            style="@style/TvItem"
             app:layout_constraintEnd_toStartOf="@+id/tv_kcal"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_weight="2" />
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toEndOf="@+id/ll_icon"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            style="@style/TvCalories"
             android:id="@+id/tv_kcal"
-            app:layout_constraintStart_toEndOf="@+id/tv_product"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_product"
+            style="@style/TvCalories"
             app:layout_constraintBottom_toBottomOf="@+id/tv_product"
-            app:layout_constraintHorizontal_weight="1" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv_product"
+            app:layout_constraintTop_toTopOf="@+id/tv_product" />
 
         <ImageView
-            style="@style/IvItem"
             android:id="@+id/iv_ct_measure"
-            android:src="@drawable/ic_ot_amount"
+            style="@style/IvItem"
             android:contentDescription="@string/dp_caption"
+            android:src="@drawable/ic_ot_amount"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ll_icon"
-            app:layout_constraintTop_toBottomOf="@+id/tv_product"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_product" />
 
         <TextView
-            style="@style/TvMeasure"
             android:id="@+id/tv_measure"
-            app:layout_constraintStart_toEndOf="@+id/iv_ct_measure"
+            style="@style/TvMeasure"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_ct_measure"
             app:layout_constraintEnd_toEndOf="@+id/tv_product"
-            app:layout_constraintTop_toTopOf="@+id/iv_ct_measure"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_ct_measure" />
+            app:layout_constraintStart_toEndOf="@+id/iv_ct_measure"
+            app:layout_constraintTop_toTopOf="@+id/iv_ct_measure" />
 
         <TextView
-            style="@style/TvCalories"
             android:id="@+id/tv_kj"
-            app:layout_constraintStart_toStartOf="@+id/tv_kcal"
+            style="@style/TvCalories"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_ct_measure"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iv_ct_measure"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_ct_measure" />
+            app:layout_constraintStart_toStartOf="@+id/tv_kcal"
+            app:layout_constraintTop_toTopOf="@+id/iv_ct_measure" />
 
         <CheckBox
-            style="@style/CbDone"
             android:id="@+id/cb_done"
+            style="@style/CbDone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            style="@style/TvUsed"
             android:id="@+id/tv_used"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/TvUsed"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

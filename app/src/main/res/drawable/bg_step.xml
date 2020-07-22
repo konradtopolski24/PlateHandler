@@ -1,8 +1,9 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <solid android:color="@color/pr_normal"/>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/pr_normal" />
     <corners
-        android:topLeftRadius="@dimen/df_zero"
-        android:topRightRadius="@dimen/df_zero"
         android:bottomLeftRadius="@dimen/rd_small"
-        android:bottomRightRadius="@dimen/rd_small"/>
+        android:bottomRightRadius="@dimen/rd_small"
+        android:topLeftRadius="@dimen/df_zero"
+        android:topRightRadius="@dimen/df_zero" />
 </shape>

@@ -1,64 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/BothMatch"
     tools:context=".fragments.export.ImportFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/ClMain">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/ClMain">
 
         <androidx.cardview.widget.CardView
-            style="@style/CvHeader"
             android:id="@+id/cv_hd_file"
+            style="@style/CvHeader"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/ClData">
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/ClData">
 
                 <ImageView
-                    style="@style/IvTutorial"
                     android:id="@+id/iv_tt_file"
+                    style="@style/IvTutorial"
                     android:contentDescription="@string/dp_tutorial"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_file"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_hd_file"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_file" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_file" />
 
                 <TextView
-                    style="@style/TvHeader"
                     android:id="@+id/tv_hd_file"
+                    style="@style/TvHeader"
                     android:text="@string/hd_im_file"
-                    app:layout_constraintStart_toEndOf="@+id/iv_tt_file"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_tt_file"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            style="@style/CvData"
             android:id="@+id/cv_file"
+            style="@style/CvData"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cv_hd_file">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/ClRv">
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/ClRv">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    style="@style/WidthMatch"
                     android:id="@+id/rv_file"
+                    style="@style/WidthMatch"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvEmpty"
                     android:id="@+id/tv_empty"
+                    style="@style/TvEmpty"
                     android:text="@string/ep_import"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

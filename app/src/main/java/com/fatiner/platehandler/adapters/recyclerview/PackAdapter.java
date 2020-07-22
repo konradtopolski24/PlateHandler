@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PackAdapter extends PrimaryAdapter<PackAdapter.PackHolder> {
-    
+
     private ArrayList<Pack> packs;
 
     public PackAdapter(Context context, ArrayList<Pack> packs) {
@@ -51,10 +51,14 @@ public class PackAdapter extends PrimaryAdapter<PackAdapter.PackHolder> {
 
     static class PackHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_name) TextView tvName;
-        @BindView(R.id.tv_attribution) TextView tvAttribution;
-        @BindView(R.id.tv_license) TextView tvLicense;
-        @BindView(R.id.tv_amount) TextView tvAmount;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.tv_attribution)
+        TextView tvAttribution;
+        @BindView(R.id.tv_license)
+        TextView tvLicense;
+        @BindView(R.id.tv_amount)
+        TextView tvAmount;
 
         private PackHolder(View itemView) {
             super(itemView);

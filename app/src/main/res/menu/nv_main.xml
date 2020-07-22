@@ -6,8 +6,8 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/it_home"
-            android:title="@string/nv_home"
-            android:icon="@drawable/ic_dl_home" />
+            android:icon="@drawable/ic_dl_home"
+            android:title="@string/nv_home" />
     </group>
 
     <group
@@ -15,18 +15,18 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/it_recipe"
-            android:title="@string/nv_recipe"
-            android:icon="@drawable/ic_dl_recipe" />
+            android:icon="@drawable/ic_dl_recipe"
+            android:title="@string/nv_recipe" />
 
         <item
             android:id="@+id/it_product"
-            android:title="@string/nv_product"
-            android:icon="@drawable/ic_dl_product" />
+            android:icon="@drawable/ic_dl_product"
+            android:title="@string/nv_product" />
 
         <item
             android:id="@+id/it_shopping"
-            android:title="@string/nv_shopping"
-            android:icon="@drawable/ic_dl_shopping" />
+            android:icon="@drawable/ic_dl_shopping"
+            android:title="@string/nv_shopping" />
     </group>
 
     <group
@@ -34,13 +34,13 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/it_export"
-            android:title="@string/nv_export"
-            android:icon="@drawable/ic_dl_export" />
+            android:icon="@drawable/ic_dl_export"
+            android:title="@string/nv_export" />
 
         <item
             android:id="@+id/it_import"
-            android:title="@string/nv_import"
-            android:icon="@drawable/ic_dl_import" />
+            android:icon="@drawable/ic_dl_import"
+            android:title="@string/nv_import" />
     </group>
 
     <group
@@ -48,7 +48,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/it_credits"
-            android:title="@string/nv_credits"
-            android:icon="@drawable/ic_dl_credits" />
+            android:icon="@drawable/ic_dl_credits"
+            android:title="@string/nv_credits" />
     </group>
 </menu>

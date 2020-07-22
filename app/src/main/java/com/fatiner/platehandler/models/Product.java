@@ -34,7 +34,8 @@ public class Product {
     @Ignore
     private boolean isPhotoChanged;
 
-    public Product() {}
+    public Product() {
+    }
 
     public int getId() {
         return id;
@@ -142,7 +143,7 @@ public class Product {
     }
 
     public float getOther() {
-        return  size - getTotalNutrients();
+        return size - getTotalNutrients();
     }
 
     public float getTotalNutrients() {
@@ -151,7 +152,7 @@ public class Product {
 
     public float getPercentage(int id) {
         float value = getNutrients(id);
-        return value/size * Globals.FC_PERCENTAGE;
+        return value / size * Globals.FC_PERCENTAGE;
     }
 
     private float getNutrients(int id) {

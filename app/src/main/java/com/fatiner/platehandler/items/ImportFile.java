@@ -6,6 +6,9 @@ public class ImportFile {
     private int recipeAmount;
     private int productAmount;
 
+    public ImportFile() {
+    }
+
     public String getName() {
         return name;
     }

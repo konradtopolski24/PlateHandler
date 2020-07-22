@@ -74,7 +74,8 @@ public class SpinnerAdapter extends BaseAdapter {
 
     static class SpinnerHolder {
 
-        @BindView(R.id.tv_item) TextView tvItem;
+        @BindView(R.id.tv_item)
+        TextView tvItem;
 
         private SpinnerHolder(View itemView) {
             ButterKnife.bind(this, itemView);

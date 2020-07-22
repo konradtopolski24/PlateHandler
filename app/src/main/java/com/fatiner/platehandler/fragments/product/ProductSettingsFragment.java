@@ -23,9 +23,12 @@ import butterknife.OnItemSelected;
 
 public class ProductSettingsFragment extends PrimaryFragment {
 
-    @BindView(R.id.sw_alphabetical) Switch swAlphabetical;
-    @BindView(R.id.sw_type) Switch swType;
-    @BindView(R.id.sp_type) Spinner spType;
+    @BindView(R.id.sw_alphabetical)
+    Switch swAlphabetical;
+    @BindView(R.id.sw_type)
+    Switch swType;
+    @BindView(R.id.sp_type)
+    Spinner spType;
 
     @OnCheckedChanged(R.id.sw_alphabetical)
     void checkedSwAlphabetical(boolean checked) {
@@ -33,7 +36,7 @@ public class ProductSettingsFragment extends PrimaryFragment {
     }
 
     @OnCheckedChanged(R.id.sw_type)
-     void checkedSwType(boolean checked) {
+    void checkedSwType(boolean checked) {
         checkSwState(checked, spType, Shared.SR_PRODUCT, Shared.KY_TYPE);
     }
 

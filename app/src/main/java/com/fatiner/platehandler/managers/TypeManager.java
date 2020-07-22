@@ -1,8 +1,8 @@
 package com.fatiner.platehandler.managers;
 
-import com.fatiner.platehandler.items.ShoppingList;
 import com.fatiner.platehandler.globals.Format;
 import com.fatiner.platehandler.globals.Globals;
+import com.fatiner.platehandler.items.ShoppingList;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -15,7 +15,8 @@ import java.util.Locale;
 
 public class TypeManager {
 
-    private TypeManager() {}
+    private TypeManager() {
+    }
 
     public static int boolToInt(boolean bool) {
         return bool ? Globals.DF_INCREMENT : Globals.DF_ZERO;

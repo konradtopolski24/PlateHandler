@@ -1,180 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/BothMatch"
     tools:context=".fragments.shopping.ShoppingShowFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/ClMain">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/ClMain">
 
         <androidx.cardview.widget.CardView
-            style="@style/CvHeader"
             android:id="@+id/cv_hd_data"
+            style="@style/CvHeader"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/ClData">
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/ClData">
 
                 <ImageView
-                    style="@style/IvTutorial"
                     android:id="@+id/iv_tt_data"
+                    style="@style/IvTutorial"
                     android:contentDescription="@string/dp_tutorial"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_data"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_hd_data"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_data" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_data" />
 
                 <TextView
-                    style="@style/TvHeader"
                     android:id="@+id/tv_hd_data"
+                    style="@style/TvHeader"
                     android:text="@string/hd_sp_sh_data"
-                    app:layout_constraintStart_toEndOf="@+id/iv_tt_data"
                     app:layout_constraintEnd_toStartOf="@+id/iv_hd_data"
+                    app:layout_constraintStart_toEndOf="@+id/iv_tt_data"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    style="@style/IvHeader"
                     android:id="@+id/iv_hd_data"
+                    style="@style/IvHeader"
                     android:contentDescription="@string/dp_expand"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_data"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_hd_data"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_data" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_data" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            style="@style/CvData"
             android:id="@+id/cv_data"
+            style="@style/CvData"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cv_hd_data">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/ClData">
-
-                <!-- 1st level -->
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/ClData">
 
                 <ImageView
-                    style="@style/IvInfoShopping"
                     android:id="@+id/iv_ct_date"
+                    style="@style/IvInfoShopping"
                     android:contentDescription="@string/dp_caption"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/tv_ct_date"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_date"
+                    style="@style/TvCaption"
                     android:text="@string/ct_date"
-                    app:layout_constraintStart_toEndOf="@+id/iv_ct_date"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_ct_state"
-                    app:layout_constraintTop_toTopOf="@+id/iv_ct_date"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_ct_date"
-                    app:layout_constraintHorizontal_weight="1" />
+                    app:layout_constraintEnd_toStartOf="@+id/iv_ct_state"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@+id/iv_ct_date"
+                    app:layout_constraintTop_toTopOf="@+id/iv_ct_date" />
 
                 <ImageView
-                    style="@style/IvInfoShopping"
                     android:id="@+id/iv_ct_state"
+                    style="@style/IvInfoShopping"
                     android:contentDescription="@string/dp_caption"
-                    app:layout_constraintStart_toEndOf="@+id/tv_ct_date"
                     app:layout_constraintEnd_toStartOf="@+id/tv_ct_state"
+                    app:layout_constraintStart_toEndOf="@+id/tv_ct_date"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvCaption"
                     android:id="@+id/tv_ct_state"
+                    style="@style/TvCaption"
                     android:text="@string/ct_state"
-                    app:layout_constraintStart_toEndOf="@+id/iv_ct_state"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/iv_ct_state"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_ct_state"
-                    app:layout_constraintHorizontal_weight="1" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@+id/iv_ct_state"
+                    app:layout_constraintTop_toTopOf="@+id/iv_ct_state" />
 
                 <TextView
-                    style="@style/TvPrimary"
                     android:id="@+id/tv_date"
-                    app:layout_constraintStart_toStartOf="@+id/tv_ct_date"
+                    style="@style/TvPrimary"
                     app:layout_constraintEnd_toEndOf="@+id/tv_ct_date"
+                    app:layout_constraintStart_toStartOf="@+id/tv_ct_date"
                     app:layout_constraintTop_toBottomOf="@+id/tv_ct_date" />
 
                 <TextView
-                    style="@style/TvPrimary"
                     android:id="@+id/tv_state"
-                    app:layout_constraintStart_toStartOf="@+id/tv_ct_state"
+                    style="@style/TvPrimary"
                     app:layout_constraintEnd_toEndOf="@+id/tv_ct_state"
+                    app:layout_constraintStart_toStartOf="@+id/tv_ct_state"
                     app:layout_constraintTop_toBottomOf="@+id/tv_ct_state" />
 
-                <!-- 2nd level -->
-
                 <Button
-                    style="@style/BtPadding"
                     android:id="@+id/bt_create"
+                    style="@style/BtPadding"
                     android:text="@string/bt_shopping"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_state" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            style="@style/CvHeader"
             android:id="@+id/cv_hd_list"
+            style="@style/CvHeader"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cv_data">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/ClData">
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/ClData">
 
                 <ImageView
-                    style="@style/IvTutorial"
                     android:id="@+id/iv_tt_list"
+                    style="@style/IvTutorial"
                     android:contentDescription="@string/dp_tutorial"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_list"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_hd_list"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_list" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_list" />
 
                 <TextView
-                    style="@style/TvHeader"
                     android:id="@+id/tv_hd_list"
+                    style="@style/TvHeader"
                     android:text="@string/hd_sp_sh_list"
-                    app:layout_constraintStart_toEndOf="@+id/iv_tt_list"
                     app:layout_constraintEnd_toStartOf="@+id/iv_hd_list"
+                    app:layout_constraintStart_toEndOf="@+id/iv_tt_list"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    style="@style/IvHeader"
                     android:id="@+id/iv_hd_list"
+                    style="@style/IvHeader"
                     android:contentDescription="@string/dp_expand"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_list"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_hd_list"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_hd_list" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hd_list" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            style="@style/CvData"
             android:id="@+id/cv_list"
+            style="@style/CvData"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cv_hd_list">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/ClRv">
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/ClRv">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    style="@style/WidthMatch"
                     android:id="@+id/rv_shopping"
+                    style="@style/WidthMatch"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    style="@style/TvEmpty"
                     android:id="@+id/tv_empty"
+                    style="@style/TvEmpty"
                     android:text="@string/ep_shopping"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

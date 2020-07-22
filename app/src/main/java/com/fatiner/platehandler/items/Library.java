@@ -7,6 +7,9 @@ public class Library {
     private String version;
     private String license;
 
+    public Library() {
+    }
+
     public String getName() {
         return name;
     }

@@ -137,12 +137,8 @@ public class PrimaryFragment extends Fragment {
         return getResources().getInteger(id);
     }
 
-    protected String [] getStringArray(int id) {
+    protected String[] getStringArray(int id) {
         return getResources().getStringArray(id);
-    }
-
-    protected int [] getIntArray(int id) {
-        return getResources().getIntArray(id);
     }
 
     private TypedArray getTypedArray(int id) {

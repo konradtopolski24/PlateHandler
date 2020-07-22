@@ -1,6 +1,5 @@
 <resources>
 
-    <!-- Theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/pr_normal</item>
         <item name="colorPrimaryDark">@color/pr_dark</item>
@@ -8,7 +7,6 @@
         <item name="android:colorBackground">@color/bg_gray</item>
     </style>
 
-    <!-- Base -->
     <style name="BothWrap">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -44,7 +42,6 @@
         <item name="android:layout_height">@dimen/df_zero</item>
     </style>
 
-    <!-- View -->
     <style name="VwLine">
         <item name="android:layout_width">@dimen/df_zero</item>
         <item name="android:layout_height">@dimen/ht_line</item>
@@ -52,7 +49,6 @@
         <item name="android:background">@color/bg_gray</item>
     </style>
 
-    <!-- CardView -->
     <style name="CvData" parent="WidthMatch">
         <item name="cardCornerRadius">@dimen/rd_big</item>
         <item name="cardElevation">@dimen/df_zero</item>
@@ -79,7 +75,6 @@
         <item name="cardBackgroundColor">@color/pr_normal</item>
     </style>
 
-    <!-- ConstraintLayout -->
     <style name="ClMain" parent="WidthMatch">
         <item name="android:paddingStart">@dimen/mg_huge</item>
         <item name="android:paddingEnd">@dimen/mg_huge</item>
@@ -118,7 +113,6 @@
         <item name="android:background">@color/pr_normal</item>
     </style>
 
-    <!-- TextView -->
     <style name="TvPrimary" parent="WidthZero">
         <item name="android:textSize">@dimen/tx_default</item>
         <item name="android:singleLine">true</item>
@@ -189,6 +183,10 @@
         <item name="android:layout_marginStart">@dimen/mg_small</item>
     </style>
 
+    <style name="TvTime" parent="TvPrimary">
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="TvStep" parent="WidthZero">
         <item name="android:layout_margin">@dimen/mg_huge</item>
         <item name="android:textSize">@dimen/tx_small</item>
@@ -252,7 +250,6 @@
         <item name="android:singleLine">true</item>
     </style>
 
-    <!-- ImageView -->
     <style name="IvLogo" parent="BothWrap">
         <item name="android:layout_margin">@dimen/mg_huge</item>
         <item name="android:src">@drawable/logo</item>
@@ -350,50 +347,42 @@
         <item name="android:tint">@color/tv_white</item>
     </style>
 
-    <!-- ProgressBar -->
     <style name="PbDefault" parent="BothWrap">
         <item name="android:visibility">gone</item>
     </style>
 
-    <!-- ImageButton -->
     <style name="IbDefault" parent="BothWrap">
         <item name="android:layout_marginStart">@dimen/mg_medium</item>
         <item name="android:layout_marginEnd">@dimen/mg_medium</item>
     </style>
 
-    <!-- CheckBox -->
     <style name="CbDone" parent="BothWrap">
         <item name="android:layout_marginTop">@dimen/mg_medium</item>
         <item name="android:layout_marginEnd">@dimen/mg_medium</item>
         <item name="android:visibility">gone</item>
     </style>
 
-    <!-- BarChart -->
     <style name="BcDefault">
         <item name="android:layout_width">@dimen/df_zero</item>
         <item name="android:layout_height">@dimen/ht_bc</item>
         <item name="android:layout_marginTop">@dimen/mg_huge</item>
     </style>
 
-    <!-- PieChart -->
     <style name="PcDefault">
         <item name="android:layout_width">@dimen/df_zero</item>
         <item name="android:layout_height">@dimen/ht_pc</item>
         <item name="android:layout_marginTop">@dimen/mg_huge</item>
     </style>
 
-    <!-- TabLayout -->
     <style name="TlDefault" parent="WidthMatch">
         <item name="android:background">@color/pr_normal</item>
         <item name="tabSelectedTextColor">@color/tv_white</item>
     </style>
 
-    <!-- FabDefault -->
     <style name="FabDefault" parent="BothWrap">
         <item name="android:layout_margin">@dimen/mg_big</item>
     </style>
 
-    <!-- TextInputLayout -->
     <style name="TilDefault" parent="WidthZero">
         <item name="android:layout_marginTop">@dimen/mg_big</item>
         <item name="android:layout_marginBottom">@dimen/mg_big</item>
@@ -410,7 +399,6 @@
         <item name="android:textColor">@android:color/holo_red_light</item>
     </style>
 
-    <!-- EditText -->
     <style name="EtDefault" parent="WidthMatch">
         <item name="android:textSize">@dimen/tx_medium</item>
         <item name="android:lines">1</item>
@@ -444,29 +432,24 @@
         <item name="android:textSize">@dimen/tx_medium</item>
     </style>
 
-    <!-- RadioGroup -->
     <style name="RgDefault" parent="WidthZero">
         <item name="android:layout_marginTop">@dimen/mg_big</item>
         <item name="android:orientation">vertical</item>
     </style>
 
-    <!-- RadioButton -->
     <style name="RbDefault" parent="BothWrap">
         <item name="android:textSize">@dimen/tx_default</item>
         <item name="android:drawablePadding">@dimen/mg_medium</item>
     </style>
 
-    <!-- SeekBar -->
     <style name="SbDefault" parent="WidthZero">
         <item name="android:layout_marginEnd">@dimen/mg_huge</item>
     </style>
 
-    <!-- Spinner -->
     <style name="SpInvisible" parent="WidthZero">
         <item name="android:visibility">gone</item>
     </style>
 
-    <!-- Button -->
     <style name="BtDefault" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="android:layout_width">@dimen/df_zero</item>
         <item name="android:layout_height">@dimen/ht_bt</item>
@@ -479,21 +462,18 @@
         <item name="android:layout_marginTop">@dimen/mg_big</item>
     </style>
 
-    <!-- NavigationView -->
     <style name="NvDefault" parent="HeightMatch">
         <item name="android:layout_gravity">start</item>
         <item name="menu">@menu/nv_main</item>
         <item name="headerLayout">@layout/header_main</item>
     </style>
 
-    <!-- Toolbar -->
     <style name="TbDefault" parent="WidthMatch">
         <item name="android:background">@color/pr_normal</item>
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="android:popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
 
-    <!-- RecyclerView -->
     <style name="RvChoose" parent="BothZero">
         <item name="android:clipToPadding">false</item>
         <item name="android:paddingBottom">@dimen/mg_enormous</item>

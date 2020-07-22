@@ -54,31 +54,56 @@ public class ProductShowFragment extends PrimaryFragment {
     private ProductShowViewModel viewModel;
     private CompositeDisposable disposables;
 
-    @BindView(R.id.cv_composition) CardView cvComposition;
-    @BindView(R.id.cv_kcal) CardView cvKcal;
-    @BindView(R.id.cv_kj) CardView cvKj;
-    @BindView(R.id.iv_hd_composition) ImageView ivHdComposition;
-    @BindView(R.id.iv_hd_kcal) ImageView ivHdKcal;
-    @BindView(R.id.iv_hd_kj) ImageView ivHdKj;
-    @BindView(R.id.iv_photo) ImageView ivPhoto;
-    @BindView(R.id.iv_type) ImageView ivType;
-    @BindView(R.id.tv_name) TextView tvName;
-    @BindView(R.id.tv_type) TextView tvType;
-    @BindView(R.id.tv_carbohydrates1) TextView tvCarbohydrates1;
-    @BindView(R.id.tv_proteins1) TextView tvProteins1;
-    @BindView(R.id.tv_fats1) TextView tvFats1;
-    @BindView(R.id.tv_other) TextView tvOther;
-    @BindView(R.id.tv_carbohydrates2) TextView tvCarbohydrates2;
-    @BindView(R.id.tv_proteins2) TextView tvProteins2;
-    @BindView(R.id.tv_fats2) TextView tvFats2;
-    @BindView(R.id.tv_total1) TextView tvTotal1;
-    @BindView(R.id.tv_carbohydrates3) TextView tvCarbohydrates3;
-    @BindView(R.id.tv_proteins3) TextView tvProteins3;
-    @BindView(R.id.tv_fats3) TextView tvFats3;
-    @BindView(R.id.tv_total2) TextView tvTotal2;
-    @BindView(R.id.tv_empty) TextView tvEmpty;
-    @BindView(R.id.bc_composition) BarChart bcComposition;
-    @BindView(R.id.pc_composition) PieChart pcComposition;
+    @BindView(R.id.cv_composition)
+    CardView cvComposition;
+    @BindView(R.id.cv_kcal)
+    CardView cvKcal;
+    @BindView(R.id.cv_kj)
+    CardView cvKj;
+    @BindView(R.id.iv_hd_composition)
+    ImageView ivHdComposition;
+    @BindView(R.id.iv_hd_kcal)
+    ImageView ivHdKcal;
+    @BindView(R.id.iv_hd_kj)
+    ImageView ivHdKj;
+    @BindView(R.id.iv_photo)
+    ImageView ivPhoto;
+    @BindView(R.id.iv_type)
+    ImageView ivType;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_type)
+    TextView tvType;
+    @BindView(R.id.tv_carbohydrates1)
+    TextView tvCarbohydrates1;
+    @BindView(R.id.tv_proteins1)
+    TextView tvProteins1;
+    @BindView(R.id.tv_fats1)
+    TextView tvFats1;
+    @BindView(R.id.tv_other)
+    TextView tvOther;
+    @BindView(R.id.tv_carbohydrates2)
+    TextView tvCarbohydrates2;
+    @BindView(R.id.tv_proteins2)
+    TextView tvProteins2;
+    @BindView(R.id.tv_fats2)
+    TextView tvFats2;
+    @BindView(R.id.tv_total1)
+    TextView tvTotal1;
+    @BindView(R.id.tv_carbohydrates3)
+    TextView tvCarbohydrates3;
+    @BindView(R.id.tv_proteins3)
+    TextView tvProteins3;
+    @BindView(R.id.tv_fats3)
+    TextView tvFats3;
+    @BindView(R.id.tv_total2)
+    TextView tvTotal2;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
+    @BindView(R.id.bc_composition)
+    BarChart bcComposition;
+    @BindView(R.id.pc_composition)
+    PieChart pcComposition;
 
     @OnClick(R.id.cv_hd_composition)
     void clickCvHdComposition() {

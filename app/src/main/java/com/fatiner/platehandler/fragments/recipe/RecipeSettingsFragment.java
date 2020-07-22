@@ -37,20 +37,34 @@ public class RecipeSettingsFragment extends PrimaryFragment {
     private RecipeSettingsViewModel viewModel;
     private CompositeDisposable disposables;
 
-    @BindView(R.id.sw_alphabetical) Switch swAlphabetical;
-    @BindView(R.id.sw_favorite) Switch swFavorite;
-    @BindView(R.id.sw_author) Switch swAuthor;
-    @BindView(R.id.sw_difficulty) Switch swDifficulty;
-    @BindView(R.id.sw_spiciness) Switch swSpiciness;
-    @BindView(R.id.sw_country) Switch swCountry;
-    @BindView(R.id.sw_type) Switch swType;
-    @BindView(R.id.sw_preference) Switch swPreference;
-    @BindView(R.id.sp_author) Spinner spAuthor;
-    @BindView(R.id.sp_difficulty) Spinner spDifficulty;
-    @BindView(R.id.sp_spiciness) Spinner spSpiciness;
-    @BindView(R.id.sp_country) Spinner spCountry;
-    @BindView(R.id.sp_type) Spinner spType;
-    @BindView(R.id.sp_preference) Spinner spPreference;
+    @BindView(R.id.sw_alphabetical)
+    Switch swAlphabetical;
+    @BindView(R.id.sw_favorite)
+    Switch swFavorite;
+    @BindView(R.id.sw_author)
+    Switch swAuthor;
+    @BindView(R.id.sw_difficulty)
+    Switch swDifficulty;
+    @BindView(R.id.sw_spiciness)
+    Switch swSpiciness;
+    @BindView(R.id.sw_country)
+    Switch swCountry;
+    @BindView(R.id.sw_type)
+    Switch swType;
+    @BindView(R.id.sw_preference)
+    Switch swPreference;
+    @BindView(R.id.sp_author)
+    Spinner spAuthor;
+    @BindView(R.id.sp_difficulty)
+    Spinner spDifficulty;
+    @BindView(R.id.sp_spiciness)
+    Spinner spSpiciness;
+    @BindView(R.id.sp_country)
+    Spinner spCountry;
+    @BindView(R.id.sp_type)
+    Spinner spType;
+    @BindView(R.id.sp_preference)
+    Spinner spPreference;
 
     @OnCheckedChanged(R.id.sw_alphabetical)
     void checkedSwAlphabetical(boolean checked) {

@@ -27,8 +27,10 @@ import butterknife.OnTextChanged;
 
 public class StepManageFragment extends PrimaryFragment {
 
-    @BindView(R.id.til_content) TextInputLayout tilContent;
-    @BindView(R.id.et_content) EditText etContent;
+    @BindView(R.id.til_content)
+    TextInputLayout tilContent;
+    @BindView(R.id.et_content)
+    EditText etContent;
 
     @OnTextChanged(R.id.et_content)
     void changedEtContent() {

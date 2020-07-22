@@ -42,14 +42,22 @@ public class HomeFragment extends PrimaryFragment implements RecipeAdapter.Recip
     private HomeViewModel viewModel;
     private CompositeDisposable disposables;
 
-    @BindView(R.id.cv_statistics) CardView cvStatistics;
-    @BindView(R.id.cv_recent) CardView cvRecent;
-    @BindView(R.id.iv_hd_statistics) ImageView ivHdStatistics;
-    @BindView(R.id.iv_hd_recent) ImageView ivHdRecent;
-    @BindView(R.id.tv_recipe) TextView tvRecipe;
-    @BindView(R.id.tv_product) TextView tvProduct;
-    @BindView(R.id.tv_empty) TextView tvEmpty;
-    @BindView(R.id.rv_recent) RecyclerView rvRecent;
+    @BindView(R.id.cv_statistics)
+    CardView cvStatistics;
+    @BindView(R.id.cv_recent)
+    CardView cvRecent;
+    @BindView(R.id.iv_hd_statistics)
+    ImageView ivHdStatistics;
+    @BindView(R.id.iv_hd_recent)
+    ImageView ivHdRecent;
+    @BindView(R.id.tv_recipe)
+    TextView tvRecipe;
+    @BindView(R.id.tv_product)
+    TextView tvProduct;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
+    @BindView(R.id.rv_recent)
+    RecyclerView rvRecent;
 
     @OnClick(R.id.cv_hd_statistics)
     void clickCvHdStatistics() {

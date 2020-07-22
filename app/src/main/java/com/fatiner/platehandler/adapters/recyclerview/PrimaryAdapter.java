@@ -96,12 +96,8 @@ public abstract class PrimaryAdapter<VH
         return getResources().getString(id);
     }
 
-    String [] getStringArray(int id) {
+    String[] getStringArray(int id) {
         return getResources().getStringArray(id);
-    }
-
-    int [] getIntArray(int id) {
-        return getResources().getIntArray(id);
     }
 
     private TypedArray getTypedArray(int id) {

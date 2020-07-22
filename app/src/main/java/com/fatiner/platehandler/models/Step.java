@@ -19,6 +19,9 @@ public class Step {
     @ColumnInfo(name = Db.CL_ST_DONE)
     private boolean isDone;
 
+    public Step() {
+    }
+
     public int getId() {
         return id;
     }

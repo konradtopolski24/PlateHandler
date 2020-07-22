@@ -40,8 +40,10 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
     private RecipeManagePagerViewModel viewModel;
     private CompositeDisposable disposables;
 
-    @BindView(R.id.vp_recipe) ViewPager vpRecipe;
-    @BindView(R.id.tl_recipe) TabLayout tlRecipe;
+    @BindView(R.id.vp_recipe)
+    ViewPager vpRecipe;
+    @BindView(R.id.tl_recipe)
+    TabLayout tlRecipe;
 
     @OnClick(R.id.fab_finished)
     void clickFabFinished() {
@@ -110,8 +112,7 @@ public class RecipeManagePagerFragment extends PrimaryFragment {
             manageIngredientsDb(id);
             manageStepsDb(id);
             observeUpdateRecipe();
-        }
-        else observeAddRecipe();
+        } else observeAddRecipe();
     }
 
     private void chooseFinished() {

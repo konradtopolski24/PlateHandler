@@ -19,7 +19,8 @@ import butterknife.ButterKnife;
 
 public class TutorialDialog extends DialogFragment {
 
-    @BindView(R.id.tv_content) TextView tvContent;
+    @BindView(R.id.tv_content)
+    TextView tvContent;
 
     @NonNull
     @Override

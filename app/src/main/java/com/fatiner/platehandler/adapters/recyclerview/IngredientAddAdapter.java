@@ -91,11 +91,16 @@ public class IngredientAddAdapter extends PrimaryAdapter<IngredientAddAdapter.In
 
     class IngredientAddHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.til_amount) TextInputLayout tilAmount;
-        @BindView(R.id.et_amount) EditText etAmount;
-        @BindView(R.id.sp_measure) Spinner spMeasure;
-        @BindView(R.id.sp_product) Spinner spProduct;
-        @BindView(R.id.tv_empty) TextView tvEmpty;
+        @BindView(R.id.til_amount)
+        TextInputLayout tilAmount;
+        @BindView(R.id.et_amount)
+        EditText etAmount;
+        @BindView(R.id.sp_measure)
+        Spinner spMeasure;
+        @BindView(R.id.sp_product)
+        Spinner spProduct;
+        @BindView(R.id.tv_empty)
+        TextView tvEmpty;
 
         @OnClick(R.id.ib_add)
         void clickIbAdd() {
@@ -132,6 +137,7 @@ public class IngredientAddAdapter extends PrimaryAdapter<IngredientAddAdapter.In
 
     public interface IngredientAddListener {
         void clickIb(int position);
+
         void removeIngredient(int position);
     }
 }

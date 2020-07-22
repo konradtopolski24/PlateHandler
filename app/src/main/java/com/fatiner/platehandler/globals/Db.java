@@ -7,7 +7,6 @@ public class Db {
     public static final String DB_NAME = "PLATE HANDLER";
     public static final int DB_CURRENT = 1;
 
-    //Table RECIPES
     public static final String TB_RECIPE = "RECIPES";
 
     public static final String CL_RP_ID = "ID";
@@ -38,7 +37,6 @@ public class Db {
         return columns;
     }
 
-    //Table INGREDIENTS
     public static final String TB_INGREDIENT = "INGREDIENTS";
 
     public static final String CL_IG_ID = "ID";
@@ -48,7 +46,7 @@ public class Db {
     public static final String CL_IG_MEASURE = "MEASURE";
     public static final String CL_IG_USED = "USED";
 
-    public static List<String> getIngredientColumns() { 
+    public static List<String> getIngredientColumns() {
         List<String> columns = new ArrayList<>();
         columns.add(CL_IG_ID);
         columns.add(CL_IG_RECIPE_ID);
@@ -59,7 +57,6 @@ public class Db {
         return columns;
     }
 
-    //Table STEPS
     public static final String TB_STEP = "STEPS";
 
     public static final String CL_ST_ID = "ID";
@@ -67,7 +64,7 @@ public class Db {
     public static final String CL_ST_CONTENT = "CONTENT";
     public static final String CL_ST_DONE = "DONE";
 
-    public static List<String> getStepColumns() { 
+    public static List<String> getStepColumns() {
         List<String> columns = new ArrayList<>();
         columns.add(CL_ST_ID);
         columns.add(CL_ST_RECIPE_ID);
@@ -76,7 +73,6 @@ public class Db {
         return columns;
     }
 
-    //Table PRODUCTS
     public static final String TB_PRODUCT = "PRODUCTS";
 
     public static final String CL_PD_ID = "ID";

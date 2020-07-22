@@ -8,7 +8,7 @@ import com.fatiner.platehandler.globals.Db;
 import java.util.List;
 
 public class RecipeComplete {
-    
+
     @Embedded
     public Recipe recipe;
     @Relation(parentColumn = Db.CL_RP_ID, entityColumn = Db.CL_IG_RECIPE_ID)

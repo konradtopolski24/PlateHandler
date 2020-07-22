@@ -53,8 +53,10 @@ public class ImportFragment extends PrimaryFragment implements FileAdapter.FileL
     private ImportViewModel viewModel;
     private CompositeDisposable disposables;
 
-    @BindView(R.id.tv_empty) TextView tvEmpty;
-    @BindView(R.id.rv_file) RecyclerView rvFile;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
+    @BindView(R.id.rv_file)
+    RecyclerView rvFile;
 
     @OnClick(R.id.iv_tt_file)
     void clickIvTtFile() {

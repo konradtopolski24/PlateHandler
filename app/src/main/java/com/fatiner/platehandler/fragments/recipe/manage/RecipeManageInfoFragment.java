@@ -38,27 +38,44 @@ import butterknife.OnTextChanged;
 
 public class RecipeManageInfoFragment extends PrimaryFragment {
 
-    @BindView(R.id.til_name) TextInputLayout tilName;
-    @BindView(R.id.til_author) TextInputLayout tilAuthor;
-    @BindView(R.id.et_name) EditText etName;
-    @BindView(R.id.et_author) EditText etAuthor;
-    @BindView(R.id.tv_serving) TextView tvServing;
-    @BindView(R.id.tv_time) TextView tvTime;
-    @BindView(R.id.tv_difficulty) TextView tvDifficulty;
-    @BindView(R.id.iv_photo) ImageView ivPhoto;
+    @BindView(R.id.til_name)
+    TextInputLayout tilName;
+    @BindView(R.id.til_author)
+    TextInputLayout tilAuthor;
+    @BindView(R.id.et_name)
+    EditText etName;
+    @BindView(R.id.et_author)
+    EditText etAuthor;
+    @BindView(R.id.tv_serving)
+    TextView tvServing;
+    @BindView(R.id.tv_time)
+    TextView tvTime;
+    @BindView(R.id.tv_difficulty)
+    TextView tvDifficulty;
+    @BindView(R.id.iv_photo)
+    ImageView ivPhoto;
     @BindViews({
             R.id.iv_spiciness0,
             R.id.iv_spiciness1,
             R.id.iv_spiciness2,
-            R.id.iv_spiciness3}) List<ImageView> ivSpicinessList;
-    @BindView(R.id.iv_type) ImageView ivType;
-    @BindView(R.id.iv_country) ImageView ivCountry;
-    @BindView(R.id.sb_difficulty) SeekBar sbDifficulty;
-    @BindView(R.id.sb_spiciness) SeekBar sbSpiciness;
-    @BindView(R.id.sp_country) Spinner spCountry;
-    @BindView(R.id.sp_type) Spinner spType;
-    @BindView(R.id.rb_meat) RadioButton rbMeat;
-    @BindView(R.id.rb_vegetarian) RadioButton rbVegetarian;
+            R.id.iv_spiciness3})
+    List<ImageView> ivSpicinessList;
+    @BindView(R.id.iv_type)
+    ImageView ivType;
+    @BindView(R.id.iv_country)
+    ImageView ivCountry;
+    @BindView(R.id.sb_difficulty)
+    SeekBar sbDifficulty;
+    @BindView(R.id.sb_spiciness)
+    SeekBar sbSpiciness;
+    @BindView(R.id.sp_country)
+    Spinner spCountry;
+    @BindView(R.id.sp_type)
+    Spinner spType;
+    @BindView(R.id.rb_meat)
+    RadioButton rbMeat;
+    @BindView(R.id.rb_vegetarian)
+    RadioButton rbVegetarian;
 
     @OnTextChanged(R.id.et_name)
     void changedEtName(CharSequence text) {
@@ -115,7 +132,7 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
         showTimeDialog();
     }
 
-    @OnClick(R.id.ib_add) 
+    @OnClick(R.id.ib_add)
     void clickIbAdd() {
         selectImage();
         getRecipe().setPhotoChanged(true);
@@ -199,10 +216,12 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
         };
     }
 
@@ -210,8 +229,7 @@ public class RecipeManageInfoFragment extends PrimaryFragment {
         if (isDifficulty) {
             getRecipe().setDifficulty(progress);
             setTv(tvDifficulty, progress, R.array.tx_rp_difficulty);
-        }
-        else {
+        } else {
             getRecipe().setSpiciness(progress);
             setIvList(ivSpicinessList, progress);
         }

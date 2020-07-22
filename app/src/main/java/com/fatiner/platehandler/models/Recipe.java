@@ -1,5 +1,6 @@
 package com.fatiner.platehandler.models;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 
 import androidx.room.ColumnInfo;
@@ -7,6 +8,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Globals;
 
@@ -47,7 +49,8 @@ public class Recipe {
     @Ignore
     private boolean isPhotoChanged;
 
-    public Recipe() {}
+    public Recipe() {
+    }
 
     public int getId() {
         return id;
@@ -169,23 +172,29 @@ public class Recipe {
         isPhotoChanged = photoChanged;
     }
 
-    public float getTotalKcal(int[] factors) {
+    public float getTotalKcal(Context context) {
         float total = Globals.DF_ZERO;
-        for (Ingredient ingredient : ingredients) total += ingredient.getTotalKcal(factors);
+        for (Ingredient ingredient : ingredients) total += ingredient.getTotalKcal(context);
         return total;
     }
 
-    public float getTotalKj(int[] factors) {
+    public float getTotalKj(Context context) {
         float total = Globals.DF_ZERO;
-        for (Ingredient ingredient : ingredients) total += ingredient.getTotalKj(factors);
+        for (Ingredient ingredient : ingredients) total += ingredient.getTotalKj(context);
         return total;
     }
 
-    public float getServingKcal(int[] factors) {
-        return getTotalKcal(factors) / serving;
+    public float getServingKcal(Context context) {
+        return getTotalKcal(context) / serving;
     }
 
-    public float getServingKj(int[] factors) {
-        return getTotalKj(factors) / serving;
+    public float getServingKj(Context context) {
+        return getTotalKj(context) / serving;
+    }
+
+    public float getBurnValue(Context context, int id) {
+        if (context == null) return Globals.DF_ZERO;
+        int[] factors = context.getResources().getIntArray(R.array.nb_bn_factor);
+        return getServingKcal(context) * Globals.TM_BURNING / factors[id];
     }
 }

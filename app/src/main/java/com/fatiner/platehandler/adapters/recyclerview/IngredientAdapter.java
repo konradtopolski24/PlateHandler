@@ -60,19 +60,18 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
     }
 
     private void manageShowing(IngredientHolder holder, Ingredient ingredient) {
-        if (listener == null) setCaloriesInfo(holder, ingredient);
+        if (listener == null) checkCaloriesInfo(holder, ingredient);
         else setDoneInfo(holder, ingredient);
     }
 
-    private void setCaloriesInfo(IngredientHolder holder, Ingredient ingredient) {
-        int[] factors = getIntArray(R.array.nb_cl_factor);
+    private void checkCaloriesInfo(IngredientHolder holder, Ingredient ingredient) {
         if (ingredient.getProduct().getSize() == Globals.DF_ZERO) setEmptyInfo(holder);
-        else setCaloriesInfo(holder, ingredient, factors);
+        else setCaloriesInfo(holder, ingredient);
     }
 
-    private void setCaloriesInfo(IngredientHolder holder, Ingredient ingredient, int[] factors) {
-        setTv(holder.tvKcal, ingredient.getTotalKcal(factors), Globals.UT_KCAL);
-        setTv(holder.tvKj, ingredient.getTotalKj(factors), Globals.UT_KJ);
+    private void setCaloriesInfo(IngredientHolder holder, Ingredient ingredient) {
+        setTv(holder.tvKcal, ingredient.getTotalKcal(context), Globals.UT_KCAL);
+        setTv(holder.tvKj, ingredient.getTotalKj(context), Globals.UT_KJ);
     }
 
     private void setEmptyInfo(IngredientHolder holder) {
@@ -113,14 +112,22 @@ public class IngredientAdapter extends PrimaryAdapter<IngredientAdapter.Ingredie
 
     class IngredientHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_measure) TextView tvMeasure;
-        @BindView(R.id.tv_product) TextView tvProduct;
-        @BindView(R.id.tv_kcal) TextView tvKcal;
-        @BindView(R.id.tv_kj) TextView tvKj;
-        @BindView(R.id.tv_used) TextView tvUsed;
-        @BindView(R.id.iv_ct_measure) ImageView ivMeasure;
-        @BindView(R.id.iv_icon) ImageView ivIcon;
-        @BindView(R.id.cb_done) CheckBox cbDone;
+        @BindView(R.id.tv_measure)
+        TextView tvMeasure;
+        @BindView(R.id.tv_product)
+        TextView tvProduct;
+        @BindView(R.id.tv_kcal)
+        TextView tvKcal;
+        @BindView(R.id.tv_kj)
+        TextView tvKj;
+        @BindView(R.id.tv_used)
+        TextView tvUsed;
+        @BindView(R.id.iv_ct_measure)
+        ImageView ivMeasure;
+        @BindView(R.id.iv_icon)
+        ImageView ivIcon;
+        @BindView(R.id.cb_done)
+        CheckBox cbDone;
 
         @OnCheckedChanged(R.id.cb_done)
         void checkedCbDone(boolean checked) {

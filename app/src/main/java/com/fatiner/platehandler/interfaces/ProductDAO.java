@@ -8,8 +8,8 @@ import androidx.room.RawQuery;
 import androidx.room.Update;
 import androidx.sqlite.db.SupportSQLiteQuery;
 
-import com.fatiner.platehandler.models.Product;
 import com.fatiner.platehandler.globals.Db;
+import com.fatiner.platehandler.models.Product;
 
 import java.util.List;
 

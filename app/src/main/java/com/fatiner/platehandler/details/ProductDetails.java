@@ -13,7 +13,7 @@ public final class ProductDetails {
     public static Product getProduct() {
         return product;
     }
-    
+
     public static void resetDetails() {
         product = new Product();
     }

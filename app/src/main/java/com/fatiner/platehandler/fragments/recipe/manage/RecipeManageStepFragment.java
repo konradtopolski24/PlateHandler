@@ -25,8 +25,10 @@ import butterknife.OnClick;
 
 public class RecipeManageStepFragment extends PrimaryFragment implements StepAdapter.StepListener {
 
-    @BindView(R.id.rv_step) RecyclerView rvStep;
-    @BindView(R.id.tv_empty) TextView tvEmpty;
+    @BindView(R.id.rv_step)
+    RecyclerView rvStep;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
 
     @OnClick(R.id.bt_add)
     void clickBtAdd() {
@@ -72,7 +74,7 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
     }
 
     private StepAdapter getStepAdapter() {
-        return new StepAdapter(getContext(), getSteps(),this, false);
+        return new StepAdapter(getContext(), getSteps(), this, false);
     }
 
     private RecyclerView.Adapter getAdapter() {
@@ -80,7 +82,8 @@ public class RecipeManageStepFragment extends PrimaryFragment implements StepAda
     }
 
     @Override
-    public void setDone(int id, boolean checked) {}
+    public void setDone(int id, boolean checked) {
+    }
 
     @Override
     public void editStep(int position) {

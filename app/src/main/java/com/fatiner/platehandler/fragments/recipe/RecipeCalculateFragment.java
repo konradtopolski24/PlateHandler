@@ -17,7 +17,6 @@ import com.fatiner.platehandler.adapters.recyclerview.IngredientAdapter;
 import com.fatiner.platehandler.details.RecipeDetails;
 import com.fatiner.platehandler.fragments.primary.PrimaryFragment;
 import com.fatiner.platehandler.globals.Globals;
-import com.fatiner.platehandler.managers.CaloriesManager;
 import com.fatiner.platehandler.models.Ingredient;
 import com.fatiner.platehandler.models.Recipe;
 
@@ -30,19 +29,32 @@ import butterknife.OnClick;
 
 public class RecipeCalculateFragment extends PrimaryFragment {
 
-    @BindView(R.id.cv_kcal) CardView cvKcal;
-    @BindView(R.id.cv_kj) CardView cvKj;
-    @BindView(R.id.cv_ingredient) CardView cvIngredient;
-    @BindView(R.id.cv_burn) CardView cvBurn;
-    @BindView(R.id.iv_hd_kcal) ImageView ivHdKcal;
-    @BindView(R.id.iv_hd_kj) ImageView ivHdKj;
-    @BindView(R.id.iv_hd_ingredient) ImageView ivHdIngredient;
-    @BindView(R.id.iv_hd_burn) ImageView ivHdBurn;
-    @BindView(R.id.tv_name) TextView tvName;
-    @BindView(R.id.tv_total1) TextView tvTotal1;
-    @BindView(R.id.tv_total2) TextView tvTotal2;
-    @BindView(R.id.tv_serving1) TextView tvServing1;
-    @BindView(R.id.tv_serving2) TextView tvServing2;
+    @BindView(R.id.cv_kcal)
+    CardView cvKcal;
+    @BindView(R.id.cv_kj)
+    CardView cvKj;
+    @BindView(R.id.cv_ingredient)
+    CardView cvIngredient;
+    @BindView(R.id.cv_burn)
+    CardView cvBurn;
+    @BindView(R.id.iv_hd_kcal)
+    ImageView ivHdKcal;
+    @BindView(R.id.iv_hd_kj)
+    ImageView ivHdKj;
+    @BindView(R.id.iv_hd_ingredient)
+    ImageView ivHdIngredient;
+    @BindView(R.id.iv_hd_burn)
+    ImageView ivHdBurn;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_total1)
+    TextView tvTotal1;
+    @BindView(R.id.tv_total2)
+    TextView tvTotal2;
+    @BindView(R.id.tv_serving1)
+    TextView tvServing1;
+    @BindView(R.id.tv_serving2)
+    TextView tvServing2;
     @BindViews({
             R.id.tv_walk,
             R.id.tv_bike,
@@ -51,7 +63,8 @@ public class RecipeCalculateFragment extends PrimaryFragment {
             R.id.tv_dance,
             R.id.tv_swim})
     List<TextView> listTvBurn;
-    @BindView(R.id.rv_ingredient) RecyclerView rvIngredient;
+    @BindView(R.id.rv_ingredient)
+    RecyclerView rvIngredient;
 
     @OnClick(R.id.cv_hd_kcal)
     void clickCvHdKcal() {
@@ -125,14 +138,12 @@ public class RecipeCalculateFragment extends PrimaryFragment {
 
     private void setCaloriesInfo() {
         Recipe recipe = getRecipe();
-        int[] factorArray = getIntArray(R.array.nb_cl_factor);
-        setTv(tvTotal1, recipe.getTotalKcal(factorArray), Globals.UT_KCAL);
-        setTv(tvServing1, recipe.getServingKcal(factorArray), Globals.UT_KCAL);
-        setTv(tvTotal2, recipe.getTotalKj(factorArray), Globals.UT_KJ);
-        setTv(tvServing2, recipe.getServingKj(factorArray), Globals.UT_KJ);
-
+        setTv(tvTotal1, recipe.getTotalKcal(getContext()), Globals.UT_KCAL);
+        setTv(tvServing1, recipe.getServingKcal(getContext()), Globals.UT_KCAL);
+        setTv(tvTotal2, recipe.getTotalKj(getContext()), Globals.UT_KJ);
+        setTv(tvServing2, recipe.getServingKj(getContext()), Globals.UT_KJ);
         for (int i = Globals.DF_ZERO; i < listTvBurn.size(); i++)
-            setTv(listTvBurn.get(i), CaloriesManager.getBurningValue(getContext(), i, recipe.getServingKcal(factorArray)), Globals.UT_MINUTE);
+            setTv(listTvBurn.get(i), recipe.getBurnValue(getContext(), i), Globals.UT_MINUTE);
     }
 
     private void setEmptyInfo() {

@@ -14,7 +14,8 @@ import java.util.Locale;
 
 public class QueryManager {
 
-    private QueryManager() {}
+    private QueryManager() {
+    }
 
     private static String getBool(Context context, String column, String name, String key) {
         if (SharedManager.isValueAvailable(context, name, key)) {

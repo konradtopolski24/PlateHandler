@@ -1,10 +1,13 @@
 package com.fatiner.platehandler.models;
 
+import android.content.Context;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.fatiner.platehandler.R;
 import com.fatiner.platehandler.globals.Db;
 import com.fatiner.platehandler.globals.Globals;
 
@@ -27,7 +30,8 @@ public class Ingredient {
     @Ignore
     private Product product;
 
-    public Ingredient() {}
+    public Ingredient() {
+    }
 
     public int getId() {
         return id;
@@ -85,12 +89,12 @@ public class Ingredient {
         isUsed = used;
     }
 
-    public float getTotalKcal(int[] factors) {
-        return (getSize(factors) * product.getTotalKcal()) / product.getSize();
+    public float getTotalKcal(Context context) {
+        return (getSize(context) * product.getTotalKcal()) / product.getSize();
     }
 
-    public float getTotalKj(int[] factors) {
-        return getTotalKcal(factors) * Globals.FC_KJ;
+    public float getTotalKj(Context context) {
+        return getTotalKcal(context) * Globals.FC_KJ;
     }
 
     private float getFactor(int[] factors) {
@@ -98,7 +102,8 @@ public class Ingredient {
         return factors[measure];
     }
 
-    private float getSize(int[] factors) {
+    private float getSize(Context context) {
+        int[] factors = context.getResources().getIntArray(R.array.nb_cl_factor);
         return amount * getFactor(factors);
     }
 }

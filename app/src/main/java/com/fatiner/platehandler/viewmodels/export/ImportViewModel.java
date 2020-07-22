@@ -34,7 +34,7 @@ public class ImportViewModel extends AndroidViewModel {
     }
 
     public Completable importDatabase(List<Recipe> recipes, List<Product> products,
-            List<Ingredient> ingredients, List<Step> steps) {
+                                      List<Ingredient> ingredients, List<Step> steps) {
         return Completable.fromAction(() -> {
             recipeRepository.deleteAllRecipes();
             productRepository.deleteAllProducts();

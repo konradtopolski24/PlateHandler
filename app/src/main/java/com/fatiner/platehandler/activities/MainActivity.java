@@ -30,13 +30,17 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.tb_main) Toolbar tbMain;
-    @BindView(R.id.dl_main) DrawerLayout dlMain;
-    @BindView(R.id.nv_main) NavigationView nvMain;
+    @BindView(R.id.tb_main)
+    Toolbar tbMain;
+    @BindView(R.id.dl_main)
+    DrawerLayout dlMain;
+    @BindView(R.id.nv_main)
+    NavigationView nvMain;
 
     private boolean isNotReady = true;
 
-    public MainActivity() {}
+    public MainActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle state) {
@@ -79,12 +83,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ActionBarDrawerToggle getToggle() {
-        return new ActionBarDrawerToggle (this, dlMain, tbMain,
+        return new ActionBarDrawerToggle(this, dlMain, tbMain,
                 R.string.dt_opened, R.string.dt_closed) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                if(isNotReady || nvMain.getCheckedItem() == null) return;
+                if (isNotReady || nvMain.getCheckedItem() == null) return;
                 Fragment fragment = getFragment(nvMain.getCheckedItem());
                 manageNewFragment(fragment);
             }
@@ -141,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void clearBackStack() {
         FragmentManager manager = getSupportFragmentManager();
-        for(int i = Globals.DF_ZERO; i < manager.getBackStackEntryCount(); i++)
+        for (int i = Globals.DF_ZERO; i < manager.getBackStackEntryCount(); i++)
             manager.popBackStack();
     }
 

@@ -34,14 +34,22 @@ import butterknife.OnClick;
 public class ShoppingShowFragment extends PrimaryFragment implements
         ShoppingAdapter.ShoppingListener {
 
-    @BindView(R.id.cv_data) CardView cvData;
-    @BindView(R.id.cv_list) CardView cvList;
-    @BindView(R.id.iv_hd_data) ImageView ivHdData;
-    @BindView(R.id.iv_hd_list) ImageView ivHdList;
-    @BindView(R.id.tv_date) TextView tvDate;
-    @BindView(R.id.tv_state) TextView tvState;
-    @BindView(R.id.tv_empty) TextView tvEmpty;
-    @BindView(R.id.rv_shopping) RecyclerView rvShopping;
+    @BindView(R.id.cv_data)
+    CardView cvData;
+    @BindView(R.id.cv_list)
+    CardView cvList;
+    @BindView(R.id.iv_hd_data)
+    ImageView ivHdData;
+    @BindView(R.id.iv_hd_list)
+    ImageView ivHdList;
+    @BindView(R.id.tv_date)
+    TextView tvDate;
+    @BindView(R.id.tv_state)
+    TextView tvState;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
+    @BindView(R.id.rv_shopping)
+    RecyclerView rvShopping;
 
     @OnClick(R.id.bt_create)
     void clickBtCreate() {
@@ -159,7 +167,7 @@ public class ShoppingShowFragment extends PrimaryFragment implements
     private void checkState() {
         int size = getShoppingList().getShoppingItems().size();
         int checked = getCheckedAmount();
-        String state =  String.format(Locale.ENGLISH, Format.FM_STATE, checked, size);
+        String state = String.format(Locale.ENGLISH, Format.FM_STATE, checked, size);
         setTv(tvState, state);
     }
 

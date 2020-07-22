@@ -41,7 +41,8 @@ public class RecipeManageIngredientFragment extends PrimaryFragment implements
     private RecipeManageIngredientViewModel viewModel;
     private CompositeDisposable disposables;
 
-    @BindView(R.id.rv_ingredient) RecyclerView rvIngredients;
+    @BindView(R.id.rv_ingredient)
+    RecyclerView rvIngredients;
 
     @OnClick(R.id.bt_add)
     void clickBtAdd() {

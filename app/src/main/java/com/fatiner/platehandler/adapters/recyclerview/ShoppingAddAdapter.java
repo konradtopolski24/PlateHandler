@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.items.ShoppingItem;
 import com.fatiner.platehandler.globals.Globals;
+import com.fatiner.platehandler.items.ShoppingItem;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
@@ -79,11 +79,16 @@ public class ShoppingAddAdapter extends PrimaryAdapter<ShoppingAddAdapter.Shoppi
 
     class ShoppingAddHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.til_amount) TextInputLayout tilAmount;
-        @BindView(R.id.til_name) TextInputLayout tilName;
-        @BindView(R.id.et_amount) EditText etAmount;
-        @BindView(R.id.et_name) EditText etName;
-        @BindView(R.id.sp_measure) Spinner spMeasure;
+        @BindView(R.id.til_amount)
+        TextInputLayout tilAmount;
+        @BindView(R.id.til_name)
+        TextInputLayout tilName;
+        @BindView(R.id.et_amount)
+        EditText etAmount;
+        @BindView(R.id.et_name)
+        EditText etName;
+        @BindView(R.id.sp_measure)
+        Spinner spMeasure;
 
         @OnClick(R.id.iv_remove)
         void clickIvRemove() {

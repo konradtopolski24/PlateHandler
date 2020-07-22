@@ -5,14 +5,14 @@
     <group>
         <item
             android:id="@+id/it_edit"
-            android:title="@string/mn_edit"
             android:icon="@drawable/ic_st_edit"
+            android:title="@string/mn_edit"
             app:showAsAction="ifRoom" />
 
         <item
             android:id="@+id/it_remove"
-            android:title="@string/mn_remove"
             android:icon="@drawable/ic_st_remove"
+            android:title="@string/mn_remove"
             app:showAsAction="ifRoom" />
     </group>
 </menu>

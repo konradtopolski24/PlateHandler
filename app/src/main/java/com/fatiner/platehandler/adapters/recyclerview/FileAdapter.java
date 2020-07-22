@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.items.ImportFile;
 import com.fatiner.platehandler.globals.Format;
+import com.fatiner.platehandler.items.ImportFile;
 
 import java.util.List;
 import java.util.Locale;
@@ -64,9 +64,12 @@ public class FileAdapter extends PrimaryAdapter<FileAdapter.FilesHolder> {
 
     class FilesHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_name) TextView tvName;
-        @BindView(R.id.tv_recipe) TextView tvRecipe;
-        @BindView(R.id.tv_product) TextView tvProduct;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.tv_recipe)
+        TextView tvRecipe;
+        @BindView(R.id.tv_product)
+        TextView tvProduct;
 
         @OnClick(R.id.cl_file)
         void clickClFile() {

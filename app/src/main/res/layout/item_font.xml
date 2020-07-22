@@ -1,124 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/CvItem">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/ClItem">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/ClItem">
 
         <LinearLayout
-            style="@style/LlSide"
             android:id="@+id/ll_icon"
+            style="@style/LlSide"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                style="@style/IvSide"
                 android:id="@+id/iv_icon"
-                android:src="@drawable/ic_it_font"
-                android:contentDescription="@string/dp_side" />
+                style="@style/IvSide"
+                android:contentDescription="@string/dp_side"
+                android:src="@drawable/ic_it_font" />
         </LinearLayout>
 
         <TextView
-            style="@style/TvItem"
             android:id="@+id/tv_name"
-            app:layout_constraintStart_toEndOf="@+id/ll_icon"
+            style="@style/TvItem"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ll_icon"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- 1st level -->
-
         <ImageView
-            style="@style/IvInfoCredits"
             android:id="@+id/iv_ct_author"
+            style="@style/IvInfoCredits"
             android:contentDescription="@string/dp_caption"
-            app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintEnd_toStartOf="@+id/tv_ct_author"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
         <TextView
-            style="@style/TvCaption"
             android:id="@+id/tv_ct_author"
+            style="@style/TvCaption"
             android:text="@string/ct_author"
-            app:layout_constraintStart_toEndOf="@+id/iv_ct_author"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_ct_author"
             app:layout_constraintEnd_toEndOf="@+id/tv_name"
-            app:layout_constraintTop_toTopOf="@+id/iv_ct_author"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_ct_author" />
+            app:layout_constraintStart_toEndOf="@+id/iv_ct_author"
+            app:layout_constraintTop_toTopOf="@+id/iv_ct_author" />
 
         <TextView
-            style="@style/TvCredits"
             android:id="@+id/tv_author"
-            app:layout_constraintStart_toStartOf="@+id/tv_ct_author"
+            style="@style/TvCredits"
             app:layout_constraintEnd_toEndOf="@+id/tv_ct_author"
+            app:layout_constraintStart_toStartOf="@+id/tv_ct_author"
             app:layout_constraintTop_toBottomOf="@+id/tv_ct_author" />
 
         <View
-            style="@style/VwLine"
             android:id="@+id/vw_line1"
-            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            style="@style/VwLine"
             app:layout_constraintEnd_toEndOf="@+id/tv_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_author" />
 
-        <!-- 2nd level -->
-
         <ImageView
-            style="@style/IvInfoCredits"
             android:id="@+id/iv_version"
+            style="@style/IvInfoCredits"
             android:contentDescription="@string/dp_caption"
-            app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintEnd_toStartOf="@+id/tv_version_hd"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/vw_line1" />
 
         <TextView
-            style="@style/TvCaption"
             android:id="@+id/tv_version_hd"
+            style="@style/TvCaption"
             android:text="@string/ct_version"
-            app:layout_constraintStart_toEndOf="@+id/iv_version"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_version"
             app:layout_constraintEnd_toEndOf="@+id/tv_name"
-            app:layout_constraintTop_toTopOf="@+id/iv_version"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_version" />
+            app:layout_constraintStart_toEndOf="@+id/iv_version"
+            app:layout_constraintTop_toTopOf="@+id/iv_version" />
 
         <TextView
-            style="@style/TvCredits"
             android:id="@+id/tv_version"
-            app:layout_constraintStart_toStartOf="@+id/tv_version_hd"
+            style="@style/TvCredits"
             app:layout_constraintEnd_toEndOf="@+id/tv_version_hd"
+            app:layout_constraintStart_toStartOf="@+id/tv_version_hd"
             app:layout_constraintTop_toBottomOf="@+id/tv_version_hd" />
 
         <View
-            style="@style/VwLine"
             android:id="@+id/vw_line2"
-            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            style="@style/VwLine"
             app:layout_constraintEnd_toEndOf="@+id/tv_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_version" />
 
-        <!-- 3rd level -->
-
         <ImageView
-            style="@style/IvInfoCredits"
             android:id="@+id/iv_ct_license"
+            style="@style/IvInfoCredits"
             android:contentDescription="@string/dp_caption"
-            app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintEnd_toStartOf="@+id/tv_hd_license"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/vw_line2" />
 
         <TextView
-            style="@style/TvCaption"
             android:id="@+id/tv_hd_license"
+            style="@style/TvCaption"
             android:text="@string/ct_license"
-            app:layout_constraintStart_toEndOf="@+id/iv_ct_license"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_ct_license"
             app:layout_constraintEnd_toEndOf="@+id/tv_name"
-            app:layout_constraintTop_toTopOf="@+id/iv_ct_license"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_ct_license" />
+            app:layout_constraintStart_toEndOf="@+id/iv_ct_license"
+            app:layout_constraintTop_toTopOf="@+id/iv_ct_license" />
 
         <TextView
-            style="@style/TvCredits"
             android:id="@+id/tv_license"
-            app:layout_constraintStart_toStartOf="@+id/tv_hd_license"
+            style="@style/TvCredits"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_hd_license"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hd_license"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/tv_hd_license"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hd_license" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -7,7 +7,8 @@ public class ShoppingItem {
     private String name;
     private boolean isCrossedOut;
 
-    public ShoppingItem() {}
+    public ShoppingItem() {
+    }
 
     public float getAmount() {
         return amount;

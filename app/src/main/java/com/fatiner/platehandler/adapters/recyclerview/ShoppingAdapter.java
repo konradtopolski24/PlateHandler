@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.items.ShoppingItem;
 import com.fatiner.platehandler.globals.Format;
+import com.fatiner.platehandler.items.ShoppingItem;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -93,7 +93,8 @@ public class ShoppingAdapter extends PrimaryAdapter<ShoppingAdapter.ShoppingHold
 
     class ShoppingHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_item) TextView tvItem;
+        @BindView(R.id.tv_item)
+        TextView tvItem;
 
         @OnClick(R.id.tv_item)
         void clickTvItem() {

@@ -7,11 +7,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.fatiner.platehandler.R;
+import com.fatiner.platehandler.fragments.recipe.manage.RecipeManageInfoFragment;
 import com.fatiner.platehandler.fragments.recipe.manage.RecipeManageIngredientFragment;
 import com.fatiner.platehandler.fragments.recipe.manage.RecipeManageStepFragment;
 import com.fatiner.platehandler.globals.Globals;
-import com.fatiner.platehandler.R;
-import com.fatiner.platehandler.fragments.recipe.manage.RecipeManageInfoFragment;
 
 public class RecipePagerAdapter extends FragmentPagerAdapter {
 

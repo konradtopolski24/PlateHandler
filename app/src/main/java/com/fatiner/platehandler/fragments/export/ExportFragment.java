@@ -50,10 +50,14 @@ public class ExportFragment extends PrimaryFragment {
     private ExportViewModel viewModel;
     private CompositeDisposable disposables;
 
-    @BindView(R.id.cv_guideline) CardView cvGuideline;
-    @BindView(R.id.iv_hd_guideline) ImageView ivHdGuideline;
-    @BindView(R.id.til_name) TextInputLayout tilName;
-    @BindView(R.id.et_name) EditText etName;
+    @BindView(R.id.cv_guideline)
+    CardView cvGuideline;
+    @BindView(R.id.iv_hd_guideline)
+    ImageView ivHdGuideline;
+    @BindView(R.id.til_name)
+    TextInputLayout tilName;
+    @BindView(R.id.et_name)
+    EditText etName;
 
     @OnTextChanged(R.id.et_name)
     void changedEtName() {
